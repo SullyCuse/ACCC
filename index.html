@@ -458,6 +458,121 @@ select {
 /* ── RESULTS COLUMN ── */
 .results-col { position: sticky; top: 84px; }
 
+/* ── 3-PANEL FULL-WIDTH RESULTS ── */
+.results-full {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 max(24px, 5vw) 40px;
+}
+
+.results-full-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.results-full-head::before, .results-full-head::after {
+  content: ''; flex: 1; height: 1px; background: var(--border2);
+}
+.results-full-head span {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  white-space: nowrap;
+}
+
+.results-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .results-3col { grid-template-columns: 1fr; }
+}
+
+/* Component spec blocks */
+.comp-spec-block { margin-bottom: 18px; }
+.comp-spec-block:last-child { margin-bottom: 0; }
+
+.comp-name-hdr {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mahogany);
+  background: var(--tan);
+  padding: 7px 12px;
+  border-left: 3px solid var(--amber);
+  margin-bottom: 0;
+  letter-spacing: 0.01em;
+}
+
+.spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 4px 0;
+  border: 1px solid var(--border);
+  border-top: none;
+}
+
+.spec-list li {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+.spec-list li:last-child { border-bottom: none; }
+
+/* Analysis text panels */
+.panel-analysis {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.panel-analysis p { margin-bottom: 10px; }
+.panel-analysis p:last-child { margin-bottom: 0; }
+.panel-analysis strong { color: var(--brown); font-weight: 500; }
+
+.panel-analysis ul { list-style: none; padding: 0; margin: 0 0 10px; }
+.panel-analysis ul li {
+  padding: 5px 0 5px 20px;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.panel-analysis ul li:last-child { border-bottom: none; }
+.panel-analysis ul li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--amber);
+  font-size: 8px;
+  top: 10px;
+}
+
+.panel-sub-hdr {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mahogany);
+  margin: 18px 0 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.panel-sub-hdr:first-child { margin-top: 0; }
+.panel-sub-hdr::after { content:''; flex:1; height:1px; background:var(--border); }
+
 .results-placeholder {
   padding: 60px 24px;
   text-align: center;
@@ -785,17 +900,17 @@ select {
 
   </div>
 
-  <!-- RIGHT: RESULTS -->
+  <!-- RIGHT: SCORE SUMMARY + DIAGRAM -->
   <div class="results-col">
     <div class="cat-panel">
       <div class="cat-panel-head">
-        <span class="cat-panel-title" style="margin-left:0;">Compatibility Assessment</span>
+        <span class="cat-panel-title" style="margin-left:0;">Compatibility Score</span>
       </div>
       <div class="cat-panel-body">
         <div id="results-content">
           <div class="results-placeholder">
             <span class="placeholder-ornament">∿</span>
-            <p class="placeholder-text">Register your components and commission an analysis to receive a full compatibility assessment for your signal chain.</p>
+            <p class="placeholder-text">Register your components and commission an analysis to receive a full compatibility assessment.</p>
           </div>
         </div>
       </div>
@@ -811,6 +926,35 @@ select {
     </div>
   </div>
 
+</div>
+
+<!-- FULL-WIDTH 3-PANEL RESULTS -->
+<div class="results-full" id="results-full" style="display:none;">
+  <div class="results-full-head"><span>◆ Full Analysis</span></div>
+  <div class="results-3col">
+
+    <div class="cat-panel">
+      <div class="cat-panel-head">
+        <span class="cat-panel-title" style="margin-left:0;">Component Specifications</span>
+      </div>
+      <div class="cat-panel-body" id="panel-specs-body"></div>
+    </div>
+
+    <div class="cat-panel">
+      <div class="cat-panel-head">
+        <span class="cat-panel-title" style="margin-left:0;">Signal Chain Analysis</span>
+      </div>
+      <div class="cat-panel-body" id="panel-chain-body"></div>
+    </div>
+
+    <div class="cat-panel">
+      <div class="cat-panel-head">
+        <span class="cat-panel-title" style="margin-left:0;">Summary &amp; Recommendations</span>
+      </div>
+      <div class="cat-panel-body" id="panel-summary-body"></div>
+    </div>
+
+  </div>
 </div>
 
 <!-- FOOTER -->
@@ -963,6 +1107,8 @@ async function analyze(){
 
 function renderResults(text){
   const rEl=document.getElementById('results-content');
+  const fullEl=document.getElementById('results-full');
+
   const sM=text.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i);
   const iM=text.match(/IMPEDANCE MATCH:\s*(.+)/i);
   const nM=text.match(/SENSITIVITY MATCH:\s*(.+)/i);
@@ -971,6 +1117,7 @@ function renderResults(text){
   const nStr=nM?nM[1].trim():null;
   const nC=n=>n>=8?'spec-good':n>=6?'spec-ok':'spec-bad';
   const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'spec-good':l.includes('poor')?'spec-bad':'spec-ok';};
+
   let scores='';
   if(score!==null||iStr||nStr){
     scores=`<div class="spec-row">
@@ -979,11 +1126,73 @@ function renderResults(text){
       ${nStr?`<div class="spec-card"><span class="spec-label">Sensitivity</span><div class="spec-val ${wC(nStr)}" style="font-size:17px;margin-top:4px;">${nStr}</div></div>`:''}
     </div>`;
   }
-  const headers=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
-  let body=text.replace(/OVERALL SCORE:.*\n?/i,'').replace(/IMPEDANCE MATCH:.*\n?/i,'').replace(/SENSITIVITY MATCH:.*\n?/i,'').trim();
-  headers.forEach(h=>{body=body.replace(new RegExp(`^${h}$`,'gm'),`<h3>${h.charAt(0)+h.slice(1).toLowerCase()}</h3>`);});
-  body=body.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n\n/g,'</p><p>').replace(/^(?!<h3|<\/p>|<p)(.+)$/gm,'<p>$1</p>').replace(/<p>\s*<\/p>/g,'');
-  rEl.innerHTML=`<div class="fadein">${scores}<div class="analysis-wrap">${body}</div></div>`;
+  rEl.innerHTML=`<div class="fadein">${scores||'<p style="font-family:var(--body);font-size:14px;font-style:italic;color:var(--muted2);">Analysis complete — see full breakdown below.</p>'}</div>`;
+
+  const clean=text.replace(/OVERALL SCORE:.*\n?/i,'').replace(/IMPEDANCE MATCH:.*\n?/i,'').replace(/SENSITIVITY MATCH:.*\n?/i,'');
+  const hdrs=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
+  const secs={};
+  hdrs.forEach(h=>{
+    const escaped=h.replace(/[&]/g,'\\&');
+    const re=new RegExp(`${escaped}\\s*\\n([\\s\\S]*?)(?=\\n(?:${hdrs.map(x=>x.replace(/[&]/g,'\\&')).join('|')})\\s*\\n|$)`,'i');
+    const m=clean.match(re);
+    secs[h]=m?m[1].trim():'';
+  });
+
+  document.getElementById('panel-specs-body').innerHTML=renderCompSpecs(secs['COMPONENT SPECS']);
+
+  const chainParts=[];
+  if(secs['SIGNAL CHAIN ANALYSIS'])chainParts.push({label:'Signal chain',text:secs['SIGNAL CHAIN ANALYSIS']});
+  if(secs['PHONO CHAIN'])chainParts.push({label:'Phono chain',text:secs['PHONO CHAIN']});
+  document.getElementById('panel-chain-body').innerHTML=renderPanelSections(chainParts);
+
+  const summaryParts=[];
+  if(secs['COMPATIBILITY SUMMARY'])summaryParts.push({label:'Overall verdict',text:secs['COMPATIBILITY SUMMARY']});
+  if(secs['ISSUES & RECOMMENDATIONS'])summaryParts.push({label:'Issues & recommendations',text:secs['ISSUES & RECOMMENDATIONS']});
+  document.getElementById('panel-summary-body').innerHTML=renderPanelSections(summaryParts);
+
+  fullEl.style.display='block';
+  setTimeout(()=>fullEl.scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+
+function renderCompSpecs(text){
+  if(!text)return'<p style="font-family:var(--body);font-size:14px;font-style:italic;color:var(--muted2);">No specifications found.</p>';
+  const blocks=text.split(/\n(?=\*\*)/);
+  return blocks.map(block=>{
+    const nm=block.match(/^\*\*([^*]+)\*\*/);
+    if(!nm){
+      const t=block.trim();
+      return t?`<p class="panel-analysis" style="margin-bottom:8px;">${esc(t)}</p>`:'';
+    }
+    const name=nm[1].trim();
+    const rest=block.slice(nm[0].length).trim();
+    const items=rest.split('\n').filter(l=>l.trim()).map(l=>{
+      const c=l.replace(/^[-•*]\s*/,'').replace(/\*\*(.+?)\*\*/g,'$1').trim();
+      return c?`<li>${esc(c)}</li>`:'';
+    }).join('');
+    return `<div class="comp-spec-block fadein">
+      <div class="comp-name-hdr">${esc(name)}</div>
+      ${items?`<ul class="spec-list">${items}</ul>`:''}
+    </div>`;
+  }).join('');
+}
+
+function renderPanelSections(parts){
+  if(!parts.length)return'<p style="font-family:var(--body);font-size:14px;font-style:italic;color:var(--muted2);">No content.</p>';
+  return parts.map(({label,text})=>{
+    let html=text
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/^\d+\.\s+(.+)$/gm,'<li>$1</li>')
+      .replace(/^[-•]\s+(.+)$/gm,'<li>$1</li>')
+      .replace(/(<li>[\s\S]*?<\/li>)/g,'<ul>$1</ul>')
+      .replace(/<\/ul>\s*<ul>/g,'')
+      .replace(/\n\n/g,'</p><p>')
+      .replace(/^(?!<[upl]|<\/[upl])(.+)$/gm,'<p>$1</p>')
+      .replace(/<p>\s*<\/p>/g,'');
+    return `<div class="fadein">
+      <div class="panel-sub-hdr">${esc(label)}</div>
+      <div class="panel-analysis">${html}</div>
+    </div>`;
+  }).join('');
 }
 
 function updateDiagram(){
@@ -998,59 +1207,105 @@ function buildDiagram(){
   const pho=components.filter(c=>['turntable','cartridge','phonopre'].includes(c.type));
   const shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c));
   const hasBoth=dig.length>0&&pho.length>0;
+
+  function sortChain(chain){
+    if(connections.length===0||chain.length<=1)return chain;
+    const ids=new Set(chain.map(c=>c.id));
+    const hasIn=new Set();
+    connections.forEach(cn=>{if(ids.has(cn.fromId)&&ids.has(cn.toId))hasIn.add(cn.toId);});
+    const roots=chain.filter(c=>!hasIn.has(c.id));
+    const out=[],vis=new Set();
+    function visit(c){
+      if(vis.has(c.id))return;vis.add(c.id);out.push(c);
+      connections.filter(cn=>cn.fromId===c.id&&ids.has(cn.toId)).forEach(cn=>{
+        const nx=chain.find(x=>x.id===cn.toId);if(nx)visit(nx);
+      });
+    }
+    (roots.length?roots:chain.slice(0,1)).forEach(visit);
+    chain.filter(c=>!vis.has(c.id)).forEach(c=>out.push(c));
+    return out;
+  }
+
+  const digS=sortChain(dig);
+  const phoS=sortChain(pho);
+  const shrS=sortChain(shr);
+
   const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#4a80b8" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
   const sh=s=>{const e=esc(s);return e.length>16?e.slice(0,15)+'…':e;};
   const box=(x,y,c,cls)=>{const cx=x+BW/2,cy=y+BH/2;return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="1" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${cy+10}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;};
   const ln=(x1,y1,x2,y2)=>`<line stroke="#4a80b8" stroke-width="1" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
   const pt=(d)=>`<path fill="none" stroke="#4a80b8" stroke-width="1" d="${d}" marker-end="url(#da)"/>`;
   const lbl=(x,y,t,a)=>t?`<text class="dv-label" x="${x}" y="${y}" text-anchor="${a||'start'}" dominant-baseline="central">${esc(t)}</text>`:'';
-  const ct=(a,b)=>{if(!a||!b)return null;const c=connections.find(x=>(x.fromId===a.id&&x.toId===b.id)||(x.fromId===b.id&&x.toId===a.id));return c?c.type:null;};
+  const ct=(a,b)=>{
+    if(!a||!b)return null;
+    const c=connections.find(x=>(x.fromId===a.id&&x.toId===b.id)||(x.fromId===b.id&&x.toId===a.id));
+    return c?c.type:null;
+  };
 
   if(hasBoth){
-    const mx=Math.max(dig.length,pho.length);
+    const mx=Math.max(digS.length,phoS.length);
     const lX=10,rX=W/2+10;
     let p='',b='';
     b+=`<text class="dv-col" x="${lX+BW/2}" y="16" text-anchor="middle">DIGITAL</text>`;
     b+=`<text class="dv-col" x="${rX+BW/2}" y="16" text-anchor="middle">PHONO</text>`;
     let lB=null,rB=null,lPrev=null,rPrev=null;
-    dig.forEach((c,i)=>{
+
+    digS.forEach((c,i)=>{
       const y=24+i*(BH+G),cx=lX+BW/2;
-      if(lB!==null){p+=ln(cx,lB,cx,y);b+=lbl(cx+5,lB+G/2,ct(lPrev,c));}
+      if(lB!==null){
+        p+=ln(cx,lB,cx,y);
+        const t=ct(lPrev,c);if(t)b+=lbl(cx+5,lB+G/2,t);
+      }
       b+=box(lX,y,c,'dv-box-digital');lB=y+BH;lPrev=c;
     });
-    pho.forEach((c,i)=>{
+
+    phoS.forEach((c,i)=>{
       const y=24+i*(BH+G),cx=rX+BW/2;
-      if(rB!==null){p+=ln(cx,rB,cx,y);b+=lbl(cx+5,rB+G/2,ct(rPrev,c));}
+      if(rB!==null){
+        p+=ln(cx,rB,cx,y);
+        const t=ct(rPrev,c);if(t)b+=lbl(cx+5,rB+G/2,t);
+      }
       b+=box(rX,y,c,'dv-box-phono');rB=y+BH;rPrev=c;
     });
+
     const rY=24+mx*(BH+G);
     const sX=W/2-BW/2,sCx=sX+BW/2;
     let sY=rY+G*2;
-    if(shr.length>0){
-      const fS=shr[0];
+
+    if(shrS.length>0){
+      const fS=shrS[0];
       if(lB!==null){
         p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${rY} L${sCx-14},${rY} L${sCx-14},${sY}`);
-        b+=lbl(Math.round((lX+BW/2+sCx-14)/2),rY-7,ct(lPrev,fS),'middle');
+        const t=ct(lPrev,fS);if(t)b+=lbl(Math.round((lX+BW/2+sCx-14)/2),rY-8,t,'middle');
       }
       if(rB!==null){
         p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${rY} L${sCx+14},${rY} L${sCx+14},${sY}`);
-        b+=lbl(Math.round((rX+BW/2+sCx+14)/2),rY-7,ct(rPrev,fS),'middle');
+        const t=ct(rPrev,fS);if(t)b+=lbl(Math.round((rX+BW/2+sCx+14)/2),rY-8,t,'middle');
       }
     }
+
     let pB=null,shrPrev=null;
-    shr.forEach(c=>{
-      if(pB!==null){p+=ln(sCx,pB,sCx,sY);b+=lbl(sCx+5,pB+G/2,ct(shrPrev,c));}
+    shrS.forEach(c=>{
+      if(pB!==null){
+        p+=ln(sCx,pB,sCx,sY);
+        const t=ct(shrPrev,c);if(t)b+=lbl(sCx+5,pB+G/2,t);
+      }
       b+=box(sX,sY,c,'dv-box-shared');pB=sY+BH;shrPrev=c;sY+=BH+G;
     });
+
     return `<svg width="100%" viewBox="0 0 ${W} ${(pB||sY)+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
   }
 
-  const all=[...dig,...pho,...shr];
+  const all=[...digS,...phoS,...shrS];
   const x=W/2-BW/2,cx=W/2;
   let y=20,p='',b='',prev=null;
   all.forEach((c,i)=>{
     const cls=dig.includes(c)?'dv-box-digital':pho.includes(c)?'dv-box-phono':'dv-box-shared';
-    if(i>0){p+=ln(cx,y,cx,y+G);b+=lbl(cx+5,y+G/2,ct(prev,c));y+=G;}
+    if(i>0){
+      p+=ln(cx,y,cx,y+G);
+      const t=ct(prev,c);if(t)b+=lbl(cx+5,y+G/2,t);
+      y+=G;
+    }
     b+=box(x,y,c,cls);y+=BH;prev=c;
   });
   return `<svg width="100%" viewBox="0 0 ${W} ${y+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
