@@ -976,13 +976,14 @@ function addConnection(){
   const dupe=connections.find(c=>c.fromId===fromId&&c.toId===toId);
   if(dupe){dupe.type=type;}else{connections.push({id:Date.now(),fromId,toId,fromName:fromComp.name,toName:toComp.name,type});}
   renderConnections();
+  updateDiagram();
   const toSel=document.getElementById('conn-to'),fromSel=document.getElementById('conn-from');
   const lastIdx=Array.from(toSel.options).findIndex(o=>parseInt(o.value)===toId);
   let next=(lastIdx+1)%toSel.options.length;
   if(parseInt(toSel.options[next].value)===fromId)next=(next+1)%toSel.options.length;
   toSel.selectedIndex=next;
 }
-function removeConnection(id){const i=connections.findIndex(c=>c.id===id);if(i>-1)connections.splice(i,1);renderConnections();}
+function removeConnection(id){const i=connections.findIndex(c=>c.id===id);if(i>-1)connections.splice(i,1);renderConnections();updateDiagram();}
 function renderAll(){renderComponents();renderConnections();updateConnDropdowns();updateDiagram();const show=components.length>=2;['conn-panel','analyze-panel','diagram-panel'].forEach(id=>document.getElementById(id).style.display=show?'block':'none');}
 function renderComponents(){
   const el=document.getElementById('comp-list');
@@ -1060,17 +1061,49 @@ function updateDiagram(){const wrap=document.getElementById('diagram-wrap');if(c
 function buildDiagram(){
   const W=500,BW=138,BH=48,G=16;
   const dig=components.filter(c=>['streamer','dac'].includes(c.type)),pho=components.filter(c=>['turntable','cartridge','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)),hasBoth=dig.length>0&&pho.length>0;
+
+  // Sort a chain by following defined connections. Nodes with no defined connections go last.
   function sortChain(chain){
-    if(connections.length===0||chain.length<=1)return chain;
-    const ids=new Set(chain.map(c=>c.id)),hasIn=new Set();
+    if(chain.length<=1)return chain;
+    const ids=new Set(chain.map(c=>c.id));
+    const hasIn=new Set();
     connections.forEach(cn=>{if(ids.has(cn.fromId)&&ids.has(cn.toId))hasIn.add(cn.toId);});
-    const roots=chain.filter(c=>!hasIn.has(c.id)),out=[],vis=new Set();
+    const roots=chain.filter(c=>!hasIn.has(c.id));
+    const out=[],vis=new Set();
     function visit(c){if(vis.has(c.id))return;vis.add(c.id);out.push(c);connections.filter(cn=>cn.fromId===c.id&&ids.has(cn.toId)).forEach(cn=>{const nx=chain.find(x=>x.id===cn.toId);if(nx)visit(nx);});}
     (roots.length?roots:chain.slice(0,1)).forEach(visit);
     chain.filter(c=>!vis.has(c.id)).forEach(c=>out.push(c));
     return out;
   }
-  const digS=sortChain(dig),phoS=sortChain(pho),shrS=sortChain(shr);
+
+  // For the shared chain: nodes that receive from dig/pho (merge targets) must come first;
+  // nodes with no connections at all (e.g. speakers with no defined wire connection) go last.
+  function sortShr(chain){
+    if(chain.length<=1)return chain;
+    const shrIds=new Set(chain.map(c=>c.id));
+    // Which shr nodes receive connections from outside (dig/pho)?
+    const mergeTargets=new Set();
+    connections.forEach(cn=>{if(!shrIds.has(cn.fromId)&&shrIds.has(cn.toId))mergeTargets.add(cn.toId);});
+    // Internal connections within shr
+    const hasInternalIn=new Set(),hasInternalOut=new Set();
+    connections.forEach(cn=>{if(shrIds.has(cn.fromId)&&shrIds.has(cn.toId)){hasInternalIn.add(cn.toId);hasInternalOut.add(cn.fromId);}});
+    // A node is "floating" if it has no internal connections AND is not a merge target
+    const isFloating=c=>!mergeTargets.has(c.id)&&!hasInternalIn.has(c.id)&&!hasInternalOut.has(c.id);
+    // Root: merge target with no internal incoming; fallback to any node with no internal incoming
+    let roots=chain.filter(c=>mergeTargets.has(c.id)&&!hasInternalIn.has(c.id));
+    if(!roots.length)roots=chain.filter(c=>!hasInternalIn.has(c.id)&&!isFloating(c));
+    if(!roots.length)roots=chain.filter(c=>!hasInternalIn.has(c.id));
+    if(!roots.length)roots=chain.slice(0,1);
+    const out=[],vis=new Set();
+    function visit(c){if(vis.has(c.id))return;vis.add(c.id);out.push(c);connections.filter(cn=>cn.fromId===c.id&&shrIds.has(cn.toId)).forEach(cn=>{const nx=chain.find(x=>x.id===cn.toId);if(nx)visit(nx);});}
+    roots.forEach(r=>visit(r));
+    // Add connected-but-unvisited nodes, then floating nodes at end
+    chain.filter(c=>!vis.has(c.id)&&!isFloating(c)).forEach(c=>out.push(c));
+    chain.filter(c=>isFloating(c)).forEach(c=>out.push(c));
+    return out;
+  }
+
+  const digS=sortChain(dig),phoS=sortChain(pho),shrS=sortShr(shr);
   const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
   const sh=s=>{const e=esc(s);return e.length>16?e.slice(0,15)+'…':e;};
   const box=(x,y,c,cls)=>{const cx=x+BW/2,cy=y+BH/2;return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="8" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${cy+9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;};
