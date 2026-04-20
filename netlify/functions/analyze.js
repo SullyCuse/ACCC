@@ -81,7 +81,7 @@ Numbered list of issues and recommendations.
 Be precise and reference actual published spec numbers.`;
 
     const requestBody = JSON.stringify({
-      model: "claude-opus-4-5",
+      model: "claude-haiku-4-5-20251001",
       max_tokens: 2500,
       messages: [{ role: "user", content: prompt }],
     });
