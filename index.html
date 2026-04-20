@@ -3,507 +3,704 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AudioChain — Hi-Fi Compatibility Checker</title>
-<meta name="description" content="Analyze the compatibility of your hi-fi audio system components. Get detailed specs, impedance matching, and expert recommendations.">
+<title>AudioChainHiFi.com — Hi-Fi Compatibility Checker</title>
+<meta name="description" content="AudioChainHiFi.com — Analyze the compatibility of your hi-fi audio system. Impedance matching, gain staging, phono chain analysis, and expert recommendations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:         #f5f2ed;
-  --bg-1:       #ffffff;
-  --bg-2:       #f9f7f3;
-  --bg-3:       #ede9e1;
-  --border:     rgba(130,100,50,0.16);
-  --border-2:   rgba(130,100,50,0.28);
-  --text:       #211d16;
-  --text-2:     #6b5e48;
-  --text-3:     #a08870;
-  --amber:      #9e6e1a;
-  --amber-bg:   rgba(158,110,26,0.09);
-  --amber-bdr:  rgba(158,110,26,0.28);
-  --serif:      'Cormorant Garamond', Georgia, serif;
-  --mono:       'DM Mono', 'Courier New', monospace;
+  --cream:    #f0f4f9;
+  --paper:    #f7fafd;
+  --tan:      #dce8f4;
+  --tan2:     #ccdaec;
+  --brown:    #0e1e30;
+  --mahogany: #1a4a7a;
+  --amber:    #2a6aa8;
+  --gold:     #1a5490;
+  --muted:    #4a6a8a;
+  --muted2:   #7a9ab8;
+  --border:   rgba(20,60,110,0.16);
+  --border2:  rgba(20,60,110,0.28);
+  --serif:    'Playfair Display', Georgia, serif;
+  --body:     'EB Garamond', Georgia, serif;
+  --mono:     'Courier Prime', 'Courier New', monospace;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: var(--mono);
-  font-size: 14px;
-  background: var(--bg);
-  color: var(--text);
+  font-family: var(--body);
+  font-size: 16px;
+  background: var(--cream);
+  color: var(--brown);
   line-height: 1.6;
   min-height: 100vh;
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(40,100,180,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(20,60,120,0.05) 0%, transparent 60%);
 }
 
-a { color: var(--amber); text-decoration: none; }
-a:hover { text-decoration: underline; }
+/* ── MASTHEAD ── */
+.masthead {
+  text-align: center;
+  padding: 28px max(24px, 5vw) 20px;
+  border-bottom: 1px solid var(--border2);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
 
-/* ── HEADER ── */
-.site-header {
-  border-bottom: 1px solid var(--border);
-  padding: 0 max(24px, 5vw);
+.masthead-rule {
+  height: 1px;
+  background: var(--border2);
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.masthead-rule::before {
+  content: '◆';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: var(--paper);
+  padding: 0 10px;
+  font-size: 9px;
+  color: var(--muted2);
+}
+
+.masthead-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
-  position: sticky;
-  top: 0;
-  background: rgba(245,242,237,0.96);
-  backdrop-filter: blur(12px);
-  z-index: 100;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.logo {
+.masthead-logo {
   font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--brown);
+  letter-spacing: 0.04em;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.logo-mark {
-  width: 28px; height: 28px;
+.logo-ornament {
+  width: 30px;
+  height: 30px;
   border: 1.5px solid var(--amber);
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
-.logo-mark svg { width: 14px; height: 14px; }
 
-.header-tag {
-  font-size: 11px;
-  color: var(--text-3);
-  letter-spacing: 0.12em;
+.logo-ornament svg { width: 14px; height: 14px; }
+
+.masthead-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--muted);
 }
 
 /* ── HERO ── */
 .hero {
-  padding: 60px max(24px, 5vw) 44px;
-  border-bottom: 1px solid var(--border);
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
+  padding: 52px max(24px, 5vw) 40px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
 }
 
-.hero-label {
-  font-size: 11px;
-  letter-spacing: 0.16em;
+.hero-vol {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--amber);
-  margin-bottom: 14px;
+  color: var(--muted2);
+  margin-bottom: 16px;
 }
 
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(34px, 4.5vw, 54px);
-  font-weight: 500;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
   line-height: 1.1;
-  color: var(--text);
-  margin-bottom: 16px;
-  letter-spacing: -0.01em;
+  color: var(--brown);
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
 }
 
-.hero h1 em { font-style: italic; color: var(--amber); }
+.hero h1 em { font-style: italic; color: var(--mahogany); }
+
+.hero-sub {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.hero-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 auto 20px;
+  max-width: 540px;
+}
+.hero-rule::before, .hero-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border2);
+}
+.hero-rule span {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 
 .hero-desc {
-  font-size: 14px;
-  color: var(--text-2);
-  max-width: 580px;
-  line-height: 1.75;
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
 }
 
-/* ── MAIN LAYOUT ── */
+/* ── APP LAYOUT ── */
 .app-wrap {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 36px max(24px, 5vw);
+  padding: 40px max(24px, 5vw);
   display: grid;
-  grid-template-columns: 500px 1fr;
-  gap: 28px;
+  grid-template-columns: 460px 1fr;
+  gap: 32px;
   align-items: start;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 960px) {
   .app-wrap { grid-template-columns: 1fr; }
 }
 
-/* ── PANELS ── */
-.panel {
-  background: var(--bg-1);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  box-shadow: 0 1px 4px rgba(100,80,40,0.07);
+/* ── CATALOG PANEL ── */
+.cat-panel {
+  background: var(--paper);
+  border: 1px solid var(--border2);
+  border-radius: 1px;
+  box-shadow: 2px 3px 12px rgba(80,40,10,0.08);
 }
 
-.panel-header {
-  padding: 13px 20px;
+.cat-panel-head {
+  padding: 14px 20px;
   border-bottom: 1px solid var(--border);
+  background: var(--tan);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.step-roman {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--amber);
+  min-width: 20px;
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-style: normal;
+}
+
+.cat-panel-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cat-panel-body { padding: 22px 20px; }
+
+/* ── SECTION DIVIDER ── */
+.sec-rule {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: var(--bg-2);
-  border-radius: 4px 4px 0 0;
+  margin: 20px 0;
 }
-
-.step-num {
-  width: 22px; height: 22px;
-  border: 1px solid var(--amber);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px;
-  color: var(--amber);
-  flex-shrink: 0;
-  font-weight: 500;
+.sec-rule::before, .sec-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
 }
-
-.panel-title {
-  font-size: 11px;
-  letter-spacing: 0.12em;
+.sec-rule span {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted2);
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--text-2);
-  font-weight: 400;
 }
-
-.panel-body { padding: 20px; }
 
 /* ── FORM ELEMENTS ── */
 label {
   display: block;
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--muted);
   margin-bottom: 6px;
-  font-weight: 500;
 }
 
 select, input[type="text"] {
   width: 100%;
-  background: var(--bg-1);
-  border: 1px solid var(--border-2);
-  border-radius: 3px;
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: 13px;
-  padding: 9px 12px;
+  background: var(--cream);
+  border: 1px solid var(--border2);
+  border-radius: 1px;
+  color: var(--brown);
+  font-family: var(--body);
+  font-size: 15px;
+  padding: 8px 12px;
   outline: none;
   appearance: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 select:focus, input[type="text"]:focus {
   border-color: var(--amber);
-  box-shadow: 0 0 0 3px rgba(158,110,26,0.1);
+  box-shadow: 0 0 0 3px rgba(184,112,16,0.1);
 }
 
 select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a08870' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a6248' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   padding-right: 34px;
   cursor: pointer;
 }
 
-/* Type and Name each take full width, stacked */
-.form-stack    { display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; }
-.form-row-2    { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.form-group    { display: flex; flex-direction: column; gap: 6px; }
+.form-stack { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
 
 .spec-hint {
-  font-size: 11px;
-  color: var(--text-3);
-  line-height: 1.55;
-  font-style: italic;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted2);
+  line-height: 1.6;
   padding: 8px 12px;
-  background: var(--bg-2);
-  border-left: 2px solid var(--border-2);
+  background: var(--tan);
+  border-left: 2px solid var(--border2);
+  font-style: italic;
 }
 
 /* ── BUTTONS ── */
 .btn {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 3px;
-  border: 1px solid var(--border-2);
-  background: var(--bg-2);
-  color: var(--text-2);
-  padding: 8px 16px;
-  transition: all 0.15s;
-}
-.btn:hover   { background: var(--bg-3); color: var(--text); }
-.btn:active  { transform: scale(0.98); }
-.btn:disabled{ opacity: 0.38; cursor: not-allowed; }
-
-.btn-amber {
-  background: var(--amber-bg);
-  border-color: var(--amber-bdr);
-  color: var(--amber);
-}
-.btn-amber:hover { background: rgba(158,110,26,0.15); color: #7a520f; }
-
-.btn-primary {
-  width: 100%;
-  padding: 12px 20px;
+  font-family: var(--serif);
   font-size: 13px;
-  background: var(--amber);
-  border-color: var(--amber);
-  color: #fff;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  border-radius: 1px;
+  border: 1px solid var(--border2);
+  background: var(--paper);
+  color: var(--muted);
+  padding: 8px 18px;
+  transition: all 0.18s;
 }
-.btn-primary:hover:not(:disabled) { background: #7a5210; border-color: #7a5210; }
+.btn:hover   { background: var(--tan); color: var(--brown); border-color: var(--amber); }
+.btn:active  { transform: scale(0.98); }
+.btn:disabled{ opacity: 0.35; cursor: not-allowed; }
 
-.btn-sm { padding: 6px 12px; font-size: 11px; }
+.btn-catalog {
+  background: var(--tan);
+  border-color: var(--amber);
+  color: var(--mahogany);
+}
+.btn-catalog:hover { background: var(--tan2); color: var(--brown); }
 
-/* ── COMPONENT CARDS ── */
-.components-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.btn-analyze {
+  width: 100%;
+  padding: 13px 20px;
+  font-size: 15px;
+  background: var(--mahogany);
+  border-color: var(--mahogany);
+  color: var(--cream);
+  letter-spacing: 0.1em;
+  font-style: italic;
+}
+.btn-analyze:hover:not(:disabled) { background: #612810; border-color: #612810; }
 
-.comp-card {
+.btn-sm { padding: 5px 12px; font-size: 12px; }
+
+/* ── COMPONENT ENTRIES ── */
+.components-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+
+.comp-entry {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 9px 12px;
-  background: var(--bg-2);
+  padding: 8px 12px;
+  background: var(--cream);
   border: 1px solid var(--border);
-  border-radius: 3px;
+  border-left: 3px solid var(--amber);
 }
 
-.comp-badge {
-  font-size: 10px;
-  letter-spacing: 0.05em;
+.comp-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 2px;
+  padding: 2px 7px;
   flex-shrink: 0;
-  font-weight: 500;
+  font-weight: 700;
+  border: 1px solid;
 }
 
-.badge-amp       { background:#dce9f8; color:#2a5a9e; border:1px solid #aacaee; }
-.badge-preamp    { background:#ecddf8; color:#6a2a9e; border:1px solid #cfaaee; }
-.badge-speakers  { background:#ddf3e4; color:#2a7a4a; border:1px solid #aad4bc; }
-.badge-dac       { background:#f8f0dc; color:#8a5a10; border:1px solid #ead4a0; }
-.badge-turntable { background:#f8e0dc; color:#9e3a2a; border:1px solid #eebab8; }
-.badge-cartridge { background:#f8dce0; color:#9e2a40; border:1px solid #eeb4c0; }
-.badge-phonopre  { background:#ebebeb; color:#505050; border:1px solid #d0d0d0; }
-.badge-streamer  { background:#dcf3f0; color:#1a7a6a; border:1px solid #aad4d0; }
-.badge-cables    { background:#ebebeb; color:#606060; border:1px solid #d0d0d0; }
-.badge-other     { background:#f3dcf0; color:#7a1a6a; border:1px solid #d9aad4; }
+.tag-amp       { background:#dde8f8; color:#1a3a7a; border-color:#a8c4e8; }
+.tag-preamp    { background:#e2ddf8; color:#2a1a7a; border-color:#b8a8e8; }
+.tag-speakers  { background:#ddf0f8; color:#0a4a6a; border-color:#a0d0e8; }
+.tag-dac       { background:#ddeaf8; color:#0a3a6a; border-color:#a0c4e8; }
+.tag-turntable { background:#dde4f8; color:#1a2a7a; border-color:#a8b8e8; }
+.tag-cartridge { background:#d8e4f8; color:#0a2060; border-color:#a0b4e0; }
+.tag-phonopre  { background:#ddeef8; color:#0a3868; border-color:#a0c8e4; }
+.tag-streamer  { background:#d8eef8; color:#0a4070; border-color:#9cc8e4; }
+.tag-cables    { background:#dde8f0; color:#2a3a4a; border-color:#a8c0d0; }
+.tag-other     { background:#dde8f8; color:#1a3060; border-color:#a8b8e0; }
 
 .comp-name {
-  font-size: 13px;
-  font-weight: 400;
+  font-family: var(--body);
+  font-size: 14px;
+  font-style: italic;
   flex: 1;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--text);
+  color: var(--brown);
 }
 
 .btn-remove {
   background: none; border: none;
-  color: var(--text-3); cursor: pointer;
-  font-size: 14px; padding: 2px 6px;
+  color: var(--muted2); cursor: pointer;
+  font-size: 13px; padding: 2px 6px;
   flex-shrink: 0; line-height: 1;
   transition: color 0.15s;
+  font-family: var(--mono);
 }
-.btn-remove:hover { color: #c04040; }
+.btn-remove:hover { color: var(--mahogany); }
 
 /* ── CONNECTIONS ── */
-.conn-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.conn-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
 
-.conn-card {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 12px;
-  background: var(--bg-2); border: 1px solid var(--border); border-radius: 3px;
-  font-size: 12px; flex-wrap: wrap;
+.conn-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  flex-wrap: wrap;
 }
 
-.conn-from, .conn-to { color: var(--text); font-weight: 500; }
-.conn-arrow { color: var(--text-3); font-size: 11px; }
+.conn-name { font-family: var(--body); font-style: italic; color: var(--brown); }
+.conn-arr  { color: var(--muted2); font-family: var(--mono); font-size: 11px; }
 
-.conn-type-badge {
-  font-size: 10px; padding: 2px 8px; border-radius: 2px;
-  background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-bdr);
-  margin-left: auto; white-space: nowrap;
+.conn-type-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  background: var(--tan);
+  color: var(--amber);
+  border: 1px solid var(--border2);
+  margin-left: auto;
+  white-space: nowrap;
+  font-weight: 700;
 }
 
 /* ── EMPTY STATE ── */
 .empty {
-  text-align: center; padding: 20px 16px;
-  color: var(--text-3); font-size: 12px;
-  border: 1px dashed var(--border-2); border-radius: 3px;
-  margin-bottom: 16px; line-height: 1.7; background: var(--bg-2);
+  text-align: center;
+  padding: 20px 16px;
+  color: var(--muted2);
+  font-family: var(--body);
+  font-size: 14px;
+  font-style: italic;
+  border: 1px dashed var(--border2);
+  margin-bottom: 16px;
+  line-height: 1.7;
+  background: var(--cream);
 }
 
-/* ── DIVIDER ── */
-.divider { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+/* ── RESULTS COLUMN ── */
+.results-col { position: sticky; top: 84px; }
 
-/* ── RESULTS ── */
-.results-panel { position: sticky; top: 80px; }
-
-.placeholder-state {
-  padding: 56px 24px; text-align: center;
-  color: var(--text-3); font-size: 13px; line-height: 1.8;
+.results-placeholder {
+  padding: 60px 24px;
+  text-align: center;
 }
 
-.placeholder-state .big-num {
+.placeholder-ornament {
   font-family: var(--serif);
-  font-size: 60px; color: var(--border-2);
-  display: block; margin-bottom: 12px; font-style: italic;
+  font-size: 72px;
+  color: var(--tan2);
+  display: block;
+  margin-bottom: 16px;
+  line-height: 1;
+  font-style: italic;
 }
 
-.loading-state { padding: 48px 24px; text-align: center; }
+.placeholder-text {
+  font-family: var(--body);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--muted2);
+  line-height: 1.8;
+  max-width: 280px;
+  margin: 0 auto;
+}
 
-.vu-loader {
-  display: flex; align-items: flex-end; justify-content: center;
-  gap: 4px; height: 40px; margin-bottom: 16px;
+/* ── LOADING ── */
+.loading-wrap { padding: 48px 24px; text-align: center; }
+
+.vu-meter {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  height: 44px;
+  margin-bottom: 18px;
 }
 
 .vu-bar {
-  width: 6px; background: var(--amber); border-radius: 1px;
-  animation: vubeat 0.9s ease-in-out infinite; opacity: 0.6;
+  width: 7px;
+  background: var(--amber);
+  border-radius: 0;
+  opacity: 0.7;
+  animation: vubeat 0.9s ease-in-out infinite;
 }
-.vu-bar:nth-child(1){animation-delay:0s;height:16px}
-.vu-bar:nth-child(2){animation-delay:.1s;height:28px}
-.vu-bar:nth-child(3){animation-delay:.2s;height:36px}
-.vu-bar:nth-child(4){animation-delay:.15s;height:24px}
-.vu-bar:nth-child(5){animation-delay:.05s;height:32px}
-.vu-bar:nth-child(6){animation-delay:.25s;height:20px}
+.vu-bar:nth-child(1){height:16px;animation-delay:0s}
+.vu-bar:nth-child(2){height:28px;animation-delay:.1s}
+.vu-bar:nth-child(3){height:38px;animation-delay:.2s}
+.vu-bar:nth-child(4){height:26px;animation-delay:.15s}
+.vu-bar:nth-child(5){height:34px;animation-delay:.05s}
+.vu-bar:nth-child(6){height:20px;animation-delay:.25s}
 
 @keyframes vubeat {
-  0%,100%{transform:scaleY(.35);opacity:.3}
+  0%,100%{transform:scaleY(.3);opacity:.3}
   50%{transform:scaleY(1);opacity:.8}
 }
 
-.loading-text { color:var(--text-3);font-size:12px;letter-spacing:.1em;text-transform:uppercase; }
-
-/* ── SCORE CARDS ── */
-.score-row {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 8px; margin-bottom: 18px;
+.loading-caption {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted2);
 }
 
-.score-card {
-  background: var(--bg-2); border: 1px solid var(--border);
-  border-radius: 3px; padding: 14px 12px; text-align: center;
+/* ── SPEC CARDS ── */
+.spec-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border2);
+  background: var(--border2);
 }
 
-.score-label {
-  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--text-3); margin-bottom: 6px; display: block;
+.spec-card {
+  background: var(--paper);
+  padding: 14px 12px;
+  text-align: center;
 }
 
-.score-val { font-family: var(--serif); font-size: 26px; line-height: 1; }
-.score-val small { font-family: var(--mono); font-size: 13px; color: var(--text-3); }
-.score-good { color: #2a7a46; }
-.score-ok   { color: #9e6e1a; }
-.score-bad  { color: #9e2a2a; }
-
-/* ── ANALYSIS BODY ── */
-.analysis-body { font-size: 13px; line-height: 1.8; color: var(--text-2); }
-
-.analysis-body h3 {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--amber);
-  margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+.spec-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 6px;
+  display: block;
 }
-.analysis-body h3:first-child { margin-top: 0; }
-.analysis-body strong { color: var(--text); font-weight: 500; }
-.analysis-body p { margin-bottom: 10px; }
-.analysis-body p:last-child { margin-bottom: 0; }
-.analysis-body ul { list-style: none; padding: 0; }
 
-.analysis-body ul li {
-  padding: 5px 0 5px 18px;
+.spec-val {
+  font-family: var(--serif);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--brown);
+}
+.spec-val small { font-family: var(--mono); font-size: 13px; color: var(--muted2); }
+.spec-good { color: #1a5a30; }
+.spec-ok   { color: #4a5a8a; }
+.spec-bad  { color: #7a1a2a; }
+
+/* ── ANALYSIS TEXT ── */
+.analysis-wrap {
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.analysis-wrap h3 {
+  font-family: var(--serif);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mahogany);
+  margin: 24px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.analysis-wrap h3::before, .analysis-wrap h3::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.analysis-wrap h3:first-child { margin-top: 0; }
+.analysis-wrap strong { color: var(--brown); font-weight: 500; }
+.analysis-wrap p { margin-bottom: 10px; }
+.analysis-wrap p:last-child { margin-bottom: 0; }
+.analysis-wrap ul { list-style: none; padding: 0; }
+
+.analysis-wrap ul li {
+  padding: 5px 0 5px 20px;
   position: relative;
   border-bottom: 1px solid var(--border);
-  color: var(--text-2);
+  color: var(--muted);
 }
-.analysis-body ul li:last-child { border-bottom: none; }
-.analysis-body ul li::before { content:'→'; position:absolute; left:0; color:var(--amber); font-size:11px; }
+.analysis-wrap ul li:last-child { border-bottom: none; }
+.analysis-wrap ul li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--amber);
+  font-size: 8px;
+  top: 10px;
+}
 
 /* ── DIAGRAM ── */
 .diagram-wrap { overflow-x: auto; padding: 4px 0 0; }
 .diagram-wrap svg { display: block; }
 
-.d-box         { fill: var(--bg-2); stroke: var(--border-2); stroke-width: 0.75; }
-.d-box-digital { fill: #eaf1fb; stroke: #9bbde0; }
-.d-box-phono   { fill: #fdf4e4; stroke: #dfc070; }
-.d-box-shared  { fill: #eaf5ef; stroke: #8ec8a8; }
-.d-title { fill:#211d16; font-family:'DM Mono',monospace; font-size:13px; font-weight:500; }
-.d-sub   { fill:#a08870; font-family:'DM Mono',monospace; font-size:11px; }
-.d-col   { fill:#9e6e1a; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; }
-.d-label { fill:#a08870; font-family:'DM Mono',monospace; font-size:10px; }
-.d-node  { cursor:pointer; }
-.d-node:hover .d-box,
-.d-node:hover .d-box-digital,
-.d-node:hover .d-box-phono,
-.d-node:hover .d-box-shared { stroke-width:1.5; }
+.dv-box         { fill: var(--paper); stroke: var(--border2); stroke-width: 1; }
+.dv-box-digital { fill: #ddeaf8; stroke: #7aaad8; }
+.dv-box-phono   { fill: #d8e4f8; stroke: #6a90c8; }
+.dv-box-shared  { fill: #d8eef8; stroke: #6aaad8; }
+.dv-title { fill: #0e1e30; font-family:'EB Garamond',serif; font-size:13px; font-style:italic; }
+.dv-sub   { fill: #4a6a8a; font-family:'Courier Prime',monospace; font-size:10px; }
+.dv-col   { fill: #1a4a7a; font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:.12em; }
+.dv-label { fill: #5a7a9a; font-family:'Courier Prime',monospace; font-size:10px; }
+.dv-node  { cursor: pointer; }
+.dv-node:hover .dv-box,
+.dv-node:hover .dv-box-digital,
+.dv-node:hover .dv-box-phono,
+.dv-node:hover .dv-box-shared { stroke: var(--amber); stroke-width: 1.5; }
 
 /* ── FOOTER ── */
-footer {
-  border-top: 1px solid var(--border);
+.site-footer {
+  max-width: 1100px;
+  margin: 60px auto 0;
   padding: 24px max(24px, 5vw);
-  max-width: 1200px; margin: 60px auto 0;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--text-3);
+  border-top: 1px solid var(--border2);
+  text-align: center;
+}
+
+.footer-rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.footer-rule::before, .footer-rule::after { content:''; flex:1; height:1px; background:var(--border); }
+.footer-rule span { font-family:var(--mono); font-size:9px; color:var(--muted2); letter-spacing:.15em; text-transform:uppercase; }
+
+.footer-text {
+  font-family: var(--body);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--muted2);
 }
 
 /* ── UTILS ── */
 @keyframes fadein { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
-.fadein { animation: fadein 0.25s ease forwards; }
+.fadein { animation: fadein 0.3s ease forwards; }
 
-::-webkit-scrollbar { width:6px; height:6px; }
-::-webkit-scrollbar-track { background:var(--bg); }
-::-webkit-scrollbar-thumb { background:var(--border-2); border-radius:3px; }
+::-webkit-scrollbar { width:5px; height:5px; }
+::-webkit-scrollbar-track { background:var(--cream); }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="logo">
-    <div class="logo-mark">
-      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="7" cy="7" r="4" stroke="#9e6e1a" stroke-width="1.2"/>
-        <circle cx="7" cy="7" r="1.5" fill="#9e6e1a"/>
-      </svg>
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-rule"></div>
+  <div class="masthead-inner">
+    <div class="masthead-logo">
+      <div class="logo-ornament">
+        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7" cy="7" r="4" stroke="#2a6aa8" stroke-width="1.2"/>
+          <circle cx="7" cy="7" r="1.5" fill="#2a6aa8"/>
+        </svg>
+      </div>
+      AudioChainHiFi.com
     </div>
-    AudioChain
+    <span class="masthead-tag">Hi-Fi System Compatibility Reference</span>
   </div>
-  <span class="header-tag">Hi-Fi Compatibility Checker</span>
 </header>
 
+<!-- HERO -->
 <div class="hero">
-  <div class="hero-label">Signal chain analysis</div>
-  <h1>Know your system<br>before you <em>hear it.</em></h1>
-  <p class="hero-desc">Add your hi-fi components, define your signal chain, and get a detailed compatibility analysis — impedance matching, sensitivity, gain staging, and phono chain resonance — sourced from published manufacturer specifications.</p>
+  <div class="hero-vol">Volume I · Signal Chain Analysis</div>
+  <h1>The <em>Complete Guide</em> to<br>System Compatibility</h1>
+  <p class="hero-sub">For the Discerning Audio Enthusiast</p>
+  <div class="hero-rule"><span>Est. in the tradition of fine audio</span></div>
+  <p class="hero-desc">Enter your components below. Our analysis engine consults published manufacturer specifications to assess impedance matching, gain staging, sensitivity, and phono chain resonance across your entire signal chain.</p>
 </div>
 
 <div class="app-wrap">
 
-  <!-- LEFT COLUMN -->
-  <div style="display:flex;flex-direction:column;gap:20px;">
+  <!-- LEFT: INPUT -->
+  <div style="display:flex;flex-direction:column;gap:22px;">
 
-    <!-- Step 1 -->
-    <div class="panel">
-      <div class="panel-header">
-        <div class="step-num">1</div>
-        <span class="panel-title">Add components</span>
+    <!-- Step I -->
+    <div class="cat-panel">
+      <div class="cat-panel-head">
+        <div class="step-roman">I</div>
+        <span class="cat-panel-title">Register Your Components</span>
       </div>
-      <div class="panel-body">
+      <div class="cat-panel-body">
         <div class="form-stack">
           <div class="form-group">
-            <label>Component type</label>
+            <label>Component Classification</label>
             <select id="comp-type" onchange="updateHint()">
               <option value="amp">Amplifier / Integrated Amp</option>
               <option value="preamp">Preamplifier</option>
@@ -518,38 +715,38 @@ footer {
             </select>
           </div>
           <div class="form-group">
-            <label>Model name</label>
+            <label>Manufacturer & Model</label>
             <input type="text" id="comp-name" placeholder="e.g. Parasound Halo 275 v1">
           </div>
           <div id="spec-hint" class="spec-hint" style="display:none;"></div>
         </div>
-        <button class="btn btn-amber btn-sm" onclick="addComponent()">+ Add component</button>
-        <hr class="divider">
+        <button class="btn btn-catalog btn-sm" onclick="addComponent()">+ Add to Manifest</button>
+        <div class="sec-rule"><span>Component manifest</span></div>
         <div id="comp-list"></div>
       </div>
     </div>
 
-    <!-- Step 2 -->
-    <div class="panel" id="conn-panel" style="display:none;">
-      <div class="panel-header">
-        <div class="step-num">2</div>
-        <span class="panel-title">Define connections</span>
+    <!-- Step II -->
+    <div class="cat-panel" id="conn-panel" style="display:none;">
+      <div class="cat-panel-head">
+        <div class="step-roman">II</div>
+        <span class="cat-panel-title">Define Signal Routing</span>
       </div>
-      <div class="panel-body">
-        <p style="font-size:12px;color:var(--text-3);margin-bottom:16px;line-height:1.65;">Optional but recommended. Specify how each component connects to the next.</p>
+      <div class="cat-panel-body">
+        <p style="font-family:var(--body);font-size:14px;font-style:italic;color:var(--muted2);margin-bottom:16px;line-height:1.7;">Specify the interconnection method between each pair of components for a more precise analysis.</p>
         <div class="form-stack">
           <div class="form-row-2">
             <div class="form-group">
-              <label>From</label>
+              <label>Source</label>
               <select id="conn-from"></select>
             </div>
             <div class="form-group">
-              <label>To</label>
+              <label>Destination</label>
               <select id="conn-to"></select>
             </div>
           </div>
           <div class="form-group">
-            <label>Connection type</label>
+            <label>Interconnection Method</label>
             <select id="conn-type">
               <option value="XLR balanced">XLR balanced</option>
               <option value="RCA single-ended">RCA single-ended</option>
@@ -566,49 +763,49 @@ footer {
             </select>
           </div>
         </div>
-        <button class="btn btn-amber btn-sm" onclick="addConnection()">+ Add connection</button>
-        <div id="conn-err" style="font-size:11px;color:#9e2a2a;margin-top:8px;min-height:16px;"></div>
-        <hr class="divider">
+        <button class="btn btn-catalog btn-sm" onclick="addConnection()">+ Add Connection</button>
+        <div id="conn-err" style="font-family:var(--mono);font-size:11px;color:var(--mahogany);margin-top:8px;min-height:16px;"></div>
+        <div class="sec-rule"><span>Routing manifest</span></div>
         <div id="conn-list"></div>
       </div>
     </div>
 
-    <!-- Step 3 -->
-    <div class="panel" id="analyze-panel" style="display:none;">
-      <div class="panel-header">
-        <div class="step-num">3</div>
-        <span class="panel-title">Analyze compatibility</span>
+    <!-- Step III -->
+    <div class="cat-panel" id="analyze-panel" style="display:none;">
+      <div class="cat-panel-head">
+        <div class="step-roman">III</div>
+        <span class="cat-panel-title">Commission the Analysis</span>
       </div>
-      <div class="panel-body">
-        <p style="font-size:12px;color:var(--text-3);margin-bottom:16px;line-height:1.65;">Claude will look up published specifications for each component and analyze compatibility across your full signal chain.</p>
-        <button class="btn btn-primary" id="analyze-btn" onclick="analyze()">Run compatibility analysis →</button>
-        <div id="analyze-err" style="font-size:12px;color:#9e2a2a;margin-top:10px;min-height:16px;"></div>
+      <div class="cat-panel-body">
+        <p style="font-family:var(--body);font-size:14px;font-style:italic;color:var(--muted2);margin-bottom:18px;line-height:1.7;">Our analysis engine will consult published specifications for each registered component and produce a comprehensive compatibility assessment.</p>
+        <button class="btn btn-analyze" id="analyze-btn" onclick="analyze()"><em>Commence Analysis</em> →</button>
+        <div id="analyze-err" style="font-family:var(--mono);font-size:11px;color:var(--mahogany);margin-top:10px;min-height:16px;"></div>
       </div>
     </div>
 
   </div>
 
-  <!-- RIGHT COLUMN -->
-  <div class="results-panel">
-    <div class="panel">
-      <div class="panel-header">
-        <span class="panel-title" style="margin-left:0;">Analysis results</span>
+  <!-- RIGHT: RESULTS -->
+  <div class="results-col">
+    <div class="cat-panel">
+      <div class="cat-panel-head">
+        <span class="cat-panel-title" style="margin-left:0;">Compatibility Assessment</span>
       </div>
-      <div class="panel-body">
+      <div class="cat-panel-body">
         <div id="results-content">
-          <div class="placeholder-state">
-            <em class="big-num">∿</em>
-            Add your components and run an analysis to see compatibility results, impedance matching, gain staging, and recommendations.
+          <div class="results-placeholder">
+            <span class="placeholder-ornament">∿</span>
+            <p class="placeholder-text">Register your components and commission an analysis to receive a full compatibility assessment for your signal chain.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="panel" id="diagram-panel" style="margin-top:20px;display:none;">
-      <div class="panel-header">
-        <span class="panel-title" style="margin-left:0;">Signal chain diagram</span>
+    <div class="cat-panel" id="diagram-panel" style="margin-top:22px;display:none;">
+      <div class="cat-panel-head">
+        <span class="cat-panel-title" style="margin-left:0;">Signal Chain Schematic</span>
       </div>
-      <div class="panel-body" style="padding:16px;">
+      <div class="cat-panel-body" style="padding:16px;">
         <div class="diagram-wrap" id="diagram-wrap"></div>
       </div>
     </div>
@@ -616,9 +813,10 @@ footer {
 
 </div>
 
-<footer>
-  <span>AudioChain — Hi-Fi Compatibility Checker</span>
-  <span>Powered by Claude AI · Anthropic</span>
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-rule"><span>◆</span></div>
+  <p class="footer-text">AudioChainHiFi.com · Hi-Fi Compatibility Reference · Powered by Claude AI · Anthropic</p>
 </footer>
 
 <script>
@@ -676,7 +874,7 @@ function addConnection(){
   const type=document.getElementById('conn-type').value;
   const errEl=document.getElementById('conn-err');
   errEl.textContent='';
-  if(fromId===toId){errEl.textContent='Source and destination must be different.';return;}
+  if(fromId===toId){errEl.textContent='Source and destination must be different components.';return;}
   const fromComp=components.find(c=>c.id===fromId);
   const toComp=components.find(c=>c.id===toId);
   const dupe=connections.find(c=>c.fromId===fromId&&c.toId===toId);
@@ -707,10 +905,10 @@ function renderAll(){
 
 function renderComponents(){
   const el=document.getElementById('comp-list');
-  if(components.length===0){el.innerHTML='<div class="empty">No components yet.<br>Add at least two to begin.</div>';return;}
+  if(components.length===0){el.innerHTML='<div class="empty">No components registered.<br>Add at least two to proceed.</div>';return;}
   el.innerHTML=`<div class="components-list">${components.map(c=>`
-    <div class="comp-card fadein">
-      <span class="comp-badge badge-${c.type}">${typeLabels[c.type]}</span>
+    <div class="comp-entry fadein">
+      <span class="comp-tag tag-${c.type}">${typeLabels[c.type]}</span>
       <span class="comp-name">${esc(c.name)}</span>
       <button class="btn-remove" onclick="removeComponent(${c.id})" title="Remove">✕</button>
     </div>`).join('')}</div>`;
@@ -721,11 +919,11 @@ function renderConnections(){
   if(!el)return;
   if(connections.length===0){el.innerHTML='<div class="empty">No connections defined yet.</div>';return;}
   el.innerHTML=`<div class="conn-list">${connections.map(c=>`
-    <div class="conn-card fadein">
-      <span class="conn-from">${esc(c.fromName)}</span>
-      <span class="conn-arrow">→</span>
-      <span class="conn-to">${esc(c.toName)}</span>
-      <span class="conn-type-badge">${esc(c.type)}</span>
+    <div class="conn-entry fadein">
+      <span class="conn-name">${esc(c.fromName)}</span>
+      <span class="conn-arr">→</span>
+      <span class="conn-name">${esc(c.toName)}</span>
+      <span class="conn-type-tag">${esc(c.type)}</span>
       <button class="btn-remove" onclick="removeConnection(${c.id})" title="Remove">✕</button>
     </div>`).join('')}</div>`;
 }
@@ -750,14 +948,14 @@ async function analyze(){
   const errEl=document.getElementById('analyze-err');
   const rEl=document.getElementById('results-content');
   errEl.textContent=''; btn.disabled=true;
-  rEl.innerHTML=`<div class="loading-state"><div class="vu-loader">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-text">Analyzing signal chain…</p></div>`;
+  rEl.innerHTML=`<div class="loading-wrap"><div class="vu-meter">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-caption">Consulting the specifications…</p></div>`;
   try{
     const res=await fetch('/.netlify/functions/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components,connections})});
     const data=await res.json();
     if(!res.ok||data.error)throw new Error(data.error||`HTTP ${res.status}`);
     renderResults(data.text);
   }catch(e){
-    rEl.innerHTML=`<div class="placeholder-state"><em class="big-num" style="font-size:36px;color:#c04040;">⚠</em>${esc(e.message||'Analysis failed. Please try again.')}</div>`;
+    rEl.innerHTML=`<div class="results-placeholder"><span class="placeholder-ornament" style="font-size:40px;color:#c05050;">⚠</span><p class="placeholder-text">${esc(e.message||'Analysis failed. Please try again.')}</p></div>`;
     errEl.textContent=e.message;
   }
   btn.disabled=false;
@@ -771,21 +969,21 @@ function renderResults(text){
   const score=sM?parseFloat(sM[1]):null;
   const iStr=iM?iM[1].trim():null;
   const nStr=nM?nM[1].trim():null;
-  const nC=n=>n>=8?'score-good':n>=6?'score-ok':'score-bad';
-  const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'score-good':l.includes('poor')?'score-bad':'score-ok';};
+  const nC=n=>n>=8?'spec-good':n>=6?'spec-ok':'spec-bad';
+  const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'spec-good':l.includes('poor')?'spec-bad':'spec-ok';};
   let scores='';
   if(score!==null||iStr||nStr){
-    scores=`<div class="score-row">
-      ${score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:''}
-      ${iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:''}
-      ${nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:''}
+    scores=`<div class="spec-row">
+      ${score!==null?`<div class="spec-card"><span class="spec-label">Overall rating</span><div class="spec-val ${nC(score)}">${score}<small>/10</small></div></div>`:''}
+      ${iStr?`<div class="spec-card"><span class="spec-label">Impedance</span><div class="spec-val ${wC(iStr)}" style="font-size:17px;margin-top:4px;">${iStr}</div></div>`:''}
+      ${nStr?`<div class="spec-card"><span class="spec-label">Sensitivity</span><div class="spec-val ${wC(nStr)}" style="font-size:17px;margin-top:4px;">${nStr}</div></div>`:''}
     </div>`;
   }
   const headers=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
   let body=text.replace(/OVERALL SCORE:.*\n?/i,'').replace(/IMPEDANCE MATCH:.*\n?/i,'').replace(/SENSITIVITY MATCH:.*\n?/i,'').trim();
   headers.forEach(h=>{body=body.replace(new RegExp(`^${h}$`,'gm'),`<h3>${h.charAt(0)+h.slice(1).toLowerCase()}</h3>`);});
   body=body.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n\n/g,'</p><p>').replace(/^(?!<h3|<\/p>|<p)(.+)$/gm,'<p>$1</p>').replace(/<p>\s*<\/p>/g,'');
-  rEl.innerHTML=`<div class="fadein">${scores}<div class="analysis-body">${body}</div></div>`;
+  rEl.innerHTML=`<div class="fadein">${scores}<div class="analysis-wrap">${body}</div></div>`;
 }
 
 function updateDiagram(){
@@ -795,73 +993,67 @@ function updateDiagram(){
 }
 
 function buildDiagram(){
-  const W=540,BW=144,BH=48,G=16;
+  const W=500,BW=138,BH=50,G=16;
   const dig=components.filter(c=>['streamer','dac'].includes(c.type));
   const pho=components.filter(c=>['turntable','cartridge','phonopre'].includes(c.type));
   const shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c));
   const hasBoth=dig.length>0&&pho.length>0;
-  const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#c8a060" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
+  const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#4a80b8" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
   const sh=s=>{const e=esc(s);return e.length>16?e.slice(0,15)+'…':e;};
-  const box=(x,y,c,cls)=>{const cx=x+BW/2,cy=y+BH/2;return `<g class="d-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="3" class="d-box ${cls}"/><text class="d-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="d-sub" x="${cx}" y="${cy+9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;};
-  const ln=(x1,y1,x2,y2)=>`<line stroke="#c8a060" stroke-width="1" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
-  const pt=(d)=>`<path fill="none" stroke="#c8a060" stroke-width="1" d="${d}" marker-end="url(#da)"/>`;
-  const lbl=(x,y,txt,anchor)=>txt?`<text class="d-label" x="${x}" y="${y}" text-anchor="${anchor||'start'}" dominant-baseline="central">${esc(txt)}</text>`:'';
+  const box=(x,y,c,cls)=>{const cx=x+BW/2,cy=y+BH/2;return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="1" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${cy+10}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;};
+  const ln=(x1,y1,x2,y2)=>`<line stroke="#4a80b8" stroke-width="1" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
+  const pt=(d)=>`<path fill="none" stroke="#4a80b8" stroke-width="1" d="${d}" marker-end="url(#da)"/>`;
+  const lbl=(x,y,t,a)=>t?`<text class="dv-label" x="${x}" y="${y}" text-anchor="${a||'start'}" dominant-baseline="central">${esc(t)}</text>`:'';
   const ct=(a,b)=>{if(!a||!b)return null;const c=connections.find(x=>(x.fromId===a.id&&x.toId===b.id)||(x.fromId===b.id&&x.toId===a.id));return c?c.type:null;};
 
   if(hasBoth){
     const mx=Math.max(dig.length,pho.length);
-    const lX=20,rX=W/2+20;
+    const lX=10,rX=W/2+10;
     let p='',b='';
-    b+=`<text class="d-col" x="${lX+BW/2}" y="18" text-anchor="middle">Digital</text>`;
-    b+=`<text class="d-col" x="${rX+BW/2}" y="18" text-anchor="middle">Phono</text>`;
+    b+=`<text class="dv-col" x="${lX+BW/2}" y="16" text-anchor="middle">DIGITAL</text>`;
+    b+=`<text class="dv-col" x="${rX+BW/2}" y="16" text-anchor="middle">PHONO</text>`;
     let lB=null,rB=null,lPrev=null,rPrev=null;
-
     dig.forEach((c,i)=>{
-      const y=26+i*(BH+G),cx=lX+BW/2;
+      const y=24+i*(BH+G),cx=lX+BW/2;
       if(lB!==null){p+=ln(cx,lB,cx,y);b+=lbl(cx+5,lB+G/2,ct(lPrev,c));}
-      b+=box(lX,y,c,'d-box-digital');lB=y+BH;lPrev=c;
+      b+=box(lX,y,c,'dv-box-digital');lB=y+BH;lPrev=c;
     });
-
     pho.forEach((c,i)=>{
-      const y=26+i*(BH+G),cx=rX+BW/2;
+      const y=24+i*(BH+G),cx=rX+BW/2;
       if(rB!==null){p+=ln(cx,rB,cx,y);b+=lbl(cx+5,rB+G/2,ct(rPrev,c));}
-      b+=box(rX,y,c,'d-box-phono');rB=y+BH;rPrev=c;
+      b+=box(rX,y,c,'dv-box-phono');rB=y+BH;rPrev=c;
     });
-
-    const rY=26+mx*(BH+G);
+    const rY=24+mx*(BH+G);
     const sX=W/2-BW/2,sCx=sX+BW/2;
     let sY=rY+G*2;
-
     if(shr.length>0){
-      const firstShr=shr[0];
+      const fS=shr[0];
       if(lB!==null){
-        p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${rY} L${sCx-16},${rY} L${sCx-16},${sY}`);
-        b+=lbl(Math.round((lX+BW/2+sCx-16)/2),rY-7,ct(lPrev,firstShr),'middle');
+        p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${rY} L${sCx-14},${rY} L${sCx-14},${sY}`);
+        b+=lbl(Math.round((lX+BW/2+sCx-14)/2),rY-7,ct(lPrev,fS),'middle');
       }
       if(rB!==null){
-        p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${rY} L${sCx+16},${rY} L${sCx+16},${sY}`);
-        b+=lbl(Math.round((rX+BW/2+sCx+16)/2),rY-7,ct(rPrev,firstShr),'middle');
+        p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${rY} L${sCx+14},${rY} L${sCx+14},${sY}`);
+        b+=lbl(Math.round((rX+BW/2+sCx+14)/2),rY-7,ct(rPrev,fS),'middle');
       }
     }
-
     let pB=null,shrPrev=null;
     shr.forEach(c=>{
       if(pB!==null){p+=ln(sCx,pB,sCx,sY);b+=lbl(sCx+5,pB+G/2,ct(shrPrev,c));}
-      b+=box(sX,sY,c,'d-box-shared');pB=sY+BH;shrPrev=c;sY+=BH+G;
+      b+=box(sX,sY,c,'dv-box-shared');pB=sY+BH;shrPrev=c;sY+=BH+G;
     });
-
-    return `<svg width="100%" viewBox="0 0 ${W} ${(pB||sY)+24}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
+    return `<svg width="100%" viewBox="0 0 ${W} ${(pB||sY)+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
   }
 
   const all=[...dig,...pho,...shr];
   const x=W/2-BW/2,cx=W/2;
   let y=20,p='',b='',prev=null;
   all.forEach((c,i)=>{
-    const cls=dig.includes(c)?'d-box-digital':pho.includes(c)?'d-box-phono':'d-box-shared';
+    const cls=dig.includes(c)?'dv-box-digital':pho.includes(c)?'dv-box-phono':'dv-box-shared';
     if(i>0){p+=ln(cx,y,cx,y+G);b+=lbl(cx+5,y+G/2,ct(prev,c));y+=G;}
     b+=box(x,y,c,cls);y+=BH;prev=c;
   });
-  return `<svg width="100%" viewBox="0 0 ${W} ${y+24}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
+  return `<svg width="100%" viewBox="0 0 ${W} ${y+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
 }
 
 renderAll();
