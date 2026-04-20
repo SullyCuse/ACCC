@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — AudioChainHiFi.com</title>
+<meta name="description" content="Contact AudioChainHiFi.com with questions, feedback, or suggestions about our hi-fi compatibility checker tool.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','wait_for_update':500});
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --cream:#f0f4f9;--paper:#f7fafd;--tan:#dce8f4;--tan2:#ccdaec;
+  --brown:#0e1e30;--mahogany:#1a4a7a;--amber:#2a6aa8;--gold:#1a5490;
+  --muted:#4a6a8a;--muted2:#7a9ab8;
+  --border:rgba(20,60,110,0.16);--border2:rgba(20,60,110,0.28);
+  --serif:'Playfair Display',Georgia,serif;
+  --body:'EB Garamond',Georgia,serif;
+  --mono:'Courier Prime','Courier New',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);font-size:16px;background:var(--cream);color:var(--brown);line-height:1.7;min-height:100vh;}
+
+.masthead{border-bottom:1px solid var(--border2);padding:0 max(24px,5vw);display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;background:rgba(240,244,249,0.96);backdrop-filter:blur(12px);z-index:100;}
+.masthead-logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--brown);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.logo-dot{width:24px;height:24px;border:1.5px solid var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.logo-dot svg{width:12px;height:12px;}
+.masthead-nav{display:flex;align-items:center;gap:20px;}
+.masthead-nav a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .15s;}
+.masthead-nav a:hover{color:var(--amber);}
+.masthead-nav a.active{color:var(--mahogany);}
+
+.page-hero{max-width:800px;margin:0 auto;padding:48px max(24px,5vw) 32px;border-bottom:1px solid var(--border);}
+.page-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:12px;}
+.page-hero h1{font-family:var(--serif);font-size:clamp(28px,3.5vw,42px);font-weight:400;color:var(--brown);margin-bottom:10px;}
+.page-hero p{font-size:16px;color:var(--muted);max-width:540px;line-height:1.8;}
+
+.content{max-width:800px;margin:0 auto;padding:40px max(24px,5vw) 60px;display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start;}
+@media(max-width:720px){.content{grid-template-columns:1fr;}}
+
+.form-card{background:var(--paper);border:1px solid var(--border2);padding:28px 24px;}
+.form-card h2{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--brown);margin-bottom:20px;}
+
+label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-bottom:6px;font-weight:400;}
+input[type=text],input[type=email],textarea,select{width:100%;background:var(--cream);border:1px solid var(--border2);border-radius:2px;color:var(--brown);font-family:var(--body);font-size:15px;padding:9px 12px;outline:none;transition:border-color .15s,box-shadow .15s;}
+input[type=text]:focus,input[type=email]:focus,textarea:focus,select:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(42,106,168,.1);}
+textarea{resize:vertical;min-height:140px;}
+.form-group{margin-bottom:18px;}
+
+.submit-btn{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:2px;border:none;padding:12px 24px;background:var(--amber);color:#fff;width:100%;transition:background .15s;}
+.submit-btn:hover{background:var(--gold);}
+
+.success-msg{background:var(--tan);border:1px solid var(--border2);border-left:3px solid #2a7a46;padding:16px;display:none;}
+.success-msg p{font-family:var(--body);font-size:14px;color:var(--muted);}
+
+.sidebar h2{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--brown);margin-bottom:16px;}
+
+.faq-item{border-bottom:1px solid var(--border);padding:14px 0;}
+.faq-item:first-child{padding-top:0;}
+.faq-item:last-child{border-bottom:none;}
+.faq-q{font-family:var(--body);font-size:15px;font-weight:500;color:var(--mahogany);margin-bottom:6px;}
+.faq-a{font-family:var(--body);font-size:14px;color:var(--muted);line-height:1.7;}
+
+.info-card{background:var(--paper);border:1px solid var(--border2);padding:18px 16px;margin-top:20px;}
+.info-card h3{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-bottom:10px;}
+.info-card p{font-family:var(--body);font-size:14px;color:var(--muted);line-height:1.7;}
+
+.site-footer{border-top:1px solid var(--border2);padding:24px max(24px,5vw);max-width:800px;margin:0 auto;text-align:center;}
+.footer-text{font-family:var(--body);font-size:13px;font-style:italic;color:var(--muted2);margin-bottom:10px;}
+.footer-nav{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.footer-nav a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);text-decoration:none;}
+.footer-nav a:hover{color:var(--amber);}
+
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:2px solid var(--amber);padding:14px max(24px,5vw);display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:2000;box-shadow:0 -3px 16px rgba(20,60,110,0.12);flex-wrap:wrap;}
+.cookie-text{font-family:var(--body);font-size:13px;color:var(--muted);line-height:1.6;flex:1;}
+.cookie-text a{color:var(--amber);}
+.cookie-btns{display:flex;gap:10px;flex-shrink:0;}
+.cookie-accept{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;padding:8px 16px;background:var(--amber);border:none;color:#fff;}
+.cookie-decline{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;padding:8px 16px;background:transparent;border:1px solid var(--border2);color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a href="/" class="masthead-logo">
+    <div class="logo-dot">
+      <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="4" stroke="#2a6aa8" stroke-width="1.2"/><circle cx="7" cy="7" r="1.5" fill="#2a6aa8"/></svg>
+    </div>
+    AudioChainHiFi.com
+  </a>
+  <nav class="masthead-nav">
+    <a href="/">Analyzer</a>
+    <a href="/about.html">About</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/contact.html" class="active">Contact</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="page-label">Get in Touch</div>
+  <h1>Contact Us</h1>
+  <p>Have a question about our tool, a suggestion for improvement, or feedback on an analysis? We'd love to hear from you.</p>
+</div>
+
+<div class="content">
+
+  <!-- CONTACT FORM -->
+  <div>
+    <div class="form-card">
+      <h2>Send a Message</h2>
+
+      <!-- Netlify Form: handles submission automatically on Netlify hosting -->
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contact-form">
+        <input type="hidden" name="form-name" value="contact">
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="e.g. Kevin Smith" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject">
+            <option value="general">General Question</option>
+            <option value="analysis">Question About an Analysis</option>
+            <option value="bug">Report a Bug or Error</option>
+            <option value="suggestion">Feature Suggestion</option>
+            <option value="privacy">Privacy or Data Inquiry</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us how we can help..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Message →</button>
+      </form>
+
+      <div class="success-msg" id="success-msg">
+        <p><strong>Thank you for your message.</strong> We've received your inquiry and will respond as soon as possible.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <p class="faq-q">Is the analyzer free to use?</p>
+      <p class="faq-a">Yes, AudioChainHiFi.com is completely free. We support the site through Google AdSense advertising.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How accurate is the analysis?</p>
+      <p class="faq-a">Our AI looks up published manufacturer specifications and applies established audio engineering principles. Results are a strong starting point but are not a substitute for professional advice. Spec sheets can vary between production runs.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Are my components saved between visits?</p>
+      <p class="faq-a">No. The site does not store your component data between sessions. You'll need to re-enter your system each visit.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">My component wasn't found — what should I do?</p>
+      <p class="faq-a">Try entering the full manufacturer name and exact model number. Some older or regional products may have limited published spec data. You can also describe the specs manually if you have them.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Can I suggest a new feature?</p>
+      <p class="faq-a">Absolutely — use the contact form and select "Feature Suggestion." We read every message.</p>
+    </div>
+
+    <div class="info-card">
+      <h3>Response Time</h3>
+      <p>We typically respond to messages within 2–5 business days. For urgent privacy requests, please indicate this in your message.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p class="footer-text">AudioChainHiFi.com · Hi-Fi Compatibility Reference · Powered by Claude AI · Anthropic</p>
+  <nav class="footer-nav">
+    <a href="/">Analyzer</a>
+    <a href="/about.html">About</a>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</footer>
+
+<div class="cookie-banner" id="cookie-banner" style="display:none;">
+  <p class="cookie-text">We use cookies for advertising (Google AdSense) and analytics. <a href="/privacy.html">Privacy Policy</a>.</p>
+  <div class="cookie-btns">
+    <button class="cookie-decline" onclick="declineCookies()">Decline</button>
+    <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
+  </div>
+</div>
+
+<script>
+function gtag(){dataLayer.push(arguments);}
+function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').style.display='none';gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}
+function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').style.display='none';}
+(function(){const c=localStorage.getItem('cookie_consent');if(!c){document.getElementById('cookie-banner').style.display='flex';}else if(c==='accepted'){gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}})();
+
+// Handle Netlify form success
+const params = new URLSearchParams(window.location.search);
+if(params.get('success')==='true'){
+  document.getElementById('contact-form').style.display='none';
+  document.getElementById('success-msg').style.display='block';
+}
+
+document.getElementById('contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const form = this;
+  fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: new URLSearchParams(new FormData(form)).toString()})
+    .then(()=>{form.style.display='none';document.getElementById('success-msg').style.display='block';})
+    .catch(()=>alert('There was an error sending your message. Please try again.'));
+});
+</script>
+</body>
+</html>

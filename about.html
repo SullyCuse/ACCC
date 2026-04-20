@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — AudioChainHiFi.com</title>
+<meta name="description" content="AudioChainHiFi.com is a free AI-powered hi-fi audio system compatibility checker. Learn how our tool analyzes impedance, gain staging, phono chains, and signal path compatibility.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','wait_for_update':500});
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --cream:#f0f4f9;--paper:#f7fafd;--tan:#dce8f4;--tan2:#ccdaec;
+  --brown:#0e1e30;--mahogany:#1a4a7a;--amber:#2a6aa8;--gold:#1a5490;
+  --muted:#4a6a8a;--muted2:#7a9ab8;
+  --border:rgba(20,60,110,0.16);--border2:rgba(20,60,110,0.28);
+  --serif:'Playfair Display',Georgia,serif;
+  --body:'EB Garamond',Georgia,serif;
+  --mono:'Courier Prime','Courier New',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);font-size:16px;background:var(--cream);color:var(--brown);line-height:1.7;min-height:100vh;}
+
+.masthead{border-bottom:1px solid var(--border2);padding:0 max(24px,5vw);display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;background:rgba(240,244,249,0.96);backdrop-filter:blur(12px);z-index:100;}
+.masthead-logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--brown);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.logo-dot{width:24px;height:24px;border:1.5px solid var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.logo-dot svg{width:12px;height:12px;}
+.masthead-nav{display:flex;align-items:center;gap:20px;}
+.masthead-nav a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .15s;}
+.masthead-nav a:hover{color:var(--amber);}
+.masthead-nav a.active{color:var(--mahogany);}
+
+.page-hero{max-width:800px;margin:0 auto;padding:52px max(24px,5vw) 36px;border-bottom:1px solid var(--border);}
+.page-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;}
+.page-hero h1{font-family:var(--serif);font-size:clamp(30px,4vw,48px);font-weight:400;line-height:1.15;margin-bottom:12px;color:var(--brown);}
+.page-hero h1 em{font-style:italic;color:var(--mahogany);}
+.page-hero p{font-size:17px;color:var(--muted);max-width:600px;line-height:1.8;}
+
+.content{max-width:800px;margin:0 auto;padding:44px max(24px,5vw) 60px;}
+
+.content h2{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--brown);margin:36px 0 14px;}
+.content h2:first-child{margin-top:0;}
+.content p{font-size:16px;color:var(--muted);margin-bottom:16px;line-height:1.8;}
+.content p:last-child{margin-bottom:0;}
+.content strong{color:var(--brown);font-weight:500;}
+
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 28px;}
+.feature-card{background:var(--paper);border:1px solid var(--border2);padding:18px 16px;}
+.feature-card h3{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--mahogany);margin-bottom:8px;}
+.feature-card p{font-size:14px;color:var(--muted);line-height:1.65;margin:0;}
+
+.disclaimer{background:var(--tan);border:1px solid var(--border2);border-left:3px solid var(--amber);padding:16px 18px;margin:28px 0;}
+.disclaimer p{font-size:14px;color:var(--muted);margin:0;line-height:1.7;}
+.disclaimer strong{color:var(--mahogany);}
+
+.rule{display:flex;align-items:center;gap:10px;margin:28px 0;}
+.rule::before,.rule::after{content:'';flex:1;height:1px;background:var(--border);}
+.rule span{font-family:var(--mono);font-size:9px;color:var(--muted2);letter-spacing:.15em;text-transform:uppercase;}
+
+.cta-box{background:var(--paper);border:1px solid var(--border2);padding:28px 24px;text-align:center;margin-top:32px;}
+.cta-box h3{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--brown);margin-bottom:10px;}
+.cta-box p{font-size:15px;color:var(--muted);margin-bottom:18px;font-style:italic;}
+.cta-btn{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;background:var(--amber);color:#fff;text-decoration:none;border-radius:2px;transition:background .15s;}
+.cta-btn:hover{background:var(--gold);}
+
+.site-footer{border-top:1px solid var(--border2);padding:24px max(24px,5vw);max-width:800px;margin:0 auto;text-align:center;}
+.footer-text{font-family:var(--body);font-size:13px;font-style:italic;color:var(--muted2);margin-bottom:10px;}
+.footer-nav{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.footer-nav a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);text-decoration:none;}
+.footer-nav a:hover{color:var(--amber);}
+
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:2px solid var(--amber);padding:14px max(24px,5vw);display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:2000;box-shadow:0 -3px 16px rgba(20,60,110,0.12);flex-wrap:wrap;}
+.cookie-text{font-family:var(--body);font-size:13px;color:var(--muted);line-height:1.6;flex:1;}
+.cookie-text a{color:var(--amber);}
+.cookie-btns{display:flex;gap:10px;flex-shrink:0;}
+.cookie-accept{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;padding:8px 16px;background:var(--amber);border:none;color:#fff;transition:background .15s;}
+.cookie-accept:hover{background:var(--gold);}
+.cookie-decline{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;padding:8px 16px;background:transparent;border:1px solid var(--border2);color:var(--muted);transition:all .15s;}
+.cookie-decline:hover{background:var(--tan);color:var(--brown);}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a href="/" class="masthead-logo">
+    <div class="logo-dot">
+      <svg viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="4" stroke="#2a6aa8" stroke-width="1.2"/><circle cx="7" cy="7" r="1.5" fill="#2a6aa8"/></svg>
+    </div>
+    AudioChainHiFi.com
+  </a>
+  <nav class="masthead-nav">
+    <a href="/">Analyzer</a>
+    <a href="/about.html" class="active">About</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="page-label">About AudioChainHiFi.com</div>
+  <h1>Built for <em>audiophiles</em>,<br>by audio enthusiasts.</h1>
+  <p>AudioChainHiFi.com is a free tool that analyzes the technical compatibility of hi-fi audio system components using published manufacturer specifications and Claude AI.</p>
+</div>
+
+<div class="content">
+
+  <h2>The Problem We Solve</h2>
+  <p>Building a high-fidelity audio system requires matching dozens of technical specifications across every component in your signal chain. <strong>Impedance mismatches</strong> between amplifiers and speakers, <strong>incorrect gain staging</strong>, improper phono cartridge loading, and mismatched signal levels can all degrade sound quality — sometimes severely.</p>
+  <p>Historically, verifying compatibility required manually cross-referencing manufacturer spec sheets across multiple browser tabs, consulting audio forums for hours, and relying on expensive trial and error. AudioChainHiFi.com automates that process in seconds.</p>
+
+  <div class="rule"><span>What we analyze</span></div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h3>Impedance Matching</h3>
+      <p>Verifies that amplifier output impedance and speaker nominal impedance are correctly matched to prevent distortion and potential damage.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Gain Staging</h3>
+      <p>Analyzes signal levels throughout your chain — from source to preamp to power amp — to ensure optimal signal-to-noise ratio and headroom.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Phono Chain Analysis</h3>
+      <p>Calculates cartridge-to-tonearm resonance frequency, verifies MC/MM gain matching, and recommends optimal loading impedance.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Connection Types</h3>
+      <p>Evaluates whether your chosen interconnection methods (XLR balanced, RCA, AES/EBU, USB) are appropriate for each pairing.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Signal Path Review</h3>
+      <p>Goes connection by connection through your signal chain, citing actual spec numbers and flagging any potential issues.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Recommendations</h3>
+      <p>Provides specific, actionable suggestions to optimize your system, including exact settings where applicable.</p>
+    </div>
+  </div>
+
+  <div class="rule"><span>How it works</span></div>
+
+  <h2>Powered by Claude AI</h2>
+  <p>AudioChainHiFi.com uses <strong>Claude</strong>, an AI model developed by <a href="https://www.anthropic.com" style="color:var(--amber);">Anthropic</a>, to research and analyze your system. When you submit your components, our analysis engine searches for published manufacturer specifications — output voltages, impedances, sensitivities, cartridge compliance figures, tonearm effective mass — and uses those real numbers to produce a detailed compatibility report.</p>
+  <p>Unlike generic forum advice, every analysis is grounded in the actual published specifications of your exact components. The result is a technical assessment tailored to your precise system configuration.</p>
+
+  <div class="rule"><span>Who it's for</span></div>
+
+  <h2>Who Uses AudioChainHiFi.com</h2>
+  <p><strong>Audiophiles</strong> building or upgrading a system who want to verify component compatibility before purchasing. <strong>Home theater enthusiasts</strong> adding hi-fi separates to their setup. <strong>Turntable owners</strong> selecting a phono cartridge and preamp combination. <strong>Hi-fi retailers</strong> helping customers make informed purchasing decisions.</p>
+  <p>Whether you're pairing a new power amplifier with existing speakers or assembling a complete phono chain from scratch, AudioChainHiFi.com gives you the technical confidence to proceed.</p>
+
+  <div class="disclaimer">
+    <p><strong>Disclaimer:</strong> AudioChainHiFi.com provides general technical guidance based on published specifications and AI analysis. Results should be used as a starting point for informed decision-making and are not a substitute for professional audio engineering advice. Always consult a qualified technician for critical or complex installations. Manufacturer specifications may vary between production runs.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>Ready to analyze your system?</h3>
+    <p>Enter your components and get a full compatibility report in under a minute.</p>
+    <a href="/" class="cta-btn">Open the Analyzer →</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p class="footer-text">AudioChainHiFi.com · Hi-Fi Compatibility Reference · Powered by Claude AI · Anthropic</p>
+  <nav class="footer-nav">
+    <a href="/">Analyzer</a>
+    <a href="/about.html">About</a>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</footer>
+
+<div class="cookie-banner" id="cookie-banner" style="display:none;">
+  <p class="cookie-text">We use cookies for advertising (Google AdSense) and analytics. <a href="/privacy.html">Privacy Policy</a>.</p>
+  <div class="cookie-btns">
+    <button class="cookie-decline" onclick="declineCookies()">Decline</button>
+    <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
+  </div>
+</div>
+
+<script>
+function gtag(){dataLayer.push(arguments);}
+function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').style.display='none';gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}
+function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').style.display='none';}
+(function(){const c=localStorage.getItem('cookie_consent');if(!c){document.getElementById('cookie-banner').style.display='flex';}else if(c==='accepted'){gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}})();
+</script>
+</body>
+</html>
