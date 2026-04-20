@@ -1065,7 +1065,7 @@ function renderPanelSections(parts){
 function updateDiagram(){const wrap=document.getElementById('diagram-wrap');if(components.length<2){wrap.innerHTML='';return;}wrap.innerHTML=buildDiagram();}
 function buildDiagram(){
   const W=500,BW=138,BH=48,G=16;
-  const dig=components.filter(c=>['streamer','dac'].includes(c.type)),pho=components.filter(c=>['turntable','cartridge','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)),hasBoth=dig.length>0&&pho.length>0;
+  const dig=components.filter(c=>['streamer','dac'].includes(c.type)),pho=components.filter(c=>['turntable','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)&&c.type!=='cartridge'),hasBoth=dig.length>0&&pho.length>0;
 
   // Sort a chain by following defined connections. Nodes with no defined connections go last.
   function sortChain(chain){
