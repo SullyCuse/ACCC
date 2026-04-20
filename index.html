@@ -505,7 +505,15 @@ select {
 .results-full { padding: 0 0 60px; }
 .results-full-hdr { text-align:center; padding:32px 0 28px; }
 .results-full-hdr h2 { font-size:26px; font-weight:800; color:var(--text); letter-spacing:-.01em; margin-bottom:6px; }
-.results-full-hdr p  { font-size:14px; color:var(--text-2); }
+.results-full-hdr p  { font-size:14px; color:var(--text-2); margin-bottom:16px; }
+.btn-print {
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font); font-size:13px; font-weight:600;
+  padding:10px 20px; border-radius:10px; cursor:pointer;
+  background:var(--white); border:1.5px solid var(--border-2);
+  color:var(--text-2); transition:all .15s;
+}
+.btn-print:hover { border-color:var(--blue); color:var(--blue); background:var(--blue-lt); }
 .results-3col { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 @media(max-width:960px){ .results-3col{ grid-template-columns:1fr; } }
 
@@ -878,6 +886,7 @@ select {
     <div class="results-full-hdr">
       <h2>Full Compatibility Analysis</h2>
       <p>Detailed breakdown across your entire signal chain</p>
+      <button class="btn-print" onclick="printReport()">🖨️ Print / Save as PDF</button>
     </div>
     <div class="results-3col">
       <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Component Specifications</span></div><div class="card-body" id="panel-specs-body"></div></div>
@@ -1137,7 +1146,87 @@ function buildDiagram(){
 }
 renderAll();
 
-function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').style.display='none';gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}
+function printReport(){
+  const diagramEl=document.getElementById('diagram-wrap');
+  const specsEl=document.getElementById('panel-specs-body');
+  const chainEl=document.getElementById('panel-chain-body');
+  const summaryEl=document.getElementById('panel-summary-body');
+  const scoreEl=document.getElementById('results-content');
+  const date=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const compList=components.map(c=>`<li><strong>${esc(typeLabels[c.type])}:</strong> ${esc(c.name)}</li>`).join('');
+  const win=window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><title>AudioChainHiFi.com — Compatibility Report</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1e293b;line-height:1.65;background:#fff;padding:32px 48px;}
+@media print{body{padding:0;}.no-print{display:none!important;}@page{margin:20mm 18mm;}}
+.rpt-header{display:flex;align-items:flex-start;justify-content:space-between;border-bottom:3px solid #2563eb;padding-bottom:14px;margin-bottom:22px;}
+.rpt-logo{font-size:18px;font-weight:800;color:#0f172a;}.rpt-logo span{color:#2563eb;}
+.rpt-meta{font-size:11px;color:#64748b;margin-top:4px;line-height:1.6;}
+.rpt-date{font-size:11px;color:#94a3b8;text-align:right;}
+.toolbar{display:flex;gap:10px;margin-bottom:22px;}
+.toolbar button{padding:8px 16px;border-radius:6px;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;}
+.btn-p{background:#2563eb;color:#fff;}.btn-c{background:#f1f5f9;color:#475569;}
+.score-row{display:flex;gap:10px;margin-bottom:20px;}
+.score-card{flex:1;border:1.5px solid #e2e8f0;border-radius:8px;padding:12px;text-align:center;}
+.score-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;display:block;margin-bottom:4px;}
+.score-val{font-size:24px;font-weight:800;line-height:1;}
+.score-val small{font-size:13px;font-weight:500;color:#94a3b8;}
+.score-good{color:#16a34a;}.score-ok{color:#d97706;}.score-bad{color:#dc2626;}
+h2{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#2563eb;border-bottom:1.5px solid #e2e8f0;padding-bottom:6px;margin:24px 0 12px;}
+.comp-list{list-style:none;}
+.comp-list li{font-size:12px;color:#475569;padding:2px 0;}
+.comp-list li strong{color:#1e293b;font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-right:4px;}
+.diagram-wrap svg{max-width:500px;height:auto;display:block;margin:0 auto;}
+.comp-name-hdr{font-size:12px;font-weight:700;color:#2563eb;background:#eff6ff;padding:5px 10px;border-radius:6px 6px 0 0;margin-top:10px;}
+.comp-spec-block:first-child .comp-name-hdr{margin-top:0;}
+.spec-list{list-style:none;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 6px 6px;margin-bottom:2px;}
+.spec-list li{font-size:11px;font-family:'Courier New',monospace;color:#475569;padding:3px 10px;border-bottom:1px solid #f8fafc;}
+.spec-list li:last-child{border-bottom:none;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.panel-analysis p{font-size:13px;color:#475569;margin-bottom:8px;line-height:1.7;}
+.panel-analysis strong{color:#1e293b;font-weight:600;}
+.panel-analysis ul{list-style:none;padding:0;margin:0 0 8px;}
+.panel-analysis ul li{font-size:12px;color:#475569;padding:4px 0 4px 16px;position:relative;border-bottom:1px solid #f1f5f9;}
+.panel-analysis ul li:last-child{border-bottom:none;}
+.panel-analysis ul li::before{content:'→';position:absolute;left:0;color:#2563eb;font-size:11px;top:6px;}
+.panel-sub-hdr{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#2563eb;margin:14px 0 6px;padding-bottom:4px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:8px;}
+.panel-sub-hdr:first-child{margin-top:0;}
+.panel-sub-hdr::after{content:'';flex:1;height:1px;background:#e2e8f0;}
+.page-break{page-break-before:always;height:0;}
+.rpt-footer{margin-top:28px;padding-top:10px;border-top:1px solid #e2e8f0;font-size:11px;color:#94a3b8;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+</style></head><body>
+<div class="toolbar no-print">
+  <button class="btn-p" onclick="window.print()">🖨️ Print / Save as PDF</button>
+  <button class="btn-c" onclick="window.close()">✕ Close</button>
+</div>
+<div class="rpt-header">
+  <div>
+    <div class="rpt-logo">AudioChain<span>HiFi</span>.com</div>
+    <div class="rpt-meta">Hi-Fi Compatibility Report · ${components.length} components · ${connections.length} connections</div>
+  </div>
+  <div class="rpt-date">Generated<br>${date}</div>
+</div>
+<h2>System Components</h2>
+<ul class="comp-list">${compList}</ul>
+${scoreEl&&scoreEl.querySelector('.score-row')?'<h2>Compatibility Scores</h2>'+scoreEl.querySelector('.score-row').outerHTML:''}
+<h2>Signal Chain Diagram</h2>
+<div class="diagram-wrap">${diagramEl&&diagramEl.innerHTML?diagramEl.innerHTML:'<p style="color:#94a3b8;font-size:13px;font-style:italic;">Diagram not generated. Click Generate Signal Chain Diagram before printing.</p>'}</div>
+<div class="page-break"></div>
+<h2>Component Specifications</h2>
+<div>${specsEl&&specsEl.innerHTML?specsEl.innerHTML:'<p style="color:#94a3b8;font-size:13px;font-style:italic;">Run the analysis first.</p>'}</div>
+<div class="two-col" style="margin-top:24px;">
+  <div><h2>Signal Chain Analysis</h2><div>${chainEl&&chainEl.innerHTML?chainEl.innerHTML:'<p style="color:#94a3b8;font-size:13px;font-style:italic;">Run the analysis first.</p>'}</div></div>
+  <div><h2>Summary &amp; Recommendations</h2><div>${summaryEl&&summaryEl.innerHTML?summaryEl.innerHTML:'<p style="color:#94a3b8;font-size:13px;font-style:italic;">Run the analysis first.</p>'}</div></div>
+</div>
+<div class="rpt-footer">
+  <span>AudioChainHiFi.com · Powered by Claude AI · Anthropic</span>
+  <span>For informational purposes only — not a substitute for professional audio engineering advice.</span>
+</div>
+</body></html>`);
+  win.document.close();
+}{localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').style.display='none';gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}
 function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').style.display='none';}
 (function(){const c=localStorage.getItem('cookie_consent');if(!c){document.getElementById('cookie-banner').style.display='flex';}else if(c==='accepted'){gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}})();
 </script>
