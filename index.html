@@ -443,6 +443,7 @@ select {
 .d-title { fill:#211d16; font-family:'DM Mono',monospace; font-size:13px; font-weight:500; }
 .d-sub   { fill:#a08870; font-family:'DM Mono',monospace; font-size:11px; }
 .d-col   { fill:#9e6e1a; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; }
+.d-label { fill:#a08870; font-family:'DM Mono',monospace; font-size:10px; }
 .d-node  { cursor:pointer; }
 .d-node:hover .d-box,
 .d-node:hover .d-box-digital,
@@ -804,6 +805,8 @@ function buildDiagram(){
   const box=(x,y,c,cls)=>{const cx=x+BW/2,cy=y+BH/2;return `<g class="d-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="3" class="d-box ${cls}"/><text class="d-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="d-sub" x="${cx}" y="${cy+9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;};
   const ln=(x1,y1,x2,y2)=>`<line stroke="#c8a060" stroke-width="1" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
   const pt=(d)=>`<path fill="none" stroke="#c8a060" stroke-width="1" d="${d}" marker-end="url(#da)"/>`;
+  const lbl=(x,y,txt,anchor)=>txt?`<text class="d-label" x="${x}" y="${y}" text-anchor="${anchor||'start'}" dominant-baseline="central">${esc(txt)}</text>`:'';
+  const ct=(a,b)=>{if(!a||!b)return null;const c=connections.find(x=>(x.fromId===a.id&&x.toId===b.id)||(x.fromId===b.id&&x.toId===a.id));return c?c.type:null;};
 
   if(hasBoth){
     const mx=Math.max(dig.length,pho.length);
@@ -811,30 +814,52 @@ function buildDiagram(){
     let p='',b='';
     b+=`<text class="d-col" x="${lX+BW/2}" y="18" text-anchor="middle">Digital</text>`;
     b+=`<text class="d-col" x="${rX+BW/2}" y="18" text-anchor="middle">Phono</text>`;
-    let lB=null,rB=null;
-    dig.forEach((c,i)=>{const y=26+i*(BH+G),cx=lX+BW/2;if(lB!==null)p+=ln(cx,lB,cx,y);b+=box(lX,y,c,'d-box-digital');lB=y+BH;});
-    pho.forEach((c,i)=>{const y=26+i*(BH+G),cx=rX+BW/2;if(rB!==null)p+=ln(cx,rB,cx,y);b+=box(rX,y,c,'d-box-phono');rB=y+BH;});
+    let lB=null,rB=null,lPrev=null,rPrev=null;
+
+    dig.forEach((c,i)=>{
+      const y=26+i*(BH+G),cx=lX+BW/2;
+      if(lB!==null){p+=ln(cx,lB,cx,y);b+=lbl(cx+5,lB+G/2,ct(lPrev,c));}
+      b+=box(lX,y,c,'d-box-digital');lB=y+BH;lPrev=c;
+    });
+
+    pho.forEach((c,i)=>{
+      const y=26+i*(BH+G),cx=rX+BW/2;
+      if(rB!==null){p+=ln(cx,rB,cx,y);b+=lbl(cx+5,rB+G/2,ct(rPrev,c));}
+      b+=box(rX,y,c,'d-box-phono');rB=y+BH;rPrev=c;
+    });
+
     const rY=26+mx*(BH+G);
     const sX=W/2-BW/2,sCx=sX+BW/2;
     let sY=rY+G*2;
+
     if(shr.length>0){
-      if(lB!==null)p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${rY} L${sCx-16},${rY} L${sCx-16},${sY}`);
-      if(rB!==null)p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${rY} L${sCx+16},${rY} L${sCx+16},${sY}`);
+      const firstShr=shr[0];
+      if(lB!==null){
+        p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${rY} L${sCx-16},${rY} L${sCx-16},${sY}`);
+        b+=lbl(Math.round((lX+BW/2+sCx-16)/2),rY-7,ct(lPrev,firstShr),'middle');
+      }
+      if(rB!==null){
+        p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${rY} L${sCx+16},${rY} L${sCx+16},${sY}`);
+        b+=lbl(Math.round((rX+BW/2+sCx+16)/2),rY-7,ct(rPrev,firstShr),'middle');
+      }
     }
-    let pB=null;
-    shr.forEach(c=>{if(pB!==null)p+=ln(sCx,pB,sCx,sY);b+=box(sX,sY,c,'d-box-shared');pB=sY+BH;sY+=BH+G;});
+
+    let pB=null,shrPrev=null;
+    shr.forEach(c=>{
+      if(pB!==null){p+=ln(sCx,pB,sCx,sY);b+=lbl(sCx+5,pB+G/2,ct(shrPrev,c));}
+      b+=box(sX,sY,c,'d-box-shared');pB=sY+BH;shrPrev=c;sY+=BH+G;
+    });
+
     return `<svg width="100%" viewBox="0 0 ${W} ${(pB||sY)+24}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
   }
 
   const all=[...dig,...pho,...shr];
   const x=W/2-BW/2,cx=W/2;
-  let y=20,p='',b='';
+  let y=20,p='',b='',prev=null;
   all.forEach((c,i)=>{
     const cls=dig.includes(c)?'d-box-digital':pho.includes(c)?'d-box-phono':'d-box-shared';
-    if(i>0)p+=ln(cx,y,cx,y+G);
-    if(i>0)y+=G;
-    b+=box(x,y,c,cls);
-    y+=BH;
+    if(i>0){p+=ln(cx,y,cx,y+G);b+=lbl(cx+5,y+G/2,ct(prev,c));y+=G;}
+    b+=box(x,y,c,cls);y+=BH;prev=c;
   });
   return `<svg width="100%" viewBox="0 0 ${W} ${y+24}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
 }
