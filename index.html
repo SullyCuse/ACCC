@@ -413,6 +413,7 @@ select {
 .badge-speakers  { background:#f0fdf4; color:#166534; }
 .badge-dac       { background:#fffbeb; color:#92400e; }
 .badge-turntable { background:#fef2f2; color:#991b1b; }
+.badge-tonearm   { background:#fff7ed; color:#9a3412; }
 .badge-cartridge { background:#fff1f2; color:#9f1239; }
 .badge-phonopre  { background:#f8fafc; color:#475569; }
 .badge-streamer  { background:#ecfeff; color:#155e75; }
@@ -781,6 +782,7 @@ select {
                   <option value="speakers">Speakers</option>
                   <option value="dac">DAC</option>
                   <option value="turntable">Turntable</option>
+                  <option value="tonearm">Tonearm</option>
                   <option value="cartridge">Turntable Cartridge</option>
                   <option value="phonopre">Phono Preamplifier</option>
                   <option value="streamer">Streamer / Source</option>
@@ -959,8 +961,8 @@ select {
 <script>
 const components=[];
 const connections=[];
-const typeLabels={amp:'Amplifier',preamp:'Preamplifier',speakers:'Speakers',dac:'DAC',turntable:'Turntable',cartridge:'Cartridge',phonopre:'Phono Preamp',streamer:'Streamer',cables:'Cables',other:'Other'};
-const specHints={amp:'Key specs: power output (W/ch), impedance range (Ω), input sensitivity (mV)',preamp:'Key specs: gain (dB), output impedance (Ω), input sensitivity (mV)',speakers:'Key specs: impedance (Ω), sensitivity (dB/W/m), power handling (W)',dac:'Key specs: output voltage (Vrms), output impedance (Ω), supported inputs',turntable:'Key specs: drive type, tonearm effective mass (g), speeds (RPM)',cartridge:'Key specs: type (MM/MC), output voltage (mV), compliance (µm/mN), tracking force (g)',phonopre:'Key specs: gain (dB), input impedance (Ω/kΩ), MM/MC support, output voltage',streamer:'Key specs: digital outputs (AES/USB/COAX), supported formats and sample rates',cables:'Key specs: type (RCA/XLR/speaker), length, shielding',other:'Describe the component and its relevant electrical or mechanical specs'};
+const typeLabels={amp:'Amplifier',preamp:'Preamplifier',speakers:'Speakers',dac:'DAC',turntable:'Turntable',tonearm:'Tonearm',cartridge:'Cartridge',phonopre:'Phono Preamp',streamer:'Streamer',cables:'Cables',other:'Other'};
+const specHints={amp:'Key specs: power output (W/ch), impedance range (Ω), input sensitivity (mV)',preamp:'Key specs: gain (dB), output impedance (Ω), input sensitivity (mV)',speakers:'Key specs: impedance (Ω), sensitivity (dB/W/m), power handling (W)',dac:'Key specs: output voltage (Vrms), output impedance (Ω), supported inputs',turntable:'Key specs: drive type, tonearm effective mass (g), speeds (RPM)',tonearm:'Key specs: effective mass (g), effective length (mm), offset angle, brand and model',cartridge:'Key specs: type (MM/MC), output voltage (mV), compliance (µm/mN), tracking force (g)',phonopre:'Key specs: gain (dB), input impedance (Ω/kΩ), MM/MC support, output voltage',streamer:'Key specs: digital outputs (AES/USB/COAX), supported formats and sample rates',cables:'Key specs: type (RCA/XLR/speaker), length, shielding',other:'Describe the component and its relevant electrical or mechanical specs'};
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function updateHint(){const t=document.getElementById('comp-type').value,h=document.getElementById('spec-hint');h.textContent=specHints[t]||'';h.style.display=specHints[t]?'block':'none';}
@@ -1074,7 +1076,7 @@ function renderPanelSections(parts){
 function updateDiagram(){const wrap=document.getElementById('diagram-wrap');if(components.length<2){wrap.innerHTML='';return;}wrap.innerHTML=buildDiagram();}
 function buildDiagram(){
   const W=500,BW=138,BH=48,G=16;
-  const dig=components.filter(c=>['streamer','dac'].includes(c.type)),pho=components.filter(c=>['turntable','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)&&c.type!=='cartridge'),hasBoth=dig.length>0&&pho.length>0;
+  const dig=components.filter(c=>['streamer','dac'].includes(c.type)),pho=components.filter(c=>['turntable','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)&&c.type!=='cartridge'&&c.type!=='tonearm'),hasBoth=dig.length>0&&pho.length>0;
 
   // Sort a chain by following defined connections. Nodes with no defined connections go last.
   function sortChain(chain){
