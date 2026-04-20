@@ -4,1097 +4,942 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AudioChainHiFi.com — Hi-Fi Compatibility Checker</title>
-<meta name="description" content="Free AI-powered hi-fi audio system compatibility checker. Analyze impedance matching, gain staging, phono chain resonance, and signal chain compatibility for your audio components.">
+<meta name="description" content="Free AI-powered hi-fi audio system compatibility checker. Analyze impedance matching, gain staging, phono chain resonance, and signal chain compatibility.">
 <meta property="og:title" content="AudioChainHiFi.com — Hi-Fi Compatibility Checker">
 <meta property="og:description" content="Free AI-powered hi-fi compatibility analysis. Enter your components and get detailed impedance, gain, and phono chain analysis instantly.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.audiochainhifi.com">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AudioChainHiFi.com — Hi-Fi Compatibility Checker">
 <meta name="robots" content="index, follow">
-
-<!-- Google Consent Mode v2 — must appear before AdSense -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
-gtag('consent', 'default', {
-  'ad_storage': 'denied',
-  'ad_user_data': 'denied',
-  'ad_personalization': 'denied',
-  'analytics_storage': 'denied',
-  'wait_for_update': 500
-});
+gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','wait_for_update':500});
 </script>
-
-<!-- Google AdSense — replace ca-pub-XXXXXXXXXX with your Publisher ID -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
 :root {
-  --cream:    #f0f4f9;
-  --paper:    #f7fafd;
-  --tan:      #dce8f4;
-  --tan2:     #ccdaec;
-  --brown:    #0e1e30;
-  --mahogany: #1a4a7a;
-  --amber:    #2a6aa8;
-  --gold:     #1a5490;
-  --muted:    #4a6a8a;
-  --muted2:   #7a9ab8;
-  --border:   rgba(20,60,110,0.16);
-  --border2:  rgba(20,60,110,0.28);
-  --serif:    'Playfair Display', Georgia, serif;
-  --body:     'EB Garamond', Georgia, serif;
-  --mono:     'Courier Prime', 'Courier New', monospace;
+  --blue:     #2563eb;
+  --blue-dk:  #1d4ed8;
+  --blue-lt:  #eff6ff;
+  --indigo:   #4f46e5;
+  --dark:     #0f172a;
+  --dark-2:   #1e293b;
+  --dark-3:   #334155;
+  --text:     #0f172a;
+  --text-2:   #475569;
+  --text-3:   #94a3b8;
+  --border:   #e2e8f0;
+  --border-2: #cbd5e1;
+  --cream:    #f8fafc;
+  --white:    #ffffff;
+  --shadow:   0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+  --font:     'Plus Jakarta Sans', system-ui, sans-serif;
+  --radius:   12px;
+  --radius-lg:20px;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: var(--body);
-  font-size: 16px;
+  font-family: var(--font);
+  font-size: 15px;
   background: var(--cream);
-  color: var(--brown);
+  color: var(--text);
   line-height: 1.6;
-  min-height: 100vh;
-  background-image:
-    radial-gradient(ellipse at 20% 0%, rgba(40,100,180,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 100%, rgba(20,60,120,0.05) 0%, transparent 60%);
 }
 
-/* ── MASTHEAD ── */
-.masthead {
-  text-align: center;
-  padding: 28px max(24px, 5vw) 20px;
-  border-bottom: 1px solid var(--border2);
-  background: var(--paper);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(8px);
-}
+img { display: block; max-width: 100%; }
+a  { color: var(--blue); text-decoration: none; }
 
-.masthead-rule {
-  height: 1px;
-  background: var(--border2);
-  margin-bottom: 14px;
-  position: relative;
-}
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 
-.masthead-rule::before {
-  content: '◆';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  background: var(--paper);
-  padding: 0 10px;
-  font-size: 9px;
-  color: var(--muted2);
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(15,23,42,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
-
-.masthead-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
+.nav-inner {
+  max-width: 1180px; margin: 0 auto; padding: 0 24px;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
 }
-
-.masthead-logo {
-  font-family: var(--serif);
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--brown);
-  letter-spacing: 0.04em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.nav-logo {
+  font-size: 17px; font-weight: 700; color: #fff;
+  display: flex; align-items: center; gap: 10px;
 }
-
-.logo-ornament {
-  width: 30px;
-  height: 30px;
-  border: 1.5px solid var(--amber);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.nav-logo-ring {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--indigo));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #fff; font-weight: 700;
 }
-
-.logo-ornament svg { width: 14px; height: 14px; }
-
-.masthead-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
+.nav-links { display: flex; align-items: center; gap: 6px; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: rgba(255,255,255,.7);
+  padding: 6px 12px; border-radius: 8px; transition: all .15s;
 }
+.nav-links a:hover { color: #fff; background: rgba(255,255,255,.08); }
+.nav-links a.active { color: #fff; }
+.nav-cta {
+  font-size: 13px; font-weight: 600;
+  padding: 8px 16px; border-radius: 8px;
+  background: var(--blue); color: #fff !important;
+  transition: background .15s;
+}
+.nav-cta:hover { background: var(--blue-dk) !important; }
 
 /* ── HERO ── */
 .hero {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 52px max(24px, 5vw) 40px;
-  text-align: center;
-  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+  min-height: 88vh; display: flex; align-items: center;
 }
+.hero-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg,
+    rgba(10,15,35,0.88) 0%,
+    rgba(15,25,60,0.75) 50%,
+    rgba(30,20,80,0.65) 100%);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  max-width: 1180px; margin: 0 auto; padding: 80px 24px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(99,102,241,.25);
+  border: 1px solid rgba(99,102,241,.5);
+  color: #a5b4fc; font-size: 12px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 100px; margin-bottom: 28px;
+}
+.hero-badge::before { content: '●'; font-size: 8px; color: #818cf8; }
+.hero h1 {
+  font-size: clamp(36px, 5.5vw, 68px);
+  font-weight: 800; line-height: 1.08;
+  color: #fff; margin-bottom: 22px; letter-spacing: -.02em;
+  max-width: 760px;
+}
+.hero h1 span {
+  background: linear-gradient(90deg, #60a5fa, #818cf8, #c084fc);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-desc {
+  font-size: 18px; color: rgba(255,255,255,.75);
+  max-width: 520px; line-height: 1.7; margin-bottom: 36px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 15px; font-weight: 600;
+  padding: 14px 28px; border-radius: 10px;
+  background: var(--blue); color: #fff;
+  transition: all .18s; border: none; cursor: pointer;
+  box-shadow: 0 4px 20px rgba(37,99,235,.4);
+}
+.btn-primary:hover { background: var(--blue-dk); transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 15px; font-weight: 600;
+  padding: 14px 28px; border-radius: 10px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff; transition: all .18s; cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+.btn-secondary:hover { background: rgba(255,255,255,.18); }
 
-.hero-vol {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted2);
+.hero-stats {
+  display: flex; gap: 36px; margin-top: 52px;
+  flex-wrap: wrap;
+}
+.hero-stat { color: rgba(255,255,255,.6); font-size: 13px; }
+.hero-stat strong { display: block; color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 2px; }
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+}
+.trust-inner {
+  max-width: 1180px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  gap: 32px; flex-wrap: wrap;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500; color: var(--text-2);
+}
+.trust-icon { font-size: 16px; }
+
+/* ── SECTION ── */
+.section { padding: 88px 0; }
+.section-alt { background: var(--white); }
+.section-dark { background: var(--dark); }
+
+.section-label {
+  font-size: 12px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 800; color: var(--text);
+  letter-spacing: -.02em; line-height: 1.15;
   margin-bottom: 16px;
 }
+.section-title-white { color: #fff; }
+.section-desc { font-size: 17px; color: var(--text-2); max-width: 540px; line-height: 1.75; }
+.section-desc-white { color: rgba(255,255,255,.65); }
+.section-header { margin-bottom: 52px; }
 
-.hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 400;
-  line-height: 1.1;
-  color: var(--brown);
-  margin-bottom: 10px;
-  letter-spacing: 0.01em;
+/* ── FEATURE CARDS ── */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
 }
 
-.hero h1 em { font-style: italic; color: var(--mahogany); }
+.feature-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: var(--shadow);
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 
-.hero-sub {
-  font-family: var(--serif);
-  font-size: 18px;
-  font-style: italic;
-  color: var(--muted);
-  margin-bottom: 22px;
-}
-
-.hero-rule {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 0 auto 20px;
-  max-width: 540px;
-}
-.hero-rule::before, .hero-rule::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border2);
-}
-.hero-rule span {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted2);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  white-space: nowrap;
+.feature-card-img {
+  width: 100%; height: 200px; object-fit: cover;
 }
 
-.hero-desc {
-  font-family: var(--body);
-  font-size: 15px;
-  color: var(--muted);
-  max-width: 560px;
-  margin: 0 auto;
-  line-height: 1.8;
+.feature-card-body { padding: 24px; }
+.feature-card-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--blue-lt); color: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 14px;
+}
+.feature-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+.feature-card p  { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+
+/* ── HOW IT WORKS ── */
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 32px; }
+.step { text-align: center; }
+.step-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--indigo));
+  color: #fff; font-size: 22px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px;
+}
+.step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+.step p  { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+
+/* ── SHOWCASE IMAGE ── */
+.showcase {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: center; padding: 88px 0;
+}
+@media(max-width:720px){ .showcase { grid-template-columns:1fr; } }
+
+.showcase-img {
+  border-radius: var(--radius-lg);
+  overflow: hidden; box-shadow: var(--shadow-lg);
+  aspect-ratio: 4/3;
+}
+.showcase-img img { width:100%; height:100%; object-fit:cover; }
+
+.showcase-label { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:12px; }
+.showcase h2 { font-size: clamp(24px,3vw,36px); font-weight:800; color:var(--text); letter-spacing:-.02em; margin-bottom:16px; line-height:1.2; }
+.showcase p  { font-size:15px; color:var(--text-2); line-height:1.8; margin-bottom:20px; }
+.showcase ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.showcase ul li { display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text-2); }
+.showcase ul li::before {
+  content:'✓'; width:22px; height:22px; border-radius:50%;
+  background: var(--blue-lt); color:var(--blue);
+  font-size:11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
 
-/* ── APP LAYOUT ── */
-.app-wrap {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px max(24px, 5vw);
+/* ── TOOL SECTION ── */
+.tool-section { background: var(--white); padding: 88px 0; }
+
+.tool-header { text-align:center; margin-bottom:48px; }
+
+.tool-grid {
   display: grid;
   grid-template-columns: 460px 1fr;
-  gap: 32px;
+  gap: 28px;
   align-items: start;
 }
+@media(max-width:960px){ .tool-grid{ grid-template-columns:1fr; } }
 
-@media (max-width: 960px) {
-  .app-wrap { grid-template-columns: 1fr; }
+/* ── CARDS ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
 }
 
-/* ── CATALOG PANEL ── */
-.cat-panel {
-  background: var(--paper);
-  border: 1px solid var(--border2);
-  border-radius: 1px;
-  box-shadow: 2px 3px 12px rgba(80,40,10,0.08);
-}
-
-.cat-panel-head {
+.card-head {
   padding: 14px 20px;
   border-bottom: 1px solid var(--border);
-  background: var(--tan);
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  background: var(--cream);
+  display: flex; align-items: center; gap: 10px;
 }
 
-.step-roman {
-  font-family: var(--serif);
-  font-size: 13px;
-  font-style: italic;
-  color: var(--amber);
-  min-width: 20px;
-  border: 1px solid var(--border2);
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.card-step {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--indigo));
+  color: #fff; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
-  font-style: normal;
 }
 
-.cat-panel-title {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
+.card-title {
+  font-size: 12px; font-weight: 700; letter-spacing:.08em;
+  text-transform: uppercase; color: var(--text-2);
 }
 
-.cat-panel-body { padding: 22px 20px; }
-
-/* ── SECTION DIVIDER ── */
-.sec-rule {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 20px 0;
-}
-.sec-rule::before, .sec-rule::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-.sec-rule span {
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--muted2);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
+.card-body { padding: 20px; }
 
 /* ── FORM ELEMENTS ── */
 label {
-  display: block;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 6px;
+  display: block; font-size: 12px; font-weight: 600;
+  color: var(--text-2); margin-bottom: 6px;
+  letter-spacing: .04em; text-transform: uppercase;
 }
 
 select, input[type="text"] {
   width: 100%;
-  background: var(--cream);
-  border: 1px solid var(--border2);
-  border-radius: 1px;
-  color: var(--brown);
-  font-family: var(--body);
-  font-size: 15px;
-  padding: 8px 12px;
+  background: var(--white);
+  border: 1.5px solid var(--border-2);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  padding: 9px 12px;
   outline: none;
   appearance: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color .15s, box-shadow .15s;
 }
-
 select:focus, input[type="text"]:focus {
-  border-color: var(--amber);
-  box-shadow: 0 0 0 3px rgba(184,112,16,0.1);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.12);
 }
-
 select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a6248' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
-  padding-right: 34px;
-  cursor: pointer;
+  padding-right: 34px; cursor: pointer;
 }
 
-.form-stack { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
+.form-stack { display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; }
 .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .form-group { display: flex; flex-direction: column; gap: 6px; }
 
 .spec-hint {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted2);
-  line-height: 1.6;
-  padding: 8px 12px;
-  background: var(--tan);
-  border-left: 2px solid var(--border2);
-  font-style: italic;
+  font-size: 11px; color: var(--text-3); line-height: 1.55;
+  padding: 8px 12px; background: #f0f9ff;
+  border-left: 3px solid #bae6fd; border-radius: 0 6px 6px 0;
 }
 
 /* ── BUTTONS ── */
 .btn {
-  font-family: var(--serif);
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  cursor: pointer;
-  border-radius: 1px;
-  border: 1px solid var(--border2);
-  background: var(--paper);
-  color: var(--muted);
-  padding: 8px 18px;
-  transition: all 0.18s;
+  font-family: var(--font); font-size: 13px; font-weight: 600;
+  cursor: pointer; border-radius: 8px;
+  border: 1.5px solid var(--border-2);
+  background: var(--white); color: var(--text-2);
+  padding: 8px 16px; transition: all .15s;
 }
-.btn:hover   { background: var(--tan); color: var(--brown); border-color: var(--amber); }
-.btn:active  { transform: scale(0.98); }
-.btn:disabled{ opacity: 0.35; cursor: not-allowed; }
+.btn:hover { background: var(--cream); color: var(--text); border-color: var(--border-2); }
+.btn:active { transform: scale(0.98); }
+.btn:disabled { opacity: .38; cursor: not-allowed; }
 
-.btn-catalog {
-  background: var(--tan);
-  border-color: var(--amber);
-  color: var(--mahogany);
+.btn-blue {
+  background: var(--blue); border-color: var(--blue); color: #fff;
 }
-.btn-catalog:hover { background: var(--tan2); color: var(--brown); }
+.btn-blue:hover { background: var(--blue-dk); border-color: var(--blue-dk); color: #fff; }
+
+.btn-outline-blue {
+  background: var(--blue-lt); border-color: #bfdbfe; color: var(--blue);
+}
+.btn-outline-blue:hover { background: #dbeafe; }
 
 .btn-analyze {
-  width: 100%;
-  padding: 13px 20px;
-  font-size: 15px;
-  background: var(--mahogany);
-  border-color: var(--mahogany);
-  color: var(--cream);
-  letter-spacing: 0.1em;
-  font-style: italic;
+  width: 100%; padding: 13px 20px; font-size: 15px; font-weight: 700;
+  background: linear-gradient(135deg, var(--blue), var(--indigo));
+  border: none; color: #fff; letter-spacing: .02em;
+  border-radius: 10px; cursor: pointer; transition: opacity .15s;
+  box-shadow: 0 4px 16px rgba(37,99,235,.35);
 }
-.btn-analyze:hover:not(:disabled) { background: #612810; border-color: #612810; }
+.btn-analyze:hover:not(:disabled) { opacity: .9; }
+.btn-analyze:disabled { opacity: .4; cursor: not-allowed; }
 
-.btn-sm { padding: 5px 12px; font-size: 12px; }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
 
 /* ── COMPONENT ENTRIES ── */
-.components-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.components-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
 
 .comp-entry {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  background: var(--cream);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--amber);
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; background: var(--cream);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
 }
 
-.comp-tag {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 2px 7px;
-  flex-shrink: 0;
-  font-weight: 700;
-  border: 1px solid;
+.comp-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: .05em;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 6px; flex-shrink: 0;
 }
 
-.tag-amp       { background:#dde8f8; color:#1a3a7a; border-color:#a8c4e8; }
-.tag-preamp    { background:#e2ddf8; color:#2a1a7a; border-color:#b8a8e8; }
-.tag-speakers  { background:#ddf0f8; color:#0a4a6a; border-color:#a0d0e8; }
-.tag-dac       { background:#ddeaf8; color:#0a3a6a; border-color:#a0c4e8; }
-.tag-turntable { background:#dde4f8; color:#1a2a7a; border-color:#a8b8e8; }
-.tag-cartridge { background:#d8e4f8; color:#0a2060; border-color:#a0b4e0; }
-.tag-phonopre  { background:#ddeef8; color:#0a3868; border-color:#a0c8e4; }
-.tag-streamer  { background:#d8eef8; color:#0a4070; border-color:#9cc8e4; }
-.tag-cables    { background:#dde8f0; color:#2a3a4a; border-color:#a8c0d0; }
-.tag-other     { background:#dde8f8; color:#1a3060; border-color:#a8b8e0; }
+.badge-amp       { background:#eff6ff; color:#1d4ed8; }
+.badge-preamp    { background:#f5f3ff; color:#6d28d9; }
+.badge-speakers  { background:#f0fdf4; color:#166534; }
+.badge-dac       { background:#fffbeb; color:#92400e; }
+.badge-turntable { background:#fef2f2; color:#991b1b; }
+.badge-cartridge { background:#fff1f2; color:#9f1239; }
+.badge-phonopre  { background:#f8fafc; color:#475569; }
+.badge-streamer  { background:#ecfeff; color:#155e75; }
+.badge-cables    { background:#f8fafc; color:#334155; }
+.badge-other     { background:#fdf4ff; color:#7e22ce; }
 
-.comp-name {
-  font-family: var(--body);
-  font-size: 14px;
-  font-style: italic;
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: var(--brown);
-}
+.comp-name { font-size: 14px; font-weight: 500; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--text); }
 
 .btn-remove {
-  background: none; border: none;
-  color: var(--muted2); cursor: pointer;
-  font-size: 13px; padding: 2px 6px;
-  flex-shrink: 0; line-height: 1;
-  transition: color 0.15s;
-  font-family: var(--mono);
+  background: none; border: none; color: var(--text-3);
+  cursor: pointer; font-size: 14px; padding: 2px 6px;
+  flex-shrink: 0; border-radius: 6px; transition: all .15s;
 }
-.btn-remove:hover { color: var(--mahogany); }
+.btn-remove:hover { color: #dc2626; background: #fef2f2; }
 
 /* ── CONNECTIONS ── */
-.conn-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-
+.conn-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
 .conn-entry {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 12px;
-  background: var(--cream);
-  border: 1px solid var(--border);
-  font-size: 13px;
-  flex-wrap: wrap;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; background: var(--cream);
+  border: 1.5px solid var(--border); border-radius: 10px;
+  font-size: 13px; flex-wrap: wrap;
+}
+.conn-from, .conn-to { font-weight: 600; color: var(--text); }
+.conn-arr { color: var(--text-3); }
+.conn-type-badge {
+  font-size: 10px; font-weight: 700; letter-spacing:.05em;
+  text-transform: uppercase; padding: 2px 8px; border-radius: 6px;
+  background: #eff6ff; color: var(--blue); margin-left: auto;
 }
 
-.conn-name { font-family: var(--body); font-style: italic; color: var(--brown); }
-.conn-arr  { color: var(--muted2); font-family: var(--mono); font-size: 11px; }
-
-.conn-type-tag {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 2px 8px;
-  background: var(--tan);
-  color: var(--amber);
-  border: 1px solid var(--border2);
-  margin-left: auto;
-  white-space: nowrap;
-  font-weight: 700;
-}
-
-/* ── EMPTY STATE ── */
+/* ── EMPTY ── */
 .empty {
-  text-align: center;
-  padding: 20px 16px;
-  color: var(--muted2);
-  font-family: var(--body);
-  font-size: 14px;
-  font-style: italic;
-  border: 1px dashed var(--border2);
-  margin-bottom: 16px;
-  line-height: 1.7;
-  background: var(--cream);
+  text-align: center; padding: 22px 16px; color: var(--text-3);
+  font-size: 13px; border: 1.5px dashed var(--border-2);
+  border-radius: 10px; margin-bottom: 16px; background: var(--cream);
 }
 
-/* ── RESULTS COLUMN ── */
-.results-col { position: sticky; top: 84px; }
+/* ── DIVIDER ── */
+.divider { border:none; border-top: 1px solid var(--border); margin: 18px 0; }
 
-/* ── 3-PANEL FULL-WIDTH RESULTS ── */
-.results-full {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 max(24px, 5vw) 40px;
-}
+/* ── RESULTS STICKY ── */
+.results-sticky { position: sticky; top: 80px; }
 
-.results-full-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-.results-full-head::before, .results-full-head::after {
-  content: ''; flex: 1; height: 1px; background: var(--border2);
-}
-.results-full-head span {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted2);
-  white-space: nowrap;
-}
-
-.results-3col {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  align-items: start;
-}
-
-@media (max-width: 960px) {
-  .results-3col { grid-template-columns: 1fr; }
-}
-
-/* Component spec blocks */
-.comp-spec-block { margin-bottom: 18px; }
-.comp-spec-block:last-child { margin-bottom: 0; }
-
-.comp-name-hdr {
-  font-family: var(--serif);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--mahogany);
-  background: var(--tan);
-  padding: 7px 12px;
-  border-left: 3px solid var(--amber);
-  margin-bottom: 0;
-  letter-spacing: 0.01em;
-}
-
-.spec-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 4px 0;
-  border: 1px solid var(--border);
-  border-top: none;
-}
-
-.spec-list li {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  padding: 4px 12px;
-  border-bottom: 1px solid var(--border);
-  line-height: 1.5;
-}
-.spec-list li:last-child { border-bottom: none; }
-
-/* Analysis text panels */
-.panel-analysis {
-  font-family: var(--body);
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--muted);
-}
-
-.panel-analysis p { margin-bottom: 10px; }
-.panel-analysis p:last-child { margin-bottom: 0; }
-.panel-analysis strong { color: var(--brown); font-weight: 500; }
-
-.panel-analysis ul { list-style: none; padding: 0; margin: 0 0 10px; }
-.panel-analysis ul li {
-  padding: 5px 0 5px 20px;
-  position: relative;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-}
-.panel-analysis ul li:last-child { border-bottom: none; }
-.panel-analysis ul li::before {
-  content: '◆';
-  position: absolute;
-  left: 0;
-  color: var(--amber);
-  font-size: 8px;
-  top: 10px;
-}
-
-.panel-sub-hdr {
-  font-family: var(--serif);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--mahogany);
-  margin: 18px 0 8px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--border2);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.panel-sub-hdr:first-child { margin-top: 0; }
-.panel-sub-hdr::after { content:''; flex:1; height:1px; background:var(--border); }
-
-.results-placeholder {
-  padding: 60px 24px;
-  text-align: center;
-}
-
-.placeholder-ornament {
-  font-family: var(--serif);
-  font-size: 72px;
-  color: var(--tan2);
-  display: block;
-  margin-bottom: 16px;
-  line-height: 1;
-  font-style: italic;
-}
-
-.placeholder-text {
-  font-family: var(--body);
-  font-size: 15px;
-  font-style: italic;
-  color: var(--muted2);
-  line-height: 1.8;
-  max-width: 280px;
-  margin: 0 auto;
-}
+.placeholder-box { padding: 52px 24px; text-align: center; }
+.placeholder-icon { font-size: 52px; color: #e2e8f0; margin-bottom: 14px; }
+.placeholder-box p { font-size: 14px; color: var(--text-3); line-height: 1.7; max-width: 240px; margin: 0 auto; }
 
 /* ── LOADING ── */
-.loading-wrap { padding: 48px 24px; text-align: center; }
-
-.vu-meter {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 4px;
-  height: 44px;
-  margin-bottom: 18px;
-}
-
-.vu-bar {
-  width: 7px;
-  background: var(--amber);
-  border-radius: 0;
-  opacity: 0.7;
-  animation: vubeat 0.9s ease-in-out infinite;
-}
+.loading-box { padding: 48px 24px; text-align: center; }
+.vu-meter { display:flex; align-items:flex-end; justify-content:center; gap:5px; height:44px; margin-bottom:16px; }
+.vu-bar { width:7px; background:linear-gradient(to top,var(--blue),var(--indigo)); border-radius:3px; animation:vubeat .9s ease-in-out infinite; }
 .vu-bar:nth-child(1){height:16px;animation-delay:0s}
 .vu-bar:nth-child(2){height:28px;animation-delay:.1s}
 .vu-bar:nth-child(3){height:38px;animation-delay:.2s}
 .vu-bar:nth-child(4){height:26px;animation-delay:.15s}
 .vu-bar:nth-child(5){height:34px;animation-delay:.05s}
 .vu-bar:nth-child(6){height:20px;animation-delay:.25s}
+@keyframes vubeat{0%,100%{transform:scaleY(.3);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+.loading-caption { font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--text-3); }
 
-@keyframes vubeat {
-  0%,100%{transform:scaleY(.3);opacity:.3}
-  50%{transform:scaleY(1);opacity:.8}
-}
-
-.loading-caption {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted2);
-}
-
-/* ── SPEC CARDS ── */
-.spec-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  margin-bottom: 20px;
-  border: 1px solid var(--border2);
-  background: var(--border2);
-}
-
-.spec-card {
-  background: var(--paper);
-  padding: 14px 12px;
-  text-align: center;
-}
-
-.spec-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted2);
-  margin-bottom: 6px;
-  display: block;
-}
-
-.spec-val {
-  font-family: var(--serif);
-  font-size: 28px;
-  line-height: 1;
-  color: var(--brown);
-}
-.spec-val small { font-family: var(--mono); font-size: 13px; color: var(--muted2); }
-.spec-good { color: #1a5a30; }
-.spec-ok   { color: #4a5a8a; }
-.spec-bad  { color: #7a1a2a; }
-
-/* ── ANALYSIS TEXT ── */
-.analysis-wrap {
-  font-family: var(--body);
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--muted);
-}
-
-.analysis-wrap h3 {
-  font-family: var(--serif);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--mahogany);
-  margin: 24px 0 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.analysis-wrap h3::before, .analysis-wrap h3::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-.analysis-wrap h3:first-child { margin-top: 0; }
-.analysis-wrap strong { color: var(--brown); font-weight: 500; }
-.analysis-wrap p { margin-bottom: 10px; }
-.analysis-wrap p:last-child { margin-bottom: 0; }
-.analysis-wrap ul { list-style: none; padding: 0; }
-
-.analysis-wrap ul li {
-  padding: 5px 0 5px 20px;
-  position: relative;
-  border-bottom: 1px solid var(--border);
-  color: var(--muted);
-}
-.analysis-wrap ul li:last-child { border-bottom: none; }
-.analysis-wrap ul li::before {
-  content: '◆';
-  position: absolute;
-  left: 0;
-  color: var(--amber);
-  font-size: 8px;
-  top: 10px;
-}
+/* ── SCORE CARDS ── */
+.score-row { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:16px; }
+.score-card { background:var(--cream); border:1.5px solid var(--border); border-radius:10px; padding:14px 12px; text-align:center; }
+.score-label { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); margin-bottom:6px; display:block; }
+.score-val { font-size:26px; font-weight:800; color:var(--text); line-height:1; }
+.score-val small { font-size:13px; font-weight:500; color:var(--text-3); }
+.score-good { color:#16a34a; }
+.score-ok   { color:#d97706; }
+.score-bad  { color:#dc2626; }
 
 /* ── DIAGRAM ── */
-.diagram-wrap { overflow-x: auto; padding: 4px 0 0; }
-.diagram-wrap svg { display: block; }
-
-.dv-box         { fill: var(--paper); stroke: var(--border2); stroke-width: 1; }
-.dv-box-digital { fill: #ddeaf8; stroke: #7aaad8; }
-.dv-box-phono   { fill: #d8e4f8; stroke: #6a90c8; }
-.dv-box-shared  { fill: #d8eef8; stroke: #6aaad8; }
-.dv-title { fill: #0e1e30; font-family:'EB Garamond',serif; font-size:13px; font-style:italic; }
-.dv-sub   { fill: #4a6a8a; font-family:'Courier Prime',monospace; font-size:10px; }
-.dv-col   { fill: #1a4a7a; font-family:'Courier Prime',monospace; font-size:9px; letter-spacing:.12em; }
-.dv-label { fill: #5a7a9a; font-family:'Courier Prime',monospace; font-size:10px; }
-.dv-node  { cursor: pointer; }
+.diagram-wrap { overflow-x:auto; }
+.diagram-wrap svg { display:block; }
+.dv-box         { fill:#f8fafc; stroke:#e2e8f0; stroke-width:1.5; }
+.dv-box-digital { fill:#eff6ff; stroke:#93c5fd; }
+.dv-box-phono   { fill:#fefce8; stroke:#fcd34d; }
+.dv-box-shared  { fill:#f0fdf4; stroke:#86efac; }
+.dv-title { fill:#0f172a; font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:700; }
+.dv-sub   { fill:#94a3b8; font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; }
+.dv-col   { fill:#2563eb; font-family:'Plus Jakarta Sans',sans-serif; font-size:9px; font-weight:700; letter-spacing:.1em; }
+.dv-label { fill:#64748b; font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; }
+.dv-node  { cursor:pointer; }
 .dv-node:hover .dv-box,
 .dv-node:hover .dv-box-digital,
 .dv-node:hover .dv-box-phono,
-.dv-node:hover .dv-box-shared { stroke: var(--amber); stroke-width: 1.5; }
+.dv-node:hover .dv-box-shared { stroke:var(--blue); stroke-width:2; }
 
-/* ── FOOTER ── */
-.site-footer {
-  max-width: 1100px;
-  margin: 60px auto 0;
-  padding: 24px max(24px, 5vw);
-  border-top: 1px solid var(--border2);
-  text-align: center;
-}
+/* ── 3-PANEL RESULTS ── */
+.results-full { padding: 0 0 60px; }
+.results-full-hdr { text-align:center; padding:32px 0 28px; }
+.results-full-hdr h2 { font-size:26px; font-weight:800; color:var(--text); letter-spacing:-.01em; margin-bottom:6px; }
+.results-full-hdr p  { font-size:14px; color:var(--text-2); }
+.results-3col { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+@media(max-width:960px){ .results-3col{ grid-template-columns:1fr; } }
 
-.footer-rule {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
+/* Component spec styling */
+.comp-spec-block { margin-bottom:18px; }
+.comp-spec-block:last-child { margin-bottom:0; }
+.comp-name-hdr {
+  font-size:13px; font-weight:700; color:var(--blue);
+  background:var(--blue-lt); padding:7px 12px;
+  border-radius:8px 8px 0 0; letter-spacing:.01em;
 }
-.footer-rule::before, .footer-rule::after { content:''; flex:1; height:1px; background:var(--border); }
-.footer-rule span { font-family:var(--mono); font-size:9px; color:var(--muted2); letter-spacing:.15em; text-transform:uppercase; }
+.spec-list { list-style:none; border:1.5px solid var(--border); border-top:none; border-radius:0 0 8px 8px; margin-bottom:4px; }
+.spec-list li { font-size:12px; color:var(--text-2); padding:5px 12px; border-bottom:1px solid var(--border); line-height:1.5; font-family:ui-monospace,monospace; }
+.spec-list li:last-child { border-bottom:none; }
 
-.footer-text {
-  font-family: var(--body);
-  font-size: 13px;
-  font-style: italic;
-  color: var(--muted2);
-}
+.panel-analysis { font-size:14px; line-height:1.8; color:var(--text-2); }
+.panel-analysis p { margin-bottom:10px; }
+.panel-analysis p:last-child { margin-bottom:0; }
+.panel-analysis strong { color:var(--text); font-weight:600; }
+.panel-analysis ul { list-style:none; padding:0; margin:0 0 10px; }
+.panel-analysis ul li { padding:5px 0 5px 18px; position:relative; border-bottom:1px solid var(--border); font-size:13px; }
+.panel-analysis ul li:last-child { border-bottom:none; }
+.panel-analysis ul li::before { content:'→'; position:absolute; left:0; color:var(--blue); font-size:11px; top:8px; }
 
-/* ── NAV ── */
-.masthead-nav { display:flex; align-items:center; gap:20px; }
-.masthead-nav a {
-  font-family:var(--mono); font-size:10px; letter-spacing:0.12em;
-  text-transform:uppercase; color:var(--muted); text-decoration:none;
-  transition:color 0.15s; padding:2px 0; border-bottom:1px solid transparent;
+.panel-sub-hdr {
+  font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--blue); margin:18px 0 8px; padding-bottom:6px;
+  border-bottom:1.5px solid var(--border); display:flex; align-items:center; gap:8px;
 }
-.masthead-nav a:hover { color:var(--amber); }
-.masthead-nav a.active { color:var(--mahogany); border-bottom-color:var(--amber); }
+.panel-sub-hdr:first-child { margin-top:0; }
+.panel-sub-hdr::after { content:''; flex:1; height:1px; background:var(--border); }
 
 /* ── AD UNITS ── */
-.ad-unit {
-  max-width:1200px; margin:0 auto;
-  padding:20px max(24px, 5vw);
-  text-align:center;
-}
-.ad-unit-inner {
-  border:1px solid var(--border);
-  border-radius:2px;
-  padding:4px;
-  background:var(--paper);
-}
-.ad-label {
-  font-family:var(--mono); font-size:9px; letter-spacing:0.12em;
-  text-transform:uppercase; color:var(--muted2);
-  display:block; margin-bottom:4px;
-}
+.ad-unit { padding: 16px 0; }
+.ad-unit-inner { border:1px dashed var(--border-2); border-radius:8px; padding:4px; background:var(--cream); text-align:center; }
+.ad-label { font-size:9px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); display:block; margin-bottom:4px; }
 
 /* ── COOKIE BANNER ── */
 .cookie-banner {
   position:fixed; bottom:0; left:0; right:0;
-  background:var(--paper);
-  border-top:2px solid var(--amber);
-  padding:14px max(24px, 5vw);
-  display:flex; align-items:center; justify-content:space-between;
-  gap:16px; z-index:2000;
-  box-shadow:0 -3px 16px rgba(20,60,110,0.12);
-  flex-wrap:wrap;
+  background:var(--dark-2); border-top:1px solid rgba(255,255,255,.1);
+  padding:16px 24px; display:flex; align-items:center; justify-content:space-between;
+  gap:16px; z-index:9999; flex-wrap:wrap;
+  box-shadow:0 -8px 24px rgba(0,0,0,.3);
 }
-.cookie-text {
-  font-family:var(--body); font-size:13px; color:var(--muted); line-height:1.6; flex:1;
-}
-.cookie-text a { color:var(--amber); }
+.cookie-text { font-size:13px; color:rgba(255,255,255,.75); line-height:1.6; flex:1; }
+.cookie-text a { color:#60a5fa; }
 .cookie-btns { display:flex; gap:10px; flex-shrink:0; }
 .cookie-accept {
-  font-family:var(--mono); font-size:11px; letter-spacing:0.08em;
-  text-transform:uppercase; cursor:pointer; border-radius:2px;
-  padding:8px 16px; background:var(--amber); border:none; color:#fff;
-  transition:background 0.15s;
+  font-family:var(--font); font-size:13px; font-weight:600; cursor:pointer;
+  padding:9px 18px; border-radius:8px;
+  background:var(--blue); border:none; color:#fff; transition:background .15s;
 }
-.cookie-accept:hover { background:var(--gold); }
+.cookie-accept:hover { background:var(--blue-dk); }
 .cookie-decline {
-  font-family:var(--mono); font-size:11px; letter-spacing:0.08em;
-  text-transform:uppercase; cursor:pointer; border-radius:2px;
-  padding:8px 16px; background:transparent; border:1px solid var(--border2);
-  color:var(--muted); transition:all 0.15s;
+  font-family:var(--font); font-size:13px; font-weight:500; cursor:pointer;
+  padding:9px 18px; border-radius:8px;
+  background:transparent; border:1px solid rgba(255,255,255,.2); color:rgba(255,255,255,.7);
+  transition:all .15s;
 }
-.cookie-decline:hover { background:var(--tan); color:var(--brown); }
+.cookie-decline:hover { background:rgba(255,255,255,.08); }
 
-/* ── FOOTER LINKS ── */
-.footer-nav { display:flex; justify-content:center; gap:20px; margin-top:12px; flex-wrap:wrap; }
-.footer-nav a {
-  font-family:var(--mono); font-size:10px; letter-spacing:0.1em;
-  text-transform:uppercase; color:var(--muted2); text-decoration:none;
-}
-.footer-nav a:hover { color:var(--amber); }
+/* ── FOOTER ── */
+.footer { background:var(--dark); padding:56px 0 32px; }
+.footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
+@media(max-width:768px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+@media(max-width:480px){ .footer-grid{ grid-template-columns:1fr; } }
 
+.footer-brand { }
+.footer-logo { font-size:17px; font-weight:700; color:#fff; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.footer-logo-dot { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--indigo)); display:flex; align-items:center; justify-content:center; font-size:12px; color:#fff; font-weight:700; }
+.footer-brand p { font-size:13px; color:rgba(255,255,255,.5); line-height:1.7; max-width:240px; }
+
+.footer-col h4 { font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:14px; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.footer-col ul li a { font-size:14px; color:rgba(255,255,255,.65); text-decoration:none; transition:color .15s; }
+.footer-col ul li a:hover { color:#fff; }
+
+.footer-bottom { border-top:1px solid rgba(255,255,255,.08); padding-top:24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.footer-copy { font-size:13px; color:rgba(255,255,255,.35); }
+.footer-links { display:flex; gap:20px; }
+.footer-links a { font-size:13px; color:rgba(255,255,255,.35); text-decoration:none; transition:color .15s; }
+.footer-links a:hover { color:rgba(255,255,255,.7); }
+
+/* ── UTILS ── */
+@keyframes fadein { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+.fadein { animation: fadein .3s ease forwards; }
 ::-webkit-scrollbar { width:5px; height:5px; }
 ::-webkit-scrollbar-track { background:var(--cream); }
-::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
+::-webkit-scrollbar-thumb { background:var(--border-2); border-radius:3px; }
 </style>
 </head>
 <body>
 
-<!-- MASTHEAD -->
-<header class="masthead">
-  <div class="masthead-rule"></div>
-  <div class="masthead-inner">
-    <a href="/" class="masthead-logo">
-      <div class="logo-ornament">
-        <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="7" cy="7" r="4" stroke="#2a6aa8" stroke-width="1.2"/>
-          <circle cx="7" cy="7" r="1.5" fill="#2a6aa8"/>
-        </svg>
-      </div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-ring">A</div>
       AudioChainHiFi.com
     </a>
-    <nav class="masthead-nav">
+    <div class="nav-links">
       <a href="/" class="active">Analyzer</a>
       <a href="/about.html">About</a>
       <a href="/privacy.html">Privacy</a>
       <a href="/contact.html">Contact</a>
-    </nav>
+      <a href="#analyzer" class="nav-cta">Start Analysis →</a>
+    </div>
   </div>
-</header>
+</nav>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-vol">Volume I · Signal Chain Analysis</div>
-  <h1>The <em>Complete Guide</em> to<br>System Compatibility</h1>
-  <p class="hero-sub">For the Discerning Audio Enthusiast</p>
-  <div class="hero-rule"><span>Est. in the tradition of fine audio</span></div>
-  <p class="hero-desc">Enter your components below. Our analysis engine consults published manufacturer specifications to assess impedance matching, gain staging, sensitivity, and phono chain resonance across your entire signal chain.</p>
+<section class="hero">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1600&q=80" alt="High-fidelity turntable setup">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">AI-Powered Analysis · Free to Use</div>
+    <h1>Is Your <span>Hi-Fi System</span><br>Truly Compatible?</h1>
+    <p class="hero-desc">Enter your components and get a detailed compatibility report — impedance matching, gain staging, phono chain analysis — sourced from real manufacturer specifications.</p>
+    <div class="hero-actions">
+      <a href="#analyzer" class="btn-primary">Analyze My System →</a>
+      <a href="/about.html" class="btn-secondary">How It Works</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>Free</strong>No signup required</div>
+      <div class="hero-stat"><strong>AI</strong>Claude by Anthropic</div>
+      <div class="hero-stat"><strong>Real Specs</strong>Manufacturer data</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-icon">⚡</span>Instant analysis</div>
+    <div class="trust-item"><span class="trust-icon">📊</span>Published spec data</div>
+    <div class="trust-item"><span class="trust-icon">🎵</span>Phono chain analysis</div>
+    <div class="trust-item"><span class="trust-icon">🔒</span>No data stored</div>
+    <div class="trust-item"><span class="trust-icon">✅</span>100% free</div>
+  </div>
 </div>
 
-<!-- AD UNIT 1 — After Hero -->
-<div class="ad-unit">
+<!-- AD UNIT 1 -->
+<div class="ad-unit container">
   <div class="ad-unit-inner">
     <span class="ad-label">Advertisement</span>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXX"
-         data-ad-slot="AUTO"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 </div>
 
-<div class="app-wrap">
-
-  <!-- LEFT: INPUT -->
-  <div style="display:flex;flex-direction:column;gap:22px;">
-
-    <!-- Step I -->
-    <div class="cat-panel">
-      <div class="cat-panel-head">
-        <div class="step-roman">I</div>
-        <span class="cat-panel-title">Register Your Components</span>
-      </div>
-      <div class="cat-panel-body">
-        <div class="form-stack">
-          <div class="form-group">
-            <label>Component Classification</label>
-            <select id="comp-type" onchange="updateHint()">
-              <option value="amp">Amplifier / Integrated Amp</option>
-              <option value="preamp">Preamplifier</option>
-              <option value="speakers">Speakers</option>
-              <option value="dac">DAC</option>
-              <option value="turntable">Turntable</option>
-              <option value="cartridge">Turntable Cartridge</option>
-              <option value="phonopre">Phono Preamplifier</option>
-              <option value="streamer">Streamer / Source</option>
-              <option value="cables">Cables / Interconnects</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Manufacturer & Model</label>
-            <input type="text" id="comp-name" placeholder="e.g. Parasound Halo 275 v1">
-          </div>
-          <div id="spec-hint" class="spec-hint" style="display:none;"></div>
-        </div>
-        <button class="btn btn-catalog btn-sm" onclick="addComponent()">+ Add to Manifest</button>
-        <div class="sec-rule"><span>Component manifest</span></div>
-        <div id="comp-list"></div>
-      </div>
+<!-- FEATURES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">What We Analyze</div>
+      <h2 class="section-title">Complete Signal Chain Coverage</h2>
+      <p class="section-desc">Every connection in your hi-fi system analyzed against real published specifications.</p>
     </div>
-
-    <!-- Step II -->
-    <div class="cat-panel" id="conn-panel" style="display:none;">
-      <div class="cat-panel-head">
-        <div class="step-roman">II</div>
-        <span class="cat-panel-title">Define Signal Routing</span>
-      </div>
-      <div class="cat-panel-body">
-        <p style="font-family:var(--body);font-size:14px;font-style:italic;color:var(--muted2);margin-bottom:16px;line-height:1.7;">Specify the interconnection method between each pair of components for a more precise analysis.</p>
-        <div class="form-stack">
-          <div class="form-row-2">
-            <div class="form-group">
-              <label>Source</label>
-              <select id="conn-from"></select>
-            </div>
-            <div class="form-group">
-              <label>Destination</label>
-              <select id="conn-to"></select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Interconnection Method</label>
-            <select id="conn-type">
-              <option value="XLR balanced">XLR balanced</option>
-              <option value="RCA single-ended">RCA single-ended</option>
-              <option value="USB">USB</option>
-              <option value="Optical / TOSLINK">Optical / TOSLINK</option>
-              <option value="AES/EBU">AES/EBU</option>
-              <option value="I2S">I2S</option>
-              <option value="Speaker wire">Speaker wire</option>
-              <option value="Phono / RCA">Phono / RCA</option>
-              <option value="Coaxial S/PDIF">Coaxial S/PDIF</option>
-              <option value="HDMI / I2S">HDMI / I2S</option>
-              <option value="Bluetooth">Bluetooth</option>
-              <option value="Wi-Fi / Network">Wi-Fi / Network</option>
-            </select>
-          </div>
-        </div>
-        <button class="btn btn-catalog btn-sm" onclick="addConnection()">+ Add Connection</button>
-        <div id="conn-err" style="font-family:var(--mono);font-size:11px;color:var(--mahogany);margin-top:8px;min-height:16px;"></div>
-        <div class="sec-rule"><span>Routing manifest</span></div>
-        <div id="conn-list"></div>
-      </div>
-    </div>
-
-    <!-- Step III -->
-    <div class="cat-panel" id="analyze-panel" style="display:none;">
-      <div class="cat-panel-head">
-        <div class="step-roman">III</div>
-        <span class="cat-panel-title">Commission the Analysis</span>
-      </div>
-      <div class="cat-panel-body">
-        <p style="font-family:var(--body);font-size:14px;font-style:italic;color:var(--muted2);margin-bottom:18px;line-height:1.7;">Our analysis engine will consult published specifications for each registered component and produce a comprehensive compatibility assessment.</p>
-        <button class="btn btn-analyze" id="analyze-btn" onclick="analyze()"><em>Commence Analysis</em> →</button>
-        <div id="analyze-err" style="font-family:var(--mono);font-size:11px;color:var(--mahogany);margin-top:10px;min-height:16px;"></div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- RIGHT: SCORE SUMMARY + DIAGRAM -->
-  <div class="results-col">
-    <div class="cat-panel">
-      <div class="cat-panel-head">
-        <span class="cat-panel-title" style="margin-left:0;">Compatibility Score</span>
-      </div>
-      <div class="cat-panel-body">
-        <div id="results-content">
-          <div class="results-placeholder">
-            <span class="placeholder-ornament">∿</span>
-            <p class="placeholder-text">Register your components and commission an analysis to receive a full compatibility assessment.</p>
-          </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <img class="feature-card-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="Hi-fi speakers">
+        <div class="feature-card-body">
+          <div class="feature-card-icon">⚡</div>
+          <h3>Impedance Matching</h3>
+          <p>Verifies amplifier output impedance and speaker nominal impedance are correctly matched to prevent distortion and protect your equipment.</p>
         </div>
       </div>
-    </div>
-
-    <div class="cat-panel" id="diagram-panel" style="margin-top:22px;display:none;">
-      <div class="cat-panel-head">
-        <span class="cat-panel-title" style="margin-left:0;">Signal Chain Schematic</span>
+      <div class="feature-card">
+        <img class="feature-card-img" src="https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?auto=format&fit=crop&w=600&q=80" alt="Vinyl record playing">
+        <div class="feature-card-body">
+          <div class="feature-card-icon">🎚️</div>
+          <h3>Phono Chain Analysis</h3>
+          <p>Calculates cartridge-to-tonearm resonance frequency, verifies MC/MM gain matching, and recommends optimal loading impedance settings.</p>
+        </div>
       </div>
-      <div class="cat-panel-body" style="padding:16px;">
-        <div class="diagram-wrap" id="diagram-wrap"></div>
+      <div class="feature-card">
+        <img class="feature-card-img" src="https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&w=600&q=80" alt="Audio equipment and headphones">
+        <div class="feature-card-body">
+          <div class="feature-card-icon">📈</div>
+          <h3>Gain Staging</h3>
+          <p>Analyzes signal levels from source to preamp to power amp, ensuring optimal signal-to-noise ratio and headroom throughout the chain.</p>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
+<!-- SHOWCASE -->
+<section class="section-alt">
+  <div class="container">
+    <div class="showcase">
+      <div class="showcase-img">
+        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80" alt="Audiophile hi-fi system">
+      </div>
+      <div>
+        <div class="showcase-label">Why It Matters</div>
+        <h2>Stop guessing.<br>Start knowing.</h2>
+        <p>Building a hi-fi system requires matching dozens of technical specifications. A single mismatch — the wrong loading impedance for your cartridge, a gain structure that clips — can rob you of the sound quality you paid for.</p>
+        <ul>
+          <li>Impedance mismatches cause distortion and speaker damage</li>
+          <li>Incorrect phono loading deadens cartridge high-frequency response</li>
+          <li>Poor gain staging increases noise floor and reduces dynamics</li>
+          <li>Wrong connection types (RCA vs XLR) degrade signal integrity</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="text-align:center;">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">Three Steps to Compatibility</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Add Your Components</h3>
+        <p>Enter each component in your system — amplifier, speakers, DAC, turntable, cartridge, phono preamp, streamer.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Define Connections</h3>
+        <p>Specify how each component connects to the next — XLR balanced, RCA, AES/EBU, USB, speaker wire.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Get Your Analysis</h3>
+        <p>Our AI looks up real specs and delivers a complete compatibility report with scores, issues, and recommendations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYZER TOOL -->
+<section class="tool-section" id="analyzer">
+  <div class="container">
+    <div class="tool-header">
+      <div class="section-label">The Analyzer</div>
+      <h2 class="section-title">Analyze Your System</h2>
+      <p class="section-desc" style="margin:0 auto;">Enter your components below. No signup required — results in under a minute.</p>
+    </div>
+
+    <div class="tool-grid">
+
+      <!-- LEFT COLUMN -->
+      <div style="display:flex;flex-direction:column;gap:18px;">
+
+        <!-- Step 1 -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-step">1</div>
+            <span class="card-title">Add Components</span>
+          </div>
+          <div class="card-body">
+            <div class="form-stack">
+              <div class="form-group">
+                <label>Component Type</label>
+                <select id="comp-type" onchange="updateHint()">
+                  <option value="amp">Amplifier / Integrated Amp</option>
+                  <option value="preamp">Preamplifier</option>
+                  <option value="speakers">Speakers</option>
+                  <option value="dac">DAC</option>
+                  <option value="turntable">Turntable</option>
+                  <option value="cartridge">Turntable Cartridge</option>
+                  <option value="phonopre">Phono Preamplifier</option>
+                  <option value="streamer">Streamer / Source</option>
+                  <option value="cables">Cables / Interconnects</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Manufacturer &amp; Model</label>
+                <input type="text" id="comp-name" placeholder="e.g. Parasound Halo 275 v1">
+              </div>
+              <div id="spec-hint" class="spec-hint" style="display:none;"></div>
+            </div>
+            <button class="btn btn-outline-blue btn-sm" onclick="addComponent()">+ Add Component</button>
+            <hr class="divider">
+            <div id="comp-list"></div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="card" id="conn-panel" style="display:none;">
+          <div class="card-head">
+            <div class="card-step">2</div>
+            <span class="card-title">Define Connections</span>
+          </div>
+          <div class="card-body">
+            <p style="font-size:13px;color:var(--text-3);margin-bottom:14px;line-height:1.65;">Optional but recommended for a more precise analysis.</p>
+            <div class="form-stack">
+              <div class="form-row-2">
+                <div class="form-group"><label>From</label><select id="conn-from"></select></div>
+                <div class="form-group"><label>To</label><select id="conn-to"></select></div>
+              </div>
+              <div class="form-group">
+                <label>Connection Type</label>
+                <select id="conn-type">
+                  <option value="XLR balanced">XLR balanced</option>
+                  <option value="RCA single-ended">RCA single-ended</option>
+                  <option value="USB">USB</option>
+                  <option value="Optical / TOSLINK">Optical / TOSLINK</option>
+                  <option value="AES/EBU">AES/EBU</option>
+                  <option value="I2S">I2S</option>
+                  <option value="Speaker wire">Speaker wire</option>
+                  <option value="Phono / RCA">Phono / RCA</option>
+                  <option value="Coaxial S/PDIF">Coaxial S/PDIF</option>
+                  <option value="HDMI / I2S">HDMI / I2S</option>
+                  <option value="Bluetooth">Bluetooth</option>
+                  <option value="Wi-Fi / Network">Wi-Fi / Network</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-outline-blue btn-sm" onclick="addConnection()">+ Add Connection</button>
+            <div id="conn-err" style="font-size:11px;color:#dc2626;margin-top:8px;min-height:16px;"></div>
+            <hr class="divider">
+            <div id="conn-list"></div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="card" id="analyze-panel" style="display:none;">
+          <div class="card-head">
+            <div class="card-step">3</div>
+            <span class="card-title">Run Analysis</span>
+          </div>
+          <div class="card-body">
+            <p style="font-size:13px;color:var(--text-3);margin-bottom:16px;line-height:1.65;">Our AI will look up published specs and analyze your full signal chain.</p>
+            <button class="btn-analyze" id="analyze-btn" onclick="analyze()">Run Compatibility Analysis →</button>
+            <div id="analyze-err" style="font-size:12px;color:#dc2626;margin-top:10px;min-height:16px;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="results-sticky">
+        <div class="card">
+          <div class="card-head"><span class="card-title" style="margin-left:0;">Compatibility Score</span></div>
+          <div class="card-body">
+            <div id="results-content">
+              <div class="placeholder-box">
+                <div class="placeholder-icon">🎛️</div>
+                <p>Add your components and run an analysis to see your compatibility score and full signal chain report.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="diagram-panel" style="margin-top:18px;display:none;">
+          <div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Diagram</span></div>
+          <div class="card-body" style="padding:14px;">
+            <div class="diagram-wrap" id="diagram-wrap"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 3-PANEL FULL RESULTS -->
+<div id="results-full" style="display:none;background:var(--cream);padding:0 0 60px;">
+  <div class="container">
+    <div class="results-full-hdr">
+      <h2>Full Compatibility Analysis</h2>
+      <p>Detailed breakdown across your entire signal chain</p>
+    </div>
+    <div class="results-3col">
+      <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Component Specifications</span></div><div class="card-body" id="panel-specs-body"></div></div>
+      <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Analysis</span></div><div class="card-body" id="panel-chain-body"></div></div>
+      <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Summary &amp; Recommendations</span></div><div class="card-body" id="panel-summary-body"></div></div>
+    </div>
+  </div>
 </div>
 
-<!-- FULL-WIDTH 3-PANEL RESULTS -->
-<div class="results-full" id="results-full" style="display:none;">
-  <div class="results-full-head"><span>◆ Full Analysis</span></div>
-  <div class="results-3col">
-
-    <div class="cat-panel">
-      <div class="cat-panel-head">
-        <span class="cat-panel-title" style="margin-left:0;">Component Specifications</span>
-      </div>
-      <div class="cat-panel-body" id="panel-specs-body"></div>
-    </div>
-
-    <div class="cat-panel">
-      <div class="cat-panel-head">
-        <span class="cat-panel-title" style="margin-left:0;">Signal Chain Analysis</span>
-      </div>
-      <div class="cat-panel-body" id="panel-chain-body"></div>
-    </div>
-
-    <div class="cat-panel">
-      <div class="cat-panel-head">
-        <span class="cat-panel-title" style="margin-left:0;">Summary &amp; Recommendations</span>
-      </div>
-      <div class="cat-panel-body" id="panel-summary-body"></div>
-    </div>
-
-  </div>
-</div>
-
-<!-- AD UNIT 2 — Before Footer -->
-<div class="ad-unit">
+<!-- AD UNIT 2 -->
+<div class="ad-unit container">
   <div class="ad-unit-inner">
     <span class="ad-label">Advertisement</span>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-XXXXXXXXXX"
-         data-ad-slot="AUTO"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 </div>
 
 <!-- FOOTER -->
-<footer class="site-footer">
-  <div class="footer-rule"><span>◆</span></div>
-  <p class="footer-text">AudioChainHiFi.com · Hi-Fi Compatibility Reference · Powered by Claude AI · Anthropic</p>
-  <nav class="footer-nav">
-    <a href="/">Analyzer</a>
-    <a href="/about.html">About</a>
-    <a href="/privacy.html">Privacy Policy</a>
-    <a href="/contact.html">Contact</a>
-  </nav>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-dot">A</div>AudioChainHiFi.com</div>
+        <p>Free AI-powered hi-fi compatibility analysis. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tool</h4>
+        <ul>
+          <li><a href="#analyzer">Analyzer</a></li>
+          <li><a href="#analyzer">How It Works</a></li>
+          <li><a href="/about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></li>
+          <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy</a></li>
+          <li><a href="https://adssettings.google.com" target="_blank" rel="noopener">Ads Settings</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 AudioChainHiFi.com · All rights reserved</p>
+      <div class="footer-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
-<!-- COOKIE CONSENT BANNER -->
-<div class="cookie-banner" id="cookie-banner" style="display:none;" role="region" aria-label="Cookie consent">
-  <p class="cookie-text">
-    We use cookies to serve relevant advertisements via Google AdSense and to analyze site traffic.
-    By clicking <strong>Accept</strong> you consent to our use of cookies as described in our
-    <a href="/privacy.html">Privacy Policy</a>.
-  </p>
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookie-banner" style="display:none;">
+  <p class="cookie-text">We use cookies for advertising (Google AdSense) and analytics. See our <a href="/privacy.html">Privacy Policy</a> to learn more.</p>
   <div class="cookie-btns">
     <button class="cookie-decline" onclick="declineCookies()">Decline</button>
     <button class="cookie-accept" onclick="acceptCookies()">Accept Cookies</button>
@@ -1102,368 +947,161 @@ select {
 </div>
 
 <script>
-const components = [];
-const connections = [];
-
-const typeLabels = {
-  amp:'Amplifier', preamp:'Preamplifier', speakers:'Speakers', dac:'DAC',
-  turntable:'Turntable', cartridge:'Cartridge', phonopre:'Phono Preamp',
-  streamer:'Streamer', cables:'Cables', other:'Other'
-};
-
-const specHints = {
-  amp:       'Key specs: power output (W/ch), impedance range (Ω), input sensitivity (mV)',
-  preamp:    'Key specs: gain (dB), output impedance (Ω), input sensitivity (mV)',
-  speakers:  'Key specs: impedance (Ω), sensitivity (dB/W/m), power handling (W)',
-  dac:       'Key specs: output voltage (Vrms), output impedance (Ω), supported inputs',
-  turntable: 'Key specs: drive type, tonearm effective mass (g), speeds (RPM)',
-  cartridge: 'Key specs: type (MM/MC), output voltage (mV), compliance (µm/mN), tracking force (g)',
-  phonopre:  'Key specs: gain (dB), input impedance (Ω/kΩ), MM/MC support, output voltage',
-  streamer:  'Key specs: digital outputs (AES/USB/COAX), supported formats and sample rates',
-  cables:    'Key specs: type (RCA/XLR/speaker), length, shielding',
-  other:     'Describe the component and its relevant electrical or mechanical specs'
-};
+const components=[];
+const connections=[];
+const typeLabels={amp:'Amplifier',preamp:'Preamplifier',speakers:'Speakers',dac:'DAC',turntable:'Turntable',cartridge:'Cartridge',phonopre:'Phono Preamp',streamer:'Streamer',cables:'Cables',other:'Other'};
+const specHints={amp:'Key specs: power output (W/ch), impedance range (Ω), input sensitivity (mV)',preamp:'Key specs: gain (dB), output impedance (Ω), input sensitivity (mV)',speakers:'Key specs: impedance (Ω), sensitivity (dB/W/m), power handling (W)',dac:'Key specs: output voltage (Vrms), output impedance (Ω), supported inputs',turntable:'Key specs: drive type, tonearm effective mass (g), speeds (RPM)',cartridge:'Key specs: type (MM/MC), output voltage (mV), compliance (µm/mN), tracking force (g)',phonopre:'Key specs: gain (dB), input impedance (Ω/kΩ), MM/MC support, output voltage',streamer:'Key specs: digital outputs (AES/USB/COAX), supported formats and sample rates',cables:'Key specs: type (RCA/XLR/speaker), length, shielding',other:'Describe the component and its relevant electrical or mechanical specs'};
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-
-function updateHint(){
-  const type=document.getElementById('comp-type').value;
-  const hint=document.getElementById('spec-hint');
-  hint.textContent=specHints[type]||'';
-  hint.style.display=specHints[type]?'block':'none';
-}
+function updateHint(){const t=document.getElementById('comp-type').value,h=document.getElementById('spec-hint');h.textContent=specHints[t]||'';h.style.display=specHints[t]?'block':'none';}
 updateHint();
 
 function addComponent(){
-  const type=document.getElementById('comp-type').value;
-  const name=document.getElementById('comp-name').value.trim();
+  const type=document.getElementById('comp-type').value,name=document.getElementById('comp-name').value.trim();
   if(!name){document.getElementById('comp-name').focus();return;}
   components.push({id:Date.now(),type,name});
   document.getElementById('comp-name').value='';
   renderAll();
 }
-
 function removeComponent(id){
-  const i=components.findIndex(c=>c.id===id);
-  if(i>-1)components.splice(i,1);
+  const i=components.findIndex(c=>c.id===id);if(i>-1)components.splice(i,1);
   connections.filter(c=>c.fromId===id||c.toId===id).forEach(c=>{const j=connections.findIndex(x=>x.id===c.id);if(j>-1)connections.splice(j,1);});
   renderAll();
 }
-
 function addConnection(){
-  const fromId=parseInt(document.getElementById('conn-from').value);
-  const toId=parseInt(document.getElementById('conn-to').value);
-  const type=document.getElementById('conn-type').value;
-  const errEl=document.getElementById('conn-err');
-  errEl.textContent='';
-  if(fromId===toId){errEl.textContent='Source and destination must be different components.';return;}
-  const fromComp=components.find(c=>c.id===fromId);
-  const toComp=components.find(c=>c.id===toId);
+  const fromId=parseInt(document.getElementById('conn-from').value),toId=parseInt(document.getElementById('conn-to').value),type=document.getElementById('conn-type').value;
+  const errEl=document.getElementById('conn-err');errEl.textContent='';
+  if(fromId===toId){errEl.textContent='Source and destination must be different.';return;}
+  const fromComp=components.find(c=>c.id===fromId),toComp=components.find(c=>c.id===toId);
   const dupe=connections.find(c=>c.fromId===fromId&&c.toId===toId);
   if(dupe){dupe.type=type;}else{connections.push({id:Date.now(),fromId,toId,fromName:fromComp.name,toName:toComp.name,type});}
   renderConnections();
-  const toSel=document.getElementById('conn-to');
-  const fromSel=document.getElementById('conn-from');
+  const toSel=document.getElementById('conn-to'),fromSel=document.getElementById('conn-from');
   const lastIdx=Array.from(toSel.options).findIndex(o=>parseInt(o.value)===toId);
   let next=(lastIdx+1)%toSel.options.length;
   if(parseInt(toSel.options[next].value)===fromId)next=(next+1)%toSel.options.length;
   toSel.selectedIndex=next;
 }
-
-function removeConnection(id){
-  const i=connections.findIndex(c=>c.id===id);
-  if(i>-1)connections.splice(i,1);
-  renderConnections();
-}
-
-function renderAll(){
-  renderComponents();
-  renderConnections();
-  updateConnDropdowns();
-  updateDiagram();
-  const show=components.length>=2;
-  ['conn-panel','analyze-panel','diagram-panel'].forEach(id=>document.getElementById(id).style.display=show?'block':'none');
-}
-
+function removeConnection(id){const i=connections.findIndex(c=>c.id===id);if(i>-1)connections.splice(i,1);renderConnections();}
+function renderAll(){renderComponents();renderConnections();updateConnDropdowns();updateDiagram();const show=components.length>=2;['conn-panel','analyze-panel','diagram-panel'].forEach(id=>document.getElementById(id).style.display=show?'block':'none');}
 function renderComponents(){
   const el=document.getElementById('comp-list');
-  if(components.length===0){el.innerHTML='<div class="empty">No components registered.<br>Add at least two to proceed.</div>';return;}
-  el.innerHTML=`<div class="components-list">${components.map(c=>`
-    <div class="comp-entry fadein">
-      <span class="comp-tag tag-${c.type}">${typeLabels[c.type]}</span>
-      <span class="comp-name">${esc(c.name)}</span>
-      <button class="btn-remove" onclick="removeComponent(${c.id})" title="Remove">✕</button>
-    </div>`).join('')}</div>`;
+  if(components.length===0){el.innerHTML='<div class="empty">No components yet.<br>Add at least two to begin.</div>';return;}
+  el.innerHTML=`<div class="components-list">${components.map(c=>`<div class="comp-entry fadein"><span class="comp-badge badge-${c.type}">${typeLabels[c.type]}</span><span class="comp-name">${esc(c.name)}</span><button class="btn-remove" onclick="removeComponent(${c.id})" title="Remove">✕</button></div>`).join('')}</div>`;
 }
-
 function renderConnections(){
-  const el=document.getElementById('conn-list');
-  if(!el)return;
+  const el=document.getElementById('conn-list');if(!el)return;
   if(connections.length===0){el.innerHTML='<div class="empty">No connections defined yet.</div>';return;}
-  el.innerHTML=`<div class="conn-list">${connections.map(c=>`
-    <div class="conn-entry fadein">
-      <span class="conn-name">${esc(c.fromName)}</span>
-      <span class="conn-arr">→</span>
-      <span class="conn-name">${esc(c.toName)}</span>
-      <span class="conn-type-tag">${esc(c.type)}</span>
-      <button class="btn-remove" onclick="removeConnection(${c.id})" title="Remove">✕</button>
-    </div>`).join('')}</div>`;
+  el.innerHTML=`<div class="conn-list">${connections.map(c=>`<div class="conn-entry fadein"><span class="conn-from">${esc(c.fromName)}</span><span class="conn-arr">→</span><span class="conn-to">${esc(c.toName)}</span><span class="conn-type-badge">${esc(c.type)}</span><button class="btn-remove" onclick="removeConnection(${c.id})" title="Remove">✕</button></div>`).join('')}</div>`;
 }
-
 function updateConnDropdowns(){
-  const fS=document.getElementById('conn-from');
-  const tS=document.getElementById('conn-to');
-  if(!fS||!tS)return;
-  const pF=fS.value?parseInt(fS.value):null;
-  const pT=tS.value?parseInt(tS.value):null;
+  const fS=document.getElementById('conn-from'),tS=document.getElementById('conn-to');if(!fS||!tS)return;
+  const pF=fS.value?parseInt(fS.value):null,pT=tS.value?parseInt(tS.value):null;
   const opts=components.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
-  fS.innerHTML=opts; tS.innerHTML=opts;
+  fS.innerHTML=opts;tS.innerHTML=opts;
   if(pF&&components.find(c=>c.id===pF))fS.value=pF;
   if(pT&&components.find(c=>c.id===pT))tS.value=pT;
-  if(parseInt(fS.value)===parseInt(tS.value)&&components.length>=2){
-    tS.selectedIndex=(Array.from(fS.options).findIndex(o=>parseInt(o.value)===parseInt(fS.value))+1)%tS.options.length;
-  }
+  if(parseInt(fS.value)===parseInt(tS.value)&&components.length>=2){tS.selectedIndex=(Array.from(fS.options).findIndex(o=>parseInt(o.value)===parseInt(fS.value))+1)%tS.options.length;}
 }
-
 async function analyze(){
-  const btn=document.getElementById('analyze-btn');
-  const errEl=document.getElementById('analyze-err');
-  const rEl=document.getElementById('results-content');
-  errEl.textContent=''; btn.disabled=true;
-  rEl.innerHTML=`<div class="loading-wrap"><div class="vu-meter">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-caption">Consulting the specifications…</p></div>`;
+  const btn=document.getElementById('analyze-btn'),errEl=document.getElementById('analyze-err'),rEl=document.getElementById('results-content');
+  errEl.textContent='';btn.disabled=true;
+  rEl.innerHTML=`<div class="loading-box"><div class="vu-meter">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-caption">Analyzing signal chain…</p></div>`;
   try{
     const res=await fetch('/.netlify/functions/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components,connections})});
     const data=await res.json();
     if(!res.ok||data.error)throw new Error(data.error||`HTTP ${res.status}`);
     renderResults(data.text);
   }catch(e){
-    rEl.innerHTML=`<div class="results-placeholder"><span class="placeholder-ornament" style="font-size:40px;color:#c05050;">⚠</span><p class="placeholder-text">${esc(e.message||'Analysis failed. Please try again.')}</p></div>`;
+    rEl.innerHTML=`<div class="placeholder-box"><div class="placeholder-icon">⚠️</div><p>${esc(e.message||'Analysis failed. Please try again.')}</p></div>`;
     errEl.textContent=e.message;
   }
   btn.disabled=false;
 }
-
 function renderResults(text){
-  const rEl=document.getElementById('results-content');
-  const fullEl=document.getElementById('results-full');
-
-  const sM=text.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i);
-  const iM=text.match(/IMPEDANCE MATCH:\s*(.+)/i);
-  const nM=text.match(/SENSITIVITY MATCH:\s*(.+)/i);
-  const score=sM?parseFloat(sM[1]):null;
-  const iStr=iM?iM[1].trim():null;
-  const nStr=nM?nM[1].trim():null;
-  const nC=n=>n>=8?'spec-good':n>=6?'spec-ok':'spec-bad';
-  const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'spec-good':l.includes('poor')?'spec-bad':'spec-ok';};
-
+  const rEl=document.getElementById('results-content'),fullEl=document.getElementById('results-full');
+  const sM=text.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i),iM=text.match(/IMPEDANCE MATCH:\s*(.+)/i),nM=text.match(/SENSITIVITY MATCH:\s*(.+)/i);
+  const score=sM?parseFloat(sM[1]):null,iStr=iM?iM[1].trim():null,nStr=nM?nM[1].trim():null;
+  const nC=n=>n>=8?'score-good':n>=6?'score-ok':'score-bad';
+  const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'score-good':l.includes('poor')?'score-bad':'score-ok';};
   let scores='';
-  if(score!==null||iStr||nStr){
-    scores=`<div class="spec-row">
-      ${score!==null?`<div class="spec-card"><span class="spec-label">Overall rating</span><div class="spec-val ${nC(score)}">${score}<small>/10</small></div></div>`:''}
-      ${iStr?`<div class="spec-card"><span class="spec-label">Impedance</span><div class="spec-val ${wC(iStr)}" style="font-size:17px;margin-top:4px;">${iStr}</div></div>`:''}
-      ${nStr?`<div class="spec-card"><span class="spec-label">Sensitivity</span><div class="spec-val ${wC(nStr)}" style="font-size:17px;margin-top:4px;">${nStr}</div></div>`:''}
-    </div>`;
-  }
-  rEl.innerHTML=`<div class="fadein">${scores||'<p style="font-family:var(--body);font-size:14px;font-style:italic;color:var(--muted2);">Analysis complete — see full breakdown below.</p>'}</div>`;
-
+  if(score!==null||iStr||nStr){scores=`<div class="score-row">${score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:''} ${iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:''} ${nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:''}</div>`;}
+  rEl.innerHTML=`<div class="fadein">${scores||'<p style="font-size:13px;color:var(--text-3);">Analysis complete — see full breakdown below.</p>'}</div>`;
   const clean=text.replace(/OVERALL SCORE:.*\n?/i,'').replace(/IMPEDANCE MATCH:.*\n?/i,'').replace(/SENSITIVITY MATCH:.*\n?/i,'');
   const hdrs=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
   const secs={};
-  hdrs.forEach(h=>{
-    const escaped=h.replace(/[&]/g,'\\&');
-    const re=new RegExp(`${escaped}\\s*\\n([\\s\\S]*?)(?=\\n(?:${hdrs.map(x=>x.replace(/[&]/g,'\\&')).join('|')})\\s*\\n|$)`,'i');
-    const m=clean.match(re);
-    secs[h]=m?m[1].trim():'';
-  });
-
+  hdrs.forEach(h=>{const re=new RegExp(`${h.replace(/[&]/g,'\\&')}\\s*\\n([\\s\\S]*?)(?=\\n(?:${hdrs.map(x=>x.replace(/[&]/g,'\\&')).join('|')})\\s*\\n|$)`,'i');const m=clean.match(re);secs[h]=m?m[1].trim():'';});
   document.getElementById('panel-specs-body').innerHTML=renderCompSpecs(secs['COMPONENT SPECS']);
-
-  const chainParts=[];
-  if(secs['SIGNAL CHAIN ANALYSIS'])chainParts.push({label:'Signal chain',text:secs['SIGNAL CHAIN ANALYSIS']});
-  if(secs['PHONO CHAIN'])chainParts.push({label:'Phono chain',text:secs['PHONO CHAIN']});
-  document.getElementById('panel-chain-body').innerHTML=renderPanelSections(chainParts);
-
-  const summaryParts=[];
-  if(secs['COMPATIBILITY SUMMARY'])summaryParts.push({label:'Overall verdict',text:secs['COMPATIBILITY SUMMARY']});
-  if(secs['ISSUES & RECOMMENDATIONS'])summaryParts.push({label:'Issues & recommendations',text:secs['ISSUES & RECOMMENDATIONS']});
-  document.getElementById('panel-summary-body').innerHTML=renderPanelSections(summaryParts);
-
+  const cp=[secs['SIGNAL CHAIN ANALYSIS'],secs['PHONO CHAIN']].filter(Boolean);
+  document.getElementById('panel-chain-body').innerHTML=renderPanelSections(cp.map((t,i)=>({label:['Signal chain','Phono chain'][i],text:t})));
+  const sp=[secs['COMPATIBILITY SUMMARY'],secs['ISSUES & RECOMMENDATIONS']].filter(Boolean);
+  document.getElementById('panel-summary-body').innerHTML=renderPanelSections(sp.map((t,i)=>({label:['Overall verdict','Issues & recommendations'][i],text:t})));
   fullEl.style.display='block';
   setTimeout(()=>fullEl.scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
-
 function renderCompSpecs(text){
-  if(!text)return'<p style="font-family:var(--body);font-size:14px;font-style:italic;color:var(--muted2);">No specifications found.</p>';
-  const blocks=text.split(/\n(?=\*\*)/);
-  return blocks.map(block=>{
+  if(!text)return'<p style="font-size:13px;color:var(--text-3);">No specifications found.</p>';
+  return text.split(/\n(?=\*\*)/).map(block=>{
     const nm=block.match(/^\*\*([^*]+)\*\*/);
-    if(!nm){
-      const t=block.trim();
-      return t?`<p class="panel-analysis" style="margin-bottom:8px;">${esc(t)}</p>`:'';
-    }
-    const name=nm[1].trim();
-    const rest=block.slice(nm[0].length).trim();
-    const items=rest.split('\n').filter(l=>l.trim()).map(l=>{
-      const c=l.replace(/^[-•*]\s*/,'').replace(/\*\*(.+?)\*\*/g,'$1').trim();
-      return c?`<li>${esc(c)}</li>`:'';
-    }).join('');
-    return `<div class="comp-spec-block fadein">
-      <div class="comp-name-hdr">${esc(name)}</div>
-      ${items?`<ul class="spec-list">${items}</ul>`:''}
-    </div>`;
+    if(!nm){const t=block.trim();return t?`<p class="panel-analysis" style="margin-bottom:8px;">${esc(t)}</p>`:'';}
+    const name=nm[1].trim(),rest=block.slice(nm[0].length).trim();
+    const items=rest.split('\n').filter(l=>l.trim()).map(l=>{const c=l.replace(/^[-•*]\s*/,'').replace(/\*\*(.+?)\*\*/g,'$1').trim();return c?`<li>${esc(c)}</li>`:''}).join('');
+    return `<div class="comp-spec-block fadein"><div class="comp-name-hdr">${esc(name)}</div>${items?`<ul class="spec-list">${items}</ul>`:''}</div>`;
   }).join('');
 }
-
 function renderPanelSections(parts){
-  if(!parts.length)return'<p style="font-family:var(--body);font-size:14px;font-style:italic;color:var(--muted2);">No content.</p>';
+  if(!parts.length)return'<p style="font-size:13px;color:var(--text-3);">No content.</p>';
   return parts.map(({label,text})=>{
-    let html=text
-      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-      .replace(/^\d+\.\s+(.+)$/gm,'<li>$1</li>')
-      .replace(/^[-•]\s+(.+)$/gm,'<li>$1</li>')
-      .replace(/(<li>[\s\S]*?<\/li>)/g,'<ul>$1</ul>')
-      .replace(/<\/ul>\s*<ul>/g,'')
-      .replace(/\n\n/g,'</p><p>')
-      .replace(/^(?!<[upl]|<\/[upl])(.+)$/gm,'<p>$1</p>')
-      .replace(/<p>\s*<\/p>/g,'');
-    return `<div class="fadein">
-      <div class="panel-sub-hdr">${esc(label)}</div>
-      <div class="panel-analysis">${html}</div>
-    </div>`;
+    let html=text.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/^\d+\.\s+(.+)$/gm,'<li>$1</li>').replace(/^[-•]\s+(.+)$/gm,'<li>$1</li>').replace(/(<li>[\s\S]*?<\/li>)/g,'<ul>$1</ul>').replace(/<\/ul>\s*<ul>/g,'').replace(/\n\n/g,'</p><p>').replace(/^(?!<[upl]|<\/[upl])(.+)$/gm,'<p>$1</p>').replace(/<p>\s*<\/p>/g,'');
+    return `<div class="fadein"><div class="panel-sub-hdr">${esc(label)}</div><div class="panel-analysis">${html}</div></div>`;
   }).join('');
 }
-
-function updateDiagram(){
-  const wrap=document.getElementById('diagram-wrap');
-  if(components.length<2){wrap.innerHTML='';return;}
-  wrap.innerHTML=buildDiagram();
-}
-
+function updateDiagram(){const wrap=document.getElementById('diagram-wrap');if(components.length<2){wrap.innerHTML='';return;}wrap.innerHTML=buildDiagram();}
 function buildDiagram(){
-  const W=500,BW=138,BH=50,G=16;
-  const dig=components.filter(c=>['streamer','dac'].includes(c.type));
-  const pho=components.filter(c=>['turntable','cartridge','phonopre'].includes(c.type));
-  const shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c));
-  const hasBoth=dig.length>0&&pho.length>0;
-
+  const W=500,BW=138,BH=48,G=16;
+  const dig=components.filter(c=>['streamer','dac'].includes(c.type)),pho=components.filter(c=>['turntable','cartridge','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)),hasBoth=dig.length>0&&pho.length>0;
   function sortChain(chain){
     if(connections.length===0||chain.length<=1)return chain;
-    const ids=new Set(chain.map(c=>c.id));
-    const hasIn=new Set();
+    const ids=new Set(chain.map(c=>c.id)),hasIn=new Set();
     connections.forEach(cn=>{if(ids.has(cn.fromId)&&ids.has(cn.toId))hasIn.add(cn.toId);});
-    const roots=chain.filter(c=>!hasIn.has(c.id));
-    const out=[],vis=new Set();
-    function visit(c){
-      if(vis.has(c.id))return;vis.add(c.id);out.push(c);
-      connections.filter(cn=>cn.fromId===c.id&&ids.has(cn.toId)).forEach(cn=>{
-        const nx=chain.find(x=>x.id===cn.toId);if(nx)visit(nx);
-      });
-    }
+    const roots=chain.filter(c=>!hasIn.has(c.id)),out=[],vis=new Set();
+    function visit(c){if(vis.has(c.id))return;vis.add(c.id);out.push(c);connections.filter(cn=>cn.fromId===c.id&&ids.has(cn.toId)).forEach(cn=>{const nx=chain.find(x=>x.id===cn.toId);if(nx)visit(nx);});}
     (roots.length?roots:chain.slice(0,1)).forEach(visit);
     chain.filter(c=>!vis.has(c.id)).forEach(c=>out.push(c));
     return out;
   }
-
-  const digS=sortChain(dig);
-  const phoS=sortChain(pho);
-  const shrS=sortChain(shr);
-
-  const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#4a80b8" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
+  const digS=sortChain(dig),phoS=sortChain(pho),shrS=sortChain(shr);
+  const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
   const sh=s=>{const e=esc(s);return e.length>16?e.slice(0,15)+'…':e;};
-  const box=(x,y,c,cls)=>{const cx=x+BW/2,cy=y+BH/2;return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="1" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${cy+10}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;};
-  const ln=(x1,y1,x2,y2)=>`<line stroke="#4a80b8" stroke-width="1" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
-  const pt=(d)=>`<path fill="none" stroke="#4a80b8" stroke-width="1" d="${d}" marker-end="url(#da)"/>`;
+  const box=(x,y,c,cls)=>{const cx=x+BW/2,cy=y+BH/2;return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="8" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${cy+9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;};
+  const ln=(x1,y1,x2,y2)=>`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
+  const pt=d=>`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="${d}" marker-end="url(#da)"/>`;
   const lbl=(x,y,t,a)=>t?`<text class="dv-label" x="${x}" y="${y}" text-anchor="${a||'start'}" dominant-baseline="central">${esc(t)}</text>`:'';
-  const ct=(a,b)=>{
-    if(!a||!b)return null;
-    const c=connections.find(x=>(x.fromId===a.id&&x.toId===b.id)||(x.fromId===b.id&&x.toId===a.id));
-    return c?c.type:null;
-  };
-
+  const ct=(a,b)=>{if(!a||!b)return null;const c=connections.find(x=>(x.fromId===a.id&&x.toId===b.id)||(x.fromId===b.id&&x.toId===a.id));return c?c.type:null;};
   if(hasBoth){
-    const mx=Math.max(digS.length,phoS.length);
-    const lX=10,rX=W/2+10;
+    const mx=Math.max(digS.length,phoS.length),lX=10,rX=W/2+10;
     let p='',b='';
     b+=`<text class="dv-col" x="${lX+BW/2}" y="16" text-anchor="middle">DIGITAL</text>`;
     b+=`<text class="dv-col" x="${rX+BW/2}" y="16" text-anchor="middle">PHONO</text>`;
     let lB=null,rB=null,lPrev=null,rPrev=null;
-
-    digS.forEach((c,i)=>{
-      const y=24+i*(BH+G),cx=lX+BW/2;
-      if(lB!==null){
-        p+=ln(cx,lB,cx,y);
-        const t=ct(lPrev,c);if(t)b+=lbl(cx+5,lB+G/2,t);
-      }
-      b+=box(lX,y,c,'dv-box-digital');lB=y+BH;lPrev=c;
-    });
-
-    phoS.forEach((c,i)=>{
-      const y=24+i*(BH+G),cx=rX+BW/2;
-      if(rB!==null){
-        p+=ln(cx,rB,cx,y);
-        const t=ct(rPrev,c);if(t)b+=lbl(cx+5,rB+G/2,t);
-      }
-      b+=box(rX,y,c,'dv-box-phono');rB=y+BH;rPrev=c;
-    });
-
-    const rY=24+mx*(BH+G);
-    const sX=W/2-BW/2,sCx=sX+BW/2;
-    let sY=rY+G*2;
-
-    if(shrS.length>0){
-      const fS=shrS[0];
-      if(lB!==null){
-        p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${rY} L${sCx-14},${rY} L${sCx-14},${sY}`);
-        const t=ct(lPrev,fS);if(t)b+=lbl(Math.round((lX+BW/2+sCx-14)/2),rY-8,t,'middle');
-      }
-      if(rB!==null){
-        p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${rY} L${sCx+14},${rY} L${sCx+14},${sY}`);
-        const t=ct(rPrev,fS);if(t)b+=lbl(Math.round((rX+BW/2+sCx+14)/2),rY-8,t,'middle');
-      }
-    }
-
+    digS.forEach((c,i)=>{const y=24+i*(BH+G),cx=lX+BW/2;if(lB!==null){p+=ln(cx,lB,cx,y);const t=ct(lPrev,c);if(t)b+=lbl(cx+5,lB+G/2,t);}b+=box(lX,y,c,'dv-box-digital');lB=y+BH;lPrev=c;});
+    phoS.forEach((c,i)=>{const y=24+i*(BH+G),cx=rX+BW/2;if(rB!==null){p+=ln(cx,rB,cx,y);const t=ct(rPrev,c);if(t)b+=lbl(cx+5,rB+G/2,t);}b+=box(rX,y,c,'dv-box-phono');rB=y+BH;rPrev=c;});
+    const rY=24+mx*(BH+G),sX=W/2-BW/2,sCx=sX+BW/2;let sY=rY+G*2;
+    if(shrS.length>0){const fS=shrS[0];if(lB!==null){p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${rY} L${sCx-14},${rY} L${sCx-14},${sY}`);const t=ct(lPrev,fS);if(t)b+=lbl(Math.round((lX+BW/2+sCx-14)/2),rY-8,t,'middle');}if(rB!==null){p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${rY} L${sCx+14},${rY} L${sCx+14},${sY}`);const t=ct(rPrev,fS);if(t)b+=lbl(Math.round((rX+BW/2+sCx+14)/2),rY-8,t,'middle');}}
     let pB=null,shrPrev=null;
-    shrS.forEach(c=>{
-      if(pB!==null){
-        p+=ln(sCx,pB,sCx,sY);
-        const t=ct(shrPrev,c);if(t)b+=lbl(sCx+5,pB+G/2,t);
-      }
-      b+=box(sX,sY,c,'dv-box-shared');pB=sY+BH;shrPrev=c;sY+=BH+G;
-    });
-
+    shrS.forEach(c=>{if(pB!==null){p+=ln(sCx,pB,sCx,sY);const t=ct(shrPrev,c);if(t)b+=lbl(sCx+5,pB+G/2,t);}b+=box(sX,sY,c,'dv-box-shared');pB=sY+BH;shrPrev=c;sY+=BH+G;});
     return `<svg width="100%" viewBox="0 0 ${W} ${(pB||sY)+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
   }
-
-  const all=[...digS,...phoS,...shrS];
-  const x=W/2-BW/2,cx=W/2;
+  const all=[...digS,...phoS,...shrS],x=W/2-BW/2,cx=W/2;
   let y=20,p='',b='',prev=null;
-  all.forEach((c,i)=>{
-    const cls=dig.includes(c)?'dv-box-digital':pho.includes(c)?'dv-box-phono':'dv-box-shared';
-    if(i>0){
-      p+=ln(cx,y,cx,y+G);
-      const t=ct(prev,c);if(t)b+=lbl(cx+5,y+G/2,t);
-      y+=G;
-    }
-    b+=box(x,y,c,cls);y+=BH;prev=c;
-  });
+  all.forEach((c,i)=>{const cls=dig.includes(c)?'dv-box-digital':pho.includes(c)?'dv-box-phono':'dv-box-shared';if(i>0){p+=ln(cx,y,cx,y+G);const t=ct(prev,c);if(t)b+=lbl(cx+5,y+G/2,t);y+=G;}b+=box(x,y,c,cls);y+=BH;prev=c;});
   return `<svg width="100%" viewBox="0 0 ${W} ${y+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
 }
-
 renderAll();
 
-function acceptCookies(){
-  localStorage.setItem('cookie_consent','accepted');
-  document.getElementById('cookie-banner').style.display='none';
-  gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});
-}
-function declineCookies(){
-  localStorage.setItem('cookie_consent','declined');
-  document.getElementById('cookie-banner').style.display='none';
-}
-(function(){
-  const c=localStorage.getItem('cookie_consent');
-  if(!c){document.getElementById('cookie-banner').style.display='flex';}
-  else if(c==='accepted'){gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}
-})();
+function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').style.display='none';gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}
+function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').style.display='none';}
+(function(){const c=localStorage.getItem('cookie_consent');if(!c){document.getElementById('cookie-banner').style.display='flex';}else if(c==='accepted'){gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}})();
+</script>
 </body>
 </html>
