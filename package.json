@@ -1,0 +1,8 @@
+{
+  "name": "audiochecker",
+  "version": "1.0.0",
+  "description": "Audio System Compatibility Checker",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.36.0"
+  }
+}
