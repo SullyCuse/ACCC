@@ -827,6 +827,7 @@ select {
             <div id="conn-err" style="font-size:11px;color:#dc2626;margin-top:8px;min-height:16px;"></div>
             <hr class="divider">
             <div id="conn-list"></div>
+            <button class="btn btn-blue btn-sm" style="width:100%;margin-top:4px;" onclick="generateDiagram()">Generate Signal Chain Diagram →</button>
           </div>
         </div>
 
@@ -976,15 +977,19 @@ function addConnection(){
   const dupe=connections.find(c=>c.fromId===fromId&&c.toId===toId);
   if(dupe){dupe.type=type;}else{connections.push({id:Date.now(),fromId,toId,fromName:fromComp.name,toName:toComp.name,type});}
   renderConnections();
-  updateDiagram();
   const toSel=document.getElementById('conn-to'),fromSel=document.getElementById('conn-from');
   const lastIdx=Array.from(toSel.options).findIndex(o=>parseInt(o.value)===toId);
   let next=(lastIdx+1)%toSel.options.length;
   if(parseInt(toSel.options[next].value)===fromId)next=(next+1)%toSel.options.length;
   toSel.selectedIndex=next;
 }
-function removeConnection(id){const i=connections.findIndex(c=>c.id===id);if(i>-1)connections.splice(i,1);renderConnections();updateDiagram();}
-function renderAll(){renderComponents();renderConnections();updateConnDropdowns();updateDiagram();const show=components.length>=2;['conn-panel','analyze-panel','diagram-panel'].forEach(id=>document.getElementById(id).style.display=show?'block':'none');}
+function removeConnection(id){const i=connections.findIndex(c=>c.id===id);if(i>-1)connections.splice(i,1);renderConnections();}
+function renderAll(){renderComponents();renderConnections();updateConnDropdowns();const show=components.length>=2;['conn-panel','analyze-panel'].forEach(id=>document.getElementById(id).style.display=show?'block':'none');}
+function generateDiagram(){
+  updateDiagram();
+  document.getElementById('diagram-panel').style.display='block';
+  document.getElementById('diagram-panel').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
 function renderComponents(){
   const el=document.getElementById('comp-list');
   if(components.length===0){el.innerHTML='<div class="empty">No components yet.<br>Add at least two to begin.</div>';return;}
@@ -1099,7 +1104,7 @@ function buildDiagram(){
     roots.forEach(r=>visit(r));
     // Add connected-but-unvisited nodes, then floating nodes at end
     chain.filter(c=>!vis.has(c.id)&&!isFloating(c)).forEach(c=>out.push(c));
-    chain.filter(c=>isFloating(c)).forEach(c=>out.push(c));
+    chain.filter(c=>!vis.has(c.id)&&isFloating(c)).forEach(c=>out.push(c));
     return out;
   }
 
