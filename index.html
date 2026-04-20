@@ -12,21 +12,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:         #0b0a09;
-  --bg-1:       #111009;
-  --bg-2:       #181610;
-  --bg-3:       #201d15;
-  --border:     rgba(200,160,80,0.12);
-  --border-2:   rgba(200,160,80,0.22);
-  --text:       #e8e1d4;
-  --text-2:     #a09585;
-  --text-3:     #5c5448;
-  --amber:      #c8933a;
-  --amber-dim:  rgba(200,147,58,0.18);
-  --amber-glow: rgba(200,147,58,0.08);
-  --green:      #4a8c5c;
-  --red:        #8c4a4a;
-  --orange:     #8c6a3a;
+  --bg:         #f5f2ed;
+  --bg-1:       #ffffff;
+  --bg-2:       #f9f7f3;
+  --bg-3:       #ede9e1;
+  --border:     rgba(130,100,50,0.16);
+  --border-2:   rgba(130,100,50,0.28);
+  --text:       #211d16;
+  --text-2:     #6b5e48;
+  --text-3:     #a08870;
+  --amber:      #9e6e1a;
+  --amber-bg:   rgba(158,110,26,0.09);
+  --amber-bdr:  rgba(158,110,26,0.28);
   --serif:      'Cormorant Garamond', Georgia, serif;
   --mono:       'DM Mono', 'Courier New', monospace;
 }
@@ -55,7 +52,7 @@ a:hover { text-decoration: underline; }
   height: 64px;
   position: sticky;
   top: 0;
-  background: rgba(11,10,9,0.92);
+  background: rgba(245,242,237,0.96);
   backdrop-filter: blur(12px);
   z-index: 100;
 }
@@ -64,7 +61,6 @@ a:hover { text-decoration: underline; }
   font-family: var(--serif);
   font-size: 22px;
   font-weight: 600;
-  letter-spacing: 0.02em;
   color: var(--text);
   display: flex;
   align-items: center;
@@ -72,16 +68,12 @@ a:hover { text-decoration: underline; }
 }
 
 .logo-mark {
-  width: 28px;
-  height: 28px;
+  width: 28px; height: 28px;
   border: 1.5px solid var(--amber);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-
 .logo-mark svg { width: 14px; height: 14px; }
 
 .header-tag {
@@ -93,9 +85,9 @@ a:hover { text-decoration: underline; }
 
 /* ── HERO ── */
 .hero {
-  padding: 72px max(24px, 5vw) 56px;
+  padding: 60px max(24px, 5vw) 44px;
   border-bottom: 1px solid var(--border);
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -104,43 +96,40 @@ a:hover { text-decoration: underline; }
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--amber);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(36px, 5vw, 60px);
+  font-size: clamp(34px, 4.5vw, 54px);
   font-weight: 500;
   line-height: 1.1;
   color: var(--text);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   letter-spacing: -0.01em;
 }
 
-.hero h1 em {
-  font-style: italic;
-  color: var(--amber);
-}
+.hero h1 em { font-style: italic; color: var(--amber); }
 
 .hero-desc {
   font-size: 14px;
   color: var(--text-2);
-  max-width: 560px;
-  line-height: 1.7;
+  max-width: 580px;
+  line-height: 1.75;
 }
 
 /* ── MAIN LAYOUT ── */
 .app-wrap {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px max(24px, 5vw);
+  padding: 36px max(24px, 5vw);
   display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 32px;
+  grid-template-columns: 500px 1fr;
+  gap: 28px;
   align-items: start;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .app-wrap { grid-template-columns: 1fr; }
 }
 
@@ -148,25 +137,25 @@ a:hover { text-decoration: underline; }
 .panel {
   background: var(--bg-1);
   border: 1px solid var(--border);
-  border-radius: 2px;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(100,80,40,0.07);
 }
 
 .panel-header {
-  padding: 16px 20px;
+  padding: 13px 20px;
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   gap: 10px;
+  background: var(--bg-2);
+  border-radius: 4px 4px 0 0;
 }
 
 .step-num {
-  width: 22px;
-  height: 22px;
+  width: 22px; height: 22px;
   border: 1px solid var(--amber);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   font-size: 11px;
   color: var(--amber);
   flex-shrink: 0;
@@ -196,100 +185,101 @@ label {
 
 select, input[type="text"] {
   width: 100%;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: 2px;
+  background: var(--bg-1);
+  border: 1px solid var(--border-2);
+  border-radius: 3px;
   color: var(--text);
   font-family: var(--mono);
   font-size: 13px;
   padding: 9px 12px;
   outline: none;
   appearance: none;
-  transition: border-color 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 select:focus, input[type="text"]:focus {
-  border-color: var(--border-2);
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(158,110,26,0.1);
 }
 
 select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c5448' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a08870' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
-  padding-right: 32px;
+  padding-right: 34px;
   cursor: pointer;
 }
 
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-.form-group:last-child { margin-bottom: 0; }
+/* Type and Name each take full width, stacked */
+.form-stack    { display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; }
+.form-row-2    { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group    { display: flex; flex-direction: column; gap: 6px; }
 
 .spec-hint {
   font-size: 11px;
   color: var(--text-3);
-  line-height: 1.5;
-  margin-top: 6px;
+  line-height: 1.55;
   font-style: italic;
+  padding: 8px 12px;
+  background: var(--bg-2);
+  border-left: 2px solid var(--border-2);
 }
 
 /* ── BUTTONS ── */
 .btn {
   font-family: var(--mono);
   font-size: 12px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   font-weight: 500;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 3px;
   border: 1px solid var(--border-2);
   background: var(--bg-2);
   color: var(--text-2);
   padding: 8px 16px;
   transition: all 0.15s;
 }
-.btn:hover { background: var(--bg-3); color: var(--text); border-color: var(--border-2); }
-.btn:active { transform: scale(0.98); }
-.btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn:hover   { background: var(--bg-3); color: var(--text); }
+.btn:active  { transform: scale(0.98); }
+.btn:disabled{ opacity: 0.38; cursor: not-allowed; }
 
 .btn-amber {
-  background: var(--amber-dim);
-  border-color: rgba(200,147,58,0.4);
+  background: var(--amber-bg);
+  border-color: var(--amber-bdr);
   color: var(--amber);
 }
-.btn-amber:hover { background: rgba(200,147,58,0.26); border-color: rgba(200,147,58,0.6); color: #dba84d; }
+.btn-amber:hover { background: rgba(158,110,26,0.15); color: #7a520f; }
 
 .btn-primary {
   width: 100%;
   padding: 12px 20px;
   font-size: 13px;
-  background: var(--amber-dim);
-  border-color: rgba(200,147,58,0.45);
-  color: var(--amber);
-  letter-spacing: 0.1em;
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #fff;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.btn-primary:hover:not(:disabled) {
-  background: rgba(200,147,58,0.26);
-  color: #dba84d;
-}
+.btn-primary:hover:not(:disabled) { background: #7a5210; border-color: #7a5210; }
 
 .btn-sm { padding: 6px 12px; font-size: 11px; }
 
 /* ── COMPONENT CARDS ── */
-.components-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.components-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
 
 .comp-card {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
+  padding: 9px 12px;
   background: var(--bg-2);
   border: 1px solid var(--border);
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .comp-badge {
   font-size: 10px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 3px 8px;
   border-radius: 2px;
@@ -297,16 +287,16 @@ select {
   font-weight: 500;
 }
 
-.badge-amp       { background: rgba(58,100,200,0.18); color: #7aa0e0; border: 1px solid rgba(58,100,200,0.3); }
-.badge-preamp    { background: rgba(140,80,200,0.18); color: #c09cdc; border: 1px solid rgba(140,80,200,0.3); }
-.badge-speakers  { background: rgba(58,160,90,0.18);  color: #7ac490; border: 1px solid rgba(58,160,90,0.3); }
-.badge-dac       { background: rgba(200,140,58,0.18); color: #e0b870; border: 1px solid rgba(200,140,58,0.3); }
-.badge-turntable { background: rgba(200,80,58,0.18);  color: #e09080; border: 1px solid rgba(200,80,58,0.3); }
-.badge-cartridge { background: rgba(180,60,60,0.18);  color: #d08080; border: 1px solid rgba(180,60,60,0.3); }
-.badge-phonopre  { background: rgba(100,100,100,0.18);color: #b0aca6; border: 1px solid rgba(100,100,100,0.3); }
-.badge-streamer  { background: rgba(58,180,160,0.18); color: #70c8bc; border: 1px solid rgba(58,180,160,0.3); }
-.badge-cables    { background: rgba(80,80,80,0.18);   color: #a0a0a0; border: 1px solid rgba(80,80,80,0.3); }
-.badge-other     { background: rgba(160,80,140,0.18); color: #c090b8; border: 1px solid rgba(160,80,140,0.3); }
+.badge-amp       { background:#dce9f8; color:#2a5a9e; border:1px solid #aacaee; }
+.badge-preamp    { background:#ecddf8; color:#6a2a9e; border:1px solid #cfaaee; }
+.badge-speakers  { background:#ddf3e4; color:#2a7a4a; border:1px solid #aad4bc; }
+.badge-dac       { background:#f8f0dc; color:#8a5a10; border:1px solid #ead4a0; }
+.badge-turntable { background:#f8e0dc; color:#9e3a2a; border:1px solid #eebab8; }
+.badge-cartridge { background:#f8dce0; color:#9e2a40; border:1px solid #eeb4c0; }
+.badge-phonopre  { background:#ebebeb; color:#505050; border:1px solid #d0d0d0; }
+.badge-streamer  { background:#dcf3f0; color:#1a7a6a; border:1px solid #aad4d0; }
+.badge-cables    { background:#ebebeb; color:#606060; border:1px solid #d0d0d0; }
+.badge-other     { background:#f3dcf0; color:#7a1a6a; border:1px solid #d9aad4; }
 
 .comp-name {
   font-size: 13px;
@@ -316,264 +306,165 @@ select {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--text);
 }
 
 .btn-remove {
-  background: none;
-  border: none;
-  color: var(--text-3);
-  cursor: pointer;
-  font-size: 14px;
-  padding: 2px 6px;
-  flex-shrink: 0;
-  line-height: 1;
+  background: none; border: none;
+  color: var(--text-3); cursor: pointer;
+  font-size: 14px; padding: 2px 6px;
+  flex-shrink: 0; line-height: 1;
   transition: color 0.15s;
 }
-.btn-remove:hover { color: #c06060; }
+.btn-remove:hover { color: #c04040; }
 
 /* ── CONNECTIONS ── */
-.conn-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.conn-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
 
 .conn-card {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: flex; align-items: center; gap: 8px;
   padding: 8px 12px;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  font-size: 12px;
-  flex-wrap: wrap;
+  background: var(--bg-2); border: 1px solid var(--border); border-radius: 3px;
+  font-size: 12px; flex-wrap: wrap;
 }
 
 .conn-from, .conn-to { color: var(--text); font-weight: 500; }
 .conn-arrow { color: var(--text-3); font-size: 11px; }
 
 .conn-type-badge {
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 2px;
-  background: var(--amber-dim);
-  color: var(--amber);
-  border: 1px solid rgba(200,147,58,0.25);
-  margin-left: auto;
-  white-space: nowrap;
+  font-size: 10px; padding: 2px 8px; border-radius: 2px;
+  background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-bdr);
+  margin-left: auto; white-space: nowrap;
 }
 
 /* ── EMPTY STATE ── */
 .empty {
-  text-align: center;
-  padding: 24px 16px;
-  color: var(--text-3);
-  font-size: 12px;
-  border: 1px dashed var(--border);
-  border-radius: 2px;
-  margin-bottom: 16px;
-  line-height: 1.6;
+  text-align: center; padding: 20px 16px;
+  color: var(--text-3); font-size: 12px;
+  border: 1px dashed var(--border-2); border-radius: 3px;
+  margin-bottom: 16px; line-height: 1.7; background: var(--bg-2);
 }
 
 /* ── DIVIDER ── */
-.divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 20px 0;
-}
+.divider { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
 
-/* ── RESULTS PANEL ── */
+/* ── RESULTS ── */
 .results-panel { position: sticky; top: 80px; }
 
 .placeholder-state {
-  padding: 60px 24px;
-  text-align: center;
-  color: var(--text-3);
-  font-size: 13px;
-  line-height: 1.8;
+  padding: 56px 24px; text-align: center;
+  color: var(--text-3); font-size: 13px; line-height: 1.8;
 }
 
 .placeholder-state .big-num {
   font-family: var(--serif);
-  font-size: 64px;
-  color: var(--border-2);
-  display: block;
-  margin-bottom: 12px;
-  font-style: italic;
+  font-size: 60px; color: var(--border-2);
+  display: block; margin-bottom: 12px; font-style: italic;
 }
 
-.loading-state {
-  padding: 48px 24px;
-  text-align: center;
-}
+.loading-state { padding: 48px 24px; text-align: center; }
 
 .vu-loader {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 4px;
-  height: 40px;
-  margin-bottom: 16px;
+  display: flex; align-items: flex-end; justify-content: center;
+  gap: 4px; height: 40px; margin-bottom: 16px;
 }
 
 .vu-bar {
-  width: 6px;
-  background: var(--amber);
-  border-radius: 1px;
-  animation: vubeat 0.9s ease-in-out infinite;
-  opacity: 0.7;
+  width: 6px; background: var(--amber); border-radius: 1px;
+  animation: vubeat 0.9s ease-in-out infinite; opacity: 0.6;
 }
-.vu-bar:nth-child(1) { animation-delay: 0s; height: 16px; }
-.vu-bar:nth-child(2) { animation-delay: 0.1s; height: 28px; }
-.vu-bar:nth-child(3) { animation-delay: 0.2s; height: 36px; }
-.vu-bar:nth-child(4) { animation-delay: 0.15s; height: 24px; }
-.vu-bar:nth-child(5) { animation-delay: 0.05s; height: 32px; }
-.vu-bar:nth-child(6) { animation-delay: 0.25s; height: 20px; }
+.vu-bar:nth-child(1){animation-delay:0s;height:16px}
+.vu-bar:nth-child(2){animation-delay:.1s;height:28px}
+.vu-bar:nth-child(3){animation-delay:.2s;height:36px}
+.vu-bar:nth-child(4){animation-delay:.15s;height:24px}
+.vu-bar:nth-child(5){animation-delay:.05s;height:32px}
+.vu-bar:nth-child(6){animation-delay:.25s;height:20px}
 
 @keyframes vubeat {
-  0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
-  50% { transform: scaleY(1); opacity: 0.9; }
+  0%,100%{transform:scaleY(.35);opacity:.3}
+  50%{transform:scaleY(1);opacity:.8}
 }
 
-.loading-text { color: var(--text-3); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+.loading-text { color:var(--text-3);font-size:12px;letter-spacing:.1em;text-transform:uppercase; }
 
 /* ── SCORE CARDS ── */
 .score-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 16px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; margin-bottom: 18px;
 }
 
 .score-card {
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  padding: 14px 12px;
-  text-align: center;
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: 3px; padding: 14px 12px; text-align: center;
 }
 
 .score-label {
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-3);
-  margin-bottom: 6px;
-  display: block;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 6px; display: block;
 }
 
-.score-val {
-  font-family: var(--serif);
-  font-size: 26px;
-  line-height: 1;
-}
-
+.score-val { font-family: var(--serif); font-size: 26px; line-height: 1; }
 .score-val small { font-family: var(--mono); font-size: 13px; color: var(--text-3); }
-.score-good { color: #5dba7a; }
-.score-ok   { color: #c8933a; }
-.score-bad  { color: #ba5d5d; }
+.score-good { color: #2a7a46; }
+.score-ok   { color: #9e6e1a; }
+.score-bad  { color: #9e2a2a; }
 
-/* ── ANALYSIS CONTENT ── */
-.analysis-body {
-  font-size: 13px;
-  line-height: 1.75;
-  color: var(--text-2);
-}
+/* ── ANALYSIS BODY ── */
+.analysis-body { font-size: 13px; line-height: 1.8; color: var(--text-2); }
 
 .analysis-body h3 {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--amber);
-  margin: 20px 0 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
+  font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--amber);
+  margin: 22px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
 }
-
 .analysis-body h3:first-child { margin-top: 0; }
-
 .analysis-body strong { color: var(--text); font-weight: 500; }
-
 .analysis-body p { margin-bottom: 10px; }
 .analysis-body p:last-child { margin-bottom: 0; }
-
-.analysis-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+.analysis-body ul { list-style: none; padding: 0; }
 
 .analysis-body ul li {
-  padding: 4px 0 4px 16px;
+  padding: 5px 0 5px 18px;
   position: relative;
   border-bottom: 1px solid var(--border);
+  color: var(--text-2);
 }
-
 .analysis-body ul li:last-child { border-bottom: none; }
-
-.analysis-body ul li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--amber);
-  font-size: 11px;
-}
+.analysis-body ul li::before { content:'→'; position:absolute; left:0; color:var(--amber); font-size:11px; }
 
 /* ── DIAGRAM ── */
-.diagram-wrap {
-  overflow-x: auto;
-  padding: 16px 0 0;
-}
-
+.diagram-wrap { overflow-x: auto; padding: 4px 0 0; }
 .diagram-wrap svg { display: block; }
 
-/* ── FOOTER ── */
-footer {
-  margin-top: 80px;
-  border-top: 1px solid var(--border);
-  padding: 32px max(24px, 5vw);
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 12px;
-  color: var(--text-3);
-}
-
-/* ── DIAGRAM SVG STYLES ── */
-.d-box {
-  fill: var(--bg-3);
-  stroke: var(--border-2);
-  stroke-width: 0.75;
-}
-
-.d-box-digital { fill: rgba(58,100,200,0.14); stroke: rgba(58,100,200,0.35); }
-.d-box-phono   { fill: rgba(200,140,58,0.14); stroke: rgba(200,140,58,0.35); }
-.d-box-shared  { fill: rgba(58,160,120,0.14); stroke: rgba(58,160,120,0.35); }
-
-.d-title { fill: var(--text); font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; }
-.d-sub   { fill: var(--text-3); font-family: 'DM Mono', monospace; font-size: 11px; }
-.d-label { fill: var(--text-3); font-family: 'DM Mono', monospace; font-size: 10px; }
-.d-col   { fill: var(--amber); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; }
-.d-arrow { stroke: var(--border-2); stroke-width: 1.2; fill: none; }
-
-.d-node { cursor: pointer; }
+.d-box         { fill: var(--bg-2); stroke: var(--border-2); stroke-width: 0.75; }
+.d-box-digital { fill: #eaf1fb; stroke: #9bbde0; }
+.d-box-phono   { fill: #fdf4e4; stroke: #dfc070; }
+.d-box-shared  { fill: #eaf5ef; stroke: #8ec8a8; }
+.d-title { fill:#211d16; font-family:'DM Mono',monospace; font-size:13px; font-weight:500; }
+.d-sub   { fill:#a08870; font-family:'DM Mono',monospace; font-size:11px; }
+.d-col   { fill:#9e6e1a; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; }
+.d-node  { cursor:pointer; }
 .d-node:hover .d-box,
 .d-node:hover .d-box-digital,
 .d-node:hover .d-box-phono,
-.d-node:hover .d-box-shared { stroke-width: 1.5; }
+.d-node:hover .d-box-shared { stroke-width:1.5; }
 
-/* ── ANIMATIONS ── */
-@keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-.fadein { animation: fadein 0.3s ease forwards; }
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px max(24px, 5vw);
+  max-width: 1200px; margin: 60px auto 0;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--text-3);
+}
 
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--bg-3); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--border-2); }
+/* ── UTILS ── */
+@keyframes fadein { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+.fadein { animation: fadein 0.25s ease forwards; }
+
+::-webkit-scrollbar { width:6px; height:6px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--border-2); border-radius:3px; }
 </style>
 </head>
 <body>
@@ -582,8 +473,8 @@ footer {
   <div class="logo">
     <div class="logo-mark">
       <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="7" cy="7" r="4" stroke="#c8933a" stroke-width="1.2"/>
-        <circle cx="7" cy="7" r="1.5" fill="#c8933a"/>
+        <circle cx="7" cy="7" r="4" stroke="#9e6e1a" stroke-width="1.2"/>
+        <circle cx="7" cy="7" r="1.5" fill="#9e6e1a"/>
       </svg>
     </div>
     AudioChain
@@ -599,19 +490,19 @@ footer {
 
 <div class="app-wrap">
 
-  <!-- LEFT: INPUT PANEL -->
+  <!-- LEFT COLUMN -->
   <div style="display:flex;flex-direction:column;gap:20px;">
 
-    <!-- Step 1: Components -->
+    <!-- Step 1 -->
     <div class="panel">
       <div class="panel-header">
         <div class="step-num">1</div>
         <span class="panel-title">Add components</span>
       </div>
       <div class="panel-body">
-        <div class="form-row">
-          <div class="form-group" style="margin-bottom:0;">
-            <label>Type</label>
+        <div class="form-stack">
+          <div class="form-group">
+            <label>Component type</label>
             <select id="comp-type" onchange="updateHint()">
               <option value="amp">Amplifier / Integrated Amp</option>
               <option value="preamp">Preamplifier</option>
@@ -625,79 +516,80 @@ footer {
               <option value="other">Other</option>
             </select>
           </div>
-          <div class="form-group" style="margin-bottom:0;">
+          <div class="form-group">
             <label>Model name</label>
-            <input type="text" id="comp-name" placeholder="e.g. Parasound 275 v1">
+            <input type="text" id="comp-name" placeholder="e.g. Parasound Halo 275 v1">
           </div>
+          <div id="spec-hint" class="spec-hint" style="display:none;"></div>
         </div>
-        <div id="spec-hint" class="spec-hint" style="margin-bottom:14px;"></div>
         <button class="btn btn-amber btn-sm" onclick="addComponent()">+ Add component</button>
-
         <hr class="divider">
         <div id="comp-list"></div>
       </div>
     </div>
 
-    <!-- Step 2: Connections -->
+    <!-- Step 2 -->
     <div class="panel" id="conn-panel" style="display:none;">
       <div class="panel-header">
         <div class="step-num">2</div>
         <span class="panel-title">Define connections</span>
       </div>
       <div class="panel-body">
-        <p style="font-size:12px;color:var(--text-3);margin-bottom:16px;line-height:1.6;">Optional but recommended. Specify how each component connects to the next in the signal chain.</p>
-        <div class="form-row">
-          <div class="form-group" style="margin-bottom:0;">
-            <label>From</label>
-            <select id="conn-from"></select>
+        <p style="font-size:12px;color:var(--text-3);margin-bottom:16px;line-height:1.65;">Optional but recommended. Specify how each component connects to the next.</p>
+        <div class="form-stack">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>From</label>
+              <select id="conn-from"></select>
+            </div>
+            <div class="form-group">
+              <label>To</label>
+              <select id="conn-to"></select>
+            </div>
           </div>
-          <div class="form-group" style="margin-bottom:0;">
-            <label>To</label>
-            <select id="conn-to"></select>
+          <div class="form-group">
+            <label>Connection type</label>
+            <select id="conn-type">
+              <option value="XLR balanced">XLR balanced</option>
+              <option value="RCA single-ended">RCA single-ended</option>
+              <option value="USB">USB</option>
+              <option value="Optical / TOSLINK">Optical / TOSLINK</option>
+              <option value="AES/EBU">AES/EBU</option>
+              <option value="I2S">I2S</option>
+              <option value="Speaker wire">Speaker wire</option>
+              <option value="Phono / RCA">Phono / RCA</option>
+              <option value="Coaxial S/PDIF">Coaxial S/PDIF</option>
+              <option value="HDMI / I2S">HDMI / I2S</option>
+              <option value="Bluetooth">Bluetooth</option>
+              <option value="Wi-Fi / Network">Wi-Fi / Network</option>
+            </select>
           </div>
-        </div>
-        <div class="form-group" style="margin-top:12px;">
-          <label>Connection type</label>
-          <select id="conn-type">
-            <option value="XLR balanced">XLR balanced</option>
-            <option value="RCA single-ended">RCA single-ended</option>
-            <option value="USB">USB</option>
-            <option value="Optical / TOSLINK">Optical / TOSLINK</option>
-            <option value="AES/EBU">AES/EBU</option>
-            <option value="I2S">I2S</option>
-            <option value="Speaker wire">Speaker wire</option>
-            <option value="Phono / RCA">Phono / RCA</option>
-            <option value="Coaxial S/PDIF">Coaxial S/PDIF</option>
-            <option value="HDMI / I2S">HDMI / I2S</option>
-            <option value="Bluetooth">Bluetooth</option>
-            <option value="Wi-Fi / Network">Wi-Fi / Network</option>
-          </select>
         </div>
         <button class="btn btn-amber btn-sm" onclick="addConnection()">+ Add connection</button>
-        <div id="conn-err" style="font-size:11px;color:#ba5d5d;margin-top:6px;min-height:16px;"></div>
+        <div id="conn-err" style="font-size:11px;color:#9e2a2a;margin-top:8px;min-height:16px;"></div>
         <hr class="divider">
         <div id="conn-list"></div>
       </div>
     </div>
 
-    <!-- Step 3: Analyze -->
+    <!-- Step 3 -->
     <div class="panel" id="analyze-panel" style="display:none;">
       <div class="panel-header">
         <div class="step-num">3</div>
         <span class="panel-title">Analyze compatibility</span>
       </div>
       <div class="panel-body">
-        <p style="font-size:12px;color:var(--text-3);margin-bottom:16px;line-height:1.6;">Claude will look up published specifications for each component and analyze compatibility across your full signal chain.</p>
+        <p style="font-size:12px;color:var(--text-3);margin-bottom:16px;line-height:1.65;">Claude will look up published specifications for each component and analyze compatibility across your full signal chain.</p>
         <button class="btn btn-primary" id="analyze-btn" onclick="analyze()">Run compatibility analysis →</button>
-        <div id="analyze-err" style="font-size:12px;color:#ba5d5d;margin-top:10px;min-height:16px;"></div>
+        <div id="analyze-err" style="font-size:12px;color:#9e2a2a;margin-top:10px;min-height:16px;"></div>
       </div>
     </div>
 
   </div>
 
-  <!-- RIGHT: RESULTS -->
+  <!-- RIGHT COLUMN -->
   <div class="results-panel">
-    <div class="panel" id="results-panel">
+    <div class="panel">
       <div class="panel-header">
         <span class="panel-title" style="margin-left:0;">Analysis results</span>
       </div>
@@ -711,7 +603,6 @@ footer {
       </div>
     </div>
 
-    <!-- Diagram panel (shown after components added) -->
     <div class="panel" id="diagram-panel" style="margin-top:20px;display:none;">
       <div class="panel-header">
         <span class="panel-title" style="margin-left:0;">Signal chain diagram</span>
@@ -752,374 +643,200 @@ const specHints = {
   other:     'Describe the component and its relevant electrical or mechanical specs'
 };
 
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-function updateHint() {
-  const type = document.getElementById('comp-type').value;
-  document.getElementById('spec-hint').textContent = specHints[type] || '';
+function updateHint(){
+  const type=document.getElementById('comp-type').value;
+  const hint=document.getElementById('spec-hint');
+  hint.textContent=specHints[type]||'';
+  hint.style.display=specHints[type]?'block':'none';
 }
 updateHint();
 
-function addComponent() {
-  const type = document.getElementById('comp-type').value;
-  const name = document.getElementById('comp-name').value.trim();
-  if (!name) { document.getElementById('comp-name').focus(); return; }
-  components.push({ id: Date.now(), type, name });
-  document.getElementById('comp-name').value = '';
+function addComponent(){
+  const type=document.getElementById('comp-type').value;
+  const name=document.getElementById('comp-name').value.trim();
+  if(!name){document.getElementById('comp-name').focus();return;}
+  components.push({id:Date.now(),type,name});
+  document.getElementById('comp-name').value='';
   renderAll();
 }
 
-function removeComponent(id) {
-  const i = components.findIndex(c => c.id === id);
-  if (i > -1) components.splice(i, 1);
-  const toRemove = connections.filter(c => c.fromId === id || c.toId === id).map(c => c.id);
-  toRemove.forEach(cid => { const j = connections.findIndex(c => c.id === cid); if (j > -1) connections.splice(j, 1); });
+function removeComponent(id){
+  const i=components.findIndex(c=>c.id===id);
+  if(i>-1)components.splice(i,1);
+  connections.filter(c=>c.fromId===id||c.toId===id).forEach(c=>{const j=connections.findIndex(x=>x.id===c.id);if(j>-1)connections.splice(j,1);});
   renderAll();
 }
 
-function addConnection() {
-  const fromId = parseInt(document.getElementById('conn-from').value);
-  const toId = parseInt(document.getElementById('conn-to').value);
-  const type = document.getElementById('conn-type').value;
-  const errEl = document.getElementById('conn-err');
-  errEl.textContent = '';
-  if (fromId === toId) { errEl.textContent = 'Source and destination must be different.'; return; }
-  const dupe = connections.find(c => c.fromId === fromId && c.toId === toId);
-  if (dupe) { dupe.type = type; } else {
-    const fromComp = components.find(c => c.id === fromId);
-    const toComp = components.find(c => c.id === toId);
-    connections.push({ id: Date.now(), fromId, toId, fromName: fromComp.name, toName: toComp.name, type });
-  }
+function addConnection(){
+  const fromId=parseInt(document.getElementById('conn-from').value);
+  const toId=parseInt(document.getElementById('conn-to').value);
+  const type=document.getElementById('conn-type').value;
+  const errEl=document.getElementById('conn-err');
+  errEl.textContent='';
+  if(fromId===toId){errEl.textContent='Source and destination must be different.';return;}
+  const fromComp=components.find(c=>c.id===fromId);
+  const toComp=components.find(c=>c.id===toId);
+  const dupe=connections.find(c=>c.fromId===fromId&&c.toId===toId);
+  if(dupe){dupe.type=type;}else{connections.push({id:Date.now(),fromId,toId,fromName:fromComp.name,toName:toComp.name,type});}
   renderConnections();
-  advanceConnTo(toId);
+  const toSel=document.getElementById('conn-to');
+  const fromSel=document.getElementById('conn-from');
+  const lastIdx=Array.from(toSel.options).findIndex(o=>parseInt(o.value)===toId);
+  let next=(lastIdx+1)%toSel.options.length;
+  if(parseInt(toSel.options[next].value)===fromId)next=(next+1)%toSel.options.length;
+  toSel.selectedIndex=next;
 }
 
-function advanceConnTo(lastToId) {
-  const toSel = document.getElementById('conn-to');
-  const fromSel = document.getElementById('conn-from');
-  const fromId = parseInt(fromSel.value);
-  const lastIdx = Array.from(toSel.options).findIndex(o => parseInt(o.value) === lastToId);
-  let next = (lastIdx + 1) % toSel.options.length;
-  if (parseInt(toSel.options[next].value) === fromId) next = (next + 1) % toSel.options.length;
-  toSel.selectedIndex = next;
-}
-
-function removeConnection(id) {
-  const i = connections.findIndex(c => c.id === id);
-  if (i > -1) connections.splice(i, 1);
+function removeConnection(id){
+  const i=connections.findIndex(c=>c.id===id);
+  if(i>-1)connections.splice(i,1);
   renderConnections();
 }
 
-function renderAll() {
+function renderAll(){
   renderComponents();
   renderConnections();
   updateConnDropdowns();
   updateDiagram();
-  document.getElementById('conn-panel').style.display = components.length >= 2 ? 'block' : 'none';
-  document.getElementById('analyze-panel').style.display = components.length >= 2 ? 'block' : 'none';
-  document.getElementById('diagram-panel').style.display = components.length >= 2 ? 'block' : 'none';
+  const show=components.length>=2;
+  ['conn-panel','analyze-panel','diagram-panel'].forEach(id=>document.getElementById(id).style.display=show?'block':'none');
 }
 
-function renderComponents() {
-  const el = document.getElementById('comp-list');
-  if (components.length === 0) {
-    el.innerHTML = '<div class="empty">No components yet.<br>Add at least two to begin.</div>';
-    return;
-  }
-  el.innerHTML = `<div class="components-list">${
-    components.map(c => `
-      <div class="comp-card fadein">
-        <span class="comp-badge badge-${c.type}">${typeLabels[c.type]}</span>
-        <span class="comp-name">${esc(c.name)}</span>
-        <button class="btn-remove" onclick="removeComponent(${c.id})" title="Remove">✕</button>
-      </div>`).join('')
-  }</div>`;
+function renderComponents(){
+  const el=document.getElementById('comp-list');
+  if(components.length===0){el.innerHTML='<div class="empty">No components yet.<br>Add at least two to begin.</div>';return;}
+  el.innerHTML=`<div class="components-list">${components.map(c=>`
+    <div class="comp-card fadein">
+      <span class="comp-badge badge-${c.type}">${typeLabels[c.type]}</span>
+      <span class="comp-name">${esc(c.name)}</span>
+      <button class="btn-remove" onclick="removeComponent(${c.id})" title="Remove">✕</button>
+    </div>`).join('')}</div>`;
 }
 
-function renderConnections() {
-  const el = document.getElementById('conn-list');
-  if (!el) return;
-  if (connections.length === 0) {
-    el.innerHTML = '<div class="empty">No connections defined yet.</div>';
-    return;
-  }
-  el.innerHTML = `<div class="conn-list">${
-    connections.map(c => `
-      <div class="conn-card fadein">
-        <span class="conn-from">${esc(c.fromName)}</span>
-        <span class="conn-arrow">→</span>
-        <span class="conn-to">${esc(c.toName)}</span>
-        <span class="conn-type-badge">${esc(c.type)}</span>
-        <button class="btn-remove" onclick="removeConnection(${c.id})" title="Remove">✕</button>
-      </div>`).join('')
-  }</div>`;
+function renderConnections(){
+  const el=document.getElementById('conn-list');
+  if(!el)return;
+  if(connections.length===0){el.innerHTML='<div class="empty">No connections defined yet.</div>';return;}
+  el.innerHTML=`<div class="conn-list">${connections.map(c=>`
+    <div class="conn-card fadein">
+      <span class="conn-from">${esc(c.fromName)}</span>
+      <span class="conn-arrow">→</span>
+      <span class="conn-to">${esc(c.toName)}</span>
+      <span class="conn-type-badge">${esc(c.type)}</span>
+      <button class="btn-remove" onclick="removeConnection(${c.id})" title="Remove">✕</button>
+    </div>`).join('')}</div>`;
 }
 
-function updateConnDropdowns() {
-  const fromSel = document.getElementById('conn-from');
-  const toSel = document.getElementById('conn-to');
-  if (!fromSel || !toSel) return;
-  const prevFrom = fromSel.value ? parseInt(fromSel.value) : null;
-  const prevTo = toSel.value ? parseInt(toSel.value) : null;
-  const opts = components.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
-  fromSel.innerHTML = opts;
-  toSel.innerHTML = opts;
-  if (prevFrom && components.find(c => c.id === prevFrom)) fromSel.value = prevFrom;
-  if (prevTo && components.find(c => c.id === prevTo)) toSel.value = prevTo;
-  if (parseInt(fromSel.value) === parseInt(toSel.value) && components.length >= 2) {
-    const idx = Array.from(fromSel.options).findIndex(o => parseInt(o.value) === parseInt(fromSel.value));
-    toSel.selectedIndex = (idx + 1) % toSel.options.length;
+function updateConnDropdowns(){
+  const fS=document.getElementById('conn-from');
+  const tS=document.getElementById('conn-to');
+  if(!fS||!tS)return;
+  const pF=fS.value?parseInt(fS.value):null;
+  const pT=tS.value?parseInt(tS.value):null;
+  const opts=components.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  fS.innerHTML=opts; tS.innerHTML=opts;
+  if(pF&&components.find(c=>c.id===pF))fS.value=pF;
+  if(pT&&components.find(c=>c.id===pT))tS.value=pT;
+  if(parseInt(fS.value)===parseInt(tS.value)&&components.length>=2){
+    tS.selectedIndex=(Array.from(fS.options).findIndex(o=>parseInt(o.value)===parseInt(fS.value))+1)%tS.options.length;
   }
 }
 
-// ── ANALYSIS ──
-async function analyze() {
-  const btn = document.getElementById('analyze-btn');
-  const errEl = document.getElementById('analyze-err');
-  const resultsEl = document.getElementById('results-content');
-  errEl.textContent = '';
-  btn.disabled = true;
-
-  resultsEl.innerHTML = `
-    <div class="loading-state">
-      <div class="vu-loader">
-        <div class="vu-bar"></div><div class="vu-bar"></div>
-        <div class="vu-bar"></div><div class="vu-bar"></div>
-        <div class="vu-bar"></div><div class="vu-bar"></div>
-      </div>
-      <p class="loading-text">Analyzing signal chain…</p>
-    </div>`;
-
-  try {
-    const res = await fetch('/.netlify/functions/analyze', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ components, connections })
-    });
-    const data = await res.json();
-    if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`);
+async function analyze(){
+  const btn=document.getElementById('analyze-btn');
+  const errEl=document.getElementById('analyze-err');
+  const rEl=document.getElementById('results-content');
+  errEl.textContent=''; btn.disabled=true;
+  rEl.innerHTML=`<div class="loading-state"><div class="vu-loader">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-text">Analyzing signal chain…</p></div>`;
+  try{
+    const res=await fetch('/.netlify/functions/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components,connections})});
+    const data=await res.json();
+    if(!res.ok||data.error)throw new Error(data.error||`HTTP ${res.status}`);
     renderResults(data.text);
-  } catch (e) {
-    resultsEl.innerHTML = `<div class="placeholder-state"><em class="big-num" style="font-size:36px;color:#8c4a4a">⚠</em>${esc(e.message || 'Analysis failed. Please try again.')}</div>`;
-    errEl.textContent = e.message;
+  }catch(e){
+    rEl.innerHTML=`<div class="placeholder-state"><em class="big-num" style="font-size:36px;color:#c04040;">⚠</em>${esc(e.message||'Analysis failed. Please try again.')}</div>`;
+    errEl.textContent=e.message;
   }
-  btn.disabled = false;
+  btn.disabled=false;
 }
 
-function renderResults(text) {
-  const resultsEl = document.getElementById('results-content');
-  const scoreMatch = text.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i);
-  const impedMatch = text.match(/IMPEDANCE MATCH:\s*(.+)/i);
-  const sensMatch  = text.match(/SENSITIVITY MATCH:\s*(.+)/i);
-  const score   = scoreMatch ? parseFloat(scoreMatch[1]) : null;
-  const impeStr = impedMatch ? impedMatch[1].trim() : null;
-  const sensStr = sensMatch  ? sensMatch[1].trim()  : null;
-
-  function numClass(n) { return n >= 8 ? 'score-good' : n >= 6 ? 'score-ok' : 'score-bad'; }
-  function wordClass(v) {
-    if (!v) return '';
-    const l = v.toLowerCase();
-    return l.includes('good') ? 'score-good' : l.includes('poor') ? 'score-bad' : 'score-ok';
-  }
-
-  let scores = '';
-  if (score !== null || impeStr || sensStr) {
-    scores = `<div class="score-row">
-      ${score !== null ? `<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${numClass(score)}">${score}<small>/10</small></div></div>` : ''}
-      ${impeStr ? `<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wordClass(impeStr)}" style="font-size:16px;margin-top:2px;">${impeStr}</div></div>` : ''}
-      ${sensStr ? `<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wordClass(sensStr)}" style="font-size:16px;margin-top:2px;">${sensStr}</div></div>` : ''}
+function renderResults(text){
+  const rEl=document.getElementById('results-content');
+  const sM=text.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i);
+  const iM=text.match(/IMPEDANCE MATCH:\s*(.+)/i);
+  const nM=text.match(/SENSITIVITY MATCH:\s*(.+)/i);
+  const score=sM?parseFloat(sM[1]):null;
+  const iStr=iM?iM[1].trim():null;
+  const nStr=nM?nM[1].trim():null;
+  const nC=n=>n>=8?'score-good':n>=6?'score-ok':'score-bad';
+  const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'score-good':l.includes('poor')?'score-bad':'score-ok';};
+  let scores='';
+  if(score!==null||iStr||nStr){
+    scores=`<div class="score-row">
+      ${score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:''}
+      ${iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:''}
+      ${nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:''}
     </div>`;
   }
-
-  const sectionHeaders = [
-    'COMPONENT SPECS', 'COMPATIBILITY SUMMARY', 'SIGNAL CHAIN ANALYSIS',
-    'PHONO CHAIN', 'ISSUES & RECOMMENDATIONS'
-  ];
-
-  let body = text
-    .replace(/OVERALL SCORE:.*\n?/i, '')
-    .replace(/IMPEDANCE MATCH:.*\n?/i, '')
-    .replace(/SENSITIVITY MATCH:.*\n?/i, '')
-    .trim();
-
-  sectionHeaders.forEach(h => {
-    body = body.replace(new RegExp(`^${h}$`, 'gm'), `<h3>${h.charAt(0) + h.slice(1).toLowerCase()}</h3>`);
-  });
-
-  body = body
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n\n/g, '</p><p>')
-    .replace(/^(?!<h3|<\/p>|<p)(.+)$/gm, '<p>$1</p>')
-    .replace(/<p>\s*<\/p>/g, '');
-
-  resultsEl.innerHTML = `<div class="fadein">${scores}<div class="analysis-body">${body}</div></div>`;
+  const headers=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
+  let body=text.replace(/OVERALL SCORE:.*\n?/i,'').replace(/IMPEDANCE MATCH:.*\n?/i,'').replace(/SENSITIVITY MATCH:.*\n?/i,'').trim();
+  headers.forEach(h=>{body=body.replace(new RegExp(`^${h}$`,'gm'),`<h3>${h.charAt(0)+h.slice(1).toLowerCase()}</h3>`);});
+  body=body.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n\n/g,'</p><p>').replace(/^(?!<h3|<\/p>|<p)(.+)$/gm,'<p>$1</p>').replace(/<p>\s*<\/p>/g,'');
+  rEl.innerHTML=`<div class="fadein">${scores}<div class="analysis-body">${body}</div></div>`;
 }
 
-// ── DIAGRAM ──
-function updateDiagram() {
-  const wrap = document.getElementById('diagram-wrap');
-  if (components.length < 2) { wrap.innerHTML = ''; return; }
-  wrap.innerHTML = buildDiagramSVG();
+function updateDiagram(){
+  const wrap=document.getElementById('diagram-wrap');
+  if(components.length<2){wrap.innerHTML='';return;}
+  wrap.innerHTML=buildDiagram();
 }
 
-function buildDiagramSVG() {
-  const W = 580;
-  const BOX_W = 150;
-  const BOX_H = 48;
-  const GAP = 18;
+function buildDiagram(){
+  const W=540,BW=144,BH=48,G=16;
+  const dig=components.filter(c=>['streamer','dac'].includes(c.type));
+  const pho=components.filter(c=>['turntable','cartridge','phonopre'].includes(c.type));
+  const shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c));
+  const hasBoth=dig.length>0&&pho.length>0;
+  const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#c8a060" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
+  const sh=s=>{const e=esc(s);return e.length>16?e.slice(0,15)+'…':e;};
+  const box=(x,y,c,cls)=>{const cx=x+BW/2,cy=y+BH/2;return `<g class="d-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="3" class="d-box ${cls}"/><text class="d-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="d-sub" x="${cx}" y="${cy+9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;};
+  const ln=(x1,y1,x2,y2)=>`<line stroke="#c8a060" stroke-width="1" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
+  const pt=(d)=>`<path fill="none" stroke="#c8a060" stroke-width="1" d="${d}" marker-end="url(#da)"/>`;
 
-  const digital = components.filter(c => ['streamer','dac'].includes(c.type));
-  const phono   = components.filter(c => ['turntable','cartridge','phonopre'].includes(c.type));
-  const shared  = components.filter(c => !digital.includes(c) && !phono.includes(c));
-
-  const hasBoth = digital.length > 0 && phono.length > 0;
-  const twoCol = hasBoth;
-
-  let rows = [];
-  let svgH = 40;
-
-  if (twoCol) {
-    const maxLeft = Math.max(digital.length, phono.length);
-    const leftCol  = [];
-    const rightCol = [];
-
-    digital.forEach((c,i) => leftCol.push({ comp: c, col: 0, row: i, cls: 'd-box-digital' }));
-    phono.forEach((c,i) => rightCol.push({ comp: c, col: 1, row: i, cls: 'd-box-phono' }));
-
-    const midY = (maxLeft * (BOX_H + GAP)) + 40 + GAP * 2;
-    const sharedStart = midY + GAP;
-
-    let sharedY = sharedStart;
-    const sharedNodes = shared.map((c) => {
-      const n = { comp: c, x: W/2 - BOX_W/2, y: sharedY, cls: 'd-box-shared' };
-      sharedY += BOX_H + GAP;
-      return n;
-    });
-
-    const colW = (W - 60) / 2;
-    const leftX  = 30;
-    const rightX = W/2 + 30;
-
-    let paths = '';
-    let boxes = '';
-    let labels = '';
-
-    // Column headers
-    if (digital.length > 0) boxes += `<text class="d-col" x="${leftX + BOX_W/2}" y="22" text-anchor="middle">Digital chain</text>`;
-    if (phono.length > 0)   boxes += `<text class="d-col" x="${rightX + BOX_W/2}" y="22" text-anchor="middle">Phono chain</text>`;
-
-    // Left (digital) column
-    let prevLeftY = null;
-    leftCol.forEach(({ comp, row }) => {
-      const x = leftX;
-      const y = 30 + row * (BOX_H + GAP);
-      const cx = x + BOX_W/2;
-      const cy = y + BOX_H/2;
-      if (prevLeftY !== null) {
-        paths += `<line class="d-arrow" x1="${cx}" y1="${prevLeftY}" x2="${cx}" y2="${y}" marker-end="url(#da)"/>`;
-      }
-      boxes += `<g class="d-node"><rect x="${x}" y="${y}" width="${BOX_W}" height="${BOX_H}" rx="2" class="d-box d-box-digital"/><text class="d-title" x="${cx}" y="${cy - 7}" text-anchor="middle" dominant-baseline="central">${short(comp.name)}</text><text class="d-sub" x="${cx}" y="${cy + 9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[comp.type])}</text></g>`;
-      prevLeftY = y + BOX_H;
-    });
-
-    // Right (phono) column
-    let prevRightY = null;
-    rightCol.forEach(({ comp, row }) => {
-      const x = rightX;
-      const y = 30 + row * (BOX_H + GAP);
-      const cx = x + BOX_W/2;
-      const cy = y + BOX_H/2;
-      if (prevRightY !== null) {
-        paths += `<line class="d-arrow" x1="${cx}" y1="${prevRightY}" x2="${cx}" y2="${y}" marker-end="url(#da)"/>`;
-      }
-      boxes += `<g class="d-node"><rect x="${x}" y="${y}" width="${BOX_W}" height="${BOX_H}" rx="2" class="d-box d-box-phono"/><text class="d-title" x="${cx}" y="${cy - 7}" text-anchor="middle" dominant-baseline="central">${short(comp.name)}</text><text class="d-sub" x="${cx}" y="${cy + 9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[comp.type])}</text></g>`;
-      prevRightY = y + BOX_H;
-    });
-
-    // Routing arrows to first shared
-    if (sharedNodes.length > 0) {
-      const sh = sharedNodes[0];
-      const shCx = sh.x + BOX_W/2;
-      const routeY = midY;
-      const leftLastCx = leftX + BOX_W/2;
-      const rightLastCx = rightX + BOX_W/2;
-      if (digital.length > 0 && prevLeftY !== null) {
-        paths += `<path class="d-arrow" fill="none" d="M${leftLastCx},${prevLeftY} L${leftLastCx},${routeY} L${shCx - 20},${routeY} L${shCx - 20},${sh.y}" marker-end="url(#da)"/>`;
-      }
-      if (phono.length > 0 && prevRightY !== null) {
-        paths += `<path class="d-arrow" fill="none" d="M${rightLastCx},${prevRightY} L${rightLastCx},${routeY} L${shCx + 20},${routeY} L${shCx + 20},${sh.y}" marker-end="url(#da)"/>`;
-      }
+  if(hasBoth){
+    const mx=Math.max(dig.length,pho.length);
+    const lX=20,rX=W/2+20;
+    let p='',b='';
+    b+=`<text class="d-col" x="${lX+BW/2}" y="18" text-anchor="middle">Digital</text>`;
+    b+=`<text class="d-col" x="${rX+BW/2}" y="18" text-anchor="middle">Phono</text>`;
+    let lB=null,rB=null;
+    dig.forEach((c,i)=>{const y=26+i*(BH+G),cx=lX+BW/2;if(lB!==null)p+=ln(cx,lB,cx,y);b+=box(lX,y,c,'d-box-digital');lB=y+BH;});
+    pho.forEach((c,i)=>{const y=26+i*(BH+G),cx=rX+BW/2;if(rB!==null)p+=ln(cx,rB,cx,y);b+=box(rX,y,c,'d-box-phono');rB=y+BH;});
+    const rY=26+mx*(BH+G);
+    const sX=W/2-BW/2,sCx=sX+BW/2;
+    let sY=rY+G*2;
+    if(shr.length>0){
+      if(lB!==null)p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${rY} L${sCx-16},${rY} L${sCx-16},${sY}`);
+      if(rB!==null)p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${rY} L${sCx+16},${rY} L${sCx+16},${sY}`);
     }
-
-    // Shared chain
-    let prevSharedY = null;
-    sharedNodes.forEach((n) => {
-      const cx = n.x + BOX_W/2;
-      const cy = n.y + BOX_H/2;
-      if (prevSharedY !== null) {
-        paths += `<line class="d-arrow" x1="${cx}" y1="${prevSharedY}" x2="${cx}" y2="${n.y}" marker-end="url(#da)"/>`;
-      }
-      boxes += `<g class="d-node"><rect x="${n.x}" y="${n.y}" width="${BOX_W}" height="${BOX_H}" rx="2" class="d-box d-box-shared"/><text class="d-title" x="${cx}" y="${cy - 7}" text-anchor="middle" dominant-baseline="central">${short(n.comp.name)}</text><text class="d-sub" x="${cx}" y="${cy + 9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[n.comp.type])}</text></g>`;
-      prevSharedY = n.y + BOX_H;
-    });
-
-    svgH = (prevSharedY || sharedStart) + 30;
-
-    // Connection type labels from user-defined connections
-    connections.forEach(conn => {
-      const fromComp = components.find(c => c.id === conn.fromId);
-      const toComp = components.find(c => c.id === conn.toId);
-      if (!fromComp || !toComp) return;
-    });
-
-    return `<svg width="100%" viewBox="0 0 ${W} ${svgH}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-          <path d="M2 2L8 5L2 8" fill="none" stroke="rgba(200,160,80,0.4)" stroke-width="1.5" stroke-linecap="round"/>
-        </marker>
-      </defs>
-      ${paths}${boxes}${labels}
-    </svg>`;
-
-  } else {
-    // Single column
-    const allComps = [...digital, ...phono, ...shared];
-    const x = W/2 - BOX_W/2;
-    let y = 20;
-    let paths = '';
-    let boxes = '';
-
-    allComps.forEach((comp, i) => {
-      const cx = x + BOX_W/2;
-      const cy = y + BOX_H/2;
-      const cls = digital.includes(comp) ? 'd-box-digital' : phono.includes(comp) ? 'd-box-phono' : 'd-box-shared';
-      if (i > 0) {
-        paths += `<line class="d-arrow" x1="${cx}" y1="${y}" x2="${cx}" y2="${y - GAP}" marker-end="url(#da)"/>`;
-        paths = paths.replace(`y2="${y - GAP}"`, `y2="${y}"`);
-        const prevY = y - GAP - BOX_H;
-        paths = paths.replace(/y1="[^"]*"/, `y1="${prevY + BOX_H}"`);
-      }
-      boxes += `<g class="d-node"><rect x="${x}" y="${y}" width="${BOX_W}" height="${BOX_H}" rx="2" class="d-box ${cls}"/><text class="d-title" x="${cx}" y="${cy - 7}" text-anchor="middle" dominant-baseline="central">${short(comp.name)}</text><text class="d-sub" x="${cx}" y="${cy + 9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[comp.type])}</text></g>`;
-      y += BOX_H + GAP;
-    });
-
-    svgH = y + 10;
-    return `<svg width="100%" viewBox="0 0 ${W} ${svgH}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-          <path d="M2 2L8 5L2 8" fill="none" stroke="rgba(200,160,80,0.4)" stroke-width="1.5" stroke-linecap="round"/>
-        </marker>
-      </defs>
-      ${paths}${boxes}
-    </svg>`;
+    let pB=null;
+    shr.forEach(c=>{if(pB!==null)p+=ln(sCx,pB,sCx,sY);b+=box(sX,sY,c,'d-box-shared');pB=sY+BH;sY+=BH+G;});
+    return `<svg width="100%" viewBox="0 0 ${W} ${(pB||sY)+24}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
   }
-}
 
-function short(name) {
-  const s = esc(name);
-  return s.length > 18 ? s.slice(0, 17) + '…' : s;
+  const all=[...dig,...pho,...shr];
+  const x=W/2-BW/2,cx=W/2;
+  let y=20,p='',b='';
+  all.forEach((c,i)=>{
+    const cls=dig.includes(c)?'d-box-digital':pho.includes(c)?'d-box-phono':'d-box-shared';
+    if(i>0)p+=ln(cx,y,cx,y+G);
+    if(i>0)y+=G;
+    b+=box(x,y,c,cls);
+    y+=BH;
+  });
+  return `<svg width="100%" viewBox="0 0 ${W} ${y+24}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
 }
 
 renderAll();
