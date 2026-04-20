@@ -1122,8 +1122,30 @@ function buildDiagram(){
   const digS=sortChain(dig),phoS=sortChain(pho),shrS=sortShr(shr);
   const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
   const sh=s=>{const e=esc(s);return e.length>16?e.slice(0,15)+'…':e;};
-  const box=(x,y,c,cls)=>{const cx=x+BW/2,cy=y+BH/2;return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="8" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${cy+9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;};
-  const ln=(x1,y1,x2,y2)=>`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
+  const cartridge=components.find(c=>c.type==='cartridge');
+  const tonearm=components.find(c=>c.type==='tonearm');
+  const box=(x,y,c,cls)=>{
+    const cx=x+BW/2,cy=y+BH/2;
+    if(c.type==='turntable'){
+      const subs=[];
+      if(tonearm)subs.push('⟳ '+sh(tonearm.name));
+      if(cartridge)subs.push('◆ '+sh(cartridge.name));
+      if(subs.length===0){
+        return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="8" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${cy+9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;
+      }
+      const extraH=subs.length*14;
+      const bh=BH+extraH;
+      return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${bh}" rx="8" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${y+14}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${y+26}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text><line x1="${x+8}" x2="${x+BW-8}" y1="${y+34}" y2="${y+34}" stroke="#e2e8f0" stroke-width="1"/>${subs.map((s,i)=>`<text class="dv-sub" x="${cx}" y="${y+44+i*14}" text-anchor="middle" dominant-baseline="central" style="font-size:9px;">${esc(s)}</text>`).join('')}</g>`;
+    }
+    return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="8" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${cy+9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;
+  };
+  const boxH=(c)=>{
+    if(c.type==='turntable'){
+      const subs=(tonearm?1:0)+(cartridge?1:0);
+      return subs>0?BH+subs*14:BH;
+    }
+    return BH;
+  };
   const pt=d=>`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="${d}" marker-end="url(#da)"/>`;
   const lbl=(x,y,t,a)=>t?`<text class="dv-label" x="${x}" y="${y}" text-anchor="${a||'start'}" dominant-baseline="central">${esc(t)}</text>`:'';
   const ct=(a,b)=>{if(!a||!b)return null;const c=connections.find(x=>(x.fromId===a.id&&x.toId===b.id)||(x.fromId===b.id&&x.toId===a.id));return c?c.type:null;};
@@ -1133,17 +1155,17 @@ function buildDiagram(){
     b+=`<text class="dv-col" x="${lX+BW/2}" y="16" text-anchor="middle">DIGITAL</text>`;
     b+=`<text class="dv-col" x="${rX+BW/2}" y="16" text-anchor="middle">PHONO</text>`;
     let lB=null,rB=null,lPrev=null,rPrev=null;
-    digS.forEach((c,i)=>{const y=24+i*(BH+G),cx=lX+BW/2;if(lB!==null){p+=ln(cx,lB,cx,y);const t=ct(lPrev,c);if(t)b+=lbl(cx+5,lB+G/2,t);}b+=box(lX,y,c,'dv-box-digital');lB=y+BH;lPrev=c;});
-    phoS.forEach((c,i)=>{const y=24+i*(BH+G),cx=rX+BW/2;if(rB!==null){p+=ln(cx,rB,cx,y);const t=ct(rPrev,c);if(t)b+=lbl(cx+5,rB+G/2,t);}b+=box(rX,y,c,'dv-box-phono');rB=y+BH;rPrev=c;});
+    digS.forEach((c,i)=>{const y=24+i*(BH+G),cx=lX+BW/2;if(lB!==null){p+=ln(cx,lB,cx,y);const t=ct(lPrev,c);if(t)b+=lbl(cx+5,lB+G/2,t);}b+=box(lX,y,c,'dv-box-digital');lB=y+boxH(c);lPrev=c;});
+    phoS.forEach((c,i)=>{const y=24+i*(BH+G),cx=rX+BW/2;if(rB!==null){p+=ln(cx,rB,cx,y);const t=ct(rPrev,c);if(t)b+=lbl(cx+5,rB+G/2,t);}b+=box(rX,y,c,'dv-box-phono');rB=y+boxH(c);rPrev=c;});
     const rY=24+mx*(BH+G),sX=W/2-BW/2,sCx=sX+BW/2;let sY=rY+G*2;
     if(shrS.length>0){const fS=shrS[0];if(lB!==null){p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${rY} L${sCx-14},${rY} L${sCx-14},${sY}`);const t=ct(lPrev,fS);if(t)b+=lbl(Math.round((lX+BW/2+sCx-14)/2),rY-8,t,'middle');}if(rB!==null){p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${rY} L${sCx+14},${rY} L${sCx+14},${sY}`);const t=ct(rPrev,fS);if(t)b+=lbl(Math.round((rX+BW/2+sCx+14)/2),rY-8,t,'middle');}}
     let pB=null,shrPrev=null;
-    shrS.forEach(c=>{if(pB!==null){p+=ln(sCx,pB,sCx,sY);const t=ct(shrPrev,c);if(t)b+=lbl(sCx+5,pB+G/2,t);}b+=box(sX,sY,c,'dv-box-shared');pB=sY+BH;shrPrev=c;sY+=BH+G;});
+    shrS.forEach(c=>{if(pB!==null){p+=ln(sCx,pB,sCx,sY);const t=ct(shrPrev,c);if(t)b+=lbl(sCx+5,pB+G/2,t);}b+=box(sX,sY,c,'dv-box-shared');pB=sY+boxH(c);shrPrev=c;sY+=boxH(c)+G;});
     return `<svg width="100%" viewBox="0 0 ${W} ${(pB||sY)+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
   }
   const all=[...digS,...phoS,...shrS],x=W/2-BW/2,cx=W/2;
   let y=20,p='',b='',prev=null;
-  all.forEach((c,i)=>{const cls=dig.includes(c)?'dv-box-digital':pho.includes(c)?'dv-box-phono':'dv-box-shared';if(i>0){p+=ln(cx,y,cx,y+G);const t=ct(prev,c);if(t)b+=lbl(cx+5,y+G/2,t);y+=G;}b+=box(x,y,c,cls);y+=BH;prev=c;});
+  all.forEach((c,i)=>{const cls=dig.includes(c)?'dv-box-digital':pho.includes(c)?'dv-box-phono':'dv-box-shared';if(i>0){p+=ln(cx,y,cx,y+G);const t=ct(prev,c);if(t)b+=lbl(cx+5,y+G/2,t);y+=G;}b+=box(x,y,c,cls);y+=boxH(c);prev=c;});
   return `<svg width="100%" viewBox="0 0 ${W} ${y+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
 }
 renderAll();
