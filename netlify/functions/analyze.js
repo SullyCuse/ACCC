@@ -67,9 +67,11 @@ exports.handler = async (event) => {
       ["cartridge", "phonopre", "turntable", "tonearm"].includes(c.type)
     );
 
-    const prompt = `You are an expert audio engineer and audiophile consultant. A user wants a compatibility analysis of their hi-fi audio system.
+    const prompt = `You are an expert audio engineer and audiophile consultant with deep knowledge of hi-fi audio equipment. You have extensive training knowledge of amplifiers, preamplifiers, DACs, streamers, turntables, phono stages, and other audio components from hundreds of manufacturers.
 
-Please look up the published specifications for each component from manufacturer data and well-known audio sources, then use those actual specs to perform a thorough analysis. IMPORTANT: The user has already classified each component by type — treat their classification as authoritative. Do NOT re-classify components (e.g. do not call an Amplifier a passive device, or a CD Player a streamer). Use the manufacturer's published specs for the exact model name provided.
+CRITICAL INSTRUCTION: You MUST complete this analysis in full. Never refuse, never say you cannot proceed, never claim you cannot find specifications. Use your training knowledge — if you know the component well, cite its specs precisely. If you are less certain about a specific model's exact figures, provide your best estimates based on the manufacturer's product line and typical specs for that component category. Always provide numbers. Always complete every section.
+
+The user has classified each component — treat their classification as authoritative. Do NOT re-classify.
 
 COMPONENTS:
 ${componentList}
@@ -77,40 +79,35 @@ ${componentList}
 SIGNAL CHAIN CONNECTIONS:
 ${connectionList}
 
-Structure your response EXACTLY as follows (use these exact section headers):
+Respond EXACTLY in this format:
 
 OVERALL SCORE: [X/10]
 IMPEDANCE MATCH: [Good/Acceptable/Poor or N/A]
 SENSITIVITY MATCH: [Good/Acceptable/Poor or N/A]
 
 COMPONENT SPECS
-List each component on its own, with its name as a bold header followed by bullet-point specs. Use EXACTLY this format for every component — no extra text between components, no summary paragraphs mixed in:
-
 **[Component Name] ([Type])**
-- Spec name: value
-- Spec name: value
-- Spec name: value
+- Spec: value
+- Spec: value
 
-Include only the specs relevant to that component type (power output, impedance, sensitivity, gain, output voltage, cartridge compliance, tonearm effective mass, etc.). One component block per component, nothing else in this section.
+(One block per component, relevant specs only, no other text in this section)
 
 COMPATIBILITY SUMMARY
-[2-3 sentences summarizing the overall compatibility verdict]
+[2-3 sentences on overall verdict]
 
 SIGNAL CHAIN ANALYSIS
-[Go connection by connection through the chain, assessing how well each pairing works using actual specs. Note whether the connection type is appropriate and cite specific numbers.]${
+[Connection-by-connection assessment citing specific numbers]${
       hasPhono ? `
 
 PHONO CHAIN
-[Dedicated analysis of the phono chain: cartridge type (MM/MC), compliance vs tonearm effective mass and resonant frequency calculation, gain matching, loading impedance recommendation, and capacitance if relevant.]` : ""
+[Cartridge type, compliance × tonearm mass resonance freq = 159/√(m×c) Hz, gain matching, loading recommendation]` : ""
     }
 
 ISSUES & RECOMMENDATIONS
-[Numbered list of specific issues and actionable recommendations with exact settings where relevant]
-
-Be precise and technical. Reference specific published spec numbers throughout. Prioritize completing ALL sections.`;
+[Numbered list of specific actionable recommendations with exact settings]`;
 
     const requestBody = JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
+      model: "claude-sonnet-4-6",
       max_tokens: 3000,
       messages: [{ role: "user", content: prompt }],
     });
