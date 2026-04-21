@@ -1,4 +1,4 @@
-const https = require("https");
+const Anthropic = require("@anthropic-ai/sdk");
 
 exports.handler = async (event) => {
   if (event.httpMethod === "OPTIONS") {
@@ -21,17 +21,36 @@ exports.handler = async (event) => {
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "ANTHROPIC_API_KEY not set in Netlify environment variables." }),
+      body: JSON.stringify({
+        error:
+          "ANTHROPIC_API_KEY environment variable not set. Add it in Netlify Site Settings → Environment Variables.",
+      }),
     };
   }
 
   try {
     const { components, connections } = JSON.parse(event.body);
 
+    if (!components || components.length < 2) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "At least two components are required." }),
+      };
+    }
+
+    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
     const typeLabels = {
-      amp: "Amplifier", preamp: "Preamplifier", speakers: "Speakers",
-      dac: "DAC", turntable: "Turntable", cartridge: "Cartridge",
-      phonopre: "Phono Preamp", streamer: "Streamer", cables: "Cables", other: "Other",
+      amp: "Amplifier",
+      preamp: "Preamplifier",
+      speakers: "Speakers",
+      dac: "DAC",
+      turntable: "Turntable",
+      cartridge: "Cartridge",
+      phonopre: "Phono Preamp",
+      streamer: "Streamer",
+      cables: "Cables",
+      other: "Other",
     };
 
     const componentList = components
@@ -41,15 +60,15 @@ exports.handler = async (event) => {
     const connectionList =
       connections && connections.length > 0
         ? connections.map((c) => `- ${c.fromName} → ${c.toName} via ${c.type}`).join("\n")
-        : "Not specified.";
+        : "Not specified — infer likely connections from component types.";
 
     const hasPhono = components.some((c) =>
       ["cartridge", "phonopre", "turntable"].includes(c.type)
     );
 
-    const prompt = `You are an expert audio engineer analyzing a hi-fi audio system for compatibility.
+    const prompt = `You are an expert audio engineer and audiophile consultant. A user wants a compatibility analysis of their hi-fi audio system.
 
-Please look up the published specifications for each component and provide a detailed analysis.
+Please look up the published specifications for each component from manufacturer data and well-known audio sources, then use those actual specs to perform a thorough analysis.
 
 COMPONENTS:
 ${componentList}
@@ -57,79 +76,62 @@ ${componentList}
 SIGNAL CHAIN CONNECTIONS:
 ${connectionList}
 
-Structure your response EXACTLY as follows:
+Structure your response EXACTLY as follows (use these exact section headers):
 
 OVERALL SCORE: [X/10]
 IMPEDANCE MATCH: [Good/Acceptable/Poor or N/A]
 SENSITIVITY MATCH: [Good/Acceptable/Poor or N/A]
 
 COMPONENT SPECS
-For each component list key published specs.
+List each component on its own, with its name as a bold header followed by bullet-point specs. Use EXACTLY this format for every component — no extra text between components, no summary paragraphs mixed in:
+
+**[Component Name] ([Type])**
+- Spec name: value
+- Spec name: value
+- Spec name: value
+
+Include only the specs relevant to that component type (power output, impedance, sensitivity, gain, output voltage, cartridge compliance, tonearm effective mass, etc.). One component block per component, nothing else in this section.
 
 COMPATIBILITY SUMMARY
-2-3 sentence overall verdict.
+[2-3 sentences summarizing the overall compatibility verdict]
 
 SIGNAL CHAIN ANALYSIS
-Analyze each connection citing specific specs.${hasPhono ? `
+[Go connection by connection through the chain, assessing how well each pairing works using actual specs. Note whether the connection type is appropriate and cite specific numbers.]${
+      hasPhono
+        ? `
 
 PHONO CHAIN
-Analyze cartridge compliance vs tonearm mass, gain matching, and loading impedance.` : ""}
+[Dedicated analysis of the phono chain: cartridge type (MM/MC), compliance vs tonearm effective mass and resonant frequency calculation, gain matching, loading impedance recommendation, and capacitance if relevant.]`
+        : ""
+    }
 
 ISSUES & RECOMMENDATIONS
-Numbered list of issues and recommendations.
+[Numbered list of specific issues and actionable recommendations with exact settings where relevant]
 
-Be precise and reference actual published spec numbers.`;
+Be precise, technical, and always reference specific published spec numbers. If specs cannot be found for a component, state that and reason from what is known.`;
 
-    const requestBody = JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
+    const message = await client.messages.create({
+      model: "claude-opus-4-5",
       max_tokens: 2500,
       messages: [{ role: "user", content: prompt }],
     });
 
-    const responseText = await new Promise((resolve, reject) => {
-      const req = https.request(
-        {
-          hostname: "api.anthropic.com",
-          path: "/v1/messages",
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-key": process.env.ANTHROPIC_API_KEY,
-            "anthropic-version": "2023-06-01",
-            "Content-Length": Buffer.byteLength(requestBody),
-          },
-        },
-        (res) => {
-          let data = "";
-          res.on("data", (chunk) => { data += chunk; });
-          res.on("end", () => resolve(data));
-        }
-      );
-      req.on("error", reject);
-      req.write(requestBody);
-      req.end();
-    });
-
-    const parsed = JSON.parse(responseText);
-
-    if (parsed.error) {
-      return {
-        statusCode: 500,
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-        body: JSON.stringify({ error: parsed.error.message || "API error" }),
-      };
-    }
-
     return {
       statusCode: 200,
-      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
-      body: JSON.stringify({ text: parsed.content[0].text }),
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({ text: message.content[0].text }),
     };
-
   } catch (error) {
+    console.error("Analysis error:", error);
     return {
       statusCode: 500,
-      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify({ error: error.message || "Analysis failed" }),
     };
   }
