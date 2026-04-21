@@ -1274,20 +1274,22 @@ function buildDiagram(){
 
   const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
 
-  // Wrap name into 1 or 2 lines, max ~18 chars per line
-  const wrapName=s=>{
+  // Wrap name into lines based on max chars (derived from box width)
+  const wrapNameW=(s,mc=18)=>{
     const e=esc(s);
-    if(e.length<=18)return[e];
-    let split=e.lastIndexOf(' ',17);
-    if(split<3)split=17;
-    return[e.slice(0,split),e.slice(split).trim().slice(0,17)+(e.slice(split).trim().length>17?'…':'')];
+    if(e.length<=mc)return[e];
+    let sp=e.lastIndexOf(' ',mc-1);
+    if(sp<3)sp=mc-1;
+    return[e.slice(0,sp),e.slice(sp).trim().slice(0,mc)+(e.slice(sp).trim().length>mc?'…':'')];
   };
 
   const cartridge=components.find(c=>c.type==='cartridge');
   const tonearm=components.find(c=>c.type==='tonearm');
 
-  const boxH=(c)=>{
-    const lines=wrapName(c.name).length;
+  // Box height — accepts optional width (defaults to BW), affects line-wrapping estimate
+  const boxH=(c,w=BW)=>{
+    const mc=Math.max(10,Math.floor(w/8));
+    const lines=wrapNameW(c.name,mc).length;
     if(c.type==='turntable'){
       const subs=(tonearm?1:0)+(cartridge?1:0);
       return BH+(lines>1?18:0)+(subs>0?18+subs*17:0);
@@ -1295,86 +1297,129 @@ function buildDiagram(){
     return BH+(lines>1?18:0);
   };
 
-  const box=(x,y,c,cls)=>{
-    const cx=x+BW/2;
-    const bh=boxH(c);
-    const lines=wrapName(c.name);
+  // Box renderer — accepts optional width
+  const box=(x,y,c,cls,w=BW)=>{
+    const cx=x+w/2;
+    const mc=Math.max(10,Math.floor(w/8));
+    const lines=wrapNameW(c.name,mc);
+    const bh=boxH(c,w);
     let inner='';
     if(lines.length===1){
-      // Single line: name at 40%, type at 65%
       inner+=`<text class="dv-title" x="${cx}" y="${y+Math.round(bh*0.38)}" text-anchor="middle" dominant-baseline="central">${lines[0]}</text>`;
       inner+=`<text class="dv-sub" x="${cx}" y="${y+Math.round(bh*0.67)}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text>`;
-    } else {
-      // Two lines: line1 at 25%, line2 at 46%, type at 70%
+    }else{
       inner+=`<text class="dv-title" x="${cx}" y="${y+Math.round(bh*0.24)}" text-anchor="middle" dominant-baseline="central">${lines[0]}</text>`;
       inner+=`<text class="dv-title" x="${cx}" y="${y+Math.round(bh*0.46)}" text-anchor="middle" dominant-baseline="central">${lines[1]}</text>`;
       inner+=`<text class="dv-sub" x="${cx}" y="${y+Math.round(bh*0.72)}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text>`;
     }
     if(c.type==='turntable'){
       const subs=[];
-      if(tonearm)subs.push('⟳ '+wrapName(tonearm.name)[0]);
-      if(cartridge)subs.push('◆ '+wrapName(cartridge.name)[0]);
+      if(tonearm)subs.push('⟳ '+wrapNameW(tonearm.name,mc)[0]);
+      if(cartridge)subs.push('◆ '+wrapNameW(cartridge.name,mc)[0]);
       if(subs.length>0){
         const divY=y+Math.round(bh*0.78);
-        inner+=`<line x1="${x+8}" x2="${x+BW-8}" y1="${divY}" y2="${divY}" stroke="#e2e8f0" stroke-width="1"/>`;
+        inner+=`<line x1="${x+6}" x2="${x+w-6}" y1="${divY}" y2="${divY}" stroke="#e2e8f0" stroke-width="1"/>`;
         subs.forEach((s,i)=>{inner+=`<text class="dv-sub" x="${cx}" y="${divY+11+i*17}" text-anchor="middle" dominant-baseline="central" style="font-size:9px;">${esc(s)}</text>`;});
       }
     }
-    return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${bh}" rx="8" class="dv-box ${cls}"/>${inner}</g>`;
+    return `<g class="dv-node"><rect x="${x}" y="${y}" width="${w}" height="${bh}" rx="8" class="dv-box ${cls}"/>${inner}</g>`;
   };
 
-  const pt=d=>`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="${d}" marker-end="url(#da)"/>`;
+  const pt=d=>`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="${d}"/>`;
   const ln=(x1,y1,x2,y2)=>`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
   const lbl=(x,y,t,a)=>t?`<text class="dv-label" x="${x}" y="${y}" text-anchor="${a||'start'}" dominant-baseline="central">${esc(t)}</text>`:'';
-  const ct=(a,b)=>{if(!a||!b)return null;const c=connections.find(x=>(x.fromId===a.id&&x.toId===b.id)||(x.fromId===b.id&&x.toId===a.id));return c?c.type:null;};
+  const ct=(a,b_)=>{if(!a||!b_)return null;const c=connections.find(x=>(x.fromId===a.id&&x.toId===b_.id)||(x.fromId===b_.id&&x.toId===a.id));return c?c.type:null;};
+
+  // Render a chain column using connection-based arrows
+  // Returns {b, p, lastBot, lastComp, totalY}
+  function renderChain(chain,startX,startY,cls,colBW=BW){
+    const ids=new Set(chain.map(c=>c.id));
+    const intConns=connections.filter(cn=>ids.has(cn.fromId)&&ids.has(cn.toId));
+    const hasInSet=new Set(intConns.map(cn=>cn.toId));
+    const sources=chain.filter(c=>!hasInSet.has(c.id));
+    const hubs=chain.filter(c=>hasInSet.has(c.id));
+    let b='',p='';
+    let curY=startY,lastBot=null,lastComp=null;
+    const colCx=startX+colBW/2;
+
+    if(sources.length>=2){
+      // Sub-column layout: sources side by side, then hubs below
+      const availW=colBW;
+      const srcBW=Math.floor((availW-G)/2);
+      const src1X=startX,src2X=startX+srcBW+G;
+      const src1Cx=src1X+srcBW/2,src2Cx=src2X+srcBW/2;
+      // Render source boxes
+      const srcHeights=sources.map(s=>boxH(s,srcBW));
+      const maxSrcH=Math.max(...srcHeights);
+      sources.forEach((c,i)=>{
+        const sx=startX+i*(srcBW+G);
+        b+=box(sx,curY,c,cls,srcBW);
+      });
+      const srcsBotY=curY+maxSrcH;
+      // Connect to first hub via bus merge
+      if(hubs.length>0){
+        const hub=hubs[0];
+        const hubY=srcsBotY+G;
+        const mergeY=srcsBotY+G/2;
+        const hubConn=connections.filter(cn=>cn.toId===hub.id&&ids.has(cn.fromId));
+        sources.forEach((c,i)=>{
+          const scx=startX+i*(srcBW+G)+srcBW/2;
+          const srcBot=curY+srcHeights[i];
+          const conn=hubConn.find(cn=>cn.fromId===c.id);
+          // Vertical down from source, then horizontal to hub center, at mergeY
+          p+=`<line stroke="#2563eb" stroke-width="1.2" x1="${scx}" y1="${srcBot}" x2="${scx}" y2="${mergeY}"/>`;
+          p+=`<line stroke="#2563eb" stroke-width="1.2" x1="${scx}" y1="${mergeY}" x2="${colCx}" y2="${mergeY}"/>`;
+          if(conn)b+=lbl(scx+(scx<colCx?3:-3),(srcBot+mergeY)/2,conn.type,scx<colCx?'start':'end');
+        });
+        // Single arrow from merge line down to hub
+        p+=`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${colCx}" y1="${mergeY}" x2="${colCx}" y2="${hubY}" marker-end="url(#da)"/>`;
+        b+=box(startX,hubY,hub,cls,colBW);
+        lastBot=hubY+boxH(hub,colBW);lastComp=hub;curY=lastBot+G;
+        // Remaining hubs sequential
+        for(let i=1;i<hubs.length;i++){
+          const c=hubs[i];
+          p+=ln(colCx,lastBot,colCx,curY);
+          const t=ct(lastComp,c);if(t)b+=lbl(colCx+5,(lastBot+curY)/2,t);
+          b+=box(startX,curY,c,cls,colBW);
+          lastBot=curY+boxH(c,colBW);lastComp=c;curY=lastBot+G;
+        }
+      }else{
+        lastBot=srcsBotY;lastComp=sources[sources.length-1];curY=srcsBotY+G;
+      }
+    }else{
+      // Single source or simple sequential chain
+      chain.forEach(c=>{
+        if(lastBot!==null){
+          p+=ln(colCx,lastBot,colCx,curY);
+          const t=ct(lastComp,c);if(t)b+=lbl(colCx+5,(lastBot+curY)/2,t);
+        }
+        b+=box(startX,curY,c,cls,colBW);
+        lastBot=curY+boxH(c,colBW);lastComp=c;curY=lastBot+G;
+      });
+    }
+    return{b,p,lastBot,lastComp,totalY:curY};
+  }
 
   if(hasBoth){
     const lX=10,rX=W/2+10;
     let p='',b='';
     b+=`<text class="dv-col" x="${lX+BW/2}" y="16" text-anchor="middle">DIGITAL</text>`;
     b+=`<text class="dv-col" x="${rX+BW/2}" y="16" text-anchor="middle">PHONO</text>`;
-    let lB=null,rB=null,lPrev=null,rPrev=null;
 
-    // Position all dig nodes, store Y coords
-    const digPos={};
-    let lY=24;
-    digS.forEach(c=>{digPos[c.id]={top:lY,bot:lY+boxH(c)};b+=box(lX,lY,c,'dv-box-digital');lY+=boxH(c)+G;});
-    // Draw arrows based on ACTUAL connections within dig
-    const digIds=new Set(digS.map(c=>c.id));
-    connections.filter(cn=>digIds.has(cn.fromId)&&digIds.has(cn.toId)).forEach(cn=>{
-      const fp=digPos[cn.fromId],tp=digPos[cn.toId];if(!fp||!tp)return;
-      // Offset arrow left if non-adjacent (arrow spans over intermediate box)
-      const fromIdx=digS.findIndex(c=>c.id===cn.fromId),toIdx=digS.findIndex(c=>c.id===cn.toId);
-      const offset=(toIdx-fromIdx>1)?-10:0;
-      const ax=lX+BW/2+offset;
-      p+=`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${ax}" y1="${fp.bot}" x2="${ax}" y2="${tp.top}" marker-end="url(#da)"/>`;
-      b+=lbl(ax+5,(fp.bot+tp.top)/2,cn.type);
-    });
-    // Track last dig node for merge line to shared
-    lB=digPos[digS[digS.length-1]?.id]?.bot??null;
-    lPrev=digS.find(c=>!connections.some(cn=>digIds.has(cn.toId)&&cn.fromId===c.id&&digIds.has(cn.toId)))||digS[digS.length-1];
+    const digR=renderChain(digS,lX,24,'dv-box-digital',BW);
+    b+=digR.b;p+=digR.p;
+    const phoR=renderChain(phoS,rX,24,'dv-box-phono',BW);
+    b+=phoR.b;p+=phoR.p;
 
-    // Position all pho nodes, store Y coords
-    const phoPos={};
-    let rY_pos=24;
-    phoS.forEach(c=>{phoPos[c.id]={top:rY_pos,bot:rY_pos+boxH(c)};b+=box(rX,rY_pos,c,'dv-box-phono');rY_pos+=boxH(c)+G;});
-    // Draw arrows based on ACTUAL connections within pho
-    const phoIds=new Set(phoS.map(c=>c.id));
-    connections.filter(cn=>phoIds.has(cn.fromId)&&phoIds.has(cn.toId)).forEach(cn=>{
-      const fp=phoPos[cn.fromId],tp=phoPos[cn.toId];if(!fp||!tp)return;
-      const ax=rX+BW/2;
-      p+=`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${ax}" y1="${fp.bot}" x2="${ax}" y2="${tp.top}" marker-end="url(#da)"/>`;
-      b+=lbl(ax+5,(fp.bot+tp.top)/2,cn.type);
-    });
-    rB=phoPos[phoS[phoS.length-1]?.id]?.bot??null;
-    rPrev=phoS[phoS.length-1];
-
-    const mergeY=Math.max(lY,rY_pos);
+    const lB=digR.lastBot,lPrev=digR.lastComp;
+    const rB=phoR.lastBot,rPrev=phoR.lastComp;
+    const mergeY=Math.max(digR.totalY,phoR.totalY);
     const sX=W/2-BW/2,sCx=sX+BW/2;let sY=mergeY+G;
+
     if(shrS.length>0){
       const fS=shrS[0];
-      if(lB!==null){p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${mergeY} L${sCx-14},${mergeY} L${sCx-14},${sY}`);const t=ct(lPrev,fS);if(t)b+=lbl(Math.round((lX+BW/2+sCx-14)/2),mergeY-8,t,'middle');}
-      if(rB!==null){p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${mergeY} L${sCx+14},${mergeY} L${sCx+14},${sY}`);const t=ct(rPrev,fS);if(t)b+=lbl(Math.round((rX+BW/2+sCx+14)/2),mergeY-8,t,'middle');}
+      if(lB!==null){p+=`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="M${lX+BW/2},${lB} L${lX+BW/2},${mergeY} L${sCx-14},${mergeY} L${sCx-14},${sY}" marker-end="url(#da)"/>`;const t=ct(lPrev,fS);if(t)b+=lbl(Math.round((lX+BW/2+sCx-14)/2),mergeY-8,t,'middle');}
+      if(rB!==null){p+=`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="M${rX+BW/2},${rB} L${rX+BW/2},${mergeY} L${sCx+14},${mergeY} L${sCx+14},${sY}" marker-end="url(#da)"/>`;const t=ct(rPrev,fS);if(t)b+=lbl(Math.round((rX+BW/2+sCx+14)/2),mergeY-8,t,'middle');}
     }
     let pB=null,shrPrev=null;
     shrS.forEach(c=>{if(pB!==null){p+=ln(sCx,pB,sCx,sY);const t=ct(shrPrev,c);if(t)b+=lbl(sCx+5,(pB+sY)/2,t);}b+=box(sX,sY,c,'dv-box-shared');pB=sY+boxH(c);shrPrev=c;sY+=boxH(c)+G;});
