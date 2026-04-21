@@ -923,7 +923,7 @@ select {
       <!-- RIGHT COLUMN -->
       <div class="results-sticky">
         <div class="card">
-          <div class="card-head"><span class="card-title" style="margin-left:0;">Compatibility Score</span></div>
+          <div class="card-head"><span class="card-title" style="margin-left:0;">Analysis Status</span></div>
           <div class="card-body">
             <div id="results-content">
               <div class="placeholder-box">
@@ -953,6 +953,9 @@ select {
       <h2>Full Compatibility Analysis</h2>
       <p>Detailed breakdown across your entire signal chain</p>
       <button class="btn-print" onclick="printReport()">🖨️ Print / Save as PDF</button>
+    </div>
+    <div id="results-scores" style="margin-bottom:20px;display:none;">
+      <div class="score-row" id="score-row-inner"></div>
     </div>
     <div class="results-3col">
       <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Component Specifications</span></div><div class="card-body" id="panel-specs-body"></div></div>
@@ -1115,23 +1118,34 @@ async function analyze(){
 function renderResults(text){
   const rEl=document.getElementById('results-content'),fullEl=document.getElementById('results-full');
   const sM=text.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i),iM=text.match(/IMPEDANCE MATCH:\s*(.+)/i),nM=text.match(/SENSITIVITY MATCH:\s*(.+)/i);
-  const score=sM?parseFloat(sM[1]):null,iStr=iM?iM[1].trim():null,nStr=nM?nM[1].trim():null;
+  const score=sM?parseFloat(sM[1]):null,iStr=iM?iM[1].trim().replace(/\*+/g,''):null,nStr=nM?nM[1].trim().replace(/\*+/g,''):null;
   const nC=n=>n>=8?'score-good':n>=6?'score-ok':'score-bad';
   const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'score-good':l.includes('poor')?'score-bad':'score-ok';};
-  let scores='';
-  if(score!==null||iStr||nStr){scores=`<div class="score-row">${score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:''} ${iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:''} ${nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:''}</div>`;}
-  rEl.innerHTML=`<div class="fadein">${scores||'<p style="font-size:13px;color:var(--text-3);">Analysis complete — see full breakdown below.</p>'}</div>`;
-  const clean=text.replace(/OVERALL SCORE:.*\n?/i,'').replace(/IMPEDANCE MATCH:.*\n?/i,'').replace(/SENSITIVITY MATCH:.*\n?/i,'');
-  const hdrs=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
 
-  // Simple positional extraction — find each header by indexOf, extract text until next header
+  // Show scores above 3-col
+  if(score!==null||iStr||nStr){
+    const scoresEl=document.getElementById('results-scores');
+    const inner=document.getElementById('score-row-inner');
+    inner.innerHTML=`
+      ${score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:''}
+      ${iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:''}
+      ${nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:''}`;
+    scoresEl.style.display='block';
+  }
+
+  // Update right panel status
+  rEl.innerHTML=`<div class="fadein" style="text-align:center;padding:20px 0;">
+    <div style="font-size:36px;margin-bottom:10px;">✅</div>
+    <p style="font-size:13px;color:var(--text-3);">Analysis complete — see full breakdown below.</p>
+  </div>`;
+
+  const clean=text.replace(/OVERALL SCORE:.*\n?/i,'').replace(/IMPEDANCE MATCH:.*\n?/i,'').replace(/SENSITIVITY MATCH:.*\n?/i,'');
+
   function extractSections(src){
+    const hdrs=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
     const upper=src.toUpperCase();
     const found=[];
-    hdrs.forEach(h=>{
-      const idx=upper.indexOf(h);
-      if(idx!==-1)found.push({name:h,idx});
-    });
+    hdrs.forEach(h=>{const idx=upper.indexOf(h);if(idx!==-1)found.push({name:h,idx});});
     found.sort((a,b)=>a.idx-b.idx);
     const result={};
     found.forEach((f,i)=>{
@@ -1143,13 +1157,14 @@ function renderResults(text){
   }
 
   const secs=extractSections(clean);
-  // Fallback: if nothing parsed, put everything in summary
   if(!Object.values(secs).some(v=>v))secs['COMPATIBILITY SUMMARY']=clean.trim();
+
   document.getElementById('panel-specs-body').innerHTML=renderCompSpecs(secs['COMPONENT SPECS']);
-  const cp=[secs['SIGNAL CHAIN ANALYSIS'],secs['PHONO CHAIN']].filter(Boolean);
-  document.getElementById('panel-chain-body').innerHTML=renderPanelSections(cp.map((t,i)=>({label:['Signal chain','Phono chain'][i],text:t})));
-  const sp=[secs['COMPATIBILITY SUMMARY'],secs['ISSUES & RECOMMENDATIONS']].filter(Boolean);
-  document.getElementById('panel-summary-body').innerHTML=renderPanelSections(sp.map((t,i)=>({label:['Overall verdict','Issues & recommendations'][i],text:t})));
+  const cp=[secs['SIGNAL CHAIN ANALYSIS']&&{label:'Signal chain',text:secs['SIGNAL CHAIN ANALYSIS']},secs['PHONO CHAIN']&&{label:'Phono chain',text:secs['PHONO CHAIN']}].filter(Boolean);
+  document.getElementById('panel-chain-body').innerHTML=renderPanelSections(cp.length?cp:[{label:'Signal chain',text:'No content.'}]);
+  const sp=[secs['COMPATIBILITY SUMMARY']&&{label:'Overall verdict',text:secs['COMPATIBILITY SUMMARY']},secs['ISSUES & RECOMMENDATIONS']&&{label:'Issues & recommendations',text:secs['ISSUES & RECOMMENDATIONS']}].filter(Boolean);
+  document.getElementById('panel-summary-body').innerHTML=renderPanelSections(sp.length?sp:[{label:'Summary',text:'No content.'}]);
+
   fullEl.style.display='block';
   setTimeout(()=>fullEl.scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
