@@ -1089,24 +1089,22 @@ async function analyze(){
   errEl.textContent='';btn.disabled=true;
   rEl.innerHTML=`<div class="loading-box"><div class="vu-meter">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-caption">Analyzing signal chain…</p></div>`;
   try{
-    // Fire both API calls in parallel
-    const [specsRes, chainRes] = await Promise.all([
-      fetch('/.netlify/functions/analyze-specs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components})}),
-      fetch('/.netlify/functions/analyze-chain',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components,connections})})
+    const payload=JSON.stringify({components,connections});
+    const [specsRes,chainRes,summaryRes]=await Promise.all([
+      fetch('/.netlify/functions/analyze-specs',{method:'POST',headers:{'Content-Type':'application/json'},body:payload}),
+      fetch('/.netlify/functions/analyze-chain',{method:'POST',headers:{'Content-Type':'application/json'},body:payload}),
+      fetch('/.netlify/functions/analyze-summary',{method:'POST',headers:{'Content-Type':'application/json'},body:payload})
     ]);
-
-    const specsRaw = await specsRes.text();
-    const chainRaw = await chainRes.text();
-
-    let specsData, chainData;
-    try { specsData = JSON.parse(specsRaw); } catch(e) { throw new Error(`Specs error: ${specsRaw.slice(0,120)}`); }
-    try { chainData = JSON.parse(chainRaw); } catch(e) { throw new Error(`Chain error: ${chainRaw.slice(0,120)}`); }
-
-    if(!specsRes.ok || specsData.error) throw new Error(specsData.error || `Specs HTTP ${specsRes.status}`);
-    if(!chainRes.ok || chainData.error) throw new Error(chainData.error || `Chain HTTP ${chainRes.status}`);
-
-    // Combine: inject COMPONENT SPECS section into the chain response
-    const combined = `COMPONENT SPECS\n${specsData.text}\n\n${chainData.text}`;
+    const [specsRaw,chainRaw,summaryRaw]=await Promise.all([specsRes.text(),chainRes.text(),summaryRes.text()]);
+    let specsData,chainData,summaryData;
+    try{specsData=JSON.parse(specsRaw);}catch(e){throw new Error(`Specs: ${specsRaw.slice(0,120)}`);}
+    try{chainData=JSON.parse(chainRaw);}catch(e){throw new Error(`Chain: ${chainRaw.slice(0,120)}`);}
+    try{summaryData=JSON.parse(summaryRaw);}catch(e){throw new Error(`Summary: ${summaryRaw.slice(0,120)}`);}
+    if(specsData.error)throw new Error(specsData.error);
+    if(chainData.error)throw new Error(chainData.error);
+    if(summaryData.error)throw new Error(summaryData.error);
+    // Combine all three into one text for renderResults
+    const combined=`${summaryData.text}\n\nCOMPONENT SPECS\n${specsData.text}\n\n${chainData.text}`;
     renderResults(combined);
   }catch(e){
     rEl.innerHTML=`<div class="placeholder-box"><div class="placeholder-icon">⚠️</div><p>${esc(e.message||'Analysis failed. Please try again.')}</p></div>`;
