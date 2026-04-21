@@ -111,8 +111,8 @@ ISSUES & RECOMMENDATIONS
 Be precise, technical, and always reference specific published spec numbers. If specs cannot be found for a component, state that and reason from what is known.`;
 
     const requestBody = JSON.stringify({
-      model: "claude-sonnet-4-6",
-      max_tokens: 2500,
+      model: "claude-haiku-4-5-20251001",
+      max_tokens: 2000,
       messages: [{ role: "user", content: prompt }],
     });
 
