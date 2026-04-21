@@ -98,18 +98,16 @@ COMPATIBILITY SUMMARY
 
 SIGNAL CHAIN ANALYSIS
 [Go connection by connection through the chain, assessing how well each pairing works using actual specs. Note whether the connection type is appropriate and cite specific numbers.]${
-      hasPhono
-        ? `
+      hasPhono ? `
 
 PHONO CHAIN
-[Dedicated analysis of the phono chain: cartridge type (MM/MC), compliance vs tonearm effective mass and resonant frequency calculation, gain matching, loading impedance recommendation, and capacitance if relevant.]`
-        : ""
+[Dedicated analysis of the phono chain: cartridge type (MM/MC), compliance vs tonearm effective mass and resonant frequency calculation, gain matching, loading impedance recommendation, and capacitance if relevant.]` : ""
     }
 
 ISSUES & RECOMMENDATIONS
 [Numbered list of specific issues and actionable recommendations with exact settings where relevant]
 
-Be precise and technical, but keep each section concise — prioritize completing ALL sections over detail in any single section. Always reference specific published spec numbers.`;
+Be precise and technical. Reference specific published spec numbers throughout. Prioritize completing ALL sections.`;
 
     const requestBody = JSON.stringify({
       model: "claude-haiku-4-5-20251001",
