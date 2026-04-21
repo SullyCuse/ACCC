@@ -28,8 +28,8 @@ Format EXACTLY — one block per component, no other text:
 - spec: value`;
 
     const body = JSON.stringify({
-      model: "claude-sonnet-4-6",
-      max_tokens: 500,
+      model: "claude-haiku-4-5-20251001",
+      max_tokens: 700,
       messages: [{ role: "user", content: prompt }],
     });
 
