@@ -846,7 +846,7 @@ select {
                   <option value="tonearm">Tonearm</option>
                   <option value="cartridge">Turntable Cartridge</option>
                   <option value="phonopre">Phono Preamplifier</option>
-                  <option value="streamer">Streamer / Source</option>
+                  <option value="streamer">Streamer / CD Player / Source</option>
                   <option value="cables">Cables / Interconnects</option>
                   <option value="headphones">Headphones</option>
                   <option value="other">Other</option>
@@ -1184,95 +1184,100 @@ function renderPanelSections(parts){
 }
 function updateDiagram(){const wrap=document.getElementById('diagram-wrap');if(components.length<2){wrap.innerHTML='';return;}wrap.innerHTML=buildDiagram();}
 function buildDiagram(){
-  const W=500,BW=138,BH=48,G=16;
+  const W=540,BW=160,BH=50,G=20;
   const dig=components.filter(c=>['streamer','dac'].includes(c.type)),pho=components.filter(c=>['turntable','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)&&c.type!=='cartridge'&&c.type!=='tonearm'),hasBoth=dig.length>0&&pho.length>0;
 
-  // Sort a chain by following defined connections. Nodes with no defined connections go last.
-  function sortChain(chain){
-    if(chain.length<=1)return chain;
-    const ids=new Set(chain.map(c=>c.id));
-    const hasIn=new Set();
+  // Global topological sort across ALL components using ALL connections
+  function globalSort(all){
+    if(all.length<=1)return all;
+    const ids=new Set(all.map(c=>c.id)),hasIn=new Set();
     connections.forEach(cn=>{if(ids.has(cn.fromId)&&ids.has(cn.toId))hasIn.add(cn.toId);});
-    const roots=chain.filter(c=>!hasIn.has(c.id));
-    const out=[],vis=new Set();
-    function visit(c){if(vis.has(c.id))return;vis.add(c.id);out.push(c);connections.filter(cn=>cn.fromId===c.id&&ids.has(cn.toId)).forEach(cn=>{const nx=chain.find(x=>x.id===cn.toId);if(nx)visit(nx);});}
-    (roots.length?roots:chain.slice(0,1)).forEach(visit);
-    chain.filter(c=>!vis.has(c.id)).forEach(c=>out.push(c));
+    const roots=all.filter(c=>!hasIn.has(c.id)),out=[],vis=new Set();
+    function visit(c){if(vis.has(c.id))return;vis.add(c.id);out.push(c);connections.filter(cn=>cn.fromId===c.id&&ids.has(cn.toId)).forEach(cn=>{const nx=all.find(x=>x.id===cn.toId);if(nx)visit(nx);});}
+    (roots.length?roots:all.slice(0,1)).forEach(visit);
+    all.filter(c=>!vis.has(c.id)).forEach(c=>out.push(c));
     return out;
   }
 
-  // For the shared chain: nodes that receive from dig/pho (merge targets) must come first;
-  // nodes with no connections at all (e.g. speakers with no defined wire connection) go last.
-  function sortShr(chain){
-    if(chain.length<=1)return chain;
-    const shrIds=new Set(chain.map(c=>c.id));
-    // Which shr nodes receive connections from outside (dig/pho)?
-    const mergeTargets=new Set();
-    connections.forEach(cn=>{if(!shrIds.has(cn.fromId)&&shrIds.has(cn.toId))mergeTargets.add(cn.toId);});
-    // Internal connections within shr
-    const hasInternalIn=new Set(),hasInternalOut=new Set();
-    connections.forEach(cn=>{if(shrIds.has(cn.fromId)&&shrIds.has(cn.toId)){hasInternalIn.add(cn.toId);hasInternalOut.add(cn.fromId);}});
-    // A node is "floating" if it has no internal connections AND is not a merge target
-    const isFloating=c=>!mergeTargets.has(c.id)&&!hasInternalIn.has(c.id)&&!hasInternalOut.has(c.id);
-    // Root: merge target with no internal incoming; fallback to any node with no internal incoming
-    let roots=chain.filter(c=>mergeTargets.has(c.id)&&!hasInternalIn.has(c.id));
-    if(!roots.length)roots=chain.filter(c=>!hasInternalIn.has(c.id)&&!isFloating(c));
-    if(!roots.length)roots=chain.filter(c=>!hasInternalIn.has(c.id));
-    if(!roots.length)roots=chain.slice(0,1);
-    const out=[],vis=new Set();
-    function visit(c){if(vis.has(c.id))return;vis.add(c.id);out.push(c);connections.filter(cn=>cn.fromId===c.id&&shrIds.has(cn.toId)).forEach(cn=>{const nx=chain.find(x=>x.id===cn.toId);if(nx)visit(nx);});}
-    roots.forEach(r=>visit(r));
-    // Add connected-but-unvisited nodes, then floating nodes at end
-    chain.filter(c=>!vis.has(c.id)&&!isFloating(c)).forEach(c=>out.push(c));
-    chain.filter(c=>!vis.has(c.id)&&isFloating(c)).forEach(c=>out.push(c));
-    return out;
+  // Sort each sub-chain by global topological order
+  function sortByGlobal(chain,globalOrder){
+    return [...chain].sort((a,b)=>globalOrder.findIndex(c=>c.id===a.id)-globalOrder.findIndex(c=>c.id===b.id));
   }
 
-  const digS=sortChain(dig),phoS=sortChain(pho),shrS=sortShr(shr);
+  const globalOrder=globalSort([...dig,...pho,...shr]);
+  const digS=sortByGlobal(dig,globalOrder),phoS=sortByGlobal(pho,globalOrder),shrS=sortByGlobal(shr,globalOrder);
+
   const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
-  const sh=s=>{const e=esc(s);return e.length>16?e.slice(0,15)+'…':e;};
+
+  // Wrap name into 1 or 2 lines, max ~18 chars per line
+  const wrapName=s=>{
+    const e=esc(s);
+    if(e.length<=18)return[e];
+    let split=e.lastIndexOf(' ',17);
+    if(split<3)split=17;
+    return[e.slice(0,split),e.slice(split).trim().slice(0,17)+(e.slice(split).trim().length>17?'…':'')];
+  };
+
   const cartridge=components.find(c=>c.type==='cartridge');
   const tonearm=components.find(c=>c.type==='tonearm');
-  const box=(x,y,c,cls)=>{
-    const cx=x+BW/2,cy=y+BH/2;
-    if(c.type==='turntable'){
-      const subs=[];
-      if(tonearm)subs.push('⟳ '+sh(tonearm.name));
-      if(cartridge)subs.push('◆ '+sh(cartridge.name));
-      if(subs.length===0){
-        return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="8" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${cy+9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;
-      }
-      const extraH=subs.length*14;
-      const bh=BH+extraH;
-      return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${bh}" rx="8" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${y+14}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${y+26}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text><line x1="${x+8}" x2="${x+BW-8}" y1="${y+34}" y2="${y+34}" stroke="#e2e8f0" stroke-width="1"/>${subs.map((s,i)=>`<text class="dv-sub" x="${cx}" y="${y+44+i*14}" text-anchor="middle" dominant-baseline="central" style="font-size:9px;">${esc(s)}</text>`).join('')}</g>`;
-    }
-    return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${BH}" rx="8" class="dv-box ${cls}"/><text class="dv-title" x="${cx}" y="${cy-8}" text-anchor="middle" dominant-baseline="central">${sh(c.name)}</text><text class="dv-sub" x="${cx}" y="${cy+9}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text></g>`;
-  };
+
   const boxH=(c)=>{
     if(c.type==='turntable'){
       const subs=(tonearm?1:0)+(cartridge?1:0);
-      return subs>0?BH+subs*14:BH;
+      const lines=wrapName(c.name).length;
+      return (lines>1?BH+10:BH)+(subs>0?8+subs*15:0);
     }
-    return BH;
+    return wrapName(c.name).length>1?BH+10:BH;
   };
+
+  const box=(x,y,c,cls)=>{
+    const cx=x+BW/2;
+    const bh=boxH(c);
+    const lines=wrapName(c.name);
+    const nameY=lines.length>1?y+12:y+bh/2-8;
+    const subY=lines.length>1?y+26:y+bh/2+9;
+    let inner=lines.map((ln,i)=>`<text class="dv-title" x="${cx}" y="${nameY+i*14}" text-anchor="middle" dominant-baseline="central">${ln}</text>`).join('');
+    inner+=`<text class="dv-sub" x="${cx}" y="${subY}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text>`;
+    if(c.type==='turntable'){
+      const subs=[];
+      if(tonearm)subs.push('⟳ '+wrapName(tonearm.name)[0]);
+      if(cartridge)subs.push('◆ '+wrapName(cartridge.name)[0]);
+      if(subs.length>0){
+        const divY=subY+12;
+        inner+=`<line x1="${x+8}" x2="${x+BW-8}" y1="${divY}" y2="${divY}" stroke="#e2e8f0" stroke-width="1"/>`;
+        subs.forEach((s,i)=>{inner+=`<text class="dv-sub" x="${cx}" y="${divY+10+i*15}" text-anchor="middle" dominant-baseline="central" style="font-size:9px;">${esc(s)}</text>`;});
+      }
+    }
+    return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${bh}" rx="8" class="dv-box ${cls}"/>${inner}</g>`;
+  };
+
   const pt=d=>`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="${d}" marker-end="url(#da)"/>`;
   const ln=(x1,y1,x2,y2)=>`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
   const lbl=(x,y,t,a)=>t?`<text class="dv-label" x="${x}" y="${y}" text-anchor="${a||'start'}" dominant-baseline="central">${esc(t)}</text>`:'';
   const ct=(a,b)=>{if(!a||!b)return null;const c=connections.find(x=>(x.fromId===a.id&&x.toId===b.id)||(x.fromId===b.id&&x.toId===a.id));return c?c.type:null;};
+
   if(hasBoth){
-    const mx=Math.max(digS.length,phoS.length),lX=10,rX=W/2+10;
+    const lX=10,rX=W/2+10;
     let p='',b='';
     b+=`<text class="dv-col" x="${lX+BW/2}" y="16" text-anchor="middle">DIGITAL</text>`;
     b+=`<text class="dv-col" x="${rX+BW/2}" y="16" text-anchor="middle">PHONO</text>`;
     let lB=null,rB=null,lPrev=null,rPrev=null;
-    digS.forEach((c,i)=>{const y=24+i*(BH+G),cx=lX+BW/2;if(lB!==null){p+=ln(cx,lB,cx,y);const t=ct(lPrev,c);if(t)b+=lbl(cx+5,lB+G/2,t);}b+=box(lX,y,c,'dv-box-digital');lB=y+boxH(c);lPrev=c;});
-    phoS.forEach((c,i)=>{const y=24+i*(BH+G),cx=rX+BW/2;if(rB!==null){p+=ln(cx,rB,cx,y);const t=ct(rPrev,c);if(t)b+=lbl(cx+5,rB+G/2,t);}b+=box(rX,y,c,'dv-box-phono');rB=y+boxH(c);rPrev=c;});
-    const rY=24+mx*(BH+G),sX=W/2-BW/2,sCx=sX+BW/2;let sY=rY+G*2;
-    if(shrS.length>0){const fS=shrS[0];if(lB!==null){p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${rY} L${sCx-14},${rY} L${sCx-14},${sY}`);const t=ct(lPrev,fS);if(t)b+=lbl(Math.round((lX+BW/2+sCx-14)/2),rY-8,t,'middle');}if(rB!==null){p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${rY} L${sCx+14},${rY} L${sCx+14},${sY}`);const t=ct(rPrev,fS);if(t)b+=lbl(Math.round((rX+BW/2+sCx+14)/2),rY-8,t,'middle');}}
+    // Use cumulative y to account for variable box heights
+    let lY=24,rY_pos=24;
+    digS.forEach((c)=>{const cx=lX+BW/2;if(lB!==null){p+=ln(cx,lB,cx,lY);const t=ct(lPrev,c);if(t)b+=lbl(cx+5,(lB+lY)/2,t);}b+=box(lX,lY,c,'dv-box-digital');lB=lY+boxH(c);lPrev=c;lY+=boxH(c)+G;});
+    phoS.forEach((c)=>{const cx=rX+BW/2;if(rB!==null){p+=ln(cx,rB,cx,rY_pos);const t=ct(rPrev,c);if(t)b+=lbl(cx+5,(rB+rY_pos)/2,t);}b+=box(rX,rY_pos,c,'dv-box-phono');rB=rY_pos+boxH(c);rPrev=c;rY_pos+=boxH(c)+G;});
+    const mergeY=Math.max(lY,rY_pos);
+    const sX=W/2-BW/2,sCx=sX+BW/2;let sY=mergeY+G;
+    if(shrS.length>0){
+      const fS=shrS[0];
+      if(lB!==null){p+=pt(`M${lX+BW/2},${lB} L${lX+BW/2},${mergeY} L${sCx-14},${mergeY} L${sCx-14},${sY}`);const t=ct(lPrev,fS);if(t)b+=lbl(Math.round((lX+BW/2+sCx-14)/2),mergeY-8,t,'middle');}
+      if(rB!==null){p+=pt(`M${rX+BW/2},${rB} L${rX+BW/2},${mergeY} L${sCx+14},${mergeY} L${sCx+14},${sY}`);const t=ct(rPrev,fS);if(t)b+=lbl(Math.round((rX+BW/2+sCx+14)/2),mergeY-8,t,'middle');}
+    }
     let pB=null,shrPrev=null;
-    shrS.forEach(c=>{if(pB!==null){p+=ln(sCx,pB,sCx,sY);const t=ct(shrPrev,c);if(t)b+=lbl(sCx+5,pB+G/2,t);}b+=box(sX,sY,c,'dv-box-shared');pB=sY+boxH(c);shrPrev=c;sY+=boxH(c)+G;});
+    shrS.forEach(c=>{if(pB!==null){p+=ln(sCx,pB,sCx,sY);const t=ct(shrPrev,c);if(t)b+=lbl(sCx+5,(pB+sY)/2,t);}b+=box(sX,sY,c,'dv-box-shared');pB=sY+boxH(c);shrPrev=c;sY+=boxH(c)+G;});
     return `<svg width="100%" viewBox="0 0 ${W} ${(pB||sY)+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
   }
+
   const all=[...digS,...phoS,...shrS],x=W/2-BW/2,cx=W/2;
   let y=20,p='',b='',prev=null;
   all.forEach((c,i)=>{const cls=dig.includes(c)?'dv-box-digital':pho.includes(c)?'dv-box-phono':'dv-box-shared';if(i>0){p+=ln(cx,y,cx,y+G);const t=ct(prev,c);if(t)b+=lbl(cx+5,y+G/2,t);y+=G;}b+=box(x,y,c,cls);y+=boxH(c);prev=c;});
