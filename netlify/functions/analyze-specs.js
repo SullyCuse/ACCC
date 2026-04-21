@@ -16,20 +16,24 @@ exports.handler = async (event) => {
       phonopre:"Phono Preamp",streamer:"Streamer",cdplayer:"CD Player",
       cables:"Cables",headphones:"Headphones",other:"Other"
     };
-    const componentList = components.map(c=>`- [${typeLabels[c.type]||c.type}] ${c.name}`).join("\n");
+    const numberedList = components.map((c,i)=>`${i+1}. [${typeLabels[c.type]||c.type}] ${c.name}`).join("\n");
 
-    const prompt = `List published specifications for ALL ${components.length} components below. Use your training knowledge — never refuse, estimate with (~) if uncertain. You MUST output a block for every single component — do not skip any.
+    const prompt = `List published specifications for all ${components.length} components. Use training knowledge — never refuse, estimate with (~) if uncertain. Output a spec block for EVERY numbered component. Do not stop until all ${components.length} are done.
 
-${componentList}
+${numberedList}
 
-Output EXACTLY one block per component, no other text:
+For each component output EXACTLY:
 **[Name] ([Type])**
-- spec: value
-- spec: value`;
+- impedance: value
+- sensitivity or output: value
+- power or gain: value
+- other key spec: value
+
+Start with component 1 and go through all ${components.length}. No skipping.`;
 
     const body = JSON.stringify({
       model: "claude-haiku-4-5-20251001",
-      max_tokens: 900,
+      max_tokens: 1100,
       messages: [{ role: "user", content: prompt }],
     });
 
