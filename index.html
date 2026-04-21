@@ -417,6 +417,7 @@ select {
 .badge-cartridge { background:#fff1f2; color:#9f1239; }
 .badge-phonopre  { background:#f8fafc; color:#475569; }
 .badge-streamer  { background:#ecfeff; color:#155e75; }
+.badge-cdplayer  { background:#f0f4ff; color:#3730a3; }
 .badge-cables    { background:#f8fafc; color:#334155; }
 .badge-headphones{ background:#f0f9ff; color:#0369a1; }
 .badge-other     { background:#fdf4ff; color:#7e22ce; }
@@ -846,7 +847,8 @@ select {
                   <option value="tonearm">Tonearm</option>
                   <option value="cartridge">Turntable Cartridge</option>
                   <option value="phonopre">Phono Preamplifier</option>
-                  <option value="streamer">Streamer / CD Player / Source</option>
+                  <option value="streamer">Streamer / Source</option>
+                  <option value="cdplayer">CD Player</option>
                   <option value="cables">Cables / Interconnects</option>
                   <option value="headphones">Headphones</option>
                   <option value="other">Other</option>
@@ -1023,8 +1025,8 @@ select {
 <script>
 const components=[];
 const connections=[];
-const typeLabels={amp:'Amplifier',preamp:'Preamplifier',speakers:'Speakers',dac:'DAC',turntable:'Turntable',tonearm:'Tonearm',cartridge:'Cartridge',phonopre:'Phono Preamp',streamer:'Streamer',cables:'Cables',headphones:'Headphones',other:'Other'};
-const specHints={amp:'Key specs: power output (W/ch), impedance range (Ω), input sensitivity (mV)',preamp:'Key specs: gain (dB), output impedance (Ω), input sensitivity (mV)',speakers:'Key specs: impedance (Ω), sensitivity (dB/W/m), power handling (W)',dac:'Key specs: output voltage (Vrms), output impedance (Ω), supported inputs',turntable:'Key specs: drive type, tonearm effective mass (g), speeds (RPM)',tonearm:'Key specs: effective mass (g), effective length (mm), offset angle, brand and model',cartridge:'Key specs: type (MM/MC), output voltage (mV), compliance (µm/mN), tracking force (g)',phonopre:'Key specs: gain (dB), input impedance (Ω/kΩ), MM/MC support, output voltage',streamer:'Key specs: digital outputs (AES/USB/COAX), supported formats and sample rates',cables:'Key specs: type (RCA/XLR/speaker), length, shielding',headphones:'Key specs: impedance (Ω), sensitivity (dB/mW), driver type, connection (3.5mm/4.4mm/XLR)',other:'Describe the component and its relevant electrical or mechanical specs'};
+const typeLabels={amp:'Amplifier',preamp:'Preamplifier',speakers:'Speakers',dac:'DAC',turntable:'Turntable',tonearm:'Tonearm',cartridge:'Cartridge',phonopre:'Phono Preamp',streamer:'Streamer',cdplayer:'CD Player',cables:'Cables',headphones:'Headphones',other:'Other'};
+const specHints={amp:'Key specs: power output (W/ch), impedance range (Ω), input sensitivity (mV)',preamp:'Key specs: gain (dB), output impedance (Ω), input sensitivity (mV)',speakers:'Key specs: impedance (Ω), sensitivity (dB/W/m), power handling (W)',dac:'Key specs: output voltage (Vrms), output impedance (Ω), supported inputs',turntable:'Key specs: drive type, tonearm effective mass (g), speeds (RPM)',tonearm:'Key specs: effective mass (g), effective length (mm), offset angle, brand and model',cartridge:'Key specs: type (MM/MC), output voltage (mV), compliance (µm/mN), tracking force (g)',phonopre:'Key specs: gain (dB), input impedance (Ω/kΩ), MM/MC support, output voltage',streamer:'Key specs: digital outputs (AES/USB/COAX), supported formats and sample rates',cdplayer:'Key specs: digital outputs (COAX/optical/AES), analog output voltage (Vrms), output impedance (Ω), DAC type',cables:'Key specs: type (RCA/XLR/speaker), length, shielding',headphones:'Key specs: impedance (Ω), sensitivity (dB/mW), driver type, connection (3.5mm/4.4mm/XLR)',other:'Describe the component and its relevant electrical or mechanical specs'};
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function updateHint(){const t=document.getElementById('comp-type').value,h=document.getElementById('spec-hint');h.textContent=specHints[t]||'';h.style.display=specHints[t]?'block':'none';}
