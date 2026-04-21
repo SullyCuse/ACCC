@@ -3,7 +3,7 @@
   functions = "netlify/functions"
 
 [functions."analyze"]
-  timeout = 30
+  timeout = 26
 
 [[headers]]
   for = "/*"
