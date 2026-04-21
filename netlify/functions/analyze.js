@@ -48,6 +48,7 @@ exports.handler = async (event) => {
       cartridge: "Cartridge",
       phonopre: "Phono Preamp",
       streamer: "Streamer",
+      cdplayer: "CD Player",
       cables: "Cables",
       headphones: "Headphones",
       other: "Other",
@@ -68,7 +69,7 @@ exports.handler = async (event) => {
 
     const prompt = `You are an expert audio engineer and audiophile consultant. A user wants a compatibility analysis of their hi-fi audio system.
 
-Please look up the published specifications for each component from manufacturer data and well-known audio sources, then use those actual specs to perform a thorough analysis.
+Please look up the published specifications for each component from manufacturer data and well-known audio sources, then use those actual specs to perform a thorough analysis. IMPORTANT: The user has already classified each component by type — treat their classification as authoritative. Do NOT re-classify components (e.g. do not call an Amplifier a passive device, or a CD Player a streamer). Use the manufacturer's published specs for the exact model name provided.
 
 COMPONENTS:
 ${componentList}
