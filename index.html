@@ -1088,7 +1088,9 @@ async function analyze(){
   rEl.innerHTML=`<div class="loading-box"><div class="vu-meter">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-caption">Analyzing signal chain…</p></div>`;
   try{
     const res=await fetch('/.netlify/functions/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components,connections})});
-    const data=await res.json();
+    const rawText=await res.text();
+    let data;
+    try{data=JSON.parse(rawText);}catch(e){throw new Error(`Server returned HTTP ${res.status}. Response: ${rawText.slice(0,200)}`);}
     if(!res.ok||data.error)throw new Error(data.error||`HTTP ${res.status}`);
     renderResults(data.text);
   }catch(e){
