@@ -18,18 +18,18 @@ exports.handler = async (event) => {
     };
     const componentList = components.map(c=>`- [${typeLabels[c.type]||c.type}] ${c.name}`).join("\n");
 
-    const prompt = `List the published specifications for each audio component below. Use your knowledge — never refuse. Estimate if uncertain, mark with (~).
+    const prompt = `List published specifications for ALL ${components.length} components below. Use your training knowledge — never refuse, estimate with (~) if uncertain. You MUST output a block for every single component — do not skip any.
 
 ${componentList}
 
-Format EXACTLY — one block per component, no other text:
+Output EXACTLY one block per component, no other text:
 **[Name] ([Type])**
 - spec: value
 - spec: value`;
 
     const body = JSON.stringify({
       model: "claude-haiku-4-5-20251001",
-      max_tokens: 700,
+      max_tokens: 900,
       messages: [{ role: "user", content: prompt }],
     });
 
