@@ -1110,8 +1110,28 @@ function renderResults(text){
   rEl.innerHTML=`<div class="fadein">${scores||'<p style="font-size:13px;color:var(--text-3);">Analysis complete — see full breakdown below.</p>'}</div>`;
   const clean=text.replace(/OVERALL SCORE:.*\n?/i,'').replace(/IMPEDANCE MATCH:.*\n?/i,'').replace(/SENSITIVITY MATCH:.*\n?/i,'');
   const hdrs=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
-  const secs={};
-  hdrs.forEach(h=>{const re=new RegExp(`${h.replace(/[&]/g,'\\&')}\\s*\\n([\\s\\S]*?)(?=\\n(?:${hdrs.map(x=>x.replace(/[&]/g,'\\&')).join('|')})\\s*\\n|$)`,'i');const m=clean.match(re);secs[h]=m?m[1].trim():'';});
+
+  // Simple positional extraction — find each header by indexOf, extract text until next header
+  function extractSections(src){
+    const upper=src.toUpperCase();
+    const found=[];
+    hdrs.forEach(h=>{
+      const idx=upper.indexOf(h);
+      if(idx!==-1)found.push({name:h,idx});
+    });
+    found.sort((a,b)=>a.idx-b.idx);
+    const result={};
+    found.forEach((f,i)=>{
+      const contentStart=f.idx+f.name.length;
+      const contentEnd=i<found.length-1?found[i+1].idx:src.length;
+      result[f.name]=src.slice(contentStart,contentEnd).replace(/^[\s:]+/,'').trim();
+    });
+    return result;
+  }
+
+  const secs=extractSections(clean);
+  // Fallback: if nothing parsed, put everything in summary
+  if(!Object.values(secs).some(v=>v))secs['COMPATIBILITY SUMMARY']=clean.trim();
   document.getElementById('panel-specs-body').innerHTML=renderCompSpecs(secs['COMPONENT SPECS']);
   const cp=[secs['SIGNAL CHAIN ANALYSIS'],secs['PHONO CHAIN']].filter(Boolean);
   document.getElementById('panel-chain-body').innerHTML=renderPanelSections(cp.map((t,i)=>({label:['Signal chain','Phono chain'][i],text:t})));
@@ -1222,30 +1242,37 @@ function buildDiagram(){
   const tonearm=components.find(c=>c.type==='tonearm');
 
   const boxH=(c)=>{
+    const lines=wrapName(c.name).length;
     if(c.type==='turntable'){
       const subs=(tonearm?1:0)+(cartridge?1:0);
-      const lines=wrapName(c.name).length;
-      return (lines>1?BH+10:BH)+(subs>0?8+subs*15:0);
+      return BH+(lines>1?18:0)+(subs>0?18+subs*17:0);
     }
-    return wrapName(c.name).length>1?BH+10:BH;
+    return BH+(lines>1?18:0);
   };
 
   const box=(x,y,c,cls)=>{
     const cx=x+BW/2;
     const bh=boxH(c);
     const lines=wrapName(c.name);
-    const nameY=lines.length>1?y+12:y+bh/2-8;
-    const subY=lines.length>1?y+26:y+bh/2+9;
-    let inner=lines.map((ln,i)=>`<text class="dv-title" x="${cx}" y="${nameY+i*14}" text-anchor="middle" dominant-baseline="central">${ln}</text>`).join('');
-    inner+=`<text class="dv-sub" x="${cx}" y="${subY}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text>`;
+    let inner='';
+    if(lines.length===1){
+      // Single line: name at 40%, type at 65%
+      inner+=`<text class="dv-title" x="${cx}" y="${y+Math.round(bh*0.38)}" text-anchor="middle" dominant-baseline="central">${lines[0]}</text>`;
+      inner+=`<text class="dv-sub" x="${cx}" y="${y+Math.round(bh*0.67)}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text>`;
+    } else {
+      // Two lines: line1 at 25%, line2 at 46%, type at 70%
+      inner+=`<text class="dv-title" x="${cx}" y="${y+Math.round(bh*0.24)}" text-anchor="middle" dominant-baseline="central">${lines[0]}</text>`;
+      inner+=`<text class="dv-title" x="${cx}" y="${y+Math.round(bh*0.46)}" text-anchor="middle" dominant-baseline="central">${lines[1]}</text>`;
+      inner+=`<text class="dv-sub" x="${cx}" y="${y+Math.round(bh*0.72)}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text>`;
+    }
     if(c.type==='turntable'){
       const subs=[];
       if(tonearm)subs.push('⟳ '+wrapName(tonearm.name)[0]);
       if(cartridge)subs.push('◆ '+wrapName(cartridge.name)[0]);
       if(subs.length>0){
-        const divY=subY+12;
+        const divY=y+Math.round(bh*0.78);
         inner+=`<line x1="${x+8}" x2="${x+BW-8}" y1="${divY}" y2="${divY}" stroke="#e2e8f0" stroke-width="1"/>`;
-        subs.forEach((s,i)=>{inner+=`<text class="dv-sub" x="${cx}" y="${divY+10+i*15}" text-anchor="middle" dominant-baseline="central" style="font-size:9px;">${esc(s)}</text>`;});
+        subs.forEach((s,i)=>{inner+=`<text class="dv-sub" x="${cx}" y="${divY+11+i*17}" text-anchor="middle" dominant-baseline="central" style="font-size:9px;">${esc(s)}</text>`;});
       }
     }
     return `<g class="dv-node"><rect x="${x}" y="${y}" width="${BW}" height="${bh}" rx="8" class="dv-box ${cls}"/>${inner}</g>`;
