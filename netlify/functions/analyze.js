@@ -1,4 +1,4 @@
-const Anthropic = require("@anthropic-ai/sdk");
+const https = require("https");
 
 exports.handler = async (event) => {
   if (event.httpMethod === "OPTIONS") {
@@ -22,8 +22,7 @@ exports.handler = async (event) => {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        error:
-          "ANTHROPIC_API_KEY environment variable not set. Add it in Netlify Site Settings → Environment Variables.",
+        error: "ANTHROPIC_API_KEY not set. Add it in Netlify Site Settings → Environment Variables.",
       }),
     };
   }
@@ -34,11 +33,10 @@ exports.handler = async (event) => {
     if (!components || components.length < 2) {
       return {
         statusCode: 400,
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ error: "At least two components are required." }),
       };
     }
-
-    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
     const typeLabels = {
       amp: "Amplifier",
@@ -46,10 +44,12 @@ exports.handler = async (event) => {
       speakers: "Speakers",
       dac: "DAC",
       turntable: "Turntable",
+      tonearm: "Tonearm",
       cartridge: "Cartridge",
       phonopre: "Phono Preamp",
       streamer: "Streamer",
       cables: "Cables",
+      headphones: "Headphones",
       other: "Other",
     };
 
@@ -63,7 +63,7 @@ exports.handler = async (event) => {
         : "Not specified — infer likely connections from component types.";
 
     const hasPhono = components.some((c) =>
-      ["cartridge", "phonopre", "turntable"].includes(c.type)
+      ["cartridge", "phonopre", "turntable", "tonearm"].includes(c.type)
     );
 
     const prompt = `You are an expert audio engineer and audiophile consultant. A user wants a compatibility analysis of their hi-fi audio system.
@@ -110,11 +110,45 @@ ISSUES & RECOMMENDATIONS
 
 Be precise, technical, and always reference specific published spec numbers. If specs cannot be found for a component, state that and reason from what is known.`;
 
-    const message = await client.messages.create({
-      model: "claude-opus-4-5",
+    const requestBody = JSON.stringify({
+      model: "claude-sonnet-4-6",
       max_tokens: 2500,
       messages: [{ role: "user", content: prompt }],
     });
+
+    const responseText = await new Promise((resolve, reject) => {
+      const req = https.request(
+        {
+          hostname: "api.anthropic.com",
+          path: "/v1/messages",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": process.env.ANTHROPIC_API_KEY,
+            "anthropic-version": "2023-06-01",
+            "Content-Length": Buffer.byteLength(requestBody),
+          },
+        },
+        (res) => {
+          let data = "";
+          res.on("data", (chunk) => (data += chunk));
+          res.on("end", () => resolve(data));
+        }
+      );
+      req.on("error", reject);
+      req.write(requestBody);
+      req.end();
+    });
+
+    const parsed = JSON.parse(responseText);
+
+    if (parsed.error) {
+      return {
+        statusCode: 500,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+        body: JSON.stringify({ error: parsed.error.message || "API error" }),
+      };
+    }
 
     return {
       statusCode: 200,
@@ -122,7 +156,7 @@ Be precise, technical, and always reference specific published spec numbers. If 
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       },
-      body: JSON.stringify({ text: message.content[0].text }),
+      body: JSON.stringify({ text: parsed.content[0].text }),
     };
   } catch (error) {
     console.error("Analysis error:", error);
