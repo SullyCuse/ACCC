@@ -1171,50 +1171,42 @@ function renderResults(text){
 function renderCompSpecs(text){
   if(!text)return'<p style="font-size:13px;color:var(--text-3);">No specifications found.</p>';
 
-  // Split on component headers: lines starting with ** (bold name) or ### name
-  // Try splitting on **ComponentName** pattern first
-  let html='';
   const lines=text.split('\n');
-  let currentBlock=[];
-  let currentName=null;
-  let blocks=[];
+  let html='';
+  let currentName=null,currentType=null,currentItems=[],currentWarning=null;
+
+  function flushBlock(){
+    if(currentName===null)return;
+    const items=currentItems.filter(l=>l).map(l=>`<li>${fmtInline(l)}</li>`).join('');
+    html+=`<div class="comp-spec-block fadein">
+      <div class="comp-name-hdr">${esc(currentName)}</div>
+      ${currentWarning?`<div style="font-size:11px;color:#d97706;background:#fffbeb;padding:5px 12px;border-bottom:1px solid #fde68a;">⚠ ${esc(currentWarning)}</div>`:''}
+      ${items?`<ul class="spec-list">${items}</ul>`:''}
+    </div>`;
+    currentName=null;currentType=null;currentItems=[];currentWarning=null;
+  }
 
   lines.forEach(line=>{
     const trimmed=line.trim();
-    // Detect a component header: **Name** at start of line, or ### Name
-    const boldHdr=trimmed.match(/^\*\*([^*]+)\*\*\s*[-–]?\s*(.*)$/);
-    const hashHdr=trimmed.match(/^#{2,3}\s+(.+)$/);
-    if(boldHdr&&trimmed.startsWith('**')){
-      if(currentName!==null)blocks.push({name:currentName,lines:currentBlock});
-      currentName=boldHdr[1].trim();
-      currentBlock=boldHdr[2]?[boldHdr[2]]:[];
-    } else if(hashHdr){
-      if(currentName!==null)blocks.push({name:currentName,lines:currentBlock});
-      currentName=hashHdr[1].trim();
-      currentBlock=[];
-    } else {
-      if(currentName!==null){currentBlock.push(trimmed);}
-      else if(trimmed&&trimmed!=='---'){html+=`<p class="panel-analysis" style="margin-bottom:8px;">${fmtInline(trimmed)}</p>`;}
+    if(!trimmed||trimmed==='#'||trimmed.match(/^#{1,3}\s*$/)||trimmed.match(/^All \d+ component/i))return;
+    const hdr=trimmed.match(/^\*\*(.+?)\*\*/);
+    if(hdr){
+      flushBlock();
+      const full=hdr[1].trim();
+      const m=full.match(/^(.+?)\s*\(([^)]+)\)$/);
+      currentName=m?m[1].trim():full;
+      currentType=m?m[2].trim():null;
+      currentItems=[];currentWarning=null;
+      return;
+    }
+    if(trimmed.startsWith('⚠')){currentWarning=trimmed.replace(/^⚠\s*/,'');return;}
+    if(currentName!==null){
+      const spec=trimmed.replace(/^[-•*\d.]+\s*/,'');
+      if(spec)currentItems.push(spec);
     }
   });
-  if(currentName!==null)blocks.push({name:currentName,lines:currentBlock});
-
-  // If no blocks found, fall back to generic markdown rendering
-  if(blocks.length===0){
-    return renderPanelSections([{label:'Specifications',text}]);
-  }
-
-  blocks.forEach(b=>{
-    const items=b.lines.filter(l=>l&&l!=='---').map(l=>{
-      const stripped=l.replace(/^[-•*]\s*/,'').trim();
-      return stripped?`<li>${fmtInline(stripped)}</li>`:'';
-    }).filter(Boolean);
-    html+=`<div class="comp-spec-block fadein">
-      <div class="comp-name-hdr">${esc(b.name)}</div>
-      ${items.length?`<ul class="spec-list">${items.join('')}</ul>`:''}
-    </div>`;
-  });
-  return html;
+  flushBlock();
+  return html||'<p style="font-size:13px;color:var(--text-3);">No specifications found.</p>';
 }
 
 function fmtInline(s){
