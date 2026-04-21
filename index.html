@@ -274,18 +274,31 @@ a  { color: var(--blue); text-decoration: none; }
   display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
 
-/* ── TOOL SECTION ── */
-.tool-section { background: var(--white); padding: 88px 0; }
+/* ── TOOL SECTION - FULL WIDTH HORIZONTAL ── */
+.tool-section { background: var(--white); padding: 64px 0 40px; }
+.tool-header { text-align:center; margin-bottom:36px; }
 
-.tool-header { text-align:center; margin-bottom:48px; }
-
-.tool-grid {
+/* Steps row: all 3 steps side by side */
+.tool-steps-row {
   display: grid;
-  grid-template-columns: 460px 1fr;
-  gap: 28px;
-  align-items: start;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 0 max(24px,3vw);
+  max-width: 1400px;
+  margin: 0 auto 24px;
 }
-@media(max-width:960px){ .tool-grid{ grid-template-columns:1fr; } }
+@media(max-width:900px){ .tool-steps-row{ grid-template-columns:1fr; } }
+
+/* Status + diagram row: side by side below steps */
+.tool-status-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 max(24px,3vw);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+@media(max-width:900px){ .tool-status-row{ grid-template-columns:1fr; } }
 
 /* ── CARDS ── */
 .card {
@@ -506,7 +519,7 @@ select {
 
 /* ── 3-PANEL RESULTS ── */
 .results-full { padding: 0 0 60px; }
-.results-full-hdr { text-align:center; padding:32px 0 28px; }
+.results-full-hdr { text-align:center; padding:32px 0 20px; }
 .results-full-hdr h2 { font-size:26px; font-weight:800; color:var(--text); letter-spacing:-.01em; margin-bottom:6px; }
 .results-full-hdr p  { font-size:14px; color:var(--text-2); margin-bottom:16px; }
 .btn-print {
@@ -517,8 +530,9 @@ select {
   color:var(--text-2); transition:all .15s;
 }
 .btn-print:hover { border-color:var(--blue); color:var(--blue); background:var(--blue-lt); }
-.results-3col { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.results-3col { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:0 max(24px,3vw); max-width:1400px; margin:0 auto; }
 @media(max-width:960px){ .results-3col{ grid-template-columns:1fr; } }
+.score-wrap { padding:0 max(24px,3vw); max-width:1400px; margin:0 auto 20px; }
 
 /* Component spec styling */
 .comp-spec-block { margin-bottom:18px; }
@@ -816,152 +830,139 @@ select {
 
 <!-- ANALYZER TOOL -->
 <section class="tool-section" id="analyzer">
-  <div class="container">
-    <div class="tool-header">
+    <div class="tool-header container">
       <div class="section-label">The Analyzer</div>
       <h2 class="section-title">Analyze Your System</h2>
       <p class="section-desc" style="margin:0 auto;">Enter your components below. No signup required — results in under a minute.</p>
     </div>
 
-    <div class="tool-grid">
+    <!-- Steps: 3 columns side by side -->
+    <div class="tool-steps-row">
 
-      <!-- LEFT COLUMN -->
-      <div style="display:flex;flex-direction:column;gap:18px;">
-
-        <!-- Step 1 -->
-        <div class="card">
-          <div class="card-head">
-            <div class="card-step">1</div>
-            <span class="card-title">Add Components</span>
-          </div>
-          <div class="card-body">
-            <div class="form-stack">
-              <div class="form-group">
-                <label>Component Type</label>
-                <select id="comp-type" onchange="updateHint()">
-                  <option value="amp">Amplifier / Integrated Amp</option>
-                  <option value="preamp">Preamplifier</option>
-                  <option value="speakers">Speakers</option>
-                  <option value="dac">DAC</option>
-                  <option value="turntable">Turntable</option>
-                  <option value="tonearm">Tonearm</option>
-                  <option value="cartridge">Turntable Cartridge</option>
-                  <option value="phonopre">Phono Preamplifier</option>
-                  <option value="streamer">Streamer / Source</option>
-                  <option value="cdplayer">CD Player</option>
-                  <option value="cables">Cables / Interconnects</option>
-                  <option value="headphones">Headphones</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Manufacturer &amp; Model</label>
-                <input type="text" id="comp-name" placeholder="e.g. Parasound Halo 275 v1">
-              </div>
-              <div id="spec-hint" class="spec-hint" style="display:none;"></div>
+      <!-- Step 1 -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-step">1</div>
+          <span class="card-title">Add Components</span>
+        </div>
+        <div class="card-body">
+          <div class="form-stack">
+            <div class="form-group">
+              <label>Component Type</label>
+              <select id="comp-type" onchange="updateHint()">
+                <option value="amp">Amplifier / Integrated Amp</option>
+                <option value="preamp">Preamplifier</option>
+                <option value="speakers">Speakers</option>
+                <option value="dac">DAC</option>
+                <option value="turntable">Turntable</option>
+                <option value="tonearm">Tonearm</option>
+                <option value="cartridge">Turntable Cartridge</option>
+                <option value="phonopre">Phono Preamplifier</option>
+                <option value="streamer">Streamer / Source</option>
+                <option value="cdplayer">CD Player</option>
+                <option value="cables">Cables / Interconnects</option>
+                <option value="headphones">Headphones</option>
+                <option value="other">Other</option>
+              </select>
             </div>
-            <button class="btn btn-outline-blue btn-sm" onclick="addComponent()">+ Add Component</button>
-            <hr class="divider">
-            <div id="comp-list"></div>
-          </div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="card" id="conn-panel" style="display:none;">
-          <div class="card-head">
-            <div class="card-step">2</div>
-            <span class="card-title">Define Connections</span>
-          </div>
-          <div class="card-body">
-            <p style="font-size:13px;color:var(--text-3);margin-bottom:14px;line-height:1.65;">Optional but recommended for a more precise analysis.</p>
-            <div class="form-stack">
-              <div class="form-row-2">
-                <div class="form-group"><label>From</label><select id="conn-from"></select></div>
-                <div class="form-group"><label>To</label><select id="conn-to"></select></div>
-              </div>
-              <div class="form-group">
-                <label>Connection Type</label>
-                <select id="conn-type">
-                  <option value="XLR balanced">XLR balanced</option>
-                  <option value="RCA single-ended">RCA single-ended</option>
-                  <option value="USB">USB</option>
-                  <option value="Optical / TOSLINK">Optical / TOSLINK</option>
-                  <option value="AES/EBU">AES/EBU</option>
-                  <option value="I2S">I2S</option>
-                  <option value="Speaker wire">Speaker wire</option>
-                  <option value="Phono / RCA">Phono / RCA</option>
-                  <option value="Coaxial S/PDIF">Coaxial S/PDIF</option>
-                  <option value="HDMI / I2S">HDMI / I2S</option>
-                  <option value="Bluetooth">Bluetooth</option>
-                  <option value="Wi-Fi / Network">Wi-Fi / Network</option>
-                </select>
-              </div>
+            <div class="form-group">
+              <label>Manufacturer &amp; Model</label>
+              <input type="text" id="comp-name" placeholder="e.g. Parasound Halo 275 v1">
             </div>
-            <button class="btn btn-outline-blue btn-sm" onclick="addConnection()">+ Add Connection</button>
-            <div id="conn-err" style="font-size:11px;color:#dc2626;margin-top:8px;min-height:16px;"></div>
-            <hr class="divider">
-            <div id="conn-list"></div>
-            <button class="btn btn-blue btn-sm" style="width:100%;margin-top:4px;" onclick="generateDiagram()">Generate Signal Chain Diagram →</button>
+            <div id="spec-hint" class="spec-hint" style="display:none;"></div>
           </div>
+          <button class="btn btn-outline-blue btn-sm" onclick="addComponent()">+ Add Component</button>
+          <hr class="divider">
+          <div id="comp-list"></div>
         </div>
-
-        <!-- Step 3 -->
-        <div class="card" id="analyze-panel" style="display:none;">
-          <div class="card-head">
-            <div class="card-step">3</div>
-            <span class="card-title">Run Analysis</span>
-          </div>
-          <div class="card-body">
-            <p style="font-size:13px;color:var(--text-3);margin-bottom:16px;line-height:1.65;">Our AI will look up published specs and analyze your full signal chain.</p>
-            <button class="btn-analyze" id="analyze-btn" onclick="analyze()">Run Compatibility Analysis →</button>
-            <div id="analyze-err" style="font-size:12px;color:#dc2626;margin-top:10px;min-height:16px;"></div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- RIGHT COLUMN -->
-      <div class="results-sticky">
-        <div class="card">
-          <div class="card-head"><span class="card-title" style="margin-left:0;">Analysis Status</span></div>
-          <div class="card-body">
-            <div id="results-content">
-              <div class="placeholder-box">
-                <div class="placeholder-icon">🎛️</div>
-                <p>Add your components and run an analysis to see your compatibility score and full signal chain report.</p>
-              </div>
+      <!-- Step 2 -->
+      <div class="card" id="conn-panel" style="display:none;">
+        <div class="card-head">
+          <div class="card-step">2</div>
+          <span class="card-title">Define Connections</span>
+        </div>
+        <div class="card-body">
+          <p style="font-size:13px;color:var(--text-3);margin-bottom:14px;line-height:1.65;">Optional but recommended for a more precise analysis.</p>
+          <div class="form-stack">
+            <div class="form-row-2">
+              <div class="form-group"><label>From</label><select id="conn-from"></select></div>
+              <div class="form-group"><label>To</label><select id="conn-to"></select></div>
+            </div>
+            <div class="form-group">
+              <label>Connection Type</label>
+              <select id="conn-type">
+                <option value="XLR balanced">XLR balanced</option>
+                <option value="RCA single-ended">RCA single-ended</option>
+                <option value="USB">USB</option>
+                <option value="Optical / TOSLINK">Optical / TOSLINK</option>
+                <option value="AES/EBU">AES/EBU</option>
+                <option value="I2S">I2S</option>
+                <option value="Speaker wire">Speaker wire</option>
+                <option value="Phono / RCA">Phono / RCA</option>
+                <option value="Coaxial S/PDIF">Coaxial S/PDIF</option>
+                <option value="HDMI / I2S">HDMI / I2S</option>
+                <option value="Bluetooth">Bluetooth</option>
+                <option value="Wi-Fi / Network">Wi-Fi / Network</option>
+              </select>
             </div>
           </div>
+          <button class="btn btn-outline-blue btn-sm" onclick="addConnection()">+ Add Connection</button>
+          <div id="conn-err" style="font-size:11px;color:#dc2626;margin-top:8px;min-height:16px;"></div>
+          <hr class="divider">
+          <div id="conn-list"></div>
+          <button class="btn btn-blue btn-sm" style="width:100%;margin-top:4px;" onclick="generateDiagram()">Generate Signal Chain Diagram →</button>
         </div>
+      </div>
 
-        <div class="card" id="diagram-panel" style="margin-top:18px;display:none;">
-          <div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Diagram</span></div>
-          <div class="card-body" style="padding:14px;">
-            <div class="diagram-wrap" id="diagram-wrap"></div>
+      <!-- Step 3 -->
+      <div class="card" id="analyze-panel" style="display:none;">
+        <div class="card-head">
+          <div class="card-step">3</div>
+          <span class="card-title">Run Analysis</span>
+        </div>
+        <div class="card-body">
+          <p style="font-size:13px;color:var(--text-3);margin-bottom:16px;line-height:1.65;">Our AI will look up published specs and analyze your full signal chain.</p>
+          <button class="btn-analyze" id="analyze-btn" onclick="analyze()">Run Compatibility Analysis →</button>
+          <div id="analyze-err" style="font-size:12px;color:#dc2626;margin-top:10px;min-height:16px;"></div>
+          <div id="results-content" style="margin-top:16px;">
+            <div class="placeholder-box" style="padding:20px;">
+              <div class="placeholder-icon" style="font-size:32px;">🎛️</div>
+              <p>Click Run to analyze your system.</p>
+            </div>
           </div>
         </div>
       </div>
 
     </div>
-  </div>
+
+    <!-- Diagram full width below steps -->
+    <div class="tool-steps-row" style="margin-top:16px;">
+      <div class="card" id="diagram-panel" style="display:none;grid-column:1/-1;">
+        <div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Diagram</span></div>
+        <div class="card-body" style="padding:14px;">
+          <div class="diagram-wrap" id="diagram-wrap"></div>
+        </div>
+      </div>
+    </div>
+
 </section>
 
 <!-- 3-PANEL FULL RESULTS -->
 <div id="results-full" style="display:none;background:var(--cream);padding:0 0 60px;">
-  <div class="container">
-    <div class="results-full-hdr">
-      <h2>Full Compatibility Analysis</h2>
-      <p>Detailed breakdown across your entire signal chain</p>
-      <button class="btn-print" onclick="printReport()">🖨️ Print / Save as PDF</button>
-    </div>
-    <div id="results-scores" style="margin-bottom:20px;display:none;">
-      <div class="score-row" id="score-row-inner"></div>
-    </div>
-    <div class="results-3col">
-      <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Component Specifications</span></div><div class="card-body" id="panel-specs-body"></div></div>
-      <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Analysis</span></div><div class="card-body" id="panel-chain-body"></div></div>
-      <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Summary &amp; Recommendations</span></div><div class="card-body" id="panel-summary-body"></div></div>
-    </div>
+  <div class="results-full-hdr">
+    <h2>Full Compatibility Analysis</h2>
+    <p>Detailed breakdown across your entire signal chain</p>
+    <button class="btn-print" onclick="printReport()">🖨️ Print / Save as PDF</button>
+  </div>
+  <div id="results-scores" class="score-wrap" style="display:none;">
+    <div class="score-row" id="score-row-inner"></div>
+  </div>
+  <div class="results-3col">
+    <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Component Specifications</span></div><div class="card-body" id="panel-specs-body"></div></div>
+    <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Analysis</span></div><div class="card-body" id="panel-chain-body"></div></div>
+    <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Summary &amp; Recommendations</span></div><div class="card-body" id="panel-summary-body"></div></div>
   </div>
 </div>
 
