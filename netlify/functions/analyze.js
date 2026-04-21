@@ -67,48 +67,42 @@ exports.handler = async (event) => {
       ["cartridge", "phonopre", "turntable", "tonearm"].includes(c.type)
     );
 
-    const prompt = `You are an expert audio engineer and audiophile consultant with deep knowledge of hi-fi audio equipment. You have extensive training knowledge of amplifiers, preamplifiers, DACs, streamers, turntables, phono stages, and other audio components from hundreds of manufacturers.
+    const prompt = `You are an expert audio engineer. Analyze this hi-fi system for compatibility. Use your training knowledge — always provide specs and analysis, never refuse. If uncertain about a specific model's exact specs, use reasonable estimates based on the manufacturer's product line. Keep each section brief but complete.
 
-CRITICAL INSTRUCTION: You MUST complete this analysis in full. Never refuse, never say you cannot proceed, never claim you cannot find specifications. Use your training knowledge — if you know the component well, cite its specs precisely. If you are less certain about a specific model's exact figures, provide your best estimates based on the manufacturer's product line and typical specs for that component category. Always provide numbers. Always complete every section.
-
-The user has classified each component — treat their classification as authoritative. Do NOT re-classify.
-
-COMPONENTS:
+Components (user-classified — do not re-classify):
 ${componentList}
 
-SIGNAL CHAIN CONNECTIONS:
+Connections:
 ${connectionList}
 
-Respond EXACTLY in this format:
+Respond in EXACTLY this format:
 
 OVERALL SCORE: [X/10]
 IMPEDANCE MATCH: [Good/Acceptable/Poor or N/A]
 SENSITIVITY MATCH: [Good/Acceptable/Poor or N/A]
 
 COMPONENT SPECS
-**[Component Name] ([Type])**
-- Spec: value
-- Spec: value
-
-(One block per component, relevant specs only, no other text in this section)
+**[Name] ([Type])**
+- spec: value
+(one block per component, specs only, no other text)
 
 COMPATIBILITY SUMMARY
-[2-3 sentences on overall verdict]
+[2-3 sentences]
 
 SIGNAL CHAIN ANALYSIS
-[Connection-by-connection assessment citing specific numbers]${
+[Key connection assessments with numbers, 4-6 bullet points]${
       hasPhono ? `
 
 PHONO CHAIN
-[Cartridge type, compliance × tonearm mass resonance freq = 159/√(m×c) Hz, gain matching, loading recommendation]` : ""
+[Resonance freq = 159/√(mass×compliance) Hz, gain, loading — 3-4 bullets]` : ""
     }
 
 ISSUES & RECOMMENDATIONS
-[Numbered list of specific actionable recommendations with exact settings]`;
+[Top 4-5 numbered recommendations with specific settings]`;
 
     const requestBody = JSON.stringify({
       model: "claude-sonnet-4-6",
-      max_tokens: 3000,
+      max_tokens: 1800,
       messages: [{ role: "user", content: prompt }],
     });
 
