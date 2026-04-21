@@ -18,18 +18,19 @@ exports.handler = async (event) => {
     };
     const numberedList = components.map((c,i)=>`${i+1}. [${typeLabels[c.type]||c.type}] ${c.name}`).join("\n");
 
-    const prompt = `List published specifications for all ${components.length} components. Use training knowledge — never refuse, estimate with (~) if uncertain. Output a spec block for EVERY numbered component. Do not stop until all ${components.length} are done.
+    const prompt = `List published specifications for all ${components.length} components. Use training knowledge. For each component:
+- If you know the EXACT model: list its specs normally
+- If you are NOT certain it is the exact model and are using a similar one: add a note "⚠ Specs shown are for [similar model] — exact specs for [entered model] not confirmed"
+- Never skip a component. Estimate with (~) if needed.
 
 ${numberedList}
 
 For each component output EXACTLY:
 **[Name] ([Type])**
-- impedance: value
-- sensitivity or output: value
-- power or gain: value
-- other key spec: value
+- spec: value
+- spec: value
 
-Start with component 1 and go through all ${components.length}. No skipping.`;
+Go through all ${components.length} components in order. No summary text at the end.`;
 
     const body = JSON.stringify({
       model: "claude-haiku-4-5-20251001",
