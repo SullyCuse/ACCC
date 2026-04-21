@@ -1120,13 +1120,58 @@ function renderResults(text){
 }
 function renderCompSpecs(text){
   if(!text)return'<p style="font-size:13px;color:var(--text-3);">No specifications found.</p>';
-  return text.split(/\n(?=\*\*)/).map(block=>{
-    const nm=block.match(/^\*\*([^*]+)\*\*/);
-    if(!nm){const t=block.trim();return t?`<p class="panel-analysis" style="margin-bottom:8px;">${esc(t)}</p>`:'';}
-    const name=nm[1].trim(),rest=block.slice(nm[0].length).trim();
-    const items=rest.split('\n').filter(l=>l.trim()).map(l=>{const c=l.replace(/^[-•*]\s*/,'').replace(/\*\*(.+?)\*\*/g,'$1').trim();return c?`<li>${esc(c)}</li>`:''}).join('');
-    return `<div class="comp-spec-block fadein"><div class="comp-name-hdr">${esc(name)}</div>${items?`<ul class="spec-list">${items}</ul>`:''}</div>`;
-  }).join('');
+
+  // Split on component headers: lines starting with ** (bold name) or ### name
+  // Try splitting on **ComponentName** pattern first
+  let html='';
+  const lines=text.split('\n');
+  let currentBlock=[];
+  let currentName=null;
+  let blocks=[];
+
+  lines.forEach(line=>{
+    const trimmed=line.trim();
+    // Detect a component header: **Name** at start of line, or ### Name
+    const boldHdr=trimmed.match(/^\*\*([^*]+)\*\*\s*[-–]?\s*(.*)$/);
+    const hashHdr=trimmed.match(/^#{2,3}\s+(.+)$/);
+    if(boldHdr&&trimmed.startsWith('**')){
+      if(currentName!==null)blocks.push({name:currentName,lines:currentBlock});
+      currentName=boldHdr[1].trim();
+      currentBlock=boldHdr[2]?[boldHdr[2]]:[];
+    } else if(hashHdr){
+      if(currentName!==null)blocks.push({name:currentName,lines:currentBlock});
+      currentName=hashHdr[1].trim();
+      currentBlock=[];
+    } else {
+      if(currentName!==null){currentBlock.push(trimmed);}
+      else if(trimmed&&trimmed!=='---'){html+=`<p class="panel-analysis" style="margin-bottom:8px;">${fmtInline(trimmed)}</p>`;}
+    }
+  });
+  if(currentName!==null)blocks.push({name:currentName,lines:currentBlock});
+
+  // If no blocks found, fall back to generic markdown rendering
+  if(blocks.length===0){
+    return renderPanelSections([{label:'Specifications',text}]);
+  }
+
+  blocks.forEach(b=>{
+    const items=b.lines.filter(l=>l&&l!=='---').map(l=>{
+      const stripped=l.replace(/^[-•*]\s*/,'').trim();
+      return stripped?`<li>${fmtInline(stripped)}</li>`:'';
+    }).filter(Boolean);
+    html+=`<div class="comp-spec-block fadein">
+      <div class="comp-name-hdr">${esc(b.name)}</div>
+      ${items.length?`<ul class="spec-list">${items.join('')}</ul>`:''}
+    </div>`;
+  });
+  return html;
+}
+
+function fmtInline(s){
+  return s
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/`(.+?)`/g,'<code style="font-family:ui-monospace,monospace;font-size:11px;background:#f1f5f9;padding:1px 4px;border-radius:3px;">$1</code>');
 }
 function renderPanelSections(parts){
   if(!parts.length)return'<p style="font-size:13px;color:var(--text-3);">No content.</p>';
