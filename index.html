@@ -1207,7 +1207,7 @@ function renderPanelSections(parts){
 function updateDiagram(){const wrap=document.getElementById('diagram-wrap');if(components.length<2){wrap.innerHTML='';return;}wrap.innerHTML=buildDiagram();}
 function buildDiagram(){
   const W=540,BW=160,BH=50,G=20;
-  const dig=components.filter(c=>['streamer','dac'].includes(c.type)),pho=components.filter(c=>['turntable','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)&&c.type!=='cartridge'&&c.type!=='tonearm'),hasBoth=dig.length>0&&pho.length>0;
+  const dig=components.filter(c=>['streamer','dac','cdplayer'].includes(c.type)),pho=components.filter(c=>['turntable','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)&&c.type!=='cartridge'&&c.type!=='tonearm'),hasBoth=dig.length>0&&pho.length>0;
 
   // Global topological sort across ALL components using ALL connections
   function globalSort(all){
