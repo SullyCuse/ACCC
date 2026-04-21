@@ -108,11 +108,11 @@ PHONO CHAIN
 ISSUES & RECOMMENDATIONS
 [Numbered list of specific issues and actionable recommendations with exact settings where relevant]
 
-Be precise, technical, and always reference specific published spec numbers. If specs cannot be found for a component, state that and reason from what is known.`;
+Be precise and technical, but keep each section concise — prioritize completing ALL sections over detail in any single section. Always reference specific published spec numbers.`;
 
     const requestBody = JSON.stringify({
       model: "claude-haiku-4-5-20251001",
-      max_tokens: 2000,
+      max_tokens: 3000,
       messages: [{ role: "user", content: prompt }],
     });
 
