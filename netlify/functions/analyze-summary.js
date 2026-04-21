@@ -2,12 +2,7 @@ const https = require("https");
 
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") return { statusCode: 405, body: "Method not allowed" };
-
-  const headers = {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-  };
-
+  const headers = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
   try {
     const { components, connections } = JSON.parse(event.body);
     const typeLabels = {
@@ -22,20 +17,35 @@ exports.handler = async (event) => {
       : "Not specified";
     const hasPhono = components.some(c=>["cartridge","phonopre","turntable","tonearm"].includes(c.type));
 
-    const prompt = `Audio engineer. Analyze each connection in this hi-fi signal chain. Never refuse. Always complete all connections listed. Use specs from your training knowledge.
+    const prompt = `Hi-fi compatibility expert. Score and summarize this system. Never refuse — always complete all sections.
 
 Components: ${componentList}
 Connections: ${connectionList}
 
-Output EXACTLY — one bullet per connection, no other text:
+Output EXACTLY:
 
-SIGNAL CHAIN ANALYSIS
-- [From] → [To] via [type]: [impedance/voltage match assessment with numbers]
-- [repeat for every connection listed]`;
+OVERALL SCORE: [X/10]
+IMPEDANCE MATCH: [Good/Acceptable/Poor or N/A]
+SENSITIVITY MATCH: [Good/Acceptable/Poor or N/A]
+
+COMPATIBILITY SUMMARY
+[2-3 sentences: overall verdict with key numbers]${hasPhono ? `
+
+PHONO CHAIN
+- Cartridge: [type, output voltage]
+- Resonance: 159/√([tonearm mass g]×[compliance µm/mN]) = [X.X] Hz — [Good 8-12Hz / Acceptable / Poor]
+- Recommended gain: [dB]
+- Recommended loading: [Ω]` : ""}
+
+ISSUES & RECOMMENDATIONS
+1. [specific actionable recommendation with exact setting]
+2. [recommendation]
+3. [recommendation]
+4. [recommendation]`;
 
     const body = JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 700,
+      model: "claude-sonnet-4-6",
+      max_tokens: 450,
       messages: [{ role: "user", content: prompt }],
     });
 
@@ -50,11 +60,7 @@ SIGNAL CHAIN ANALYSIS
           "anthropic-version": "2023-06-01",
           "Content-Length": Buffer.byteLength(body),
         },
-      }, res => {
-        let d = "";
-        res.on("data", c => d += c);
-        res.on("end", () => resolve(d));
-      });
+      }, res => { let d=""; res.on("data",c=>d+=c); res.on("end",()=>resolve(d)); });
       req.on("error", reject);
       req.write(body);
       req.end();
