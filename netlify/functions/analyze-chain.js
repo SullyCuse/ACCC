@@ -22,35 +22,39 @@ exports.handler = async (event) => {
       : "Not specified";
     const hasPhono = components.some(c=>["cartridge","phonopre","turntable","tonearm"].includes(c.type));
 
-    const prompt = `Audio compatibility expert. Analyze this hi-fi system. Never refuse — always complete all sections with numbers. Estimate specs if uncertain, mark with (~). Component classifications are correct — do not change them.
+    const prompt = `Hi-fi compatibility analysis. Use your knowledge — never refuse, always estimate with (~) if uncertain. Component types are correct — do not change them.
 
 Components: ${componentList}
 Connections: ${connectionList}
 
-Output EXACTLY:
+Output EXACTLY this format:
 
 OVERALL SCORE: [X/10]
 IMPEDANCE MATCH: [Good/Acceptable/Poor or N/A]
 SENSITIVITY MATCH: [Good/Acceptable/Poor or N/A]
 
 COMPATIBILITY SUMMARY
-[2-3 sentences on overall verdict with key spec numbers]
+[2 sentences with key verdict and numbers]
 
 SIGNAL CHAIN ANALYSIS
-[4-5 bullet points: each connection assessed with actual impedance/voltage/gain figures]${hasPhono ? `
+- [connection: key specs and verdict]
+- [connection: key specs and verdict]
+- [connection: key specs and verdict]${hasPhono ? `
 
 PHONO CHAIN
-[Cartridge type, resonance=159/√(mass×compliance)Hz with values, gain match, recommended loading Ω]` : ""}
+- Cartridge: [type, output mV]
+- Resonance: 159/√([mass]×[compliance]) = [X] Hz ([assessment])
+- Gain: [dB setting] recommendation
+- Loading: [Ω] recommendation` : ''}
 
 ISSUES & RECOMMENDATIONS
 1. [specific recommendation with exact setting]
 2. [recommendation]
-3. [recommendation]
-4. [recommendation]`;
+3. [recommendation]`;
 
     const body = JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 700,
+      model: "claude-sonnet-4-6",
+      max_tokens: 500,
       messages: [{ role: "user", content: prompt }],
     });
 

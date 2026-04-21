@@ -18,21 +18,18 @@ exports.handler = async (event) => {
     };
     const componentList = components.map(c=>`- [${typeLabels[c.type]||c.type}] ${c.name}`).join("\n");
 
-    const prompt = `Audio equipment expert. List published specs for each component. Never refuse — estimate if uncertain, mark with (~).
+    const prompt = `List the published specifications for each audio component below. Use your knowledge — never refuse. Estimate if uncertain, mark with (~).
 
-Components:
 ${componentList}
 
-For each component output EXACTLY:
+Format EXACTLY — one block per component, no other text:
 **[Name] ([Type])**
 - spec: value
-- spec: value
-
-Include relevant specs only (power, impedance, sensitivity, gain, output voltage, compliance, mass, etc). One block per component. No other text.`;
+- spec: value`;
 
     const body = JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 700,
+      model: "claude-sonnet-4-6",
+      max_tokens: 500,
       messages: [{ role: "user", content: prompt }],
     });
 
