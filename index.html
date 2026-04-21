@@ -1206,7 +1206,7 @@ function renderPanelSections(parts){
 }
 function updateDiagram(){const wrap=document.getElementById('diagram-wrap');if(components.length<2){wrap.innerHTML='';return;}wrap.innerHTML=buildDiagram();}
 function buildDiagram(){
-  const W=540,BW=160,BH=50,G=20;
+  const W=600,BW=160,BH=50,G=20;
   const dig=components.filter(c=>['streamer','dac','cdplayer'].includes(c.type)),pho=components.filter(c=>['turntable','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)&&c.type!=='cartridge'&&c.type!=='tonearm'),hasBoth=dig.length>0&&pho.length>0;
 
   // Level-based topological sort (BFS): all sources appear before the nodes they feed
@@ -1343,11 +1343,9 @@ function buildDiagram(){
     const colCx=startX+colBW/2;
 
     if(sources.length>=2){
-      // Sub-column layout: sources side by side, then hubs below
-      const availW=colBW;
-      const srcBW=Math.floor((availW-G)/2);
-      const src1X=startX,src2X=startX+srcBW+G;
-      const src1Cx=src1X+srcBW/2,src2Cx=src2X+srcBW/2;
+      // Sub-column layout: use 1.6× colBW so each source box is readable
+      const srcAreaW=Math.round(colBW*1.6);
+      const srcBW=Math.floor((srcAreaW-G)/2);
       // Render source boxes
       const srcHeights=sources.map(s=>boxH(s,srcBW));
       const maxSrcH=Math.max(...srcHeights);
@@ -1366,16 +1364,17 @@ function buildDiagram(){
           const scx=startX+i*(srcBW+G)+srcBW/2;
           const srcBot=curY+srcHeights[i];
           const conn=hubConn.find(cn=>cn.fromId===c.id);
-          // Vertical down from source, then horizontal to hub center, at mergeY
           p+=`<line stroke="#2563eb" stroke-width="1.2" x1="${scx}" y1="${srcBot}" x2="${scx}" y2="${mergeY}"/>`;
           p+=`<line stroke="#2563eb" stroke-width="1.2" x1="${scx}" y1="${mergeY}" x2="${colCx}" y2="${mergeY}"/>`;
-          if(conn)b+=lbl(scx+(scx<colCx?3:-3),(srcBot+mergeY)/2,conn.type,scx<colCx?'start':'end');
+          // Label on vertical segment, outside edge of each source
+          if(conn){
+            const isLeft=scx<=colCx;
+            b+=lbl(isLeft?scx+4:scx-4,(srcBot+mergeY)/2,conn.type,isLeft?'start':'end');
+          }
         });
-        // Single arrow from merge line down to hub
         p+=`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${colCx}" y1="${mergeY}" x2="${colCx}" y2="${hubY}" marker-end="url(#da)"/>`;
         b+=box(startX,hubY,hub,cls,colBW);
         lastBot=hubY+boxH(hub,colBW);lastComp=hub;curY=lastBot+G;
-        // Remaining hubs sequential
         for(let i=1;i<hubs.length;i++){
           const c=hubs[i];
           p+=ln(colCx,lastBot,colCx,curY);
@@ -1408,8 +1407,7 @@ function buildDiagram(){
 
     const digR=renderChain(digS,lX,24,'dv-box-digital',BW);
     b+=digR.b;p+=digR.p;
-    const phoR=renderChain(phoS,rX,24,'dv-box-phono',BW);
-    b+=phoR.b;p+=phoR.p;
+    const phoR=renderChain(phoS,rX,24,'dv-box-phono',BW);    b+=phoR.b;p+=phoR.p;
 
     const lB=digR.lastBot,lPrev=digR.lastComp;
     const rB=phoR.lastBot,rPrev=phoR.lastComp;
