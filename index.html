@@ -1128,6 +1128,7 @@ async function analyze(){
     if(summaryData.error)throw new Error(summaryData.error);
 
     const combined=`${summaryData.text}\n\nCOMPONENT SPECS\n${specsText}\n\n${chainData.text}`;
+    window._lastSpecsText=specsText;
     renderResults(combined);
   }catch(e){
     rEl.innerHTML=`<div class="placeholder-box"><div class="placeholder-icon">⚠️</div><p>${esc(e.message||'Analysis failed. Please try again.')}</p></div>`;
@@ -1500,28 +1501,50 @@ function extractSectionsFromText(text){
 
 function applySpecCorrections(){
   const corrections=document.getElementById('spec-corrections').value.trim();
-  if(!corrections){document.getElementById('spec-edit-area').style.display='none';return;}
-  // Build correction note to append to specsText
-  const correctionNote='\n\n[USER CORRECTIONS - treat these as authoritative overrides]\n'+corrections;
-  const currentSpecs=document.getElementById('panel-specs-body').innerText||'';
-  const specsText=currentSpecs+correctionNote;
+  if(!corrections)return;
+
+  // Store corrections, build specsText with overrides appended
+  const correctionNote='\n\n[USER CORRECTIONS — use these exact values, they override any other spec data]\n'+corrections;
+  const specsText=(window._lastSpecsText||'')+correctionNote;
+
+  // Show loading state in the chain and summary panels
+  document.getElementById('panel-chain-body').innerHTML='<p style="font-size:13px;color:var(--text-3);padding:12px;">Re-analyzing…</p>';
+  document.getElementById('panel-summary-body').innerHTML='<p style="font-size:13px;color:var(--text-3);padding:12px;">Re-analyzing…</p>';
   document.getElementById('spec-edit-area').style.display='none';
-  const rEl=document.getElementById('results-content');
-  rEl.innerHTML=`<div class="loading-box"><div class="vu-meter">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-caption">Re-analyzing with corrected specs…</p></div>`;
+
   const payload=JSON.stringify({components,connections,specsText});
   Promise.all([
     fetch('/.netlify/functions/analyze-chain',{method:'POST',headers:{'Content-Type':'application/json'},body:payload}),
     fetch('/.netlify/functions/analyze-summary',{method:'POST',headers:{'Content-Type':'application/json'},body:payload})
   ]).then(async([chainRes,summaryRes])=>{
     const [chainRaw,summaryRaw]=await Promise.all([chainRes.text(),summaryRes.text()]);
-    const chainData=JSON.parse(chainRaw),summaryData=JSON.parse(summaryRaw);
-    if(chainData.error||summaryData.error)throw new Error(chainData.error||summaryData.error);
+    let chainData,summaryData;
+    try{chainData=JSON.parse(chainRaw);}catch(e){throw new Error('Chain parse error: '+chainRaw.slice(0,80));}
+    try{summaryData=JSON.parse(summaryRaw);}catch(e){throw new Error('Summary parse error: '+summaryRaw.slice(0,80));}
+    if(chainData.error)throw new Error(chainData.error);
+    if(summaryData.error)throw new Error(summaryData.error);
     const combined=`${summaryData.text}\n\nCOMPONENT SPECS\n${specsText}\n\n${chainData.text}`;
     const secs=extractSectionsFromText(combined);
+    // Update score cards
+    const sM=combined.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i);
+    const iM=combined.match(/IMPEDANCE MATCH:\s*(.+)/i);
+    const nM=combined.match(/SENSITIVITY MATCH:\s*(.+)/i);
+    if(sM||iM||nM){
+      const nC=n=>n>=8?'score-good':n>=6?'score-ok':'score-bad';
+      const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'score-good':l.includes('poor')?'score-bad':'score-ok';};
+      const score=sM?parseFloat(sM[1]):null;
+      const iStr=iM?iM[1].trim().replace(/\*+/g,''):null;
+      const nStr=nM?nM[1].trim().replace(/\*+/g,''):null;
+      document.getElementById('score-row-inner').innerHTML=`
+        ${score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:''}
+        ${iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:''}
+        ${nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:''}`;
+    }
     document.getElementById('panel-chain-body').innerHTML=renderPanelSections([secs['SIGNAL CHAIN ANALYSIS']&&{label:'Signal chain',text:secs['SIGNAL CHAIN ANALYSIS']},secs['PHONO CHAIN']&&{label:'Phono chain',text:secs['PHONO CHAIN']}].filter(Boolean));
     document.getElementById('panel-summary-body').innerHTML=renderPanelSections([secs['COMPATIBILITY SUMMARY']&&{label:'Overall verdict',text:secs['COMPATIBILITY SUMMARY']},secs['ISSUES & RECOMMENDATIONS']&&{label:'Issues & recommendations',text:secs['ISSUES & RECOMMENDATIONS']}].filter(Boolean));
-    rEl.innerHTML=`<div class="fadein" style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:10px;">✅</div><p style="font-size:13px;color:var(--text-3);">Re-analysis complete with your corrections.</p></div>`;
-  }).catch(e=>{rEl.innerHTML=`<p style="color:#dc2626;font-size:13px;padding:12px;">${esc(e.message)}</p>`;});
+  }).catch(e=>{
+    document.getElementById('panel-chain-body').innerHTML=`<p style="color:#dc2626;font-size:13px;padding:12px;">Error: ${esc(e.message)}</p>`;
+  });
 }
 function printReport(){
   const diagramEl=document.getElementById('diagram-wrap');
