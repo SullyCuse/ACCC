@@ -960,7 +960,7 @@ select {
     <div class="score-row" id="score-row-inner"></div>
   </div>
   <div class="results-3col">
-    <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Component Specifications</span></div><div class="card-body" id="panel-specs-body"></div></div>
+    <div class="card"><div class="card-head" style="justify-content:space-between;"><span class="card-title" style="margin-left:0;">Component Specifications</span><button class="btn btn-sm" id="edit-specs-btn" style="display:none;font-size:11px;padding:4px 10px;" onclick="toggleSpecEdit()">✏️ Edit Specs</button></div><div class="card-body" id="panel-specs-body"></div><div id="spec-edit-area" style="display:none;padding:12px 16px;border-top:1px solid var(--border);background:var(--cream);"><p style="font-size:12px;color:var(--text-2);margin-bottom:8px;">Correct any wrong specs below, then re-run the analysis. Each line: <code style="background:#e2e8f0;padding:1px 4px;border-radius:3px;">component name: spec name: value</code></p><textarea id="spec-corrections" style="width:100%;min-height:100px;font-family:ui-monospace,monospace;font-size:12px;padding:8px;border:1.5px solid var(--border-2);border-radius:8px;background:#fff;outline:none;resize:vertical;" placeholder="Denon DL-301 II: output voltage: 0.4 mV&#10;Denon DL-301 II: dynamic compliance: 13 µm/mN&#10;Denon DL-301 II: impedance: 33 Ω"></textarea><button class="btn btn-blue btn-sm" style="margin-top:8px;" onclick="applySpecCorrections()">Apply Corrections &amp; Re-run Analysis</button></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Analysis</span></div><div class="card-body" id="panel-chain-body"></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Summary &amp; Recommendations</span></div><div class="card-body" id="panel-summary-body"></div></div>
   </div>
@@ -1173,6 +1173,7 @@ function renderResults(text){
   document.getElementById('panel-summary-body').innerHTML=renderPanelSections(sp.length?sp:[{label:'Summary',text:'No content.'}]);
 
   fullEl.style.display='block';
+  document.getElementById('edit-specs-btn').style.display='inline-flex';
   setTimeout(()=>fullEl.scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
 function renderCompSpecs(text){
@@ -1467,7 +1468,45 @@ function buildDiagram(){
 }
 renderAll();
 
-function printReport(){
+function toggleSpecEdit(){
+  const area=document.getElementById('spec-edit-area');
+  area.style.display=area.style.display==='none'?'block':'none';
+}
+
+function extractSectionsFromText(text){
+  const hdrs=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
+  const upper=text.toUpperCase();const found=[];
+  hdrs.forEach(h=>{const idx=upper.indexOf(h);if(idx!==-1)found.push({name:h,idx});});
+  found.sort((a,b)=>a.idx-b.idx);const result={};
+  found.forEach((f,i)=>{const cs=f.idx+f.name.length,ce=i<found.length-1?found[i+1].idx:text.length;result[f.name]=text.slice(cs,ce).replace(/^[\s:]+/,'').trim();});
+  return result;
+}
+
+function applySpecCorrections(){
+  const corrections=document.getElementById('spec-corrections').value.trim();
+  if(!corrections){document.getElementById('spec-edit-area').style.display='none';return;}
+  // Build correction note to append to specsText
+  const correctionNote='\n\n[USER CORRECTIONS - treat these as authoritative overrides]\n'+corrections;
+  const currentSpecs=document.getElementById('panel-specs-body').innerText||'';
+  const specsText=currentSpecs+correctionNote;
+  document.getElementById('spec-edit-area').style.display='none';
+  const rEl=document.getElementById('results-content');
+  rEl.innerHTML=`<div class="loading-box"><div class="vu-meter">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-caption">Re-analyzing with corrected specs…</p></div>`;
+  const payload=JSON.stringify({components,connections,specsText});
+  Promise.all([
+    fetch('/.netlify/functions/analyze-chain',{method:'POST',headers:{'Content-Type':'application/json'},body:payload}),
+    fetch('/.netlify/functions/analyze-summary',{method:'POST',headers:{'Content-Type':'application/json'},body:payload})
+  ]).then(async([chainRes,summaryRes])=>{
+    const [chainRaw,summaryRaw]=await Promise.all([chainRes.text(),summaryRes.text()]);
+    const chainData=JSON.parse(chainRaw),summaryData=JSON.parse(summaryRaw);
+    if(chainData.error||summaryData.error)throw new Error(chainData.error||summaryData.error);
+    const combined=`${summaryData.text}\n\nCOMPONENT SPECS\n${specsText}\n\n${chainData.text}`;
+    const secs=extractSectionsFromText(combined);
+    document.getElementById('panel-chain-body').innerHTML=renderPanelSections([secs['SIGNAL CHAIN ANALYSIS']&&{label:'Signal chain',text:secs['SIGNAL CHAIN ANALYSIS']},secs['PHONO CHAIN']&&{label:'Phono chain',text:secs['PHONO CHAIN']}].filter(Boolean));
+    document.getElementById('panel-summary-body').innerHTML=renderPanelSections([secs['COMPATIBILITY SUMMARY']&&{label:'Overall verdict',text:secs['COMPATIBILITY SUMMARY']},secs['ISSUES & RECOMMENDATIONS']&&{label:'Issues & recommendations',text:secs['ISSUES & RECOMMENDATIONS']}].filter(Boolean));
+    rEl.innerHTML=`<div class="fadein" style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:10px;">✅</div><p style="font-size:13px;color:var(--text-3);">Re-analysis complete with your corrections.</p></div>`;
+  }).catch(e=>{rEl.innerHTML=`<p style="color:#dc2626;font-size:13px;padding:12px;">${esc(e.message)}</p>`;});
+}
   const diagramEl=document.getElementById('diagram-wrap');
   const specsEl=document.getElementById('panel-specs-body');
   const chainEl=document.getElementById('panel-chain-body');
