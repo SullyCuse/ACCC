@@ -1032,13 +1032,14 @@ const connections=[];
 const typeLabels={amp:'Amplifier',preamp:'Preamplifier',speakers:'Speakers',dac:'DAC',turntable:'Turntable',tonearm:'Tonearm',cartridge:'Cartridge',phonopre:'Phono Preamp',streamer:'Streamer',cdplayer:'CD Player',cables:'Cables',headphones:'Headphones',other:'Other'};
 const specHints={amp:'Key specs: power output (W/ch), impedance range (Ω), input sensitivity (mV)',preamp:'Key specs: gain (dB), output impedance (Ω), input sensitivity (mV)',speakers:'Key specs: impedance (Ω), sensitivity (dB/W/m), power handling (W)',dac:'Key specs: output voltage (Vrms), output impedance (Ω), supported inputs',turntable:'Key specs: drive type, tonearm effective mass (g), speeds (RPM)',tonearm:'Key specs: effective mass (g), effective length (mm), offset angle, brand and model',cartridge:'Key specs: type (MM/MC), output voltage (mV), compliance (µm/mN), tracking force (g)',phonopre:'Key specs: gain (dB), input impedance (Ω/kΩ), MM/MC support, output voltage',streamer:'Key specs: digital outputs (AES/USB/COAX), supported formats and sample rates',cdplayer:'Key specs: digital outputs (COAX/optical/AES), analog output voltage (Vrms), output impedance (Ω), DAC type',cables:'Key specs: type (RCA/XLR/speaker), length, shielding',headphones:'Key specs: impedance (Ω), sensitivity (dB/mW), driver type, connection (3.5mm/4.4mm/XLR)',other:'Describe the component and its relevant electrical or mechanical specs'};
 
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function esc(s){
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/\u003C/g,'&lt;')
+    .replace(/\u003E/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
 function updateHint(){const t=document.getElementById('comp-type').value,h=document.getElementById('spec-hint');h.textContent=specHints[t]||'';h.style.display=specHints[t]?'block':'none';}
-updateHint();
-document.addEventListener('DOMContentLoaded',()=>{
-  const input=document.getElementById('comp-name');
-  if(input)input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addComponent();}});
-});
 
 function addComponent(){
   const type=document.getElementById('comp-type').value,name=document.getElementById('comp-name').value.trim();
@@ -1231,24 +1232,25 @@ function renderCompSpecs(text){
 
 function fmtInline(s){
   return s
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/&/g,'&amp;').replace(/\x3C/g,'&lt;').replace(/\x3E/g,'&gt;')
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
     .replace(/`(.+?)`/g,'<code style="font-family:ui-monospace,monospace;font-size:11px;background:#f1f5f9;padding:1px 4px;border-radius:3px;">$1</code>');
 }
 function renderPanelSections(parts){
   if(!parts.length)return'<p style="font-size:13px;color:var(--text-3);">No content.</p>';
+  const LT='\u003C',GT='\u003E';
   return parts.map(({label,text})=>{
     let html=text
-      .replace(/^---+\s*$/gm,'')           // strip horizontal rules
-      .replace(/^#{1,3}\s*/gm,'')          // strip ## ### headings
-      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-      .replace(/^\d+\.\s+(.+)$/gm,'<li>$1</li>')
-      .replace(/^[-•]\s+(.+)$/gm,'<li>$1</li>')
-      .replace(/(<li>[\s\S]*?<\/li>)/g,'<ul>$1</ul>')
-      .replace(/<\/ul>\s*<ul>/g,'')
-      .replace(/\n\n+/g,'</p><p>')
-      .replace(/^(?!<[upl\/]|$)(.+)$/gm,'<p>$1</p>')
-      .replace(/<p>\s*<\/p>/g,'')
+      .replace(/^---+\s*$/gm,'')
+      .replace(/^#{1,3}\s*/gm,'')
+      .replace(/\*\*(.+?)\*\*/g,LT+'strong>$1'+LT+'/strong>')
+      .replace(/^\d+\.\s+(.+)$/gm,LT+'li>$1'+LT+'/li>')
+      .replace(/^[-•]\s+(.+)$/gm,LT+'li>$1'+LT+'/li>')
+      .replace(new RegExp('('+LT+'li>[\\s\\S]*?'+LT+'\\/li>)','g'),LT+'ul>$1'+LT+'/ul>')
+      .replace(new RegExp(LT+'\\/ul>\\s*'+LT+'ul>','g'),'')
+      .replace(/\n\n+/g,LT+'/p>'+LT+'p>')
+      .replace(new RegExp('^(?!'+LT+'[upl\\/]|$)(.+)$','gm'),LT+'p>$1'+LT+'/p>')
+      .replace(new RegExp(LT+'p>\\s*'+LT+'\\/p>','g'),'')
       .trim();
     return `<div class="fadein"><div class="panel-sub-hdr">${esc(label)}</div><div class="panel-analysis">${html}</div></div>`;
   }).join('');
@@ -1479,6 +1481,8 @@ function buildDiagram(){
   return `<svg width="100%" viewBox="0 0 ${W} ${y+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
 }
 renderAll();
+updateHint();
+document.getElementById('comp-name').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addComponent();}});
 
 function toggleSpecEdit(){
   const area=document.getElementById('spec-edit-area');
@@ -1519,6 +1523,7 @@ function applySpecCorrections(){
     rEl.innerHTML=`<div class="fadein" style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:10px;">✅</div><p style="font-size:13px;color:var(--text-3);">Re-analysis complete with your corrections.</p></div>`;
   }).catch(e=>{rEl.innerHTML=`<p style="color:#dc2626;font-size:13px;padding:12px;">${esc(e.message)}</p>`;});
 }
+function printReport(){
   const diagramEl=document.getElementById('diagram-wrap');
   const specsEl=document.getElementById('panel-specs-body');
   const chainEl=document.getElementById('panel-chain-body');
@@ -1606,7 +1611,8 @@ ${scoreEl&&scoreEl.querySelector('.score-row')?'<h2>Compatibility Scores</h2>'+s
 </div>
 </body></html>`);
   win.document.close();
-}{localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').style.display='none';gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}
+}
+function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').style.display='none';gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}
 function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').style.display='none';}
 (function(){const c=localStorage.getItem('cookie_consent');if(!c){document.getElementById('cookie-banner').style.display='flex';}else if(c==='accepted'){gtag('consent','update',{'ad_storage':'granted','ad_user_data':'granted','ad_personalization':'granted','analytics_storage':'granted'});}})();
 </script>
