@@ -1035,6 +1035,10 @@ const specHints={amp:'Key specs: power output (W/ch), impedance range (Ω), inpu
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function updateHint(){const t=document.getElementById('comp-type').value,h=document.getElementById('spec-hint');h.textContent=specHints[t]||'';h.style.display=specHints[t]?'block':'none';}
 updateHint();
+document.addEventListener('DOMContentLoaded',()=>{
+  const input=document.getElementById('comp-name');
+  if(input)input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addComponent();}});
+});
 
 function addComponent(){
   const type=document.getElementById('comp-type').value,name=document.getElementById('comp-name').value.trim();
@@ -1063,7 +1067,15 @@ function addConnection(){
   toSel.selectedIndex=next;
 }
 function removeConnection(id){const i=connections.findIndex(c=>c.id===id);if(i>-1)connections.splice(i,1);renderConnections();}
-function renderAll(){renderComponents();renderConnections();updateConnDropdowns();const show=components.length>=2;['conn-panel','analyze-panel'].forEach(id=>document.getElementById(id).style.display=show?'block':'none');}
+function renderAll(){
+  renderComponents();
+  renderConnections();
+  updateConnDropdowns();
+  const show=components.length>=2;
+  // In grid layout, use '' (default) not 'block' so grid columns work correctly
+  document.getElementById('conn-panel').style.display=show?'':'none';
+  document.getElementById('analyze-panel').style.display=show?'':'none';
+}
 function generateDiagram(){
   updateDiagram();
   document.getElementById('diagram-panel').style.display='block';
