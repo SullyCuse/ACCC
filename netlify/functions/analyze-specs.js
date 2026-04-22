@@ -2,11 +2,7 @@ const https = require("https");
 
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") return { statusCode: 405, body: "Method not allowed" };
-
-  const headers = {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-  };
+  const headers = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
 
   try {
     const { components } = JSON.parse(event.body);
@@ -16,25 +12,48 @@ exports.handler = async (event) => {
       phonopre:"Phono Preamp",streamer:"Streamer",cdplayer:"CD Player",
       cables:"Cables",headphones:"Headphones",other:"Other"
     };
-    const numberedList = components.map((c,i)=>`${i+1}. [${typeLabels[c.type]||c.type}] ${c.name}`).join("\n");
 
-    const prompt = `List published specifications for all ${components.length} components. Use training knowledge. For each component:
-- If you know the EXACT model: list its specs normally
-- If you are NOT certain it is the exact model and are using a similar one: add a note "⚠ Specs shown are for [similar model] — exact specs for [entered model] not confirmed"
-- Never skip a component. Estimate with (~) if needed.
+    // Ask only the most critical specs per type — keeps output compact for Sonnet speed
+    const specFields = {
+      amp:       "power output (W/ch), input impedance (Ω), input sensitivity (mV)",
+      preamp:    "gain (dB), input impedance (kΩ), output impedance (Ω)",
+      speakers:  "nominal impedance (Ω), minimum impedance (Ω), sensitivity (dB/W/m), power handling (W)",
+      dac:       "output voltage (Vrms), output impedance (Ω), THD+N",
+      turntable: "drive type, speeds (RPM), tonearm effective mass (g)",
+      tonearm:   "effective mass (g), effective length (mm), mounting type",
+      cartridge: "type (MM/MC), output voltage (mV), dynamic compliance (µm/mN), internal impedance (Ω), tracking force (g), recommended loading (Ω), channel separation (dB)",
+      phonopre:  "MM gain (dB), MC gain (dB), MM input impedance (kΩ), MC input impedance (Ω), output voltage",
+      streamer:  "digital outputs, supported formats",
+      cdplayer:  "output voltage (Vrms), digital outputs, THD",
+      headphones:"impedance (Ω), sensitivity (dB/mW)",
+      cables:    "type, impedance",
+      other:     "key electrical specs"
+    };
+
+    const numberedList = components.map((c,i) => {
+      const fields = specFields[c.type] || "key specs";
+      return `${i+1}. [${typeLabels[c.type]||c.type}] ${c.name}\n   Required: ${fields}`;
+    }).join("\n");
+
+    const prompt = `You are an audio equipment specifications database with expert knowledge of hi-fi components. For each component below, report the exact published manufacturer specifications.
+
+IMPORTANT:
+- If you know this EXACT model: state its specs precisely
+- If you are NOT certain this is the exact model: add line "⚠ Specs shown are for [similar model] — exact specs for [entered model] not confirmed in training data"
+- Never skip a component
+- Estimate with (~) only if no data available
 
 ${numberedList}
 
-For each component output EXACTLY:
+Output one block per component:
 **[Name] ([Type])**
 - spec: value
-- spec: value
 
-Go through all ${components.length} components in order. No summary text at the end.`;
+All ${components.length} components required. No summary text.`;
 
     const body = JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 1100,
+      model: "claude-sonnet-4-6",
+      max_tokens: 650,
       messages: [{ role: "user", content: prompt }],
     });
 
@@ -49,11 +68,7 @@ Go through all ${components.length} components in order. No summary text at the 
           "anthropic-version": "2023-06-01",
           "Content-Length": Buffer.byteLength(body),
         },
-      }, res => {
-        let d = "";
-        res.on("data", c => d += c);
-        res.on("end", () => resolve(d));
-      });
+      }, res => { let d=""; res.on("data",c=>d+=c); res.on("end",()=>resolve(d)); });
       req.on("error", reject);
       req.write(body);
       req.end();
