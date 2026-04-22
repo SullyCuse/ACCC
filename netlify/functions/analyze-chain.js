@@ -9,7 +9,7 @@ exports.handler = async (event) => {
   };
 
   try {
-    const { components, connections } = JSON.parse(event.body);
+    const { components, connections, specsText } = JSON.parse(event.body);
     const typeLabels = {
       amp:"Amplifier",preamp:"Preamplifier",speakers:"Speakers",dac:"DAC",
       turntable:"Turntable",tonearm:"Tonearm",cartridge:"Cartridge",
@@ -20,18 +20,20 @@ exports.handler = async (event) => {
     const connectionList = connections && connections.length > 0
       ? connections.map(c=>`- ${c.fromName} → ${c.toName} via ${c.type}`).join("\n")
       : "Not specified";
-    const hasPhono = components.some(c=>["cartridge","phonopre","turntable","tonearm"].includes(c.type));
 
-    const prompt = `Audio engineer. Analyze each connection in this hi-fi signal chain. Never refuse. Always complete all connections listed. Use specs from your training knowledge.
+    const prompt = `Audio engineer. Analyze each connection in this signal chain using the EXACT confirmed specs below — do not substitute your own spec values. Never refuse. Complete all connections.
 
-Components: ${componentList}
-Connections: ${connectionList}
+CONFIRMED SPECS:
+${specsText || componentList}
 
-Output EXACTLY — one bullet per connection, no other text:
+Connections to analyze:
+${connectionList}
+
+Output EXACTLY — one bullet per connection:
 
 SIGNAL CHAIN ANALYSIS
-- [From] → [To] via [type]: [impedance/voltage match assessment with numbers]
-- [repeat for every connection listed]`;
+- [From] → [To] via [type]: [impedance/voltage figures from confirmed specs above, match assessment]
+- [repeat for every connection]`;
 
     const body = JSON.stringify({
       model: "claude-haiku-4-5-20251001",

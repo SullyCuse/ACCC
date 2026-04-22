@@ -4,7 +4,7 @@ exports.handler = async (event) => {
   if (event.httpMethod !== "POST") return { statusCode: 405, body: "Method not allowed" };
   const headers = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
   try {
-    const { components, connections } = JSON.parse(event.body);
+    const { components, connections, specsText } = JSON.parse(event.body);
     const typeLabels = {
       amp:"Amplifier",preamp:"Preamplifier",speakers:"Speakers",dac:"DAC",
       turntable:"Turntable",tonearm:"Tonearm",cartridge:"Cartridge",
@@ -17,9 +17,11 @@ exports.handler = async (event) => {
       : "Not specified";
     const hasPhono = components.some(c=>["cartridge","phonopre","turntable","tonearm"].includes(c.type));
 
-    const prompt = `Hi-fi compatibility expert. Score and summarize this system. Never refuse — always complete all sections.
+    const prompt = `Hi-fi compatibility expert. Score and summarize this system using the EXACT specs provided below — do not substitute or re-derive specs independently. Never refuse — always complete all sections.
 
-Components: ${componentList}
+CONFIRMED COMPONENT SPECS (use these exact values):
+${specsText || componentList}
+
 Connections: ${connectionList}
 
 Output EXACTLY:
@@ -29,12 +31,12 @@ IMPEDANCE MATCH: [Good/Acceptable/Poor or N/A]
 SENSITIVITY MATCH: [Good/Acceptable/Poor or N/A]
 
 COMPATIBILITY SUMMARY
-[2-3 sentences: overall verdict with key numbers]${hasPhono ? `
+[2-3 sentences: overall verdict with key numbers from the confirmed specs above]${hasPhono ? `
 
 PHONO CHAIN
-- Cartridge: [type, output voltage]
-- Resonance: 159/√([tonearm mass g]×[compliance µm/mN]) = [X.X] Hz — [Good 8-12Hz / Acceptable / Poor]
-- Recommended gain: [dB]
+- Cartridge: [type and exact output voltage from specs above]
+- Resonance: 159/√([exact tonearm mass from specs]×[exact dynamic compliance from specs]) = [calculated Hz] — [Good 8-12Hz / Acceptable / Poor]
+- Recommended gain: [dB based on actual output voltage]
 - Recommended loading: [Ω]` : ""}
 
 ISSUES & RECOMMENDATIONS
