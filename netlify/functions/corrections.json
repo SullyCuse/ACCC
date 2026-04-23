@@ -1,0 +1,14 @@
+{
+  "_readme": "Verified component specs. Keys must match component names exactly as entered by users (case-insensitive lookup is applied). Each entry overrides AI-generated specs for that component.",
+  "Denon DL-301 II": {
+    "Type": "MC (Moving Coil)",
+    "Output voltage (mV)": "0.4 mV",
+    "Dynamic compliance (µm/mN)": "13 µm/mN",
+    "Internal impedance (Ω)": "33 Ω",
+    "Tracking force (g)": "1.4 g (range 1.2–1.6 g)",
+    "Recommended loading (Ω)": ">100 Ω",
+    "Channel separation (dB)": ">28 dB",
+    "Stylus": "Special elliptical, solid diamond",
+    "Frequency response": "20 Hz – 60 kHz"
+  }
+}
