@@ -1022,9 +1022,8 @@ select {
   <input type="hidden" name="form-name" value="spec-correction">
   <input type="text" name="bot-field">
   <input type="text" name="component-name">
-  <input type="text" name="component-type">
-  <textarea name="original-specs"></textarea>
-  <textarea name="corrected-specs"></textarea>
+  <textarea name="changes-summary"></textarea>
+  <textarea name="json-to-add"></textarea>
 </form>
 
 <!-- COOKIE BANNER -->
@@ -1520,19 +1519,77 @@ function extractSectionsFromText(text){
   return result;
 }
 
-// Submit spec corrections to Netlify Forms so Kevin can review and add to corrections.json
-function submitCorrectionToNetlify(specsText){
+// Parse spec text into {componentName: {specKey: value}} map
+function parseSpecBlocks(text){
+  const result={};
+  let currentName=null;
+  (text||'').split('\n').forEach(line=>{
+    const hdr=line.trim().match(/^\*\*(.+?)\s*\(([^)]+)\)\*\*$/);
+    if(hdr){currentName=hdr[1].trim();result[currentName]={_type:hdr[2].trim()};return;}
+    if(!currentName)return;
+    const spec=line.trim().replace(/^[-•]\s*/,'');
+    const col=spec.indexOf(':');
+    if(col>0){
+      const k=spec.slice(0,col).trim();
+      const v=spec.slice(col+1).trim();
+      if(k&&v)result[currentName][k]=v;
+    }
+  });
+  return result;
+}
+
+function submitCorrectionToNetlify(correctedSpecsText){
   try{
+    const original=parseSpecBlocks(window._lastSpecsText||'');
+    const corrected=parseSpecBlocks(correctedSpecsText);
+
+    // Build per-component JSON blocks and diff summary
+    const jsonBlocks=[];
+    const diffLines=[];
+
+    Object.entries(corrected).forEach(([compName,compSpecs])=>{
+      const origComp=original[compName]||{};
+      const specEntries=Object.entries(compSpecs).filter(([k])=>k!=='_type');
+      const hasChanges=specEntries.some(([k,v])=>origComp[k]&&origComp[k]!==v);
+      if(!hasChanges)return; // only submit components that actually changed
+
+      const type=compSpecs._type||origComp._type||'';
+      diffLines.push(`--- ${compName} (${type}) ---`);
+
+      // Build JSON block with >>> CHANGED <<< markers
+      const jsonLines=[`  "${compName}": {`];
+      specEntries.forEach(([k,v],i)=>{
+        const isLast=i===specEntries.length-1;
+        const origVal=origComp[k];
+        const comma=isLast?'':',';
+        const changed=origVal&&origVal!==v;
+        if(changed){
+          jsonLines.push(`    "${k}": "${v}"${comma}  // >>> CHANGED (was: "${origVal}") <<<`);
+          diffLines.push(`  ${k}:`);
+          diffLines.push(`    BEFORE: ${origVal}`);
+          diffLines.push(`    AFTER:  ${v}`);
+        } else {
+          jsonLines.push(`    "${k}": "${v}"${comma}`);
+        }
+      });
+      jsonLines.push('  }');
+      jsonBlocks.push(jsonLines.join('\n'));
+    });
+
+    if(jsonBlocks.length===0)return; // nothing actually changed
+
+    const jsonToCopy='{\n'+jsonBlocks.join(',\n')+'\n}';
+    const summary=diffLines.join('\n');
+
     const body=new URLSearchParams({
       'form-name':'spec-correction',
-      'component-name': components.map(c=>c.name).join(', '),
-      'component-type': components.map(c=>typeLabels[c.type]||c.type).join(', '),
-      'original-specs': window._lastSpecsText||'',
-      'corrected-specs': specsText
+      'component-name':Object.keys(corrected).join(', '),
+      'changes-summary':summary,
+      'json-to-add':jsonToCopy
     }).toString();
+
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
-    // Fire and forget — don't await, don't block UI
-  }catch(e){/* silent — correction submission is best-effort */}
+  }catch(e){/* silent — best effort */}
 }
 
 function applySpecCorrections(){
