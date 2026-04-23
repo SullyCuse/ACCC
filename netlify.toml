@@ -2,7 +2,13 @@
   publish = "."
   functions = "netlify/functions"
 
-[functions."analyze"]
+[functions."analyze-specs"]
+  timeout = 10
+
+[functions."analyze-chain"]
+  timeout = 10
+
+[functions."analyze-summary"]
   timeout = 10
 
 [[headers]]
