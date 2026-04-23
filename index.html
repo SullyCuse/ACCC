@@ -1146,21 +1146,7 @@ async function analyze(){
 }
 function renderResults(text){
   const rEl=document.getElementById('results-content'),fullEl=document.getElementById('results-full');
-  const sM=text.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i),iM=text.match(/IMPEDANCE MATCH:\s*(.+)/i),nM=text.match(/SENSITIVITY MATCH:\s*(.+)/i);
-  const score=sM?parseFloat(sM[1]):null,iStr=iM?iM[1].trim().replace(/\*+/g,''):null,nStr=nM?nM[1].trim().replace(/\*+/g,''):null;
-  const nC=n=>n>=8?'score-good':n>=6?'score-ok':'score-bad';
-  const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'score-good':l.includes('poor')?'score-bad':'score-ok';};
-
-  // Show scores above 3-col
-  if(score!==null||iStr||nStr){
-    const scoresEl=document.getElementById('results-scores');
-    const inner=document.getElementById('score-row-inner');
-    inner.innerHTML=`
-      ${score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:''}
-      ${iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:''}
-      ${nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:''}`;
-    scoresEl.style.display='block';
-  }
+  renderScoreCards(text);
 
   // Update right panel status
   rEl.innerHTML=`<div class="fadein" style="text-align:center;padding:20px 0;">
@@ -1170,22 +1156,7 @@ function renderResults(text){
 
   const clean=text.replace(/OVERALL SCORE:.*\n?/i,'').replace(/IMPEDANCE MATCH:.*\n?/i,'').replace(/SENSITIVITY MATCH:.*\n?/i,'');
 
-  function extractSections(src){
-    const hdrs=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
-    const upper=src.toUpperCase();
-    const found=[];
-    hdrs.forEach(h=>{const idx=upper.indexOf(h);if(idx!==-1)found.push({name:h,idx});});
-    found.sort((a,b)=>a.idx-b.idx);
-    const result={};
-    found.forEach((f,i)=>{
-      const contentStart=f.idx+f.name.length;
-      const contentEnd=i<found.length-1?found[i+1].idx:src.length;
-      result[f.name]=src.slice(contentStart,contentEnd).replace(/^[\s:]+/,'').trim();
-    });
-    return result;
-  }
-
-  const secs=extractSections(clean);
+  const secs=extractSectionsFromText(clean);
   if(!Object.values(secs).some(v=>v))secs['COMPATIBILITY SUMMARY']=clean.trim();
 
   document.getElementById('panel-specs-body').innerHTML=renderCompSpecs(secs['COMPONENT SPECS']);
@@ -1525,6 +1496,26 @@ function toggleSpecEdit(){
   }
 }
 
+function renderScoreCards(text){
+  const sM=text.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i);
+  const iM=text.match(/IMPEDANCE MATCH:\s*(.+)/i);
+  const nM=text.match(/SENSITIVITY MATCH:\s*(.+)/i);
+  const score=sM?parseFloat(sM[1]):null;
+  const iStr=iM?iM[1].trim().replace(/\*+/g,''):null;
+  const nStr=nM?nM[1].trim().replace(/\*+/g,''):null;
+  if(score===null&&!iStr&&!nStr)return;
+  const nC=n=>n>=8?'score-good':n>=6?'score-ok':'score-bad';
+  const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'score-good':l.includes('poor')?'score-bad':'score-ok';};
+  const inner=document.getElementById('score-row-inner');
+  const scoresEl=document.getElementById('results-scores');
+  if(!inner||!scoresEl)return;
+  inner.innerHTML=
+    (score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:'')+
+    (iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:'')+
+    (nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:'');
+  scoresEl.style.display='block';
+}
+
 function extractSectionsFromText(text){
   const hdrs=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
   const upper=text.toUpperCase();const found=[];
@@ -1614,21 +1605,7 @@ function applySpecCorrections(){
     const combined=`${summaryData.text}\n\nCOMPONENT SPECS\n${specsText}\n\n${chainData.text}`;
     const secs=extractSectionsFromText(combined);
 
-    const nC=n=>n>=8?'score-good':n>=6?'score-ok':'score-bad';
-    const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'score-good':l.includes('poor')?'score-bad':'score-ok';};
-    const sM=combined.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i);
-    const iM=combined.match(/IMPEDANCE MATCH:\s*(.+)/i);
-    const nM=combined.match(/SENSITIVITY MATCH:\s*(.+)/i);
-    const scoreInner=document.getElementById('score-row-inner');
-    if(scoreInner&&(sM||iM||nM)){
-      const score=sM?parseFloat(sM[1]):null;
-      const iStr=iM?iM[1].trim().replace(/\*+/g,''):null;
-      const nStr=nM?nM[1].trim().replace(/\*+/g,''):null;
-      scoreInner.innerHTML=
-        (score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:'')+
-        (iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:'')+
-        (nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:'');
-    }
+    renderScoreCards(combined);
     if(chainEl)chainEl.innerHTML=renderPanelSections([
       secs['SIGNAL CHAIN ANALYSIS']&&{label:'Signal chain',text:secs['SIGNAL CHAIN ANALYSIS']},
       secs['PHONO CHAIN']&&{label:'Phono chain',text:secs['PHONO CHAIN']}
