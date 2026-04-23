@@ -63,3 +63,41 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+---
+
+## AudioChainHiFi Project Constraints
+
+Project-specific rules that override or extend the principles above.
+
+### Architecture
+- **Netlify Personal plan:** 10-second hard function timeout per call — never increase token limits without estimating generation time first (Sonnet ~70 tok/s, Haiku ~150 tok/s)
+- **Three parallel functions** run on every analysis:
+  - `analyze-specs` — Sonnet, 650 tokens — fetches component specs, checks `corrections.json` first
+  - `analyze-chain` — Haiku, 700 tokens — analyzes each signal chain connection
+  - `analyze-summary` — Sonnet, 600 tokens — scores, phono chain calc, recommendations
+- `analyze-specs` runs first; its output (`specsText`) is passed to `analyze-chain` and `analyze-summary` so all three use the same confirmed spec values
+
+### Hard limits — never change without timeout testing
+| Function | Model | Max tokens | Est. time |
+|---|---|---|---|
+| analyze-specs | claude-sonnet-4-6 | 650 | ~9s |
+| analyze-chain | claude-haiku-4-5-20251001 | 700 | ~5s |
+| analyze-summary | claude-sonnet-4-6 | 600 | ~9s |
+
+### index.html rules
+- **Brace balance check is mandatory** before delivering any `index.html` edit: `python3 -c "with open('index.html') as f: h=f.read(); s=h.rfind('<script>')+8; e=h.rfind('</script>'); d=sum(1 if c=='{' else -1 if c=='}' else 0 for c in h[s:e]); print('Brace depth:', d)"`
+- **All `<` and `>` in JS regex patterns** must use unicode escapes `\u003C` / `\u003E` — bare angle brackets inside `<script>` tags break the HTML parser silently
+- **No bare `</` string literals** in JS — the HTML parser terminates the script block on any `</` sequence
+- `index.html` has no test suite — Surgical Changes is especially critical here; one stray `}` can break the entire page
+
+### corrections.json rules
+- Lives at `netlify/functions/corrections.json` — co-located so functions can `require('./corrections.json')`
+- **No JSON comments** — `//` and `/* */` are not valid JSON; `JSON.parse()` will throw and the corrections database silently fails to load
+- Keys are component names exactly as users enter them (case-insensitive lookup is applied at runtime)
+- Strip `// >>> CHANGED <<<` markers from Netlify form submissions before pasting into this file
+
+### Signal chain diagram rules
+- All `<` / `>` in SVG/HTML strings built in JS must use the `esc()` function or template literals — never raw angle brackets
+- `boxH()` must account for variable-height turntable boxes (tonearm + cartridge sub-items) when calculating merge Y positions
+- Topological sort uses level-based BFS — do not revert to DFS which breaks multi-source-to-hub layouts
