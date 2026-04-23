@@ -1271,16 +1271,29 @@ function buildDiagram(){
 
   // Level-based topological sort (BFS): all sources appear before the nodes they feed
   // This correctly handles multiple sources (M1T + CXA35) both feeding one DAC
+  // Signal flow order by type — used when no connections are defined
+  const typeFlowOrder={
+    turntable:0,tonearm:0,cartridge:0,
+    phonopre:1,
+    cdplayer:0,streamer:0,
+    dac:1,
+    preamp:2,amp:3,speakers:4,headphones:4,cables:99,other:99
+  };
+
   function levelSort(chain){
     if(chain.length<=1)return chain;
     const ids=new Set(chain.map(c=>c.id));
     const intConns=connections.filter(cn=>ids.has(cn.fromId)&&ids.has(cn.toId));
+    // No connections within this chain — sort by logical signal flow type order
+    if(intConns.length===0){
+      return [...chain].sort((a,b)=>(typeFlowOrder[a.type]??99)-(typeFlowOrder[b.type]??99));
+    }
     const inDeg={};
     chain.forEach(c=>inDeg[c.id]=0);
     intConns.forEach(cn=>inDeg[cn.toId]++);
     const result=[],vis=new Set();
     let level=chain.filter(c=>inDeg[c.id]===0);
-    if(!level.length)level=chain.slice(0,1); // fallback for cycles
+    if(!level.length)level=chain.slice(0,1);
     while(level.length>0){
       level.forEach(c=>{result.push(c);vis.add(c.id);});
       const next=[];
@@ -1305,10 +1318,13 @@ function buildDiagram(){
     const intConns=connections.filter(cn=>ids.has(cn.fromId)&&ids.has(cn.toId));
     const extIn=new Set();
     connections.forEach(cn=>{if(!ids.has(cn.fromId)&&ids.has(cn.toId))extIn.add(cn.toId);});
+    // No connections — sort by signal flow type order
+    if(intConns.length===0&&extIn.size===0){
+      return [...chain].sort((a,b)=>(typeFlowOrder[a.type]??99)-(typeFlowOrder[b.type]??99));
+    }
     const inDeg={};
     chain.forEach(c=>inDeg[c.id]=0);
     intConns.forEach(cn=>inDeg[cn.toId]++);
-    // Nodes receiving from outside (dig/pho) are treated as level-0 sources if no internal in
     const result=[],vis=new Set();
     let level=chain.filter(c=>inDeg[c.id]===0&&extIn.has(c.id));
     if(!level.length)level=chain.filter(c=>inDeg[c.id]===0);
