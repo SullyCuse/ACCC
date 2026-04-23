@@ -1017,6 +1017,16 @@ select {
   </div>
 </footer>
 
+<!-- HIDDEN SPEC CORRECTION FORM (Netlify Forms) -->
+<form name="spec-correction" netlify netlify-honeypot="bot-field" style="display:none;">
+  <input type="hidden" name="form-name" value="spec-correction">
+  <input type="text" name="bot-field">
+  <input type="text" name="component-name">
+  <input type="text" name="component-type">
+  <textarea name="original-specs"></textarea>
+  <textarea name="corrected-specs"></textarea>
+</form>
+
 <!-- COOKIE BANNER -->
 <div class="cookie-banner" id="cookie-banner" style="display:none;">
   <p class="cookie-text">We use cookies for advertising (Google AdSense) and analytics. See our <a href="/privacy.html">Privacy Policy</a> to learn more.</p>
@@ -1510,6 +1520,21 @@ function extractSectionsFromText(text){
   return result;
 }
 
+// Submit spec corrections to Netlify Forms so Kevin can review and add to corrections.json
+function submitCorrectionToNetlify(specsText){
+  try{
+    const body=new URLSearchParams({
+      'form-name':'spec-correction',
+      'component-name': components.map(c=>c.name).join(', '),
+      'component-type': components.map(c=>typeLabels[c.type]||c.type).join(', '),
+      'original-specs': window._lastSpecsText||'',
+      'corrected-specs': specsText
+    }).toString();
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
+    // Fire and forget — don't await, don't block UI
+  }catch(e){/* silent — correction submission is best-effort */}
+}
+
 function applySpecCorrections(){
   document.getElementById('spec-edit-area').style.display='none';
 
@@ -1518,6 +1543,7 @@ function applySpecCorrections(){
 
   // Update stored specs and re-render the specs panel immediately
   window._lastSpecsText=specsText;
+  submitCorrectionToNetlify(specsText);
   document.getElementById('panel-specs-body').innerHTML=renderCompSpecs(specsText);
 
   const chainEl=document.getElementById('panel-chain-body');
