@@ -1518,62 +1518,43 @@ function extractSectionsFromText(text){
   return result;
 }
 
-function parseSpecBlocks(text){
-  const result={};
-  let currentName=null;
-  (text||'').split('\n').forEach(line=>{
-    const hdr=line.trim().match(/^\*\*(.+?)\s*\(([^)]+)\)\*\*$/);
-    if(hdr){currentName=hdr[1].trim();result[currentName]={_type:hdr[2].trim()};return;}
-    if(!currentName)return;
-    const spec=line.trim().replace(/^[-•]\s*/,'');
-    const col=spec.indexOf(':');
-    if(col>0){
-      const k=spec.slice(0,col).trim();
-      const v=spec.slice(col+1).trim();
-      if(k&&v)result[currentName][k]=v;
-    }
-  });
-  return result;
-}
-
 function submitCorrectionToNetlify(correctedSpecsText){
   try{
-    const original=parseSpecBlocks(window._lastSpecsText||'');
-    const corrected=parseSpecBlocks(correctedSpecsText);
+    const originalLines=(window._lastSpecsText||'').split('\n');
+    const correctedLines=correctedSpecsText.split('\n');
 
-    const jsonBlocks=[];
+    // Simple line diff — find lines that changed
     const diffLines=[];
+    const changedJsonLines=[];
+    let currentComp='';
 
-    Object.entries(corrected).forEach(([compName,compSpecs])=>{
-      const origComp=original[compName]||{};
-      const specEntries=Object.entries(compSpecs).filter(([k])=>k!=='_type');
-      const type=compSpecs._type||origComp._type||'';
+    correctedLines.forEach((line,i)=>{
+      // Track current component block header
+      const hdr=line.trim().match(/^\*\*(.+?)\s*\([^)]+\)\*\*\s*$/);
+      if(hdr) currentComp=hdr[1].trim();
 
-      const jsonLines=[`  "${compName}": {`];
-      let changed=false;
-      specEntries.forEach(([k,v],i)=>{
-        const isLast=i===specEntries.length-1;
-        const origVal=origComp[k];
-        const wasChanged=origVal&&origVal!==v;
-        if(wasChanged){
-          changed=true;
-          jsonLines.push(`    "${k}": "${v}"${isLast?'':','}  // >>> CHANGED (was: "${origVal}") <<<`);
-          diffLines.push(`--- ${compName} ---\n  ${k}:\n    BEFORE: ${origVal}\n    AFTER:  ${v}`);
-        } else {
-          jsonLines.push(`    "${k}": "${v}"${isLast?'':','}`);
+      const origLine=(originalLines[i]||'').trim();
+      const newLine=line.trim();
+
+      if(origLine!==newLine && newLine){
+        // This line changed
+        const specMatch=newLine.replace(/^[-•]\s*/,'').match(/^(.+?):\s*(.+)$/);
+        const origMatch=origLine.replace(/^[-•]\s*/,'').match(/^(.+?):\s*(.+)$/);
+        if(specMatch&&origMatch){
+          diffLines.push(`[${currentComp}] ${specMatch[1]}:`);
+          diffLines.push(`  BEFORE: ${origMatch[2]}`);
+          diffLines.push(`  AFTER:  ${specMatch[2]}`);
+          changedJsonLines.push(`    "${specMatch[1]}": "${specMatch[2]}"  // >>> CHANGED (was: "${origMatch[2]}") <<<`);
         }
-      });
-      jsonLines.push('  }');
-      if(changed) jsonBlocks.push(jsonLines.join('\n'));
+      }
     });
 
-    // Always submit — use full corrected text as fallback if diff parsing found nothing
-    const jsonToCopy = jsonBlocks.length > 0
-      ? '{\n'+jsonBlocks.join(',\n')+'\n}'
-      : correctedSpecsText;
-    const summary = diffLines.length > 0
-      ? diffLines.join('\n\n')
-      : '(Could not parse diff — see json-to-add for full corrected specs)';
+    const summary=diffLines.length>0
+      ? diffLines.join('\n')
+      : 'No line-level changes detected — full corrected specs attached';
+
+    // Build a clean JSON snippet with just the changed lines marked
+    const jsonToCopy=correctedSpecsText; // full text so Kevin has all context
 
     const body=new URLSearchParams({
       'form-name':'spec-correction',
