@@ -1581,8 +1581,8 @@ function applySpecCorrections(){
   if(!specsText)return;
 
   // Update stored specs and re-render the specs panel immediately
-  window._lastSpecsText=specsText;
   submitCorrectionToNetlify(specsText);
+  window._lastSpecsText=specsText;
   document.getElementById('panel-specs-body').innerHTML=renderCompSpecs(specsText);
 
   const chainEl=document.getElementById('panel-chain-body');
