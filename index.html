@@ -960,7 +960,7 @@ select {
     <div class="score-row" id="score-row-inner"></div>
   </div>
   <div class="results-3col">
-    <div class="card"><div class="card-head" style="justify-content:space-between;"><span class="card-title" style="margin-left:0;">Component Specifications</span><button class="btn btn-sm" id="edit-specs-btn" style="display:none;font-size:11px;padding:4px 10px;" onclick="toggleSpecEdit()">✏️ Edit Specs</button></div><div class="card-body" id="panel-specs-body"></div><div id="spec-edit-area" style="display:none;padding:12px 16px;border-top:1px solid var(--border);background:var(--cream);"><p style="font-size:12px;color:var(--text-2);margin-bottom:8px;">Correct any wrong specs below, then re-run the analysis. Each line: <code style="background:#e2e8f0;padding:1px 4px;border-radius:3px;">component name: spec name: value</code></p><textarea id="spec-corrections" style="width:100%;min-height:100px;font-family:ui-monospace,monospace;font-size:12px;padding:8px;border:1.5px solid var(--border-2);border-radius:8px;background:#fff;outline:none;resize:vertical;" placeholder="Denon DL-301 II: output voltage: 0.4 mV&#10;Denon DL-301 II: dynamic compliance: 13 µm/mN&#10;Denon DL-301 II: impedance: 33 Ω"></textarea><button class="btn btn-blue btn-sm" style="margin-top:8px;" onclick="applySpecCorrections()">Apply Corrections &amp; Re-run Analysis</button></div></div>
+    <div class="card"><div class="card-head" style="justify-content:space-between;"><span class="card-title" style="margin-left:0;">Component Specifications</span><button class="btn btn-sm" id="edit-specs-btn" style="display:none;font-size:11px;padding:4px 10px;" onclick="toggleSpecEdit()">✏️ Edit Specs</button></div><div class="card-body" id="panel-specs-body"></div><div id="spec-edit-area" style="display:none;padding:12px 16px;border-top:1px solid var(--border);background:var(--cream);"><p style="font-size:12px;color:var(--text-2);margin-bottom:8px;">All specs are shown below — edit any values directly, then click Re-run. Change the number after the colon on any line.</p><textarea id="spec-corrections" style="width:100%;min-height:200px;font-family:ui-monospace,monospace;font-size:11px;line-height:1.6;padding:8px;border:1.5px solid var(--border-2);border-radius:8px;background:#fff;outline:none;resize:vertical;" placeholder="Run an analysis first to load all specs here for editing."></textarea><button class="btn btn-blue btn-sm" style="margin-top:8px;" onclick="applySpecCorrections()">Apply Corrections &amp; Re-run Analysis</button></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Analysis</span></div><div class="card-body" id="panel-chain-body"></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Summary &amp; Recommendations</span></div><div class="card-body" id="panel-summary-body"></div></div>
   </div>
@@ -1487,7 +1487,18 @@ document.getElementById('comp-name').addEventListener('keydown',e=>{if(e.key==='
 
 function toggleSpecEdit(){
   const area=document.getElementById('spec-edit-area');
-  area.style.display=area.style.display==='none'?'block':'none';
+  const isHidden=area.style.display==='none'||area.style.display==='';
+  if(isHidden){
+    const ta=document.getElementById('spec-corrections');
+    // Only pre-populate if textarea is empty
+    if(ta.value.trim()===''&&window._lastSpecsText){
+      ta.value=window._lastSpecsText;
+    }
+    area.style.display='block';
+    ta.focus();
+  }else{
+    area.style.display='none';
+  }
 }
 
 function extractSectionsFromText(text){
@@ -1500,66 +1511,63 @@ function extractSectionsFromText(text){
 }
 
 function applySpecCorrections(){
-  // Always close the edit area first
   document.getElementById('spec-edit-area').style.display='none';
 
-  const corrections=document.getElementById('spec-corrections').value.trim();
-  if(!corrections)return;
+  const specsText=document.getElementById('spec-corrections').value.trim();
+  if(!specsText)return;
 
-  try{
-    const correctionNote='\n\n[USER CORRECTIONS — use these exact values, they override any other spec data]\n'+corrections;
-    const specsText=(window._lastSpecsText||'')+correctionNote;
+  // Update stored specs and re-render the specs panel immediately
+  window._lastSpecsText=specsText;
+  document.getElementById('panel-specs-body').innerHTML=renderCompSpecs(specsText);
 
-    const chainEl=document.getElementById('panel-chain-body');
-    const summaryEl=document.getElementById('panel-summary-body');
-    if(chainEl)chainEl.innerHTML='<p style="font-size:13px;color:var(--text-3);padding:12px;">⏳ Re-analyzing with corrected specs…</p>';
-    if(summaryEl)summaryEl.innerHTML='<p style="font-size:13px;color:var(--text-3);padding:12px;">⏳ Re-analyzing…</p>';
+  const chainEl=document.getElementById('panel-chain-body');
+  const summaryEl=document.getElementById('panel-summary-body');
+  if(chainEl)chainEl.innerHTML='<p style="font-size:13px;color:var(--text-3);padding:12px;">⏳ Re-analyzing with corrected specs…</p>';
+  if(summaryEl)summaryEl.innerHTML='<p style="font-size:13px;color:var(--text-3);padding:12px;">⏳ Re-analyzing…</p>';
 
-    const payload=JSON.stringify({components,connections,specsText});
-    Promise.all([
-      fetch('/.netlify/functions/analyze-chain',{method:'POST',headers:{'Content-Type':'application/json'},body:payload}),
-      fetch('/.netlify/functions/analyze-summary',{method:'POST',headers:{'Content-Type':'application/json'},body:payload})
-    ]).then(async([chainRes,summaryRes])=>{
-      const [chainRaw,summaryRaw]=await Promise.all([chainRes.text(),summaryRes.text()]);
-      let chainData,summaryData;
-      try{chainData=JSON.parse(chainRaw);}catch(e){throw new Error('Chain: '+chainRaw.slice(0,100));}
-      try{summaryData=JSON.parse(summaryRaw);}catch(e){throw new Error('Summary: '+summaryRaw.slice(0,100));}
-      if(chainData.error)throw new Error(chainData.error);
-      if(summaryData.error)throw new Error(summaryData.error);
+  const payload=JSON.stringify({components,connections,specsText});
+  Promise.all([
+    fetch('/.netlify/functions/analyze-chain',{method:'POST',headers:{'Content-Type':'application/json'},body:payload}),
+    fetch('/.netlify/functions/analyze-summary',{method:'POST',headers:{'Content-Type':'application/json'},body:payload})
+  ]).then(async([chainRes,summaryRes])=>{
+    const [chainRaw,summaryRaw]=await Promise.all([chainRes.text(),summaryRes.text()]);
+    let chainData,summaryData;
+    try{chainData=JSON.parse(chainRaw);}catch(e){throw new Error('Chain: '+chainRaw.slice(0,100));}
+    try{summaryData=JSON.parse(summaryRaw);}catch(e){throw new Error('Summary: '+summaryRaw.slice(0,100));}
+    if(chainData.error)throw new Error(chainData.error);
+    if(summaryData.error)throw new Error(summaryData.error);
 
-      const combined=`${summaryData.text}\n\nCOMPONENT SPECS\n${specsText}\n\n${chainData.text}`;
-      const secs=extractSectionsFromText(combined);
+    const combined=`${summaryData.text}\n\nCOMPONENT SPECS\n${specsText}\n\n${chainData.text}`;
+    const secs=extractSectionsFromText(combined);
 
-      const nC=n=>n>=8?'score-good':n>=6?'score-ok':'score-bad';
-      const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'score-good':l.includes('poor')?'score-bad':'score-ok';};
-      const sM=combined.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i);
-      const iM=combined.match(/IMPEDANCE MATCH:\s*(.+)/i);
-      const nM=combined.match(/SENSITIVITY MATCH:\s*(.+)/i);
-      const scoreInner=document.getElementById('score-row-inner');
-      if(scoreInner&&(sM||iM||nM)){
-        const score=sM?parseFloat(sM[1]):null;
-        const iStr=iM?iM[1].trim().replace(/\*+/g,''):null;
-        const nStr=nM?nM[1].trim().replace(/\*+/g,''):null;
-        scoreInner.innerHTML=
-          (score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:'')+
-          (iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:'')+
-          (nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:'');
-      }
-      if(chainEl)chainEl.innerHTML=renderPanelSections([
-        secs['SIGNAL CHAIN ANALYSIS']&&{label:'Signal chain',text:secs['SIGNAL CHAIN ANALYSIS']},
-        secs['PHONO CHAIN']&&{label:'Phono chain',text:secs['PHONO CHAIN']}
-      ].filter(Boolean));
-      if(summaryEl)summaryEl.innerHTML=renderPanelSections([
-        secs['COMPATIBILITY SUMMARY']&&{label:'Overall verdict',text:secs['COMPATIBILITY SUMMARY']},
-        secs['ISSUES & RECOMMENDATIONS']&&{label:'Issues & recommendations',text:secs['ISSUES & RECOMMENDATIONS']}
-      ].filter(Boolean));
-    }).catch(e=>{
-      if(chainEl)chainEl.innerHTML=`<p style="color:#dc2626;font-size:13px;padding:12px;">Re-analysis failed: ${esc(e.message)}</p>`;
-    });
-  }catch(e){
-    const chainEl=document.getElementById('panel-chain-body');
-    if(chainEl)chainEl.innerHTML=`<p style="color:#dc2626;font-size:13px;padding:12px;">Error: ${esc(e.message)}</p>`;
-  }
+    const nC=n=>n>=8?'score-good':n>=6?'score-ok':'score-bad';
+    const wC=v=>{if(!v)return'';const l=v.toLowerCase();return l.includes('good')?'score-good':l.includes('poor')?'score-bad':'score-ok';};
+    const sM=combined.match(/OVERALL SCORE:\s*(\d+(?:\.\d+)?)\/10/i);
+    const iM=combined.match(/IMPEDANCE MATCH:\s*(.+)/i);
+    const nM=combined.match(/SENSITIVITY MATCH:\s*(.+)/i);
+    const scoreInner=document.getElementById('score-row-inner');
+    if(scoreInner&&(sM||iM||nM)){
+      const score=sM?parseFloat(sM[1]):null;
+      const iStr=iM?iM[1].trim().replace(/\*+/g,''):null;
+      const nStr=nM?nM[1].trim().replace(/\*+/g,''):null;
+      scoreInner.innerHTML=
+        (score!==null?`<div class="score-card"><span class="score-label">Overall</span><div class="score-val ${nC(score)}">${score}<small>/10</small></div></div>`:'')+
+        (iStr?`<div class="score-card"><span class="score-label">Impedance</span><div class="score-val ${wC(iStr)}" style="font-size:16px;margin-top:4px;">${iStr}</div></div>`:'')+
+        (nStr?`<div class="score-card"><span class="score-label">Sensitivity</span><div class="score-val ${wC(nStr)}" style="font-size:16px;margin-top:4px;">${nStr}</div></div>`:'');
+    }
+    if(chainEl)chainEl.innerHTML=renderPanelSections([
+      secs['SIGNAL CHAIN ANALYSIS']&&{label:'Signal chain',text:secs['SIGNAL CHAIN ANALYSIS']},
+      secs['PHONO CHAIN']&&{label:'Phono chain',text:secs['PHONO CHAIN']}
+    ].filter(Boolean));
+    if(summaryEl)summaryEl.innerHTML=renderPanelSections([
+      secs['COMPATIBILITY SUMMARY']&&{label:'Overall verdict',text:secs['COMPATIBILITY SUMMARY']},
+      secs['ISSUES & RECOMMENDATIONS']&&{label:'Issues & recommendations',text:secs['ISSUES & RECOMMENDATIONS']}
+    ].filter(Boolean));
+    // Clear textarea so it repopulates fresh next time
+    document.getElementById('spec-corrections').value='';
+  }).catch(e=>{
+    if(chainEl)chainEl.innerHTML=`<p style="color:#dc2626;font-size:13px;padding:12px;">Re-analysis failed: ${esc(e.message)}</p>`;
+  });
 }
 function printReport(){
   const diagramEl=document.getElementById('diagram-wrap');
