@@ -40,7 +40,7 @@ const corrections = {
 };
 
 function findCorrection(name) {
-  const normalize = s => s.toLowerCase().replace(/[-\s]+/g, ' ').trim();
+  const normalize = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
   const key = Object.keys(corrections).find(
     k => normalize(k) === normalize(name)
   );
