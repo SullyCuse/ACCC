@@ -1,14 +1,35 @@
 {
-  "_readme": "Verified component specs. Keys must match component names exactly as entered by users (case-insensitive lookup is applied). Each entry overrides AI-generated specs for that component.",
+  "Parasound zPhono XRM": {
+    "MM gain": "40 dB",
+    "MC gain": "60 dB",
+    "MM input impedance": "47 kΩ",
+    "MC input impedance": "100 Ω (selectable: 50-1050 Ω)", 
+    "Output voltage": "2V maximum"
+  },
   "Denon DL-301 II": {
     "Type": "MC (Moving Coil)",
-    "Output voltage (mV)": "0.4 mV",
-    "Dynamic compliance (µm/mN)": "13 µm/mN",
-    "Internal impedance (Ω)": "33 Ω",
-    "Tracking force (g)": "1.4 g (range 1.2–1.6 g)",
-    "Recommended loading (Ω)": ">100 Ω",
-    "Channel separation (dB)": ">28 dB",
-    "Stylus": "Special elliptical, solid diamond",
-    "Frequency response": "20 Hz – 60 kHz"
+    "Output voltage": "0.4 mV",  
+    "Dynamic compliance": "13 µm/mN",  
+    "Internal impedance": "33 Ω",  
+    "Tracking force": "1.2–1.6 g (recommended 1.4 g)",  
+    "Recommended loading": "≥ 100 Ω",  
+    "Channel separation": ">28 dB (at 1 kHz)",  
+    "Net Weight": "6 g"  
+  },
+  "Fluance RT85": {
+    "Drive type": "Belt drive",
+    "Speeds": "33⅓, 45 RPM",  
+    "Tonearm effective mass": "27.5 g",  
+    "Signal-Noise-Ratio (Weighted)": "76 dB",
+    "Signal-Noise-Ratio (Unweighted)": "65dB",
+    "Platter": "Acrylic",
+    "Tonearm Type": "Static Balanced, S-Type",
+    "Supported Cartridge Weight": "5g-7.5 g",
+    "Counterweight": "102 g (Adjustable)",
+    "Overhang": "19.2 mm",
+    "Effective Tonearm Length": "224 mm",
+    "Headshell Mount": "H-4 Bayonet Mount",
+    "Headshell Weight": "9 g",
+    "Phono Output": "5.5 mV"
   }
 }
