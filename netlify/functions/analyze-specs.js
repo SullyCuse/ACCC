@@ -15,6 +15,7 @@ const corrections = {
     "Type": "MC (Moving Coil)",
     "Output voltage": "0.4 mV",
     "Dynamic compliance": "13 µm/mN",
+    "Static compliance": "35 µm/mN",
     "Internal impedance": "33 Ω",
     "Tracking force": "1.2–1.6 g (recommended 1.4 g)",
     "Recommended loading": "≥ 100 Ω",
