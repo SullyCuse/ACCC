@@ -1,15 +1,43 @@
 const https = require("https");
-const path = require("path");
-const fs = require("fs");
 
-// Load verified corrections database at cold start
-let corrections = {};
-try {
-  corrections = JSON.parse(fs.readFileSync(path.join(__dirname, "corrections.json"), "utf8"));
-  delete corrections._readme;
-} catch (e) {
-  // File missing or malformed — continue without it
-}
+// Verified component specs database.
+// To add/update: edit this object and commit — Netlify redeploys automatically.
+// Keys are matched case-insensitively against component names entered by users.
+const corrections = {
+  "Parasound zPhono XRM": {
+    "MM gain": "40 dB",
+    "MC gain": "60 dB",
+    "MM input impedance": "47 kΩ",
+    "MC input impedance": "100 Ω (selectable: 50-1050 Ω)",
+    "Output voltage": "2V maximum"
+  },
+  "Denon DL-301 II": {
+    "Type": "MC (Moving Coil)",
+    "Output voltage": "0.4 mV",
+    "Dynamic compliance": "13 µm/mN",
+    "Internal impedance": "33 Ω",
+    "Tracking force": "1.2–1.6 g (recommended 1.4 g)",
+    "Recommended loading": "≥ 100 Ω",
+    "Channel separation": ">28 dB (at 1 kHz)",
+    "Net Weight": "6 g"
+  },
+  "Fluance RT85": {
+    "Drive type": "Belt drive",
+    "Speeds": "33⅓, 45 RPM",
+    "Tonearm effective mass": "27.5 g",
+    "Signal-Noise-Ratio (Weighted)": "76 dB",
+    "Signal-Noise-Ratio (Unweighted)": "65 dB",
+    "Platter": "Acrylic",
+    "Tonearm Type": "Static Balanced, S-Type",
+    "Supported Cartridge Weight": "5g-7.5 g",
+    "Counterweight": "102 g (Adjustable)",
+    "Overhang": "19.2 mm",
+    "Effective Tonearm Length": "224 mm",
+    "Headshell Mount": "H-4 Bayonet Mount",
+    "Headshell Weight": "9 g",
+    "Phono Output": "5.5 mV"
+  }
+};
 
 function findCorrection(name) {
   const key = Object.keys(corrections).find(
