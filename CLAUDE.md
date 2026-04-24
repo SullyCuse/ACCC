@@ -86,7 +86,10 @@ Project-specific rules that override or extend the principles above.
 | analyze-summary | claude-sonnet-4-6 | 600 | ~9s |
 
 ### index.html rules
-- **Brace balance check is mandatory** before delivering any `index.html` edit: `python3 -c "with open('index.html') as f: h=f.read(); s=h.rfind('<script>')+8; e=h.rfind('</script>'); d=sum(1 if c=='{' else -1 if c=='}' else 0 for c in h[s:e]); print('Brace depth:', d)"`
+- **JS syntax verification is mandatory** before delivering any `index.html` edit. Use `node vm.Script` — the Python brace counter is unreliable when string literals contain `{` or `}`:
+  ```
+  node -e "const vm=require('vm'),fs=require('fs'),h=fs.readFileSync('index.html','utf8');try{new vm.Script(h.slice(h.lastIndexOf('<script>')+8,h.lastIndexOf('</script>')));console.log('OK');}catch(e){console.log('ERROR:',e.message);}"
+  ```
 - **All `<` and `>` in JS regex patterns** must use unicode escapes `\u003C` / `\u003E` — bare angle brackets inside `<script>` tags break the HTML parser silently
 - **No bare `</` string literals** in JS — the HTML parser terminates the script block on any `</` sequence
 - `index.html` has no test suite — Surgical Changes is especially critical here; one stray `}` can break the entire page

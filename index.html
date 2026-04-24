@@ -1530,44 +1530,61 @@ function submitCorrectionToNetlify(correctedSpecsText){
     const originalLines=(window._lastSpecsText||'').split('\n');
     const correctedLines=correctedSpecsText.split('\n');
 
-    // Simple line diff — find lines that changed
-    const diffLines=[];
-    const changedJsonLines=[];
-    let currentComp='';
+    // Walk corrected lines, track component blocks and detect changed specs
+    const compChanges={};  // {name: {type, specs:{k:v}, changed:Set}}
+    let currentComp='', currentType='';
 
     correctedLines.forEach((line,i)=>{
-      // Track current component block header
-      const hdr=line.trim().match(/^\*\*(.+?)\s*\([^)]+\)\*\*\s*$/);
-      if(hdr) currentComp=hdr[1].trim();
-
+      const hdr=line.trim().match(/^\*\*(.+?)\s*\(([^)]+)\)\*\*\s*$/);
+      if(hdr){currentComp=hdr[1].trim();currentType=hdr[2].trim();return;}
+      if(!currentComp)return;
+      const specMatch=line.trim().replace(/^[-•⚠]\s*/,'').match(/^(.+?):\s*(.+)$/);
+      if(!specMatch)return;
+      const k=specMatch[1].trim(), v=specMatch[2].trim();
+      if(!compChanges[currentComp])compChanges[currentComp]={type:currentType,specs:{},changed:new Set()};
+      compChanges[currentComp].specs[k]=v;
       const origLine=(originalLines[i]||'').trim();
-      const newLine=line.trim();
-
-      if(origLine!==newLine && newLine){
-        // This line changed
-        const specMatch=newLine.replace(/^[-•]\s*/,'').match(/^(.+?):\s*(.+)$/);
-        const origMatch=origLine.replace(/^[-•]\s*/,'').match(/^(.+?):\s*(.+)$/);
-        if(specMatch&&origMatch){
-          diffLines.push(`[${currentComp}] ${specMatch[1]}:`);
-          diffLines.push(`  BEFORE: ${origMatch[2]}`);
-          diffLines.push(`  AFTER:  ${specMatch[2]}`);
-          changedJsonLines.push(`    "${specMatch[1]}": "${specMatch[2]}"  // >>> CHANGED (was: "${origMatch[2]}") <<<`);
-        }
+      if(origLine!==line.trim()){
+        const origMatch=origLine.replace(/^[-•⚠]\s*/,'').match(/^(.+?):\s*(.+)$/);
+        if(origMatch)compChanges[currentComp].changed.add(k);
       }
     });
 
-    const summary=diffLines.length>0
-      ? diffLines.join('\n')
-      : 'No line-level changes detected — full corrected specs attached';
+    // Only include components that actually changed
+    const changedComps=Object.entries(compChanges).filter(([,v])=>v.changed.size>0);
+    if(changedComps.length===0)return; // nothing changed, skip submission
 
-    // Build a clean JSON snippet with just the changed lines marked
-    const jsonToCopy=correctedSpecsText; // full text so Kevin has all context
+    // Build Changes Summary — one entry per changed spec
+    const summaryLines=[];
+    changedComps.forEach(([name,{specs,changed}])=>{
+      changed.forEach(k=>{
+        // Find original value by scanning originalLines
+        const origVal=originalLines.map(l=>l.trim().replace(/^[-•⚠]\s*/,''))
+          .find(l=>l.toLowerCase().startsWith(k.toLowerCase()+':'));
+        const origV=origVal?origVal.slice(origVal.indexOf(':')+1).trim():'?';
+        summaryLines.push(`[${name}] ${k}: BEFORE: ${origV} | AFTER: ${specs[k]}`);
+      });
+    });
+
+    // Build JSON snippet — only changed components, all their specs, changed lines marked
+    const jsonLines=['{'];
+    changedComps.forEach(([name,{specs,changed}],ci)=>{
+      jsonLines.push(`  "${name}": {`);
+      const entries=Object.entries(specs);
+      entries.forEach(([k,v],i)=>{
+        const comma=i<entries.length-1?',':'';
+        const marker=changed.has(k)?'  // >>> CHANGED <<<':'';
+        jsonLines.push(`    "${k}": "${v}"${comma}${marker}`);
+      });
+      jsonLines.push(ci<changedComps.length-1?'  },':'  }');
+    });
+    jsonLines.push('}');
 
     const body=new URLSearchParams({
       'form-name':'spec-correction',
-      'component-name': components.map(c=>c.name).join(', '),
-      'changes-summary': summary,
-      'json-to-add': jsonToCopy
+      'component-name':changedComps.map(([n])=>n).join(', '),
+      'changes-summary':summaryLines.join('\n'),
+      'json-to-add':jsonLines.join('\n')
     }).toString();
 
     fetch('/index.html',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
