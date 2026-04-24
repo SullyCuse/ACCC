@@ -73,7 +73,7 @@ Project-specific rules that override or extend the principles above.
 ### Architecture
 - **Netlify Personal plan:** 10-second hard function timeout per call — never increase token limits without estimating generation time first (Sonnet ~70 tok/s, Haiku ~150 tok/s)
 - **Three parallel functions** run on every analysis:
-  - `analyze-specs` — Sonnet, 650 tokens — fetches component specs, checks `corrections.json` first
+  - `analyze-specs` — Sonnet, 650 tokens — fetches component specs, checks inline `corrections` object first
   - `analyze-chain` — Haiku, 700 tokens — analyzes each signal chain connection
   - `analyze-summary` — Sonnet, 600 tokens — scores, phono chain calc, recommendations
 - `analyze-specs` runs first; its output (`specsText`) is passed to `analyze-chain` and `analyze-summary` so all three use the same confirmed spec values
@@ -94,11 +94,11 @@ Project-specific rules that override or extend the principles above.
 - **No bare `</` string literals** in JS — the HTML parser terminates the script block on any `</` sequence
 - `index.html` has no test suite — Surgical Changes is especially critical here; one stray `}` can break the entire page
 
-### corrections.json rules
-- Lives at `netlify/functions/corrections.json` — co-located so functions can `require('./corrections.json')`
-- **No JSON comments** — `//` and `/* */` are not valid JSON; `JSON.parse()` will throw and the corrections database silently fails to load
-- Keys are component names exactly as users enter them (case-insensitive lookup is applied at runtime)
-- Strip `// >>> CHANGED <<<` markers from Netlify form submissions before pasting into this file
+### Corrections database rules
+- **Corrections are hardcoded inline** in the `corrections` object at the top of `analyze-specs.js` — NOT loaded from `corrections.json` at runtime. Netlify function runtime does not reliably serve sibling files via `fs.readFileSync`.
+- To add or update a correction: edit the `corrections` object in `analyze-specs.js` and commit. Netlify redeploys automatically.
+- Keys are component names as users enter them — case-insensitive lookup is applied at runtime.
+- `corrections.json` remains in the repo as a human-readable reference only — it is not read by any function.
 
 ### Signal chain diagram rules
 - All `<` / `>` in SVG/HTML strings built in JS must use the `esc()` function or template literals — never raw angle brackets
