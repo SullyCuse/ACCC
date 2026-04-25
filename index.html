@@ -1573,62 +1573,53 @@ function extractSectionsFromText(text){
 
 function submitCorrectionToNetlify(correctedSpecsText){
   try{
-    const originalLines=(window._lastSpecsText||'').split('\n');
-    const correctedLines=correctedSpecsText.split('\n');
-
-    // Walk corrected lines, track component blocks and detect changed specs
-    const compChanges={};  // {name: {type, specs:{k:v}, changed:Set}}
-    let currentComp='', currentType='';
-
-    correctedLines.forEach((line,i)=>{
-      const hdr=line.trim().match(/^\*\*(.+?)\s*\(([^)]+)\)\*\*\s*$/);
-      if(hdr){currentComp=hdr[1].trim();currentType=hdr[2].trim();return;}
-      if(!currentComp)return;
-      const specMatch=line.trim().replace(/^[-•⚠]\s*/,'').match(/^(.+?):\s*(.+)$/);
-      if(!specMatch)return;
-      const k=specMatch[1].trim(), v=specMatch[2].trim();
-      if(!compChanges[currentComp])compChanges[currentComp]={type:currentType,specs:{},changed:new Set()};
-      compChanges[currentComp].specs[k]=v;
-      const origLine=(originalLines[i]||'').trim();
-      if(origLine!==line.trim()){
-        const origMatch=origLine.replace(/^[-•⚠]\s*/,'').match(/^(.+?):\s*(.+)$/);
-        if(origMatch)compChanges[currentComp].changed.add(k);
-      }
-    });
-
-    // Only include components that actually changed
-    const changedComps=Object.entries(compChanges).filter(([,v])=>v.changed.size>0);
-    if(changedComps.length===0)return; // nothing changed, skip submission
-
-    // Build Changes Summary — one entry per changed spec
-    const summaryLines=[];
-    changedComps.forEach(([name,{specs,changed}])=>{
-      changed.forEach(k=>{
-        // Find original value by scanning originalLines
-        const origVal=originalLines.map(l=>l.trim().replace(/^[-•⚠]\s*/,''))
-          .find(l=>l.toLowerCase().startsWith(k.toLowerCase()+':'));
-        const origV=origVal?origVal.slice(origVal.indexOf(':')+1).trim():'?';
-        summaryLines.push(`[${name}] ${k}: BEFORE: ${origV} | AFTER: ${specs[k]}`);
+    // Parse spec text into {compName: {specKey: value}} — position-independent
+    function parseSpecs(text){
+      const result={};
+      let comp=null;
+      (text||'').split('\n').forEach(line=>{
+        const hdr=line.trim().match(/^\*\*(.+?)\s*\([^)]+\)\*\*\s*$/);
+        if(hdr){comp=hdr[1].trim();result[comp]={};return;}
+        if(!comp)return;
+        const clean=line.trim().replace(/^[-•⚠]\s*/,'').replace(/\/\/.*$/,'').trim();
+        const col=clean.indexOf(':');
+        if(col>0){const k=clean.slice(0,col).trim(),v=clean.slice(col+1).trim();if(k&&v)result[comp][k]=v;}
       });
-    });
+      return result;
+    }
 
-    // Build JSON snippet — paste directly into the corrections object in analyze-specs.js
-    // No outer { } — these lines go inside the existing corrections = { ... } object
-    const jsonLines=['// Paste inside the corrections = { } object in analyze-specs.js:'];
-    changedComps.forEach(([name,{specs,changed}],ci)=>{
-      jsonLines.push(`  "${name}": {`);
-      const entries=Object.entries(specs);
+    const original=parseSpecs(window._lastSpecsText||'');
+    const corrected=parseSpecs(correctedSpecsText);
+
+    const summaryLines=[],jsonLines=['// Paste inside the corrections = { } object in analyze-specs.js:'];
+    let anyChanged=false;
+
+    Object.entries(corrected).forEach(([compName,compSpecs])=>{
+      const origComp=original[compName]||{};
+      const changedKeys=new Set();
+      Object.entries(compSpecs).forEach(([k,v])=>{
+        if(origComp[k]!==undefined&&origComp[k]!==v) changedKeys.add(k);
+      });
+      if(changedKeys.size===0)return;
+      anyChanged=true;
+      changedKeys.forEach(k=>{
+        summaryLines.push(`[${compName}] ${k}: BEFORE: ${origComp[k]} | AFTER: ${compSpecs[k]}`);
+      });
+      jsonLines.push(`  "${compName}": {`);
+      const entries=Object.entries(compSpecs);
       entries.forEach(([k,v],i)=>{
         const comma=i<entries.length-1?',':'';
-        const marker=changed.has(k)?'  // >>> CHANGED <<<':'';
+        const marker=changedKeys.has(k)?'  // >>> CHANGED <<<':'';
         jsonLines.push(`    "${k}": "${v}"${comma}${marker}`);
       });
-      jsonLines.push(ci<changedComps.length-1?'  },':'  },');
+      jsonLines.push('  },');
     });
+
+    if(!anyChanged)return;
 
     const body=new URLSearchParams({
       'form-name':'spec-correction',
-      'component-name':changedComps.map(([n])=>n).join(', '),
+      'component-name':Object.keys(corrected).join(', '),
       'changes-summary':summaryLines.join('\n'),
       'json-to-add':jsonLines.join('\n')
     }).toString();
