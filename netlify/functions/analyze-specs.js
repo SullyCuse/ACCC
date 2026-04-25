@@ -43,7 +43,7 @@ const corrections = {
     "Minimum Impedance": "3.4 Ω",
     "Sensitivity": "87 dB (2.83V/1m)",
     "Power Handling": "25–100 W (recommended amplifier range)"
-  }
+  },
   "AT-VM740ML": { 
     "Type": "MM (Moving Magnet)", 
     "Output Voltage": "4.0 mV (at 1 kHz, 5 cm/sec)", 
