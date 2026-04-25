@@ -568,6 +568,35 @@ select {
 .ad-unit-inner { border:1px dashed var(--border-2); border-radius:8px; padding:4px; background:var(--cream); text-align:center; }
 .ad-label { font-size:9px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); display:block; margin-bottom:4px; }
 
+/* ── SPEC EDIT MODAL ── */
+.spec-modal-overlay {
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,0.6); z-index:10000;
+  align-items:center; justify-content:center; padding:20px;
+}
+.spec-modal-overlay.active { display:flex; }
+.spec-modal {
+  background:#fff; border-radius:14px; width:100%; max-width:640px;
+  max-height:85vh; display:flex; flex-direction:column;
+  box-shadow:0 24px 64px rgba(0,0,0,0.3);
+}
+.spec-modal-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 20px; border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.spec-modal-header h3 { font-size:15px; font-weight:700; color:var(--text); margin:0; }
+.spec-modal-close {
+  background:none; border:none; cursor:pointer; font-size:20px;
+  color:var(--text-3); line-height:1; padding:4px 8px; border-radius:6px;
+}
+.spec-modal-close:hover { background:var(--cream); color:var(--text); }
+.spec-modal-body { padding:16px 20px; overflow-y:auto; flex:1; }
+.spec-modal-footer {
+  padding:14px 20px; border-top:1px solid var(--border);
+  display:flex; gap:10px; justify-content:flex-end; flex-shrink:0;
+}
+
 /* ── COOKIE BANNER ── */
 .cookie-banner {
   position:fixed; bottom:0; left:0; right:0;
@@ -961,7 +990,7 @@ select {
     <div class="score-row" id="score-row-inner"></div>
   </div>
   <div class="results-3col">
-    <div class="card"><div class="card-head" style="justify-content:space-between;"><span class="card-title" style="margin-left:0;">Component Specifications</span><button class="btn btn-sm" id="edit-specs-btn" style="display:none;font-size:11px;padding:4px 10px;" onclick="toggleSpecEdit()">✏️ Edit Specs</button></div><div class="card-body" id="panel-specs-body"></div><div id="spec-edit-area" style="display:none;padding:12px 16px;border-top:1px solid var(--border);background:var(--cream);"><p style="font-size:12px;color:var(--text-2);margin-bottom:8px;">All specs are shown below — edit any values directly, then click Re-run. Change the number after the colon on any line.</p><textarea id="spec-corrections" style="width:100%;min-height:200px;font-family:ui-monospace,monospace;font-size:11px;line-height:1.6;padding:8px;border:1.5px solid var(--border-2);border-radius:8px;background:#fff;outline:none;resize:vertical;" placeholder="Run an analysis first to load all specs here for editing."></textarea><button class="btn btn-blue btn-sm" style="margin-top:8px;" onclick="applySpecCorrections()">Apply Corrections &amp; Re-run Analysis</button></div></div>
+    <div class="card"><div class="card-head" style="justify-content:space-between;"><span class="card-title" style="margin-left:0;">Component Specifications</span><button class="btn btn-sm" id="edit-specs-btn" style="display:none;font-size:11px;padding:4px 10px;" onclick="toggleSpecEdit()">✏️ Edit Specs</button></div><div class="card-body" id="panel-specs-body"></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Analysis</span></div><div class="card-body" id="panel-chain-body"></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Summary &amp; Recommendations</span></div><div class="card-body" id="panel-summary-body"></div></div>
   </div>
@@ -1017,6 +1046,24 @@ select {
     </div>
   </div>
 </footer>
+
+<!-- SPEC EDIT MODAL -->
+<div class="spec-modal-overlay" id="spec-modal-overlay" onclick="handleModalOverlayClick(event)">
+  <div class="spec-modal">
+    <div class="spec-modal-header">
+      <h3>✏️ Edit Component Specs</h3>
+      <button class="spec-modal-close" onclick="closeSpecModal()">✕</button>
+    </div>
+    <div class="spec-modal-body">
+      <p style="font-size:12px;color:var(--text-2);margin-bottom:10px;">All specs are shown below — edit any values directly. Changes only apply when you click Apply &amp; Re-run.</p>
+      <textarea id="spec-corrections" style="width:100%;min-height:320px;font-family:ui-monospace,monospace;font-size:11px;line-height:1.7;padding:10px;border:1.5px solid var(--border-2);border-radius:8px;background:#fafafa;outline:none;resize:vertical;box-sizing:border-box;" placeholder="Run an analysis first to load all specs here for editing."></textarea>
+    </div>
+    <div class="spec-modal-footer">
+      <button class="btn" style="font-size:13px;padding:9px 18px;border:1.5px solid var(--border-2);border-radius:8px;cursor:pointer;background:#fff;color:var(--text-2);" onclick="closeSpecModal()">Cancel</button>
+      <button class="btn btn-blue" style="font-size:13px;padding:9px 18px;" onclick="applySpecCorrections()">Apply Corrections &amp; Re-run Analysis</button>
+    </div>
+  </div>
+</div>
 
 <!-- HIDDEN SPEC CORRECTION FORM (Netlify Forms) -->
 <form name="spec-correction" data-netlify="true" style="display:none;">
@@ -1482,19 +1529,17 @@ updateHint();
 document.getElementById('comp-name').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addComponent();}});
 
 function toggleSpecEdit(){
-  const area=document.getElementById('spec-edit-area');
-  const isHidden=area.style.display==='none'||area.style.display==='';
-  if(isHidden){
-    const ta=document.getElementById('spec-corrections');
-    // Only pre-populate if textarea is empty
-    if(ta.value.trim()===''&&window._lastSpecsText){
-      ta.value=window._lastSpecsText;
-    }
-    area.style.display='block';
-    ta.focus();
-  }else{
-    area.style.display='none';
-  }
+  const overlay=document.getElementById('spec-modal-overlay');
+  const ta=document.getElementById('spec-corrections');
+  if(ta.value.trim()===''&&window._lastSpecsText) ta.value=window._lastSpecsText;
+  overlay.classList.add('active');
+  ta.focus();
+}
+function closeSpecModal(){
+  document.getElementById('spec-modal-overlay').classList.remove('active');
+}
+function handleModalOverlayClick(e){
+  if(e.target===document.getElementById('spec-modal-overlay')) closeSpecModal();
 }
 
 function renderScoreCards(text){
@@ -1567,8 +1612,9 @@ function submitCorrectionToNetlify(correctedSpecsText){
       });
     });
 
-    // Build JSON snippet — only changed components, all their specs, changed lines marked
-    const jsonLines=['{'];
+    // Build JSON snippet — paste directly into the corrections object in analyze-specs.js
+    // No outer { } — these lines go inside the existing corrections = { ... } object
+    const jsonLines=['// Paste inside the corrections = { } object in analyze-specs.js:'];
     changedComps.forEach(([name,{specs,changed}],ci)=>{
       jsonLines.push(`  "${name}": {`);
       const entries=Object.entries(specs);
@@ -1577,9 +1623,8 @@ function submitCorrectionToNetlify(correctedSpecsText){
         const marker=changed.has(k)?'  // >>> CHANGED <<<':'';
         jsonLines.push(`    "${k}": "${v}"${comma}${marker}`);
       });
-      jsonLines.push(ci<changedComps.length-1?'  },':'  }');
+      jsonLines.push(ci<changedComps.length-1?'  },':'  },');
     });
-    jsonLines.push('}');
 
     const body=new URLSearchParams({
       'form-name':'spec-correction',
@@ -1593,7 +1638,7 @@ function submitCorrectionToNetlify(correctedSpecsText){
 }
 
 function applySpecCorrections(){
-  document.getElementById('spec-edit-area').style.display='none';
+  closeSpecModal();
 
   const specsText=document.getElementById('spec-corrections').value.trim();
   if(!specsText)return;
