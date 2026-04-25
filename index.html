@@ -1130,9 +1130,19 @@ function renderAll(){
   renderConnections();
   updateConnDropdowns();
   const show=components.length>=2;
-  // In grid layout, use '' (default) not 'block' so grid columns work correctly
   document.getElementById('conn-panel').style.display=show?'':'none';
   document.getElementById('analyze-panel').style.display=show?'':'none';
+  // Tonearm only available when a turntable is present
+  const hasTurntable=components.some(c=>c.type==='turntable');
+  const tonearmOpt=document.querySelector('#comp-type option[value="tonearm"]');
+  if(tonearmOpt){
+    tonearmOpt.disabled=!hasTurntable;
+    tonearmOpt.textContent=hasTurntable?'Tonearm':'Tonearm (add a Turntable first)';
+    if(!hasTurntable&&document.getElementById('comp-type').value==='tonearm'){
+      document.getElementById('comp-type').value='amp';
+      updateHint();
+    }
+  }
 }
 function generateDiagram(){
   updateDiagram();
