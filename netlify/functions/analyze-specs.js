@@ -37,7 +37,7 @@ const corrections = {
     "Headshell Mount": "H-4 Bayonet Mount",
     "Headshell Weight": "9 g",
     "Phono Output": "5.5 mV"
-  }
+  },
   "Wharfedale Evo 5.1": { 
   "Nominal Impedance": "4 Ω", 
   "Minimum Impedance": "3.4 Ω", 
