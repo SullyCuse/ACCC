@@ -48,9 +48,27 @@ const corrections = {
 
 function findCorrection(name) {
   const normalize = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const key = Object.keys(corrections).find(
-    k => normalize(k) === normalize(name)
-  );
+  // Split on original string words, normalize each token — preserves word boundaries
+  const tokenize = s => s.toLowerCase().split(/[\s\-_.]+/).map(t => t.replace(/[^a-z0-9]/g,'')).filter(Boolean);
+  const n = normalize(name);
+  const userTokens = tokenize(name);
+
+  // 1. Exact normalized match
+  let key = Object.keys(corrections).find(k => normalize(k) === n);
+
+  // 2. Substring match (handles "Parasound 275" vs "Parasound 275 v1")
+  if (!key) key = Object.keys(corrections).find(k => {
+    const nk = normalize(k);
+    return nk.includes(n) || n.includes(nk);
+  });
+
+  // 3. Token subset match (handles "Wharfedale 5.1" vs "Wharfedale Evo 5.1")
+  // All user tokens must appear in the key's tokens
+  if (!key) key = Object.keys(corrections).find(k => {
+    const keyTokens = tokenize(k);
+    return userTokens.length > 0 && userTokens.every(t => keyTokens.includes(t));
+  });
+
   return key ? corrections[key] : null;
 }
 
