@@ -42,7 +42,7 @@ const corrections = {
   "Nominal Impedance": "4 Ω", 
   "Minimum Impedance": "3.4 Ω", 
   "Sensitivity": "87 dB (2.83V/1m)", 
-  "Power Handling": "25–100 W (recommended amplifier range)" }
+  "Power Handling": "25–100 W (recommended amplifier range)"
  }
 
 function findCorrection(name) {
