@@ -44,6 +44,20 @@ const corrections = {
     "Sensitivity": "87 dB (2.83V/1m)",
     "Power Handling": "25–100 W (recommended amplifier range)"
   }
+  "AT-VM740ML": { 
+    "Type": "MM (Moving Magnet)", 
+    "Output Voltage": "4.0 mV (at 1 kHz, 5 cm/sec)", 
+    "Dynamic Compliance": "10 x 10⁻⁶ cm/dyne (10 µm/mN)", 
+    "Internal Impedance": "2.7 kΩ", 
+    "Tracking Force": "1.8–2.2 g (2.0 g recommended)", 
+    "Recommended Loading": "47 kΩ", 
+    "Channel Separation": "28 dB (at 1 kHz)" 
+}, 
+  "Dual 1229 Tonearm": { 
+  "Effective Mass": "~11 g", 
+  "Effective Length": "~222 mm", 
+  "Mounting Type": "Proprietary Dual bayonet/plug-in headshell mount (non-standard; integrated straight arm with detachable headshell)" 
+  }
 };
 
 function findCorrection(name) {
