@@ -38,7 +38,7 @@ const corrections = {
     "Headshell Weight": "9 g",
     "Phono Output": "5.5 mV"
   }
-  { "Wharfedale Evo 5.1": { 
+  "Wharfedale Evo 5.1": { 
   "Nominal Impedance": "4 Ω", 
   "Minimum Impedance": "3.4 Ω", 
   "Sensitivity": "87 dB (2.83V/1m)", 
