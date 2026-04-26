@@ -47,7 +47,8 @@ const corrections = {
   "Audio Technica AT-VM740ML": { 
     "Type": "MM (Moving Magnet)", 
     "Output Voltage": "4.0 mV (at 1 kHz, 5 cm/sec)", 
-    "Dynamic Compliance": "10 x 10⁻⁶ cm/dyne (10 µm/mN)", 
+    "Dynamic Compliance": "10 x 10⁻⁶ cm/dyne (10 µm/mN)",
+    "Static compliance": "40 x 10-6 cm/dyne",
     "Internal Impedance": "2.7 kΩ", 
     "Tracking Force": "1.8–2.2 g (2.0 g recommended)", 
     "Recommended Loading": "47 kΩ", 
