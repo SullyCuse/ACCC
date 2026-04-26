@@ -57,7 +57,7 @@ const corrections = {
     "Power Output": "75 W/ch (8Ω), 125 W/ch (4Ω)",
     "Input Impedance": "~47 kΩ", 
     "Input Sensitivity": "~1,000 mV (1V)" },
-}, 
+  }, 
   "Dual 1229": { 
   "Effective Mass": "~11 g", 
   "Effective Length": "~222 mm", 
