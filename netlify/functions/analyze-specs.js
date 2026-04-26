@@ -146,8 +146,9 @@ exports.handler = async (event) => {
 
 IMPORTANT:
 - If you know this EXACT model: state its specs precisely
-- If NOT certain: add "⚠ Specs shown are for [similar model] — exact specs for [entered model] not confirmed"
+- If NOT certain: add "⚠ Specs shown are for [similar model] — exact specs for [entered model] not confirmed" then provide your best known specs
 - Never skip a component. Estimate with (~) only if no data available.
+- NEVER ask clarifying questions. NEVER request more information. Always output spec blocks — one per component, no exceptions.
 
 ${numberedList}
 
@@ -155,7 +156,7 @@ Output one block per component:
 **[Name] ([Type])**
 - spec: value
 
-All ${needsAI.length} components required. No summary text.`;
+All ${needsAI.length} components required. No summary text. No questions.`;
 
       const body = JSON.stringify({
         model: "claude-sonnet-4-6",
