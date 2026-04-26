@@ -51,7 +51,12 @@ const corrections = {
     "Internal Impedance": "2.7 kΩ", 
     "Tracking Force": "1.8–2.2 g (2.0 g recommended)", 
     "Recommended Loading": "47 kΩ", 
-    "Channel Separation": "28 dB (at 1 kHz)" 
+    "Channel Separation": "28 dB (at 1 kHz)"
+   }, 
+    "Parasound 275": { 
+    "Power Output": "75 W/ch (8Ω), 125 W/ch (4Ω)",
+    "Input Impedance": "~47 kΩ", 
+    "Input Sensitivity": "~1,000 mV (1V)" },
 }, 
   "Dual 1229": { 
   "Effective Mass": "~11 g", 
