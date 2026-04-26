@@ -1001,6 +1001,38 @@ const corrections = {
     "Tracking Force": "1.5 g recommended",
     "Mounting": "P-mount or 1/2\" screw",
     "Replacement Stylus": "User-replaceable"
+  },
+  "Parasound 2125 v.2": {
+    "Type": "2-channel Class AB power amplifier",
+    "Power output (8Ω, stereo)": "150 W/ch RMS, both channels driven",
+    "Power output (4Ω, stereo)": "225 W/ch RMS, both channels driven",
+    "Power output (2Ω, stereo)": "225 W/ch RMS, both channels driven (load switch to 2–3Ω)",
+    "Power output (bridged mono, 8Ω)": "400 W RMS",
+    "Power output (bridged mono, 4Ω)": "400 W RMS (load switch to 2–3Ω)",
+    "Peak current": "35 A per channel",
+    "Frequency Response": "20 Hz–50 kHz, +0/–3 dB at 1 W",
+    "Dynamic Headroom": "1.3 dB",
+    "THD (full rated output)": "0.25%",
+    "THD (average listening levels)": "0.015%",
+    "IM Distortion": "0.05%",
+    "Transient IM Distortion": "Not measurable",
+    "SNR (rated output, A-weighted)": "114 dB IHF A-weighted",
+    "SNR (rated output, unweighted)": "106 dB",
+    "SNR (at 2.828V, A-weighted)": "93 dB IHF A-weighted",
+    "SNR (at 2.828V, unweighted)": "84 dB",
+    "Input Impedance": "33 kΩ",
+    "Input Sensitivity": "1 V in for 28.28 V out (THX standard, 28 dB gain)",
+    "Inter-channel Crosstalk": "85 dB at 1 kHz; 73 dB at 10 kHz; 67 dB at 20 kHz",
+    "Damping Factor": ">150 at 20 Hz",
+    "Trigger": "DC 9–12V, 15 mA",
+    "Audio Turn On (quieter)": "1 mV",
+    "Audio Turn On (louder)": "6 mV",
+    "High pass filter": "18 dB/oct, switchable flat / 20 Hz / 40 Hz",
+    "Power consumption (standby)": "0.5 W",
+    "Power consumption (idle)": "32 W",
+    "Power consumption (full output)": "550 W",
+    "Chassis": "2U rack (RMK22 kit sold separately)",
+    "Weight": "27 lbs (12.3 kg)"
   }
 };
 
