@@ -53,7 +53,7 @@ const corrections = {
     "Recommended Loading": "47 kΩ", 
     "Channel Separation": "28 dB (at 1 kHz)" 
 }, 
-  "Dual 1229 Tonearm": { 
+  "Dual 1229": { 
   "Effective Mass": "~11 g", 
   "Effective Length": "~222 mm", 
   "Mounting Type": "Proprietary Dual bayonet/plug-in headshell mount (non-standard; integrated straight arm with detachable headshell)" 
