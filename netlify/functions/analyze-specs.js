@@ -59,7 +59,7 @@ const corrections = {
     "Input Sensitivity": "~1,000 mV (1V)"
   }, 
   "Dual 1229": { 
-  "Effective Mass": "~11 g", 
+  "Effective Mass": "~7 g", 
   "Effective Length": "~222 mm",
   "Tonearm": "extra-long, torsionally rigid metal arm, in 4-point gimbal suspension, with skeletal head design",
   "Mounting Type": "Proprietary Dual bayonet/plug-in headshell mount (non-standard; integrated straight arm with detachable headshell)" 
