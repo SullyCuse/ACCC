@@ -944,62 +944,97 @@ select {
 <!-- Signal chain decorative SVG above FAQ -->
 <div style="background:var(--dark);padding:36px 0 28px;text-align:center;">
   <div class="container">
-    <p style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:20px;">A Complete Hi-Fi Signal Chain</p>
-    <svg viewBox="0 0 780 90" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:780px;" fill="none">
+    <p style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:20px;">A Complete Hi-Fi Signal Chain</p>
+    <svg viewBox="0 0 700 195" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:780px;" fill="none">
+
+      <!-- ── ANALOG PATH (top row, center y=42) ── -->
+
       <!-- Turntable -->
-      <rect x="4" y="20" width="90" height="52" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-      <circle cx="49" cy="46" r="16" stroke="#60a5fa" stroke-width="1.2"/>
-      <circle cx="49" cy="46" r="6" stroke="#60a5fa" stroke-width="1.2"/>
-      <circle cx="49" cy="46" r="2" fill="#60a5fa"/>
-      <line x1="60" y1="34" x2="74" y2="26" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="74" cy="26" r="2.5" fill="#fbbf24"/>
-      <text x="49" y="82" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="8" font-family="system-ui" font-weight="600">TURNTABLE</text>
-      <!-- Arrow -->
-      <line x1="94" y1="46" x2="114" y2="46" stroke="#60a5fa" stroke-width="1.5"/>
-      <polyline points="110,41 116,46 110,51" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- Phono Pre -->
-      <rect x="116" y="25" width="82" height="42" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-      <text x="157" y="43" text-anchor="middle" fill="#93c5fd" font-size="8" font-weight="700" font-family="system-ui">PHONO</text>
-      <text x="157" y="55" text-anchor="middle" fill="#93c5fd" font-size="8" font-weight="700" font-family="system-ui">PREAMP</text>
-      <text x="157" y="77" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="8" font-family="system-ui" font-weight="600">RIAA EQ</text>
-      <!-- Arrow -->
-      <line x1="198" y1="46" x2="218" y2="46" stroke="#60a5fa" stroke-width="1.5"/>
-      <polyline points="214,41 220,46 214,51" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- DAC/Streamer -->
-      <rect x="220" y="20" width="88" height="52" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-      <polyline points="234,50 240,50 244,40 250,58 254,44 258,54 262,50 270,50" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="264" y="77" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="8" font-family="system-ui" font-weight="600">STREAMER/DAC</text>
-      <!-- Arrow -->
-      <line x1="308" y1="46" x2="328" y2="46" stroke="#60a5fa" stroke-width="1.5"/>
-      <polyline points="324,41 330,46 324,51" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="5" y="10" width="90" height="64" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+      <circle cx="42" cy="42" r="20" stroke="#60a5fa" stroke-width="1.2"/>
+      <circle cx="42" cy="42" r="9" stroke="#60a5fa" stroke-width="1.2" opacity=".7"/>
+      <circle cx="42" cy="42" r="3" fill="#60a5fa"/>
+      <line x1="56" y1="24" x2="82" y2="14" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="82" cy="14" r="2.5" fill="#fbbf24"/>
+      <text x="50" y="87" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">TURNTABLE</text>
+
+      <!-- Arrow: Turntable → Phono Preamp -->
+      <line x1="95" y1="42" x2="113" y2="42" stroke="#60a5fa" stroke-width="1.5"/>
+      <polyline points="109,37 115,42 109,47" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+      <!-- Phono Preamp -->
+      <rect x="115" y="15" width="82" height="54" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="156" y="38" text-anchor="middle" fill="#93c5fd" font-size="8" font-weight="700" font-family="system-ui">PHONO</text>
+      <text x="156" y="51" text-anchor="middle" fill="#93c5fd" font-size="8" font-weight="700" font-family="system-ui">PREAMP</text>
+      <text x="156" y="87" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">RIAA EQ</text>
+
+      <!-- ── DIGITAL PATH (bottom row, center y=136) ── -->
+
+      <!-- Streamer/DAC -->
+      <rect x="5" y="106" width="90" height="60" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+      <polyline points="14,136 20,136 25,124 31,150 36,132 41,143 46,136 86,136" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="50" y="181" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">STREAMER/DAC</text>
+
+      <!-- ── MERGE CONNECTIONS → PREAMP ── -->
+
+      <!-- Phono Preamp right → elbow down to junction -->
+      <line x1="197" y1="42" x2="222" y2="42" stroke="#60a5fa" stroke-width="1.5"/>
+      <line x1="222" y1="42" x2="222" y2="86" stroke="#60a5fa" stroke-width="1.5"/>
+
+      <!-- Streamer/DAC right → elbow up to junction -->
+      <line x1="95" y1="136" x2="222" y2="136" stroke="#60a5fa" stroke-width="1.5"/>
+      <line x1="222" y1="136" x2="222" y2="86" stroke="#60a5fa" stroke-width="1.5"/>
+
+      <!-- Junction node -->
+      <circle cx="222" cy="86" r="3.5" fill="#60a5fa"/>
+
+      <!-- Arrow: junction → Preamp -->
+      <line x1="222" y1="86" x2="240" y2="86" stroke="#60a5fa" stroke-width="1.5"/>
+      <polyline points="236,81 242,86 236,91" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+      <!-- ── RIGHT SECTION (merged, center y≈86) ── -->
+
       <!-- Preamp -->
-      <rect x="330" y="25" width="80" height="42" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-      <circle cx="349" cy="46" r="10" stroke="#60a5fa" stroke-width="1.2"/>
-      <line x1="349" y1="36" x2="349" y2="40" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
-      <text x="370" y="77" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="8" font-family="system-ui" font-weight="600">PREAMP</text>
-      <!-- Arrow -->
-      <line x1="410" y1="46" x2="430" y2="46" stroke="#60a5fa" stroke-width="1.5"/>
-      <polyline points="426,41 432,46 426,51" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="242" y="60" width="78" height="52" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+      <circle cx="268" cy="86" r="11" stroke="#60a5fa" stroke-width="1.2"/>
+      <line x1="268" y1="75" x2="268" y2="80" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
+      <text x="281" y="132" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">PREAMP</text>
+
+      <!-- Arrow: Preamp → Power Amp -->
+      <line x1="320" y1="86" x2="338" y2="86" stroke="#60a5fa" stroke-width="1.5"/>
+      <polyline points="334,81 340,86 334,91" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
       <!-- Power Amp -->
-      <rect x="432" y="18" width="92" height="56" rx="7" fill="#1e3a8a" stroke="#60a5fa" stroke-width="2"/>
-      <rect x="448" y="36" width="8" height="22" rx="2" fill="#60a5fa" opacity=".5"/>
-      <rect x="460" y="28" width="8" height="30" rx="2" fill="#60a5fa" opacity=".7"/>
-      <rect x="472" y="33" width="8" height="25" rx="2" fill="#60a5fa"/>
-      <rect x="484" y="39" width="8" height="19" rx="2" fill="#60a5fa" opacity=".7"/>
-      <text x="478" y="82" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="8" font-family="system-ui" font-weight="600">POWER AMP</text>
-      <!-- Arrow -->
-      <line x1="524" y1="46" x2="544" y2="46" stroke="#34d399" stroke-width="1.5"/>
-      <polyline points="540,41 546,46 540,51" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="340" y="54" width="92" height="58" rx="7" fill="#1e3a8a" stroke="#60a5fa" stroke-width="2"/>
+      <rect x="356" y="73" width="8" height="23" rx="2" fill="#60a5fa" opacity=".5"/>
+      <rect x="368" y="64" width="8" height="32" rx="2" fill="#60a5fa" opacity=".7"/>
+      <rect x="380" y="69" width="8" height="27" rx="2" fill="#60a5fa"/>
+      <rect x="392" y="75" width="8" height="21" rx="2" fill="#60a5fa" opacity=".7"/>
+      <text x="386" y="132" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">POWER AMP</text>
+
+      <!-- Arrow: Power Amp → Speakers (green) -->
+      <line x1="432" y1="83" x2="450" y2="83" stroke="#34d399" stroke-width="1.5"/>
+      <polyline points="446,78 452,83 446,88" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
       <!-- Speakers -->
-      <rect x="546" y="14" width="100" height="64" rx="7" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
-      <circle cx="596" cy="40" r="20" stroke="#34d399" stroke-width="1.2"/>
-      <circle cx="596" cy="40" r="10" stroke="#34d399" stroke-width="1.2" opacity=".6"/>
-      <circle cx="596" cy="40" r="3" fill="#34d399" opacity=".8"/>
-      <text x="596" y="82" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="8" font-family="system-ui" font-weight="600">SPEAKERS</text>
+      <rect x="452" y="42" width="106" height="76" rx="7" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
+      <!-- Cabinet divider between tweeter and woofer -->
+      <line x1="457" y1="66" x2="553" y2="66" stroke="#34d399" stroke-width=".8" opacity=".35"/>
+      <!-- Tweeter (upper compartment) -->
+      <circle cx="505" cy="55" r="8" stroke="#34d399" stroke-width="1.2"/>
+      <circle cx="505" cy="55" r="3" fill="#34d399" opacity=".75"/>
+      <!-- Woofer (lower compartment) -->
+      <circle cx="505" cy="87" r="18" stroke="#34d399" stroke-width="1.3"/>
+      <circle cx="505" cy="87" r="12" stroke="#34d399" stroke-width="1.1" opacity=".8"/>
+      <circle cx="505" cy="87" r="6" stroke="#34d399" stroke-width="1" opacity=".6"/>
+      <circle cx="505" cy="87" r="2.5" fill="#34d399" opacity=".9"/>
+      <text x="505" y="132" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">SPEAKERS</text>
+
       <!-- Sound waves -->
-      <path d="M650 30 Q660 40 650 50" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
-      <path d="M658 24 Q672 40 658 56" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
-      <path d="M666 18 Q684 40 666 62" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" opacity=".2"/>
+      <path d="M562 63 Q572 83 562 103" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+      <path d="M570 55 Q584 83 570 111" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+      <path d="M578 47 Q596 83 578 119" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" opacity=".2"/>
+
     </svg>
   </div>
 </div>
