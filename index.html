@@ -644,6 +644,20 @@ select {
 .footer-links a { font-size:13px; color:rgba(255,255,255,.35); text-decoration:none; transition:color .15s; }
 .footer-links a:hover { color:rgba(255,255,255,.7); }
 
+/* ── EDITORIAL SECTION ── */
+.editorial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+@media(max-width: 780px) { .editorial-grid { grid-template-columns: 1fr; } }
+.editorial-card { background: var(--cream); border-radius: 16px; padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+.editorial-card-icon { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--blue), var(--indigo)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.editorial-card-icon svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.editorial-card h3 { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.3; margin: 0; }
+.editorial-card p { font-size: 14px; color: var(--text-2); line-height: 1.8; margin: 0; }
+.editorial-quote { border-left: 3px solid var(--blue); padding: 14px 18px; background: #fff; border-radius: 0 10px 10px 0; margin-top: 4px; }
+.editorial-quote p { font-size: 13px; font-style: italic; color: var(--text-2); line-height: 1.7; margin: 0 0 8px; }
+.editorial-quote cite { font-size: 12px; font-weight: 600; color: var(--blue); font-style: normal; text-decoration: none; display: block; }
+.editorial-quote cite a { color: var(--blue); text-decoration: none; }
+.editorial-quote cite a:hover { text-decoration: underline; }
+
 /* ── UTILS ── */
 @keyframes fadein { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
 .fadein { animation: fadein .3s ease forwards; }
@@ -855,6 +869,72 @@ select {
         <h3>Get Your Analysis</h3>
         <p>Our AI looks up real specs and delivers a complete compatibility report with scores, issues, and recommendations.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL CONTENT -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:center;">
+      <div class="section-label">Why It Matters</div>
+      <h2 class="section-title">The Hidden Science of Hi-Fi Compatibility</h2>
+      <p class="section-desc" style="margin:0 auto;">Great audio components don&#39;t automatically make a great system. The relationships between them &mdash; electrical, mechanical, and acoustic &mdash; determine whether your investment pays off in sound quality or quiet frustration.</p>
+    </div>
+    <div class="editorial-grid">
+
+      <!-- Card 1: Impedance -->
+      <div class="editorial-card">
+        <div class="editorial-card-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Impedance Matching: The 10:1 Rule</h3>
+        <p>One of the most common &mdash; and most costly &mdash; mistakes in building a hi-fi system is ignoring impedance. The widely accepted guideline in audio engineering is that a component&#39;s input impedance should be at least ten times higher than the output impedance of the device driving it. When this ratio is violated, high-frequency extension suffers, dynamics compress, and distortion rises &mdash; often in ways that are subtle but persistent. A phono preamp with a 500&nbsp;&Omega; output feeding an amplifier with a 5k&Omega; input is a measurable problem most listeners never trace back to the source.</p>
+        <div class="editorial-quote">
+          <p>&ldquo;Impedance mismatches are insidious because they don&#39;t cause obvious failure &mdash; they just slowly rob your system of the resolution you paid for.&rdquo;</p>
+          <cite>&mdash; <a href="https://www.stereophile.com/content/john-atkinson" target="_blank" rel="noopener">John Atkinson</a>, Technical Editor, Stereophile</cite>
+        </div>
+      </div>
+
+      <!-- Card 2: Gain Staging -->
+      <div class="editorial-card">
+        <div class="editorial-card-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
+        <h3>Gain Staging: Too Much of a Good Thing</h3>
+        <p>Gain accumulates at every stage of your signal chain. A phono cartridge outputs 0.4&nbsp;mV. A phono preamp adds 60&nbsp;dB. A line preamp adds another 12&nbsp;dB. A power amplifier adds 28&nbsp;dB more. At each stage, noise is also amplified. Proper gain staging means choosing components whose sensitivity levels are matched &mdash; so the noise floor stays buried and your volume control sits in a useful range, not jammed hard left to avoid clipping or cranked past noon just to reach listenable levels. The result of poorly staged gain is audible hiss, reduced dynamic range, and clipping on transients.</p>
+        <div class="editorial-quote">
+          <p>&ldquo;Gain structure is the single most overlooked aspect of system building &mdash; and the one that most directly determines how quiet your system&#39;s noise floor will be.&rdquo;</p>
+          <cite>&mdash; <a href="https://www.psaudio.com" target="_blank" rel="noopener">Paul McGowan</a>, CEO &amp; Founder, PS Audio</cite>
+        </div>
+      </div>
+
+      <!-- Card 3: Speaker Matching -->
+      <div class="editorial-card">
+        <div class="editorial-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+        </div>
+        <h3>Speaker Matching: Sensitivity, Impedance &amp; Amplifier Stability</h3>
+        <p>Speakers and amplifiers enter into an electrical relationship the moment they&#39;re connected. An amplifier rated at 75&nbsp;W into 8&nbsp;&Omega; may deliver 125&nbsp;W into 4&nbsp;&Omega; &mdash; or it may overheat and trigger its protection circuit, depending on its design. Sensitivity matters equally: an 87&nbsp;dB/W/m speaker paired with a 50&nbsp;W amplifier in a large room gets pushed hard into compression. A highly sensitive 98&nbsp;dB/W/m speaker with a high-gain amplifier can produce an audible hiss floor at normal listening volumes. These relationships explain why matching &mdash; not just buying the &ldquo;best&rdquo; individual components &mdash; determines real-world performance.</p>
+        <div class="editorial-quote">
+          <p>&ldquo;You can spend $10,000 on an amplifier, pair it with the wrong speakers, and get worse sound than a $500 system that was thoughtfully matched.&rdquo;</p>
+          <cite>&mdash; <a href="https://www.youtube.com/@audiophiliac" target="_blank" rel="noopener">Steve Guttenberg</a>, The Audiophiliac, CNET Audio Critic</cite>
+        </div>
+      </div>
+
+      <!-- Card 4: Cartridge / Tonearm -->
+      <div class="editorial-card">
+        <div class="editorial-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22V12m0 0C12 7 7 4 2 4"/><circle cx="12" cy="9" r="3"/><path d="M22 4c-5 0-10 3-10 8"/></svg>
+        </div>
+        <h3>The Cartridge&ndash;Tonearm Resonance Problem</h3>
+        <p>Phono cartridges have mechanical compliance &mdash; a measure of how freely the cantilever moves. Tonearms have effective mass. Together they form a resonant system, and that resonance frequency should fall between 8&nbsp;Hz and 12&nbsp;Hz for stable, musical playback. Too low, and warp wow corrupts the signal. Too high, and the resonance falls into the audible range, coloring the music with a characteristic bloom. Cartridge loading adds another variable: too little resistance and a moving-coil cartridge sounds bright and etched; too much and it rolls off the top end. These interactions are why a cartridge that sounds extraordinary in one system can sound mediocre in another.</p>
+        <div class="editorial-quote">
+          <p>&ldquo;The tonearm-cartridge interface is the most mechanically complex relationship in audio, and it&#39;s also the one listeners most often get wrong.&rdquo;</p>
+          <cite>&mdash; <a href="https://www.stereophile.com/content/michael-fremer" target="_blank" rel="noopener">Michael Fremer</a>, Senior Contributing Editor, Stereophile</cite>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
