@@ -30,6 +30,16 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .nav-links a:hover,.nav-links a.active{color:#fff;}
 .nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;transition:background .15s!important;}
 .nav-cta:hover{background:var(--blue-dk)!important;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+.guide-nav{display:flex;flex-wrap:wrap;gap:12px;margin:0;}
+.guide-nav a{font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;background:var(--blue-lt);padding:8px 16px;border-radius:8px;}
+.guide-nav a:hover{background:#dbeafe;}
+.more-guides-top{margin:0 0 36px;padding-bottom:28px;border-bottom:1px solid #e2e8f0;}
+.more-guides-heading{font-size:20px;font-weight:800;color:var(--text);margin:0 0 16px;letter-spacing:-.02em;}
 /* PAGE HERO */
 .page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:64px 0 52px;text-align:center;}
 .page-hero{position:relative;overflow:hidden;}
@@ -85,7 +95,16 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="nav-links">
       <a href="/">Analyzer</a>
       <a href="/glossary.html" class="active">Glossary</a>
-      <a href="/guides/first-hifi-system.html">Guides</a>
+      <div class="nav-dropdown">
+        <a href="/guides/first-hifi-system.html">Guides ▾</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides/first-hifi-system.html">Build Your First System</a>
+          <a href="/guides/amplifiers.html">Amplifier Guide</a>
+          <a href="/guides/speakers.html">Speaker Matching</a>
+          <a href="/guides/cartridges.html">Cartridge Guide</a>
+          <a href="/guides/dacs.html">DAC Guide</a>
+        </div>
+      </div>
       <a href="/about.html">About</a>
       <a href="/#analyzer" class="nav-cta">Start Analysis →</a>
     </div>
@@ -121,6 +140,17 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
   <div class="container">
 
     <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
+
+    <div class="more-guides-top">
+      <p class="more-guides-heading">More Guides</p>
+      <div class="guide-nav">
+        <a href="/guides/first-hifi-system.html">Build Your First System →</a>
+        <a href="/guides/amplifiers.html">Amplifier Guide →</a>
+        <a href="/guides/speakers.html">Speaker Matching →</a>
+        <a href="/guides/cartridges.html">Cartridge Guide →</a>
+        <a href="/guides/dacs.html">DAC Guide →</a>
+      </div>
+    </div>
 
     <!-- C -->
     <div class="glossary-letter-group" id="C">
