@@ -657,11 +657,7 @@ select {
 .editorial-card-icon svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .editorial-card h3 { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.3; margin: 0; }
 .editorial-card p { font-size: 14px; color: var(--text-2); line-height: 1.8; margin: 0; }
-.editorial-quote { border-left: 3px solid var(--blue); padding: 14px 18px; background: #fff; border-radius: 0 10px 10px 0; margin-top: 4px; }
-.editorial-quote p { font-size: 13px; font-style: italic; color: var(--text-2); line-height: 1.7; margin: 0 0 8px; }
-.editorial-quote cite { font-size: 12px; font-weight: 600; color: var(--blue); font-style: normal; display: block; }
-.editorial-quote cite a { color: var(--blue); text-decoration: none; }
-.editorial-quote cite a:hover { text-decoration: underline; }
+.editorial-note { border-left: 3px solid var(--blue); padding: 14px 18px; background: #fff; border-radius: 0 10px 10px 0; margin-top: 4px; font-size: 13px; color: var(--text-2); line-height: 1.7; }
 
 /* ── FAQ SECTION ── */
 .faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
@@ -919,37 +915,25 @@ select {
         <div class="editorial-card-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         <h3>Impedance Matching: The 10:1 Rule</h3>
         <p>One of the most common &mdash; and most costly &mdash; mistakes in building a hi-fi system is ignoring impedance. The widely accepted guideline in audio engineering is that a component&#39;s input impedance should be at least ten times higher than the output impedance of the device driving it. When this ratio is violated, high-frequency extension suffers, dynamics compress, and distortion rises &mdash; often in ways that are subtle but persistent.</p>
-        <div class="editorial-quote">
-          <p>&ldquo;Impedance mismatches are insidious because they don&#39;t cause obvious failure &mdash; they just slowly rob your system of the resolution you paid for.&rdquo;</p>
-          <cite>&mdash; <a href="https://www.stereophile.com/content/john-atkinson" target="_blank" rel="noopener">John Atkinson</a>, Technical Editor, Stereophile</cite>
-        </div>
+        <p class="editorial-note">Impedance mismatches rarely announce themselves as failures &mdash; they quietly erode the resolution and frequency extension your components are capable of delivering. A ratio violation between a phono stage output and a line input can cost you the last few percent of performance that often represents the bulk of what you paid for.</p>
       </div>
       <div class="editorial-card">
         <div class="editorial-card-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
         <h3>Gain Staging: Too Much of a Good Thing</h3>
         <p>Gain accumulates at every stage of your signal chain. A phono cartridge outputs 0.4&nbsp;mV. A phono preamp adds 60&nbsp;dB. A line preamp adds another 12&nbsp;dB. A power amplifier adds 28&nbsp;dB more. Proper gain staging means choosing components whose sensitivity levels are matched &mdash; so the noise floor stays buried and your volume control sits in a useful range.</p>
-        <div class="editorial-quote">
-          <p>&ldquo;Gain structure is the single most overlooked aspect of system building &mdash; and the one that most directly determines how quiet your system&#39;s noise floor will be.&rdquo;</p>
-          <cite>&mdash; <a href="https://www.psaudio.com" target="_blank" rel="noopener">Paul McGowan</a>, CEO &amp; Founder, PS Audio</cite>
-        </div>
+        <p class="editorial-note">When gain accumulates unchecked across a signal chain, the noise floor rises with it. The practical result is a system that hisses at idle, forces your volume knob into a narrow usable range, or clips on loud transients &mdash; problems that are audible long before they&rsquo;re diagnosable. Matching sensitivity specifications at each stage is what separates a clean, dynamic system from one that merely has expensive parts.</p>
       </div>
       <div class="editorial-card">
         <div class="editorial-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/></svg></div>
         <h3>Speaker Matching: Sensitivity, Impedance &amp; Amplifier Stability</h3>
         <p>Speakers and amplifiers enter into an electrical relationship the moment they&#39;re connected. An amplifier rated at 75&nbsp;W into 8&nbsp;&Omega; may deliver 125&nbsp;W into 4&nbsp;&Omega; &mdash; or it may overheat and trigger its protection circuit, depending on its design. These relationships explain why matching &mdash; not just buying the &ldquo;best&rdquo; individual components &mdash; determines real-world performance.</p>
-        <div class="editorial-quote">
-          <p>&ldquo;You can spend $10,000 on an amplifier, pair it with the wrong speakers, and get worse sound than a $500 system that was thoughtfully matched.&rdquo;</p>
-          <cite>&mdash; <a href="https://www.youtube.com/@audiophiliac" target="_blank" rel="noopener">Steve Guttenberg</a>, The Audiophiliac, CNET Audio Critic</cite>
-        </div>
+        <p class="editorial-note">A speaker&rsquo;s nominal impedance tells only part of the story. Many loudspeakers dip well below their rated impedance in specific frequency bands, and amplifiers with rising output impedance lose damping and control precisely where it matters most &mdash; on bass transients. Sensitivity compounds the issue: a high-efficiency speaker can make a high-gain amplifier audibly noisy, while a low-sensitivity design may push a modest amplifier into thermal stress before the music gets loud.</p>
       </div>
       <div class="editorial-card">
         <div class="editorial-card-icon"><svg viewBox="0 0 24 24"><path d="M12 22V12m0 0C12 7 7 4 2 4"/><circle cx="12" cy="9" r="3"/><path d="M22 4c-5 0-10 3-10 8"/></svg></div>
         <h3>The Cartridge&ndash;Tonearm Resonance Problem</h3>
         <p>Phono cartridges have mechanical compliance &mdash; a measure of how freely the cantilever moves. Tonearms have effective mass. Together they form a resonant system that should fall between 8&nbsp;Hz and 12&nbsp;Hz. Too low and warp wow corrupts the signal. Too high and the resonance falls into the audible range. These interactions are why a cartridge that sounds extraordinary in one system can sound mediocre in another.</p>
-        <div class="editorial-quote">
-          <p>&ldquo;The tonearm-cartridge interface is the most mechanically complex relationship in audio, and it&#39;s also the one listeners most often get wrong.&rdquo;</p>
-          <cite>&mdash; <a href="https://www.stereophile.com/content/michael-fremer" target="_blank" rel="noopener">Michael Fremer</a>, Senior Contributing Editor, Stereophile</cite>
-        </div>
+        <p class="editorial-note">The cartridge&ndash;tonearm resonance frequency is a physical property of a specific combination &mdash; it cannot be adjusted after the fact and directly affects warp-induced noise, bass response, and low-frequency tracking stability. Cartridge loading adds another dimension: the termination resistance presented to a moving-coil design affects its high-frequency character and distortion in ways that vary considerably between models. These interactions explain why the same cartridge can sound quite different from one system to the next.</p>
       </div>
     </div>
   </div>
