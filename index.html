@@ -94,11 +94,6 @@ a  { color: var(--blue); text-decoration: none; }
   transition: background .15s;
 }
 .nav-cta:hover { background: var(--blue-dk) !important; }
-.nav-dropdown{position:relative;display:flex;align-items:center;}
-.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
-.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
-.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
-.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
 
 /* ── HERO ── */
 .hero {
@@ -657,30 +652,7 @@ select {
 .editorial-card-icon svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .editorial-card h3 { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.3; margin: 0; }
 .editorial-card p { font-size: 14px; color: var(--text-2); line-height: 1.8; margin: 0; }
-.editorial-quote { border-left: 3px solid var(--blue); padding: 14px 18px; background: #fff; border-radius: 0 10px 10px 0; margin-top: 4px; }
-.editorial-quote p { font-size: 13px; font-style: italic; color: var(--text-2); line-height: 1.7; margin: 0 0 8px; }
-.editorial-quote cite { font-size: 12px; font-weight: 600; color: var(--blue); font-style: normal; display: block; }
-.editorial-quote cite a { color: var(--blue); text-decoration: none; }
-.editorial-quote cite a:hover { text-decoration: underline; }
-
-/* ── FAQ SECTION ── */
-.faq-list { display: flex; flex-direction: column; gap: 12px; margin-top: 40px; }
-.faq-item { border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-.faq-item[open] { border-color: var(--blue); }
-.faq-q { font-size: 15px; font-weight: 700; color: var(--text); padding: 18px 22px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-.faq-q::-webkit-details-marker { display: none; }
-.faq-q::after { content: "+"; font-size: 22px; font-weight: 300; color: var(--blue); flex-shrink: 0; line-height: 1; }
-.faq-item[open] .faq-q::after { content: "−"; }
-.faq-a { padding: 0 22px 18px; }
-.faq-a p { font-size: 14px; color: var(--text-2); line-height: 1.8; margin: 0; }
-
-/* ── COMMON MISTAKES ── */
-.mistakes-list { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
-.mistake-item { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
-.mistake-item:last-child { border-bottom: none; }
-.mistake-num { font-size: 36px; font-weight: 900; color: var(--border-2); letter-spacing: -.04em; flex-shrink: 0; line-height: 1; padding-top: 4px; min-width: 48px; }
-.mistake-body h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
-.mistake-body p { font-size: 14px; color: var(--text-2); line-height: 1.8; margin: 0; }
+.editorial-note { border-left: 3px solid var(--blue); padding: 14px 18px; background: #fff; border-radius: 0 10px 10px 0; margin-top: 4px; font-size: 13px; color: var(--text-2); line-height: 1.7; }
 
 /* ── UTILS ── */
 @keyframes fadein { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
@@ -703,18 +675,9 @@ select {
     </a>
     <div class="nav-links">
       <a href="/" class="active">Analyzer</a>
-      <a href="/glossary.html">Glossary</a>
-      <div class="nav-dropdown">
-        <a href="/guides/first-hifi-system.html">Guides ▾</a>
-        <div class="nav-dropdown-menu">
-          <a href="/guides/first-hifi-system.html">Build Your First System</a>
-          <a href="/guides/amplifiers.html">Amplifier Guide</a>
-          <a href="/guides/speakers.html">Speaker Matching</a>
-          <a href="/guides/cartridges.html">Cartridge Guide</a>
-          <a href="/guides/dacs.html">DAC Guide</a>
-        </div>
-      </div>
       <a href="/about.html">About</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/contact.html">Contact</a>
       <a href="#analyzer" class="nav-cta">Start Analysis →</a>
     </div>
   </div>
@@ -915,290 +878,47 @@ select {
       <p class="section-desc" style="margin:0 auto;">Great audio components don&#39;t automatically make a great system. The relationships between them &mdash; electrical, mechanical, and acoustic &mdash; determine whether your investment pays off in sound quality or quiet frustration.</p>
     </div>
     <div class="editorial-grid">
+
+      <!-- Card 1: Impedance -->
       <div class="editorial-card">
-        <div class="editorial-card-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="editorial-card-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
         <h3>Impedance Matching: The 10:1 Rule</h3>
-        <p>One of the most common &mdash; and most costly &mdash; mistakes in building a hi-fi system is ignoring impedance. The widely accepted guideline in audio engineering is that a component&#39;s input impedance should be at least ten times higher than the output impedance of the device driving it. When this ratio is violated, high-frequency extension suffers, dynamics compress, and distortion rises &mdash; often in ways that are subtle but persistent.</p>
-        <div class="editorial-quote">
-          <p>&ldquo;Impedance mismatches are insidious because they don&#39;t cause obvious failure &mdash; they just slowly rob your system of the resolution you paid for.&rdquo;</p>
-          <cite>&mdash; <a href="https://www.stereophile.com/content/john-atkinson" target="_blank" rel="noopener">John Atkinson</a>, Technical Editor, Stereophile</cite>
-        </div>
+        <p>One of the most common &mdash; and most costly &mdash; mistakes in building a hi-fi system is ignoring impedance. The widely accepted guideline in audio engineering is that a component&#39;s input impedance should be at least ten times higher than the output impedance of the device driving it. When this ratio is violated, high-frequency extension suffers, dynamics compress, and distortion rises &mdash; often in ways that are subtle but persistent. A phono preamp with a 500&nbsp;&Omega; output feeding an amplifier with a 5k&Omega; input is a measurable problem most listeners never trace back to the source.</p>
+        <p class="editorial-note">Impedance mismatches rarely announce themselves as failures &mdash; they quietly erode the resolution and frequency extension your components are capable of delivering. A ratio violation between a phono stage output and a line input can cost you the last few percent of performance that often represents the bulk of what you paid for.</p>
       </div>
+
+      <!-- Card 2: Gain Staging -->
       <div class="editorial-card">
-        <div class="editorial-card-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
+        <div class="editorial-card-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
         <h3>Gain Staging: Too Much of a Good Thing</h3>
-        <p>Gain accumulates at every stage of your signal chain. A phono cartridge outputs 0.4&nbsp;mV. A phono preamp adds 60&nbsp;dB. A line preamp adds another 12&nbsp;dB. A power amplifier adds 28&nbsp;dB more. Proper gain staging means choosing components whose sensitivity levels are matched &mdash; so the noise floor stays buried and your volume control sits in a useful range.</p>
-        <div class="editorial-quote">
-          <p>&ldquo;Gain structure is the single most overlooked aspect of system building &mdash; and the one that most directly determines how quiet your system&#39;s noise floor will be.&rdquo;</p>
-          <cite>&mdash; <a href="https://www.psaudio.com" target="_blank" rel="noopener">Paul McGowan</a>, CEO &amp; Founder, PS Audio</cite>
-        </div>
+        <p>Gain accumulates at every stage of your signal chain. A phono cartridge outputs 0.4&nbsp;mV. A phono preamp adds 60&nbsp;dB. A line preamp adds another 12&nbsp;dB. A power amplifier adds 28&nbsp;dB more. At each stage, noise is also amplified. Proper gain staging means choosing components whose sensitivity levels are matched &mdash; so the noise floor stays buried and your volume control sits in a useful range, not jammed hard left to avoid clipping or cranked past noon just to reach listenable levels. The result of poorly staged gain is audible hiss, reduced dynamic range, and clipping on transients.</p>
+        <p class="editorial-note">When gain accumulates unchecked across a signal chain, the noise floor rises with it. The practical result is a system that hisses at idle, forces your volume knob into a narrow usable range, or clips on loud transients &mdash; problems that are audible long before they&rsquo;re diagnosable. Matching sensitivity specifications at each stage is what separates a clean, dynamic system from one that merely has expensive parts.</p>
       </div>
+
+      <!-- Card 3: Speaker Matching -->
       <div class="editorial-card">
-        <div class="editorial-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/></svg></div>
+        <div class="editorial-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+        </div>
         <h3>Speaker Matching: Sensitivity, Impedance &amp; Amplifier Stability</h3>
-        <p>Speakers and amplifiers enter into an electrical relationship the moment they&#39;re connected. An amplifier rated at 75&nbsp;W into 8&nbsp;&Omega; may deliver 125&nbsp;W into 4&nbsp;&Omega; &mdash; or it may overheat and trigger its protection circuit, depending on its design. These relationships explain why matching &mdash; not just buying the &ldquo;best&rdquo; individual components &mdash; determines real-world performance.</p>
-        <div class="editorial-quote">
-          <p>&ldquo;You can spend $10,000 on an amplifier, pair it with the wrong speakers, and get worse sound than a $500 system that was thoughtfully matched.&rdquo;</p>
-          <cite>&mdash; <a href="https://www.youtube.com/@audiophiliac" target="_blank" rel="noopener">Steve Guttenberg</a>, The Audiophiliac, CNET Audio Critic</cite>
-        </div>
+        <p>Speakers and amplifiers enter into an electrical relationship the moment they&#39;re connected. An amplifier rated at 75&nbsp;W into 8&nbsp;&Omega; may deliver 125&nbsp;W into 4&nbsp;&Omega; &mdash; or it may overheat and trigger its protection circuit, depending on its design. Sensitivity matters equally: an 87&nbsp;dB/W/m speaker paired with a 50&nbsp;W amplifier in a large room gets pushed hard into compression. A highly sensitive 98&nbsp;dB/W/m speaker with a high-gain amplifier can produce an audible hiss floor at normal listening volumes. These relationships explain why matching &mdash; not just buying the &ldquo;best&rdquo; individual components &mdash; determines real-world performance.</p>
+        <p class="editorial-note">A speaker&rsquo;s nominal impedance tells only part of the story. Many loudspeakers dip well below their rated impedance in specific frequency bands, and amplifiers with rising output impedance lose damping and control precisely where it matters most &mdash; on bass transients. Sensitivity compounds the issue: a high-efficiency speaker can make a high-gain amplifier audibly noisy, while a low-sensitivity design may push a modest amplifier into thermal stress before the music gets loud.</p>
       </div>
+
+      <!-- Card 4: Cartridge / Tonearm -->
       <div class="editorial-card">
-        <div class="editorial-card-icon"><svg viewBox="0 0 24 24"><path d="M12 22V12m0 0C12 7 7 4 2 4"/><circle cx="12" cy="9" r="3"/><path d="M22 4c-5 0-10 3-10 8"/></svg></div>
+        <div class="editorial-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22V12m0 0C12 7 7 4 2 4"/><circle cx="12" cy="9" r="3"/><path d="M22 4c-5 0-10 3-10 8"/></svg>
+        </div>
         <h3>The Cartridge&ndash;Tonearm Resonance Problem</h3>
-        <p>Phono cartridges have mechanical compliance &mdash; a measure of how freely the cantilever moves. Tonearms have effective mass. Together they form a resonant system that should fall between 8&nbsp;Hz and 12&nbsp;Hz. Too low and warp wow corrupts the signal. Too high and the resonance falls into the audible range. These interactions are why a cartridge that sounds extraordinary in one system can sound mediocre in another.</p>
-        <div class="editorial-quote">
-          <p>&ldquo;The tonearm-cartridge interface is the most mechanically complex relationship in audio, and it&#39;s also the one listeners most often get wrong.&rdquo;</p>
-          <cite>&mdash; <a href="https://www.stereophile.com/content/michael-fremer" target="_blank" rel="noopener">Michael Fremer</a>, Senior Contributing Editor, Stereophile</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Signal chain decorative SVG above FAQ -->
-<div style="background:var(--dark);padding:36px 0 28px;text-align:center;">
-  <div class="container">
-    <p style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:20px;">A Complete Hi-Fi Signal Chain</p>
-    <svg viewBox="0 0 700 195" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:780px;" fill="none">
-
-      <!-- ── ANALOG PATH (top row, center y=42) ── -->
-
-      <!-- Turntable -->
-      <rect x="5" y="10" width="90" height="64" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-      <circle cx="42" cy="42" r="20" stroke="#60a5fa" stroke-width="1.2"/>
-      <circle cx="42" cy="42" r="9" stroke="#60a5fa" stroke-width="1.2" opacity=".7"/>
-      <circle cx="42" cy="42" r="3" fill="#60a5fa"/>
-      <line x1="56" y1="24" x2="82" y2="14" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="82" cy="14" r="2.5" fill="#fbbf24"/>
-      <text x="50" y="87" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">TURNTABLE</text>
-
-      <!-- Arrow: Turntable → Phono Preamp -->
-      <line x1="95" y1="42" x2="113" y2="42" stroke="#60a5fa" stroke-width="1.5"/>
-      <polyline points="109,37 115,42 109,47" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-      <!-- Phono Preamp -->
-      <rect x="115" y="15" width="82" height="54" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-      <text x="156" y="38" text-anchor="middle" fill="#93c5fd" font-size="8" font-weight="700" font-family="system-ui">PHONO</text>
-      <text x="156" y="51" text-anchor="middle" fill="#93c5fd" font-size="8" font-weight="700" font-family="system-ui">PREAMP</text>
-      <text x="156" y="87" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">RIAA EQ</text>
-
-      <!-- ── DIGITAL PATH (bottom row, center y=136) ── -->
-
-      <!-- Streamer/DAC -->
-      <rect x="5" y="106" width="90" height="60" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-      <polyline points="14,136 20,136 25,124 31,150 36,132 41,143 46,136 86,136" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="50" y="181" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">STREAMER/DAC</text>
-
-      <!-- ── MERGE CONNECTIONS → PREAMP ── -->
-
-      <!-- Phono Preamp right → elbow down to junction -->
-      <line x1="197" y1="42" x2="222" y2="42" stroke="#60a5fa" stroke-width="1.5"/>
-      <line x1="222" y1="42" x2="222" y2="86" stroke="#60a5fa" stroke-width="1.5"/>
-
-      <!-- Streamer/DAC right → elbow up to junction -->
-      <line x1="95" y1="136" x2="222" y2="136" stroke="#60a5fa" stroke-width="1.5"/>
-      <line x1="222" y1="136" x2="222" y2="86" stroke="#60a5fa" stroke-width="1.5"/>
-
-      <!-- Junction node -->
-      <circle cx="222" cy="86" r="3.5" fill="#60a5fa"/>
-
-      <!-- Arrow: junction → Preamp -->
-      <line x1="222" y1="86" x2="240" y2="86" stroke="#60a5fa" stroke-width="1.5"/>
-      <polyline points="236,81 242,86 236,91" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-      <!-- ── RIGHT SECTION (merged, center y≈86) ── -->
-
-      <!-- Preamp -->
-      <rect x="242" y="60" width="78" height="52" rx="7" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-      <circle cx="268" cy="86" r="11" stroke="#60a5fa" stroke-width="1.2"/>
-      <line x1="268" y1="75" x2="268" y2="80" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
-      <text x="281" y="132" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">PREAMP</text>
-
-      <!-- Arrow: Preamp → Power Amp -->
-      <line x1="320" y1="86" x2="338" y2="86" stroke="#60a5fa" stroke-width="1.5"/>
-      <polyline points="334,81 340,86 334,91" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-      <!-- Power Amp -->
-      <rect x="340" y="54" width="92" height="58" rx="7" fill="#1e3a8a" stroke="#60a5fa" stroke-width="2"/>
-      <rect x="356" y="73" width="8" height="23" rx="2" fill="#60a5fa" opacity=".5"/>
-      <rect x="368" y="64" width="8" height="32" rx="2" fill="#60a5fa" opacity=".7"/>
-      <rect x="380" y="69" width="8" height="27" rx="2" fill="#60a5fa"/>
-      <rect x="392" y="75" width="8" height="21" rx="2" fill="#60a5fa" opacity=".7"/>
-      <text x="386" y="132" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">POWER AMP</text>
-
-      <!-- Arrow: Power Amp → Speakers (green) -->
-      <line x1="432" y1="83" x2="450" y2="83" stroke="#34d399" stroke-width="1.5"/>
-      <polyline points="446,78 452,83 446,88" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-
-      <!-- Speakers -->
-      <rect x="452" y="42" width="106" height="76" rx="7" fill="#1e293b" stroke="#34d399" stroke-width="1.5"/>
-      <!-- Cabinet divider between tweeter and woofer -->
-      <line x1="457" y1="66" x2="553" y2="66" stroke="#34d399" stroke-width=".8" opacity=".35"/>
-      <!-- Tweeter (upper compartment) -->
-      <circle cx="505" cy="55" r="8" stroke="#34d399" stroke-width="1.2"/>
-      <circle cx="505" cy="55" r="3" fill="#34d399" opacity=".75"/>
-      <!-- Woofer (lower compartment) -->
-      <circle cx="505" cy="87" r="18" stroke="#34d399" stroke-width="1.3"/>
-      <circle cx="505" cy="87" r="12" stroke="#34d399" stroke-width="1.1" opacity=".8"/>
-      <circle cx="505" cy="87" r="6" stroke="#34d399" stroke-width="1" opacity=".6"/>
-      <circle cx="505" cy="87" r="2.5" fill="#34d399" opacity=".9"/>
-      <text x="505" y="132" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="system-ui" font-weight="600">SPEAKERS</text>
-
-      <!-- Sound waves -->
-      <path d="M562 63 Q572 83 562 103" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
-      <path d="M570 55 Q584 83 570 111" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
-      <path d="M578 47 Q596 83 578 119" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" opacity=".2"/>
-
-    </svg>
-  </div>
-</div>
-
-<!-- FAQ SECTION -->
-<section class="section section-alt" id="faq">
-  <div class="container" style="max-width:800px;">
-    <div class="section-header" style="text-align:center;">
-      <div class="section-label">FAQ</div>
-      <h2 class="section-title">Common Questions</h2>
-      <p class="section-desc" style="margin:0 auto;">Answers to the most frequently asked questions about hi-fi audio compatibility.</p>
-    </div>
-    <div class="faq-list">
-
-      <details class="faq-item">
-        <summary class="faq-q">How do I know if my amplifier can drive my speakers?</summary>
-        <div class="faq-a">
-          <p>Check two things: your speaker's nominal impedance and its sensitivity. The amplifier must be rated stable into the speaker's impedance (4&nbsp;&Omega; or 8&nbsp;&Omega;). Then estimate how much power you need: in an average room, a speaker rated at 88&nbsp;dB/W/m needs about 50 watts for realistic listening levels. An 85&nbsp;dB speaker needs roughly 100 watts for the same result, because each 3&nbsp;dB drop in sensitivity requires doubling the amplifier power.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">What is the difference between MM and MC cartridges?</summary>
-        <div class="faq-a">
-          <p>Moving Magnet (MM) cartridges have a replaceable stylus, output 3&ndash;6&nbsp;mV, and connect to the standard 47&nbsp;k&Omega; phono input found on almost every phono preamp and receiver. Moving Coil (MC) cartridges output far less voltage (0.2&ndash;2.5&nbsp;mV), require a dedicated high-gain, low-impedance MC phono stage, and generally cannot have their stylus replaced by the user. MC cartridges are typically associated with higher resolution and better channel separation, at significantly greater cost and maintenance complexity.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">Do I need a phono preamp if my receiver has a PHONO input?</summary>
-        <div class="faq-a">
-          <p>No &mdash; a dedicated PHONO input already has a built-in phono preamplifier with RIAA equalization. You connect your turntable directly to the PHONO input, not to a line input like AUX or CD. If your receiver or integrated amplifier does not have a labeled PHONO input, then yes, you need a standalone phono preamplifier connected between the turntable and any available line input.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">Why does my system hum when I connect my turntable?</summary>
-        <div class="faq-a">
-          <p>A hum with a turntable connected is almost always a grounding issue. Most turntables have a separate ground wire (a bare wire or spade-terminated wire) that must be connected to the GROUND terminal on your phono preamplifier or amplifier. If you have connected the ground wire and still hear hum, try: (1) connecting the turntable and all components to the same AC outlet, (2) checking that the phono cable is fully seated, or (3) lifting the ground connection on a component if a ground loop exists between two grounded devices.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">What is the 10:1 impedance rule and does it really matter?</summary>
-        <div class="faq-a">
-          <p>The 10:1 rule states that the input impedance of a component should be at least 10 times higher than the output impedance of the device driving it. For example, a preamplifier with a 500&nbsp;&Omega; output impedance should drive an amplifier with at least 5,000&nbsp;&Omega; input impedance. When the ratio falls below 10:1, the two impedances form a voltage divider that attenuates the signal and causes a measurable high-frequency rolloff. Yes, it matters &mdash; though the severity depends on how far below 10:1 the ratio falls.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">How much amplifier power do I actually need?</summary>
-        <div class="faq-a">
-          <p>Most home listening in average-sized rooms happens at average power levels of 1&ndash;5 watts. However, brief transient peaks (a drum strike, a loud orchestral passage) can demand 20&ndash;50 times the average power instantaneously. Having headroom &mdash; more power in reserve than you typically use &mdash; allows the amplifier to reproduce those peaks cleanly without clipping. A good rule: for speakers with 88&nbsp;dB sensitivity in a 15&times;20 foot room, 75&ndash;100 watts of clean amplifier power gives comfortable headroom. High-sensitivity speakers (92&nbsp;dB+) can sound excellent with 20&ndash;50 watts.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">Can I damage my speakers by using too powerful an amplifier?</summary>
-        <div class="faq-a">
-          <p>Counterintuitively, underpowered amplifiers are more dangerous to speakers than overpowered ones. When an amplifier is driven into clipping (distortion at maximum output), it produces sustained high-frequency waveforms that can overheat and destroy tweeters. A more powerful amplifier playing at moderate volume produces a clean signal that is far less likely to damage speakers than a smaller amplifier being pushed to its limits. The caveat is that a very powerful amplifier played at extremely high levels can still exceed a speaker's mechanical limits &mdash; but this requires deliberate abuse.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">What tonearm mass works with my cartridge?</summary>
-        <div class="faq-a">
-          <p>The cartridge's dynamic compliance and the tonearm's effective mass together determine the resonance frequency of the system. Aim for a resonance between 8 and 12&nbsp;Hz. High-compliance cartridges (18&nbsp;&micro;m/mN and above, typical of many MM designs) pair best with low-to-medium mass tonearms (8&ndash;12 grams effective mass). Low-compliance cartridges (below 10&nbsp;&micro;m/mN, typical of most MC designs) need medium-to-high mass tonearms (14&ndash;24 grams). The AudioChainHiFi analyzer calculates the exact resonance frequency for your specific cartridge and tonearm combination.</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">Does the quality of my cables significantly affect sound?</summary>
-        <div class="faq-a">
-          <p>For interconnect cables (RCA or XLR between components), cable quality matters primarily in the area of capacitance (which affects MM phono cartridges) and shielding (which affects noise pickup in sensitive circuits). For most line-level connections between well-designed components, a quality cable with proper shielding and solid connections will perform identically to a much more expensive alternative. Speaker cable resistance is more objectively measurable: for runs over 20 feet, use at least 14 AWG wire to keep resistance below 0.1&nbsp;&Omega; per leg.</p>
-        </div>
-      </details>
-
-    </div>
-  </div>
-</section>
-
-<!-- COMMON MISTAKES SECTION -->
-<section class="section" id="mistakes">
-  <div class="container" style="max-width:860px;">
-    <div class="section-header" style="text-align:center;">
-      <div class="section-label">Education</div>
-      <h2 class="section-title">7 Common Hi-Fi Compatibility Mistakes</h2>
-      <p class="section-desc" style="margin:0 auto;">The most frequently seen errors when assembling a hi-fi system &mdash; and how to avoid them.</p>
-    </div>
-    <div class="mistakes-list">
-
-      <div class="mistake-item">
-        <div class="mistake-num">01</div>
-        <div class="mistake-body">
-          <h3>Ignoring Impedance Ratios Between Components</h3>
-          <p>The most technically consequential mistake: connecting components without checking that each input impedance is at least 10 times the output impedance of the device driving it. A preamplifier with 2,000&nbsp;&Omega; output feeding an amplifier with 5,000&nbsp;&Omega; input creates a 2.5:1 ratio &mdash; far below the 10:1 guideline. The result is a measurable high-frequency rolloff, dynamic compression, and reduced channel separation. Always check the output impedance of the source component and the input impedance of the destination before connecting them.</p>
-        </div>
+        <p>Phono cartridges have mechanical compliance &mdash; a measure of how freely the cantilever moves. Tonearms have effective mass. Together they form a resonant system, and that resonance frequency should fall between 8&nbsp;Hz and 12&nbsp;Hz for stable, musical playback. Too low, and warp wow corrupts the signal. Too high, and the resonance falls into the audible range, coloring the music with a characteristic bloom. Cartridge loading adds another variable: too little resistance and a moving-coil cartridge sounds bright and etched; too much and it rolls off the top end. These interactions are why a cartridge that sounds extraordinary in one system can sound mediocre in another.</p>
+        <p class="editorial-note">The cartridge&ndash;tonearm resonance frequency is a physical property of a specific combination &mdash; it cannot be adjusted after the fact and directly affects warp-induced noise, bass response, and low-frequency tracking stability. Cartridge loading adds another dimension: the termination resistance presented to a moving-coil design affects its high-frequency character and distortion in ways that vary considerably between models. These interactions explain why the same cartridge can sound quite different from one system to the next.</p>
       </div>
 
-      <div class="mistake-item">
-        <div class="mistake-num">02</div>
-        <div class="mistake-body">
-          <h3>Running a 4&nbsp;&Omega; Speaker on an Amplifier Not Rated for 4&nbsp;&Omega;</h3>
-          <p>Many amplifiers specify their power rating only into 8&nbsp;&Omega; and are not designed for continuous 4&nbsp;&Omega; operation. Connecting a 4&nbsp;&Omega; speaker (or a 4&nbsp;&Omega; nominal speaker that dips to 2.5&nbsp;&Omega; at some frequencies) to such an amplifier causes it to overheat, engage its thermal protection, produce distortion, and potentially fail. Always confirm that your amplifier explicitly specifies stable 4&nbsp;&Omega; operation if your speakers are rated at 4&nbsp;&Omega; nominal impedance.</p>
-        </div>
-      </div>
-
-      <div class="mistake-item">
-        <div class="mistake-num">03</div>
-        <div class="mistake-body">
-          <h3>Mismatched Gain Staging Across the Signal Chain</h3>
-          <p>Gain staging errors produce systems where the volume control is useful across only a narrow range (say, 7 to 9 o'clock on a rotary dial), or systems that cannot reach satisfying volume levels without the preamplifier at maximum. The fix is to understand the output voltage of each source, the input sensitivity of each amplification stage, and select components whose levels are mutually compatible. The AudioChainHiFi analyzer evaluates gain staging as part of its compatibility report.</p>
-        </div>
-      </div>
-
-      <div class="mistake-item">
-        <div class="mistake-num">04</div>
-        <div class="mistake-body">
-          <h3>Wrong Cartridge Loading on an MC Phono Stage</h3>
-          <p>Moving-coil cartridges are highly sensitive to the input impedance (load resistance) of the phono stage. Most MC cartridges sound best when loaded at 10&times; or more their internal impedance &mdash; so a 10&nbsp;&Omega; cartridge typically wants 100&nbsp;&Omega; or higher loading. Too low a load damps the cartridge and rolls off treble; too high allows a resonance that adds brightness. Many phono preamps offer switch-selectable loading from 50&nbsp;&Omega; to 47k&nbsp;&Omega;. Choosing the correct range and experimenting within it is essential for getting the best from an MC cartridge.</p>
-        </div>
-      </div>
-
-      <div class="mistake-item">
-        <div class="mistake-num">05</div>
-        <div class="mistake-body">
-          <h3>Pairing a High-Compliance Cartridge with a Heavy Tonearm</h3>
-          <p>When a high-compliance cartridge (typical of many MM designs at 18&ndash;25&nbsp;&micro;m/mN) is mounted in a heavy tonearm (14&nbsp;g or more effective mass), the tonearm-cartridge resonance frequency drops below 8&nbsp;Hz. This makes the stylus vulnerable to record warps, which generate energy in the 0.5&ndash;3&nbsp;Hz range. The audible result is rhythmic low-frequency disturbances and bass instability on warped records, sometimes accompanied by a subwoofer-exciting thump. The resonance frequency formula is deterministic &mdash; check it before buying either a cartridge or a tonearm.</p>
-        </div>
-      </div>
-
-      <div class="mistake-item">
-        <div class="mistake-num">06</div>
-        <div class="mistake-body">
-          <h3>Forgetting the DAC in the Signal Chain Analysis</h3>
-          <p>In digital systems, the DAC's output voltage and output impedance must be treated as carefully as any other analog source component. A DAC outputting 4&nbsp;V RMS connected to a preamplifier with a 2&nbsp;V maximum input will cause clipping in the preamplifier at any setting above unity gain. A DAC with a 1,200&nbsp;&Omega; output impedance connected to a preamplifier with a 5,000&nbsp;&Omega; input falls well below the 10:1 guideline. The digital-to-analog interface is analog in all the ways that matter for system compatibility.</p>
-        </div>
-      </div>
-
-      <div class="mistake-item">
-        <div class="mistake-num">07</div>
-        <div class="mistake-body">
-          <h3>Buying a More Sensitive Speaker to Solve a Volume Problem</h3>
-          <p>When a system sounds too quiet, the instinct is often to replace the speakers with higher-sensitivity models. But sensitivity alone cannot fix a gain deficit caused by a DAC outputting too little voltage, a preamplifier with insufficient gain, or an amplifier with too high an input sensitivity threshold. Before changing speakers, trace the signal chain from source to output and identify where the gain deficit actually occurs. Changing one component based on the symptom rather than the root cause often produces an expensive non-solution.</p>
-        </div>
-      </div>
-
-    </div>
-    <div style="text-align:center;margin-top:36px;">
-      <a href="/#analyzer" style="display:inline-block;background:var(--blue);color:#fff;font-weight:700;font-size:14px;padding:13px 30px;border-radius:9px;text-decoration:none;">Check Your System for These Issues &rarr;</a>
     </div>
   </div>
 </section>
@@ -1374,20 +1094,11 @@ select {
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Learn</h4>
-        <ul>
-          <li><a href="/glossary.html">Glossary</a></li>
-          <li><a href="/guides/first-hifi-system.html">Beginner&rsquo;s Guide</a></li>
-          <li><a href="/guides/amplifiers.html">Amplifier Guide</a></li>
-          <li><a href="/guides/cartridges.html">Cartridge Guide</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
         <h4>Resources</h4>
         <ul>
           <li><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></li>
-          <li><a href="https://www.stereophile.com" target="_blank" rel="noopener">Stereophile</a></li>
-          <li><a href="https://www.psaudio.com" target="_blank" rel="noopener">PS Audio</a></li>
+          <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy</a></li>
+          <li><a href="https://adssettings.google.com" target="_blank" rel="noopener">Ads Settings</a></li>
         </ul>
       </div>
     </div>
