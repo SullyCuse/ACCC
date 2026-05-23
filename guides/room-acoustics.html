@@ -1,15 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amplifier Specs That Actually Matter — AudioChainHiFi.com</title>
-<meta name="description" content="Which amplifier specs matter for hi-fi compatibility? Power output, input sensitivity, damping factor, peak current, and impedance stability explained.">
-<meta property="og:title" content="Amplifier Specs That Actually Matter — AudioChainHiFi.com">
+<title>Room Acoustics and Speaker Placement — AudioChainHiFi.com</title>
+<meta name="description" content="Room acoustics and speaker placement fundamentals: bass modes, first reflection points, the rule of thirds, SBIR, toe-in, and when to use absorption versus diffusion.">
+<meta property="og:title" content="Room Acoustics and Speaker Placement — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/amplifiers">
+<meta property="og:url" content="https://audiochainhifi.com/guides/room-acoustics">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://audiochainhifi.com/guides/amplifiers">
+<link rel="canonical" href="https://audiochainhifi.com/guides/room-acoustics">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -122,10 +122,10 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Power amplifier">
-    <div class="guide-label">Component Guide</div>
-    <h1>Amplifiers: The Specs That Actually Matter</h1>
-    <p class="lede">Power output is the headline, but it is rarely the most important amplifier specification for real-world system compatibility. Here is what to actually look at — and why.</p>
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80" alt="Hi-fi speakers in a listening room">
+    <div class="guide-label">System Guide</div>
+    <h1>Room Acoustics and Speaker Placement</h1>
+    <p class="lede">The room is the most significant variable in any hi-fi system. Speaker placement alone can eliminate bass problems that no component upgrade ever could. These are the principles that deliver the greatest improvement per unit of effort.</p>
   </div>
 </div>
 
@@ -137,116 +137,85 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
         <a href="/guides/speakers">Speaker Matching →</a>
-        <a href="/guides/cartridges">Cartridge Guide →</a>
-        <a href="/guides/dacs">DAC Guide →</a>
+        <a href="/guides/amplifiers">Amplifier Guide →</a>
+        <a href="/guides/first-hifi-system">Build Your First System →</a>
+        <a href="/guides/cables">Cables Guide →</a>
         <a href="/glossary">Glossary →</a>
       </div>
     </div>
 
-    <p>Amplifier specifications are sometimes presented in ways designed to impress rather than inform. A headline wattage figure tells you relatively little about whether an amplifier will work well with your speakers or your preamplifier. The specifications below are the ones that determine real-world compatibility and performance.</p>
+    <p>Every measurement taken at a listening seat is the combined result of the loudspeaker's direct output and the room's contribution. Below approximately 300 Hz, room modes — resonances determined by the room's dimensions — dominate what you hear. Above that frequency, reflections from nearby surfaces and the listening position relative to the speakers determine the tonal balance and imaging. Speaker placement addresses both.</p>
 
-    <h2>Power Output — Read It Carefully</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Continuous RMS Power (Watts) Into a Stated Impedance</h3>
-      <p>Power is always qualified by load impedance. "150 watts" without a stated impedance is meaningless. Always read it as "150 watts RMS per channel into 8&nbsp;&Omega;, both channels driven simultaneously." That last phrase — both channels driven — is important. Some manufacturers rate power with only one channel driven, which can give figures 20–40% higher than real-world stereo operation.</p>
-    </div>
-
-    <p>The relationship between power and perceived loudness follows a logarithmic curve. Doubling the power adds only 3 dB of additional SPL — a modest and barely perceptible increase in most rooms. Going from 50 watts to 100 watts is not twice as loud. To produce twice the perceived loudness, you need ten times the power (a 10 dB increase). This is why speaker sensitivity matters so much more than raw amplifier wattage in most real-world situations.</p>
-
-    <p>Also note that many amplifiers deliver significantly more power into 4&nbsp;&Omega; loads than into 8&nbsp;&Omega;. A well-designed amplifier into 4&nbsp;&Omega; should deliver approximately double its 8&nbsp;&Omega; power, because the lower impedance allows more current to flow. An amplifier that delivers the same power into both 8&nbsp;&Omega; and 4&nbsp;&Omega; is likely current-limited and will struggle with demanding speakers.</p>
-
-    <h2>Input Sensitivity — The Gain Matching Spec</h2>
+    <h2>Bass Modes and the Rule of Thirds</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Input Sensitivity (mV or V for Full Rated Output)</h3>
-      <p>This is the voltage the amplifier needs at its input terminals to produce full rated power output. A sensitivity of 1 V means you need 1 V RMS from your preamplifier to drive the amplifier to its maximum power. If your preamp can only produce 0.5 V maximum, you can never reach full power. If your preamp produces 4 V and the amp needs only 0.5 V, your volume control will be useful only at very low settings.</p>
+      <div class="spec-name">Fundamental Principle</div>
+      <h3>Room Modes: Axial, Tangential, and Oblique</h3>
+      <p>A rectangular room has resonant frequencies determined by its dimensions. The axial mode frequencies are given by: F = (n &times; 343) &divide; (2 &times; D), where n is a whole number (1, 2, 3&hellip;) and D is the room dimension in metres. A 5-metre room has a fundamental mode at 34.3 Hz and harmonics at 68.6 Hz, 102.9 Hz, and so on. At these frequencies, the room builds up standing waves — pressure nodes (nulls) and antinodes (peaks). The listening seat position within the room determines which modes are excited and at what level.</p>
     </div>
 
-    <p>Input sensitivity is the primary specification that determines whether a preamp-amplifier pairing will be practical. Mismatched sensitivity is one of the most common causes of systems that are either too loud at the lowest usable volume setting, or that never reach satisfying output levels.</p>
+    <p>The rule of thirds places speakers at approximately 1/3 of the room's length from the front wall and the listening seat at approximately 1/3 of the room's length from the rear wall. These positions place the speakers and listener away from the pressure maxima at the room boundaries, reducing the severity of the dominant bass mode. It is a starting point, not a prescription — every room's dimensions and furnishings will require refinement by ear or measurement.</p>
 
-    <h2>Input Impedance — The Preamp Compatibility Spec</h2>
+    <div class="callout">
+      <p><strong>Before buying bass traps or a subwoofer:</strong> Move the listening seat 0.5&ndash;1 metre forward or backward. Bass response at the seat changes dramatically with position. A seat against the rear wall sits at a pressure antinode for all axial modes — the worst possible position for bass accuracy.</p>
+    </div>
+
+    <h2>Speaker Boundary Interference Response (SBIR)</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Input Impedance (k&Omega;)</h3>
-      <p>The input impedance of the power amplifier determines the minimum output impedance the preamplifier can drive without frequency response degradation. Apply the 10:1 rule: preamplifier output impedance should be no more than 1/10th of the amplifier's input impedance. A power amplifier with a 10 k&Omega; input impedance requires a preamplifier with an output impedance of 1 k&Omega; or less. Higher input impedance is generally better — it places fewer demands on the preamplifier's output stage.</p>
+      <div class="spec-name">Placement Effect</div>
+      <h3>Floor, Side Wall, and Rear Wall Proximity</h3>
+      <p>A speaker near a reflective boundary produces a reflected wave that interferes with the direct wave. At the frequency where the reflected path length is half a wavelength longer than the direct path, cancellation occurs. For a speaker 0.6 metres from the rear wall, this SBIR null appears at approximately 143 Hz — squarely in the upper bass and lower midrange. Moving the speaker closer to or further from the wall shifts the null frequency. Placing a speaker flush against a wall (closer than approximately 15 cm) moves the null above the speaker's useful bass range, which is why "boundary" or "shelf" speakers are designed to be used this way. Most freestanding speakers perform worst at an intermediate distance (0.3&ndash;0.8 m from the wall) due to SBIR.</p>
     </div>
 
-    <h2>Damping Factor — Speaker Control</h2>
+    <p>The vertical SBIR from the floor is present in all speaker setups. Most stand-mount speakers are designed with their tweeter at ear height (approximately 90&ndash;100 cm seated) to minimise the audibility of floor reflections at the listening seat. Floor-standing speakers typically account for floor reflection in their crossover design. The most practical approach is to keep the speaker-to-rear-wall distance consistent between left and right channels, then adjust by ear.</p>
+
+    <h2>First Reflection Points</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Damping Factor (dimensionless ratio)</h3>
-      <p>Damping factor is the ratio of the speaker's nominal impedance to the amplifier's output impedance. A damping factor of 150 means the amp's output impedance is 1/150th of the speaker's impedance, giving the amplifier strong electrical control over the speaker cone's motion. Low damping factor results in bass that is loose and slow; very high damping factor (above 100) offers diminishing returns in most practical systems.</p>
+      <div class="spec-name">Placement and Treatment</div>
+      <h3>Side Wall, Ceiling, and Rear Wall Reflections</h3>
+      <p>The first reflections are the dominant source of early reflected energy at the listening seat. A single strong early reflection arriving 5&ndash;20 ms after the direct sound (corresponding to a path length difference of 1.7&ndash;7 metres) masks low-level detail and reduces stereo image precision. The side wall first reflection points are found by placing a mirror on each side wall; the reflection point is where you can see the speaker face from the listening seat. Rear wall reflections behind the listening seat are also significant for depth of image. Treatment options are absorption (reduces reflected energy at all frequencies) and diffusion (scatters reflected energy without removing it).</p>
     </div>
 
-    <h2>Peak Current Delivery</h2>
+    <h2>Toe-In and Listening Distance</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Peak Current (Amps per Channel)</h3>
-      <p>The maximum instantaneous current the amplifier can deliver to the speaker load. This determines how well the amplifier controls difficult, low-impedance speakers and reproduces transient musical peaks. A 100 W amplifier with 30 A peak current delivery will sound more dynamic and composed on complex program material than a 100 W amplifier limited to 15 A, particularly with demanding 4&nbsp;&Omega; or lower-impedance loads.</p>
+      <div class="spec-name">Placement Variable</div>
+      <h3>Speaker Toe-In and the Listening Triangle</h3>
+      <p>Toe-in — rotating the speakers inward toward the listening seat — affects both frequency response and stereo imaging. Many speakers are designed to be used with the tweeter axis aimed approximately at the listening position ("on-axis"), which typically gives the flattest high-frequency response. Some designs, particularly those with wide dispersion, are used with less or no toe-in, relying on the room for high-frequency integration. The equilateral triangle rule — where the speaker-to-speaker distance equals the speaker-to-listener distance — is a reasonable starting point for imaging. Reducing listening distance compresses the soundstage; increasing it widens the image but reduces stereo precision as the room contribution grows relative to the direct sound.</p>
     </div>
 
-    <!-- Gain/Sensitivity illustration -->
-<div style="background:var(--dark);border-radius:var(--radius);padding:28px;margin:28px 0;overflow-x:auto;">
-  <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;">Amplifier Signal Path</p>
-  <svg viewBox="0 0 560 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:0 auto;" fill="none">
-    <!-- Preamp box -->
-    <rect x="4" y="30" width="110" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-    <text x="59" y="56" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700" font-family="system-ui">PREAMP</text>
-    <text x="59" y="72" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Output: 2 V RMS</text>
-    <text x="59" y="84" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Z-out: 200 Ω</text>
-    <!-- Arrow 1 -->
-    <line x1="114" y1="60" x2="148" y2="60" stroke="#60a5fa" stroke-width="2"/>
-    <polyline points="144,55 150,60 144,65" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="131" y="50" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="8" font-family="system-ui">RCA/XLR</text>
-    <!-- Power amp box -->
-    <rect x="150" y="20" width="130" height="80" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
-    <text x="215" y="50" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="700" font-family="system-ui">POWER AMP</text>
-    <text x="215" y="65" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Sensitivity: 1 V → full output</text>
-    <text x="215" y="78" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Z-in: 33 kΩ</text>
-    <text x="215" y="91" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700" font-family="system-ui">Gain: 28 dB</text>
-    <!-- Arrow 2 -->
-    <line x1="280" y1="60" x2="316" y2="60" stroke="#60a5fa" stroke-width="2"/>
-    <polyline points="312,55 318,60 312,65" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="298" y="50" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="8" font-family="system-ui">Speaker wire</text>
-    <!-- Speaker box -->
-    <rect x="318" y="30" width="110" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-    <text x="373" y="56" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700" font-family="system-ui">SPEAKERS</text>
-    <text x="373" y="70" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">8 Ω / 88 dB</text>
-    <text x="373" y="82" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">150 W/ch</text>
-    <!-- Ratio indicator -->
-    <rect x="440" y="24" width="116" height="72" rx="8" fill="rgba(37,99,235,.12)" stroke="#2563eb" stroke-width="1" stroke-dasharray="4,3"/>
-    <text x="498" y="44" text-anchor="middle" fill="#60a5fa" font-size="10" font-weight="700" font-family="system-ui">10:1 Rule</text>
-    <text x="498" y="58" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="9" font-family="system-ui">Z-in ÷ Z-out</text>
-    <text x="498" y="71" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700" font-family="system-ui">33k ÷ 200</text>
-    <text x="498" y="84" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700" font-family="system-ui">= 165 ✓</text>
-  </svg>
-</div>
-<h2>Quick Reference: Amplifier Specs at a Glance</h2>
+    <p>The listening distance also interacts with the speaker's crossover and dispersion. A speaker with a narrow vertical dispersion requires more precise seat height adjustment at closer distances. A speaker with high sensitivity and wide dispersion may image more effectively at greater distances where the room's contribution smooths minor frequency response variations.</p>
+
+    <h2>Absorption vs Diffusion: When to Use Each</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Acoustic Treatment</div>
+      <h3>Choosing the Right Treatment</h3>
+      <p>Absorption reduces reflected energy but also reduces liveliness. An over-absorbed room sounds dead, fatiguing, and small. Diffusion scatters reflected energy without removing it, preserving liveliness while reducing discrete echoes. The practical guideline for a domestic listening room: place absorption at the primary reflection points (side walls, ceiling first reflection) to reduce early reflections; use diffusion on the rear wall behind the listening seat to maintain spaciousness. Bass traps in corners address low-frequency modes that absorption panels (which are ineffective below approximately 200 Hz unless very deep) cannot treat.</p>
+    </div>
+
+    <p>Practical treatment in a domestic room need not be conspicuous. A bookshelf full of irregularly sized books makes an effective broadband diffuser. A large sofa with cushions provides significant low-frequency absorption. Floor rugs absorb high-frequency reflections from the floor between speaker and listener. Curtains over windows reduce glass reflections. Significant acoustic benefit is achievable without dedicated acoustic panels.</p>
+
+    <h2>Quick Reference: Placement and Acoustics</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <thead><tr><th>Issue</th><th>Cause</th><th>First Action</th></tr></thead>
       <tbody>
-        <tr><td>Power Output (RMS)</td><td>Continuous power into a stated load</td><td>Both channels driven, at your speaker's impedance</td></tr>
-        <tr><td>Input Sensitivity</td><td>Voltage needed for full output</td><td>Must match your preamp's output voltage</td></tr>
-        <tr><td>Input Impedance</td><td>Load presented to the preamp</td><td>&ge;10&times; preamp output impedance; higher is better</td></tr>
-        <tr><td>Damping Factor</td><td>Amplifier's speaker control</td><td>&gt;50 is adequate; &gt;100 is good</td></tr>
-        <tr><td>Peak Current</td><td>Instantaneous current capability</td><td>Higher = better control of demanding loads</td></tr>
-        <tr><td>THD (full output)</td><td>Distortion at maximum power</td><td>&lt;0.1% is excellent; specification must be at full output</td></tr>
-        <tr><td>SNR</td><td>Noise floor relative to rated output</td><td>&gt;95 dB A-weighted is very good</td></tr>
+        <tr><td>One-note or boomy bass</td><td>Room mode peak at listening seat</td><td>Move seat forward/backward by 0.5&ndash;1 m</td></tr>
+        <tr><td>Weak or missing bass</td><td>Mode null at listening seat</td><td>Move seat; also check speaker distance from rear wall</td></tr>
+        <tr><td>Upper-bass suckout (~100&ndash;200 Hz)</td><td>SBIR from rear wall</td><td>Adjust speaker distance from rear wall; aim for &gt;0.8 m or &lt;0.15 m</td></tr>
+        <tr><td>Smeared or indistinct imaging</td><td>Strong first reflections</td><td>Treat side-wall reflection points with absorption</td></tr>
+        <tr><td>Bright or harsh high frequencies</td><td>Flutter echo; hard parallel surfaces</td><td>Add soft furnishings; treat floor between speakers and seat</td></tr>
+        <tr><td>Narrow or collapsed soundstage</td><td>Listening distance too short; excess absorption</td><td>Increase speaker separation; reduce treatment quantity</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your amplifier's compatibility</h3>
-      <p>Enter your amplifier, speakers, and preamplifier to get a full compatibility analysis including impedance ratios, gain staging, and power headroom.</p>
+      <h3>Check your speaker and amplifier compatibility</h3>
+      <p>Enter your speakers and amplifier to get a full compatibility analysis — sensitivity, impedance matching, and power requirements for your room size.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
@@ -254,10 +223,10 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <h2>More Guides</h2>
     <div class="guide-nav">
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
       <a href="/guides/speakers">Speaker Matching →</a>
-      <a href="/guides/cartridges">Cartridge Guide →</a>
-      <a href="/guides/dacs">DAC Guide →</a>
+      <a href="/guides/amplifiers">Amplifier Guide →</a>
+      <a href="/guides/first-hifi-system">Build Your First System →</a>
+      <a href="/guides/cables">Cables Guide →</a>
       <a href="/glossary">Glossary →</a>
     </div>
 
@@ -271,7 +240,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
         <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
         <p>Free AI-powered hi-fi compatibility analysis. Powered by Claude AI from Anthropic.</p>
       </div>
-      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/glossary">Glossary</a></li><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/amplifiers">Amplifier Guide</a></li><li><a href="/guides/cartridges">Cartridge Guide</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/glossary">Glossary</a></li><li><a href="/guides/first-hifi-system">Beginner&rsquo;s Guide</a></li><li><a href="/guides/amplifiers">Amplifier Guide</a></li><li><a href="/guides/cartridges">Cartridge Guide</a></li></ul></div>
       <div class="footer-col"><h4>Tool</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li></ul></div>
       <div class="footer-col"><h4>Resources</h4><ul><li><a href="https://www.stereophile.com" target="_blank" rel="noopener">Stereophile</a></li><li><a href="https://www.psaudio.com" target="_blank" rel="noopener">PS Audio</a></li><li><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></li></ul></div>
     </div>

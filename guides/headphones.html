@@ -1,15 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amplifier Specs That Actually Matter — AudioChainHiFi.com</title>
-<meta name="description" content="Which amplifier specs matter for hi-fi compatibility? Power output, input sensitivity, damping factor, peak current, and impedance stability explained.">
-<meta property="og:title" content="Amplifier Specs That Actually Matter — AudioChainHiFi.com">
+<title>Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com</title>
+<meta name="description" content="How to match headphones to an amplifier: impedance, sensitivity ratings, the 1/8 output-impedance rule, and what planar magnetics need from a source.">
+<meta property="og:title" content="Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/amplifiers">
+<meta property="og:url" content="https://audiochainhifi.com/guides/headphones">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://audiochainhifi.com/guides/amplifiers">
+<link rel="canonical" href="https://audiochainhifi.com/guides/headphones">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -122,10 +122,10 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Power amplifier">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Audio equipment">
     <div class="guide-label">Component Guide</div>
-    <h1>Amplifiers: The Specs That Actually Matter</h1>
-    <p class="lede">Power output is the headline, but it is rarely the most important amplifier specification for real-world system compatibility. Here is what to actually look at — and why.</p>
+    <h1>Headphones: Impedance, Sensitivity, and Amplifier Matching</h1>
+    <p class="lede">A headphone's impedance and sensitivity determine what kind of amplifier it needs. High-impedance cans need voltage; planars need current. Mismatching leads to distortion, hiss, or simply quiet playback.</p>
   </div>
 </div>
 
@@ -137,116 +137,75 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/guides/speakers">Speaker Matching →</a>
-        <a href="/guides/cartridges">Cartridge Guide →</a>
+        <a href="/guides/amplifiers">Amplifier Guide →</a>
         <a href="/guides/dacs">DAC Guide →</a>
+        <a href="/guides/cables">Cables Guide →</a>
+        <a href="/guides/first-hifi-system">Build Your First System →</a>
         <a href="/glossary">Glossary →</a>
       </div>
     </div>
 
-    <p>Amplifier specifications are sometimes presented in ways designed to impress rather than inform. A headline wattage figure tells you relatively little about whether an amplifier will work well with your speakers or your preamplifier. The specifications below are the ones that determine real-world compatibility and performance.</p>
+    <p>Headphone specifications look similar to speaker specifications — impedance, sensitivity, frequency response — but they are used and interpreted differently. A speaker amplifier rated at 100 watts is usually far too powerful for headphones; a phone's headphone output is usually far too weak for high-impedance audiophile headphones. The compatibility chain matters as much for headphones as for any loudspeaker system.</p>
 
-    <h2>Power Output — Read It Carefully</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Continuous RMS Power (Watts) Into a Stated Impedance</h3>
-      <p>Power is always qualified by load impedance. "150 watts" without a stated impedance is meaningless. Always read it as "150 watts RMS per channel into 8&nbsp;&Omega;, both channels driven simultaneously." That last phrase — both channels driven — is important. Some manufacturers rate power with only one channel driven, which can give figures 20–40% higher than real-world stereo operation.</p>
-    </div>
-
-    <p>The relationship between power and perceived loudness follows a logarithmic curve. Doubling the power adds only 3 dB of additional SPL — a modest and barely perceptible increase in most rooms. Going from 50 watts to 100 watts is not twice as loud. To produce twice the perceived loudness, you need ten times the power (a 10 dB increase). This is why speaker sensitivity matters so much more than raw amplifier wattage in most real-world situations.</p>
-
-    <p>Also note that many amplifiers deliver significantly more power into 4&nbsp;&Omega; loads than into 8&nbsp;&Omega;. A well-designed amplifier into 4&nbsp;&Omega; should deliver approximately double its 8&nbsp;&Omega; power, because the lower impedance allows more current to flow. An amplifier that delivers the same power into both 8&nbsp;&Omega; and 4&nbsp;&Omega; is likely current-limited and will struggle with demanding speakers.</p>
-
-    <h2>Input Sensitivity — The Gain Matching Spec</h2>
+    <h2>Impedance: High vs Low</h2>
 
     <div class="spec-card">
       <div class="spec-name">Key Spec</div>
-      <h3>Input Sensitivity (mV or V for Full Rated Output)</h3>
-      <p>This is the voltage the amplifier needs at its input terminals to produce full rated power output. A sensitivity of 1 V means you need 1 V RMS from your preamplifier to drive the amplifier to its maximum power. If your preamp can only produce 0.5 V maximum, you can never reach full power. If your preamp produces 4 V and the amp needs only 0.5 V, your volume control will be useful only at very low settings.</p>
+      <h3>Headphone Impedance (&Omega;)</h3>
+      <p>Consumer and portable headphones typically measure 16&ndash;64 &Omega;. Studio and audiophile headphones commonly range from 80 to 600 &Omega;. The impedance affects how much voltage is needed to drive the headphone to a given sound pressure level. A 300 &Omega; headphone needs six times the voltage of a 50 &Omega; headphone to produce the same current through the voice coil. This means high-impedance headphones require an amplifier capable of higher output voltage — a specification that is rarely emphasised in consumer electronics, but which determines whether the amplifier can drive the headphone to satisfying volume levels.</p>
     </div>
 
-    <p>Input sensitivity is the primary specification that determines whether a preamp-amplifier pairing will be practical. Mismatched sensitivity is one of the most common causes of systems that are either too loud at the lowest usable volume setting, or that never reach satisfying output levels.</p>
+    <p>Low-impedance headphones (16&ndash;32 &Omega;) are generally easier to drive to loud levels from a phone or laptop headphone output, but they draw more current. They are also more sensitive to the output impedance of the source — which is covered below. High-impedance designs (150&ndash;600 &Omega;) typically offer lower distortion at high signal levels and are more tolerant of output impedance mismatches, but require a dedicated headphone amplifier for best performance.</p>
 
-    <h2>Input Impedance — The Preamp Compatibility Spec</h2>
+    <h2>Sensitivity: Two Different Rating Systems</h2>
 
     <div class="spec-card">
       <div class="spec-name">Key Spec</div>
-      <h3>Input Impedance (k&Omega;)</h3>
-      <p>The input impedance of the power amplifier determines the minimum output impedance the preamplifier can drive without frequency response degradation. Apply the 10:1 rule: preamplifier output impedance should be no more than 1/10th of the amplifier's input impedance. A power amplifier with a 10 k&Omega; input impedance requires a preamplifier with an output impedance of 1 k&Omega; or less. Higher input impedance is generally better — it places fewer demands on the preamplifier's output stage.</p>
+      <h3>Sensitivity: dB/mW vs dB/V</h3>
+      <p>Headphone sensitivity is specified in one of two ways: dB SPL per milliwatt (dB/mW) or dB SPL per volt (dB/V). These are not interchangeable. For a 32 &Omega; headphone, 100 dB/mW equals 115 dB/V. For a 300 &Omega; headphone, 100 dB/mW equals only 107 dB/V. Always check which convention the manufacturer uses before comparing sensitivity figures across products with different impedances. The dB/V convention is more useful for matching to a source amplifier, since amplifiers are voltage sources. The dB/mW convention tells you about efficiency relative to power.</p>
     </div>
 
-    <h2>Damping Factor — Speaker Control</h2>
+    <p>A useful rule of thumb: to achieve 110 dB SPL (a reasonable maximum listening level), divide 110 by the sensitivity figure in dB/V. The result tells you how many volts RMS the amplifier must deliver. A headphone rated 105 dB/V needs 10&sup0;&middot;⁵ &asymp; 3.2 V RMS for 110 dB SPL. A headphone rated 95 dB/V needs 10 V RMS — which is beyond most portable and desktop sources. High-impedance, low-sensitivity headphones (Sennheiser HD 800: 102 dB/V at 300 &Omega;) require a dedicated desktop amplifier with meaningful output voltage capability.</p>
+
+    <h2>Output Impedance: The Critical Amplifier Spec</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Damping Factor (dimensionless ratio)</h3>
-      <p>Damping factor is the ratio of the speaker's nominal impedance to the amplifier's output impedance. A damping factor of 150 means the amp's output impedance is 1/150th of the speaker's impedance, giving the amplifier strong electrical control over the speaker cone's motion. Low damping factor results in bass that is loose and slow; very high damping factor (above 100) offers diminishing returns in most practical systems.</p>
+      <div class="spec-name">Critical Compatibility Spec</div>
+      <h3>Amplifier Output Impedance and the 1/8 Rule</h3>
+      <p>The amplifier's output impedance forms a voltage divider with the headphone's impedance. If the output impedance is a significant fraction of the headphone's impedance, the amplifier's output impedance interacts with the frequency-dependent variation in the headphone's impedance to alter the frequency response. The standard guideline — borrowed from loudspeaker amplifier design — is that the amplifier's output impedance should be no more than 1/8th of the headphone's minimum impedance. For a 300 &Omega; headphone, the amplifier output impedance should be &le;37 &Omega;. For a 32 &Omega; headphone, it must be &le;4 &Omega;.</p>
     </div>
 
-    <h2>Peak Current Delivery</h2>
+    <p>Many consumer electronics have high output impedances from their headphone jacks: some portable media players measure 10&ndash;25 &Omega;. This is audible as tonal coloration on low-impedance headphones whose impedance varies with frequency (as most dynamic headphones do). The treble and bass response will shift depending on the interaction between the source output impedance and the headphone's impedance curve. A dedicated headphone amplifier typically has an output impedance well below 1 &Omega;.</p>
+
+    <div class="callout">
+      <p><strong>Hiss from background noise:</strong> A sensitive low-impedance headphone (16&ndash;32 &Omega;, 110+ dB/mW) will reveal the noise floor of almost any amplifier. If you hear hiss at zero volume, the amplifier's noise is being exposed by the headphone's high sensitivity. More gain than needed for comfortable listening is the usual cause.</p>
+    </div>
+
+    <h2>Planar Magnetic Headphones: What They Need</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Peak Current (Amps per Channel)</h3>
-      <p>The maximum instantaneous current the amplifier can deliver to the speaker load. This determines how well the amplifier controls difficult, low-impedance speakers and reproduces transient musical peaks. A 100 W amplifier with 30 A peak current delivery will sound more dynamic and composed on complex program material than a 100 W amplifier limited to 15 A, particularly with demanding 4&nbsp;&Omega; or lower-impedance loads.</p>
+      <div class="spec-name">Driver Technology</div>
+      <h3>Planar Magnetics: Low Impedance, Low Sensitivity</h3>
+      <p>Planar magnetic headphones use a thin membrane with embedded conductors suspended between magnets, rather than a voice coil in a magnetic gap. They typically have low impedance (20&ndash;50 &Omega;) and low sensitivity (85&ndash;95 dB/V) — meaning they require an amplifier that can deliver both significant current (for the low impedance) and significant voltage swing (for the low sensitivity). Many planar magnetics are described as "hard to drive" not because of their impedance but because of the combination of low sensitivity and the current required. A desktop amplifier with at least 1 W of output into their impedance is usually a minimum requirement.</p>
     </div>
 
-    <!-- Gain/Sensitivity illustration -->
-<div style="background:var(--dark);border-radius:var(--radius);padding:28px;margin:28px 0;overflow-x:auto;">
-  <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;">Amplifier Signal Path</p>
-  <svg viewBox="0 0 560 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:0 auto;" fill="none">
-    <!-- Preamp box -->
-    <rect x="4" y="30" width="110" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-    <text x="59" y="56" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700" font-family="system-ui">PREAMP</text>
-    <text x="59" y="72" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Output: 2 V RMS</text>
-    <text x="59" y="84" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Z-out: 200 Ω</text>
-    <!-- Arrow 1 -->
-    <line x1="114" y1="60" x2="148" y2="60" stroke="#60a5fa" stroke-width="2"/>
-    <polyline points="144,55 150,60 144,65" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="131" y="50" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="8" font-family="system-ui">RCA/XLR</text>
-    <!-- Power amp box -->
-    <rect x="150" y="20" width="130" height="80" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
-    <text x="215" y="50" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="700" font-family="system-ui">POWER AMP</text>
-    <text x="215" y="65" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Sensitivity: 1 V → full output</text>
-    <text x="215" y="78" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Z-in: 33 kΩ</text>
-    <text x="215" y="91" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700" font-family="system-ui">Gain: 28 dB</text>
-    <!-- Arrow 2 -->
-    <line x1="280" y1="60" x2="316" y2="60" stroke="#60a5fa" stroke-width="2"/>
-    <polyline points="312,55 318,60 312,65" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="298" y="50" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="8" font-family="system-ui">Speaker wire</text>
-    <!-- Speaker box -->
-    <rect x="318" y="30" width="110" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-    <text x="373" y="56" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700" font-family="system-ui">SPEAKERS</text>
-    <text x="373" y="70" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">8 Ω / 88 dB</text>
-    <text x="373" y="82" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">150 W/ch</text>
-    <!-- Ratio indicator -->
-    <rect x="440" y="24" width="116" height="72" rx="8" fill="rgba(37,99,235,.12)" stroke="#2563eb" stroke-width="1" stroke-dasharray="4,3"/>
-    <text x="498" y="44" text-anchor="middle" fill="#60a5fa" font-size="10" font-weight="700" font-family="system-ui">10:1 Rule</text>
-    <text x="498" y="58" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="9" font-family="system-ui">Z-in ÷ Z-out</text>
-    <text x="498" y="71" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700" font-family="system-ui">33k ÷ 200</text>
-    <text x="498" y="84" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700" font-family="system-ui">= 165 ✓</text>
-  </svg>
-</div>
-<h2>Quick Reference: Amplifier Specs at a Glance</h2>
+    <h2>Quick Reference: Headphone Specs at a Glance</h2>
 
     <table class="spec-table">
       <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
       <tbody>
-        <tr><td>Power Output (RMS)</td><td>Continuous power into a stated load</td><td>Both channels driven, at your speaker's impedance</td></tr>
-        <tr><td>Input Sensitivity</td><td>Voltage needed for full output</td><td>Must match your preamp's output voltage</td></tr>
-        <tr><td>Input Impedance</td><td>Load presented to the preamp</td><td>&ge;10&times; preamp output impedance; higher is better</td></tr>
-        <tr><td>Damping Factor</td><td>Amplifier's speaker control</td><td>&gt;50 is adequate; &gt;100 is good</td></tr>
-        <tr><td>Peak Current</td><td>Instantaneous current capability</td><td>Higher = better control of demanding loads</td></tr>
-        <tr><td>THD (full output)</td><td>Distortion at maximum power</td><td>&lt;0.1% is excellent; specification must be at full output</td></tr>
-        <tr><td>SNR</td><td>Noise floor relative to rated output</td><td>&gt;95 dB A-weighted is very good</td></tr>
+        <tr><td>Impedance</td><td>Electrical resistance of the headphone</td><td>Low (&le;50 &Omega;): easy to drive; High (150+ &Omega;): needs amplifier voltage</td></tr>
+        <tr><td>Sensitivity (dB/V)</td><td>SPL per volt at the headphone terminal</td><td>Higher = easier to drive; check units match</td></tr>
+        <tr><td>Sensitivity (dB/mW)</td><td>SPL per milliwatt into the headphone</td><td>Comparable only within same impedance class</td></tr>
+        <tr><td>Amplifier Output Impedance</td><td>Source impedance forming voltage divider with headphone</td><td>&le;1/8th of minimum headphone impedance</td></tr>
+        <tr><td>Amplifier Output Voltage</td><td>Maximum voltage swing available</td><td>Must reach 110 dB SPL at your headphone's sensitivity</td></tr>
+        <tr><td>Driver Type</td><td>Dynamic or planar magnetic</td><td>Planars need current + voltage; dynamics need voltage primarily</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your amplifier's compatibility</h3>
-      <p>Enter your amplifier, speakers, and preamplifier to get a full compatibility analysis including impedance ratios, gain staging, and power headroom.</p>
+      <h3>Check your headphone chain compatibility</h3>
+      <p>Enter your headphones and source or amplifier to get a full analysis of output impedance ratio, voltage requirements, and signal-to-noise ratio.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
@@ -254,10 +213,10 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <h2>More Guides</h2>
     <div class="guide-nav">
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
-      <a href="/guides/speakers">Speaker Matching →</a>
-      <a href="/guides/cartridges">Cartridge Guide →</a>
+      <a href="/guides/amplifiers">Amplifier Guide →</a>
       <a href="/guides/dacs">DAC Guide →</a>
+      <a href="/guides/cables">Cables Guide →</a>
+      <a href="/guides/first-hifi-system">Build Your First System →</a>
       <a href="/glossary">Glossary →</a>
     </div>
 
@@ -271,7 +230,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
         <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
         <p>Free AI-powered hi-fi compatibility analysis. Powered by Claude AI from Anthropic.</p>
       </div>
-      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/glossary">Glossary</a></li><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/amplifiers">Amplifier Guide</a></li><li><a href="/guides/cartridges">Cartridge Guide</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/glossary">Glossary</a></li><li><a href="/guides/first-hifi-system">Beginner&rsquo;s Guide</a></li><li><a href="/guides/amplifiers">Amplifier Guide</a></li><li><a href="/guides/cartridges">Cartridge Guide</a></li></ul></div>
       <div class="footer-col"><h4>Tool</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li></ul></div>
       <div class="footer-col"><h4>Resources</h4><ul><li><a href="https://www.stereophile.com" target="_blank" rel="noopener">Stereophile</a></li><li><a href="https://www.psaudio.com" target="_blank" rel="noopener">PS Audio</a></li><li><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></li></ul></div>
     </div>
