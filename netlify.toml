@@ -11,6 +11,9 @@
 [functions."analyze-summary"]
   timeout = 10
 
+[functions."submit-correction"]
+  timeout = 10
+
 [[headers]]
   for = "/*"
   [headers.values]

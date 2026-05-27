@@ -1302,7 +1302,7 @@ select {
     <div class="score-row" id="score-row-inner"></div>
   </div>
   <div class="results-3col">
-    <div class="card"><div class="card-head" style="justify-content:space-between;"><span class="card-title" style="margin-left:0;">Component Specifications</span><button class="btn btn-sm" id="edit-specs-btn" style="display:none;font-size:11px;padding:4px 10px;" onclick="toggleSpecEdit()">✏️ Edit Specs</button></div><div class="card-body" id="panel-specs-body"></div></div>
+    <div class="card"><div class="card-head" style="justify-content:space-between;"><span class="card-title" style="margin-left:0;">Component Specifications</span><button class="btn btn-sm" id="edit-specs-btn" style="display:none;font-size:11px;padding:4px 10px;" onclick="toggleSpecEdit()">✏️ Edit Specs</button><button class="btn btn-sm" id="suggest-correction-btn" style="display:none;font-size:11px;padding:4px 10px;margin-left:6px;" onclick="openSuggestModal()">💡 Suggest Correction</button></div><div class="card-body" id="panel-specs-body"></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Analysis</span></div><div class="card-body" id="panel-chain-body"></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Summary &amp; Recommendations</span></div><div class="card-body" id="panel-summary-body"></div></div>
   </div>
@@ -1389,6 +1389,45 @@ select {
     <div class="spec-modal-footer">
       <button class="btn" style="font-size:13px;padding:9px 18px;border:1.5px solid var(--border-2);border-radius:8px;cursor:pointer;background:#fff;color:var(--text-2);" onclick="closeSpecModal()">Cancel</button>
       <button class="btn btn-blue" style="font-size:13px;padding:9px 18px;" onclick="applySpecCorrections()">Apply Corrections &amp; Re-run Analysis</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUGGEST CORRECTION MODAL -->
+<div class="spec-modal-overlay" id="suggest-modal-overlay" onclick="if(event.target===this)closeSuggestModal()">
+  <div class="spec-modal">
+    <div class="spec-modal-header">
+      <h3>💡 Suggest a Spec Correction</h3>
+      <button class="spec-modal-close" onclick="closeSuggestModal()">✕</button>
+    </div>
+    <div class="spec-modal-body">
+      <p style="font-size:12px;color:var(--text-2);margin-bottom:14px;">Found an incorrect or missing spec? Submit it below and we'll review it for the database.</p>
+      <div class="form-stack">
+        <div class="form-group">
+          <label style="font-size:12px;font-weight:600;color:var(--text-2);">Component Name <span style="color:#dc2626;">*</span></label>
+          <input id="suggest-name" type="text" placeholder="e.g. VPI Scout 21" style="font-family:var(--font);font-size:13px;padding:9px 12px;border:1.5px solid var(--border-2);border-radius:8px;outline:none;width:100%;box-sizing:border-box;" />
+        </div>
+        <div class="form-group">
+          <label style="font-size:12px;font-weight:600;color:var(--text-2);">Corrected Specs <span style="color:#dc2626;">*</span></label>
+          <p style="font-size:11px;color:var(--text-3);margin:0 0 6px;">One spec per line as <code style="background:var(--cream);padding:1px 4px;border-radius:3px;">Key: Value</code></p>
+          <textarea id="suggest-specs" rows="8" placeholder="Drive type: Belt drive&#10;Platter: 11.5&quot; aluminum, 10.5 lbs&#10;Wow &amp; Flutter: 0.08%&#10;Rumble: 78 dB down" style="font-family:ui-monospace,monospace;font-size:12px;line-height:1.7;padding:10px;border:1.5px solid var(--border-2);border-radius:8px;background:#fafafa;outline:none;resize:vertical;width:100%;box-sizing:border-box;"></textarea>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label style="font-size:12px;font-weight:600;color:var(--text-2);">Your Email <span style="font-weight:400;color:var(--text-3);">(optional)</span></label>
+            <input id="suggest-email" type="email" placeholder="you@example.com" style="font-family:var(--font);font-size:13px;padding:9px 12px;border:1.5px solid var(--border-2);border-radius:8px;outline:none;width:100%;box-sizing:border-box;" />
+          </div>
+          <div class="form-group">
+            <label style="font-size:12px;font-weight:600;color:var(--text-2);">Source <span style="font-weight:400;color:var(--text-3);">(optional)</span></label>
+            <input id="suggest-notes" type="text" placeholder="e.g. manufacturer spec sheet" style="font-family:var(--font);font-size:13px;padding:9px 12px;border:1.5px solid var(--border-2);border-radius:8px;outline:none;width:100%;box-sizing:border-box;" />
+          </div>
+        </div>
+        <div id="suggest-feedback" style="display:none;font-size:13px;padding:10px 14px;border-radius:8px;"></div>
+      </div>
+    </div>
+    <div class="spec-modal-footer">
+      <button class="btn" style="font-size:13px;padding:9px 18px;border:1.5px solid var(--border-2);border-radius:8px;cursor:pointer;background:#fff;color:var(--text-2);" onclick="closeSuggestModal()">Cancel</button>
+      <button class="btn btn-blue" id="suggest-submit-btn" style="font-size:13px;padding:9px 18px;" onclick="submitSuggestion()">Submit Correction</button>
     </div>
   </div>
 </div>
@@ -1553,6 +1592,7 @@ function renderResults(text){
 
   fullEl.style.display='block';
   document.getElementById('edit-specs-btn').style.display='inline-flex';
+  document.getElementById('suggest-correction-btn').style.display='inline-flex';
   setTimeout(()=>fullEl.scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
 function renderCompSpecs(text){
@@ -1879,6 +1919,75 @@ function closeSpecModal(){
 }
 function handleModalOverlayClick(e){
   if(e.target===document.getElementById('spec-modal-overlay')) closeSpecModal();
+}
+
+function openSuggestModal(){
+  document.getElementById('suggest-feedback').style.display='none';
+  document.getElementById('suggest-submit-btn').disabled=false;
+  document.getElementById('suggest-submit-btn').textContent='Submit Correction';
+  document.getElementById('suggest-modal-overlay').classList.add('active');
+}
+function closeSuggestModal(){
+  document.getElementById('suggest-modal-overlay').classList.remove('active');
+}
+async function submitSuggestion(){
+  const name=document.getElementById('suggest-name').value.trim();
+  const specsRaw=document.getElementById('suggest-specs').value.trim();
+  const email=document.getElementById('suggest-email').value.trim();
+  const notes=document.getElementById('suggest-notes').value.trim();
+  const fb=document.getElementById('suggest-feedback');
+
+  if(!name||!specsRaw){
+    fb.style.display='block';
+    fb.style.background='#fef2f2';fb.style.color='#dc2626';fb.style.border='1px solid #fecaca';
+    fb.textContent='Component name and specs are required.';
+    return;
+  }
+
+  let proposed_specs={};
+  specsRaw.split('\n').forEach(line=>{
+    const idx=line.indexOf(':');
+    if(idx>0){
+      const k=line.slice(0,idx).trim();
+      const v=line.slice(idx+1).trim();
+      if(k&&v) proposed_specs[k]=v;
+    }
+  });
+  if(!Object.keys(proposed_specs).length){
+    fb.style.display='block';
+    fb.style.background='#fef2f2';fb.style.color='#dc2626';fb.style.border='1px solid #fecaca';
+    fb.textContent='Could not parse specs. Use one "Key: Value" per line.';
+    return;
+  }
+
+  const btn=document.getElementById('suggest-submit-btn');
+  btn.disabled=true;btn.textContent='Submitting…';
+
+  try{
+    const res=await fetch('/.netlify/functions/submit-correction',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({component_name:name,proposed_specs,submitter_email:email||null,notes:notes||null})
+    });
+    const data=await res.json();
+    if(data.success){
+      fb.style.display='block';
+      fb.style.background='#f0fdf4';fb.style.color='#16a34a';fb.style.border='1px solid #bbf7d0';
+      fb.textContent='Thanks! Your correction has been submitted for review.';
+      btn.textContent='Submitted';
+      document.getElementById('suggest-name').value='';
+      document.getElementById('suggest-specs').value='';
+      document.getElementById('suggest-email').value='';
+      document.getElementById('suggest-notes').value='';
+    }else{
+      throw new Error(data.error||'Unknown error');
+    }
+  }catch(err){
+    fb.style.display='block';
+    fb.style.background='#fef2f2';fb.style.color='#dc2626';fb.style.border='1px solid #fecaca';
+    fb.textContent='Submission failed: '+err.message;
+    btn.disabled=false;btn.textContent='Submit Correction';
+  }
 }
 
 function renderScoreCards(text){
