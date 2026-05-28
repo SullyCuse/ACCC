@@ -1,3 +1,15 @@
 /about.html    /about    301
 /privacy.html  /privacy  301
 /contact.html  /contact  301
+
+# Root-level guide duplicates → canonical /guides/ paths
+/amplifiers               /guides/amplifiers          301
+/amplifiers.html          /guides/amplifiers          301
+/speakers                 /guides/speakers            301
+/speakers.html            /guides/speakers            301
+/dacs                     /guides/dacs                301
+/dacs.html                /guides/dacs                301
+/cartridges               /guides/cartridges          301
+/cartridges.html          /guides/cartridges          301
+/first-hifi-system        /guides/first-hifi-system   301
+/first-hifi-system.html   /guides/first-hifi-system   301
