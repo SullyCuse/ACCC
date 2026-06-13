@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Room Acoustics and Speaker Placement — AudioChainHiFi.com</title>
-<meta name="description" content="Room acoustics and speaker placement fundamentals: bass modes, first reflection points, the rule of thirds, SBIR, toe-in, and when to use absorption versus diffusion.">
-<meta property="og:title" content="Room Acoustics and Speaker Placement — AudioChainHiFi.com">
+<title>Subwoofer Integration: The Specs That Actually Matter — AudioChainHiFi.com</title>
+<meta name="description" content="Crossover frequency, slope, phase, sealed vs ported alignment, and placement — how to integrate a subwoofer with main speakers without bloated or disconnected bass.">
+<meta property="og:title" content="Subwoofer Integration: The Specs That Actually Matter — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/room-acoustics">
+<meta property="og:url" content="https://audiochainhifi.com/guides/subwoofers">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/room-acoustics">
+<meta property="article:published_time" content="2026-06-12T00:00:00Z">
+<meta property="article:modified_time" content="2026-06-12T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/subwoofers">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -121,11 +121,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80" alt="Hi-fi speakers in a listening room">
-    <div class="guide-label">System Guide</div>
-    <h1>Room Acoustics and Speaker Placement</h1>
-    <p class="lede">The room is the most significant variable in any hi-fi system. Speaker placement alone can eliminate bass problems that no component upgrade ever could. These are the principles that deliver the greatest improvement per unit of effort.</p>
-    <p class="guide-date">Published April 2026 &middot; Updated May 2026</p>
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1600&q=80" alt="Loudspeaker and subwoofer system">
+    <div class="guide-label">Component Guide</div>
+    <h1>Subwoofers: Integration, Crossover, and Placement</h1>
+    <p class="lede">A subwoofer is easy to add and hard to integrate. Crossover frequency, phase, and placement determine whether the low end blends seamlessly with your mains or arrives as a separate, boomy event.</p>
+    <p class="guide-date">Published June 2026</p>
   </div>
 </div>
 
@@ -137,85 +137,81 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/speakers">Speaker Matching →</a>
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/guides/cables">Cables Guide →</a>
-        <a href="/glossary">Glossary →</a>
+      <a href="/guides/speakers">Speaker Matching →</a>
+      <a href="/guides/room-acoustics">Room Acoustics →</a>
+      <a href="/guides/amplifiers">Amplifier Guide →</a>
+      <a href="/guides/active-vs-passive">Active vs Passive Speakers →</a>
+      <a href="/glossary">Glossary →</a>
       </div>
     </div>
 
-    <p>Every measurement taken at a listening seat is the combined result of the loudspeaker's direct output and the room's contribution. Below approximately 300 Hz, room modes — resonances determined by the room's dimensions — dominate what you hear. Above that frequency, reflections from nearby surfaces and the listening position relative to the speakers determine the tonal balance and imaging. Speaker placement addresses both.</p>
+    <p>A subwoofer extends a system&rsquo;s low-frequency response below what the main speakers can produce and offloads bass demands from the mains, which can reduce distortion in the midrange. The difficulty is never making a sub loud — it is making it disappear, so the bass sounds like it comes from the main speakers rather than from a box in the corner. Integration is a matter of crossover, level, phase, and placement working together.</p>
 
-    <h2>Bass Modes and the Rule of Thirds</h2>
+    <h2>Crossover Frequency</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Fundamental Principle</div>
-      <h3>Room Modes: Axial, Tangential, and Oblique</h3>
-      <p>A rectangular room has resonant frequencies determined by its dimensions. The axial mode frequencies are given by: F = (n &times; 343) &divide; (2 &times; D), where n is a whole number (1, 2, 3&hellip;) and D is the room dimension in metres. A 5-metre room has a fundamental mode at 34.3 Hz and harmonics at 68.6 Hz, 102.9 Hz, and so on. At these frequencies, the room builds up standing waves — pressure nodes (nulls) and antinodes (peaks). The listening seat position within the room determines which modes are excited and at what level.</p>
+      <div class="spec-name">Key Spec</div>
+      <h3>Low-Pass Crossover Frequency (Hz)</h3>
+      <p>The crossover sets where the subwoofer stops and the mains take over. A common starting point is 80&nbsp;Hz, which is below the range where the ear can localise bass — keeping the sub acoustically invisible. With small bookshelf mains, you may need to cross higher (100&ndash;120&nbsp;Hz); with large floorstanders, lower (50&ndash;60&nbsp;Hz). Set the crossover roughly where the mains&rsquo; in-room response starts rolling off, so the two overlap without a dip or a hump.</p>
     </div>
 
-    <p>The rule of thirds places speakers at approximately 1/3 of the room's length from the front wall and the listening seat at approximately 1/3 of the room's length from the rear wall. These positions place the speakers and listener away from the pressure maxima at the room boundaries, reducing the severity of the dominant bass mode. It is a starting point, not a prescription — every room's dimensions and furnishings will require refinement by ear or measurement.</p>
+    <div class="spec-card">
+      <div class="spec-name">Key Spec</div>
+      <h3>Low-Pass Slope (dB/octave)</h3>
+      <p>The slope controls how quickly the sub&rsquo;s output falls above the crossover. Steeper slopes (24&nbsp;dB/oct) keep upper-bass localisation cues out of the sub; gentler slopes (12&nbsp;dB/oct) blend more smoothly with the mains&rsquo; natural roll-off but can leave more localisable output. The right slope depends on how the mains roll off — the goal is a flat acoustic sum through the crossover region, not a textbook electrical curve.</p>
+    </div>
+
+    <h2>Phase and Time Alignment</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Critical Setting</div>
+      <h3>Phase Control (0&ndash;180°) and Polarity</h3>
+      <p>Where the sub and mains overlap, they must arrive in phase or they will partially cancel, producing a suckout exactly in the crossover region. The phase control compensates for the path-length and electrical delay difference between sub and mains. Set it by ear or by measurement: play a tone near the crossover and adjust phase for maximum output, which indicates the two sources are summing constructively. A continuously variable phase control is more useful than a simple 0/180° switch.</p>
+    </div>
+
+    <h2>Sealed vs Ported Alignment</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Design</div>
+      <h3>Sealed (Acoustic Suspension)</h3>
+      <p>A sealed enclosure rolls off gently (12&nbsp;dB/oct) and has tighter transient response and lower group delay, so it tends to sound faster and more articulate. It trades ultimate extension and efficiency for accuracy. Sealed subs integrate easily with music-focused systems and benefit from room gain to reinforce the bottom octave.</p>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-name">Design</div>
+      <h3>Ported (Bass Reflex)</h3>
+      <p>A ported enclosure uses a tuned port to extend low-frequency output and efficiency, going deeper and louder for a given driver and amplifier. The trade is a steeper roll-off below tuning (24&nbsp;dB/oct), higher group delay, and the risk of port noise at high output. Ported subs suit home theatre and systems that need maximum extension, where outright low-end weight matters more than the last degree of transient precision.</p>
+    </div>
+
+    <h2>Placement — The Free Upgrade</h2>
+
+    <p>Room placement affects a subwoofer&rsquo;s in-room response more than any other factor, because room modes reinforce and cancel bass depending on where the sub sits relative to the walls. The "subwoofer crawl" finds the best spot empirically: put the sub at your listening position, play bass-heavy material, then crawl around the room&rsquo;s perimeter and listen for where the bass is smoothest and most even. Place the sub where your ears were. Corners maximise output but often excite room modes unevenly.</p>
 
     <div class="callout">
-      <p><strong>Before buying bass traps or a subwoofer:</strong> Move the listening seat 0.5&ndash;1 metre forward or backward. Bass response at the seat changes dramatically with position. A seat against the rear wall sits at a pressure antinode for all axial modes — the worst possible position for bass accuracy.</p>
+      <p><strong>Two subs beat one:</strong> A pair of subwoofers placed asymmetrically averages out room modes far better than a single sub, producing smoother bass across more seats. If your budget allows, two modest subs usually integrate better than one large one — the improvement is in evenness, not just output.</p>
     </div>
 
-    <h2>Speaker Boundary Interference Response (SBIR)</h2>
+    <h2>Connection Method</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Placement Effect</div>
-      <h3>Floor, Side Wall, and Rear Wall Proximity</h3>
-      <p>A speaker near a reflective boundary produces a reflected wave that interferes with the direct wave. At the frequency where the reflected path length is half a wavelength longer than the direct path, cancellation occurs. For a speaker 0.6 metres from the rear wall, this SBIR null appears at approximately 143 Hz — squarely in the upper bass and lower midrange. Moving the speaker closer to or further from the wall shifts the null frequency. Placing a speaker flush against a wall (closer than approximately 15 cm) moves the null above the speaker's useful bass range, which is why "boundary" or "shelf" speakers are designed to be used this way. Most freestanding speakers perform worst at an intermediate distance (0.3&ndash;0.8 m from the wall) due to SBIR.</p>
-    </div>
+    <p>Most subwoofers accept a line-level (RCA/LFE) input from a preamp or processor; many also offer high-level (speaker-level) inputs that tap the amplifier&rsquo;s output, which can preserve the tonal signature of the main amplifier and is the only option with some integrated amps. For two-channel music with a processor or sub with bass management, a line-level connection with the mains run full-range or high-passed is typical. Whichever you use, set the sub&rsquo;s internal crossover to bypass if your processor is already handling the crossover, to avoid filtering the signal twice.</p>
 
-    <p>The vertical SBIR from the floor is present in all speaker setups. Most stand-mount speakers are designed with their tweeter at ear height (approximately 90&ndash;100 cm seated) to minimise the audibility of floor reflections at the listening seat. Floor-standing speakers typically account for floor reflection in their crossover design. The most practical approach is to keep the speaker-to-rear-wall distance consistent between left and right channels, then adjust by ear.</p>
-
-    <h2>First Reflection Points</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Placement and Treatment</div>
-      <h3>Side Wall, Ceiling, and Rear Wall Reflections</h3>
-      <p>The first reflections are the dominant source of early reflected energy at the listening seat. A single strong early reflection arriving 5&ndash;20 ms after the direct sound (corresponding to a path length difference of 1.7&ndash;7 metres) masks low-level detail and reduces stereo image precision. The side wall first reflection points are found by placing a mirror on each side wall; the reflection point is where you can see the speaker face from the listening seat. Rear wall reflections behind the listening seat are also significant for depth of image. Treatment options are absorption (reduces reflected energy at all frequencies) and diffusion (scatters reflected energy without removing it).</p>
-    </div>
-
-    <h2>Toe-In and Listening Distance</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Placement Variable</div>
-      <h3>Speaker Toe-In and the Listening Triangle</h3>
-      <p>Toe-in — rotating the speakers inward toward the listening seat — affects both frequency response and stereo imaging. Many speakers are designed to be used with the tweeter axis aimed approximately at the listening position ("on-axis"), which typically gives the flattest high-frequency response. Some designs, particularly those with wide dispersion, are used with less or no toe-in, relying on the room for high-frequency integration. The equilateral triangle rule — where the speaker-to-speaker distance equals the speaker-to-listener distance — is a reasonable starting point for imaging. Reducing listening distance compresses the soundstage; increasing it widens the image but reduces stereo precision as the room contribution grows relative to the direct sound.</p>
-    </div>
-
-    <p>The listening distance also interacts with the speaker's crossover and dispersion. A speaker with a narrow vertical dispersion requires more precise seat height adjustment at closer distances. A speaker with high sensitivity and wide dispersion may image more effectively at greater distances where the room's contribution smooths minor frequency response variations.</p>
-
-    <h2>Absorption vs Diffusion: When to Use Each</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Acoustic Treatment</div>
-      <h3>Choosing the Right Treatment</h3>
-      <p>Absorption reduces reflected energy but also reduces liveliness. An over-absorbed room sounds dead, fatiguing, and small. Diffusion scatters reflected energy without removing it, preserving liveliness while reducing discrete echoes. The practical guideline for a domestic listening room: place absorption at the primary reflection points (side walls, ceiling first reflection) to reduce early reflections; use diffusion on the rear wall behind the listening seat to maintain spaciousness. Bass traps in corners address low-frequency modes that absorption panels (which are ineffective below approximately 200 Hz unless very deep) cannot treat.</p>
-    </div>
-
-    <p>Practical treatment in a domestic room need not be conspicuous. A bookshelf full of irregularly sized books makes an effective broadband diffuser. A large sofa with cushions provides significant low-frequency absorption. Floor rugs absorb high-frequency reflections from the floor between speaker and listener. Curtains over windows reduce glass reflections. Significant acoustic benefit is achievable without dedicated acoustic panels.</p>
-
-    <h2>Quick Reference: Placement and Acoustics</h2>
+    <h2>Quick Reference: Subwoofer Specs at a Glance</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Issue</th><th>Cause</th><th>First Action</th></tr></thead>
+      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
       <tbody>
-        <tr><td>One-note or boomy bass</td><td>Room mode peak at listening seat</td><td>Move seat forward/backward by 0.5&ndash;1 m</td></tr>
-        <tr><td>Weak or missing bass</td><td>Mode null at listening seat</td><td>Move seat; also check speaker distance from rear wall</td></tr>
-        <tr><td>Upper-bass suckout (~100&ndash;200 Hz)</td><td>SBIR from rear wall</td><td>Adjust speaker distance from rear wall; aim for &gt;0.8 m or &lt;0.15 m</td></tr>
-        <tr><td>Smeared or indistinct imaging</td><td>Strong first reflections</td><td>Treat side-wall reflection points with absorption</td></tr>
-        <tr><td>Bright or harsh high frequencies</td><td>Flutter echo; hard parallel surfaces</td><td>Add soft furnishings; treat floor between speakers and seat</td></tr>
-        <tr><td>Narrow or collapsed soundstage</td><td>Listening distance too short; excess absorption</td><td>Increase speaker separation; reduce treatment quantity</td></tr>
+        <tr><td>Crossover Frequency</td><td>Handoff point to the mains</td><td>~80 Hz typical; higher for small mains</td></tr>
+        <tr><td>Low-Pass Slope</td><td>How fast the sub rolls off on top</td><td>Match to mains&rsquo; roll-off for a flat sum</td></tr>
+        <tr><td>Phase Control</td><td>Aligns sub and mains at crossover</td><td>Continuously variable preferred over 0/180°</td></tr>
+        <tr><td>Alignment</td><td>Sealed vs ported</td><td>Sealed for tight music bass; ported for extension/output</td></tr>
+        <tr><td>Placement</td><td>Position in room</td><td>Use the crawl method; consider dual subs</td></tr>
+        <tr><td>Connection</td><td>How signal reaches the sub</td><td>Line-level (LFE) or high-level; avoid double filtering</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your speaker and amplifier compatibility</h3>
-      <p>Enter your speakers and amplifier to get a full compatibility analysis — sensitivity, impedance matching, and power requirements for your room size.</p>
+      <h3>Check your subwoofer system compatibility</h3>
+      <p>Enter your speakers, amplifier, and sources to get a full signal-chain analysis. Understand how a subwoofer fits your gain structure and where your mains roll off.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
@@ -224,9 +220,9 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>More Guides</h2>
     <div class="guide-nav">
       <a href="/guides/speakers">Speaker Matching →</a>
+      <a href="/guides/room-acoustics">Room Acoustics →</a>
       <a href="/guides/amplifiers">Amplifier Guide →</a>
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
-      <a href="/guides/cables">Cables Guide →</a>
+      <a href="/guides/active-vs-passive">Active vs Passive Speakers →</a>
       <a href="/glossary">Glossary →</a>
     </div>
 

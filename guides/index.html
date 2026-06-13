@@ -3,15 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Room Acoustics and Speaker Placement — AudioChainHiFi.com</title>
-<meta name="description" content="Room acoustics and speaker placement fundamentals: bass modes, first reflection points, the rule of thirds, SBIR, toe-in, and when to use absorption versus diffusion.">
-<meta property="og:title" content="Room Acoustics and Speaker Placement — AudioChainHiFi.com">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/room-acoustics">
+<title>HiFi Component &amp; Setup Guides — AudioChainHiFi.com</title>
+<meta name="description" content="Plain-English guides to hi-fi components and setup — amplifiers, speakers, turntables, DACs, streamers, headphones, cables, and room acoustics. Specs that actually matter.">
+<meta property="og:title" content="HiFi Component &amp; Setup Guides — AudioChainHiFi.com">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audiochainhifi.com/guides">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/room-acoustics">
+<link rel="canonical" href="https://audiochainhifi.com/guides">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -88,6 +86,18 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+
+.hub-body{padding:52px 0 80px;}
+.cat-section{margin:0 0 44px;scroll-margin-top:84px;}
+.cat-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:0 0 18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media(max-width:820px){.guide-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.guide-grid{grid-template-columns:1fr;}}
+.guide-card{display:flex;flex-direction:column;background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:22px;text-decoration:none;transition:border-color .15s,box-shadow .15s,transform .15s;}
+.guide-card:hover{border-color:var(--blue);box-shadow:0 6px 20px rgba(37,99,235,.08);transform:translateY(-2px);}
+.guide-card h3{font-size:16px;font-weight:800;color:var(--text);margin:0 0 8px;letter-spacing:-.01em;}
+.guide-card p{font-size:13px;color:var(--text-2);line-height:1.65;margin:0 0 14px;}
+.guide-card .gc-arrow{margin-top:auto;font-size:13px;font-weight:700;color:var(--blue);}
 </style>
 </head>
 <body>
@@ -121,114 +131,156 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80" alt="Hi-fi speakers in a listening room">
-    <div class="guide-label">System Guide</div>
-    <h1>Room Acoustics and Speaker Placement</h1>
-    <p class="lede">The room is the most significant variable in any hi-fi system. Speaker placement alone can eliminate bass problems that no component upgrade ever could. These are the principles that deliver the greatest improvement per unit of effort.</p>
-    <p class="guide-date">Published April 2026 &middot; Updated May 2026</p>
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1600&q=80" alt="Hi-fi system components">
+    <div class="guide-label">All Guides</div>
+    <h1>HiFi Component &amp; Setup Guides</h1>
+    <p class="lede">Nineteen plain-English guides to the specs that actually matter — from building your first system to dialing in cartridge alignment, matching amplifiers, and taming a room.</p>
   </div>
 </div>
 
-<main class="article-body">
-  <div class="container">
+<main class="hub-body">
+  <div class="container-wide">
 
     <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
 
-    <div class="more-guides-top">
-      <p class="more-guides-heading">More Guides</p>
-      <div class="guide-nav">
-        <a href="/guides/speakers">Speaker Matching →</a>
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/guides/cables">Cables Guide →</a>
-        <a href="/glossary">Glossary →</a>
+    <section class="cat-section" id="getting-started">
+      <h2 class="cat-title">Getting Started</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/first-hifi-system">
+          <h3>Build Your First System</h3>
+          <p>Plan a complete system from scratch and avoid the classic beginner mismatches.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/used-hifi">
+          <h3>Used + New Strategy</h3>
+          <p>Where to buy used, what to buy new, and how to spot a bargain that is not a trap.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
       </div>
-    </div>
+    </section>
 
-    <p>Every measurement taken at a listening seat is the combined result of the loudspeaker's direct output and the room's contribution. Below approximately 300 Hz, room modes — resonances determined by the room's dimensions — dominate what you hear. Above that frequency, reflections from nearby surfaces and the listening position relative to the speakers determine the tonal balance and imaging. Speaker placement addresses both.</p>
+    <section class="cat-section" id="amplifiers">
+      <h2 class="cat-title">Amplifiers</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/amplifiers">
+          <h3>Amplifier Guide</h3>
+          <p>Power, current, and damping factor — the amplifier specs that actually matter.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/tubes">
+          <h3>Tubes vs Solid-State</h3>
+          <p>What genuinely differs between valve and transistor amplification.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/integrated-vs-separates">
+          <h3>Integrated vs Separates</h3>
+          <p>One box or many? Power, noise isolation, and upgrade paths compared.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+      </div>
+    </section>
 
-    <h2>Bass Modes and the Rule of Thirds</h2>
+    <section class="cat-section" id="speakers-room">
+      <h2 class="cat-title">Speakers &amp; Room</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/speakers">
+          <h3>Speaker Matching</h3>
+          <p>Sensitivity, impedance, and matching speakers to your amplifier and room.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/active-vs-passive">
+          <h3>Active vs Passive Speakers</h3>
+          <p>Where the amplifier and crossover live, and why it changes the result.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/subwoofers">
+          <h3>Subwoofer Integration</h3>
+          <p>Crossover, phase, and placement for bass that blends seamlessly.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/room-acoustics">
+          <h3>Room Acoustics</h3>
+          <p>The room is a component — modes, reflections, and treatment that works.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+      </div>
+    </section>
 
-    <div class="spec-card">
-      <div class="spec-name">Fundamental Principle</div>
-      <h3>Room Modes: Axial, Tangential, and Oblique</h3>
-      <p>A rectangular room has resonant frequencies determined by its dimensions. The axial mode frequencies are given by: F = (n &times; 343) &divide; (2 &times; D), where n is a whole number (1, 2, 3&hellip;) and D is the room dimension in metres. A 5-metre room has a fundamental mode at 34.3 Hz and harmonics at 68.6 Hz, 102.9 Hz, and so on. At these frequencies, the room builds up standing waves — pressure nodes (nulls) and antinodes (peaks). The listening seat position within the room determines which modes are excited and at what level.</p>
-    </div>
+    <section class="cat-section" id="vinyl">
+      <h2 class="cat-title">Turntables &amp; Vinyl</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/turntables">
+          <h3>Turntable Guide</h3>
+          <p>Platter mass, tonearm effective mass, and the specs behind clean vinyl playback.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/cartridges">
+          <h3>Cartridge Guide</h3>
+          <p>MM vs MC, compliance, output, and loading for phono cartridges.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/cartridge-setup">
+          <h3>Cartridge Setup &amp; Alignment</h3>
+          <p>Tracking force, alignment geometry, anti-skate, and VTA done right.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/phono-stages">
+          <h3>Phono Stage Guide</h3>
+          <p>Gain, loading, and RIAA accuracy for getting signal from a cartridge.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+      </div>
+    </section>
 
-    <p>The rule of thirds places speakers at approximately 1/3 of the room's length from the front wall and the listening seat at approximately 1/3 of the room's length from the rear wall. These positions place the speakers and listener away from the pressure maxima at the room boundaries, reducing the severity of the dominant bass mode. It is a starting point, not a prescription — every room's dimensions and furnishings will require refinement by ear or measurement.</p>
+    <section class="cat-section" id="digital">
+      <h2 class="cat-title">Digital Audio</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/dacs">
+          <h3>DAC Guide</h3>
+          <p>Resolution, filters, and jitter — what separates a good DAC from a spec sheet.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/streamers">
+          <h3>Network Streamers</h3>
+          <p>Output interfaces, resolution, and clocking for network sources.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/digital-formats">
+          <h3>Digital Audio Formats</h3>
+          <p>Sample rate, bit depth, lossless vs lossy, and what is actually audible.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+      </div>
+    </section>
 
-    <div class="callout">
-      <p><strong>Before buying bass traps or a subwoofer:</strong> Move the listening seat 0.5&ndash;1 metre forward or backward. Bass response at the seat changes dramatically with position. A seat against the rear wall sits at a pressure antinode for all axial modes — the worst possible position for bass accuracy.</p>
-    </div>
-
-    <h2>Speaker Boundary Interference Response (SBIR)</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Placement Effect</div>
-      <h3>Floor, Side Wall, and Rear Wall Proximity</h3>
-      <p>A speaker near a reflective boundary produces a reflected wave that interferes with the direct wave. At the frequency where the reflected path length is half a wavelength longer than the direct path, cancellation occurs. For a speaker 0.6 metres from the rear wall, this SBIR null appears at approximately 143 Hz — squarely in the upper bass and lower midrange. Moving the speaker closer to or further from the wall shifts the null frequency. Placing a speaker flush against a wall (closer than approximately 15 cm) moves the null above the speaker's useful bass range, which is why "boundary" or "shelf" speakers are designed to be used this way. Most freestanding speakers perform worst at an intermediate distance (0.3&ndash;0.8 m from the wall) due to SBIR.</p>
-    </div>
-
-    <p>The vertical SBIR from the floor is present in all speaker setups. Most stand-mount speakers are designed with their tweeter at ear height (approximately 90&ndash;100 cm seated) to minimise the audibility of floor reflections at the listening seat. Floor-standing speakers typically account for floor reflection in their crossover design. The most practical approach is to keep the speaker-to-rear-wall distance consistent between left and right channels, then adjust by ear.</p>
-
-    <h2>First Reflection Points</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Placement and Treatment</div>
-      <h3>Side Wall, Ceiling, and Rear Wall Reflections</h3>
-      <p>The first reflections are the dominant source of early reflected energy at the listening seat. A single strong early reflection arriving 5&ndash;20 ms after the direct sound (corresponding to a path length difference of 1.7&ndash;7 metres) masks low-level detail and reduces stereo image precision. The side wall first reflection points are found by placing a mirror on each side wall; the reflection point is where you can see the speaker face from the listening seat. Rear wall reflections behind the listening seat are also significant for depth of image. Treatment options are absorption (reduces reflected energy at all frequencies) and diffusion (scatters reflected energy without removing it).</p>
-    </div>
-
-    <h2>Toe-In and Listening Distance</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Placement Variable</div>
-      <h3>Speaker Toe-In and the Listening Triangle</h3>
-      <p>Toe-in — rotating the speakers inward toward the listening seat — affects both frequency response and stereo imaging. Many speakers are designed to be used with the tweeter axis aimed approximately at the listening position ("on-axis"), which typically gives the flattest high-frequency response. Some designs, particularly those with wide dispersion, are used with less or no toe-in, relying on the room for high-frequency integration. The equilateral triangle rule — where the speaker-to-speaker distance equals the speaker-to-listener distance — is a reasonable starting point for imaging. Reducing listening distance compresses the soundstage; increasing it widens the image but reduces stereo precision as the room contribution grows relative to the direct sound.</p>
-    </div>
-
-    <p>The listening distance also interacts with the speaker's crossover and dispersion. A speaker with a narrow vertical dispersion requires more precise seat height adjustment at closer distances. A speaker with high sensitivity and wide dispersion may image more effectively at greater distances where the room's contribution smooths minor frequency response variations.</p>
-
-    <h2>Absorption vs Diffusion: When to Use Each</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Acoustic Treatment</div>
-      <h3>Choosing the Right Treatment</h3>
-      <p>Absorption reduces reflected energy but also reduces liveliness. An over-absorbed room sounds dead, fatiguing, and small. Diffusion scatters reflected energy without removing it, preserving liveliness while reducing discrete echoes. The practical guideline for a domestic listening room: place absorption at the primary reflection points (side walls, ceiling first reflection) to reduce early reflections; use diffusion on the rear wall behind the listening seat to maintain spaciousness. Bass traps in corners address low-frequency modes that absorption panels (which are ineffective below approximately 200 Hz unless very deep) cannot treat.</p>
-    </div>
-
-    <p>Practical treatment in a domestic room need not be conspicuous. A bookshelf full of irregularly sized books makes an effective broadband diffuser. A large sofa with cushions provides significant low-frequency absorption. Floor rugs absorb high-frequency reflections from the floor between speaker and listener. Curtains over windows reduce glass reflections. Significant acoustic benefit is achievable without dedicated acoustic panels.</p>
-
-    <h2>Quick Reference: Placement and Acoustics</h2>
-
-    <table class="spec-table">
-      <thead><tr><th>Issue</th><th>Cause</th><th>First Action</th></tr></thead>
-      <tbody>
-        <tr><td>One-note or boomy bass</td><td>Room mode peak at listening seat</td><td>Move seat forward/backward by 0.5&ndash;1 m</td></tr>
-        <tr><td>Weak or missing bass</td><td>Mode null at listening seat</td><td>Move seat; also check speaker distance from rear wall</td></tr>
-        <tr><td>Upper-bass suckout (~100&ndash;200 Hz)</td><td>SBIR from rear wall</td><td>Adjust speaker distance from rear wall; aim for &gt;0.8 m or &lt;0.15 m</td></tr>
-        <tr><td>Smeared or indistinct imaging</td><td>Strong first reflections</td><td>Treat side-wall reflection points with absorption</td></tr>
-        <tr><td>Bright or harsh high frequencies</td><td>Flutter echo; hard parallel surfaces</td><td>Add soft furnishings; treat floor between speakers and seat</td></tr>
-        <tr><td>Narrow or collapsed soundstage</td><td>Listening distance too short; excess absorption</td><td>Increase speaker separation; reduce treatment quantity</td></tr>
-      </tbody>
-    </table>
+    <section class="cat-section" id="headphones-power">
+      <h2 class="cat-title">Headphones &amp; Power</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/headphones">
+          <h3>Headphone Guide</h3>
+          <p>Impedance, sensitivity, and matching headphones to the right amplifier.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/cables">
+          <h3>Cables Guide</h3>
+          <p>What cables can and cannot do, and where the money is worth spending.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/power-conditioning">
+          <h3>Power &amp; AC Conditioning</h3>
+          <p>Surge, noise, isolation, and regeneration — help versus hype.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+      </div>
+    </section>
 
     <div class="cta-block">
-      <h3>Check your speaker and amplifier compatibility</h3>
-      <p>Enter your speakers and amplifier to get a full compatibility analysis — sensitivity, impedance matching, and power requirements for your room size.</p>
+      <h3>Not sure how your gear fits together?</h3>
+      <p>Enter your components and get a free AI-powered signal-chain compatibility analysis — gain staging, impedance matching, loading, and recommendations.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
     <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
-
-    <h2>More Guides</h2>
-    <div class="guide-nav">
-      <a href="/guides/speakers">Speaker Matching →</a>
-      <a href="/guides/amplifiers">Amplifier Guide →</a>
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
-      <a href="/guides/cables">Cables Guide →</a>
-      <a href="/glossary">Glossary →</a>
-    </div>
 
   </div>
 </main>

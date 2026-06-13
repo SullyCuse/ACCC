@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Room Acoustics and Speaker Placement — AudioChainHiFi.com</title>
-<meta name="description" content="Room acoustics and speaker placement fundamentals: bass modes, first reflection points, the rule of thirds, SBIR, toe-in, and when to use absorption versus diffusion.">
-<meta property="og:title" content="Room Acoustics and Speaker Placement — AudioChainHiFi.com">
+<title>Network Streamers: The Specs That Actually Matter — AudioChainHiFi.com</title>
+<meta name="description" content="Output formats, max PCM and DSD resolution, network connection, clocking, and streaming protocols — what determines how a network streamer fits into a hi-fi signal chain.">
+<meta property="og:title" content="Network Streamers: The Specs That Actually Matter — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/room-acoustics">
+<meta property="og:url" content="https://audiochainhifi.com/guides/streamers">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/room-acoustics">
+<meta property="article:published_time" content="2026-06-12T00:00:00Z">
+<meta property="article:modified_time" content="2026-06-12T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/streamers">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -121,11 +121,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1600&q=80" alt="Hi-fi speakers in a listening room">
-    <div class="guide-label">System Guide</div>
-    <h1>Room Acoustics and Speaker Placement</h1>
-    <p class="lede">The room is the most significant variable in any hi-fi system. Speaker placement alone can eliminate bass problems that no component upgrade ever could. These are the principles that deliver the greatest improvement per unit of effort.</p>
-    <p class="guide-date">Published April 2026 &middot; Updated May 2026</p>
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1558537348-c0f8e733989d?auto=format&fit=crop&w=1600&q=80" alt="Network streaming hi-fi component">
+    <div class="guide-label">Component Guide</div>
+    <h1>Network Streamers: The Specs That Actually Matter</h1>
+    <p class="lede">A streamer is a digital transport — its job is to pull bits off the network and hand them to a DAC, cleanly and on time. Resolution support, output interface, and clocking matter far more than the app on the front.</p>
+    <p class="guide-date">Published June 2026</p>
   </div>
 </div>
 
@@ -137,85 +137,75 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/speakers">Speaker Matching →</a>
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/guides/cables">Cables Guide →</a>
-        <a href="/glossary">Glossary →</a>
+      <a href="/guides/dacs">DAC Guide →</a>
+      <a href="/guides/digital-formats">Digital Audio Formats →</a>
+      <a href="/guides/cables">Cables Guide →</a>
+      <a href="/guides/first-hifi-system">Build Your First System →</a>
+      <a href="/glossary">Glossary →</a>
       </div>
     </div>
 
-    <p>Every measurement taken at a listening seat is the combined result of the loudspeaker's direct output and the room's contribution. Below approximately 300 Hz, room modes — resonances determined by the room's dimensions — dominate what you hear. Above that frequency, reflections from nearby surfaces and the listening position relative to the speakers determine the tonal balance and imaging. Speaker placement addresses both.</p>
+    <p>A network streamer (or network transport) retrieves audio over Ethernet or Wi-Fi and converts it to a digital audio stream a DAC can decode. Some streamers include a built-in DAC; pure transports do not. The distinction matters because a transport feeding an external DAC is judged almost entirely on signal integrity — format support, output interface, and jitter — not on sound "character," which is the DAC&rsquo;s domain.</p>
 
-    <h2>Bass Modes and the Rule of Thirds</h2>
+    <h2>Output Interface — How Bits Leave the Streamer</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Fundamental Principle</div>
-      <h3>Room Modes: Axial, Tangential, and Oblique</h3>
-      <p>A rectangular room has resonant frequencies determined by its dimensions. The axial mode frequencies are given by: F = (n &times; 343) &divide; (2 &times; D), where n is a whole number (1, 2, 3&hellip;) and D is the room dimension in metres. A 5-metre room has a fundamental mode at 34.3 Hz and harmonics at 68.6 Hz, 102.9 Hz, and so on. At these frequencies, the room builds up standing waves — pressure nodes (nulls) and antinodes (peaks). The listening seat position within the room determines which modes are excited and at what level.</p>
+      <div class="spec-name">Key Spec</div>
+      <h3>Digital Outputs (USB, Coax S/PDIF, Optical, AES/EBU, I²S)</h3>
+      <p>The output interface sets the ceiling on what resolution can pass and how susceptible the link is to jitter. USB and I²S carry the highest rates (PCM to 32-bit/768&nbsp;kHz and native DSD); coaxial S/PDIF typically tops out around 24-bit/192&nbsp;kHz and carries DSD only as DoP; optical (TOSLINK) is galvanically isolated but usually limited to 24/96&ndash;192. Match the streamer&rsquo;s output to an input your DAC actually supports at the resolution you need.</p>
     </div>
 
-    <p>The rule of thirds places speakers at approximately 1/3 of the room's length from the front wall and the listening seat at approximately 1/3 of the room's length from the rear wall. These positions place the speakers and listener away from the pressure maxima at the room boundaries, reducing the severity of the dominant bass mode. It is a starting point, not a prescription — every room's dimensions and furnishings will require refinement by ear or measurement.</p>
+    <div class="spec-card">
+      <div class="spec-name">Key Spec</div>
+      <h3>Galvanic Isolation</h3>
+      <p>Electrical noise on a digital link can couple into the DAC&rsquo;s analog stage and raise the noise floor. Optical is inherently isolated. USB and coax connections may pass ground noise; better streamers isolate their outputs. This is why a noisy computer USB source and a purpose-built streamer can measurably differ at the DAC output even though the bits are identical.</p>
+    </div>
+
+    <h2>Resolution Support</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Key Spec</div>
+      <h3>Max PCM / DSD Resolution</h3>
+      <p>Resolution support must hold true end to end — streamer output, cable, and DAC input all have to agree. A streamer rated for PCM 32/384 and DSD256 is future-proof for essentially all current high-res catalogues. Note that resolution above 24-bit/96&nbsp;kHz delivers no audible benefit on playback for most listeners; the value of high-res support is compatibility, not a guaranteed sonic upgrade.</p>
+    </div>
+
+    <h2>Network Connection: Ethernet vs Wi-Fi</h2>
+
+    <p>Wired Ethernet is preferable for high-resolution and gapless playback: it is immune to the dropouts and buffering stalls that Wi-Fi can introduce, and it keeps the noisy Wi-Fi radio out of the chassis. Wi-Fi is convenient and perfectly adequate for compressed streaming, but for 24/192 and DSD, a wired connection removes a whole class of reliability problems. The audio data is buffered either way, so network speed beyond a few Mbps does not affect sound — only reliability.</p>
+
+    <h2>Streaming Protocols and Services</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Compatibility</div>
+      <h3>Supported Protocols (Roon, UPnP/DLNA, AirPlay, Chromecast, Spotify/Tidal Connect)</h3>
+      <p>Protocol support determines how you control the streamer and which services play natively. Roon (via RAAT) offers bit-perfect multiroom and rich library management but requires a Roon Core. UPnP/DLNA is the open standard. AirPlay and Chromecast are convenient but historically capped at 24/48 or transcoded. Tidal Connect and Spotify Connect hand control to the native app while the streamer does the rendering. Confirm the services you actually use are supported natively rather than relayed through a phone.</p>
+    </div>
+
+    <h2>Clocking and Jitter</h2>
+
+    <p>Jitter is timing error in the digital stream. In a streamer feeding an asynchronous USB DAC, the DAC reclocks the data with its own master clock, so streamer jitter is largely rejected. Over S/PDIF and AES/EBU, the receiver recovers the clock from the data stream, so the streamer&rsquo;s clock quality matters more. This is the single best argument for an asynchronous USB or I²S connection where the DAC controls timing: it moves the burden of clocking to the DAC, where it belongs.</p>
 
     <div class="callout">
-      <p><strong>Before buying bass traps or a subwoofer:</strong> Move the listening seat 0.5&ndash;1 metre forward or backward. Bass response at the seat changes dramatically with position. A seat against the rear wall sits at a pressure antinode for all axial modes — the worst possible position for bass accuracy.</p>
+      <p><strong>Quick takeaway:</strong> For the cleanest result, use a streamer that outputs over asynchronous USB (or I²S) to a DAC that reclocks, wired over Ethernet. That combination makes streamer "sound" largely a non-issue and lets you choose the streamer on features and reliability, with the DAC doing the sonic work.</p>
     </div>
 
-    <h2>Speaker Boundary Interference Response (SBIR)</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Placement Effect</div>
-      <h3>Floor, Side Wall, and Rear Wall Proximity</h3>
-      <p>A speaker near a reflective boundary produces a reflected wave that interferes with the direct wave. At the frequency where the reflected path length is half a wavelength longer than the direct path, cancellation occurs. For a speaker 0.6 metres from the rear wall, this SBIR null appears at approximately 143 Hz — squarely in the upper bass and lower midrange. Moving the speaker closer to or further from the wall shifts the null frequency. Placing a speaker flush against a wall (closer than approximately 15 cm) moves the null above the speaker's useful bass range, which is why "boundary" or "shelf" speakers are designed to be used this way. Most freestanding speakers perform worst at an intermediate distance (0.3&ndash;0.8 m from the wall) due to SBIR.</p>
-    </div>
-
-    <p>The vertical SBIR from the floor is present in all speaker setups. Most stand-mount speakers are designed with their tweeter at ear height (approximately 90&ndash;100 cm seated) to minimise the audibility of floor reflections at the listening seat. Floor-standing speakers typically account for floor reflection in their crossover design. The most practical approach is to keep the speaker-to-rear-wall distance consistent between left and right channels, then adjust by ear.</p>
-
-    <h2>First Reflection Points</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Placement and Treatment</div>
-      <h3>Side Wall, Ceiling, and Rear Wall Reflections</h3>
-      <p>The first reflections are the dominant source of early reflected energy at the listening seat. A single strong early reflection arriving 5&ndash;20 ms after the direct sound (corresponding to a path length difference of 1.7&ndash;7 metres) masks low-level detail and reduces stereo image precision. The side wall first reflection points are found by placing a mirror on each side wall; the reflection point is where you can see the speaker face from the listening seat. Rear wall reflections behind the listening seat are also significant for depth of image. Treatment options are absorption (reduces reflected energy at all frequencies) and diffusion (scatters reflected energy without removing it).</p>
-    </div>
-
-    <h2>Toe-In and Listening Distance</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Placement Variable</div>
-      <h3>Speaker Toe-In and the Listening Triangle</h3>
-      <p>Toe-in — rotating the speakers inward toward the listening seat — affects both frequency response and stereo imaging. Many speakers are designed to be used with the tweeter axis aimed approximately at the listening position ("on-axis"), which typically gives the flattest high-frequency response. Some designs, particularly those with wide dispersion, are used with less or no toe-in, relying on the room for high-frequency integration. The equilateral triangle rule — where the speaker-to-speaker distance equals the speaker-to-listener distance — is a reasonable starting point for imaging. Reducing listening distance compresses the soundstage; increasing it widens the image but reduces stereo precision as the room contribution grows relative to the direct sound.</p>
-    </div>
-
-    <p>The listening distance also interacts with the speaker's crossover and dispersion. A speaker with a narrow vertical dispersion requires more precise seat height adjustment at closer distances. A speaker with high sensitivity and wide dispersion may image more effectively at greater distances where the room's contribution smooths minor frequency response variations.</p>
-
-    <h2>Absorption vs Diffusion: When to Use Each</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Acoustic Treatment</div>
-      <h3>Choosing the Right Treatment</h3>
-      <p>Absorption reduces reflected energy but also reduces liveliness. An over-absorbed room sounds dead, fatiguing, and small. Diffusion scatters reflected energy without removing it, preserving liveliness while reducing discrete echoes. The practical guideline for a domestic listening room: place absorption at the primary reflection points (side walls, ceiling first reflection) to reduce early reflections; use diffusion on the rear wall behind the listening seat to maintain spaciousness. Bass traps in corners address low-frequency modes that absorption panels (which are ineffective below approximately 200 Hz unless very deep) cannot treat.</p>
-    </div>
-
-    <p>Practical treatment in a domestic room need not be conspicuous. A bookshelf full of irregularly sized books makes an effective broadband diffuser. A large sofa with cushions provides significant low-frequency absorption. Floor rugs absorb high-frequency reflections from the floor between speaker and listener. Curtains over windows reduce glass reflections. Significant acoustic benefit is achievable without dedicated acoustic panels.</p>
-
-    <h2>Quick Reference: Placement and Acoustics</h2>
+    <h2>Quick Reference: Streamer Specs at a Glance</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Issue</th><th>Cause</th><th>First Action</th></tr></thead>
+      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
       <tbody>
-        <tr><td>One-note or boomy bass</td><td>Room mode peak at listening seat</td><td>Move seat forward/backward by 0.5&ndash;1 m</td></tr>
-        <tr><td>Weak or missing bass</td><td>Mode null at listening seat</td><td>Move seat; also check speaker distance from rear wall</td></tr>
-        <tr><td>Upper-bass suckout (~100&ndash;200 Hz)</td><td>SBIR from rear wall</td><td>Adjust speaker distance from rear wall; aim for &gt;0.8 m or &lt;0.15 m</td></tr>
-        <tr><td>Smeared or indistinct imaging</td><td>Strong first reflections</td><td>Treat side-wall reflection points with absorption</td></tr>
-        <tr><td>Bright or harsh high frequencies</td><td>Flutter echo; hard parallel surfaces</td><td>Add soft furnishings; treat floor between speakers and seat</td></tr>
-        <tr><td>Narrow or collapsed soundstage</td><td>Listening distance too short; excess absorption</td><td>Increase speaker separation; reduce treatment quantity</td></tr>
+        <tr><td>Output Interface</td><td>How the digital signal leaves</td><td>USB/I²S for highest res and DAC-side reclocking</td></tr>
+        <tr><td>Max PCM / DSD</td><td>Resolution ceiling</td><td>PCM 24/192+ and DSD64+ covers nearly all catalogues</td></tr>
+        <tr><td>Network</td><td>How audio is delivered</td><td>Wired Ethernet for reliability with hi-res</td></tr>
+        <tr><td>Galvanic Isolation</td><td>Noise rejection on the link</td><td>Isolated outputs or use optical</td></tr>
+        <tr><td>Protocols</td><td>Control and native services</td><td>Native support for the services you use</td></tr>
+        <tr><td>Clocking</td><td>Timing accuracy</td><td>Async USB lets the DAC reclock</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your speaker and amplifier compatibility</h3>
-      <p>Enter your speakers and amplifier to get a full compatibility analysis — sensitivity, impedance matching, and power requirements for your room size.</p>
+      <h3>Check how your streamer fits the chain</h3>
+      <p>Enter your streamer, DAC, amplifier, and speakers to get a full signal-chain compatibility analysis including resolution support, interface matching, and gain staging.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
@@ -223,10 +213,10 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <h2>More Guides</h2>
     <div class="guide-nav">
-      <a href="/guides/speakers">Speaker Matching →</a>
-      <a href="/guides/amplifiers">Amplifier Guide →</a>
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
+      <a href="/guides/dacs">DAC Guide →</a>
+      <a href="/guides/digital-formats">Digital Audio Formats →</a>
       <a href="/guides/cables">Cables Guide →</a>
+      <a href="/guides/first-hifi-system">Build Your First System →</a>
       <a href="/glossary">Glossary →</a>
     </div>
 
