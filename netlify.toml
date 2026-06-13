@@ -14,9 +14,6 @@
 [functions."submit-correction"]
   timeout = 10
 
-[functions."keep-alive"]
-  schedule = "0 0 * * 1,4"
-
 [[headers]]
   for = "/*"
   [headers.values]
