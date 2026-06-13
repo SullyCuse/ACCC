@@ -6,6 +6,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://audiochainhifi.com/guides</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://audiochainhifi.com/guides/amplifiers</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -57,6 +62,46 @@
   </url>
   <url>
     <loc>https://audiochainhifi.com/guides/room-acoustics</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/streamers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/subwoofers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/tubes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/integrated-vs-separates</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/digital-formats</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/cartridge-setup</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/power-conditioning</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/active-vs-passive</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

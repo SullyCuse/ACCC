@@ -3,15 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com</title>
-<meta name="description" content="How to match headphones to an amplifier: impedance, sensitivity ratings, the 1/8 output-impedance rule, and what planar magnetics need from a source.">
-<meta property="og:title" content="Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/headphones">
+<title>HiFi Component &amp; Setup Guides — AudioChainHiFi.com</title>
+<meta name="description" content="Plain-English guides to hi-fi components and setup — amplifiers, speakers, turntables, DACs, streamers, headphones, cables, and room acoustics. Specs that actually matter.">
+<meta property="og:title" content="HiFi Component &amp; Setup Guides — AudioChainHiFi.com">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audiochainhifi.com/guides">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/headphones">
+<link rel="canonical" href="https://audiochainhifi.com/guides">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -88,6 +86,18 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+
+.hub-body{padding:52px 0 80px;}
+.cat-section{margin:0 0 44px;scroll-margin-top:84px;}
+.cat-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:0 0 18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media(max-width:820px){.guide-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.guide-grid{grid-template-columns:1fr;}}
+.guide-card{display:flex;flex-direction:column;background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:22px;text-decoration:none;transition:border-color .15s,box-shadow .15s,transform .15s;}
+.guide-card:hover{border-color:var(--blue);box-shadow:0 6px 20px rgba(37,99,235,.08);transform:translateY(-2px);}
+.guide-card h3{font-size:16px;font-weight:800;color:var(--text);margin:0 0 8px;letter-spacing:-.01em;}
+.guide-card p{font-size:13px;color:var(--text-2);line-height:1.65;margin:0 0 14px;}
+.guide-card .gc-arrow{margin-top:auto;font-size:13px;font-weight:700;color:var(--blue);}
 </style>
 </head>
 <body>
@@ -123,104 +133,156 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Audio equipment">
-    <div class="guide-label">Component Guide</div>
-    <h1>Headphones: Impedance, Sensitivity, and Amplifier Matching</h1>
-    <p class="lede">A headphone's impedance and sensitivity determine what kind of amplifier it needs. High-impedance cans need voltage; planars need current. Mismatching leads to distortion, hiss, or simply quiet playback.</p>
-    <p class="guide-date">Published April 2026 &middot; Updated May 2026</p>
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1600&q=80" alt="Hi-fi system components">
+    <div class="guide-label">All Guides</div>
+    <h1>HiFi Component &amp; Setup Guides</h1>
+    <p class="lede">Nineteen plain-English guides to the specs that actually matter — from building your first system to dialing in cartridge alignment, matching amplifiers, and taming a room.</p>
   </div>
 </div>
 
-<main class="article-body">
-  <div class="container">
+<main class="hub-body">
+  <div class="container-wide">
 
     <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
 
-    <div class="more-guides-top">
-      <p class="more-guides-heading">More Guides</p>
-      <div class="guide-nav">
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/dacs">DAC Guide →</a>
-        <a href="/guides/cables">Cables Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/glossary">Glossary →</a>
+    <section class="cat-section" id="getting-started">
+      <h2 class="cat-title">Getting Started</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/first-hifi-system">
+          <h3>Build Your First System</h3>
+          <p>Plan a complete system from scratch and avoid the classic beginner mismatches.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/used-hifi">
+          <h3>Used + New Strategy</h3>
+          <p>Where to buy used, what to buy new, and how to spot a bargain that is not a trap.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
       </div>
-    </div>
+    </section>
 
-    <p>Headphone specifications look similar to speaker specifications — impedance, sensitivity, frequency response — but they are used and interpreted differently. A speaker amplifier rated at 100 watts is usually far too powerful for headphones; a phone's headphone output is usually far too weak for high-impedance audiophile headphones. The compatibility chain matters as much for headphones as for any loudspeaker system.</p>
+    <section class="cat-section" id="amplifiers">
+      <h2 class="cat-title">Amplifiers</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/amplifiers">
+          <h3>Amplifier Guide</h3>
+          <p>Power, current, and damping factor — the amplifier specs that actually matter.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/tubes">
+          <h3>Tubes vs Solid-State</h3>
+          <p>What genuinely differs between valve and transistor amplification.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/integrated-vs-separates">
+          <h3>Integrated vs Separates</h3>
+          <p>One box or many? Power, noise isolation, and upgrade paths compared.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+      </div>
+    </section>
 
-    <h2>Impedance: High vs Low</h2>
+    <section class="cat-section" id="speakers-room">
+      <h2 class="cat-title">Speakers &amp; Room</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/speakers">
+          <h3>Speaker Matching</h3>
+          <p>Sensitivity, impedance, and matching speakers to your amplifier and room.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/active-vs-passive">
+          <h3>Active vs Passive Speakers</h3>
+          <p>Where the amplifier and crossover live, and why it changes the result.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/subwoofers">
+          <h3>Subwoofer Integration</h3>
+          <p>Crossover, phase, and placement for bass that blends seamlessly.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/room-acoustics">
+          <h3>Room Acoustics</h3>
+          <p>The room is a component — modes, reflections, and treatment that works.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+      </div>
+    </section>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Headphone Impedance (&Omega;)</h3>
-      <p>Consumer and portable headphones typically measure 16&ndash;64 &Omega;. Studio and audiophile headphones commonly range from 80 to 600 &Omega;. The impedance affects how much voltage is needed to drive the headphone to a given sound pressure level. A 300 &Omega; headphone needs six times the voltage of a 50 &Omega; headphone to produce the same current through the voice coil. This means high-impedance headphones require an amplifier capable of higher output voltage — a specification that is rarely emphasised in consumer electronics, but which determines whether the amplifier can drive the headphone to satisfying volume levels.</p>
-    </div>
+    <section class="cat-section" id="vinyl">
+      <h2 class="cat-title">Turntables &amp; Vinyl</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/turntables">
+          <h3>Turntable Guide</h3>
+          <p>Platter mass, tonearm effective mass, and the specs behind clean vinyl playback.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/cartridges">
+          <h3>Cartridge Guide</h3>
+          <p>MM vs MC, compliance, output, and loading for phono cartridges.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/cartridge-setup">
+          <h3>Cartridge Setup &amp; Alignment</h3>
+          <p>Tracking force, alignment geometry, anti-skate, and VTA done right.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/phono-stages">
+          <h3>Phono Stage Guide</h3>
+          <p>Gain, loading, and RIAA accuracy for getting signal from a cartridge.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+      </div>
+    </section>
 
-    <p>Low-impedance headphones (16&ndash;32 &Omega;) are generally easier to drive to loud levels from a phone or laptop headphone output, but they draw more current. They are also more sensitive to the output impedance of the source — which is covered below. High-impedance designs (150&ndash;600 &Omega;) typically offer lower distortion at high signal levels and are more tolerant of output impedance mismatches, but require a dedicated headphone amplifier for best performance.</p>
+    <section class="cat-section" id="digital">
+      <h2 class="cat-title">Digital Audio</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/dacs">
+          <h3>DAC Guide</h3>
+          <p>Resolution, filters, and jitter — what separates a good DAC from a spec sheet.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/streamers">
+          <h3>Network Streamers</h3>
+          <p>Output interfaces, resolution, and clocking for network sources.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/digital-formats">
+          <h3>Digital Audio Formats</h3>
+          <p>Sample rate, bit depth, lossless vs lossy, and what is actually audible.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+      </div>
+    </section>
 
-    <h2>Sensitivity: Two Different Rating Systems</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Sensitivity: dB/mW vs dB/V</h3>
-      <p>Headphone sensitivity is specified in one of two ways: dB SPL per milliwatt (dB/mW) or dB SPL per volt (dB/V). These are not interchangeable. For a 32 &Omega; headphone, 100 dB/mW equals 115 dB/V. For a 300 &Omega; headphone, 100 dB/mW equals only 107 dB/V. Always check which convention the manufacturer uses before comparing sensitivity figures across products with different impedances. The dB/V convention is more useful for matching to a source amplifier, since amplifiers are voltage sources. The dB/mW convention tells you about efficiency relative to power.</p>
-    </div>
-
-    <p>A useful rule of thumb: to achieve 110 dB SPL (a reasonable maximum listening level), divide 110 by the sensitivity figure in dB/V. The result tells you how many volts RMS the amplifier must deliver. A headphone rated 105 dB/V needs 10&sup0;&middot;⁵ &asymp; 3.2 V RMS for 110 dB SPL. A headphone rated 95 dB/V needs 10 V RMS — which is beyond most portable and desktop sources. High-impedance, low-sensitivity headphones (Sennheiser HD 800: 102 dB/V at 300 &Omega;) require a dedicated desktop amplifier with meaningful output voltage capability.</p>
-
-    <h2>Output Impedance: The Critical Amplifier Spec</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Critical Compatibility Spec</div>
-      <h3>Amplifier Output Impedance and the 1/8 Rule</h3>
-      <p>The amplifier's output impedance forms a voltage divider with the headphone's impedance. If the output impedance is a significant fraction of the headphone's impedance, the amplifier's output impedance interacts with the frequency-dependent variation in the headphone's impedance to alter the frequency response. The standard guideline — borrowed from loudspeaker amplifier design — is that the amplifier's output impedance should be no more than 1/8th of the headphone's minimum impedance. For a 300 &Omega; headphone, the amplifier output impedance should be &le;37 &Omega;. For a 32 &Omega; headphone, it must be &le;4 &Omega;.</p>
-    </div>
-
-    <p>Many consumer electronics have high output impedances from their headphone jacks: some portable media players measure 10&ndash;25 &Omega;. This is audible as tonal coloration on low-impedance headphones whose impedance varies with frequency (as most dynamic headphones do). The treble and bass response will shift depending on the interaction between the source output impedance and the headphone's impedance curve. A dedicated headphone amplifier typically has an output impedance well below 1 &Omega;.</p>
-
-    <div class="callout">
-      <p><strong>Hiss from background noise:</strong> A sensitive low-impedance headphone (16&ndash;32 &Omega;, 110+ dB/mW) will reveal the noise floor of almost any amplifier. If you hear hiss at zero volume, the amplifier's noise is being exposed by the headphone's high sensitivity. More gain than needed for comfortable listening is the usual cause.</p>
-    </div>
-
-    <h2>Planar Magnetic Headphones: What They Need</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Driver Technology</div>
-      <h3>Planar Magnetics: Low Impedance, Low Sensitivity</h3>
-      <p>Planar magnetic headphones use a thin membrane with embedded conductors suspended between magnets, rather than a voice coil in a magnetic gap. They typically have low impedance (20&ndash;50 &Omega;) and low sensitivity (85&ndash;95 dB/V) — meaning they require an amplifier that can deliver both significant current (for the low impedance) and significant voltage swing (for the low sensitivity). Many planar magnetics are described as "hard to drive" not because of their impedance but because of the combination of low sensitivity and the current required. A desktop amplifier with at least 1 W of output into their impedance is usually a minimum requirement.</p>
-    </div>
-
-    <h2>Quick Reference: Headphone Specs at a Glance</h2>
-
-    <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
-      <tbody>
-        <tr><td>Impedance</td><td>Electrical resistance of the headphone</td><td>Low (&le;50 &Omega;): easy to drive; High (150+ &Omega;): needs amplifier voltage</td></tr>
-        <tr><td>Sensitivity (dB/V)</td><td>SPL per volt at the headphone terminal</td><td>Higher = easier to drive; check units match</td></tr>
-        <tr><td>Sensitivity (dB/mW)</td><td>SPL per milliwatt into the headphone</td><td>Comparable only within same impedance class</td></tr>
-        <tr><td>Amplifier Output Impedance</td><td>Source impedance forming voltage divider with headphone</td><td>&le;1/8th of minimum headphone impedance</td></tr>
-        <tr><td>Amplifier Output Voltage</td><td>Maximum voltage swing available</td><td>Must reach 110 dB SPL at your headphone's sensitivity</td></tr>
-        <tr><td>Driver Type</td><td>Dynamic or planar magnetic</td><td>Planars need current + voltage; dynamics need voltage primarily</td></tr>
-      </tbody>
-    </table>
+    <section class="cat-section" id="headphones-power">
+      <h2 class="cat-title">Headphones &amp; Power</h2>
+      <div class="guide-grid">
+        <a class="guide-card" href="/guides/headphones">
+          <h3>Headphone Guide</h3>
+          <p>Impedance, sensitivity, and matching headphones to the right amplifier.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/cables">
+          <h3>Cables Guide</h3>
+          <p>What cables can and cannot do, and where the money is worth spending.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+        <a class="guide-card" href="/guides/power-conditioning">
+          <h3>Power &amp; AC Conditioning</h3>
+          <p>Surge, noise, isolation, and regeneration — help versus hype.</p>
+          <span class="gc-arrow">Read guide →</span>
+        </a>
+      </div>
+    </section>
 
     <div class="cta-block">
-      <h3>Check your headphone chain compatibility</h3>
-      <p>Enter your headphones and source or amplifier to get a full analysis of output impedance ratio, voltage requirements, and signal-to-noise ratio.</p>
+      <h3>Not sure how your gear fits together?</h3>
+      <p>Enter your components and get a free AI-powered signal-chain compatibility analysis — gain staging, impedance matching, loading, and recommendations.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
     <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
-
-    <h2>More Guides</h2>
-    <div class="guide-nav">
-      <a href="/guides/amplifiers">Amplifier Guide →</a>
-      <a href="/guides/dacs">DAC Guide →</a>
-      <a href="/guides/cables">Cables Guide →</a>
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
-      <a href="/glossary">Glossary →</a>
-    </div>
 
   </div>
 </main>

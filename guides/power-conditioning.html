@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com</title>
-<meta name="description" content="How to match headphones to an amplifier: impedance, sensitivity ratings, the 1/8 output-impedance rule, and what planar magnetics need from a source.">
-<meta property="og:title" content="Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com">
+<title>Power &amp; AC Conditioning: The Specs That Actually Matter — AudioChainHiFi.com</title>
+<meta name="description" content="Surge protection, noise filtering, isolation, regeneration, and current delivery — what AC power conditioning does, what it cannot do, and where it helps in a hi-fi system.">
+<meta property="og:title" content="Power &amp; AC Conditioning: The Specs That Actually Matter — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/headphones">
+<meta property="og:url" content="https://audiochainhifi.com/guides/power-conditioning">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/headphones">
+<meta property="article:published_time" content="2026-06-12T00:00:00Z">
+<meta property="article:modified_time" content="2026-06-12T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/power-conditioning">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -123,11 +123,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Audio equipment">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80" alt="Audio equipment power and wiring">
     <div class="guide-label">Component Guide</div>
-    <h1>Headphones: Impedance, Sensitivity, and Amplifier Matching</h1>
-    <p class="lede">A headphone's impedance and sensitivity determine what kind of amplifier it needs. High-impedance cans need voltage; planars need current. Mismatching leads to distortion, hiss, or simply quiet playback.</p>
-    <p class="guide-date">Published April 2026 &middot; Updated May 2026</p>
+    <h1>Power &amp; AC Conditioning: Separating Help from Hype</h1>
+    <p class="lede">Power conditioning is one of hi-fi&rsquo;s most contested categories. Some of it solves real problems — surges, noise, ground loops — and some promises gains that physics does not support. Here is the line between them.</p>
+    <p class="guide-date">Published June 2026</p>
   </div>
 </div>
 
@@ -139,75 +139,76 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/dacs">DAC Guide →</a>
-        <a href="/guides/cables">Cables Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/glossary">Glossary →</a>
+      <a href="/guides/amplifiers">Amplifier Guide →</a>
+      <a href="/guides/tubes">Tubes vs Solid-State →</a>
+      <a href="/guides/cables">Cables Guide →</a>
+      <a href="/guides/room-acoustics">Room Acoustics →</a>
+      <a href="/glossary">Glossary →</a>
       </div>
     </div>
 
-    <p>Headphone specifications look similar to speaker specifications — impedance, sensitivity, frequency response — but they are used and interpreted differently. A speaker amplifier rated at 100 watts is usually far too powerful for headphones; a phone's headphone output is usually far too weak for high-impedance audiophile headphones. The compatibility chain matters as much for headphones as for any loudspeaker system.</p>
+    <p>Power conditioning covers several different jobs that are often bundled into one box: protecting equipment from surges, filtering high-frequency noise off the mains, isolating components to break ground loops, and in some products regenerating a clean AC waveform. They are not interchangeable, and the value of each depends on your equipment and how dirty your mains supply actually is. Knowing what each does prevents both wasted money and missed problems.</p>
 
-    <h2>Impedance: High vs Low</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Headphone Impedance (&Omega;)</h3>
-      <p>Consumer and portable headphones typically measure 16&ndash;64 &Omega;. Studio and audiophile headphones commonly range from 80 to 600 &Omega;. The impedance affects how much voltage is needed to drive the headphone to a given sound pressure level. A 300 &Omega; headphone needs six times the voltage of a 50 &Omega; headphone to produce the same current through the voice coil. This means high-impedance headphones require an amplifier capable of higher output voltage — a specification that is rarely emphasised in consumer electronics, but which determines whether the amplifier can drive the headphone to satisfying volume levels.</p>
-    </div>
-
-    <p>Low-impedance headphones (16&ndash;32 &Omega;) are generally easier to drive to loud levels from a phone or laptop headphone output, but they draw more current. They are also more sensitive to the output impedance of the source — which is covered below. High-impedance designs (150&ndash;600 &Omega;) typically offer lower distortion at high signal levels and are more tolerant of output impedance mismatches, but require a dedicated headphone amplifier for best performance.</p>
-
-    <h2>Sensitivity: Two Different Rating Systems</h2>
+    <h2>Surge Protection</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Sensitivity: dB/mW vs dB/V</h3>
-      <p>Headphone sensitivity is specified in one of two ways: dB SPL per milliwatt (dB/mW) or dB SPL per volt (dB/V). These are not interchangeable. For a 32 &Omega; headphone, 100 dB/mW equals 115 dB/V. For a 300 &Omega; headphone, 100 dB/mW equals only 107 dB/V. Always check which convention the manufacturer uses before comparing sensitivity figures across products with different impedances. The dB/V convention is more useful for matching to a source amplifier, since amplifiers are voltage sources. The dB/mW convention tells you about efficiency relative to power.</p>
+      <div class="spec-name">Function</div>
+      <h3>Surge / Transient Protection</h3>
+      <p>Surge protection clamps voltage spikes — from lightning, grid switching, or large appliances — before they reach your gear. This is the one function every system benefits from: a single surge can destroy an amplifier or DAC. Look at the joule rating (energy it can absorb) and clamping voltage (the level at which it acts). Surge protection is cheap insurance and the least controversial part of power conditioning.</p>
     </div>
 
-    <p>A useful rule of thumb: to achieve 110 dB SPL (a reasonable maximum listening level), divide 110 by the sensitivity figure in dB/V. The result tells you how many volts RMS the amplifier must deliver. A headphone rated 105 dB/V needs 10&sup0;&middot;⁵ &asymp; 3.2 V RMS for 110 dB SPL. A headphone rated 95 dB/V needs 10 V RMS — which is beyond most portable and desktop sources. High-impedance, low-sensitivity headphones (Sennheiser HD 800: 102 dB/V at 300 &Omega;) require a dedicated desktop amplifier with meaningful output voltage capability.</p>
-
-    <h2>Output Impedance: The Critical Amplifier Spec</h2>
+    <h2>Noise Filtering</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Critical Compatibility Spec</div>
-      <h3>Amplifier Output Impedance and the 1/8 Rule</h3>
-      <p>The amplifier's output impedance forms a voltage divider with the headphone's impedance. If the output impedance is a significant fraction of the headphone's impedance, the amplifier's output impedance interacts with the frequency-dependent variation in the headphone's impedance to alter the frequency response. The standard guideline — borrowed from loudspeaker amplifier design — is that the amplifier's output impedance should be no more than 1/8th of the headphone's minimum impedance. For a 300 &Omega; headphone, the amplifier output impedance should be &le;37 &Omega;. For a 32 &Omega; headphone, it must be &le;4 &Omega;.</p>
+      <div class="spec-name">Function</div>
+      <h3>RFI / EMI Filtering</h3>
+      <p>Mains supply carries high-frequency noise from switching power supplies, dimmers, motors, and digital devices. Filters attenuate this noise before it reaches sensitive analog circuitry, where it can raise the noise floor or intermodulate into the audible band. Filtering helps most with low-level components — phono stages, DACs, preamps — in electrically noisy environments. Its audible benefit varies enormously: a system on a quiet rural supply may hear nothing; one sharing a circuit with LED dimmers and a fridge may hear a real improvement.</p>
     </div>
 
-    <p>Many consumer electronics have high output impedances from their headphone jacks: some portable media players measure 10&ndash;25 &Omega;. This is audible as tonal coloration on low-impedance headphones whose impedance varies with frequency (as most dynamic headphones do). The treble and bass response will shift depending on the interaction between the source output impedance and the headphone's impedance curve. A dedicated headphone amplifier typically has an output impedance well below 1 &Omega;.</p>
+    <h2>A Caution for Power Amplifiers</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Critical Caveat</div>
+      <h3>Current Limiting</h3>
+      <p>Power amplifiers draw large, brief current surges on bass transients. A conditioner with an undersized filter or transformer can choke that current, softening dynamics and compressing the sound — the opposite of the intended effect. Many manufacturers recommend plugging power amps directly into the wall (or into a high-current, unfiltered conditioner outlet) and conditioning only the source and preamp components. If conditioning an amp, ensure the device can pass the amp&rsquo;s peak current demand without restriction.</p>
+    </div>
+
+    <h2>Isolation and Ground Loops</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Function</div>
+      <h3>Isolation Transformers</h3>
+      <p>A hum or buzz that rises and falls with volume on some sources is usually a ground loop — a small voltage difference between components&rsquo; grounds creating a current through the signal cables. Isolation transformers (and balanced power) can break these loops by galvanically separating the supply. This addresses an actual, audible fault rather than a subtle one. Before buying isolation hardware, rule out simpler causes: a single shared outlet, a cheater plug as a diagnostic only, or a ground-loop isolator on the offending source.</p>
+    </div>
+
+    <h2>AC Regeneration</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Function</div>
+      <h3>Power Regenerators</h3>
+      <p>A regenerator takes in mains AC, converts it to DC, and synthesises a fresh, clean sine wave at precise voltage and frequency — effectively a high-power audio amplifier driving your system&rsquo;s power supplies. It delivers the cleanest, most stable AC and can genuinely help source components and in areas with poor mains voltage or distorted waveforms. The trade-offs are cost, heat, and limited current capacity — regenerators are best suited to front-end gear, not high-power amplifiers.</p>
+    </div>
 
     <div class="callout">
-      <p><strong>Hiss from background noise:</strong> A sensitive low-impedance headphone (16&ndash;32 &Omega;, 110+ dB/mW) will reveal the noise floor of almost any amplifier. If you hear hiss at zero volume, the amplifier's noise is being exposed by the headphone's high sensitivity. More gain than needed for comfortable listening is the usual cause.</p>
+      <p><strong>Diagnose before you buy:</strong> The biggest real-world gains from "power" products usually come from fixing a specific fault — a surge risk, a ground loop, or a genuinely noisy circuit — not from generic "cleaner power." A dedicated mains circuit to the listening room often does more than any conditioner. Identify the actual problem first.</p>
     </div>
 
-    <h2>Planar Magnetic Headphones: What They Need</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Driver Technology</div>
-      <h3>Planar Magnetics: Low Impedance, Low Sensitivity</h3>
-      <p>Planar magnetic headphones use a thin membrane with embedded conductors suspended between magnets, rather than a voice coil in a magnetic gap. They typically have low impedance (20&ndash;50 &Omega;) and low sensitivity (85&ndash;95 dB/V) — meaning they require an amplifier that can deliver both significant current (for the low impedance) and significant voltage swing (for the low sensitivity). Many planar magnetics are described as "hard to drive" not because of their impedance but because of the combination of low sensitivity and the current required. A desktop amplifier with at least 1 W of output into their impedance is usually a minimum requirement.</p>
-    </div>
-
-    <h2>Quick Reference: Headphone Specs at a Glance</h2>
+    <h2>Quick Reference: Power Products at a Glance</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <thead><tr><th>Product Type</th><th>What It Solves</th><th>Best For</th></tr></thead>
       <tbody>
-        <tr><td>Impedance</td><td>Electrical resistance of the headphone</td><td>Low (&le;50 &Omega;): easy to drive; High (150+ &Omega;): needs amplifier voltage</td></tr>
-        <tr><td>Sensitivity (dB/V)</td><td>SPL per volt at the headphone terminal</td><td>Higher = easier to drive; check units match</td></tr>
-        <tr><td>Sensitivity (dB/mW)</td><td>SPL per milliwatt into the headphone</td><td>Comparable only within same impedance class</td></tr>
-        <tr><td>Amplifier Output Impedance</td><td>Source impedance forming voltage divider with headphone</td><td>&le;1/8th of minimum headphone impedance</td></tr>
-        <tr><td>Amplifier Output Voltage</td><td>Maximum voltage swing available</td><td>Must reach 110 dB SPL at your headphone's sensitivity</td></tr>
-        <tr><td>Driver Type</td><td>Dynamic or planar magnetic</td><td>Planars need current + voltage; dynamics need voltage primarily</td></tr>
+        <tr><td>Surge Protector</td><td>Voltage spikes</td><td>Every system — basic protection</td></tr>
+        <tr><td>Noise Filter</td><td>RFI/EMI on the mains</td><td>Sources and preamps on noisy supplies</td></tr>
+        <tr><td>Isolation Transformer</td><td>Ground loops, hum</td><td>Systems with an audible ground-loop fault</td></tr>
+        <tr><td>Regenerator</td><td>Distorted/unstable AC</td><td>Front-end gear; areas with poor mains</td></tr>
+        <tr><td>Dedicated Circuit</td><td>Shared-load noise, current sag</td><td>Whole system; often the best first step</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your headphone chain compatibility</h3>
-      <p>Enter your headphones and source or amplifier to get a full analysis of output impedance ratio, voltage requirements, and signal-to-noise ratio.</p>
+      <h3>Check your full system chain</h3>
+      <p>Enter your components to get a full signal-chain compatibility analysis. Understand your gain structure, grounding, and where noise can enter the chain.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
@@ -216,9 +217,9 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>More Guides</h2>
     <div class="guide-nav">
       <a href="/guides/amplifiers">Amplifier Guide →</a>
-      <a href="/guides/dacs">DAC Guide →</a>
+      <a href="/guides/tubes">Tubes vs Solid-State →</a>
       <a href="/guides/cables">Cables Guide →</a>
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
+      <a href="/guides/room-acoustics">Room Acoustics →</a>
       <a href="/glossary">Glossary →</a>
     </div>
 

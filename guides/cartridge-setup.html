@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com</title>
-<meta name="description" content="How to match headphones to an amplifier: impedance, sensitivity ratings, the 1/8 output-impedance rule, and what planar magnetics need from a source.">
-<meta property="og:title" content="Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com">
+<title>Cartridge Setup &amp; Alignment: The Specs That Actually Matter — AudioChainHiFi.com</title>
+<meta name="description" content="Tracking force, overhang and alignment geometry, anti-skate, VTA/SRA, and azimuth — the adjustments that determine whether a cartridge tracks cleanly and sounds its best.">
+<meta property="og:title" content="Cartridge Setup &amp; Alignment: The Specs That Actually Matter — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/headphones">
+<meta property="og:url" content="https://audiochainhifi.com/guides/cartridge-setup">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/headphones">
+<meta property="article:published_time" content="2026-06-12T00:00:00Z">
+<meta property="article:modified_time" content="2026-06-12T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/cartridge-setup">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -123,11 +123,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Audio equipment">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=1600&q=80" alt="Turntable tonearm and cartridge">
     <div class="guide-label">Component Guide</div>
-    <h1>Headphones: Impedance, Sensitivity, and Amplifier Matching</h1>
-    <p class="lede">A headphone's impedance and sensitivity determine what kind of amplifier it needs. High-impedance cans need voltage; planars need current. Mismatching leads to distortion, hiss, or simply quiet playback.</p>
-    <p class="guide-date">Published April 2026 &middot; Updated May 2026</p>
+    <h1>Cartridge Setup &amp; Alignment: Getting It Right</h1>
+    <p class="lede">A great cartridge mounted carelessly sounds mediocre. Tracking force, alignment geometry, anti-skate, and VTA each affect tracking, distortion, and channel balance — and all are adjustable.</p>
+    <p class="guide-date">Published June 2026</p>
   </div>
 </div>
 
@@ -139,75 +139,81 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/dacs">DAC Guide →</a>
-        <a href="/guides/cables">Cables Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/glossary">Glossary →</a>
+      <a href="/guides/cartridges">Cartridge Guide →</a>
+      <a href="/guides/turntables">Turntable Guide →</a>
+      <a href="/guides/phono-stages">Phono Stage Guide →</a>
+      <a href="/guides/used-hifi">Used + New Strategy →</a>
+      <a href="/glossary">Glossary →</a>
       </div>
     </div>
 
-    <p>Headphone specifications look similar to speaker specifications — impedance, sensitivity, frequency response — but they are used and interpreted differently. A speaker amplifier rated at 100 watts is usually far too powerful for headphones; a phone's headphone output is usually far too weak for high-impedance audiophile headphones. The compatibility chain matters as much for headphones as for any loudspeaker system.</p>
+    <p>A phono cartridge converts groove modulation into a tiny electrical signal, and how precisely the stylus sits in the groove determines how cleanly it tracks. Setup is the process of positioning and loading the cartridge so the stylus traces the groove the way the cutting lathe intended. Each adjustment addresses a specific geometric or mechanical relationship; get them right and tracking distortion drops, channel balance improves, and the cartridge delivers what it is capable of.</p>
 
-    <h2>Impedance: High vs Low</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Headphone Impedance (&Omega;)</h3>
-      <p>Consumer and portable headphones typically measure 16&ndash;64 &Omega;. Studio and audiophile headphones commonly range from 80 to 600 &Omega;. The impedance affects how much voltage is needed to drive the headphone to a given sound pressure level. A 300 &Omega; headphone needs six times the voltage of a 50 &Omega; headphone to produce the same current through the voice coil. This means high-impedance headphones require an amplifier capable of higher output voltage — a specification that is rarely emphasised in consumer electronics, but which determines whether the amplifier can drive the headphone to satisfying volume levels.</p>
-    </div>
-
-    <p>Low-impedance headphones (16&ndash;32 &Omega;) are generally easier to drive to loud levels from a phone or laptop headphone output, but they draw more current. They are also more sensitive to the output impedance of the source — which is covered below. High-impedance designs (150&ndash;600 &Omega;) typically offer lower distortion at high signal levels and are more tolerant of output impedance mismatches, but require a dedicated headphone amplifier for best performance.</p>
-
-    <h2>Sensitivity: Two Different Rating Systems</h2>
+    <h2>Tracking Force (VTF)</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Sensitivity: dB/mW vs dB/V</h3>
-      <p>Headphone sensitivity is specified in one of two ways: dB SPL per milliwatt (dB/mW) or dB SPL per volt (dB/V). These are not interchangeable. For a 32 &Omega; headphone, 100 dB/mW equals 115 dB/V. For a 300 &Omega; headphone, 100 dB/mW equals only 107 dB/V. Always check which convention the manufacturer uses before comparing sensitivity figures across products with different impedances. The dB/V convention is more useful for matching to a source amplifier, since amplifiers are voltage sources. The dB/mW convention tells you about efficiency relative to power.</p>
+      <div class="spec-name">Key Setting</div>
+      <h3>Vertical Tracking Force (grams)</h3>
+      <p>VTF is the downward force the stylus exerts on the groove, set by the tonearm counterweight and confirmed with a stylus force gauge — never by the dial alone. Every cartridge has a manufacturer-specified range; set it in the middle to start. Too light, and the stylus skips and mistracks, gouging the groove and producing distortion; too heavy, and it sounds dull and wears the record faster. A digital gauge reading to 0.01&nbsp;g is the single most useful setup tool.</p>
     </div>
 
-    <p>A useful rule of thumb: to achieve 110 dB SPL (a reasonable maximum listening level), divide 110 by the sensitivity figure in dB/V. The result tells you how many volts RMS the amplifier must deliver. A headphone rated 105 dB/V needs 10&sup0;&middot;⁵ &asymp; 3.2 V RMS for 110 dB SPL. A headphone rated 95 dB/V needs 10 V RMS — which is beyond most portable and desktop sources. High-impedance, low-sensitivity headphones (Sennheiser HD 800: 102 dB/V at 300 &Omega;) require a dedicated desktop amplifier with meaningful output voltage capability.</p>
-
-    <h2>Output Impedance: The Critical Amplifier Spec</h2>
+    <h2>Alignment Geometry</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Critical Compatibility Spec</div>
-      <h3>Amplifier Output Impedance and the 1/8 Rule</h3>
-      <p>The amplifier's output impedance forms a voltage divider with the headphone's impedance. If the output impedance is a significant fraction of the headphone's impedance, the amplifier's output impedance interacts with the frequency-dependent variation in the headphone's impedance to alter the frequency response. The standard guideline — borrowed from loudspeaker amplifier design — is that the amplifier's output impedance should be no more than 1/8th of the headphone's minimum impedance. For a 300 &Omega; headphone, the amplifier output impedance should be &le;37 &Omega;. For a 32 &Omega; headphone, it must be &le;4 &Omega;.</p>
+      <div class="spec-name">Key Setting</div>
+      <h3>Overhang and Offset Angle</h3>
+      <p>A pivoted tonearm traces an arc across a record cut by a linear lathe, so the stylus can only be perfectly tangent to the groove at two points (the null points). Alignment sets the overhang (how far the stylus extends past the spindle) and offset angle to place those null points optimally, minimising tracking-angle error and the distortion it causes. Use a printed alignment protractor and adjust the cartridge in the headshell slots until the stylus aligns at both null points.</p>
     </div>
 
-    <p>Many consumer electronics have high output impedances from their headphone jacks: some portable media players measure 10&ndash;25 &Omega;. This is audible as tonal coloration on low-impedance headphones whose impedance varies with frequency (as most dynamic headphones do). The treble and bass response will shift depending on the interaction between the source output impedance and the headphone's impedance curve. A dedicated headphone amplifier typically has an output impedance well below 1 &Omega;.</p>
+    <div class="spec-card">
+      <div class="spec-name">Geometry Choice</div>
+      <h3>Baerwald, Löfgren, and Stevenson</h3>
+      <p>These are different alignment geometries, each placing the two null points differently to optimise a different region of the record. Baerwald (Löfgren A) minimises distortion across the whole side and is the most common default. Löfgren B reduces average distortion slightly at the cost of higher distortion at the extremes. Stevenson places a null point at the inner groove to favour the run-out, where tracking is hardest. For most listeners, Baerwald is the right starting choice.</p>
+    </div>
+
+    <h2>Anti-Skate</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Key Setting</div>
+      <h3>Anti-Skate Force</h3>
+      <p>The offset angle and friction create a skating force that pulls the arm inward toward the spindle, loading the inner groove wall more than the outer. Anti-skate applies a small counter-force to balance stylus pressure between the two channels. Set it roughly equal to the tracking force as a starting point, then fine-tune by ear (balanced channels, clean tracking on loud passages) or with a test record. Too much or too little anti-skate skews channel balance and increases distortion on one wall.</p>
+    </div>
+
+    <h2>VTA / SRA and Azimuth</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Fine Adjustment</div>
+      <h3>Vertical Tracking Angle / Stylus Rake Angle</h3>
+      <p>VTA is set by the tonearm&rsquo;s height at the pivot, which tilts the cartridge and changes the stylus rake angle — the angle at which the stylus contacts the groove relative to the cut angle (nominally 92°). Start with the arm tube parallel to the record surface. Raising or lowering the pivot shifts tonal balance: too low (tail down) tends toward dull and thick; too high tends toward thin and bright. VTA matters most with line-contact and microridge styli; conical styli are largely insensitive to it.</p>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-name">Fine Adjustment</div>
+      <h3>Azimuth</h3>
+      <p>Azimuth is the side-to-side tilt of the stylus — it should be perpendicular to the record so the stylus sits symmetrically in the groove. Incorrect azimuth degrades channel separation and skews the stereo image. Set it visually (stylus vertical, viewed from the front) or, more precisely, by measuring crosstalk with a test record and adjusting for the best left/right separation. Many tonearms allow azimuth adjustment at the headshell or arm collar.</p>
+    </div>
 
     <div class="callout">
-      <p><strong>Hiss from background noise:</strong> A sensitive low-impedance headphone (16&ndash;32 &Omega;, 110+ dB/mW) will reveal the noise floor of almost any amplifier. If you hear hiss at zero volume, the amplifier's noise is being exposed by the headphone's high sensitivity. More gain than needed for comfortable listening is the usual cause.</p>
+      <p><strong>Order of operations:</strong> Set tracking force first, then alignment (overhang/offset) with a protractor, then anti-skate, then VTA/SRA, and finally azimuth — and recheck tracking force at the end, since some adjustments interact. Work methodically: changing one parameter can shift another, so a second pass is normal.</p>
     </div>
 
-    <h2>Planar Magnetic Headphones: What They Need</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Driver Technology</div>
-      <h3>Planar Magnetics: Low Impedance, Low Sensitivity</h3>
-      <p>Planar magnetic headphones use a thin membrane with embedded conductors suspended between magnets, rather than a voice coil in a magnetic gap. They typically have low impedance (20&ndash;50 &Omega;) and low sensitivity (85&ndash;95 dB/V) — meaning they require an amplifier that can deliver both significant current (for the low impedance) and significant voltage swing (for the low sensitivity). Many planar magnetics are described as "hard to drive" not because of their impedance but because of the combination of low sensitivity and the current required. A desktop amplifier with at least 1 W of output into their impedance is usually a minimum requirement.</p>
-    </div>
-
-    <h2>Quick Reference: Headphone Specs at a Glance</h2>
+    <h2>Quick Reference: Cartridge Setup Steps</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <thead><tr><th>Adjustment</th><th>What It Controls</th><th>How to Set It</th></tr></thead>
       <tbody>
-        <tr><td>Impedance</td><td>Electrical resistance of the headphone</td><td>Low (&le;50 &Omega;): easy to drive; High (150+ &Omega;): needs amplifier voltage</td></tr>
-        <tr><td>Sensitivity (dB/V)</td><td>SPL per volt at the headphone terminal</td><td>Higher = easier to drive; check units match</td></tr>
-        <tr><td>Sensitivity (dB/mW)</td><td>SPL per milliwatt into the headphone</td><td>Comparable only within same impedance class</td></tr>
-        <tr><td>Amplifier Output Impedance</td><td>Source impedance forming voltage divider with headphone</td><td>&le;1/8th of minimum headphone impedance</td></tr>
-        <tr><td>Amplifier Output Voltage</td><td>Maximum voltage swing available</td><td>Must reach 110 dB SPL at your headphone's sensitivity</td></tr>
-        <tr><td>Driver Type</td><td>Dynamic or planar magnetic</td><td>Planars need current + voltage; dynamics need voltage primarily</td></tr>
+        <tr><td>Tracking Force</td><td>Stylus downforce</td><td>Digital gauge, mid-point of spec range</td></tr>
+        <tr><td>Overhang / Offset</td><td>Tracking-angle error</td><td>Alignment protractor, both null points</td></tr>
+        <tr><td>Geometry</td><td>Where distortion is minimised</td><td>Baerwald for most setups</td></tr>
+        <tr><td>Anti-Skate</td><td>Channel balance, inward pull</td><td>≈ tracking force, then fine-tune</td></tr>
+        <tr><td>VTA / SRA</td><td>Stylus rake, tonal balance</td><td>Arm parallel to start; adjust by ear</td></tr>
+        <tr><td>Azimuth</td><td>Stylus vertical tilt, separation</td><td>Stylus perpendicular; verify crosstalk</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your headphone chain compatibility</h3>
-      <p>Enter your headphones and source or amplifier to get a full analysis of output impedance ratio, voltage requirements, and signal-to-noise ratio.</p>
+      <h3>Check your turntable chain compatibility</h3>
+      <p>Enter your turntable, cartridge, phono stage, and amplifier to get a full signal-chain analysis including compliance matching, gain, and loading.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
@@ -215,10 +221,10 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <h2>More Guides</h2>
     <div class="guide-nav">
-      <a href="/guides/amplifiers">Amplifier Guide →</a>
-      <a href="/guides/dacs">DAC Guide →</a>
-      <a href="/guides/cables">Cables Guide →</a>
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
+      <a href="/guides/cartridges">Cartridge Guide →</a>
+      <a href="/guides/turntables">Turntable Guide →</a>
+      <a href="/guides/phono-stages">Phono Stage Guide →</a>
+      <a href="/guides/used-hifi">Used + New Strategy →</a>
       <a href="/glossary">Glossary →</a>
     </div>
 

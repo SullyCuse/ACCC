@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com</title>
-<meta name="description" content="How to match headphones to an amplifier: impedance, sensitivity ratings, the 1/8 output-impedance rule, and what planar magnetics need from a source.">
-<meta property="og:title" content="Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com">
+<title>Subwoofer Integration: The Specs That Actually Matter — AudioChainHiFi.com</title>
+<meta name="description" content="Crossover frequency, slope, phase, sealed vs ported alignment, and placement — how to integrate a subwoofer with main speakers without bloated or disconnected bass.">
+<meta property="og:title" content="Subwoofer Integration: The Specs That Actually Matter — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/headphones">
+<meta property="og:url" content="https://audiochainhifi.com/guides/subwoofers">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/headphones">
+<meta property="article:published_time" content="2026-06-12T00:00:00Z">
+<meta property="article:modified_time" content="2026-06-12T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/subwoofers">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -123,11 +123,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Audio equipment">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1600&q=80" alt="Loudspeaker and subwoofer system">
     <div class="guide-label">Component Guide</div>
-    <h1>Headphones: Impedance, Sensitivity, and Amplifier Matching</h1>
-    <p class="lede">A headphone's impedance and sensitivity determine what kind of amplifier it needs. High-impedance cans need voltage; planars need current. Mismatching leads to distortion, hiss, or simply quiet playback.</p>
-    <p class="guide-date">Published April 2026 &middot; Updated May 2026</p>
+    <h1>Subwoofers: Integration, Crossover, and Placement</h1>
+    <p class="lede">A subwoofer is easy to add and hard to integrate. Crossover frequency, phase, and placement determine whether the low end blends seamlessly with your mains or arrives as a separate, boomy event.</p>
+    <p class="guide-date">Published June 2026</p>
   </div>
 </div>
 
@@ -139,75 +139,81 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/dacs">DAC Guide →</a>
-        <a href="/guides/cables">Cables Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/glossary">Glossary →</a>
+      <a href="/guides/speakers">Speaker Matching →</a>
+      <a href="/guides/room-acoustics">Room Acoustics →</a>
+      <a href="/guides/amplifiers">Amplifier Guide →</a>
+      <a href="/guides/active-vs-passive">Active vs Passive Speakers →</a>
+      <a href="/glossary">Glossary →</a>
       </div>
     </div>
 
-    <p>Headphone specifications look similar to speaker specifications — impedance, sensitivity, frequency response — but they are used and interpreted differently. A speaker amplifier rated at 100 watts is usually far too powerful for headphones; a phone's headphone output is usually far too weak for high-impedance audiophile headphones. The compatibility chain matters as much for headphones as for any loudspeaker system.</p>
+    <p>A subwoofer extends a system&rsquo;s low-frequency response below what the main speakers can produce and offloads bass demands from the mains, which can reduce distortion in the midrange. The difficulty is never making a sub loud — it is making it disappear, so the bass sounds like it comes from the main speakers rather than from a box in the corner. Integration is a matter of crossover, level, phase, and placement working together.</p>
 
-    <h2>Impedance: High vs Low</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Headphone Impedance (&Omega;)</h3>
-      <p>Consumer and portable headphones typically measure 16&ndash;64 &Omega;. Studio and audiophile headphones commonly range from 80 to 600 &Omega;. The impedance affects how much voltage is needed to drive the headphone to a given sound pressure level. A 300 &Omega; headphone needs six times the voltage of a 50 &Omega; headphone to produce the same current through the voice coil. This means high-impedance headphones require an amplifier capable of higher output voltage — a specification that is rarely emphasised in consumer electronics, but which determines whether the amplifier can drive the headphone to satisfying volume levels.</p>
-    </div>
-
-    <p>Low-impedance headphones (16&ndash;32 &Omega;) are generally easier to drive to loud levels from a phone or laptop headphone output, but they draw more current. They are also more sensitive to the output impedance of the source — which is covered below. High-impedance designs (150&ndash;600 &Omega;) typically offer lower distortion at high signal levels and are more tolerant of output impedance mismatches, but require a dedicated headphone amplifier for best performance.</p>
-
-    <h2>Sensitivity: Two Different Rating Systems</h2>
+    <h2>Crossover Frequency</h2>
 
     <div class="spec-card">
       <div class="spec-name">Key Spec</div>
-      <h3>Sensitivity: dB/mW vs dB/V</h3>
-      <p>Headphone sensitivity is specified in one of two ways: dB SPL per milliwatt (dB/mW) or dB SPL per volt (dB/V). These are not interchangeable. For a 32 &Omega; headphone, 100 dB/mW equals 115 dB/V. For a 300 &Omega; headphone, 100 dB/mW equals only 107 dB/V. Always check which convention the manufacturer uses before comparing sensitivity figures across products with different impedances. The dB/V convention is more useful for matching to a source amplifier, since amplifiers are voltage sources. The dB/mW convention tells you about efficiency relative to power.</p>
+      <h3>Low-Pass Crossover Frequency (Hz)</h3>
+      <p>The crossover sets where the subwoofer stops and the mains take over. A common starting point is 80&nbsp;Hz, which is below the range where the ear can localise bass — keeping the sub acoustically invisible. With small bookshelf mains, you may need to cross higher (100&ndash;120&nbsp;Hz); with large floorstanders, lower (50&ndash;60&nbsp;Hz). Set the crossover roughly where the mains&rsquo; in-room response starts rolling off, so the two overlap without a dip or a hump.</p>
     </div>
-
-    <p>A useful rule of thumb: to achieve 110 dB SPL (a reasonable maximum listening level), divide 110 by the sensitivity figure in dB/V. The result tells you how many volts RMS the amplifier must deliver. A headphone rated 105 dB/V needs 10&sup0;&middot;⁵ &asymp; 3.2 V RMS for 110 dB SPL. A headphone rated 95 dB/V needs 10 V RMS — which is beyond most portable and desktop sources. High-impedance, low-sensitivity headphones (Sennheiser HD 800: 102 dB/V at 300 &Omega;) require a dedicated desktop amplifier with meaningful output voltage capability.</p>
-
-    <h2>Output Impedance: The Critical Amplifier Spec</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Critical Compatibility Spec</div>
-      <h3>Amplifier Output Impedance and the 1/8 Rule</h3>
-      <p>The amplifier's output impedance forms a voltage divider with the headphone's impedance. If the output impedance is a significant fraction of the headphone's impedance, the amplifier's output impedance interacts with the frequency-dependent variation in the headphone's impedance to alter the frequency response. The standard guideline — borrowed from loudspeaker amplifier design — is that the amplifier's output impedance should be no more than 1/8th of the headphone's minimum impedance. For a 300 &Omega; headphone, the amplifier output impedance should be &le;37 &Omega;. For a 32 &Omega; headphone, it must be &le;4 &Omega;.</p>
+      <div class="spec-name">Key Spec</div>
+      <h3>Low-Pass Slope (dB/octave)</h3>
+      <p>The slope controls how quickly the sub&rsquo;s output falls above the crossover. Steeper slopes (24&nbsp;dB/oct) keep upper-bass localisation cues out of the sub; gentler slopes (12&nbsp;dB/oct) blend more smoothly with the mains&rsquo; natural roll-off but can leave more localisable output. The right slope depends on how the mains roll off — the goal is a flat acoustic sum through the crossover region, not a textbook electrical curve.</p>
     </div>
 
-    <p>Many consumer electronics have high output impedances from their headphone jacks: some portable media players measure 10&ndash;25 &Omega;. This is audible as tonal coloration on low-impedance headphones whose impedance varies with frequency (as most dynamic headphones do). The treble and bass response will shift depending on the interaction between the source output impedance and the headphone's impedance curve. A dedicated headphone amplifier typically has an output impedance well below 1 &Omega;.</p>
+    <h2>Phase and Time Alignment</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Critical Setting</div>
+      <h3>Phase Control (0&ndash;180°) and Polarity</h3>
+      <p>Where the sub and mains overlap, they must arrive in phase or they will partially cancel, producing a suckout exactly in the crossover region. The phase control compensates for the path-length and electrical delay difference between sub and mains. Set it by ear or by measurement: play a tone near the crossover and adjust phase for maximum output, which indicates the two sources are summing constructively. A continuously variable phase control is more useful than a simple 0/180° switch.</p>
+    </div>
+
+    <h2>Sealed vs Ported Alignment</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Design</div>
+      <h3>Sealed (Acoustic Suspension)</h3>
+      <p>A sealed enclosure rolls off gently (12&nbsp;dB/oct) and has tighter transient response and lower group delay, so it tends to sound faster and more articulate. It trades ultimate extension and efficiency for accuracy. Sealed subs integrate easily with music-focused systems and benefit from room gain to reinforce the bottom octave.</p>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-name">Design</div>
+      <h3>Ported (Bass Reflex)</h3>
+      <p>A ported enclosure uses a tuned port to extend low-frequency output and efficiency, going deeper and louder for a given driver and amplifier. The trade is a steeper roll-off below tuning (24&nbsp;dB/oct), higher group delay, and the risk of port noise at high output. Ported subs suit home theatre and systems that need maximum extension, where outright low-end weight matters more than the last degree of transient precision.</p>
+    </div>
+
+    <h2>Placement — The Free Upgrade</h2>
+
+    <p>Room placement affects a subwoofer&rsquo;s in-room response more than any other factor, because room modes reinforce and cancel bass depending on where the sub sits relative to the walls. The "subwoofer crawl" finds the best spot empirically: put the sub at your listening position, play bass-heavy material, then crawl around the room&rsquo;s perimeter and listen for where the bass is smoothest and most even. Place the sub where your ears were. Corners maximise output but often excite room modes unevenly.</p>
 
     <div class="callout">
-      <p><strong>Hiss from background noise:</strong> A sensitive low-impedance headphone (16&ndash;32 &Omega;, 110+ dB/mW) will reveal the noise floor of almost any amplifier. If you hear hiss at zero volume, the amplifier's noise is being exposed by the headphone's high sensitivity. More gain than needed for comfortable listening is the usual cause.</p>
+      <p><strong>Two subs beat one:</strong> A pair of subwoofers placed asymmetrically averages out room modes far better than a single sub, producing smoother bass across more seats. If your budget allows, two modest subs usually integrate better than one large one — the improvement is in evenness, not just output.</p>
     </div>
 
-    <h2>Planar Magnetic Headphones: What They Need</h2>
+    <h2>Connection Method</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Driver Technology</div>
-      <h3>Planar Magnetics: Low Impedance, Low Sensitivity</h3>
-      <p>Planar magnetic headphones use a thin membrane with embedded conductors suspended between magnets, rather than a voice coil in a magnetic gap. They typically have low impedance (20&ndash;50 &Omega;) and low sensitivity (85&ndash;95 dB/V) — meaning they require an amplifier that can deliver both significant current (for the low impedance) and significant voltage swing (for the low sensitivity). Many planar magnetics are described as "hard to drive" not because of their impedance but because of the combination of low sensitivity and the current required. A desktop amplifier with at least 1 W of output into their impedance is usually a minimum requirement.</p>
-    </div>
+    <p>Most subwoofers accept a line-level (RCA/LFE) input from a preamp or processor; many also offer high-level (speaker-level) inputs that tap the amplifier&rsquo;s output, which can preserve the tonal signature of the main amplifier and is the only option with some integrated amps. For two-channel music with a processor or sub with bass management, a line-level connection with the mains run full-range or high-passed is typical. Whichever you use, set the sub&rsquo;s internal crossover to bypass if your processor is already handling the crossover, to avoid filtering the signal twice.</p>
 
-    <h2>Quick Reference: Headphone Specs at a Glance</h2>
+    <h2>Quick Reference: Subwoofer Specs at a Glance</h2>
 
     <table class="spec-table">
       <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
       <tbody>
-        <tr><td>Impedance</td><td>Electrical resistance of the headphone</td><td>Low (&le;50 &Omega;): easy to drive; High (150+ &Omega;): needs amplifier voltage</td></tr>
-        <tr><td>Sensitivity (dB/V)</td><td>SPL per volt at the headphone terminal</td><td>Higher = easier to drive; check units match</td></tr>
-        <tr><td>Sensitivity (dB/mW)</td><td>SPL per milliwatt into the headphone</td><td>Comparable only within same impedance class</td></tr>
-        <tr><td>Amplifier Output Impedance</td><td>Source impedance forming voltage divider with headphone</td><td>&le;1/8th of minimum headphone impedance</td></tr>
-        <tr><td>Amplifier Output Voltage</td><td>Maximum voltage swing available</td><td>Must reach 110 dB SPL at your headphone's sensitivity</td></tr>
-        <tr><td>Driver Type</td><td>Dynamic or planar magnetic</td><td>Planars need current + voltage; dynamics need voltage primarily</td></tr>
+        <tr><td>Crossover Frequency</td><td>Handoff point to the mains</td><td>~80 Hz typical; higher for small mains</td></tr>
+        <tr><td>Low-Pass Slope</td><td>How fast the sub rolls off on top</td><td>Match to mains&rsquo; roll-off for a flat sum</td></tr>
+        <tr><td>Phase Control</td><td>Aligns sub and mains at crossover</td><td>Continuously variable preferred over 0/180°</td></tr>
+        <tr><td>Alignment</td><td>Sealed vs ported</td><td>Sealed for tight music bass; ported for extension/output</td></tr>
+        <tr><td>Placement</td><td>Position in room</td><td>Use the crawl method; consider dual subs</td></tr>
+        <tr><td>Connection</td><td>How signal reaches the sub</td><td>Line-level (LFE) or high-level; avoid double filtering</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your headphone chain compatibility</h3>
-      <p>Enter your headphones and source or amplifier to get a full analysis of output impedance ratio, voltage requirements, and signal-to-noise ratio.</p>
+      <h3>Check your subwoofer system compatibility</h3>
+      <p>Enter your speakers, amplifier, and sources to get a full signal-chain analysis. Understand how a subwoofer fits your gain structure and where your mains roll off.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
@@ -215,10 +221,10 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <h2>More Guides</h2>
     <div class="guide-nav">
+      <a href="/guides/speakers">Speaker Matching →</a>
+      <a href="/guides/room-acoustics">Room Acoustics →</a>
       <a href="/guides/amplifiers">Amplifier Guide →</a>
-      <a href="/guides/dacs">DAC Guide →</a>
-      <a href="/guides/cables">Cables Guide →</a>
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
+      <a href="/guides/active-vs-passive">Active vs Passive Speakers →</a>
       <a href="/glossary">Glossary →</a>
     </div>
 

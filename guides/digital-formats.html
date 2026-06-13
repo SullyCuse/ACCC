@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com</title>
-<meta name="description" content="How to match headphones to an amplifier: impedance, sensitivity ratings, the 1/8 output-impedance rule, and what planar magnetics need from a source.">
-<meta property="og:title" content="Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com">
+<title>Digital Audio Formats: The Specs That Actually Matter — AudioChainHiFi.com</title>
+<meta name="description" content="Sample rate, bit depth, lossless vs lossy, PCM vs DSD, and high-resolution audio explained — what these numbers mean and what is actually audible.">
+<meta property="og:title" content="Digital Audio Formats: The Specs That Actually Matter — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/headphones">
+<meta property="og:url" content="https://audiochainhifi.com/guides/digital-formats">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/headphones">
+<meta property="article:published_time" content="2026-06-12T00:00:00Z">
+<meta property="article:modified_time" content="2026-06-12T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/digital-formats">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -123,11 +123,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Audio equipment">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?auto=format&fit=crop&w=1600&q=80" alt="Digital audio waveform display">
     <div class="guide-label">Component Guide</div>
-    <h1>Headphones: Impedance, Sensitivity, and Amplifier Matching</h1>
-    <p class="lede">A headphone's impedance and sensitivity determine what kind of amplifier it needs. High-impedance cans need voltage; planars need current. Mismatching leads to distortion, hiss, or simply quiet playback.</p>
-    <p class="guide-date">Published April 2026 &middot; Updated May 2026</p>
+    <h1>Digital Audio Formats: Resolution Demystified</h1>
+    <p class="lede">Sample rate, bit depth, lossless, hi-res — the labels on digital music are widely misunderstood. Here is what each spec controls, the math behind it, and where audible benefit actually ends.</p>
+    <p class="guide-date">Published June 2026</p>
   </div>
 </div>
 
@@ -139,75 +139,78 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/dacs">DAC Guide →</a>
-        <a href="/guides/cables">Cables Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/glossary">Glossary →</a>
+      <a href="/guides/dacs">DAC Guide →</a>
+      <a href="/guides/streamers">Network Streamers →</a>
+      <a href="/guides/headphones">Headphone Guide →</a>
+      <a href="/guides/first-hifi-system">Build Your First System →</a>
+      <a href="/glossary">Glossary →</a>
       </div>
     </div>
 
-    <p>Headphone specifications look similar to speaker specifications — impedance, sensitivity, frequency response — but they are used and interpreted differently. A speaker amplifier rated at 100 watts is usually far too powerful for headphones; a phone's headphone output is usually far too weak for high-impedance audiophile headphones. The compatibility chain matters as much for headphones as for any loudspeaker system.</p>
+    <p>Digital audio is defined by two numbers: how often the signal is sampled (sample rate) and how finely each sample is measured (bit depth). Everything else — file format, lossless versus lossy, "hi-res" badges — is built on top of those two. Understanding what each controls separates meaningful resolution from marketing.</p>
 
-    <h2>Impedance: High vs Low</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Headphone Impedance (&Omega;)</h3>
-      <p>Consumer and portable headphones typically measure 16&ndash;64 &Omega;. Studio and audiophile headphones commonly range from 80 to 600 &Omega;. The impedance affects how much voltage is needed to drive the headphone to a given sound pressure level. A 300 &Omega; headphone needs six times the voltage of a 50 &Omega; headphone to produce the same current through the voice coil. This means high-impedance headphones require an amplifier capable of higher output voltage — a specification that is rarely emphasised in consumer electronics, but which determines whether the amplifier can drive the headphone to satisfying volume levels.</p>
-    </div>
-
-    <p>Low-impedance headphones (16&ndash;32 &Omega;) are generally easier to drive to loud levels from a phone or laptop headphone output, but they draw more current. They are also more sensitive to the output impedance of the source — which is covered below. High-impedance designs (150&ndash;600 &Omega;) typically offer lower distortion at high signal levels and are more tolerant of output impedance mismatches, but require a dedicated headphone amplifier for best performance.</p>
-
-    <h2>Sensitivity: Two Different Rating Systems</h2>
+    <h2>Sample Rate</h2>
 
     <div class="spec-card">
       <div class="spec-name">Key Spec</div>
-      <h3>Sensitivity: dB/mW vs dB/V</h3>
-      <p>Headphone sensitivity is specified in one of two ways: dB SPL per milliwatt (dB/mW) or dB SPL per volt (dB/V). These are not interchangeable. For a 32 &Omega; headphone, 100 dB/mW equals 115 dB/V. For a 300 &Omega; headphone, 100 dB/mW equals only 107 dB/V. Always check which convention the manufacturer uses before comparing sensitivity figures across products with different impedances. The dB/V convention is more useful for matching to a source amplifier, since amplifiers are voltage sources. The dB/mW convention tells you about efficiency relative to power.</p>
+      <h3>Sample Rate (kHz)</h3>
+      <p>The sample rate sets the highest frequency the signal can represent. By the Nyquist theorem, the captured bandwidth is half the sample rate: CD&rsquo;s 44.1&nbsp;kHz captures up to 22.05&nbsp;kHz, comfortably beyond the ~20&nbsp;kHz limit of human hearing. Higher rates (96, 192, 384&nbsp;kHz) extend bandwidth into the ultrasonic — useful as production headroom and for gentler anti-alias filtering, but not audibly necessary for playback, since the extra content is above what anyone can hear.</p>
     </div>
 
-    <p>A useful rule of thumb: to achieve 110 dB SPL (a reasonable maximum listening level), divide 110 by the sensitivity figure in dB/V. The result tells you how many volts RMS the amplifier must deliver. A headphone rated 105 dB/V needs 10&sup0;&middot;⁵ &asymp; 3.2 V RMS for 110 dB SPL. A headphone rated 95 dB/V needs 10 V RMS — which is beyond most portable and desktop sources. High-impedance, low-sensitivity headphones (Sennheiser HD 800: 102 dB/V at 300 &Omega;) require a dedicated desktop amplifier with meaningful output voltage capability.</p>
-
-    <h2>Output Impedance: The Critical Amplifier Spec</h2>
+    <h2>Bit Depth</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Critical Compatibility Spec</div>
-      <h3>Amplifier Output Impedance and the 1/8 Rule</h3>
-      <p>The amplifier's output impedance forms a voltage divider with the headphone's impedance. If the output impedance is a significant fraction of the headphone's impedance, the amplifier's output impedance interacts with the frequency-dependent variation in the headphone's impedance to alter the frequency response. The standard guideline — borrowed from loudspeaker amplifier design — is that the amplifier's output impedance should be no more than 1/8th of the headphone's minimum impedance. For a 300 &Omega; headphone, the amplifier output impedance should be &le;37 &Omega;. For a 32 &Omega; headphone, it must be &le;4 &Omega;.</p>
+      <div class="spec-name">Key Spec</div>
+      <h3>Bit Depth (bits)</h3>
+      <p>Bit depth sets the dynamic range — the span between the quietest and loudest representable signal — at roughly 6.02&nbsp;dB per bit. 16-bit yields about 96&nbsp;dB of dynamic range (CD quality); 24-bit yields about 144&nbsp;dB, far exceeding any listening room&rsquo;s noise floor or any DAC&rsquo;s actual performance. The practical value of 24-bit is production headroom — room to set levels and dither without audible noise — not a wider range you can actually hear at playback.</p>
     </div>
-
-    <p>Many consumer electronics have high output impedances from their headphone jacks: some portable media players measure 10&ndash;25 &Omega;. This is audible as tonal coloration on low-impedance headphones whose impedance varies with frequency (as most dynamic headphones do). The treble and bass response will shift depending on the interaction between the source output impedance and the headphone's impedance curve. A dedicated headphone amplifier typically has an output impedance well below 1 &Omega;.</p>
 
     <div class="callout">
-      <p><strong>Hiss from background noise:</strong> A sensitive low-impedance headphone (16&ndash;32 &Omega;, 110+ dB/mW) will reveal the noise floor of almost any amplifier. If you hear hiss at zero volume, the amplifier's noise is being exposed by the headphone's high sensitivity. More gain than needed for comfortable listening is the usual cause.</p>
+      <p><strong>The math, simply:</strong> Dynamic range ≈ 6.02 × bit depth. Captured bandwidth = sample rate ÷ 2. 16-bit/44.1&nbsp;kHz already exceeds the limits of human hearing in both dimensions. Higher numbers help during recording and mastering; their playback benefit is mostly theoretical.</p>
     </div>
 
-    <h2>Planar Magnetic Headphones: What They Need</h2>
+    <h2>Lossless vs Lossy</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Driver Technology</div>
-      <h3>Planar Magnetics: Low Impedance, Low Sensitivity</h3>
-      <p>Planar magnetic headphones use a thin membrane with embedded conductors suspended between magnets, rather than a voice coil in a magnetic gap. They typically have low impedance (20&ndash;50 &Omega;) and low sensitivity (85&ndash;95 dB/V) — meaning they require an amplifier that can deliver both significant current (for the low impedance) and significant voltage swing (for the low sensitivity). Many planar magnetics are described as "hard to drive" not because of their impedance but because of the combination of low sensitivity and the current required. A desktop amplifier with at least 1 W of output into their impedance is usually a minimum requirement.</p>
+      <div class="spec-name">Format Class</div>
+      <h3>Lossless (FLAC, ALAC, WAV, AIFF)</h3>
+      <p>Lossless formats reconstruct the original PCM data bit-for-bit. FLAC and ALAC compress the file (typically 40&ndash;60%) without discarding any audio data — they unpack to the exact original. WAV and AIFF are uncompressed PCM. For archival and critical listening, lossless is the standard: it guarantees you hear exactly what was on the master.</p>
     </div>
 
-    <h2>Quick Reference: Headphone Specs at a Glance</h2>
+    <div class="spec-card">
+      <div class="spec-name">Format Class</div>
+      <h3>Lossy (MP3, AAC, Ogg Vorbis)</h3>
+      <p>Lossy formats permanently discard data the encoder judges inaudible, achieving much smaller files. At high bitrates (256&ndash;320&nbsp;kbps MP3, 256&nbsp;kbps AAC), the loss is transparent to most listeners on most material. At low bitrates, artefacts (smearing, pre-echo, dulled high frequencies) become audible. Lossy is ideal for portable and bandwidth-limited use; it is not appropriate for archiving or repeated re-encoding.</p>
+    </div>
+
+    <h2>PCM vs DSD</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Encoding</div>
+      <h3>PCM vs DSD</h3>
+      <p>PCM (pulse-code modulation) measures amplitude at each sample — the dominant format for production and playback. DSD (Direct Stream Digital), used on SACD, encodes audio as a 1-bit stream at very high rates (2.8&nbsp;MHz for DSD64 and up). DSD can sound excellent but is harder to edit and process, so most DSD is converted to PCM somewhere in the chain anyway. Neither is inherently superior at playback; mastering quality matters far more than the encoding.</p>
+    </div>
+
+    <h2>"High-Resolution" and MQA</h2>
+
+    <p>"High-resolution audio" generally means anything exceeding CD&rsquo;s 16-bit/44.1&nbsp;kHz — commonly 24-bit/96&nbsp;kHz or 24-bit/192&nbsp;kHz. The badge guarantees the container, not the source: a hi-res file is only as good as the master it was made from, and an upsampled CD master gains nothing. MQA is a proprietary format that folds high-res information into a smaller file using a licensed decoder; it remains controversial because it is lossy and requires compatible hardware. The single biggest determinant of how a recording sounds is the quality of the master, not its resolution number.</p>
+
+    <h2>Quick Reference: Bit Depth and Sample Rate</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <thead><tr><th>Format</th><th>Dynamic Range</th><th>Bandwidth</th><th>Typical Use</th></tr></thead>
       <tbody>
-        <tr><td>Impedance</td><td>Electrical resistance of the headphone</td><td>Low (&le;50 &Omega;): easy to drive; High (150+ &Omega;): needs amplifier voltage</td></tr>
-        <tr><td>Sensitivity (dB/V)</td><td>SPL per volt at the headphone terminal</td><td>Higher = easier to drive; check units match</td></tr>
-        <tr><td>Sensitivity (dB/mW)</td><td>SPL per milliwatt into the headphone</td><td>Comparable only within same impedance class</td></tr>
-        <tr><td>Amplifier Output Impedance</td><td>Source impedance forming voltage divider with headphone</td><td>&le;1/8th of minimum headphone impedance</td></tr>
-        <tr><td>Amplifier Output Voltage</td><td>Maximum voltage swing available</td><td>Must reach 110 dB SPL at your headphone's sensitivity</td></tr>
-        <tr><td>Driver Type</td><td>Dynamic or planar magnetic</td><td>Planars need current + voltage; dynamics need voltage primarily</td></tr>
+        <tr><td>16-bit / 44.1 kHz</td><td>~96 dB</td><td>to 22.05 kHz</td><td>CD, the transparency baseline</td></tr>
+        <tr><td>24-bit / 96 kHz</td><td>~144 dB</td><td>to 48 kHz</td><td>Hi-res streaming and downloads</td></tr>
+        <tr><td>24-bit / 192 kHz</td><td>~144 dB</td><td>to 96 kHz</td><td>Studio masters, archival</td></tr>
+        <tr><td>DSD64</td><td>~120 dB (audio band)</td><td>to ~50 kHz usable</td><td>SACD, audiophile downloads</td></tr>
+        <tr><td>320 kbps MP3</td><td>Source-limited</td><td>to ~20 kHz</td><td>Transparent portable use</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your headphone chain compatibility</h3>
-      <p>Enter your headphones and source or amplifier to get a full analysis of output impedance ratio, voltage requirements, and signal-to-noise ratio.</p>
+      <h3>Check your digital playback chain</h3>
+      <p>Enter your source, streamer, DAC, and amplifier to get a full signal-chain analysis including resolution support and interface compatibility across your system.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
@@ -215,9 +218,9 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <h2>More Guides</h2>
     <div class="guide-nav">
-      <a href="/guides/amplifiers">Amplifier Guide →</a>
       <a href="/guides/dacs">DAC Guide →</a>
-      <a href="/guides/cables">Cables Guide →</a>
+      <a href="/guides/streamers">Network Streamers →</a>
+      <a href="/guides/headphones">Headphone Guide →</a>
       <a href="/guides/first-hifi-system">Build Your First System →</a>
       <a href="/glossary">Glossary →</a>
     </div>

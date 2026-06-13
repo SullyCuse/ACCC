@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com</title>
-<meta name="description" content="How to match headphones to an amplifier: impedance, sensitivity ratings, the 1/8 output-impedance rule, and what planar magnetics need from a source.">
-<meta property="og:title" content="Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com">
+<title>Integrated Amps vs Separates: The Specs That Actually Matter — AudioChainHiFi.com</title>
+<meta name="description" content="What an integrated amp combines, when separates make sense, preamp gain, home-theater bypass, and the real trade-offs between one box and many.">
+<meta property="og:title" content="Integrated Amps vs Separates: The Specs That Actually Matter — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/headphones">
+<meta property="og:url" content="https://audiochainhifi.com/guides/integrated-vs-separates">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/headphones">
+<meta property="article:published_time" content="2026-06-12T00:00:00Z">
+<meta property="article:modified_time" content="2026-06-12T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/integrated-vs-separates">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -123,11 +123,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Audio equipment">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1610003498510-6e2e1f6d0d6f?auto=format&fit=crop&w=1600&q=80" alt="Hi-fi amplifier components on a rack">
     <div class="guide-label">Component Guide</div>
-    <h1>Headphones: Impedance, Sensitivity, and Amplifier Matching</h1>
-    <p class="lede">A headphone's impedance and sensitivity determine what kind of amplifier it needs. High-impedance cans need voltage; planars need current. Mismatching leads to distortion, hiss, or simply quiet playback.</p>
-    <p class="guide-date">Published April 2026 &middot; Updated May 2026</p>
+    <h1>Integrated Amps vs Separates: One Box or Many</h1>
+    <p class="lede">An integrated amplifier puts preamp and power amp in one chassis; separates split them. The choice is about power, noise isolation, upgrade path, and how much complexity you want on the rack.</p>
+    <p class="guide-date">Published June 2026</p>
   </div>
 </div>
 
@@ -139,75 +139,79 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/dacs">DAC Guide →</a>
-        <a href="/guides/cables">Cables Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/glossary">Glossary →</a>
+      <a href="/guides/amplifiers">Amplifier Guide →</a>
+      <a href="/guides/tubes">Tubes vs Solid-State →</a>
+      <a href="/guides/dacs">DAC Guide →</a>
+      <a href="/guides/first-hifi-system">Build Your First System →</a>
+      <a href="/glossary">Glossary →</a>
       </div>
     </div>
 
-    <p>Headphone specifications look similar to speaker specifications — impedance, sensitivity, frequency response — but they are used and interpreted differently. A speaker amplifier rated at 100 watts is usually far too powerful for headphones; a phone's headphone output is usually far too weak for high-impedance audiophile headphones. The compatibility chain matters as much for headphones as for any loudspeaker system.</p>
+    <p>An integrated amplifier combines a preamplifier (input selection, volume control, and gain) and a power amplifier (which drives the speakers) in a single chassis. Separates break these into a standalone preamp and one or more power amps. Increasingly, integrated amps also fold in a DAC and a phono stage, becoming "just add speakers and a source" hubs. The right choice depends on power needs, system complexity, and how you plan to upgrade.</p>
 
-    <h2>Impedance: High vs Low</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Headphone Impedance (&Omega;)</h3>
-      <p>Consumer and portable headphones typically measure 16&ndash;64 &Omega;. Studio and audiophile headphones commonly range from 80 to 600 &Omega;. The impedance affects how much voltage is needed to drive the headphone to a given sound pressure level. A 300 &Omega; headphone needs six times the voltage of a 50 &Omega; headphone to produce the same current through the voice coil. This means high-impedance headphones require an amplifier capable of higher output voltage — a specification that is rarely emphasised in consumer electronics, but which determines whether the amplifier can drive the headphone to satisfying volume levels.</p>
-    </div>
-
-    <p>Low-impedance headphones (16&ndash;32 &Omega;) are generally easier to drive to loud levels from a phone or laptop headphone output, but they draw more current. They are also more sensitive to the output impedance of the source — which is covered below. High-impedance designs (150&ndash;600 &Omega;) typically offer lower distortion at high signal levels and are more tolerant of output impedance mismatches, but require a dedicated headphone amplifier for best performance.</p>
-
-    <h2>Sensitivity: Two Different Rating Systems</h2>
+    <h2>What Each Approach Includes</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Sensitivity: dB/mW vs dB/V</h3>
-      <p>Headphone sensitivity is specified in one of two ways: dB SPL per milliwatt (dB/mW) or dB SPL per volt (dB/V). These are not interchangeable. For a 32 &Omega; headphone, 100 dB/mW equals 115 dB/V. For a 300 &Omega; headphone, 100 dB/mW equals only 107 dB/V. Always check which convention the manufacturer uses before comparing sensitivity figures across products with different impedances. The dB/V convention is more useful for matching to a source amplifier, since amplifiers are voltage sources. The dB/mW convention tells you about efficiency relative to power.</p>
+      <div class="spec-name">Definition</div>
+      <h3>Integrated Amplifier</h3>
+      <p>Preamp + power amp in one box, often with a built-in DAC, phono stage, Bluetooth, or streaming. Fewer boxes, one power cord, one set of internal interconnects, and a single remote. Modern integrateds can be genuinely high-performance; the category is no longer the compromise it once was. Best for most systems where simplicity and value matter.</p>
     </div>
-
-    <p>A useful rule of thumb: to achieve 110 dB SPL (a reasonable maximum listening level), divide 110 by the sensitivity figure in dB/V. The result tells you how many volts RMS the amplifier must deliver. A headphone rated 105 dB/V needs 10&sup0;&middot;⁵ &asymp; 3.2 V RMS for 110 dB SPL. A headphone rated 95 dB/V needs 10 V RMS — which is beyond most portable and desktop sources. High-impedance, low-sensitivity headphones (Sennheiser HD 800: 102 dB/V at 300 &Omega;) require a dedicated desktop amplifier with meaningful output voltage capability.</p>
-
-    <h2>Output Impedance: The Critical Amplifier Spec</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Critical Compatibility Spec</div>
-      <h3>Amplifier Output Impedance and the 1/8 Rule</h3>
-      <p>The amplifier's output impedance forms a voltage divider with the headphone's impedance. If the output impedance is a significant fraction of the headphone's impedance, the amplifier's output impedance interacts with the frequency-dependent variation in the headphone's impedance to alter the frequency response. The standard guideline — borrowed from loudspeaker amplifier design — is that the amplifier's output impedance should be no more than 1/8th of the headphone's minimum impedance. For a 300 &Omega; headphone, the amplifier output impedance should be &le;37 &Omega;. For a 32 &Omega; headphone, it must be &le;4 &Omega;.</p>
+      <div class="spec-name">Definition</div>
+      <h3>Separates (Pre + Power)</h3>
+      <p>A dedicated preamplifier feeds one or more power amplifiers via interconnects. This isolates the sensitive, low-level preamp circuitry from the high-current, electrically noisy power stage — and from each other&rsquo;s power supplies. It also allows independent upgrades and exotic configurations (monoblocks, bi-amping). Best when you need maximum power, the lowest noise floor, or a long-term upgrade path.</p>
     </div>
 
-    <p>Many consumer electronics have high output impedances from their headphone jacks: some portable media players measure 10&ndash;25 &Omega;. This is audible as tonal coloration on low-impedance headphones whose impedance varies with frequency (as most dynamic headphones do). The treble and bass response will shift depending on the interaction between the source output impedance and the headphone's impedance curve. A dedicated headphone amplifier typically has an output impedance well below 1 &Omega;.</p>
+    <h2>Why Separates Can Outperform</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Technical Rationale</div>
+      <h3>Power Supply and Noise Isolation</h3>
+      <p>A power amplifier draws large, fluctuating current; a preamp handles delicate millivolt-level signals. Housing them separately gives each its own power supply and shields the preamp from the power stage&rsquo;s electromagnetic and supply-rail noise. With monoblocks, each channel gets its own chassis and supply, eliminating crosstalk between left and right. This isolation is the core technical argument for separates — though a well-engineered integrated can manage it internally.</p>
+    </div>
+
+    <h2>Power and Difficult Speakers</h2>
+
+    <p>Separate power amps — particularly monoblocks — can deliver far more current and power than most integrated amps, which matters for low-sensitivity speakers, low-impedance loads, or large rooms. If your speakers are demanding (dipping below 4&nbsp;ohms, sensitivity under 85&nbsp;dB) or you listen loud in a big space, a powerful separate amp may be necessary where an integrated would run out of headroom and clip.</p>
+
+    <h2>Preamp Gain and Matching</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Compatibility Spec</div>
+      <h3>Gain Structure</h3>
+      <p>With separates, the preamp&rsquo;s output and the power amp&rsquo;s input sensitivity and gain must be compatible, or you end up with too little usable volume range or excess noise. Check that the power amp&rsquo;s input sensitivity (the voltage needed for full output) matches the preamp&rsquo;s output capability. An integrated handles this internally — one less thing to get wrong. When mixing brands in a separates system, gain mismatch is the most common integration pitfall.</p>
+    </div>
+
+    <h2>Home-Theater Bypass</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Feature</div>
+      <h3>HT Bypass / Processor Loop</h3>
+      <p>If you want one set of front speakers to serve both a two-channel hi-fi and a multichannel home-theater system, look for home-theater bypass. It routes the AV processor&rsquo;s front-channel outputs through the integrated amp (or preamp) at unity gain, bypassing its volume control so the processor manages level. This lets a high-quality two-channel amp drive the front speakers for movies without duplicating amplification. Without it, integrating the two systems is awkward.</p>
+    </div>
 
     <div class="callout">
-      <p><strong>Hiss from background noise:</strong> A sensitive low-impedance headphone (16&ndash;32 &Omega;, 110+ dB/mW) will reveal the noise floor of almost any amplifier. If you hear hiss at zero volume, the amplifier's noise is being exposed by the headphone's high sensitivity. More gain than needed for comfortable listening is the usual cause.</p>
+      <p><strong>Practical guidance:</strong> For most listeners, a quality integrated amp delivers 90% of the performance with a fraction of the cost, cabling, and rack space. Choose separates when you have a specific reason: very demanding speakers, a desire to upgrade pre and power independently over time, or the need to place monoblocks next to the speakers on short cable runs.</p>
     </div>
 
-    <h2>Planar Magnetic Headphones: What They Need</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Driver Technology</div>
-      <h3>Planar Magnetics: Low Impedance, Low Sensitivity</h3>
-      <p>Planar magnetic headphones use a thin membrane with embedded conductors suspended between magnets, rather than a voice coil in a magnetic gap. They typically have low impedance (20&ndash;50 &Omega;) and low sensitivity (85&ndash;95 dB/V) — meaning they require an amplifier that can deliver both significant current (for the low impedance) and significant voltage swing (for the low sensitivity). Many planar magnetics are described as "hard to drive" not because of their impedance but because of the combination of low sensitivity and the current required. A desktop amplifier with at least 1 W of output into their impedance is usually a minimum requirement.</p>
-    </div>
-
-    <h2>Quick Reference: Headphone Specs at a Glance</h2>
+    <h2>Quick Reference: Integrated vs Separates</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <thead><tr><th>Factor</th><th>Integrated</th><th>Separates</th></tr></thead>
       <tbody>
-        <tr><td>Impedance</td><td>Electrical resistance of the headphone</td><td>Low (&le;50 &Omega;): easy to drive; High (150+ &Omega;): needs amplifier voltage</td></tr>
-        <tr><td>Sensitivity (dB/V)</td><td>SPL per volt at the headphone terminal</td><td>Higher = easier to drive; check units match</td></tr>
-        <tr><td>Sensitivity (dB/mW)</td><td>SPL per milliwatt into the headphone</td><td>Comparable only within same impedance class</td></tr>
-        <tr><td>Amplifier Output Impedance</td><td>Source impedance forming voltage divider with headphone</td><td>&le;1/8th of minimum headphone impedance</td></tr>
-        <tr><td>Amplifier Output Voltage</td><td>Maximum voltage swing available</td><td>Must reach 110 dB SPL at your headphone's sensitivity</td></tr>
-        <tr><td>Driver Type</td><td>Dynamic or planar magnetic</td><td>Planars need current + voltage; dynamics need voltage primarily</td></tr>
+        <tr><td>Boxes / Cabling</td><td>One chassis, minimal cabling</td><td>Multiple chassis and interconnects</td></tr>
+        <tr><td>Noise Isolation</td><td>Good, managed internally</td><td>Best — physically separated supplies</td></tr>
+        <tr><td>Max Power</td><td>Moderate to high</td><td>Highest, especially monoblocks</td></tr>
+        <tr><td>Upgrade Path</td><td>Replace the whole unit</td><td>Upgrade pre and power independently</td></tr>
+        <tr><td>Gain Matching</td><td>Handled internally</td><td>Must match pre output to amp sensitivity</td></tr>
+        <tr><td>Cost &amp; Complexity</td><td>Lower</td><td>Higher</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your headphone chain compatibility</h3>
-      <p>Enter your headphones and source or amplifier to get a full analysis of output impedance ratio, voltage requirements, and signal-to-noise ratio.</p>
+      <h3>Check your amplifier and source chain</h3>
+      <p>Enter your preamp, power amp or integrated, sources, and speakers to get a full signal-chain analysis including gain staging and impedance matching.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
@@ -216,8 +220,8 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>More Guides</h2>
     <div class="guide-nav">
       <a href="/guides/amplifiers">Amplifier Guide →</a>
+      <a href="/guides/tubes">Tubes vs Solid-State →</a>
       <a href="/guides/dacs">DAC Guide →</a>
-      <a href="/guides/cables">Cables Guide →</a>
       <a href="/guides/first-hifi-system">Build Your First System →</a>
       <a href="/glossary">Glossary →</a>
     </div>

@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com</title>
-<meta name="description" content="How to match headphones to an amplifier: impedance, sensitivity ratings, the 1/8 output-impedance rule, and what planar magnetics need from a source.">
-<meta property="og:title" content="Headphones: Impedance, Sensitivity, and Amplifier Matching — AudioChainHiFi.com">
+<title>Active vs Passive Speakers: The Specs That Actually Matter — AudioChainHiFi.com</title>
+<meta name="description" content="Passive crossovers vs active line-level crossovers, amplifier-per-driver, DSP, and the real trade-offs between active, powered, and passive loudspeakers.">
+<meta property="og:title" content="Active vs Passive Speakers: The Specs That Actually Matter — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/headphones">
+<meta property="og:url" content="https://audiochainhifi.com/guides/active-vs-passive">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/headphones">
+<meta property="article:published_time" content="2026-06-12T00:00:00Z">
+<meta property="article:modified_time" content="2026-06-12T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/active-vs-passive">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -123,11 +123,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Audio equipment">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1600&q=80" alt="Studio monitor loudspeakers">
     <div class="guide-label">Component Guide</div>
-    <h1>Headphones: Impedance, Sensitivity, and Amplifier Matching</h1>
-    <p class="lede">A headphone's impedance and sensitivity determine what kind of amplifier it needs. High-impedance cans need voltage; planars need current. Mismatching leads to distortion, hiss, or simply quiet playback.</p>
-    <p class="guide-date">Published April 2026 &middot; Updated May 2026</p>
+    <h1>Active vs Passive Speakers: Where the Amp Lives</h1>
+    <p class="lede">The active-versus-passive question is really about where crossover and amplification happen. Active designs put dedicated amps and electronic crossovers inside the speaker; passive designs filter the amplified signal. Each has real engineering consequences.</p>
+    <p class="guide-date">Published June 2026</p>
   </div>
 </div>
 
@@ -139,75 +139,73 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/dacs">DAC Guide →</a>
-        <a href="/guides/cables">Cables Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/glossary">Glossary →</a>
+      <a href="/guides/speakers">Speaker Matching →</a>
+      <a href="/guides/amplifiers">Amplifier Guide →</a>
+      <a href="/guides/subwoofers">Subwoofer Integration →</a>
+      <a href="/guides/integrated-vs-separates">Integrated vs Separates →</a>
+      <a href="/glossary">Glossary →</a>
       </div>
     </div>
 
-    <p>Headphone specifications look similar to speaker specifications — impedance, sensitivity, frequency response — but they are used and interpreted differently. A speaker amplifier rated at 100 watts is usually far too powerful for headphones; a phone's headphone output is usually far too weak for high-impedance audiophile headphones. The compatibility chain matters as much for headphones as for any loudspeaker system.</p>
+    <p>Every multi-way loudspeaker needs a crossover to split the signal between drivers. The difference between active and passive speakers is where that split happens and how the drivers are amplified. In a passive speaker, one amplifier drives a passive crossover network that filters the high-power signal. In an active speaker, an electronic crossover splits the low-level signal first, and a dedicated amplifier drives each driver directly. That architectural choice cascades into several real performance differences.</p>
 
-    <h2>Impedance: High vs Low</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Headphone Impedance (&Omega;)</h3>
-      <p>Consumer and portable headphones typically measure 16&ndash;64 &Omega;. Studio and audiophile headphones commonly range from 80 to 600 &Omega;. The impedance affects how much voltage is needed to drive the headphone to a given sound pressure level. A 300 &Omega; headphone needs six times the voltage of a 50 &Omega; headphone to produce the same current through the voice coil. This means high-impedance headphones require an amplifier capable of higher output voltage — a specification that is rarely emphasised in consumer electronics, but which determines whether the amplifier can drive the headphone to satisfying volume levels.</p>
-    </div>
-
-    <p>Low-impedance headphones (16&ndash;32 &Omega;) are generally easier to drive to loud levels from a phone or laptop headphone output, but they draw more current. They are also more sensitive to the output impedance of the source — which is covered below. High-impedance designs (150&ndash;600 &Omega;) typically offer lower distortion at high signal levels and are more tolerant of output impedance mismatches, but require a dedicated headphone amplifier for best performance.</p>
-
-    <h2>Sensitivity: Two Different Rating Systems</h2>
+    <h2>Passive Crossovers</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Sensitivity: dB/mW vs dB/V</h3>
-      <p>Headphone sensitivity is specified in one of two ways: dB SPL per milliwatt (dB/mW) or dB SPL per volt (dB/V). These are not interchangeable. For a 32 &Omega; headphone, 100 dB/mW equals 115 dB/V. For a 300 &Omega; headphone, 100 dB/mW equals only 107 dB/V. Always check which convention the manufacturer uses before comparing sensitivity figures across products with different impedances. The dB/V convention is more useful for matching to a source amplifier, since amplifiers are voltage sources. The dB/mW convention tells you about efficiency relative to power.</p>
+      <div class="spec-name">Architecture</div>
+      <h3>Passive Crossover</h3>
+      <p>A passive crossover uses inductors, capacitors, and resistors to filter the amplifier&rsquo;s full-power output before it reaches each driver. It is simple, requires only one external amplifier, and gives you free choice of that amplifier. The downsides are real: the crossover components dissipate power (insertion loss), interact with the driver&rsquo;s changing impedance, and are expensive to make to tight tolerances at high power. The crossover also sits between amplifier and driver, reducing the amp&rsquo;s direct control over driver motion.</p>
     </div>
 
-    <p>A useful rule of thumb: to achieve 110 dB SPL (a reasonable maximum listening level), divide 110 by the sensitivity figure in dB/V. The result tells you how many volts RMS the amplifier must deliver. A headphone rated 105 dB/V needs 10&sup0;&middot;⁵ &asymp; 3.2 V RMS for 110 dB SPL. A headphone rated 95 dB/V needs 10 V RMS — which is beyond most portable and desktop sources. High-impedance, low-sensitivity headphones (Sennheiser HD 800: 102 dB/V at 300 &Omega;) require a dedicated desktop amplifier with meaningful output voltage capability.</p>
-
-    <h2>Output Impedance: The Critical Amplifier Spec</h2>
+    <h2>Active Crossovers</h2>
 
     <div class="spec-card">
-      <div class="spec-name">Critical Compatibility Spec</div>
-      <h3>Amplifier Output Impedance and the 1/8 Rule</h3>
-      <p>The amplifier's output impedance forms a voltage divider with the headphone's impedance. If the output impedance is a significant fraction of the headphone's impedance, the amplifier's output impedance interacts with the frequency-dependent variation in the headphone's impedance to alter the frequency response. The standard guideline — borrowed from loudspeaker amplifier design — is that the amplifier's output impedance should be no more than 1/8th of the headphone's minimum impedance. For a 300 &Omega; headphone, the amplifier output impedance should be &le;37 &Omega;. For a 32 &Omega; headphone, it must be &le;4 &Omega;.</p>
+      <div class="spec-name">Architecture</div>
+      <h3>Active Crossover + Amp Per Driver</h3>
+      <p>An active speaker filters the signal at line level (before amplification), then uses a separate amplifier for each driver. Each amp drives its driver directly, with no passive components in between, giving tighter control and no insertion loss. The designer can tune each amplifier to its driver, apply precise filtering, and protect drivers electronically. Because the crossover works on a low-level signal, it can be far more accurate and complex than a passive network of equivalent cost.</p>
     </div>
 
-    <p>Many consumer electronics have high output impedances from their headphone jacks: some portable media players measure 10&ndash;25 &Omega;. This is audible as tonal coloration on low-impedance headphones whose impedance varies with frequency (as most dynamic headphones do). The treble and bass response will shift depending on the interaction between the source output impedance and the headphone's impedance curve. A dedicated headphone amplifier typically has an output impedance well below 1 &Omega;.</p>
+    <h2>The Case for Active</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Advantage</div>
+      <h3>Optimised Matching and Direct Drive</h3>
+      <p>In an active design the manufacturer controls the entire chain — amplifier, crossover, and driver are engineered as one system, so the amp is exactly sized and tuned to the driver it powers. Direct connection means a high damping factor and precise control with no passive network sapping power or smearing the signal. This is why active monitors dominate professional studios, where accuracy and consistency matter most.</p>
+    </div>
+
+    <h2>The Case for Passive</h2>
+
+    <div class="spec-card">
+      <div class="spec-name">Advantage</div>
+      <h3>Flexibility and Simplicity</h3>
+      <p>Passive speakers let you choose, upgrade, and voice the amplifier separately — a large part of the hi-fi hobby. They need no power at the speaker location, are simpler to place, and decouple the speaker&rsquo;s lifespan from its electronics (a 20-year-old passive speaker still works; built-in amps and DSP can fail or become obsolete). For listeners who enjoy matching components, passive remains the more open, serviceable path.</p>
+    </div>
+
+    <h2>Powered vs Truly Active, and DSP</h2>
+
+    <p>Beware the terminology: a "powered" speaker has a built-in amplifier but may still use a passive crossover after that amp — it is not the same as a true active design with an amp per driver. Many modern active speakers add DSP (digital signal processing) to implement the crossover and to correct driver and even room response with precision impossible in the analog domain. DSP enables linear-phase crossovers and room correction, but adds an A/D–D/A stage and ties the speaker to its firmware. Confirm whether a speaker is truly active (amp per driver) and whether its crossover is analog or DSP-based.</p>
 
     <div class="callout">
-      <p><strong>Hiss from background noise:</strong> A sensitive low-impedance headphone (16&ndash;32 &Omega;, 110+ dB/mW) will reveal the noise floor of almost any amplifier. If you hear hiss at zero volume, the amplifier's noise is being exposed by the headphone's high sensitivity. More gain than needed for comfortable listening is the usual cause.</p>
+      <p><strong>Quick distinction:</strong> Active = electronic crossover before amplification, one amp per driver. Powered = has a built-in amp, but possibly with a passive crossover after it. Passive = one external amp, passive crossover filters the high-power signal. "Powered" does not guarantee "active."</p>
     </div>
 
-    <h2>Planar Magnetic Headphones: What They Need</h2>
-
-    <div class="spec-card">
-      <div class="spec-name">Driver Technology</div>
-      <h3>Planar Magnetics: Low Impedance, Low Sensitivity</h3>
-      <p>Planar magnetic headphones use a thin membrane with embedded conductors suspended between magnets, rather than a voice coil in a magnetic gap. They typically have low impedance (20&ndash;50 &Omega;) and low sensitivity (85&ndash;95 dB/V) — meaning they require an amplifier that can deliver both significant current (for the low impedance) and significant voltage swing (for the low sensitivity). Many planar magnetics are described as "hard to drive" not because of their impedance but because of the combination of low sensitivity and the current required. A desktop amplifier with at least 1 W of output into their impedance is usually a minimum requirement.</p>
-    </div>
-
-    <h2>Quick Reference: Headphone Specs at a Glance</h2>
+    <h2>Quick Reference: Active vs Passive</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <thead><tr><th>Factor</th><th>Active</th><th>Passive</th></tr></thead>
       <tbody>
-        <tr><td>Impedance</td><td>Electrical resistance of the headphone</td><td>Low (&le;50 &Omega;): easy to drive; High (150+ &Omega;): needs amplifier voltage</td></tr>
-        <tr><td>Sensitivity (dB/V)</td><td>SPL per volt at the headphone terminal</td><td>Higher = easier to drive; check units match</td></tr>
-        <tr><td>Sensitivity (dB/mW)</td><td>SPL per milliwatt into the headphone</td><td>Comparable only within same impedance class</td></tr>
-        <tr><td>Amplifier Output Impedance</td><td>Source impedance forming voltage divider with headphone</td><td>&le;1/8th of minimum headphone impedance</td></tr>
-        <tr><td>Amplifier Output Voltage</td><td>Maximum voltage swing available</td><td>Must reach 110 dB SPL at your headphone's sensitivity</td></tr>
-        <tr><td>Driver Type</td><td>Dynamic or planar magnetic</td><td>Planars need current + voltage; dynamics need voltage primarily</td></tr>
+        <tr><td>Crossover</td><td>Line-level, before amps (often DSP)</td><td>High-power, after the amp</td></tr>
+        <tr><td>Amplification</td><td>One amp per driver, built in</td><td>One external amp for all drivers</td></tr>
+        <tr><td>Driver Control</td><td>Direct, high damping</td><td>Through the passive network</td></tr>
+        <tr><td>System Matching</td><td>Optimised by the maker</td><td>Up to you to match</td></tr>
+        <tr><td>Flexibility</td><td>Fixed; tied to built-in electronics</td><td>Choose and upgrade amp freely</td></tr>
+        <tr><td>Best For</td><td>Studios, accuracy, simplicity at the speaker</td><td>Hobbyists, serviceability, amp choice</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your headphone chain compatibility</h3>
-      <p>Enter your headphones and source or amplifier to get a full analysis of output impedance ratio, voltage requirements, and signal-to-noise ratio.</p>
+      <h3>Check your speaker and amplifier match</h3>
+      <p>Enter your speakers and amplifier to get a full compatibility analysis including power adequacy, sensitivity, and impedance — for active or passive systems.</p>
       <a href="/#analyzer">Run a Free Analysis →</a>
     </div>
 
@@ -215,10 +213,10 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <h2>More Guides</h2>
     <div class="guide-nav">
+      <a href="/guides/speakers">Speaker Matching →</a>
       <a href="/guides/amplifiers">Amplifier Guide →</a>
-      <a href="/guides/dacs">DAC Guide →</a>
-      <a href="/guides/cables">Cables Guide →</a>
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
+      <a href="/guides/subwoofers">Subwoofer Integration →</a>
+      <a href="/guides/integrated-vs-separates">Integrated vs Separates →</a>
       <a href="/glossary">Glossary →</a>
     </div>
 
