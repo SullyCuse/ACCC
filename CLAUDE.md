@@ -82,7 +82,7 @@ Project-specific rules that override or extend the principles above.
 | Function | Model | Max tokens | Est. time |
 |---|---|---|---|
 | analyze-specs | claude-sonnet-4-6 | 650 | ~9s |
-| analyze-chain | claude-haiku-4-5-20251001 | 700 | ~5s |
+| analyze-chain | claude-haiku-4-5 | 700 | ~5s |
 | analyze-summary | claude-sonnet-4-6 | 600 | ~9s |
 
 ### index.html rules
