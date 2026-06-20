@@ -1,7 +1,10 @@
 name: Supabase keep-alive
 
 # Supabase free tier auto-pauses a project after 7 days of no activity.
-# This pings the REST API on a schedule so the project stays active.
+# This performs a real DB WRITE on a schedule so the project stays active.
+# A bare REST read (select ... limit 1) returns 200 but does NOT reliably
+# register as activity for the auto-pause scanner — a write does. The cron
+# calls the touch_heartbeat() RPC, which updates a single-row heartbeat table.
 # Runs Mon/Wed/Fri (max gap ~3 days, leaving margin even if a run is skipped).
 # A non-200 response fails the job, which emails the repo owner — so a broken
 # ping can't go unnoticed until the project is already paused.
@@ -15,15 +18,16 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping component_specs
+      - name: Write heartbeat
         run: |
-          status=$(curl -s -o /dev/null -w "%{http_code}" \
+          status=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
-            "${{ secrets.SUPABASE_URL }}/rest/v1/component_specs?select=name&limit=1")
+            -H "Content-Type: application/json" \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/rpc/touch_heartbeat")
           echo "HTTP $status"
           if [ "$status" != "200" ]; then
-            echo "Keep-alive ping failed (expected 200)."
+            echo "Keep-alive heartbeat write failed (expected 200)."
             exit 1
           fi
-          echo "Supabase keep-alive ping succeeded."
+          echo "Supabase keep-alive heartbeat write succeeded."
