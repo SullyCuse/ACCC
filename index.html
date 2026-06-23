@@ -1859,10 +1859,10 @@ function buildDiagram(){
           const conn=hubConn.find(cn=>cn.fromId===c.id);
           p+=`<line stroke="#2563eb" stroke-width="1.2" x1="${scx}" y1="${srcBot}" x2="${scx}" y2="${mergeY}"/>`;
           p+=`<line stroke="#2563eb" stroke-width="1.2" x1="${scx}" y1="${mergeY}" x2="${colCx}" y2="${mergeY}"/>`;
-          // Label on vertical segment, outside edge of each source
+          // Center the label on this source's own drop line. Anchoring the two
+          // adjacent sources' labels inward (toward the hub) overlaps them.
           if(conn){
-            const isLeft=scx<=colCx;
-            b+=lbl(isLeft?scx+4:scx-4,(srcBot+mergeY)/2,conn.type,isLeft?'start':'end');
+            b+=lbl(scx,(srcBot+mergeY)/2,conn.type,'middle');
           }
         });
         p+=`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${colCx}" y1="${mergeY}" x2="${colCx}" y2="${hubY}" marker-end="url(#da)"/>`;
