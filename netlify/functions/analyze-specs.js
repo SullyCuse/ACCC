@@ -61,10 +61,28 @@ async function getCorrections() {
   return { corrections: {}, ok: false };
 }
 
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  if (!m) return n;
+  if (!n) return m;
+  let prev = Array.from({ length: n + 1 }, (_, j) => j);
+  for (let i = 1; i <= m; i++) {
+    const curr = [i];
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      curr[j] = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
+    }
+    prev = curr;
+  }
+  return prev[n];
+}
+
 function findCorrection(name, corrections) {
   const normalize = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
   const tokenize = s => s.toLowerCase().split(/[\s\-_.]+/).map(t => t.replace(/[^a-z0-9]/g,'')).filter(Boolean);
+  const digits = s => (s.match(/[0-9]/g) || []).join('');
   const n = normalize(name);
+  const nd = digits(n);
   const userTokens = tokenize(name);
 
   // 1. Exact normalized match
@@ -76,11 +94,30 @@ function findCorrection(name, corrections) {
     return nk.includes(n) || n.includes(nk);
   });
 
-  // 3. Token subset match (handles "Wharfedale 5.1" vs "Wharfedale Evo 5.1")
+  // 3. Token subset match (handles "Wharfedale 5.1" vs "Wharfedale Evo 5.1").
+  //    Digit runs must match: tokenizing on "." splits "5.1" into ["5","1"], so
+  //    without this guard a "5.x" model would bind to "5.1" (both share token "5").
   if (!key) key = Object.keys(corrections).find(k => {
     const keyTokens = tokenize(k);
-    return userTokens.length > 0 && userTokens.every(t => keyTokens.includes(t));
+    return userTokens.length > 0 && digits(normalize(k)) === nd && userTokens.every(t => keyTokens.includes(t));
   });
+
+  // 4. Fuzzy fallback for letter typos (handles "Wharefedale" -> "Wharfedale").
+  //    Conservative on purpose: the digit run must match exactly, so a typo can
+  //    never bind "5.1" to "5.2". Requires a single unambiguous nearest candidate
+  //    within a small edit distance — ties or anything farther fall back to AI.
+  if (!key && n.length >= 5) {
+    let best = null, bestDist = Infinity, tie = false;
+    for (const k of Object.keys(corrections)) {
+      const nk = normalize(k);
+      if (digits(nk) !== nd) continue; // different model number -> different product
+      const dist = levenshtein(n, nk);
+      if (dist < bestDist) { bestDist = dist; best = k; tie = false; }
+      else if (dist === bestDist) tie = true;
+    }
+    const maxDist = Math.min(2, Math.floor(n.length / 6) + 1);
+    if (best && !tie && bestDist <= maxDist) key = best;
+  }
 
   return key ? corrections[key] : null;
 }
