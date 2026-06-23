@@ -1684,7 +1684,13 @@ function renderPanelSections(parts){
 function updateDiagram(){const wrap=document.getElementById('diagram-wrap');if(components.length<2){wrap.innerHTML='';return;}wrap.innerHTML=buildDiagram();}
 function buildDiagram(){
   const W=600,BW=160,BH=50,G=20;
-  const dig=components.filter(c=>['streamer','dac','cdplayer'].includes(c.type)),pho=components.filter(c=>['turntable','phonopre'].includes(c.type)),shr=components.filter(c=>!dig.includes(c)&&!pho.includes(c)&&c.type!=='cartridge'&&c.type!=='tonearm'),hasBoth=dig.length>0&&pho.length>0;
+  // A signal-chain diagram shows only components that are part of the chain.
+  // Once any connection exists, drop orphaned (unconnected) components so
+  // removing a sub-chain's connections removes its boxes too. With no
+  // connections at all, fall back to showing every component.
+  const connIds=new Set();connections.forEach(cn=>{connIds.add(cn.fromId);connIds.add(cn.toId);});
+  const comps=connections.length>0?components.filter(c=>connIds.has(c.id)):components;
+  const dig=comps.filter(c=>['streamer','dac','cdplayer'].includes(c.type)),pho=comps.filter(c=>['turntable','phonopre'].includes(c.type)),shr=comps.filter(c=>!dig.includes(c)&&!pho.includes(c)&&c.type!=='cartridge'&&c.type!=='tonearm'),hasBoth=dig.length>0&&pho.length>0;
 
   // Level-based topological sort (BFS): all sources appear before the nodes they feed
   // This correctly handles multiple sources (M1T + CXA35) both feeding one DAC
@@ -1826,6 +1832,7 @@ function buildDiagram(){
   // Render a chain column using connection-based arrows
   // Returns {b, p, lastBot, lastComp, totalY}
   function renderChain(chain,startX,startY,cls,colBW=BW){
+    const cl=c=>typeof cls==='function'?cls(c):cls;
     const ids=new Set(chain.map(c=>c.id));
     const intConns=connections.filter(cn=>ids.has(cn.fromId)&&ids.has(cn.toId));
     const hasInSet=new Set(intConns.map(cn=>cn.toId));
@@ -1833,18 +1840,21 @@ function buildDiagram(){
     const hubs=chain.filter(c=>hasInSet.has(c.id));
     let b='',p='';
     let curY=startY,lastBot=null,lastComp=null;
-    const colCx=startX+colBW/2;
+    let colCx=startX+colBW/2,hubX=startX;
 
     if(sources.length>=2){
       // Sub-column layout: use 1.6× colBW so each source box is readable
       const srcAreaW=Math.round(colBW*1.6);
       const srcBW=Math.floor((srcAreaW-G)/2);
+      // Center the hub column and merge bus under the source area
+      colCx=startX+srcAreaW/2;
+      hubX=startX+Math.round((srcAreaW-colBW)/2);
       // Render source boxes
       const srcHeights=sources.map(s=>boxH(s,srcBW));
       const maxSrcH=Math.max(...srcHeights);
       sources.forEach((c,i)=>{
         const sx=startX+i*(srcBW+G);
-        b+=box(sx,curY,c,cls,srcBW);
+        b+=box(sx,curY,c,cl(c),srcBW);
       });
       const srcsBotY=curY+maxSrcH;
       // Connect to first hub via bus merge
@@ -1853,26 +1863,37 @@ function buildDiagram(){
         const hubY=srcsBotY+G;
         const mergeY=srcsBotY+G/2;
         const hubConn=connections.filter(cn=>cn.toId===hub.id&&ids.has(cn.fromId));
+        const connTypes=sources.map(c=>{const cn=hubConn.find(x=>x.fromId===c.id);return cn?cn.type:null;});
         sources.forEach((c,i)=>{
           const scx=startX+i*(srcBW+G)+srcBW/2;
           const srcBot=curY+srcHeights[i];
-          const conn=hubConn.find(cn=>cn.fromId===c.id);
           p+=`<line stroke="#2563eb" stroke-width="1.2" x1="${scx}" y1="${srcBot}" x2="${scx}" y2="${mergeY}"/>`;
           p+=`<line stroke="#2563eb" stroke-width="1.2" x1="${scx}" y1="${mergeY}" x2="${colCx}" y2="${mergeY}"/>`;
-          // Center the label on this source's own drop line. Anchoring the two
-          // adjacent sources' labels inward (toward the hub) overlaps them.
-          if(conn){
-            b+=lbl(scx,(srcBot+mergeY)/2,conn.type,'middle');
-          }
         });
         p+=`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${colCx}" y1="${mergeY}" x2="${colCx}" y2="${hubY}" marker-end="url(#da)"/>`;
-        b+=box(startX,hubY,hub,cls,colBW);
+        // Label the merge: one centered label when all sources share a
+        // connection type (the common case), otherwise one per drop line
+        // anchored outward so the two labels never overlap in the middle.
+        const defined=connTypes.filter(Boolean);
+        const allSame=defined.length===connTypes.length&&connTypes.every(t=>t===connTypes[0]);
+        if(allSame&&defined.length){
+          b+=lbl(colCx+6,(mergeY+hubY)/2,connTypes[0],'start');
+        }else{
+          connTypes.forEach((t,i)=>{
+            if(!t)return;
+            const scx=startX+i*(srcBW+G)+srcBW/2;
+            const srcBot=curY+srcHeights[i];
+            const left=scx<colCx;
+            b+=lbl(scx+(left?-4:4),(srcBot+mergeY)/2,t,left?'end':'start');
+          });
+        }
+        b+=box(hubX,hubY,hub,cl(hub),colBW);
         lastBot=hubY+boxH(hub,colBW);lastComp=hub;curY=lastBot+G;
         for(let i=1;i<hubs.length;i++){
           const c=hubs[i];
           p+=ln(colCx,lastBot,colCx,curY);
           const t=ct(lastComp,c);if(t)b+=lbl(colCx+5,(lastBot+curY)/2,t);
-          b+=box(startX,curY,c,cls,colBW);
+          b+=box(hubX,curY,c,cl(c),colBW);
           lastBot=curY+boxH(c,colBW);lastComp=c;curY=lastBot+G;
         }
       }else{
@@ -1885,11 +1906,11 @@ function buildDiagram(){
           p+=ln(colCx,lastBot,colCx,curY);
           const t=ct(lastComp,c);if(t)b+=lbl(colCx+5,(lastBot+curY)/2,t);
         }
-        b+=box(startX,curY,c,cls,colBW);
+        b+=box(startX,curY,c,cl(c),colBW);
         lastBot=curY+boxH(c,colBW);lastComp=c;curY=lastBot+G;
       });
     }
-    return{b,p,lastBot,lastComp,totalY:curY};
+    return{b,p,lastBot,lastComp,totalY:curY,cx:colCx};
   }
 
   if(hasBoth){
@@ -1909,18 +1930,26 @@ function buildDiagram(){
 
     if(shrS.length>0){
       const fS=shrS[0];
-      if(lB!==null){p+=`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="M${lX+BW/2},${lB} L${lX+BW/2},${mergeY} L${sCx-14},${mergeY} L${sCx-14},${sY}" marker-end="url(#da)"/>`;const t=ct(lPrev,fS);if(t)b+=lbl(Math.round((lX+BW/2+sCx-14)/2),mergeY-8,t,'middle');}
-      if(rB!==null){p+=`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="M${rX+BW/2},${rB} L${rX+BW/2},${mergeY} L${sCx+14},${mergeY} L${sCx+14},${sY}" marker-end="url(#da)"/>`;const t=ct(rPrev,fS);if(t)b+=lbl(Math.round((rX+BW/2+sCx+14)/2),mergeY-8,t,'middle');}
+      // Only merge a column into the shared chain when it actually connects to it.
+      const lT=ct(lPrev,fS),rT=ct(rPrev,fS);
+      if(lB!==null&&lT){p+=`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="M${digR.cx},${lB} L${digR.cx},${mergeY} L${sCx-14},${mergeY} L${sCx-14},${sY}" marker-end="url(#da)"/>`;b+=lbl(Math.round((digR.cx+sCx-14)/2),mergeY-8,lT,'middle');}
+      if(rB!==null&&rT){p+=`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="M${phoR.cx},${rB} L${phoR.cx},${mergeY} L${sCx+14},${mergeY} L${sCx+14},${sY}" marker-end="url(#da)"/>`;b+=lbl(Math.round((phoR.cx+sCx+14)/2),mergeY-8,rT,'middle');}
     }
     let pB=null,shrPrev=null;
     shrS.forEach(c=>{if(pB!==null){p+=ln(sCx,pB,sCx,sY);const t=ct(shrPrev,c);if(t)b+=lbl(sCx+5,(pB+sY)/2,t);}b+=box(sX,sY,c,'dv-box-shared');pB=sY+boxH(c);shrPrev=c;sY+=boxH(c)+G;});
     return `<svg width="100%" viewBox="0 0 ${W} ${(pB||sY)+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
   }
 
-  const all=[...digS,...phoS,...shrS],x=W/2-BW/2,cx=W/2;
-  let y=20,p='',b='',prev=null;
-  all.forEach((c,i)=>{const cls=dig.includes(c)?'dv-box-digital':pho.includes(c)?'dv-box-phono':'dv-box-shared';if(i>0){p+=ln(cx,y,cx,y+G);const t=ct(prev,c);if(t)b+=lbl(cx+5,y+G/2,t);y+=G;}b+=box(x,y,c,cls);y+=boxH(c);prev=c;});
-  return `<svg width="100%" viewBox="0 0 ${W} ${y+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
+  const all=[...digS,...phoS,...shrS];
+  const clsFn=c=>dig.includes(c)?'dv-box-digital':pho.includes(c)?'dv-box-phono':'dv-box-shared';
+  // Center the column: multi-source chains use the wider source area, so shift
+  // the start so the merge bus sits at W/2 (single-source chains center on BW).
+  const allIds=new Set(all.map(c=>c.id));
+  const allHubs=new Set(connections.filter(cn=>allIds.has(cn.fromId)&&allIds.has(cn.toId)).map(cn=>cn.toId));
+  const nSrc=all.filter(c=>!allHubs.has(c.id)).length;
+  const startX=nSrc>=2?Math.round(W/2-Math.round(BW*1.6)/2):W/2-BW/2;
+  const r=renderChain(all,startX,20,clsFn,BW);
+  return `<svg width="100%" viewBox="0 0 ${W} ${r.totalY+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${r.p}${r.b}</svg>`;
 }
 renderAll();
 updateHint();
