@@ -6,8 +6,7 @@ let _cache = null;
 let _cacheAt = 0;
 const CACHE_TTL = 5 * 60 * 1000;
 
-async function getCorrections() {
-  if (_cache && Date.now() - _cacheAt < CACHE_TTL) return _cache;
+function fetchSpecs(timeoutMs) {
   return new Promise((resolve) => {
     const { hostname, pathname, search } = new URL(
       `${process.env.SUPABASE_URL}/rest/v1/component_specs?select=name,specs`
@@ -25,17 +24,41 @@ async function getCorrections() {
         try {
           const rows = JSON.parse(d);
           if (Array.isArray(rows)) {
-            _cache = Object.fromEntries(rows.map(r => [r.name, r.specs]));
-            _cacheAt = Date.now();
+            return resolve({ map: Object.fromEntries(rows.map(r => [r.name, r.specs])), ok: true });
           }
         } catch {}
-        resolve(_cache || {});
+        resolve({ map: null, ok: false }); // HTTP error body, non-array payload, or parse failure
       });
     });
-    req.on("error", () => resolve(_cache || {}));
-    req.setTimeout(3000, () => { req.destroy(); resolve(_cache || {}); });
+    req.on("error", () => resolve({ map: null, ok: false }));
+    req.setTimeout(timeoutMs, () => { req.destroy(); resolve({ map: null, ok: false }); });
     req.end();
   });
+}
+
+// Returns { corrections, ok }. ok=false means the verified-spec DB could not be
+// reached AND no cached copy exists — so every component falls back to an AI
+// estimate and the response should be flagged as unverified.
+async function getCorrections() {
+  if (_cache && Date.now() - _cacheAt < CACHE_TTL) return { corrections: _cache, ok: true };
+
+  // Real failures (paused DB, auth/HTTP errors) return fast, so one retry is cheap
+  // and recovers transient blips. Only retry when the first attempt failed quickly,
+  // so two slow waits can never stack and blow the 10s function budget shared with
+  // the Sonnet call.
+  const t0 = Date.now();
+  let res = await fetchSpecs(3500);
+  if (!res.ok && Date.now() - t0 < 1500) res = await fetchSpecs(2500);
+
+  if (res.ok) {
+    _cache = res.map;
+    _cacheAt = Date.now();
+    return { corrections: _cache, ok: true };
+  }
+  // Fetch failed: a stale cache is still real data and beats guessing; only signal
+  // unavailability when we have nothing verified to offer.
+  if (_cache) return { corrections: _cache, ok: true };
+  return { corrections: {}, ok: false };
 }
 
 function findCorrection(name, corrections) {
@@ -95,7 +118,7 @@ exports.handler = async (event) => {
       other:     "key electrical specs"
     };
 
-    const corrections = await getCorrections();
+    const { corrections, ok: dbOk } = await getCorrections();
     const correctedBlocks = [];
     const needsAI = [];
 
@@ -162,10 +185,17 @@ All ${needsAI.length} components required. No summary text. No questions.`;
       ? correctedBlocks.join("\n\n") + "\n\n"
       : "";
 
+    // When the verified-spec DB was unreachable, every block above is an AI
+    // estimate. Lead with a notice block so the UI can't be mistaken for verified
+    // specs. Formatted as a header + ⚠ line so renderCompSpecs shows it as a card.
+    const dbBanner = dbOk ? "" :
+      "**Specs Database Temporarily Unavailable**\n" +
+      "⚠ The component specs below are AI estimates and were not verified against the corrections database. Try again in a moment for verified values.\n\n";
+
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ text: (correctedSection + aiText).trim() })
+      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim() })
     };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
