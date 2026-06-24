@@ -1428,7 +1428,7 @@ select {
         </div>
         <div class="form-group">
           <label style="font-size:12px;font-weight:600;color:var(--text-2);">Corrected Specs <span style="color:#dc2626;">*</span></label>
-          <p style="font-size:11px;color:var(--text-3);margin:0 0 6px;">One spec per line as <code style="background:var(--cream);padding:1px 4px;border-radius:3px;">Key: Value</code></p>
+          <p style="font-size:11px;color:var(--text-3);margin:0 0 6px;">One spec per line as <code style="background:var(--cream);padding:1px 4px;border-radius:3px;">Key: Value</code> — use the manufacturer's exact wording and include every spec you can confirm. Submissions feed straight into the spec database.</p>
           <textarea id="suggest-specs" rows="8" placeholder="Drive type: Belt drive&#10;Platter: 11.5&quot; aluminum, 10.5 lbs&#10;Wow &amp; Flutter: 0.08%&#10;Rumble: 78 dB down" style="font-family:ui-monospace,monospace;font-size:12px;line-height:1.7;padding:10px;border:1.5px solid var(--border-2);border-radius:8px;background:#fafafa;outline:none;resize:vertical;width:100%;box-sizing:border-box;"></textarea>
         </div>
         <div class="form-row-2">
@@ -1456,7 +1456,7 @@ select {
   <input type="hidden" name="form-name" value="spec-correction">
   <input type="text" name="component-name">
   <textarea name="changes-summary"></textarea>
-  <textarea name="json-to-add"></textarea>
+  <textarea name="db-upsert-sql"></textarea>
 </form>
 
 <!-- COOKIE BANNER -->
@@ -2087,7 +2087,7 @@ function submitCorrectionToNetlify(correctedSpecsText){
     const original=parseSpecs(window._lastSpecsText||'');
     const corrected=parseSpecs(correctedSpecsText);
 
-    const summaryLines=[],jsonLines=['// Paste inside the corrections = { } object in analyze-specs.js:'];
+    const summaryLines=[],sqlLines=['-- Paste into the Supabase SQL editor and run to apply. component_specs.name is','-- UNIQUE, so this upserts: adds a new row or overwrites the existing specs.'];
     let anyChanged=false;
 
     Object.entries(corrected).forEach(([compName,compSpecs])=>{
@@ -2101,14 +2101,11 @@ function submitCorrectionToNetlify(correctedSpecsText){
       changedKeys.forEach(k=>{
         summaryLines.push(`[${compName}] ${k}: BEFORE: ${origComp[k]} | AFTER: ${compSpecs[k]}`);
       });
-      jsonLines.push(`  "${compName}": {`);
-      const entries=Object.entries(compSpecs);
-      entries.forEach(([k,v],i)=>{
-        const comma=i<entries.length-1?',':'';
-        const marker=changedKeys.has(k)?'  // >>> CHANGED <<<':'';
-        jsonLines.push(`    "${k}": "${v}"${comma}${marker}`);
-      });
-      jsonLines.push('  },');
+      // Single-quotes doubled so component names/values with apostrophes stay valid SQL.
+      const sqlName=compName.replace(/'/g,"''");
+      const sqlJson=JSON.stringify(compSpecs).replace(/'/g,"''");
+      sqlLines.push(`insert into component_specs (name, specs) values ('${sqlName}', '${sqlJson}'::jsonb)`);
+      sqlLines.push(`  on conflict (name) do update set specs = excluded.specs;`);
     });
 
     if(!anyChanged)return;
@@ -2117,7 +2114,7 @@ function submitCorrectionToNetlify(correctedSpecsText){
       'form-name':'spec-correction',
       'component-name':Object.keys(corrected).join(', '),
       'changes-summary':summaryLines.join('\n'),
-      'json-to-add':jsonLines.join('\n')
+      'db-upsert-sql':sqlLines.join('\n')
     }).toString();
 
     fetch('/index.html',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body});
