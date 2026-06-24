@@ -95,10 +95,10 @@ Project-specific rules that override or extend the principles above.
 - `index.html` has no test suite — Surgical Changes is especially critical here; one stray `}` can break the entire page
 
 ### Corrections database rules
-- **Corrections are hardcoded inline** in the `corrections` object at the top of `analyze-specs.js` — NOT loaded from `corrections.json` at runtime. Netlify function runtime does not reliably serve sibling files via `fs.readFileSync`.
-- To add or update a correction: edit the `corrections` object in `analyze-specs.js` and commit. Netlify redeploys automatically.
-- Keys are component names as users enter them — case-insensitive lookup is applied at runtime.
-- `corrections.json` remains in the repo as a human-readable reference only — it is not read by any function.
+- **Corrections live in the Supabase `component_specs` table** (migrated from a hardcoded inline object in PR #8). `analyze-specs.js` fetches them live at runtime via `fetchSpecs()`/`getCorrections()` — there is no longer a `corrections = {}` object in the file, and no `corrections.json`.
+- To add or update a spec: upsert into `component_specs` — `insert into component_specs (name, specs) values ('<name>', '<json>'::jsonb) on conflict (name) do update set specs = excluded.specs;` — via the Supabase MCP `execute_sql` or the Supabase dashboard. No code deploy needed.
+- `name` is the match key (UNIQUE, case-sensitive in the DB); `findCorrection()` applies case-insensitive + fuzzy matching at runtime.
+- Two submission paths feed corrections (both in `index.html`): the "Suggest a Spec Correction" modal writes structured rows to the `spec_submissions` table; the "Edit Component Specs" modal emails the owner a ready-to-run `component_specs` upsert (the `db-upsert-sql` field).
 
 ### Signal chain diagram rules
 - All `<` / `>` in SVG/HTML strings built in JS must use the `esc()` function or template literals — never raw angle brackets
