@@ -5,13 +5,14 @@ name: Supabase keep-alive
 # A bare REST read (select ... limit 1) returns 200 but does NOT reliably
 # register as activity for the auto-pause scanner — a write does. The cron
 # calls the touch_heartbeat() RPC, which updates a single-row heartbeat table.
-# Runs Mon/Wed/Fri (max gap ~3 days, leaving margin even if a run is skipped).
+# Runs daily — Supabase's auto-pause scanner wants a few requests each day over
+# the past week, so a sparser cadence (e.g. Mon/Wed/Fri) can still get flagged.
 # A non-200 response fails the job, which emails the repo owner — so a broken
 # ping can't go unnoticed until the project is already paused.
 
 on:
   schedule:
-    - cron: "0 8 * * 1,3,5"
+    - cron: "0 8 * * *"
   workflow_dispatch: {}
 
 jobs:
