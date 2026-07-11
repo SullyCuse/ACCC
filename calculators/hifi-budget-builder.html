@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HiFi Budget Builder — AudioChainHiFi.com</title>
+<meta name="description" content="Enter your total system budget and see how to split it across source, amplifier, speakers, and cables using sensible audiophile ratios. Free interactive calculator from AudioChainHiFi.">
+<meta property="og:title" content="HiFi Budget Builder">
+<meta property="og:description" content="Enter your total budget and see recommended allocations across source, amplification, and speakers — based on time-tested audiophile ratios.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audiochainhifi.com/calculators/hifi-budget-builder">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://audiochainhifi.com/calculators/hifi-budget-builder">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="8f5DDg+G0zc1jrT50lQWJw" async></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  /* AudioChainHiFi design tokens */
+  --blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#eff6ff;--indigo:#4f46e5;
+  --dark:#0f172a;--dark-2:#1e293b;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;
+  --border:#e2e8f0;--cream:#f8fafc;--white:#ffffff;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:12px;
+  /* Calculator component tokens (mapped onto the ACCC palette) */
+  --bg-page:#ffffff;--bg-card:#f8fafc;--bg-input:#eef2f7;
+  --gold:#2563eb;--gold-hover:#1d4ed8;--gold-dim:rgba(37,99,235,.10);--gold-border:rgba(37,99,235,.40);
+  --text-white:#0f172a;--text-body:#334155;--text-muted:#64748b;--text-dim:#94a3b8;
+  --border-light:#eef2f6;--serif:'Plus Jakarta Sans',system-ui,sans-serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif;--radius-lg:20px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:var(--blue-dk);}
+
+/* ── NAV (ACCC) ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+@media(max-width:760px){.nav-links{gap:16px;}.nav-links a:not(.nav-cta){display:none;}.nav-links .nav-dropdown{display:none;}}
+
+/* ── HERO (ACCC) ── */
+.page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:60px 0 52px;text-align:center;}
+.page-hero .container{max-width:780px;margin:0 auto;padding:0 24px;}
+.guide-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:14px;}
+.page-hero h1{font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;}
+.page-hero .lede{font-size:17px;color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;line-height:1.7;}
+.guide-date{font-size:12px;color:rgba(255,255,255,.4);margin-top:14px;}
+.guide-date a{color:#60a5fa;}
+
+/* ── CALC LAYOUT ── */
+.calc-wrap{max-width:820px;margin:0 auto;padding:44px 24px 72px;}
+.section-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+
+/* ── INPUTS ── */
+.inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+@media (max-width:560px){.inputs-grid{grid-template-columns:1fr;}}
+.input-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;}
+.input-card-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;display:block;}
+.slider-readout{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;}
+.slider-val{font-family:var(--serif);font-size:30px;font-weight:800;color:var(--text-white);line-height:1;}
+.slider-unit{font-size:13px;color:var(--text-dim);}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none;cursor:pointer;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;}
+.range-labels{display:flex;justify-content:space-between;margin-top:5px;}
+.range-labels span{font-size:10px;color:var(--text-dim);}
+
+/* ── RESULTS ── */
+.results-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:1.5rem;}
+.results-grid{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0;margin-bottom:24px;}
+@media (max-width:480px){.results-grid{grid-template-columns:1fr;}.results-divider{display:none;}}
+.results-divider{background:var(--border);}
+.result-block{padding:0 20px;}
+.result-block:first-child{padding-left:0;}
+.result-block:last-child{padding-right:0;}
+.result-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.result-value{font-family:var(--serif);font-size:44px;font-weight:800;color:var(--gold);line-height:1;margin-bottom:4px;letter-spacing:-.02em;}
+.result-unit{font-size:13px;color:var(--text-dim);margin-bottom:10px;}
+.result-note{font-size:13px;color:var(--text-muted);line-height:1.55;}
+
+/* ── METER ── */
+.meter-section{border-top:1px solid var(--border);padding-top:20px;}
+.meter-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+.meter-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:5px;}
+.meter-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .35s ease,background .35s ease;}
+.meter-ticks{display:flex;justify-content:space-between;margin-bottom:16px;}
+.meter-ticks span{font-size:10px;color:var(--text-dim);}
+.verdict-box{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;font-size:14px;color:var(--text-muted);line-height:1.6;transition:border-color .35s ease;}
+.verdict-box strong{color:var(--text-body);font-weight:700;}
+
+/* ── FAQ ── */
+.faq-section{margin-bottom:2.5rem;}
+.faq-item{border-top:1px solid var(--border);padding:18px 0;}
+.faq-item:last-child{border-bottom:1px solid var(--border);}
+.faq-q{font-size:16px;font-weight:700;color:var(--text-white);margin-bottom:8px;line-height:1.35;}
+.faq-a{font-size:14px;color:var(--text-muted);line-height:1.7;}
+
+/* ── RELATED ── */
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.related-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;text-decoration:none;display:block;transition:border-color .2s,transform .2s;}
+.related-card:hover{border-color:var(--gold-border);transform:translateY(-2px);}
+.related-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.related-title{font-size:15px;font-weight:700;color:var(--text-white);line-height:1.35;}
+
+/* ── FOOTER (ACCC) ── */
+.footer{background:var(--dark);padding:48px 0 28px;}
+.container-wide{max-width:1100px;margin:0 auto;padding:0 24px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+
+/* ── CALCULATOR-SPECIFIC ── */
+.input-card.full{grid-column:1 / -1;}
+
+/* Budget slider uses 4 positioned labels — override the shared flex range-labels */
+.range-labels{position:relative;height:16px;margin-top:5px;display:block;}
+.range-labels span{position:absolute;font-size:10px;color:var(--text-dim);transform:translateX(-50%);}
+.range-labels span:first-child{transform:translateX(0);}
+.range-labels span:last-child{transform:translateX(-100%);}
+
+/* Priority / source button groups */
+.btn-group{display:flex;gap:6px;flex-wrap:wrap;}
+.btn-opt{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-muted);font-family:var(--sans);font-size:13px;font-weight:500;padding:7px 14px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.btn-opt:hover{border-color:var(--gold-border);color:var(--text-white);}
+.btn-opt.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+
+/* Budget total row */
+.budget-total-row{display:flex;align-items:baseline;gap:8px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.budget-total-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);}
+.budget-total-val{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--gold);line-height:1;margin-left:auto;}
+
+/* Allocation bars */
+.alloc-list{display:flex;flex-direction:column;gap:20px;}
+.alloc-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;}
+.alloc-name{font-family:var(--serif);font-size:16px;font-weight:800;color:var(--text-white);}
+.alloc-amount{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--gold);}
+.alloc-pct{font-size:12px;color:var(--text-dim);margin-left:6px;}
+.alloc-bar-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:8px;}
+.alloc-bar-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .35s ease;}
+.alloc-note{font-size:13px;color:var(--text-muted);line-height:1.55;}
+
+/* Vinyl sub-split */
+.alloc-sub{margin-top:10px;padding-top:10px;border-top:1px solid var(--border-light);display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.alloc-sub-item{background:var(--bg-card);border-radius:var(--radius);padding:8px 12px;}
+.alloc-sub-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:3px;}
+.alloc-sub-val{font-family:var(--serif);font-size:17px;font-weight:800;color:var(--text-white);}
+
+/* Verdict sits directly under the allocation list (no meter section on this calculator) */
+.verdict-box{margin-top:20px;}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"HiFi Budget Builder",
+  "url":"https://audiochainhifi.com/calculators/hifi-budget-builder",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "description":"Split a total hi-fi system budget across speakers, amplification, and source using time-tested audiophile allocation ratios, with a dedicated turntable and phono-stage split for vinyl.",
+  "publisher":{"@type":"Organization","name":"AudioChainHiFi.com","url":"https://audiochainhifi.com"}
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/><circle cx="9" cy="13" r="2" fill="#fbbf24"/><circle cx="27" cy="13" r="2" fill="#34d399"/></svg>
+      <span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Analyzer</a>
+      <a href="/calculators/" class="active">Calculators</a>
+      <a href="/compare">Compare</a>
+      <a href="/glossary">Glossary</a>
+      <div class="nav-dropdown">
+        <a href="/guides/">Guides &#9662;</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides#getting-started">Getting Started</a>
+          <a href="/guides#amplifiers">Amplifiers</a>
+          <a href="/guides#speakers-room">Speakers &amp; Room</a>
+          <a href="/guides#vinyl">Turntables &amp; Vinyl</a>
+          <a href="/guides#digital">Digital Audio</a>
+          <a href="/guides#headphones-power">Headphones &amp; Power</a>
+          <a href="/guides/" style="border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:10px;color:#60a5fa;font-weight:700;">View all guides &#8594;</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/#analyzer" class="nav-cta">Start Analysis &#8594;</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="guide-label">Getting Started &middot; Calculator</div>
+    <h1>HiFi Budget Builder</h1>
+    <p class="lede">Enter your total system budget and see how to divide it across speakers, amplification, and source — using time-tested audiophile ratios that leave room for cables and accessories.</p>
+    <p class="guide-date">Free tool &middot; No sign-up &middot; By <a href="/about">Sully</a></p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="calc-wrap">
+
+  <!-- INPUTS -->
+  <div class="section-label">Your budget</div>
+  <div class="inputs-grid">
+
+    <div class="input-card full">
+      <label class="input-card-label" for="budget">Total budget</label>
+      <div class="slider-readout">
+        <span class="slider-val" id="budgetVal">$1,500</span>
+      </div>
+      <input type="range" id="budget" min="200" max="10000" value="1500" step="50" aria-label="Total HiFi budget in dollars" />
+      <div class="range-labels">
+        <span style="left:0%">$200</span>
+        <span style="left:23.5%">$2,500</span>
+        <span style="left:49%">$5,000</span>
+        <span style="left:100%">$10,000</span>
+      </div>
+    </div>
+
+    <div class="input-card">
+      <label class="input-card-label">Priority</label>
+      <div class="btn-group" role="group" aria-label="Budget priority">
+        <button class="btn-opt active" data-priority="balanced">Balanced</button>
+        <button class="btn-opt" data-priority="speaker">Speaker-forward</button>
+        <button class="btn-opt" data-priority="source">Source-forward</button>
+      </div>
+    </div>
+
+    <div class="input-card">
+      <label class="input-card-label">Source type</label>
+      <div class="btn-group" role="group" aria-label="Source type">
+        <button class="btn-opt active" data-source="streaming">Streaming / Digital</button>
+        <button class="btn-opt" data-source="vinyl">Vinyl</button>
+        <button class="btn-opt" data-source="both">Both</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESULTS -->
+  <div class="section-label">Recommended allocation</div>
+  <div class="results-card" role="region" aria-label="Budget allocation results" aria-live="polite">
+
+    <div class="budget-total-row">
+      <span class="budget-total-label">Total budget</span>
+      <span class="budget-total-val" id="totalDisplay">$1,500</span>
+    </div>
+
+    <div class="alloc-list">
+
+      <div class="alloc-row">
+        <div class="alloc-header">
+          <span class="alloc-name">Speakers</span>
+          <span>
+            <span class="alloc-amount" id="speakerAmt">$600</span>
+            <span class="alloc-pct" id="speakerPct">(40%)</span>
+          </span>
+        </div>
+        <div class="alloc-bar-track"><div class="alloc-bar-fill" id="speakerBar" style="width:40%"></div></div>
+        <div class="alloc-note" id="speakerNote">Speakers are your most impactful investment — they convert everything your system produces into sound you can actually hear.</div>
+      </div>
+
+      <div class="alloc-row">
+        <div class="alloc-header">
+          <span class="alloc-name">Amplification</span>
+          <span>
+            <span class="alloc-amount" id="ampAmt">$450</span>
+            <span class="alloc-pct" id="ampPct">(30%)</span>
+          </span>
+        </div>
+        <div class="alloc-bar-track"><div class="alloc-bar-fill" id="ampBar" style="width:30%"></div></div>
+        <div class="alloc-note" id="ampNote">An integrated amplifier in this range will offer clean power, a useful input set, and build quality that outlasts cheaper alternatives.</div>
+      </div>
+
+      <div class="alloc-row">
+        <div class="alloc-header">
+          <span class="alloc-name" id="sourceName">Source</span>
+          <span>
+            <span class="alloc-amount" id="sourceAmt">$450</span>
+            <span class="alloc-pct" id="sourcePct">(30%)</span>
+          </span>
+        </div>
+        <div class="alloc-bar-track"><div class="alloc-bar-fill" id="sourceBar" style="width:30%"></div></div>
+        <div class="alloc-note" id="sourceNote">A capable DAC/streamer combination at this level will comfortably outperform the DAC built into most amplifiers.</div>
+        <div class="alloc-sub" id="vinylSub" style="display:none">
+          <div class="alloc-sub-item">
+            <div class="alloc-sub-label">Turntable</div>
+            <div class="alloc-sub-val" id="ttAmt">$315</div>
+          </div>
+          <div class="alloc-sub-item">
+            <div class="alloc-sub-label">Phono stage</div>
+            <div class="alloc-sub-val" id="phonoAmt">$135</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="verdict-box" id="verdict">
+      <strong>Balanced build</strong> — equal emphasis on all three pillars. A safe starting point for first-time buyers who aren't sure where their priorities lie yet.
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-label">Thinking about the split</div>
+    <div class="faq-item">
+      <div class="faq-q">Why do speakers typically get the largest allocation?</div>
+      <div class="faq-a">Speakers are the final and most irreplaceable link in the chain — they physically move air, and their character dominates everything you hear. A well-matched speaker at 40% of budget will reveal more of your amplifier and source than doubling down on those components while underspending on drivers. The corollary is also true: speakers are where compromises hurt most, so this is rarely a category to cut.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">When does "speaker-forward" make sense?</div>
+      <div class="faq-a">Speaker-forward allocation suits listeners who plan to upgrade incrementally. If you buy the best speakers your total budget allows, a modest integrated amplifier will still drive them respectably — and you can upgrade amplification later without replacing speakers. This approach also makes sense if you have a specific speaker in mind that exceeds a balanced allocation, but you're happy to live with a simpler source or amp for now.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why does vinyl source get split into a turntable and phono stage?</div>
+      <div class="faq-a">A turntable outputs a tiny signal — typically 2–5 mV for a moving-magnet cartridge — that requires dedicated amplification before it reaches your integrated amp. This amplification stage is the phono stage (or phono preamplifier). Many integrated amplifiers include one, but dedicated external phono stages at the same price consistently outperform built-in options. Allocating roughly 70% of your source budget to the turntable and 30% to the phono stage is a widely used starting point.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Should cables and accessories be included in this budget?</div>
+      <div class="faq-a">These allocations cover the three main components only. For a first system, budget an additional 5–10% for interconnects, speaker cables, and a power bar. Avoid the trap of spending disproportionately on cables at the expense of the components themselves — at this level, the law of diminishing returns on cable upgrades is very steep. Reasonable cables from a reputable brand are all you need to get the most from a well-matched system.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Does the ratio change at higher budgets?</div>
+      <div class="faq-a">Not dramatically — these ratios hold reasonably well from entry-level to mid-fi. At very high budgets (above $10,000), some audiophiles shift more weight to source and amplification because high-end speaker prices escalate steeply and the incremental gains from upgrading electronics become more audible. Below $500 total, the lines blur because component selection is heavily constrained by what's available at each price point, and all-in-one solutions may offer better value than separates.</div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="section-label">Related tools &amp; guides</div>
+  <div class="related-grid">
+    <a href="/guides/first-hifi-system" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Building your first hi-fi system</div>
+    </a>
+    <a href="/guides/speakers" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Speakers: sensitivity, impedance &amp; placement</div>
+    </a>
+    <a href="/calculators/" class="related-card">
+      <div class="related-tag">Tools</div>
+      <div class="related-title">All HiFi calculators &amp; system tools</div>
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
+        <p>Free hi-fi compatibility tools, calculators, and guides. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/calculators/">Calculators</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/speakers">Speakers</a></li><li><a href="/guides/amplifiers">Amplifiers</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── State ──────────────────────────────────────────────────────────────────
+  const PRIORITIES = {
+    balanced: { speakers: 0.40, amp: 0.30, source: 0.30 },
+    speaker:  { speakers: 0.55, amp: 0.25, source: 0.20 },
+    source:   { speakers: 0.35, amp: 0.30, source: 0.35 },
+  };
+
+  let state = { budget: 1500, priority: 'balanced', source: 'streaming' };
+
+  // ── Helpers ────────────────────────────────────────────────────────────────
+  function fmt(n) {
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  function speakerNote(amt) {
+    if (amt < 250)  return 'Budget bookshelf speakers from Edifier or Dayton Audio can punch well above their price — but expect limitations in bass extension and dynamics.';
+    if (amt < 500)  return 'Real hi-fi starts here. ELAC, Q Acoustics, and Wharfedale all offer excellent bookshelf options in this range.';
+    if (amt < 1000) return 'Strong mid-fi selection — KEF, Monitor Audio, and Focal all have compelling standmounts. Consider floorstanders if room size allows.';
+    if (amt < 2500) return 'Audiophile-grade territory. Expect genuine transparency, wide staging, and solid bass from standmounts or entry floorstanders.';
+    return 'High-end options including bookshelf speakers that rival floorstanders at lower prices — Harbeth, ProAc, and Dynaudio are worth auditioning.';
+  }
+
+  function ampNote(amt) {
+    if (amt < 150)  return 'Budget integrated options from Fosi Audio or SMSL are surprisingly capable — adequate for efficient speakers in smaller rooms.';
+    if (amt < 350)  return 'Solid entry-level integrateds from Yamaha, Denon, and Cambridge Audio. Clean power, reliable build, useful features.';
+    if (amt < 700)  return 'Strong mid-fi integrateds — Rega, NAD, and Rotel all shine here. Expect lower noise, better dynamics, and a more refined presentation.';
+    if (amt < 1500) return 'Excellent integrated amplifiers from Naim, Hegel, and Exposure. This is where amplifier character becomes a real differentiator.';
+    return 'Reference-class integrated amplifiers — or consider separates (pre + power) at this level for greater flexibility.';
+  }
+
+  function sourceNote(amt, srcType) {
+    if (srcType === 'vinyl') {
+      if (amt < 300)  return 'Budget turntables from Audio-Technica (AT-LP120) paired with a basic phono stage — a workable entry point to vinyl.';
+      if (amt < 600)  return 'Pro-Ject and Rega entry-level decks with a dedicated phono stage. Real sonic improvement over built-in phono stages.';
+      if (amt < 1200) return 'Rega Planar 3, Pro-Ject Debut Pro, and similar with a quality phono stage. Noticeably better tracking and detail retrieval.';
+      return 'High-performance turntables with a serious phono stage — this level of source reveals everything downstream in your chain.';
+    }
+    if (amt < 200)  return 'A basic DAC/streamer from WiiM or Topping is transformative if you\'re currently using a phone headphone jack or PC output.';
+    if (amt < 500)  return 'WiiM Pro, Cambridge Audio CXN, or a dedicated DAC + streaming app. Measurably superior to built-in amplifier DACs.';
+    if (amt < 1000) return 'Network streamers from Bluesound, Lumin, or a quality separate DAC and transport. High-resolution streaming at its best.';
+    return 'Audiophile streaming with R2R or high-spec delta-sigma DACs. At this level, source quality is no longer a limiting factor.';
+  }
+
+  function verdictText(priority, budget) {
+    const tier = budget < 500 ? 'entry' : budget < 2000 ? 'mid-fi' : 'high-fi';
+    if (priority === 'balanced') {
+      return '<strong>Balanced build</strong> — equal emphasis on all three pillars. The safest approach for a first system, and the one most likely to produce a cohesive sound without any obvious weak link.';
+    }
+    if (priority === 'speaker') {
+      return '<strong>Speaker-forward build</strong> — buy the best speakers your budget allows and work up from there. Your source and amplifier will improve with future upgrades; great speakers tend to stay in systems for decades.';
+    }
+    return '<strong>Source-forward build</strong> — emphasises the quality of what goes into your amplifier. A good choice if you already have capable speakers, or if you listen primarily to high-resolution digital or demanding vinyl setups.';
+  }
+
+  // ── Render ─────────────────────────────────────────────────────────────────
+  function render() {
+    const { budget, priority, source } = state;
+    const split = PRIORITIES[priority];
+
+    const speakerAmt = budget * split.speakers;
+    const ampAmt     = budget * split.amp;
+    const sourceAmt  = budget * split.source;
+
+    document.getElementById('budgetVal').textContent   = fmt(budget);
+    document.getElementById('totalDisplay').textContent = fmt(budget);
+
+    document.getElementById('speakerAmt').textContent  = fmt(speakerAmt);
+    document.getElementById('speakerPct').textContent  = '(' + Math.round(split.speakers * 100) + '%)';
+    document.getElementById('speakerBar').style.width  = (split.speakers * 100) + '%';
+    document.getElementById('speakerNote').textContent = speakerNote(speakerAmt);
+
+    document.getElementById('ampAmt').textContent      = fmt(ampAmt);
+    document.getElementById('ampPct').textContent      = '(' + Math.round(split.amp * 100) + '%)';
+    document.getElementById('ampBar').style.width      = (split.amp * 100) + '%';
+    document.getElementById('ampNote').textContent     = ampNote(ampAmt);
+
+    document.getElementById('sourceAmt').textContent   = fmt(sourceAmt);
+    document.getElementById('sourcePct').textContent   = '(' + Math.round(split.source * 100) + '%)';
+    document.getElementById('sourceBar').style.width   = (split.source * 100) + '%';
+    document.getElementById('sourceNote').textContent  = sourceNote(sourceAmt, source);
+
+    // Source label & vinyl sub-split
+    const vinylSub = document.getElementById('vinylSub');
+    if (source === 'vinyl') {
+      document.getElementById('sourceName').textContent = 'Source (Vinyl)';
+      vinylSub.style.display = 'grid';
+      document.getElementById('ttAmt').textContent    = fmt(sourceAmt * 0.70);
+      document.getElementById('phonoAmt').textContent = fmt(sourceAmt * 0.30);
+    } else if (source === 'both') {
+      document.getElementById('sourceName').textContent = 'Source (Digital + Vinyl)';
+      vinylSub.style.display = 'none';
+    } else {
+      document.getElementById('sourceName').textContent = 'Source (Digital)';
+      vinylSub.style.display = 'none';
+    }
+
+    document.getElementById('verdict').innerHTML = verdictText(priority, budget);
+  }
+
+  // ── Events ─────────────────────────────────────────────────────────────────
+  document.getElementById('budget').addEventListener('input', function () {
+    state.budget = parseInt(this.value, 10);
+    render();
+  });
+
+  document.querySelectorAll('[data-priority]').forEach(btn => {
+    btn.addEventListener('click', function () {
+      state.priority = this.dataset.priority;
+      document.querySelectorAll('[data-priority]').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      render();
+    });
+  });
+
+  document.querySelectorAll('[data-source]').forEach(btn => {
+    btn.addEventListener('click', function () {
+      state.source = this.dataset.source;
+      document.querySelectorAll('[data-source]').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      render();
+    });
+  });
+
+  render();
+</script>
+
+</body>
+</html>

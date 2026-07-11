@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phono Stage Gain Calculator — AudioChainHiFi.com</title>
-<meta name="description" content="Find how much gain your phono stage needs for your MM or MC cartridge — including when you need a step-up transformer. Free interactive calculator from AudioChainHiFi.">
-<meta property="og:title" content="Phono Stage Gain Calculator">
-<meta property="og:description" content="Enter your cartridge's output voltage to find exactly how much gain your phono stage needs — and whether you need a step-up transformer.">
+<title>Cable Resistance &amp; Gauge Calculator — AudioChainHiFi.com</title>
+<meta name="description" content="Calculate speaker cable resistance by gauge and run length — and find out whether it actually matters for your speaker impedance and damping factor. Free interactive calculator from AudioChainHiFi.">
+<meta property="og:title" content="Cable Resistance &amp; Gauge Calculator">
+<meta property="og:description" content="Enter your cable gauge, run length, and speaker impedance to find total cable resistance — and whether it has any audible impact on your system.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://audiochainhifi.com/calculators/phono-stage-gain">
+<meta property="og:url" content="https://audiochainhifi.com/calculators/cable-resistance">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://audiochainhifi.com/calculators/phono-stage-gain">
+<link rel="canonical" href="https://audiochainhifi.com/calculators/cable-resistance">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -63,18 +63,6 @@ a:hover{color:var(--blue-dk);}
 /* ── CALC LAYOUT ── */
 .calc-wrap{max-width:820px;margin:0 auto;padding:44px 24px 72px;}
 .section-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
-
-/* ── CARTRIDGE TYPE SELECTOR ── */
-.type-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;margin-bottom:12px;}
-.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-@media (max-width:480px){.type-grid{grid-template-columns:1fr;}}
-.type-btn{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px;text-align:center;cursor:pointer;transition:all .15s;}
-.type-btn:hover{border-color:var(--gold-border);}
-.type-btn.active{background:var(--gold);border-color:var(--gold);}
-.type-btn-name{font-size:14px;font-weight:600;color:var(--text-white);}
-.type-btn.active .type-btn-name{color:#fff;}
-.type-btn-range{font-size:12px;color:var(--text-dim);margin-top:3px;}
-.type-btn.active .type-btn-range{color:rgba(255,255,255,0.85);}
 
 /* ── INPUTS ── */
 .inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
@@ -142,17 +130,27 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+
+/* ── CALCULATOR-SPECIFIC ── */
+.btn-group{display:flex;gap:6px;flex-wrap:wrap;}
+.btn-opt{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-muted);font-family:var(--sans);font-size:13px;font-weight:500;padding:7px 14px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.btn-opt:hover{border-color:var(--gold-border);color:var(--text-white);}
+.btn-opt.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+.result-value.large{font-size:48px;}
+.verdict-box.ok{border-left-color:#16a34a;}
+.verdict-box.warn{border-left-color:#f59e0b;}
+.verdict-box.bad{border-left-color:#ef4444;}
 </style>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"WebApplication",
-  "name":"Phono Stage Gain Calculator",
-  "url":"https://audiochainhifi.com/calculators/phono-stage-gain",
+  "name":"Cable Resistance & Gauge Calculator",
+  "url":"https://audiochainhifi.com/calculators/cable-resistance",
   "applicationCategory":"UtilitiesApplication",
   "operatingSystem":"Any",
   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "description":"Calculate the gain a phono stage needs for a given MM or MC cartridge output voltage, and whether a step-up transformer is required.",
+  "description":"Calculate total speaker cable resistance from wire gauge and run length, and find out whether it matters relative to speaker impedance, damping factor, and power delivery.",
   "publisher":{"@type":"Organization","name":"AudioChainHiFi.com","url":"https://audiochainhifi.com"}
 }
 </script>
@@ -192,9 +190,9 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 <!-- HERO -->
 <div class="page-hero">
   <div class="container">
-    <div class="guide-label">Turntables &amp; Vinyl &middot; Calculator</div>
-    <h1>Phono Stage Gain Calculator</h1>
-    <p class="lede">Enter your cartridge's output voltage to find exactly how much gain your phono stage needs — and whether you require a step-up transformer.</p>
+    <div class="guide-label">Cables &middot; Calculator</div>
+    <h1>Cable Resistance &amp; Gauge Calculator</h1>
+    <p class="lede">Check whether your speaker cable gauge and run length keep resistance low enough relative to your speaker's impedance and damping factor.</p>
     <p class="guide-date">Free tool &middot; No sign-up &middot; By <a href="/about">Sully</a></p>
   </div>
 </div>
@@ -202,83 +200,87 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 <!-- MAIN -->
 <main class="calc-wrap">
 
-  <!-- CARTRIDGE TYPE -->
-  <div class="section-label">Your cartridge</div>
-  <div class="type-card">
-    <label class="input-card-label">Cartridge type</label>
-    <div class="type-grid">
-      <button class="type-btn" id="btn-mm" onclick="setType('mm')" aria-pressed="false">
-        <div class="type-btn-name">MM</div>
-        <div class="type-btn-range">2 – 6 mV output</div>
-      </button>
-      <button class="type-btn active" id="btn-homc" onclick="setType('homc')" aria-pressed="true">
-        <div class="type-btn-name">High-output MC</div>
-        <div class="type-btn-range">1 – 2.5 mV output</div>
-      </button>
-      <button class="type-btn" id="btn-lomc" onclick="setType('lomc')" aria-pressed="false">
-        <div class="type-btn-name">Low-output MC</div>
-        <div class="type-btn-range">0.1 – 0.6 mV output</div>
-      </button>
-    </div>
-  </div>
-
-  <!-- SLIDERS -->
+  <!-- INPUTS -->
+  <div class="section-label">Your cable</div>
   <div class="inputs-grid">
+
     <div class="input-card">
-      <label class="input-card-label" for="cart">Cartridge output voltage</label>
-      <div class="slider-readout">
-        <span class="slider-val" id="cartVal">1.8</span>
-        <span class="slider-unit">mV</span>
+      <label class="input-card-label">Cable gauge (AWG)</label>
+      <div class="btn-group" role="group" aria-label="Cable gauge in AWG">
+        <button class="btn-opt" data-awg="12">12 AWG</button>
+        <button class="btn-opt" data-awg="14">14 AWG</button>
+        <button class="btn-opt active" data-awg="16">16 AWG</button>
+        <button class="btn-opt" data-awg="18">18 AWG</button>
+        <button class="btn-opt" data-awg="20">20 AWG</button>
+        <button class="btn-opt" data-awg="22">22 AWG</button>
+        <button class="btn-opt" data-awg="24">24 AWG</button>
       </div>
-      <input type="range" id="cart" min="0.5" max="2.5" value="1.8" step="0.1" aria-label="Cartridge output voltage in millivolts" />
-      <div class="range-labels"><span id="rangeMin">0.5 mV</span><span id="rangeMax">2.5 mV</span></div>
     </div>
+
     <div class="input-card">
-      <label class="input-card-label" for="target">Target output (line level)</label>
-      <div class="slider-readout">
-        <span class="slider-val" id="targetVal">200</span>
-        <span class="slider-unit">mV</span>
+      <label class="input-card-label">Speaker impedance</label>
+      <div class="btn-group" role="group" aria-label="Speaker impedance in ohms">
+        <button class="btn-opt" data-imp="4">4 Ω</button>
+        <button class="btn-opt active" data-imp="8">8 Ω</button>
+        <button class="btn-opt" data-imp="6">6 Ω</button>
+        <button class="btn-opt" data-imp="16">16 Ω</button>
       </div>
-      <input type="range" id="target" min="100" max="400" value="200" step="10" aria-label="Target line level output in millivolts" />
-      <div class="range-labels"><span>100 mV</span><span>400 mV</span></div>
     </div>
+
+    <div class="input-card" style="grid-column: 1 / -1;">
+      <label class="input-card-label" for="length">Cable length (one run)</label>
+      <div class="slider-readout">
+        <span class="slider-val" id="lengthVal">10</span>
+        <span class="slider-unit">feet</span>
+      </div>
+      <input type="range" id="length" min="1" max="100" value="10" step="1" aria-label="Cable length in feet" />
+      <div class="range-labels"><span>1 ft</span><span>100 ft</span></div>
+    </div>
+
   </div>
 
   <!-- RESULTS -->
   <div class="section-label">Results</div>
-  <div class="results-card" role="region" aria-label="Calculator results" aria-live="polite">
+  <div class="results-card" role="region" aria-label="Cable resistance results" aria-live="polite">
     <div class="results-grid">
+
       <div class="result-block">
-        <div class="result-label">Gain required</div>
-        <div class="result-value" id="gainDb">—</div>
-        <div class="result-unit">dB</div>
-        <div class="result-note" id="gainNote"></div>
+        <div class="result-label">Cable resistance</div>
+        <div class="result-value large" id="resistance">—</div>
+        <div class="result-unit" id="resistanceUnit">Ω (total, both conductors)</div>
+        <div class="result-note" id="resistanceNote"></div>
       </div>
+
       <div class="results-divider" aria-hidden="true"></div>
+
       <div class="result-block">
-        <div class="result-label">Voltage multiplier</div>
-        <div class="result-value" id="gainMult">—</div>
-        <div class="result-unit">× ratio</div>
-        <div class="result-note" id="multNote"></div>
+        <div class="result-label">% of speaker impedance</div>
+        <div class="result-value" id="pctVal">—</div>
+        <div class="result-unit">percent</div>
+        <div class="result-note" id="pctNote"></div>
       </div>
+
       <div class="results-divider" aria-hidden="true"></div>
+
       <div class="result-block">
-        <div class="result-label">Stage required</div>
-        <div class="result-value" id="stageType" style="font-size:26px;padding-top:8px;">—</div>
-        <div class="result-unit" id="stageNote"></div>
+        <div class="result-label">Power loss at speaker</div>
+        <div class="result-value" id="lossVal">—</div>
+        <div class="result-unit">percent</div>
+        <div class="result-note" id="lossNote"></div>
       </div>
+
     </div>
+
     <div class="meter-section">
-      <div class="meter-label">Gain range indicator</div>
-      <div class="meter-track"><div class="meter-fill" id="gainMeter" style="width:0%"></div></div>
+      <div class="meter-label">Cable resistance as % of speaker impedance</div>
+      <div class="meter-track"><div class="meter-fill" id="meterFill" style="width:0%"></div></div>
       <div class="meter-ticks">
-        <span>30 dB</span>
-        <span>40 dB (MM)</span>
-        <span>55 dB</span>
-        <span>65 dB (LOMC)</span>
-        <span>75 dB+</span>
+        <span>0%</span>
+        <span>1% — threshold</span>
+        <span>5% — noticeable</span>
+        <span>10%+</span>
       </div>
-      <div class="verdict-box" id="verdict">Select your cartridge type and adjust the output voltage above.</div>
+      <div class="verdict-box ok" id="verdict">Adjust the inputs above to see a full assessment of your cable run.</div>
     </div>
   </div>
 
@@ -286,37 +288,37 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
   <div class="faq-section">
     <div class="section-label">Understanding the numbers</div>
     <div class="faq-item">
-      <div class="faq-q">What is phono stage gain and why does it matter?</div>
-      <div class="faq-a">A phono stage amplifies the tiny signal from your cartridge — typically between 0.1 mV and 6 mV — up to line level so your integrated amplifier or preamplifier can work with it. Too little gain and your music sounds thin, quiet, and distant. Too much and you introduce noise and distortion. Matching gain to your cartridge's output voltage is one of the most important and most overlooked setup decisions in a vinyl system.</div>
+      <div class="faq-q">What is the 5% rule for speaker cable resistance?</div>
+      <div class="faq-a">The widely used audiophile rule of thumb is that total cable resistance should be less than 5% of the speaker's nominal impedance. For an 8 Ω speaker, that means keeping cable resistance below 0.4 Ω. At or below this threshold, the cable's impact on frequency response, damping factor, and power delivery is generally considered negligible in a real listening environment. The more conservative target — used by engineers and measurement-focused audiophiles — is under 1%.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">What's the difference between MM and MC gain requirements?</div>
-      <div class="faq-a">Moving Magnet cartridges typically output 2–6 mV and need around 36–42 dB of gain — a requirement easily met by almost any phono stage on the market. Moving Coil cartridges output far less, sometimes under 0.2 mV, and require 60–75 dB of gain. Using an MM-only phono stage with a low-output MC cartridge results in a very weak, noise-prone signal that no amount of downstream volume adjustment can properly fix.</div>
+      <div class="faq-q">Does higher AWG mean thicker or thinner cable?</div>
+      <div class="faq-a">Higher AWG numbers mean thinner wire. The American Wire Gauge scale runs inversely — 12 AWG is substantially thicker than 24 AWG. A thicker (lower AWG) cable has lower resistance per foot and therefore lower total resistance for a given run length. For typical speaker cable runs under 20 feet, 16 AWG is adequate for most systems. Longer runs or low-impedance speakers (4 Ω) benefit from 14 or 12 AWG.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">When do I need a step-up transformer?</div>
-      <div class="faq-a">When your cartridge outputs less than 0.2 mV, even the best high-gain MC phono stages struggle to amplify cleanly without introducing noise. A step-up transformer (SUT) passively boosts the signal — typically by 20–26 dB — before it reaches the phono stage, allowing a lower-gain MM or moderate-gain MC stage to handle very low-output cartridges with exceptional noise performance. Many audiophiles consider a quality SUT paired with a good MM stage to sound superior to any active MC stage at the same price point.</div>
+      <div class="faq-q">Why does speaker impedance affect how much the cable matters?</div>
+      <div class="faq-a">Cable resistance is only meaningful relative to the load it's driving. A 0.3 Ω cable run into a 16 Ω speaker represents under 2% of impedance — genuinely inconsequential. The same cable into a 4 Ω speaker represents 7.5% — measurably affecting damping factor and potentially audible as a slight softening of bass control. This is why 4 Ω speakers are more demanding of cable quality than 8 or 16 Ω designs.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">What does the voltage multiplier figure mean?</div>
-      <div class="faq-a">The voltage multiplier (or gain ratio) shows the same result as the dB figure in a different form. A multiplier of 100× means your phono stage takes the cartridge's output voltage and amplifies it one hundred times to reach line level. Some audiophiles find this figure more intuitive than decibels when comparing phono stage specifications — many manufacturers list both.</div>
+      <div class="faq-q">What is damping factor, and how does cable resistance affect it?</div>
+      <div class="faq-a">Damping factor describes how well an amplifier controls the motion of a speaker cone after a transient. It is calculated as speaker impedance divided by the total source impedance seen by the speaker — which includes both the amplifier's output impedance and the cable resistance. A typical solid-state amplifier might have an output impedance of 0.05–0.1 Ω. Adding even 0.3 Ω of cable resistance can cut damping factor by 50–75%, with the most audible effect in bass reproduction. This matters more with amplifiers that already have moderate output impedance, and less with very low output-impedance designs.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Does cartridge loading affect gain requirements?</div>
-      <div class="faq-a">Loading — the input impedance your phono stage presents to the cartridge — affects tonal character and high-frequency response, particularly with MC cartridges, but it does not change the gain requirement. Set your loading according to your cartridge manufacturer's recommendations, then use this calculator to confirm you have adequate gain. The two adjustments are independent of each other.</div>
+      <div class="faq-q">Do expensive cables actually sound better?</div>
+      <div class="faq-a">Beyond the point where resistance is non-trivial, the honest answer supported by controlled listening tests is: no, not reliably. Cables that measure identically under controlled conditions are indistinguishable in double-blind tests. The cable industry is filled with expensive products whose performance claims are not supported by measurement. Spend what you need to keep resistance in check for your gauge and run length — then apply the rest of your budget to components where the difference is real and measurable.</div>
     </div>
   </div>
 
   <!-- RELATED -->
   <div class="section-label">Related tools &amp; guides</div>
   <div class="related-grid">
-    <a href="/guides/phono-stages" class="related-card">
+    <a href="/guides/cables" class="related-card">
       <div class="related-tag">Guide</div>
-      <div class="related-title">Phono stages: gain, loading &amp; matching</div>
+      <div class="related-title">Speaker cables &amp; interconnects: what matters</div>
     </a>
-    <a href="/guides/cartridges" class="related-card">
+    <a href="/guides/speakers" class="related-card">
       <div class="related-tag">Guide</div>
-      <div class="related-title">Cartridges: MM vs MC and how to choose</div>
+      <div class="related-title">Speakers: sensitivity, impedance &amp; placement</div>
     </a>
     <a href="/calculators/" class="related-card">
       <div class="related-tag">Tools</div>
@@ -335,7 +337,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
         <p>Free hi-fi compatibility tools, calculators, and guides. Powered by Claude AI from Anthropic.</p>
       </div>
       <div class="footer-col"><h4>Tools</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/calculators/">Calculators</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
-      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/phono-stages">Phono Stages</a></li><li><a href="/guides/cartridges">Cartridges</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/cables">Cables</a></li><li><a href="/guides/speakers">Speakers</a></li></ul></div>
       <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
@@ -346,95 +348,102 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 </footer>
 
 <script>
-  const CART_RANGES = {
-    mm:   { min: 0.5,  max: 6.0,  step: 0.1,  def: 3.0,  dec: 1 },
-    homc: { min: 0.5,  max: 2.5,  step: 0.1,  def: 1.8,  dec: 1 },
-    lomc: { min: 0.05, max: 0.6,  step: 0.05, def: 0.3,  dec: 2 },
-  };
+  // ── Resistance table: mΩ per foot, single conductor, 20°C copper ──────────
+  const AWG_RES = { 12: 1.588, 14: 2.525, 16: 4.016, 18: 6.385, 20: 10.15, 22: 16.14, 24: 25.67 };
 
-  let cartType = 'homc';
-  let cartMv   = 1.8;
-  let targetMv = 200;
+  let state = { awg: 16, imp: 8, length: 10 };
 
-  function setType(t) {
-    cartType = t;
-    ['mm','homc','lomc'].forEach(id => {
-      const b = document.getElementById('btn-' + id);
-      b.classList.toggle('active', id === t);
-      b.setAttribute('aria-pressed', id === t);
-    });
-    const r = CART_RANGES[t];
-    const slider = document.getElementById('cart');
-    slider.min   = r.min;
-    slider.max   = r.max;
-    slider.step  = r.step;
-    slider.value = r.def;
-    cartMv = r.def;
-    document.getElementById('cartVal').textContent  = r.def.toFixed(r.dec);
-    document.getElementById('rangeMin').textContent = r.min + ' mV';
-    document.getElementById('rangeMax').textContent = r.max + ' mV';
-    compute();
-  }
+  function render() {
+    const { awg, imp, length } = state;
 
-  function compute() {
-    const gainDb = 20 * Math.log10(targetMv / cartMv);
-    const mult   = targetMv / cartMv;
+    // Total resistance = 2 conductors × resistance per foot × length (in Ω)
+    const R = 2 * AWG_RES[awg] * length / 1000;
+    const pct = (R / imp) * 100;
+    // Resistive voltage divider power loss
+    const powerLoss = (R / (R + imp)) * 100;
 
-    document.getElementById('gainDb').textContent   = gainDb.toFixed(1);
-    document.getElementById('gainMult').textContent = Math.round(mult) + '×';
-
-    let stageText, stageNote, gainNote, verdictText;
-
-    if (gainDb <= 42) {
-      stageText   = 'MM Stage';
-      stageNote   = 'Standard MM gain — compatible with the vast majority of phono stages.';
-      gainNote    = gainDb < 36 ? 'Low for MM — output may be quiet on some amplifiers.' : 'Standard MM gain range.';
-      verdictText = '<strong>Standard MM gain.</strong> Any phono stage with an MM input will handle this comfortably. Look for a stage rated 36–42 dB.';
-    } else if (gainDb <= 55) {
-      stageText   = 'High-Output MC Stage';
-      stageNote   = 'Above typical MM range — a phono stage with switchable or dedicated MC gain is required.';
-      gainNote    = 'High-output MC range — you need a phono stage with dedicated MC support.';
-      verdictText = '<strong>High-output MC range.</strong> You need a phono stage with a dedicated MC input or switchable gain above 42 dB. Many integrated phono stages cover this range.';
-    } else if (gainDb <= 70) {
-      stageText   = 'Low-Output MC Stage';
-      stageNote   = 'High gain territory — a dedicated high-gain MC phono stage is required.';
-      gainNote    = 'Low-output MC range. Dedicated high-gain MC stage essential.';
-      verdictText = '<strong>Low-output MC range.</strong> A dedicated high-gain MC phono stage is required. A step-up transformer (SUT) is optional but often improves noise performance at this level.';
+    // Format resistance
+    let resDisplay, resUnit;
+    if (R < 0.01) {
+      resDisplay = (R * 1000).toFixed(1);
+      resUnit = 'mΩ (total, both conductors)';
+    } else if (R < 1) {
+      resDisplay = R.toFixed(3);
+      resUnit = 'Ω (total, both conductors)';
     } else {
-      stageText   = 'SUT + MM Stage';
-      stageNote   = 'Extreme gain — a step-up transformer before a standard MM stage is the recommended approach.';
-      gainNote    = 'Extreme gain required. A SUT paired with a MM stage is typically the cleanest solution.';
-      verdictText = '<strong>Extreme gain required.</strong> A step-up transformer (SUT) paired with a standard MM phono stage is the preferred approach. Active MC stages at this gain level struggle to avoid noise.';
+      resDisplay = R.toFixed(2);
+      resUnit = 'Ω (total, both conductors)';
     }
 
-    document.getElementById('stageType').textContent = stageText;
-    document.getElementById('stageNote').textContent = stageNote;
-    document.getElementById('gainNote').textContent  = gainNote;
-    document.getElementById('multNote').textContent  = 'The phono stage must amplify the cartridge signal ' + Math.round(mult) + '× to reach line level.';
+    document.getElementById('resistance').textContent    = resDisplay;
+    document.getElementById('resistanceUnit').textContent = resUnit;
+    document.getElementById('resistanceNote').textContent =
+      'Based on standard copper at 20°C. OFC (oxygen-free copper) is virtually identical in resistance.';
 
-    // Meter: 30 dB = 0%, 75 dB = 100%
-    const meterPct = Math.min(100, Math.max(0, (gainDb - 30) / 45 * 100));
-    document.getElementById('gainMeter').style.width = meterPct + '%';
+    document.getElementById('pctVal').textContent = pct.toFixed(2) + '%';
+    document.getElementById('pctNote').textContent =
+      pct < 1   ? 'Well below the 1% threshold — this cable is a non-issue for your system.' :
+      pct < 5   ? 'Below the common 5% guideline, but worth keeping in mind for 4 Ω speakers or very long future runs.' :
+                  'Exceeds the 5% guideline. Consider a thicker gauge or shorter run.';
 
-    const meterFill = document.getElementById('gainMeter');
-    meterFill.style.background = gainDb <= 42 ? 'var(--gold)' : gainDb <= 55 ? '#f59e0b' : '#ef4444';
+    document.getElementById('lossVal').textContent = powerLoss.toFixed(2) + '%';
+    document.getElementById('lossNote').textContent =
+      powerLoss < 0.25 ? 'Power loss is negligible — less than 0.1 dB reduction in SPL.' :
+      powerLoss < 1    ? 'Loss is small — under 0.1 dB, below the threshold of audibility.' :
+      powerLoss < 3    ? 'Modest loss — likely inaudible in practice but measurable.' :
+                         'Meaningful power loss. Upgrading cable gauge will make a real difference here.';
 
-    document.getElementById('verdict').innerHTML = verdictText;
+    // Meter: clamp to 0–10%, map to 0–100% width
+    const meterPct = Math.min(pct / 10 * 100, 100);
+    const meterFill = document.getElementById('meterFill');
+    meterFill.style.width = meterPct + '%';
+
+    // Colour thresholds
+    const verdict = document.getElementById('verdict');
+    verdict.className = 'verdict-box';
+    if (pct < 1) {
+      verdict.classList.add('ok');
+      verdict.innerHTML = '<strong>Negligible.</strong> Your cable resistance is well within the 1% threshold. This cable run will have no measurable impact on frequency response, damping, or power delivery. No action needed.';
+    } else if (pct < 5) {
+      verdict.classList.add('warn');
+      verdict.innerHTML = '<strong>Minor — worth noting.</strong> Resistance is above 1% but below the 5% guideline. For most systems this is inaudible, but if you have 4 Ω speakers or a high-damping-factor amplifier, consider moving to ' + (awg > 14 ? (awg - 2) + ' AWG' : 'a shorter run') + '.';
+    } else {
+      verdict.classList.add('bad');
+      const rec = awg >= 16 ? (awg - 4) + ' or ' + (awg - 2) + ' AWG' : 'a shorter run';
+      verdict.innerHTML = '<strong>Significant.</strong> Cable resistance exceeds 5% of speaker impedance — this is likely to affect damping factor and potentially audible as reduced bass control. Consider upgrading to ' + rec + ' or shortening the run.';
+      meterFill.style.background = '#ef4444';
+    }
+
+    if (pct >= 1 && pct < 5) meterFill.style.background = '#f59e0b';
+    if (pct < 1)              meterFill.style.background = 'var(--gold)';
   }
 
-  document.getElementById('cart').addEventListener('input', function () {
-    cartMv = parseFloat(this.value);
-    document.getElementById('cartVal').textContent = cartMv.toFixed(CART_RANGES[cartType].dec);
-    compute();
+  // ── Events ─────────────────────────────────────────────────────────────────
+  document.querySelectorAll('[data-awg]').forEach(btn => {
+    btn.addEventListener('click', function () {
+      state.awg = parseInt(this.dataset.awg, 10);
+      document.querySelectorAll('[data-awg]').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      render();
+    });
   });
 
-  document.getElementById('target').addEventListener('input', function () {
-    targetMv = parseInt(this.value, 10);
-    document.getElementById('targetVal').textContent = targetMv;
-    compute();
+  document.querySelectorAll('[data-imp]').forEach(btn => {
+    btn.addEventListener('click', function () {
+      state.imp = parseInt(this.dataset.imp, 10);
+      document.querySelectorAll('[data-imp]').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      render();
+    });
   });
 
-  compute();
+  document.getElementById('length').addEventListener('input', function () {
+    state.length = parseInt(this.value, 10);
+    document.getElementById('lengthVal').textContent = this.value;
+    render();
+  });
+
+  render();
 </script>
 
 </body>

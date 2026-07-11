@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaker Impedance Calculator — AudioChainHiFi.com</title>
+<meta name="description" content="Check whether your speakers are a safe load for your amplifier — for a single speaker per channel or multiple speakers wired in series or parallel. Free interactive calculator from AudioChainHiFi.">
+<meta property="og:title" content="Speaker Impedance Calculator">
+<meta property="og:description" content="Work out the impedance load your amplifier sees from series or parallel speaker wiring, and whether it's a safe match for your amp's minimum rating.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audiochainhifi.com/calculators/speaker-impedance">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://audiochainhifi.com/calculators/speaker-impedance">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="8f5DDg+G0zc1jrT50lQWJw" async></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  /* AudioChainHiFi design tokens */
+  --blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#eff6ff;--indigo:#4f46e5;
+  --dark:#0f172a;--dark-2:#1e293b;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;
+  --border:#e2e8f0;--cream:#f8fafc;--white:#ffffff;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:12px;
+  /* Calculator component tokens (mapped onto the ACCC palette) */
+  --bg-page:#ffffff;--bg-card:#f8fafc;--bg-input:#eef2f7;
+  --gold:#2563eb;--gold-hover:#1d4ed8;--gold-dim:rgba(37,99,235,.10);--gold-border:rgba(37,99,235,.40);
+  --text-white:#0f172a;--text-body:#334155;--text-muted:#64748b;--text-dim:#94a3b8;
+  --border-light:#eef2f6;--serif:'Plus Jakarta Sans',system-ui,sans-serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif;--radius-lg:20px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:var(--blue-dk);}
+
+/* ── NAV (ACCC) ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+@media(max-width:760px){.nav-links{gap:16px;}.nav-links a:not(.nav-cta){display:none;}.nav-links .nav-dropdown{display:none;}}
+
+/* ── HERO (ACCC) ── */
+.page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:60px 0 52px;text-align:center;}
+.page-hero .container{max-width:780px;margin:0 auto;padding:0 24px;}
+.guide-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:14px;}
+.page-hero h1{font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;}
+.page-hero .lede{font-size:17px;color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;line-height:1.7;}
+.guide-date{font-size:12px;color:rgba(255,255,255,.4);margin-top:14px;}
+.guide-date a{color:#60a5fa;}
+
+/* ── CALC LAYOUT ── */
+.calc-wrap{max-width:820px;margin:0 auto;padding:44px 24px 72px;}
+.section-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+
+/* ── INPUTS ── */
+.inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+@media (max-width:560px){.inputs-grid{grid-template-columns:1fr;}}
+.input-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;}
+.input-card-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;display:block;}
+.slider-readout{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;}
+.slider-val{font-family:var(--serif);font-size:30px;font-weight:800;color:var(--text-white);line-height:1;}
+.slider-unit{font-size:13px;color:var(--text-dim);}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none;cursor:pointer;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;}
+.range-labels{display:flex;justify-content:space-between;margin-top:5px;}
+.range-labels span{font-size:10px;color:var(--text-dim);}
+
+/* ── RESULTS ── */
+.results-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:1.5rem;}
+.results-grid{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0;margin-bottom:24px;}
+@media (max-width:480px){.results-grid{grid-template-columns:1fr;}.results-divider{display:none;}}
+.results-divider{background:var(--border);}
+.result-block{padding:0 20px;}
+.result-block:first-child{padding-left:0;}
+.result-block:last-child{padding-right:0;}
+.result-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.result-value{font-family:var(--serif);font-size:44px;font-weight:800;color:var(--gold);line-height:1;margin-bottom:4px;letter-spacing:-.02em;}
+.result-unit{font-size:13px;color:var(--text-dim);margin-bottom:10px;}
+.result-note{font-size:13px;color:var(--text-muted);line-height:1.55;}
+
+/* ── METER ── */
+.meter-section{border-top:1px solid var(--border);padding-top:20px;}
+.meter-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+.meter-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:5px;}
+.meter-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .35s ease,background .35s ease;}
+.meter-ticks{display:flex;justify-content:space-between;margin-bottom:16px;}
+.meter-ticks span{font-size:10px;color:var(--text-dim);}
+.verdict-box{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;font-size:14px;color:var(--text-muted);line-height:1.6;transition:border-color .35s ease;}
+.verdict-box strong{color:var(--text-body);font-weight:700;}
+
+/* ── FAQ ── */
+.faq-section{margin-bottom:2.5rem;}
+.faq-item{border-top:1px solid var(--border);padding:18px 0;}
+.faq-item:last-child{border-bottom:1px solid var(--border);}
+.faq-q{font-size:16px;font-weight:700;color:var(--text-white);margin-bottom:8px;line-height:1.35;}
+.faq-a{font-size:14px;color:var(--text-muted);line-height:1.7;}
+
+/* ── RELATED ── */
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.related-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;text-decoration:none;display:block;transition:border-color .2s,transform .2s;}
+.related-card:hover{border-color:var(--gold-border);transform:translateY(-2px);}
+.related-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.related-title{font-size:15px;font-weight:700;color:var(--text-white);line-height:1.35;}
+
+/* ── FOOTER (ACCC) ── */
+.footer{background:var(--dark);padding:48px 0 28px;}
+.container-wide{max-width:1100px;margin:0 auto;padding:0 24px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+
+/* ── CALCULATOR-SPECIFIC ── */
+/* CONNECTION TYPE */
+.conn-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+@media (max-width:540px){.conn-grid{grid-template-columns:1fr;}}
+.conn-btn{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;cursor:pointer;transition:all .15s;text-align:left;}
+.conn-btn:hover{border-color:var(--gold-border);}
+.conn-btn.active{border:2px solid var(--gold);background:var(--gold-dim);}
+.conn-badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;margin-bottom:8px;}
+.badge-common{background:rgba(22,163,74,.12);color:#16a34a;}
+.badge-adv{background:rgba(245,158,11,.12);color:#f59e0b;}
+.conn-title{font-size:15px;font-weight:500;color:var(--text-white);margin-bottom:6px;}
+.conn-desc{font-size:13px;color:var(--text-muted);line-height:1.5;}
+.conn-example{font-size:12px;color:var(--text-dim);margin-top:6px;font-style:italic;}
+
+/* PANELS */
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* INPUT ROW (bespoke layout for stacked input cards) */
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media (max-width:560px){.input-row{grid-template-columns:1fr;}}
+.input-card{margin-bottom:12px;}
+
+/* OPTION BUTTONS */
+.btn-group{display:flex;flex-wrap:wrap;gap:6px;}
+.opt-btn{padding:7px 16px;background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;font-weight:500;color:var(--text-white);cursor:pointer;transition:all .15s;font-family:var(--sans);}
+.opt-btn:hover{border-color:var(--gold);color:var(--gold);}
+.opt-btn.active{background:var(--gold);border-color:var(--gold);color:#ffffff;}
+
+/* CHANNEL GRID */
+.channel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:14px;margin-bottom:1.5rem;}
+.ch-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:10px 8px;text-align:center;}
+.ch-card-label{font-size:11px;color:var(--text-dim);margin-bottom:4px;}
+.ch-card-val{font-family:var(--serif);font-size:16px;font-weight:800;color:var(--text-white);}
+.ch-card-status{font-size:11px;font-weight:500;margin-top:3px;}
+
+/* WIRING MODE */
+.wire-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.wire-btn{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:10px 8px;text-align:center;cursor:pointer;transition:all .15s;font-family:var(--sans);}
+.wire-btn:hover{border-color:var(--gold);}
+.wire-btn.active{background:var(--gold);border-color:var(--gold);}
+.wire-btn-name{font-size:13px;font-weight:500;color:var(--text-white);}
+.wire-btn.active .wire-btn-name{color:#fff;}
+.wire-btn-desc{font-size:11px;color:var(--text-dim);margin-top:2px;}
+.wire-btn.active .wire-btn-desc{color:rgba(255,255,255,0.8);}
+
+/* SPEAKER SELECTORS */
+.spk-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;}
+@media (max-width:480px){.spk-row{grid-template-columns:repeat(2,1fr);}}
+.spk-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:10px 8px;text-align:center;}
+.spk-card.hidden{display:none;}
+.spk-card-label{font-size:11px;color:var(--text-dim);margin-bottom:6px;}
+.spk-select{width:100%;background:var(--bg-page);border:1px solid var(--border);border-radius:3px;color:var(--text-white);font-family:var(--sans);font-size:14px;font-weight:500;padding:6px 4px;cursor:pointer;appearance:none;text-align:center;outline:none;}
+.spk-select:focus{border-color:var(--gold);}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Speaker Impedance Calculator",
+  "url":"https://audiochainhifi.com/calculators/speaker-impedance",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "description":"Calculate the impedance load an amplifier sees from single or multi-speaker series and parallel wiring, and check whether it is a safe match for the amplifier's minimum impedance rating.",
+  "publisher":{"@type":"Organization","name":"AudioChainHiFi.com","url":"https://audiochainhifi.com"}
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/><circle cx="9" cy="13" r="2" fill="#fbbf24"/><circle cx="27" cy="13" r="2" fill="#34d399"/></svg>
+      <span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Analyzer</a>
+      <a href="/calculators/" class="active">Calculators</a>
+      <a href="/compare">Compare</a>
+      <a href="/glossary">Glossary</a>
+      <div class="nav-dropdown">
+        <a href="/guides/">Guides &#9662;</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides#getting-started">Getting Started</a>
+          <a href="/guides#amplifiers">Amplifiers</a>
+          <a href="/guides#speakers-room">Speakers &amp; Room</a>
+          <a href="/guides#vinyl">Turntables &amp; Vinyl</a>
+          <a href="/guides#digital">Digital Audio</a>
+          <a href="/guides#headphones-power">Headphones &amp; Power</a>
+          <a href="/guides/" style="border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:10px;color:#60a5fa;font-weight:700;">View all guides &#8594;</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/#analyzer" class="nav-cta">Start Analysis &#8594;</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="guide-label">Speakers &middot; Calculator</div>
+    <h1>Speaker Impedance Calculator</h1>
+    <p class="lede">See the impedance load your amplifier actually sees — whether you run one speaker per channel or several wired in series or parallel — and whether that load is a safe match for your amp.</p>
+    <p class="guide-date">Free tool &middot; No sign-up &middot; By <a href="/about">Sully</a></p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="calc-wrap">
+
+  <!-- STEP 1 -->
+  <div class="section-label">Step 1 — How are your speakers connected?</div>
+  <div class="conn-grid">
+    <div class="conn-btn active" id="conn-discrete" onclick="setConn('discrete')" role="button" aria-pressed="true">
+      <span class="conn-badge badge-common">Most common</span>
+      <div class="conn-title">One speaker per channel</div>
+      <div class="conn-desc">Each speaker connects directly to its own dedicated amplifier channel.</div>
+      <div class="conn-example">e.g. Stereo pair on a 2-ch amp · 4 speakers on a 4-ch amp · home theater</div>
+    </div>
+    <div class="conn-btn" id="conn-multi" onclick="setConn('multi')" role="button" aria-pressed="false">
+      <span class="conn-badge badge-adv">Advanced</span>
+      <div class="conn-title">Multiple speakers sharing a channel</div>
+      <div class="conn-desc">Two or more speakers wired in series or parallel to a single amplifier output.</div>
+      <div class="conn-example">e.g. Two bookshelf speakers on one stereo channel · multi-room wiring</div>
+    </div>
+  </div>
+
+  <!-- DISCRETE PANEL -->
+  <div class="panel active" id="panel-discrete">
+    <div class="section-label">Step 2 — Your setup</div>
+
+    <div class="input-row">
+      <div class="input-card">
+        <label class="input-card-label">Number of channels (speakers)</label>
+        <div class="btn-group" id="ch-btns">
+          <button class="opt-btn" onclick="setCh(2)">2</button>
+          <button class="opt-btn active" onclick="setCh(4)">4</button>
+          <button class="opt-btn" onclick="setCh(6)">6</button>
+          <button class="opt-btn" onclick="setCh(8)">8</button>
+        </div>
+      </div>
+      <div class="input-card">
+        <label class="input-card-label">Speaker impedance (all channels)</label>
+        <div class="btn-group" id="spk-ohm-btns">
+          <button class="opt-btn" onclick="setSpkOhm(4)">4Ω</button>
+          <button class="opt-btn" onclick="setSpkOhm(6)">6Ω</button>
+          <button class="opt-btn active" onclick="setSpkOhm(8)">8Ω</button>
+          <button class="opt-btn" onclick="setSpkOhm(16)">16Ω</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-card">
+      <label class="input-card-label">Your amplifier's minimum impedance rating</label>
+      <div class="btn-group" id="amp-btns">
+        <button class="opt-btn" onclick="setAmpMin(2)">2Ω</button>
+        <button class="opt-btn" onclick="setAmpMin(4)">4Ω</button>
+        <button class="opt-btn active" onclick="setAmpMin(6)">6Ω</button>
+        <button class="opt-btn" onclick="setAmpMin(8)">8Ω</button>
+        <button class="opt-btn" onclick="setAmpMin(16)">16Ω (vintage)</button>
+      </div>
+    </div>
+
+    <div class="section-label">Results — per channel</div>
+    <div class="results-card" role="region" aria-live="polite">
+      <div class="results-grid">
+        <div class="result-block">
+          <div class="result-label">Load per channel</div>
+          <div class="result-value" id="d-load">8Ω</div>
+          <div class="result-unit">each channel identical</div>
+        </div>
+        <div class="results-divider" aria-hidden="true"></div>
+        <div class="result-block">
+          <div class="result-label">Total channels</div>
+          <div class="result-value" id="d-channels">4</div>
+          <div class="result-unit">discrete connections</div>
+        </div>
+        <div class="results-divider" aria-hidden="true"></div>
+        <div class="result-block">
+          <div class="result-label">Compatibility</div>
+          <div class="result-value" id="d-compat" style="font-size:26px; padding-top:8px;">Safe</div>
+          <div class="result-unit" id="d-compat-sub">within amp rating</div>
+        </div>
+      </div>
+      <div class="verdict-box" id="d-verdict"></div>
+    </div>
+
+    <div class="channel-grid" id="ch-cards" aria-label="Per-channel summary"></div>
+  </div>
+
+  <!-- MULTI-SPEAKER PANEL -->
+  <div class="panel" id="panel-multi">
+    <div class="section-label">Step 2 — Wiring configuration</div>
+    <div class="wire-grid">
+      <div class="wire-btn active" id="w-parallel" onclick="setWire('parallel')">
+        <div class="wire-btn-name">Parallel</div>
+        <div class="wire-btn-desc">Impedance divides down</div>
+      </div>
+      <div class="wire-btn" id="w-series" onclick="setWire('series')">
+        <div class="wire-btn-name">Series</div>
+        <div class="wire-btn-desc">Impedances add together</div>
+      </div>
+      <div class="wire-btn" id="w-sp" onclick="setWire('sp')">
+        <div class="wire-btn-name">Series-parallel</div>
+        <div class="wire-btn-desc">Pairs in series, then parallel</div>
+      </div>
+    </div>
+
+    <div class="input-card">
+      <label class="input-card-label">Speakers per channel</label>
+      <div class="btn-group" id="multi-count-btns">
+        <button class="opt-btn active" onclick="setMultiCount(2)">2</button>
+        <button class="opt-btn" onclick="setMultiCount(3)">3</button>
+        <button class="opt-btn" onclick="setMultiCount(4)">4</button>
+      </div>
+    </div>
+
+    <div class="spk-row" id="multi-spk-row">
+      <div class="spk-card" id="ms1">
+        <div class="spk-card-label">Speaker 1</div>
+        <select class="spk-select" onchange="calcMulti()"><option value="4">4Ω</option><option value="6">6Ω</option><option value="8" selected>8Ω</option><option value="16">16Ω</option></select>
+      </div>
+      <div class="spk-card" id="ms2">
+        <div class="spk-card-label">Speaker 2</div>
+        <select class="spk-select" onchange="calcMulti()"><option value="4">4Ω</option><option value="6">6Ω</option><option value="8" selected>8Ω</option><option value="16">16Ω</option></select>
+      </div>
+      <div class="spk-card hidden" id="ms3">
+        <div class="spk-card-label">Speaker 3</div>
+        <select class="spk-select" onchange="calcMulti()"><option value="4">4Ω</option><option value="6">6Ω</option><option value="8" selected>8Ω</option><option value="16">16Ω</option></select>
+      </div>
+      <div class="spk-card hidden" id="ms4">
+        <div class="spk-card-label">Speaker 4</div>
+        <select class="spk-select" onchange="calcMulti()"><option value="4">4Ω</option><option value="6">6Ω</option><option value="8" selected>8Ω</option><option value="16">16Ω</option></select>
+      </div>
+    </div>
+
+    <div class="section-label">Results</div>
+    <div class="results-card" role="region" aria-live="polite">
+      <div class="results-grid">
+        <div class="result-block">
+          <div class="result-label">Total impedance</div>
+          <div class="result-value" id="m-total">—</div>
+          <div class="result-unit">per channel</div>
+        </div>
+        <div class="results-divider" aria-hidden="true"></div>
+        <div class="result-block">
+          <div class="result-label">Amp minimum needed</div>
+          <div class="result-value" id="m-minamp">—</div>
+          <div class="result-unit">rated minimum</div>
+        </div>
+        <div class="results-divider" aria-hidden="true"></div>
+        <div class="result-block">
+          <div class="result-label">Safety</div>
+          <div class="result-value" id="m-safe" style="font-size:26px; padding-top:8px;">—</div>
+          <div class="result-unit" id="m-safe-sub"></div>
+        </div>
+      </div>
+      <div class="verdict-box" id="m-verdict">Adjust speaker impedances above to see results.</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-label">Understanding impedance</div>
+    <div class="faq-item">
+      <div class="faq-q">I have a 4-channel amp and 4 speakers. Do I need to worry about impedance?</div>
+      <div class="faq-a">In most cases, very little. With one speaker per channel, each channel only sees that speaker's impedance — typically 4Ω, 6Ω, or 8Ω. As long as each speaker's impedance meets or exceeds your amplifier's minimum rating, you're fine. The channels operate completely independently of each other.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">My speakers are 4Ω but my amp is rated for 6Ω minimum. Is that a problem?</div>
+      <div class="faq-a">Yes — running speakers below your amplifier's minimum impedance rating causes the amp to draw more current than its power supply and output stage were designed for. This leads to overheating, protection shutdowns, or long-term damage. Either use 6Ω or higher speakers, or verify your amp can genuinely handle 4Ω loads before proceeding.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do all my speakers need to be the same impedance?</div>
+      <div class="faq-a">For discrete connections — one speaker per channel — no. Each channel operates independently, so a 4Ω speaker on channel 1 and an 8Ω speaker on channel 2 is perfectly fine, as long as each meets the amp's minimum. The amp delivers more power to the lower impedance channel, which you compensate for with the volume balance control.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is nominal impedance vs. minimum impedance?</div>
+      <div class="faq-a">The impedance printed on a speaker — "8Ω" — is its nominal (average) impedance across the frequency range. In practice, impedance varies with frequency and can dip lower than the nominal value at certain frequencies. A speaker labeled 8Ω might dip to 5Ω or 6Ω at some points. This is why amplifier manufacturers specify a minimum load rating rather than just a nominal one.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I run two pairs of stereo speakers from a single stereo amplifier?</div>
+      <div class="faq-a">Yes, but this is where the multi-speaker calculator above becomes relevant. Running two pairs simultaneously on a stereo amp means two speakers share each channel, which halves the impedance in parallel mode. A stereo amp driving two pairs of 8Ω speakers in parallel sees a 4Ω load per channel — confirm your amplifier can handle this before doing it.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why does impedance matter for sound quality, not just safety?</div>
+      <div class="faq-a">Many amplifiers — especially tube designs and some high-quality solid-state amps — deliver their best performance at a specific impedance. A tube amp designed for 8Ω will sound different, and often worse, driving 4Ω or 16Ω speakers. Solid-state amps are generally more tolerant of impedance variation, but matching impedance to the amp's intended load still matters for maximum power transfer and optimal damping factor.</div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="section-label">Related tools &amp; guides</div>
+  <div class="related-grid">
+    <a href="/guides/speakers" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Speakers: sensitivity, impedance &amp; placement</div>
+    </a>
+    <a href="/guides/amplifiers" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Amplifiers: power, classes &amp; matching</div>
+    </a>
+    <a href="/calculators/" class="related-card">
+      <div class="related-tag">Tools</div>
+      <div class="related-title">All HiFi calculators &amp; system tools</div>
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
+        <p>Free hi-fi compatibility tools, calculators, and guides. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/calculators/">Calculators</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/speakers">Speakers</a></li><li><a href="/guides/amplifiers">Amplifiers</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var connMode = 'discrete';
+  var wireMode = 'parallel';
+  var multiCount = 2;
+  var discChannels = 4;
+  var spkOhm = 8;
+  var ampMin = 6;
+
+  function setConn(m) {
+    connMode = m;
+    document.getElementById('conn-discrete').classList.toggle('active', m === 'discrete');
+    document.getElementById('conn-discrete').setAttribute('aria-pressed', m === 'discrete');
+    document.getElementById('conn-multi').classList.toggle('active', m === 'multi');
+    document.getElementById('conn-multi').setAttribute('aria-pressed', m === 'multi');
+    document.getElementById('panel-discrete').classList.toggle('active', m === 'discrete');
+    document.getElementById('panel-multi').classList.toggle('active', m === 'multi');
+    if (m === 'multi') calcMulti();
+  }
+
+  function setCh(n) {
+    discChannels = n;
+    document.querySelectorAll('#ch-btns .opt-btn').forEach(function(b) {
+      b.classList.toggle('active', parseInt(b.textContent) === n);
+    });
+    calcDiscrete();
+  }
+
+  function setSpkOhm(v) {
+    spkOhm = v;
+    document.querySelectorAll('#spk-ohm-btns .opt-btn').forEach(function(b) {
+      b.classList.toggle('active', b.textContent === v + 'Ω');
+    });
+    calcDiscrete();
+  }
+
+  function setAmpMin(v) {
+    ampMin = v;
+    document.querySelectorAll('#amp-btns .opt-btn').forEach(function(b) {
+      var bv = parseInt(b.textContent);
+      b.classList.toggle('active', bv === v);
+    });
+    calcDiscrete();
+  }
+
+  function calcDiscrete() {
+    document.getElementById('d-load').textContent = spkOhm + 'Ω';
+    document.getElementById('d-channels').textContent = discChannels;
+
+    var color, compat, sub, vtext;
+    if (spkOhm < ampMin) {
+      color = '#ef4444'; compat = 'Unsafe'; sub = spkOhm + 'Ω < ' + ampMin + 'Ω minimum';
+      vtext = '<strong>Incompatible.</strong> Your ' + spkOhm + 'Ω speakers fall below your amplifier\'s ' + ampMin + 'Ω minimum rating. Running this combination risks overheating, protection shutdowns, or permanent amplifier damage. Use speakers rated ' + ampMin + 'Ω or higher.';
+    } else if (spkOhm === ampMin) {
+      color = '#f59e0b'; compat = 'Marginal'; sub = 'at ' + ampMin + 'Ω amp limit';
+      vtext = '<strong>At the limit.</strong> Your speakers exactly match your amplifier\'s minimum rating. This will work but leaves no headroom — the amp will run warmer than ideal and may exhibit higher distortion. Confirm your amp genuinely supports this impedance under sustained use.';
+    } else {
+      color = '#16a34a'; compat = 'Safe'; sub = spkOhm + 'Ω ≥ ' + ampMin + 'Ω minimum';
+      vtext = '<strong>Safe and compatible.</strong> ' + spkOhm + 'Ω speakers on a ' + ampMin + 'Ω-rated amplifier is a standard setup. Each of your ' + discChannels + ' channels sees an identical ' + spkOhm + 'Ω load — comfortably above your amplifier\'s minimum rating. No concerns.';
+    }
+
+    var compatEl = document.getElementById('d-compat');
+    compatEl.textContent = compat;
+    compatEl.style.color = color;
+    document.getElementById('d-compat-sub').textContent = sub;
+    document.getElementById('d-verdict').innerHTML = vtext;
+    document.getElementById('d-verdict').style.borderColor = color;
+
+    var grid = document.getElementById('ch-cards');
+    grid.innerHTML = '';
+    for (var i = 1; i <= discChannels; i++) {
+      grid.innerHTML += '<div class="ch-card"><div class="ch-card-label">Ch ' + i + '</div><div class="ch-card-val">' + spkOhm + 'Ω</div><div class="ch-card-status" style="color:' + color + '">' + compat + '</div></div>';
+    }
+  }
+
+  function setWire(w) {
+    wireMode = w;
+    ['parallel', 'series', 'sp'].forEach(function(id) {
+      document.getElementById('w-' + id).classList.toggle('active', id === w);
+    });
+    calcMulti();
+  }
+
+  function setMultiCount(n) {
+    multiCount = n;
+    document.querySelectorAll('#multi-count-btns .opt-btn').forEach(function(b) {
+      b.classList.toggle('active', parseInt(b.textContent) === n);
+    });
+    [1, 2, 3, 4].forEach(function(i) {
+      document.getElementById('ms' + i).classList.toggle('hidden', i > n);
+    });
+    calcMulti();
+  }
+
+  function calcMulti() {
+    var vals = [];
+    for (var i = 1; i <= multiCount; i++) {
+      vals.push(parseFloat(document.getElementById('ms' + i).querySelector('select').value));
+    }
+
+    var total;
+    if (wireMode === 'series') {
+      total = vals.reduce(function(a, b) { return a + b; }, 0);
+    } else if (wireMode === 'parallel') {
+      var sum = 0;
+      vals.forEach(function(v) { sum += 1 / v; });
+      total = 1 / sum;
+    } else {
+      var half = Math.floor(vals.length / 2);
+      var g1 = vals.slice(0, half).reduce(function(a, b) { return a + b; }, 0);
+      var g2 = vals.slice(half).reduce(function(a, b) { return a + b; }, 0);
+      total = 1 / (1 / g1 + 1 / g2);
+    }
+
+    var display = total < 10 ? total.toFixed(1) + 'Ω' : Math.round(total) + 'Ω';
+    document.getElementById('m-total').textContent = display;
+
+    var minNeeded = total < 3.5 ? '2Ω' : total < 4.5 ? '4Ω' : total < 6.5 ? '6Ω' : '8Ω';
+    document.getElementById('m-minamp').textContent = minNeeded;
+
+    var color, safe, sub, vtext;
+    if (total < 3.5) {
+      color = '#ef4444'; safe = 'Unsafe'; sub = 'dangerous load';
+      vtext = '<strong>Dangerous load.</strong> ' + display + ' is below safe limits for most amplifiers. Re-wire in series or reduce the number of speakers to bring the load above 4Ω.';
+    } else if (total < 4.5) {
+      color = '#f59e0b'; safe = 'Caution'; sub = 'verify amp spec';
+      vtext = '<strong>4Ω load — verify your amplifier.</strong> This is the minimum for most quality amplifiers. Confirm your amp explicitly supports 4Ω loads before wiring this way.';
+    } else if (total <= 8) {
+      color = '#2563eb'; safe = 'Good'; sub = 'safe range';
+      vtext = '<strong>Safe load.</strong> ' + display + ' per channel is within the comfortable operating range for virtually all home amplifiers.';
+    } else {
+      color = '#16a34a'; safe = 'Ideal'; sub = 'very easy load';
+      vtext = '<strong>Very easy load.</strong> ' + display + ' presents no challenge to any amplifier. Note that very high impedance loads may slightly reduce power output on some designs.';
+    }
+
+    document.getElementById('m-safe').textContent = safe;
+    document.getElementById('m-safe').style.color = color;
+    document.getElementById('m-safe-sub').textContent = sub;
+    document.getElementById('m-verdict').innerHTML = vtext;
+    document.getElementById('m-verdict').style.borderColor = color;
+  }
+
+  calcDiscrete();
+</script>
+
+</body>
+</html>

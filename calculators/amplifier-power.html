@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phono Stage Gain Calculator — AudioChainHiFi.com</title>
-<meta name="description" content="Find how much gain your phono stage needs for your MM or MC cartridge — including when you need a step-up transformer. Free interactive calculator from AudioChainHiFi.">
-<meta property="og:title" content="Phono Stage Gain Calculator">
-<meta property="og:description" content="Enter your cartridge's output voltage to find exactly how much gain your phono stage needs — and whether you need a step-up transformer.">
+<title>Amplifier Power &amp; SPL Calculator — AudioChainHiFi.com</title>
+<meta name="description" content="Find how many watts your speakers need — or the max SPL your amp can deliver at your listening seat. Free interactive amplifier power calculator from AudioChainHiFi.">
+<meta property="og:title" content="Amplifier Power &amp; SPL Calculator">
+<meta property="og:description" content="Enter your speaker sensitivity, listening distance, and target level to find the watts you need and the headroom your amplifier has.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://audiochainhifi.com/calculators/phono-stage-gain">
+<meta property="og:url" content="https://audiochainhifi.com/calculators/amplifier-power">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://audiochainhifi.com/calculators/phono-stage-gain">
+<link rel="canonical" href="https://audiochainhifi.com/calculators/amplifier-power">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -64,18 +64,6 @@ a:hover{color:var(--blue-dk);}
 .calc-wrap{max-width:820px;margin:0 auto;padding:44px 24px 72px;}
 .section-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
 
-/* ── CARTRIDGE TYPE SELECTOR ── */
-.type-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;margin-bottom:12px;}
-.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-@media (max-width:480px){.type-grid{grid-template-columns:1fr;}}
-.type-btn{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px;text-align:center;cursor:pointer;transition:all .15s;}
-.type-btn:hover{border-color:var(--gold-border);}
-.type-btn.active{background:var(--gold);border-color:var(--gold);}
-.type-btn-name{font-size:14px;font-weight:600;color:var(--text-white);}
-.type-btn.active .type-btn-name{color:#fff;}
-.type-btn-range{font-size:12px;color:var(--text-dim);margin-top:3px;}
-.type-btn.active .type-btn-range{color:rgba(255,255,255,0.85);}
-
 /* ── INPUTS ── */
 .inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
 @media (max-width:560px){.inputs-grid{grid-template-columns:1fr;}}
@@ -90,9 +78,18 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 .range-labels{display:flex;justify-content:space-between;margin-top:5px;}
 .range-labels span{font-size:10px;color:var(--text-dim);}
 
+/* ── SELECT + NUMBER INPUT ── */
+select{width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-white);font-family:var(--sans);font-size:15px;padding:10px 12px;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;}
+select:focus{border-color:var(--gold-border);}
+.watt-input-wrap{margin-top:14px;padding-top:14px;border-top:1px solid var(--border-light);}
+.watt-row{display:flex;align-items:center;gap:8px;margin-top:8px;}
+input[type="number"]{flex:1;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-white);font-family:var(--serif);font-size:22px;font-weight:700;padding:8px 12px;outline:none;width:100%;}
+input[type="number"]:focus{border-color:var(--gold-border);}
+input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;}
+
 /* ── RESULTS ── */
 .results-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:1.5rem;}
-.results-grid{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0;margin-bottom:24px;}
+.results-grid{display:grid;grid-template-columns:1fr 1px 1fr;gap:0;margin-bottom:24px;}
 @media (max-width:480px){.results-grid{grid-template-columns:1fr;}.results-divider{display:none;}}
 .results-divider{background:var(--border);}
 .result-block{padding:0 20px;}
@@ -147,12 +144,12 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 {
   "@context":"https://schema.org",
   "@type":"WebApplication",
-  "name":"Phono Stage Gain Calculator",
-  "url":"https://audiochainhifi.com/calculators/phono-stage-gain",
+  "name":"Amplifier Power & SPL Calculator",
+  "url":"https://audiochainhifi.com/calculators/amplifier-power",
   "applicationCategory":"UtilitiesApplication",
   "operatingSystem":"Any",
   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "description":"Calculate the gain a phono stage needs for a given MM or MC cartridge output voltage, and whether a step-up transformer is required.",
+  "description":"Calculate how many watts a speaker needs to reach a target listening level at a given distance, and the maximum SPL and headroom your amplifier can deliver.",
   "publisher":{"@type":"Organization","name":"AudioChainHiFi.com","url":"https://audiochainhifi.com"}
 }
 </script>
@@ -192,9 +189,9 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 <!-- HERO -->
 <div class="page-hero">
   <div class="container">
-    <div class="guide-label">Turntables &amp; Vinyl &middot; Calculator</div>
-    <h1>Phono Stage Gain Calculator</h1>
-    <p class="lede">Enter your cartridge's output voltage to find exactly how much gain your phono stage needs — and whether you require a step-up transformer.</p>
+    <div class="guide-label">Amplifiers &middot; Calculator</div>
+    <h1>Amplifier Power &amp; SPL Calculator</h1>
+    <p class="lede">Find out exactly how many watts your speakers need — or what SPL your current amplifier can deliver at your listening position.</p>
     <p class="guide-date">Free tool &middot; No sign-up &middot; By <a href="/about">Sully</a></p>
   </div>
 </div>
@@ -202,46 +199,65 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 <!-- MAIN -->
 <main class="calc-wrap">
 
-  <!-- CARTRIDGE TYPE -->
-  <div class="section-label">Your cartridge</div>
-  <div class="type-card">
-    <label class="input-card-label">Cartridge type</label>
-    <div class="type-grid">
-      <button class="type-btn" id="btn-mm" onclick="setType('mm')" aria-pressed="false">
-        <div class="type-btn-name">MM</div>
-        <div class="type-btn-range">2 – 6 mV output</div>
-      </button>
-      <button class="type-btn active" id="btn-homc" onclick="setType('homc')" aria-pressed="true">
-        <div class="type-btn-name">High-output MC</div>
-        <div class="type-btn-range">1 – 2.5 mV output</div>
-      </button>
-      <button class="type-btn" id="btn-lomc" onclick="setType('lomc')" aria-pressed="false">
-        <div class="type-btn-name">Low-output MC</div>
-        <div class="type-btn-range">0.1 – 0.6 mV output</div>
-      </button>
-    </div>
-  </div>
-
-  <!-- SLIDERS -->
+  <!-- INPUTS -->
+  <div class="section-label">Your system</div>
   <div class="inputs-grid">
+
     <div class="input-card">
-      <label class="input-card-label" for="cart">Cartridge output voltage</label>
+      <label class="input-card-label" for="sens">Speaker sensitivity</label>
       <div class="slider-readout">
-        <span class="slider-val" id="cartVal">1.8</span>
-        <span class="slider-unit">mV</span>
+        <span class="slider-val" id="sensVal">87</span>
+        <span class="slider-unit">dB @ 1W/1m</span>
       </div>
-      <input type="range" id="cart" min="0.5" max="2.5" value="1.8" step="0.1" aria-label="Cartridge output voltage in millivolts" />
-      <div class="range-labels"><span id="rangeMin">0.5 mV</span><span id="rangeMax">2.5 mV</span></div>
+      <input type="range" id="sens" min="72" max="102" value="87" step="1" aria-label="Speaker sensitivity in dB" />
+      <div class="range-labels">
+        <span>72 dB — inefficient</span>
+        <span>102 dB — very efficient</span>
+      </div>
     </div>
+
     <div class="input-card">
-      <label class="input-card-label" for="target">Target output (line level)</label>
+      <label class="input-card-label" for="dist">Listening distance</label>
       <div class="slider-readout">
-        <span class="slider-val" id="targetVal">200</span>
-        <span class="slider-unit">mV</span>
+        <span class="slider-val" id="distVal">10</span>
+        <span class="slider-unit">feet</span>
       </div>
-      <input type="range" id="target" min="100" max="400" value="200" step="10" aria-label="Target line level output in millivolts" />
-      <div class="range-labels"><span>100 mV</span><span>400 mV</span></div>
+      <input type="range" id="dist" min="3" max="30" value="10" step="1" aria-label="Listening distance in feet" />
+      <div class="range-labels">
+        <span>3 ft</span>
+        <span>30 ft</span>
+      </div>
     </div>
+
+    <div class="input-card">
+      <label class="input-card-label" for="spl">Target listening level</label>
+      <div class="slider-readout">
+        <span class="slider-val" id="splVal">85</span>
+        <span class="slider-unit">dB SPL</span>
+      </div>
+      <input type="range" id="spl" min="65" max="105" value="85" step="1" aria-label="Target listening level in dB SPL" />
+      <div class="range-labels">
+        <span>65 dB — quiet</span>
+        <span>105 dB — concert level</span>
+      </div>
+    </div>
+
+    <div class="input-card">
+      <label class="input-card-label" for="room">Room size</label>
+      <select id="room" aria-label="Room size">
+        <option value="3">Small — under 150 sq ft</option>
+        <option value="0" selected>Medium — 150 to 300 sq ft</option>
+        <option value="-3">Large — over 300 sq ft</option>
+      </select>
+      <div class="watt-input-wrap">
+        <label class="input-card-label" for="ampW">Your amplifier's wattage (optional)</label>
+        <div class="watt-row">
+          <input type="number" id="ampW" value="50" min="1" max="5000" aria-label="Amplifier wattage" />
+          <span class="slider-unit">W / ch</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- RESULTS -->
@@ -249,36 +265,30 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
   <div class="results-card" role="region" aria-label="Calculator results" aria-live="polite">
     <div class="results-grid">
       <div class="result-block">
-        <div class="result-label">Gain required</div>
-        <div class="result-value" id="gainDb">—</div>
-        <div class="result-unit">dB</div>
-        <div class="result-note" id="gainNote"></div>
+        <div class="result-label">Minimum watts needed</div>
+        <div class="result-value" id="reqWatts">—</div>
+        <div class="result-unit">watts per channel</div>
+        <div class="result-note" id="reqNote"></div>
       </div>
       <div class="results-divider" aria-hidden="true"></div>
       <div class="result-block">
-        <div class="result-label">Voltage multiplier</div>
-        <div class="result-value" id="gainMult">—</div>
-        <div class="result-unit">× ratio</div>
-        <div class="result-note" id="multNote"></div>
-      </div>
-      <div class="results-divider" aria-hidden="true"></div>
-      <div class="result-block">
-        <div class="result-label">Stage required</div>
-        <div class="result-value" id="stageType" style="font-size:26px;padding-top:8px;">—</div>
-        <div class="result-unit" id="stageNote"></div>
+        <div class="result-label">Max SPL from your amp</div>
+        <div class="result-value" id="maxSpl">—</div>
+        <div class="result-unit">dB at listening position</div>
+        <div class="result-note" id="splNote"></div>
       </div>
     </div>
     <div class="meter-section">
-      <div class="meter-label">Gain range indicator</div>
-      <div class="meter-track"><div class="meter-fill" id="gainMeter" style="width:0%"></div></div>
+      <div class="meter-label">Headroom above target</div>
+      <div class="meter-track"><div class="meter-fill" id="meterFill" style="width:0%"></div></div>
       <div class="meter-ticks">
-        <span>30 dB</span>
-        <span>40 dB (MM)</span>
-        <span>55 dB</span>
-        <span>65 dB (LOMC)</span>
-        <span>75 dB+</span>
+        <span>0 dB</span>
+        <span>+6 dB</span>
+        <span>+12 dB</span>
+        <span>+18 dB</span>
+        <span>+24 dB</span>
       </div>
-      <div class="verdict-box" id="verdict">Select your cartridge type and adjust the output voltage above.</div>
+      <div class="verdict-box" id="verdict">Adjust the sliders and enter your amplifier's wattage above to see a full system assessment.</div>
     </div>
   </div>
 
@@ -286,37 +296,37 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
   <div class="faq-section">
     <div class="section-label">Understanding the numbers</div>
     <div class="faq-item">
-      <div class="faq-q">What is phono stage gain and why does it matter?</div>
-      <div class="faq-a">A phono stage amplifies the tiny signal from your cartridge — typically between 0.1 mV and 6 mV — up to line level so your integrated amplifier or preamplifier can work with it. Too little gain and your music sounds thin, quiet, and distant. Too much and you introduce noise and distortion. Matching gain to your cartridge's output voltage is one of the most important and most overlooked setup decisions in a vinyl system.</div>
+      <div class="faq-q">What does speaker sensitivity actually mean?</div>
+      <div class="faq-a">Speaker sensitivity is the sound pressure level (SPL) a speaker produces at one meter distance when driven with exactly one watt of power. A speaker rated at 90 dB sensitivity is twice as loud as an 87 dB speaker given the same input power — because every 3 dB represents a doubling of amplifier power. This single spec determines more about how much amplifier you need than almost any other number.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">What's the difference between MM and MC gain requirements?</div>
-      <div class="faq-a">Moving Magnet cartridges typically output 2–6 mV and need around 36–42 dB of gain — a requirement easily met by almost any phono stage on the market. Moving Coil cartridges output far less, sometimes under 0.2 mV, and require 60–75 dB of gain. Using an MM-only phono stage with a low-output MC cartridge results in a very weak, noise-prone signal that no amount of downstream volume adjustment can properly fix.</div>
+      <div class="faq-q">Why do I need headroom above my target listening level?</div>
+      <div class="faq-a">Music is not a steady tone. Orchestral peaks, drum transients, and dynamic passages can exceed the average listening level by 10 to 20 dB. Without sufficient headroom, your amplifier reaches its maximum output during those peaks and clips — producing harsh distortion that stresses both your ears and your drivers. At least 10 dB of headroom above your typical listening level is advisable for dynamic music genres.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">When do I need a step-up transformer?</div>
-      <div class="faq-a">When your cartridge outputs less than 0.2 mV, even the best high-gain MC phono stages struggle to amplify cleanly without introducing noise. A step-up transformer (SUT) passively boosts the signal — typically by 20–26 dB — before it reaches the phono stage, allowing a lower-gain MM or moderate-gain MC stage to handle very low-output cartridges with exceptional noise performance. Many audiophiles consider a quality SUT paired with a good MM stage to sound superior to any active MC stage at the same price point.</div>
+      <div class="faq-q">Does more wattage always mean better sound?</div>
+      <div class="faq-a">No. Wattage determines headroom and maximum volume, but it says nothing about the quality of the amplification. A well-designed 20-watt amplifier driving efficient 92 dB speakers can sound significantly better than a mediocre 200-watt design — the circuit topology, power supply quality, and output stage character matter at least as much as the rated power figure. Choose the wattage your setup genuinely needs, then prioritize amplifier quality within that range.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">What does the voltage multiplier figure mean?</div>
-      <div class="faq-a">The voltage multiplier (or gain ratio) shows the same result as the dB figure in a different form. A multiplier of 100× means your phono stage takes the cartridge's output voltage and amplifies it one hundred times to reach line level. Some audiophiles find this figure more intuitive than decibels when comparing phono stage specifications — many manufacturers list both.</div>
+      <div class="faq-q">How does room size affect the calculation?</div>
+      <div class="faq-a">Smaller rooms reinforce bass frequencies and tend to build up SPL more readily than large, open spaces. A large room with high ceilings and absorptive materials can demand significantly more amplifier power to reach the same listening level as a small, lively room. The room gain adjustments in this calculator are approximations — your specific room's acoustic treatment, furnishings, and geometry will all influence the actual result.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Does cartridge loading affect gain requirements?</div>
-      <div class="faq-a">Loading — the input impedance your phono stage presents to the cartridge — affects tonal character and high-frequency response, particularly with MC cartridges, but it does not change the gain requirement. Set your loading according to your cartridge manufacturer's recommendations, then use this calculator to confirm you have adequate gain. The two adjustments are independent of each other.</div>
+      <div class="faq-q">Is the minimum wattage figure the right amp size to buy?</div>
+      <div class="faq-a">Treat the minimum as a floor, not a target. Amplifiers generally sound better when they are not being pushed close to their limits. If the calculator shows you need 20 watts minimum, a 50-watt amplifier will run more relaxed and typically offer better dynamics and lower distortion at your listening level. The sweet spot for most setups is 2 to 4 times the calculated minimum.</div>
     </div>
   </div>
 
   <!-- RELATED -->
   <div class="section-label">Related tools &amp; guides</div>
   <div class="related-grid">
-    <a href="/guides/phono-stages" class="related-card">
+    <a href="/guides/amplifiers" class="related-card">
       <div class="related-tag">Guide</div>
-      <div class="related-title">Phono stages: gain, loading &amp; matching</div>
+      <div class="related-title">Amplifiers: power, classes &amp; matching</div>
     </a>
-    <a href="/guides/cartridges" class="related-card">
+    <a href="/guides/speakers" class="related-card">
       <div class="related-tag">Guide</div>
-      <div class="related-title">Cartridges: MM vs MC and how to choose</div>
+      <div class="related-title">Speakers: sensitivity, impedance &amp; placement</div>
     </a>
     <a href="/calculators/" class="related-card">
       <div class="related-tag">Tools</div>
@@ -335,7 +345,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
         <p>Free hi-fi compatibility tools, calculators, and guides. Powered by Claude AI from Anthropic.</p>
       </div>
       <div class="footer-col"><h4>Tools</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/calculators/">Calculators</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
-      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/phono-stages">Phono Stages</a></li><li><a href="/guides/cartridges">Cartridges</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/amplifiers">Amplifiers</a></li><li><a href="/guides/speakers">Speakers</a></li></ul></div>
       <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
@@ -346,91 +356,94 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 </footer>
 
 <script>
-  const CART_RANGES = {
-    mm:   { min: 0.5,  max: 6.0,  step: 0.1,  def: 3.0,  dec: 1 },
-    homc: { min: 0.5,  max: 2.5,  step: 0.1,  def: 1.8,  dec: 1 },
-    lomc: { min: 0.05, max: 0.6,  step: 0.05, def: 0.3,  dec: 2 },
-  };
+  const FT_TO_M = 0.3048;
 
-  let cartType = 'homc';
-  let cartMv   = 1.8;
-  let targetMv = 200;
-
-  function setType(t) {
-    cartType = t;
-    ['mm','homc','lomc'].forEach(id => {
-      const b = document.getElementById('btn-' + id);
-      b.classList.toggle('active', id === t);
-      b.setAttribute('aria-pressed', id === t);
-    });
-    const r = CART_RANGES[t];
-    const slider = document.getElementById('cart');
-    slider.min   = r.min;
-    slider.max   = r.max;
-    slider.step  = r.step;
-    slider.value = r.def;
-    cartMv = r.def;
-    document.getElementById('cartVal').textContent  = r.def.toFixed(r.dec);
-    document.getElementById('rangeMin').textContent = r.min + ' mV';
-    document.getElementById('rangeMax').textContent = r.max + ' mV';
-    compute();
-  }
+  let sens   = 87;   // dB @ 1W/1m
+  let dist   = 10;   // feet
+  let target = 85;   // dB SPL target at seat
+  let room   = 0;    // room gain dB (small +3, medium 0, large -3)
+  let ampW   = 50;   // amplifier watts/channel
 
   function compute() {
-    const gainDb = 20 * Math.log10(targetMv / cartMv);
-    const mult   = targetMv / cartMv;
+    // Effective sensitivity including room reinforcement, referenced to 1W/1m
+    const effSens = sens + room;
+    // SPL delivered by 1 watt at the listening distance (inverse-square, free field)
+    const distM = Math.max(dist * FT_TO_M, 0.1);
+    const spl1WAtSeat = effSens - 20 * Math.log10(distM);
 
-    document.getElementById('gainDb').textContent   = gainDb.toFixed(1);
-    document.getElementById('gainMult').textContent = Math.round(mult) + '×';
+    // Watts required to reach the target average level at the seat
+    // Each 10x power = +10 dB, so watts = 10^((target - spl1WAtSeat)/10)
+    const reqWatts = Math.pow(10, (target - spl1WAtSeat) / 10);
 
-    let stageText, stageNote, gainNote, verdictText;
+    // Max SPL the entered amplifier can produce at the seat
+    const maxSpl = spl1WAtSeat + 10 * Math.log10(ampW);
+    const headroom = maxSpl - target;
 
-    if (gainDb <= 42) {
-      stageText   = 'MM Stage';
-      stageNote   = 'Standard MM gain — compatible with the vast majority of phono stages.';
-      gainNote    = gainDb < 36 ? 'Low for MM — output may be quiet on some amplifiers.' : 'Standard MM gain range.';
-      verdictText = '<strong>Standard MM gain.</strong> Any phono stage with an MM input will handle this comfortably. Look for a stage rated 36–42 dB.';
-    } else if (gainDb <= 55) {
-      stageText   = 'High-Output MC Stage';
-      stageNote   = 'Above typical MM range — a phono stage with switchable or dedicated MC gain is required.';
-      gainNote    = 'High-output MC range — you need a phono stage with dedicated MC support.';
-      verdictText = '<strong>High-output MC range.</strong> You need a phono stage with a dedicated MC input or switchable gain above 42 dB. Many integrated phono stages cover this range.';
-    } else if (gainDb <= 70) {
-      stageText   = 'Low-Output MC Stage';
-      stageNote   = 'High gain territory — a dedicated high-gain MC phono stage is required.';
-      gainNote    = 'Low-output MC range. Dedicated high-gain MC stage essential.';
-      verdictText = '<strong>Low-output MC range.</strong> A dedicated high-gain MC phono stage is required. A step-up transformer (SUT) is optional but often improves noise performance at this level.';
+    // ── Required watts display ──
+    let reqDisplay;
+    if (reqWatts < 1)       reqDisplay = reqWatts.toFixed(2);
+    else if (reqWatts < 10) reqDisplay = reqWatts.toFixed(1);
+    else                    reqDisplay = Math.round(reqWatts).toString();
+    document.getElementById('reqWatts').textContent = reqDisplay;
+    document.getElementById('reqNote').textContent =
+      'To reach ' + target + ' dB average at ' + dist + ' ft. Aim for 2–4× this figure for comfortable headroom.';
+
+    // ── Max SPL display ──
+    document.getElementById('maxSpl').textContent = Math.round(maxSpl);
+    document.getElementById('splNote').textContent =
+      'Your ' + ampW + ' W amp drives these speakers to about ' + Math.round(maxSpl) + ' dB peak at ' + dist + ' ft.';
+
+    // ── Headroom meter: 0 dB = 0%, +24 dB = 100% ──
+    const meterPct = Math.min(100, Math.max(0, headroom / 24 * 100));
+    const meterFill = document.getElementById('meterFill');
+    meterFill.style.width = meterPct + '%';
+    // More headroom is better: red when tight, amber when adequate, blue when generous
+    meterFill.style.background = headroom < 6 ? '#ef4444' : headroom < 12 ? '#f59e0b' : 'var(--gold)';
+
+    // ── Verdict ──
+    const h = Math.round(headroom);
+    let verdictText;
+    if (headroom < 0) {
+      verdictText = '<strong>Not enough power.</strong> Your amp tops out around ' + Math.round(maxSpl) +
+        ' dB — below your ' + target + ' dB target. Choose a more powerful amp or more sensitive speakers.';
+    } else if (headroom < 6) {
+      verdictText = '<strong>Just enough.</strong> Your amp reaches the target but with only ' + h +
+        ' dB of headroom — dynamic peaks will likely clip. More power is recommended.';
+    } else if (headroom < 12) {
+      verdictText = '<strong>Adequate headroom.</strong> About ' + h +
+        ' dB above target handles most musical peaks cleanly. Fine for casual listening.';
+    } else if (headroom < 18) {
+      verdictText = '<strong>Comfortable headroom.</strong> Roughly ' + h +
+        ' dB of spare output keeps even dynamic material clean and effortless.';
     } else {
-      stageText   = 'SUT + MM Stage';
-      stageNote   = 'Extreme gain — a step-up transformer before a standard MM stage is the recommended approach.';
-      gainNote    = 'Extreme gain required. A SUT paired with a MM stage is typically the cleanest solution.';
-      verdictText = '<strong>Extreme gain required.</strong> A step-up transformer (SUT) paired with a standard MM phono stage is the preferred approach. Active MC stages at this gain level struggle to avoid noise.';
+      verdictText = '<strong>Generous headroom.</strong> Around ' + h +
+        ' dB of spare output — your amplifier is not the limiting factor in this system.';
     }
-
-    document.getElementById('stageType').textContent = stageText;
-    document.getElementById('stageNote').textContent = stageNote;
-    document.getElementById('gainNote').textContent  = gainNote;
-    document.getElementById('multNote').textContent  = 'The phono stage must amplify the cartridge signal ' + Math.round(mult) + '× to reach line level.';
-
-    // Meter: 30 dB = 0%, 75 dB = 100%
-    const meterPct = Math.min(100, Math.max(0, (gainDb - 30) / 45 * 100));
-    document.getElementById('gainMeter').style.width = meterPct + '%';
-
-    const meterFill = document.getElementById('gainMeter');
-    meterFill.style.background = gainDb <= 42 ? 'var(--gold)' : gainDb <= 55 ? '#f59e0b' : '#ef4444';
-
     document.getElementById('verdict').innerHTML = verdictText;
   }
 
-  document.getElementById('cart').addEventListener('input', function () {
-    cartMv = parseFloat(this.value);
-    document.getElementById('cartVal').textContent = cartMv.toFixed(CART_RANGES[cartType].dec);
+  document.getElementById('sens').addEventListener('input', function () {
+    sens = parseInt(this.value, 10);
+    document.getElementById('sensVal').textContent = sens;
     compute();
   });
-
-  document.getElementById('target').addEventListener('input', function () {
-    targetMv = parseInt(this.value, 10);
-    document.getElementById('targetVal').textContent = targetMv;
+  document.getElementById('dist').addEventListener('input', function () {
+    dist = parseInt(this.value, 10);
+    document.getElementById('distVal').textContent = dist;
+    compute();
+  });
+  document.getElementById('spl').addEventListener('input', function () {
+    target = parseInt(this.value, 10);
+    document.getElementById('splVal').textContent = target;
+    compute();
+  });
+  document.getElementById('room').addEventListener('change', function () {
+    room = parseInt(this.value, 10);
+    compute();
+  });
+  document.getElementById('ampW').addEventListener('input', function () {
+    const v = parseInt(this.value, 10);
+    ampW = (isNaN(v) || v < 1) ? 1 : v;
     compute();
   });
 
