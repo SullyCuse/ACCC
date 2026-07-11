@@ -284,7 +284,7 @@ function buildSpecPrompt(name, category, match) {
     '    "vocals": <integer 1-10, where 1=recessed/laid-back, 10=very forward/prominent>,\n' +
     '    "soundProfile": <integer 1-10, where 1=very warm, 5=neutral, 10=very bright>\n' +
     '  }\n' +
-    'Base ratings on published professional reviews. If you lack sufficient review data for a specific rating, set that field to null — do not guess.\n\n' +
+    'Base ratings on published professional reviews. For speakers ALWAYS return the ratings object (never null) — only set an INDIVIDUAL field to null when you truly lack review data for that one metric; do not guess, and do not null the whole object.\n\n' +
     'Spec fields to include (8-12 most relevant for the category):\n' +
     'AMPLIFIER / INTEGRATED AMPLIFIER: Output Power (8Ω stereo), Output Power (4Ω stereo), Output Power (8Ω mono if applicable), THD+N, Signal-to-Noise Ratio, Frequency Response, Damping Factor, Input Impedance, Class of Operation, Inputs, Outputs, Headphone Output\n' +
     'PREAMPLIFIER: Gain, THD+N, SNR, Frequency Response, Input Impedance, Output Impedance, Channel Separation, Inputs, Outputs, Power Supply\n' +

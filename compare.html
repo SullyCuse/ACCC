@@ -904,8 +904,12 @@ function renderRatings(){
     return;
   }
 
-  const done=st.items.filter(i=>i.data&&i.data.ratings);
-  if(!done.length){zone.classList.add('hidden');return;}
+  // Include every speaker that returned data — not just those with a ratings
+  // object — so a speaker whose ratings came back null still appears as a
+  // column of N/A instead of silently vanishing from the chart.
+  const done=st.items.filter(i=>i.data);
+  const hasAnyScore=done.some(i=>i.data.ratings&&Object.values(i.data.ratings).some(v=>v!=null));
+  if(!hasAnyScore){zone.classList.add('hidden');return;}
 
   // Helper: clamp to 1-10 or null
   function clamp(v){
