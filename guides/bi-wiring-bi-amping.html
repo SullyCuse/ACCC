@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bi-Wiring &amp; Bi-Amping Explained — AudioChainHiFi.com</title>
+<meta name="description" content="What bi-wiring and bi-amping actually do, how passive and active bi-amping differ, and where the real gains come from: active bi-amping, not extra cable.">
+<meta property="og:title" content="Bi-Wiring &amp; Bi-Amping Explained — AudioChainHiFi.com">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://audiochainhifi.com/guides/bi-wiring-bi-amping">
+<meta name="robots" content="index, follow">
+<meta property="article:published_time" content="2026-07-11T00:00:00Z">
+<meta property="article:modified_time" content="2026-07-11T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/bi-wiring-bi-amping">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="8f5DDg+G0zc1jrT50lQWJw" async></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#eff6ff;--indigo:#4f46e5;--dark:#0f172a;--dark-2:#1e293b;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;--border:#e2e8f0;--cream:#f8fafc;--white:#ffffff;--font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:12px;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;}
+.container{max-width:780px;margin:0 auto;padding:0 24px;}
+.container-wide{max-width:1100px;margin:0 auto;padding:0 24px;}
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:15px;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
+.page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:64px 0 52px;text-align:center;}
+.guide-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:14px;}
+.page-hero h1{font-size:clamp(26px,4vw,42px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;}
+.page-hero { position:relative; overflow:hidden; }
+.hero-bg-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.18; z-index:0; }
+.page-hero .container { position:relative; z-index:1; }
+.page-hero .lede{font-size:17px;color:rgba(255,255,255,.65);max-width:620px;margin:0 auto;line-height:1.75;}
+.guide-date{font-size:12px;color:rgba(255,255,255,.4);margin-top:12px;}
+.article-body{padding:60px 0 80px;}
+.article-body h2{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.02em;margin:40px 0 12px;}
+.article-body h3{font-size:17px;font-weight:700;color:var(--text);margin:28px 0 10px;}
+.article-body p{font-size:15px;color:var(--text-2);line-height:1.85;margin-bottom:16px;}
+.article-body ul{padding-left:22px;margin-bottom:16px;}
+.article-body li{font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:6px;}
+.article-body strong{color:var(--text);font-weight:700;}
+.spec-card{background:var(--cream);border-radius:var(--radius);padding:24px 28px;margin:24px 0;border-left:4px solid var(--blue);}
+.spec-card .spec-name{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.spec-card h3{font-size:17px;font-weight:800;color:var(--text);margin-bottom:10px;}
+.spec-card p{font-size:14px;color:var(--text-2);line-height:1.8;margin:0;}
+.callout{background:var(--blue-lt);border-radius:var(--radius);padding:20px 24px;margin:24px 0;}
+.callout p{font-size:14px;color:var(--text-2);margin:0;}
+.callout strong{color:var(--blue);}
+.spec-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+.spec-table th{background:var(--dark);color:#fff;padding:10px 14px;text-align:left;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.spec-table td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;}
+.spec-table tr:nth-child(even) td{background:var(--cream);}
+.spec-table td:first-child{font-weight:600;color:var(--text);}
+.cta-block{background:linear-gradient(135deg,var(--blue),var(--indigo));border-radius:16px;padding:36px;text-align:center;margin:48px 0;}
+.cta-block h3{font-size:20px;font-weight:800;color:#fff;margin-bottom:10px;}
+.cta-block p{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:20px;}
+.cta-block a{display:inline-block;background:#fff;color:var(--blue);font-weight:700;font-size:14px;padding:12px 28px;border-radius:8px;text-decoration:none;}
+.guide-nav{display:flex;flex-wrap:wrap;gap:12px;margin:40px 0;}
+.guide-nav a{font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;background:var(--blue-lt);padding:8px 16px;border-radius:8px;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+.more-guides-top{margin:0 0 36px;padding-bottom:28px;border-bottom:1px solid #e2e8f0;}
+.more-guides-heading{font-size:20px;font-weight:800;color:var(--text);margin:0 0 16px;letter-spacing:-.02em;}
+.ad-unit{display:none;/*ADS-HIDDEN-PENDING-APPROVAL*/padding:24px 0;}
+.ad-unit-inner{background:var(--cream);border-radius:var(--radius);padding:16px;text-align:center;}
+.ad-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);display:block;margin-bottom:4px;}
+.footer{background:var(--dark);padding:48px 0 28px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bi-Wiring & Bi-Amping Explained",
+  "description": "Bi-wiring and bi-amping are often confused and often oversold. What the second pair of terminals and the jumper links really are, what separating bass and treble does and does not change, and why active bi-amping is the only version with substantial, reliable benefits.",
+  "author": {
+    "@type": "Person",
+    "name": "Sully",
+    "url": "https://audiochainhifi.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AudioChainHiFi.com",
+    "url": "https://audiochainhifi.com"
+  },
+  "datePublished": "2026-07-11",
+  "dateModified": "2026-07-11",
+  "mainEntityOfPage": "https://audiochainhifi.com/guides/bi-wiring-bi-amping"
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="15.5" fill="none" stroke="#3b82f6" stroke-width="1"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/><circle cx="9" cy="13" r="2" fill="#fbbf24"/><circle cx="27" cy="13" r="2" fill="#34d399"/></svg>
+      <span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Analyzer</a>
+      <a href="/calculators/">Calculators</a>
+      <a href="/compare">Compare</a>
+      <a href="/glossary">Glossary</a>
+      <div class="nav-dropdown">
+        <a href="/guides/" class="active">Guides ▾</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides#getting-started">Getting Started</a>
+          <a href="/guides#amplifiers">Amplifiers</a>
+          <a href="/guides#speakers-room">Speakers &amp; Room</a>
+          <a href="/guides#vinyl">Turntables &amp; Vinyl</a>
+          <a href="/guides#digital">Digital Audio</a>
+          <a href="/guides#headphones-power">Headphones &amp; Power</a>
+          <a href="/guides/" style="border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:10px;color:#60a5fa;font-weight:700;">View all 28 guides →</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/contact">Contact</a>
+      <a href="/#analyzer" class="nav-cta">Start Analysis →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1600&q=80" alt="Loudspeaker binding posts and speaker cable connections">
+    <div class="guide-label">Speaker Guide</div>
+    <h1>Bi-Wiring &amp; Bi-Amping Explained</h1>
+    <p class="lede">Two pairs of terminals on the back of a speaker invite two very different upgrades — one mostly cosmetic, one genuinely transformative. This guide untangles bi-wiring from bi-amping, and passive from active, so you can tell which is worth the trouble.</p>
+    <p class="guide-date">By <a href="/about" style="color:#60a5fa;text-decoration:none;">Sully</a> &middot; Published July 2026</p>
+  </div>
+</div>
+
+<main class="article-body">
+  <div class="container">
+
+    <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
+
+    <div class="more-guides-top">
+      <p class="more-guides-heading">More Guides</p>
+      <div class="guide-nav">
+        <a href="/guides/speakers">Speaker Matching →</a>
+        <a href="/guides/speaker-impedance">Impedance &amp; Wiring →</a>
+        <a href="/guides/amplifier-speaker-matching">Amp &amp; Speaker Matching →</a>
+        <a href="/compare">Compare Components →</a>
+        <a href="/glossary">Glossary →</a>
+      </div>
+    </div>
+
+    <p>Turn a pair of floorstanders around and you may find not one set of binding posts per speaker but two — a pair marked for the low frequencies and a pair for the highs, joined by a small metal strap or link. That second pair of terminals is an open invitation to spend money, and the internet is full of confident claims about what to do with it. Some of those claims describe a real, substantial improvement; others describe an effect that measures at essentially zero. The trouble is that the two live side by side and are constantly muddled. This guide separates them cleanly: what bi-wiring is, what bi-amping is, why "passive" and "active" bi-amping are worlds apart, and where the audible gains actually come from.</p>
+
+    <h2>Single-Wiring, and the Jumper Links You Already Have</h2>
+
+    <p>Start with the normal case. A speaker with a single pair of terminals gets one run of cable from the amplifier, and inside the cabinet a <strong>passive crossover</strong> splits that full-range signal — sending bass to the woofer and treble to the tweeter. This is how the overwhelming majority of systems are wired, and it works completely.</p>
+
+    <p>A speaker with <strong>two</strong> pairs of terminals is really the same speaker with its internal crossover sections brought out separately: one pair feeds the bass section, the other the treble section. To keep it working with a single amplifier and one cable run, the manufacturer bridges the two pairs with small metal straps called <strong>jumper links</strong> (or jumper bars). With the links in place, a two-terminal speaker behaves exactly like a single-wired one — the signal arrives at one pair and the jumpers carry it across to the other. Every upgrade discussed below starts by removing those links.</p>
+
+    <div class="spec-card">
+      <div class="spec-name">Know Your Terminals</div>
+      <h3>What the Second Pair Is For</h3>
+      <p>Two pairs of binding posts do not mean the speaker needs two amplifiers. They exist so you can choose how to drive the bass and treble sections — together through the jumper links (standard), with separate cables (bi-wiring), or with separate amplifier channels (bi-amping). If you never remove the jumpers, the extra terminals do nothing; the speaker is simply single-wired.</p>
+    </div>
+
+    <h2>Bi-Wiring: Two Cables, One Amplifier</h2>
+
+    <p>Bi-wiring is the smallest step. You remove the jumper links and run two separate lengths of speaker cable from the <strong>same</strong> amplifier terminals to the speaker — one cable to the bass posts, one to the treble posts. There is still one amplifier and one pair of amplifier outputs; the only change is that the bass and treble current paths are separated along the cable run instead of sharing a single conductor for most of the journey.</p>
+
+    <p>It is important to be precise about what this does and does not change. Bi-wiring does <strong>not</strong> add power, and it does not give the speaker two amplifiers — the amp still sees the same combined load and delivers the same total current. The crossover inside the speaker is untouched and still does all the filtering. The proposed rationale is subtler: with separate conductors, the large, dynamic current the woofer draws no longer shares a wire with the small, delicate current feeding the tweeter, which in theory reduces any interaction between them along the cable.</p>
+
+    <div class="callout"><p><strong>The honest verdict:</strong> Measured differences between single-wiring and bi-wiring are very small, and in controlled listening they are typically negligible. If you already own a suitable second run of cable and good terminals, there is no harm in bi-wiring — but do not expect a night-and-day change, and do not buy expensive cable specifically to chase it. The money is almost always better spent elsewhere in the chain.</p></div>
+
+    <h2>Bi-Amping: Now You Add Amplifier Channels</h2>
+
+    <p>Bi-amping is a genuinely bigger idea, because here you add a second amplifier channel for each speaker. The woofer section gets its own amp channel, the tweeter section gets another, and the jumper links come out for good. But "bi-amping" covers two fundamentally different architectures that happen to share a name, and confusing them is the single biggest source of disappointment. The question that decides everything is: <strong>where does the crossover happen?</strong></p>
+
+    <div class="spec-card">
+      <div class="spec-name">Version One</div>
+      <h3>Passive Bi-Amping</h3>
+      <p>Two amplifier channels drive each speaker, but the speaker's original <strong>passive crossover is still in place</strong>. Each amp channel still receives the full-range signal and still has to power through the same passive filter network before the drivers see it. You have doubled the number of amplifier channels, yet every channel is still doing the full-bandwidth job and the crossover still burns off energy as heat. The gains are modest — a little more current headroom, some separation of the demanding bass load from the treble amp — but the fundamental limitations of the passive crossover remain exactly where they were.</p>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-name">Version Two</div>
+      <h3>Active Bi-Amping</h3>
+      <p>An <strong>active crossover</strong> splits the signal at line level — before the amplifiers — and the speaker's internal passive crossover is bypassed entirely. Each amplifier now receives only the band it needs to reproduce (bass to one, treble to the other) and drives its driver directly, with no lossy passive network in the signal path. This is the version with real, substantial benefits: each amp works over a narrower range, there is no power wasted in crossover components, and driver control tightens noticeably. When people describe bi-amping as transformative, this is almost always what they mean.</p>
+    </div>
+
+    <h2>Why Active Is the Version That Matters</h2>
+
+    <p>The reason active bi-amping delivers where passive largely does not comes down to where the filtering sits relative to the amplifier. In a conventional or passively bi-amped speaker, the amp puts out a full-range, high-power signal, and a passive network of inductors, capacitors, and resistors then filters it after the fact — dissipating real power as heat, interacting with the driver's shifting impedance, and adding its own phase behaviour. Move that filtering ahead of the amplifier, and the picture changes entirely.</p>
+
+    <p>With an active crossover, the split happens on a tiny line-level signal using precise electronics, so it costs almost no energy and can be far more exact. Each amplifier then sees a benign, band-limited load and a driver it can grip directly, with no passive components standing between them. That direct coupling is what tightens bass, cleans up the midrange, and lets each amplifier be optimised — or even chosen — for its band. Passive bi-amping keeps the very component (the passive crossover) that active bi-amping removes, which is exactly why the two sound so different despite sharing a name.</p>
+
+    <div class="callout"><p><strong>The trap to avoid:</strong> Passive bi-amping with two identical amplifier channels — a common "free" experiment when you already own a stereo amp per side or a spare amp — usually yields a difference small enough to be inaudible. If you are going to the trouble of bi-amping, the version worth pursuing is <strong>active</strong>, with the passive crossover taken out of the circuit. Otherwise you are adding boxes and cost for very little in return.</p></div>
+
+    <h2>When Any of This Is Worth Doing</h2>
+
+    <p>None of these techniques is a general-purpose upgrade you should reach for by default. The order of priorities in almost every system runs: speaker choice and placement, room treatment, then a competent amplifier with enough clean power — long before wiring topology. With that said, there are situations where each step earns its place.</p>
+
+    <ul>
+      <li><strong>Bi-wiring</strong> makes sense mostly when it is free or nearly so — you already have the cable and the speaker has the terminals. Treat any improvement as a small bonus, not the reason for the purchase.</li>
+      <li><strong>Passive bi-amping</strong> can be worth trying if you happen to own a spare stereo amplifier, and it occasionally helps with speakers whose bass sections are genuinely current-hungry. Keep expectations modest.</li>
+      <li><strong>Active bi-amping</strong> is a serious commitment — an active crossover, matched amplification, and setup effort — but it is the path that yields a real step up. It suits dedicated listeners, DIY speaker builders, and studio-style systems where the passive crossover is deliberately bypassed.</li>
+    </ul>
+
+    <p>For most people, the practical takeaway is liberating: if you were about to spend a large sum on exotic jumpers or a second cable run to "unlock" your speakers, that money almost certainly does more good applied to placement, room acoustics, or the speakers and amplifier themselves.</p>
+
+    <h2>Jumpers, Cables, and Keeping Them in Proportion</h2>
+
+    <p>Two smaller points deserve a mention without being blown out of proportion. First, the stock metal jumper straps that ship with two-terminal speakers are usually perfectly adequate; they are short, low-resistance links carrying the full signal over a couple of centimetres. Replacing them with short lengths of proper speaker cable is a tidy, low-cost tweak and does no harm — but boutique jumpers costing as much as a decent amplifier are firmly in diminishing-returns territory. What matters most is simply that the links are clean and tight; a corroded or loose jumper is a real fault worth fixing.</p>
+
+    <p>Second, ordinary speaker cable of a sensible gauge — thick enough for the run length and the load — is all any of these arrangements requires. Bi-wiring needs two competent runs rather than one exotic run; it does not demand costlier cable. The gauge and the security of the connections matter far more than brand or price.</p>
+
+    <div class="spec-card">
+      <div class="spec-name">Setup &amp; Safety</div>
+      <h3>Match Gain, and Never Leave the Jumpers In</h3>
+      <p>Two rules keep bi-amping safe and correct. When passive bi-amping with two different amplifiers, their <strong>gain must match</strong> — mismatched gain shifts the tonal balance between bass and treble, since one section will play louder than the other. And whenever you bi-amp, the <strong>jumper links must come out</strong>. Leaving them in while two amplifier outputs are connected shorts the amplifiers' outputs together through the links, which can damage the amplifiers. Remove the jumpers first, then connect the second channel — never the other way around.</p>
+    </div>
+
+    <h2>Quick Reference: Wiring Options at a Glance</h2>
+
+    <table class="spec-table">
+      <thead><tr><th>Option</th><th>What Changes</th><th>Real-World Benefit</th></tr></thead>
+      <tbody>
+        <tr><td>Single-wiring</td><td>One cable, jumper links in, passive crossover active</td><td>The standard; works fully — nothing wrong with it</td></tr>
+        <tr><td>Bi-wiring</td><td>Two cables from one amp; jumpers out, crossover unchanged</td><td>Separates bass/treble current paths; differences small to negligible</td></tr>
+        <tr><td>Passive bi-amping</td><td>Two amp channels per speaker; passive crossover still in place</td><td>Modest extra headroom; the crossover's limits remain</td></tr>
+        <tr><td>Active bi-amping</td><td>Line-level active crossover; passive crossover bypassed</td><td>The real gain — tighter, cleaner, more efficient; more complex</td></tr>
+        <tr><td>Jumper upgrade</td><td>Stock straps swapped for short cable links</td><td>Tidy, cheap tweak; keep it in proportion, avoid boutique pricing</td></tr>
+        <tr><td>Safety rule</td><td>Remove jumpers before connecting a second amp channel</td><td>Prevents shorting amplifier outputs together</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cta-block">
+      <h3>See how bi-amping fits your chain</h3>
+      <p>Enter your amplifier (or amplifiers), active crossover, and speakers to check gain matching, power delivery, and whether your setup is genuinely bi-amped or just bi-wired.</p>
+      <a href="/#analyzer">Run a Free Analysis →</a>
+    </div>
+
+    <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
+
+    <h2>More Guides</h2>
+    <div class="guide-nav">
+      <a href="/guides/speakers">Speaker Matching →</a>
+      <a href="/guides/speaker-impedance">Impedance &amp; Wiring →</a>
+      <a href="/guides/amplifier-speaker-matching">Amp &amp; Speaker Matching →</a>
+      <a href="/compare">Compare Components →</a>
+      <a href="/glossary">Glossary →</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
+        <p>Free AI-powered hi-fi compatibility analysis. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/glossary">Glossary</a></li><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/amplifiers">Amplifier Guide</a></li><li><a href="/guides/cartridges">Cartridge Guide</a></li></ul></div>
+      <div class="footer-col"><h4>Tool</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul><li><a href="https://www.stereophile.com" target="_blank" rel="noopener">Stereophile</a></li><li><a href="https://www.psaudio.com" target="_blank" rel="noopener">PS Audio</a></li><li><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
