@@ -166,6 +166,36 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://audiochainhifi.com/guides/bi-wiring-bi-amping</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/bookshelf-vs-floorstanding</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/balanced-vs-unbalanced</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/record-cleaning</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/headphone-amps</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/open-back-vs-closed-back</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://audiochainhifi.com/glossary</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
