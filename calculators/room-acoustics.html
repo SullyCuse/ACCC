@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Room Acoustics & Mode Calculator — AudioChainHiFi.com</title>
+<meta name="description" content="Enter your room's dimensions to find its axial modes, standing-wave frequencies, mode coincidences, and Schroeder frequency — so you know where bass problems build up. Free calculator from AudioChainHiFi.">
+<meta property="og:title" content="Room Acoustics & Mode Calculator">
+<meta property="og:description" content="Find your room's primary axial modes and standing-wave frequencies, spot problematic mode coincidences, and see where to focus bass treatment.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audiochainhifi.com/calculators/room-acoustics">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://audiochainhifi.com/calculators/room-acoustics">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="8f5DDg+G0zc1jrT50lQWJw" async></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  /* AudioChainHiFi design tokens */
+  --blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#eff6ff;--indigo:#4f46e5;
+  --dark:#0f172a;--dark-2:#1e293b;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;
+  --border:#e2e8f0;--cream:#f8fafc;--white:#ffffff;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:12px;
+  /* Calculator component tokens (mapped onto the ACCC palette) */
+  --bg-page:#ffffff;--bg-card:#f8fafc;--bg-input:#eef2f7;
+  --gold:#2563eb;--gold-hover:#1d4ed8;--gold-dim:rgba(37,99,235,.10);--gold-border:rgba(37,99,235,.40);
+  --text-white:#0f172a;--text-body:#334155;--text-muted:#64748b;--text-dim:#94a3b8;
+  --border-light:#eef2f6;--serif:'Plus Jakarta Sans',system-ui,sans-serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif;--radius-lg:20px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:var(--blue-dk);}
+
+/* ── NAV (ACCC) ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+@media(max-width:760px){.nav-links{gap:16px;}.nav-links a:not(.nav-cta){display:none;}.nav-links .nav-dropdown{display:none;}}
+
+/* ── HERO (ACCC) ── */
+.page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:60px 0 52px;text-align:center;}
+.page-hero .container{max-width:780px;margin:0 auto;padding:0 24px;}
+.guide-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:14px;}
+.page-hero h1{font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;}
+.page-hero .lede{font-size:17px;color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;line-height:1.7;}
+.guide-date{font-size:12px;color:rgba(255,255,255,.4);margin-top:14px;}
+.guide-date a{color:#60a5fa;}
+
+/* ── CALC LAYOUT ── */
+.calc-wrap{max-width:820px;margin:0 auto;padding:44px 24px 72px;}
+.section-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+
+/* ── INPUTS ── */
+.inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+@media (max-width:560px){.inputs-grid{grid-template-columns:1fr;}}
+.input-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;}
+.input-card-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;display:block;}
+.slider-readout{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;}
+.slider-val{font-family:var(--serif);font-size:30px;font-weight:800;color:var(--text-white);line-height:1;}
+.slider-unit{font-size:13px;color:var(--text-dim);}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none;cursor:pointer;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;}
+.range-labels{display:flex;justify-content:space-between;margin-top:5px;}
+.range-labels span{font-size:10px;color:var(--text-dim);}
+
+/* ── RESULTS ── */
+.results-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:1.5rem;}
+.results-grid{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0;margin-bottom:24px;}
+@media (max-width:480px){.results-grid{grid-template-columns:1fr;}.results-divider{display:none;}}
+.results-divider{background:var(--border);}
+.result-block{padding:0 20px;}
+.result-block:first-child{padding-left:0;}
+.result-block:last-child{padding-right:0;}
+.result-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.result-value{font-family:var(--serif);font-size:44px;font-weight:800;color:var(--gold);line-height:1;margin-bottom:4px;letter-spacing:-.02em;}
+.result-unit{font-size:13px;color:var(--text-dim);margin-bottom:10px;}
+.result-note{font-size:13px;color:var(--text-muted);line-height:1.55;}
+
+/* ── METER ── */
+.meter-section{border-top:1px solid var(--border);padding-top:20px;}
+.meter-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+.meter-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:5px;}
+.meter-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .35s ease,background .35s ease;}
+.meter-ticks{display:flex;justify-content:space-between;margin-bottom:16px;}
+.meter-ticks span{font-size:10px;color:var(--text-dim);}
+.verdict-box{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;font-size:14px;color:var(--text-muted);line-height:1.6;transition:border-color .35s ease;}
+.verdict-box strong{color:var(--text-body);font-weight:700;}
+
+/* ── FAQ ── */
+.faq-section{margin-bottom:2.5rem;}
+.faq-item{border-top:1px solid var(--border);padding:18px 0;}
+.faq-item:last-child{border-bottom:1px solid var(--border);}
+.faq-q{font-size:16px;font-weight:700;color:var(--text-white);margin-bottom:8px;line-height:1.35;}
+.faq-a{font-size:14px;color:var(--text-muted);line-height:1.7;}
+
+/* ── RELATED ── */
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.related-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;text-decoration:none;display:block;transition:border-color .2s,transform .2s;}
+.related-card:hover{border-color:var(--gold-border);transform:translateY(-2px);}
+.related-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.related-title{font-size:15px;font-weight:700;color:var(--text-white);line-height:1.35;}
+
+/* ── FOOTER (ACCC) ── */
+.footer{background:var(--dark);padding:48px 0 28px;}
+.container-wide{max-width:1100px;margin:0 auto;padding:0 24px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+
+/* ── CALCULATOR-SPECIFIC ── */
+/* Unit toggle (feet / meters) */
+.unit-toggle{display:flex;gap:6px;margin-bottom:1.25rem;}
+.unit-btn{padding:6px 14px;border-radius:var(--radius);border:1px solid var(--border);background:var(--white);font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .15s;}
+.unit-btn.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+
+/* Dimension inputs (3-across) */
+.dims-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.5rem;}
+@media (max-width:540px){.dims-grid{grid-template-columns:1fr;}}
+.dim-input-wrap{display:flex;align-items:center;gap:8px;}
+.dim-input-wrap input[type="number"]{flex:1;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-white);font-family:var(--serif);font-size:26px;font-weight:800;padding:8px 10px;outline:none;width:100%;min-width:0;}
+.dim-input-wrap input[type="number"]:focus{border-color:var(--gold-border);}
+.dim-input-wrap input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;}
+.dim-unit{font-size:14px;color:var(--text-dim);white-space:nowrap;}
+
+/* Axial modes table */
+.modes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;}
+@media (max-width:560px){.modes-grid{grid-template-columns:1fr;}}
+.mode-col{background:var(--white);padding:14px 16px;}
+.mode-col-head{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border);}
+.mode-col-head.length{border-color:var(--gold);color:var(--gold);}
+.mode-col-head.width{border-color:var(--indigo);color:var(--indigo);}
+.mode-col-head.height{border-color:#0d9488;color:#0d9488;}
+.mode-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border-light);}
+.mode-row:last-child{border-bottom:none;}
+.mode-harmonic{font-size:11px;color:var(--text-dim);min-width:28px;}
+.mode-freq{font-family:var(--serif);font-size:17px;font-weight:800;color:var(--text-white);}
+.mode-hz{font-size:11px;color:var(--text-dim);}
+.mode-flag{width:8px;height:8px;border-radius:50%;margin-left:4px;flex-shrink:0;}
+.mode-flag.coincides{background:#f59e0b;}
+.mode-flag.empty{background:transparent;}
+
+/* Key metrics */
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media (max-width:480px){.metrics-grid{grid-template-columns:1fr;}}
+.metric-block{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px 18px;}
+.metric-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;}
+.metric-value{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px;}
+.metric-unit{font-size:13px;color:var(--text-dim);margin-bottom:8px;}
+.metric-note{font-size:13px;color:var(--text-muted);line-height:1.5;}
+
+/* Alerts */
+.alert{border-radius:var(--radius-lg);padding:14px 18px;margin-bottom:12px;font-size:14px;line-height:1.55;}
+.alert.warn{background:rgba(245,158,11,.10);border-left:3px solid #f59e0b;color:var(--text-body);}
+.alert.good{background:rgba(22,163,74,.10);border-left:3px solid #16a34a;color:var(--text-body);}
+.alert strong{font-weight:700;}
+
+/* Recommendations */
+.rec-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 22px;margin-bottom:1.5rem;}
+.rec-title{font-family:var(--serif);font-size:18px;font-weight:800;color:var(--text-white);margin-bottom:14px;}
+.rec-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-light);font-size:14px;color:var(--text-muted);line-height:1.55;}
+.rec-item:last-child{border-bottom:none;}
+.rec-num{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--gold);min-width:24px;line-height:1.2;}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Room Acoustics & Mode Calculator",
+  "url":"https://audiochainhifi.com/calculators/room-acoustics",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "description":"Calculate a room's axial modes, standing-wave frequencies, mode coincidences, and Schroeder frequency from its length, width, and height to plan bass treatment.",
+  "publisher":{"@type":"Organization","name":"AudioChainHiFi.com","url":"https://audiochainhifi.com"}
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/><circle cx="9" cy="13" r="2" fill="#fbbf24"/><circle cx="27" cy="13" r="2" fill="#34d399"/></svg>
+      <span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Analyzer</a>
+      <a href="/calculators/" class="active">Calculators</a>
+      <a href="/compare">Compare</a>
+      <a href="/glossary">Glossary</a>
+      <div class="nav-dropdown">
+        <a href="/guides/">Guides &#9662;</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides#getting-started">Getting Started</a>
+          <a href="/guides#amplifiers">Amplifiers</a>
+          <a href="/guides#speakers-room">Speakers &amp; Room</a>
+          <a href="/guides#vinyl">Turntables &amp; Vinyl</a>
+          <a href="/guides#digital">Digital Audio</a>
+          <a href="/guides#headphones-power">Headphones &amp; Power</a>
+          <a href="/guides/" style="border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:10px;color:#60a5fa;font-weight:700;">View all guides &#8594;</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/#analyzer" class="nav-cta">Start Analysis &#8594;</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="guide-label">Speakers &amp; Room &middot; Calculator</div>
+    <h1>Room Acoustics &amp; Mode Calculator</h1>
+    <p class="lede">Enter your room's dimensions to find its primary axial modes and standing-wave frequencies — and see exactly where bass problems build up.</p>
+    <p class="guide-date">Free tool &middot; No sign-up &middot; By <a href="/about">Sully</a></p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="calc-wrap">
+
+  <!-- INPUTS -->
+  <div class="section-label">Your room dimensions</div>
+
+  <div class="unit-toggle" role="group" aria-label="Unit selection">
+    <button class="unit-btn active" id="btnFt" onclick="setUnit('ft')">Feet</button>
+    <button class="unit-btn" id="btnM" onclick="setUnit('m')">Meters</button>
+  </div>
+
+  <div class="dims-grid">
+    <div class="input-card">
+      <label class="input-card-label" for="inpL">Room length</label>
+      <div class="dim-input-wrap">
+        <input type="number" id="inpL" value="14" min="3" max="100" step="0.5" />
+        <span class="dim-unit" id="unitL">ft</span>
+      </div>
+    </div>
+    <div class="input-card">
+      <label class="input-card-label" for="inpW">Room width</label>
+      <div class="dim-input-wrap">
+        <input type="number" id="inpW" value="11" min="3" max="100" step="0.5" />
+        <span class="dim-unit" id="unitW">ft</span>
+      </div>
+    </div>
+    <div class="input-card">
+      <label class="input-card-label" for="inpH">Ceiling height</label>
+      <div class="dim-input-wrap">
+        <input type="number" id="inpH" value="8" min="2" max="30" step="0.5" />
+        <span class="dim-unit" id="unitH">ft</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="section-label">Results</div>
+
+  <!-- Mode coincidence / ratio alerts -->
+  <div id="alertsZone"></div>
+
+  <!-- Modes table -->
+  <div class="results-card" role="region" aria-label="Calculator results" aria-live="polite">
+    <div class="section-label" style="border-bottom:none;margin-bottom:.75rem;">Axial room modes — first four harmonics</div>
+    <div class="modes-grid" id="modesGrid">
+      <!-- filled by JS -->
+    </div>
+
+    <!-- Key metrics -->
+    <div class="metrics-grid">
+      <div class="metric-block">
+        <div class="metric-label">Schroeder frequency</div>
+        <div class="metric-value" id="schroederVal">—</div>
+        <div class="metric-unit">Hz</div>
+        <div class="metric-note" id="schroederNote">Below this frequency, your room behaves modally. Bass treatment is most effective here.</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-label">Room volume</div>
+        <div class="metric-value" id="volumeVal">—</div>
+        <div class="metric-unit" id="volumeUnit">cubic feet</div>
+        <div class="metric-note" id="ratioNote">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recommendations -->
+  <div class="section-label">Recommendations</div>
+  <div class="rec-card">
+    <div class="rec-title">What to do with these results</div>
+    <div id="recsZone"></div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-label">Understanding the numbers</div>
+    <div class="faq-item">
+      <div class="faq-q">What is a room mode?</div>
+      <div class="faq-a">A room mode — also called a standing wave — forms when a sound wave travels the length, width, or height of a room and reflects back on itself, reinforcing at certain frequencies. These frequencies depend entirely on the room's dimensions. Modes cause some bass notes to sound unnaturally loud or weak depending on where you sit, and are the primary reason bass sounds different in every room.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What does the Schroeder frequency mean?</div>
+      <div class="faq-a">The Schroeder frequency is the transition point between the modal region (where individual room modes dominate) and the diffuse region (where sound energy is more evenly distributed). Below the Schroeder frequency, you are dealing with discrete bass modes that require physical bass trapping. Above it, standard broadband absorption and diffusion become effective. The Schroeder frequency is largely determined by your room's volume — smaller rooms have higher Schroeder frequencies, meaning modal behavior extends higher into the frequency range.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why are mode coincidences a problem?</div>
+      <div class="faq-a">When two or more room modes from different axes (length, width, height) fall at nearly the same frequency, their effects stack. A frequency that would already have a 6–8 dB bump from a single mode can show a 12–15 dB buildup when two modes coincide. These are the frequencies you will most clearly hear as bass "bloat" or "one-note bass" — and they are the priority targets for corner bass trapping.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why does this calculator only show axial modes?</div>
+      <div class="faq-a">There are three types of room modes: axial (one dimension), tangential (two dimensions), and oblique (all three). Axial modes are the strongest because they involve direct reflections between parallel surfaces with no spreading loss. Tangential modes are about 6 dB weaker, and oblique modes are weaker still. For practical treatment decisions, axial modes are the most significant and the most audible.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I change my room's modes by repositioning speakers or moving my chair?</div>
+      <div class="faq-a">You cannot change which frequencies your room resonates at — those are fixed by the dimensions. But you can change which modes you excite and which you hear. Placing speakers close to a room boundary excites nearby modes more strongly. Placing your listening position at a node (a pressure null) for a given frequency means you will hear that frequency less loudly. Repositioning is often the most cost-effective first step before buying treatment materials.</div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="section-label">Related tools &amp; guides</div>
+  <div class="related-grid">
+    <a href="/guides/room-acoustics" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Room acoustics: treatment &amp; placement</div>
+    </a>
+    <a href="/guides/subwoofers" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Subwoofers: integration &amp; placement</div>
+    </a>
+    <a href="/calculators/" class="related-card">
+      <div class="related-tag">Tools</div>
+      <div class="related-title">All HiFi calculators &amp; system tools</div>
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
+        <p>Free hi-fi compatibility tools, calculators, and guides. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/calculators/">Calculators</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/room-acoustics">Room Acoustics</a></li><li><a href="/guides/subwoofers">Subwoofers</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const C = 343; // speed of sound m/s at 20°C
+  let unit = 'ft';
+
+  function setUnit(u) {
+    unit = u;
+    document.getElementById('btnFt').classList.toggle('active', u === 'ft');
+    document.getElementById('btnM').classList.toggle('active', u === 'm');
+    ['L','W','H'].forEach(id => document.getElementById('unit' + id).textContent = u);
+    compute();
+  }
+
+  function toM(v) { return unit === 'ft' ? v * 0.3048 : v; }
+
+  function compute() {
+    const Lraw = parseFloat(document.getElementById('inpL').value) || 14;
+    const Wraw = parseFloat(document.getElementById('inpW').value) || 11;
+    const Hraw = parseFloat(document.getElementById('inpH').value) || 8;
+
+    const Lm = toM(Lraw), Wm = toM(Wraw), Hm = toM(Hraw);
+
+    const dims = [
+      { name: 'Length', m: Lm, cls: 'length' },
+      { name: 'Width',  m: Wm, cls: 'width'  },
+      { name: 'Height', m: Hm, cls: 'height' },
+    ];
+
+    // Compute all axial modes (4 harmonics per dimension)
+    const allModes = [];
+    dims.forEach((d, di) => {
+      for (let n = 1; n <= 4; n++) {
+        allModes.push({ f: (n * C) / (2 * d.m), dim: di, n });
+      }
+    });
+
+    // Flag coincidences: modes from different dimensions within 10 Hz
+    const coincident = new Set();
+    for (let i = 0; i < allModes.length; i++) {
+      for (let j = i + 1; j < allModes.length; j++) {
+        if (allModes[i].dim !== allModes[j].dim && Math.abs(allModes[i].f - allModes[j].f) <= 10) {
+          coincident.add(i);
+          coincident.add(j);
+        }
+      }
+    }
+
+    // Build modes grid
+    let gridHtml = '';
+    dims.forEach((d, di) => {
+      gridHtml += `<div class="mode-col"><div class="mode-col-head ${d.cls}">${d.name}</div>`;
+      for (let n = 1; n <= 4; n++) {
+        const idx = di * 4 + (n - 1);
+        const f   = allModes[idx].f;
+        const hit = coincident.has(idx);
+        gridHtml += `<div class="mode-row">
+          <span class="mode-harmonic">${n}×</span>
+          <span class="mode-freq">${f.toFixed(1)}</span>
+          <span class="mode-hz">Hz</span>
+          <span class="mode-flag ${hit ? 'coincides' : 'empty'}" title="${hit ? 'Coincides with another mode' : ''}"></span>
+        </div>`;
+      }
+      gridHtml += '</div>';
+    });
+    document.getElementById('modesGrid').innerHTML = gridHtml;
+
+    // Schroeder frequency (assumes RT60 ≈ 0.32 s — typical treated room)
+    const Vm  = Lm * Wm * Hm;
+    const Fs  = Math.round(2000 * Math.sqrt(0.32 / Vm));
+    document.getElementById('schroederVal').textContent = Fs;
+
+    // Volume
+    const Vdisp = unit === 'ft' ? Math.round(Lraw * Wraw * Hraw) : Math.round(Vm);
+    document.getElementById('volumeVal').textContent  = Vdisp;
+    document.getElementById('volumeUnit').textContent = unit === 'ft' ? 'cubic feet' : 'cubic metres';
+
+    // Ratio note
+    const ratios = [Lm/Wm, Lm/Hm, Wm/Hm];
+    const hasProblematic = ratios.some(r => Math.abs(r - Math.round(r)) < 0.07 && Math.round(r) >= 1 && Math.round(r) <= 4);
+    document.getElementById('ratioNote').textContent = hasProblematic
+      ? 'One or more dimension ratios are close to a whole number — modes will share harmonics and stack more severely.'
+      : 'No whole-number dimension ratios detected — modes are reasonably well distributed.';
+
+    // Alerts
+    let alertsHtml = coincident.size > 0
+      ? `<div class="alert warn"><strong>${coincident.size / 2 > 1 ? 'Multiple mode coincidences' : 'Mode coincidence'} detected.</strong> Modes from different room dimensions fall within 10 Hz of each other, causing stacking bass peaks. Corner bass trapping is especially important at those frequencies.</div>`
+      : `<div class="alert good"><strong>No mode coincidences detected.</strong> Your room's axial modes are well spread. Bass treatment will still help, but you are not dealing with stacked peaks.</div>`;
+    document.getElementById('alertsZone').innerHTML = alertsHtml;
+
+    // Recommendations
+    const lowestF    = Math.min(...allModes.map(m => m.f));
+    const lowestDim  = ['length','width','height'][allModes.findIndex(m => m.f === lowestF)];
+    const recs = [
+      `Your lowest axial mode is <strong>${lowestF.toFixed(1)} Hz</strong> (${lowestDim} dimension). Bass treatment is most critical near this frequency — place floor-to-ceiling corner traps in all four vertical corners as a first step.`,
+      `The Schroeder frequency of <strong>${Fs} Hz</strong> marks where modal behaviour ends. Broadband absorption panels become effective above this point; below it, only thick corner traps or tuned resonators will address the modes.`,
+      coincident.size > 0
+        ? `<strong>Priority: corner bass trapping.</strong> The mode coincidences in this room will produce particularly strong, narrow-band bass peaks. Minimum 4-inch thick, floor-to-ceiling corner treatment is strongly recommended.`
+        : `Place broadband bass traps in all four vertical corners. Even without coincidences, corner loading addresses the axial modes most effectively.`,
+      `Avoid placing your listening position at exactly 50% of any room dimension — that puts you at the pressure null of every second harmonic. The 38% rule is a practical starting point.`,
+    ];
+    document.getElementById('recsZone').innerHTML = recs.map((r, i) =>
+      `<div class="rec-item"><span class="rec-num">${i + 1}</span><span>${r}</span></div>`
+    ).join('');
+  }
+
+  ['inpL','inpW','inpH'].forEach(id =>
+    document.getElementById(id).addEventListener('input', compute)
+  );
+
+  compute();
+</script>
+
+</body>
+</html>

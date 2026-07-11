@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phono Stage Gain Calculator — AudioChainHiFi.com</title>
+<meta name="description" content="Find how much gain your phono stage needs for your MM or MC cartridge — including when you need a step-up transformer. Free interactive calculator from AudioChainHiFi.">
+<meta property="og:title" content="Phono Stage Gain Calculator">
+<meta property="og:description" content="Enter your cartridge's output voltage to find exactly how much gain your phono stage needs — and whether you need a step-up transformer.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audiochainhifi.com/calculators/phono-stage-gain">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://audiochainhifi.com/calculators/phono-stage-gain">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="8f5DDg+G0zc1jrT50lQWJw" async></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  /* AudioChainHiFi design tokens */
+  --blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#eff6ff;--indigo:#4f46e5;
+  --dark:#0f172a;--dark-2:#1e293b;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;
+  --border:#e2e8f0;--cream:#f8fafc;--white:#ffffff;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:12px;
+  /* Calculator component tokens (mapped onto the ACCC palette) */
+  --bg-page:#ffffff;--bg-card:#f8fafc;--bg-input:#eef2f7;
+  --gold:#2563eb;--gold-hover:#1d4ed8;--gold-dim:rgba(37,99,235,.10);--gold-border:rgba(37,99,235,.40);
+  --text-white:#0f172a;--text-body:#334155;--text-muted:#64748b;--text-dim:#94a3b8;
+  --border-light:#eef2f6;--serif:'Plus Jakarta Sans',system-ui,sans-serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif;--radius-lg:20px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:var(--blue-dk);}
+
+/* ── NAV (ACCC) ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+@media(max-width:760px){.nav-links{gap:16px;}.nav-links a:not(.nav-cta){display:none;}.nav-links .nav-dropdown{display:none;}}
+
+/* ── HERO (ACCC) ── */
+.page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:60px 0 52px;text-align:center;}
+.page-hero .container{max-width:780px;margin:0 auto;padding:0 24px;}
+.guide-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:14px;}
+.page-hero h1{font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;}
+.page-hero .lede{font-size:17px;color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;line-height:1.7;}
+.guide-date{font-size:12px;color:rgba(255,255,255,.4);margin-top:14px;}
+.guide-date a{color:#60a5fa;}
+
+/* ── CALC LAYOUT ── */
+.calc-wrap{max-width:820px;margin:0 auto;padding:44px 24px 72px;}
+.section-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+
+/* ── CARTRIDGE TYPE SELECTOR ── */
+.type-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;margin-bottom:12px;}
+.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+@media (max-width:480px){.type-grid{grid-template-columns:1fr;}}
+.type-btn{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px;text-align:center;cursor:pointer;transition:all .15s;}
+.type-btn:hover{border-color:var(--gold-border);}
+.type-btn.active{background:var(--gold);border-color:var(--gold);}
+.type-btn-name{font-size:14px;font-weight:600;color:var(--text-white);}
+.type-btn.active .type-btn-name{color:#fff;}
+.type-btn-range{font-size:12px;color:var(--text-dim);margin-top:3px;}
+.type-btn.active .type-btn-range{color:rgba(255,255,255,0.85);}
+
+/* ── INPUTS ── */
+.inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+@media (max-width:560px){.inputs-grid{grid-template-columns:1fr;}}
+.input-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;}
+.input-card-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;display:block;}
+.slider-readout{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;}
+.slider-val{font-family:var(--serif);font-size:30px;font-weight:800;color:var(--text-white);line-height:1;}
+.slider-unit{font-size:13px;color:var(--text-dim);}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none;cursor:pointer;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;}
+.range-labels{display:flex;justify-content:space-between;margin-top:5px;}
+.range-labels span{font-size:10px;color:var(--text-dim);}
+
+/* ── RESULTS ── */
+.results-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:1.5rem;}
+.results-grid{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0;margin-bottom:24px;}
+@media (max-width:480px){.results-grid{grid-template-columns:1fr;}.results-divider{display:none;}}
+.results-divider{background:var(--border);}
+.result-block{padding:0 20px;}
+.result-block:first-child{padding-left:0;}
+.result-block:last-child{padding-right:0;}
+.result-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.result-value{font-family:var(--serif);font-size:44px;font-weight:800;color:var(--gold);line-height:1;margin-bottom:4px;letter-spacing:-.02em;}
+.result-unit{font-size:13px;color:var(--text-dim);margin-bottom:10px;}
+.result-note{font-size:13px;color:var(--text-muted);line-height:1.55;}
+
+/* ── METER ── */
+.meter-section{border-top:1px solid var(--border);padding-top:20px;}
+.meter-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+.meter-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:5px;}
+.meter-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .35s ease,background .35s ease;}
+.meter-ticks{display:flex;justify-content:space-between;margin-bottom:16px;}
+.meter-ticks span{font-size:10px;color:var(--text-dim);}
+.verdict-box{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;font-size:14px;color:var(--text-muted);line-height:1.6;transition:border-color .35s ease;}
+.verdict-box strong{color:var(--text-body);font-weight:700;}
+
+/* ── FAQ ── */
+.faq-section{margin-bottom:2.5rem;}
+.faq-item{border-top:1px solid var(--border);padding:18px 0;}
+.faq-item:last-child{border-bottom:1px solid var(--border);}
+.faq-q{font-size:16px;font-weight:700;color:var(--text-white);margin-bottom:8px;line-height:1.35;}
+.faq-a{font-size:14px;color:var(--text-muted);line-height:1.7;}
+
+/* ── RELATED ── */
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.related-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;text-decoration:none;display:block;transition:border-color .2s,transform .2s;}
+.related-card:hover{border-color:var(--gold-border);transform:translateY(-2px);}
+.related-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.related-title{font-size:15px;font-weight:700;color:var(--text-white);line-height:1.35;}
+
+/* ── FOOTER (ACCC) ── */
+.footer{background:var(--dark);padding:48px 0 28px;}
+.container-wide{max-width:1100px;margin:0 auto;padding:0 24px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Phono Stage Gain Calculator",
+  "url":"https://audiochainhifi.com/calculators/phono-stage-gain",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "description":"Calculate the gain a phono stage needs for a given MM or MC cartridge output voltage, and whether a step-up transformer is required.",
+  "publisher":{"@type":"Organization","name":"AudioChainHiFi.com","url":"https://audiochainhifi.com"}
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/><circle cx="9" cy="13" r="2" fill="#fbbf24"/><circle cx="27" cy="13" r="2" fill="#34d399"/></svg>
+      <span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Analyzer</a>
+      <a href="/calculators/" class="active">Calculators</a>
+      <a href="/compare">Compare</a>
+      <a href="/glossary">Glossary</a>
+      <div class="nav-dropdown">
+        <a href="/guides/">Guides &#9662;</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides#getting-started">Getting Started</a>
+          <a href="/guides#amplifiers">Amplifiers</a>
+          <a href="/guides#speakers-room">Speakers &amp; Room</a>
+          <a href="/guides#vinyl">Turntables &amp; Vinyl</a>
+          <a href="/guides#digital">Digital Audio</a>
+          <a href="/guides#headphones-power">Headphones &amp; Power</a>
+          <a href="/guides/" style="border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:10px;color:#60a5fa;font-weight:700;">View all guides &#8594;</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/#analyzer" class="nav-cta">Start Analysis &#8594;</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="guide-label">Turntables &amp; Vinyl &middot; Calculator</div>
+    <h1>Phono Stage Gain Calculator</h1>
+    <p class="lede">Enter your cartridge's output voltage to find exactly how much gain your phono stage needs — and whether you require a step-up transformer.</p>
+    <p class="guide-date">Free tool &middot; No sign-up &middot; By <a href="/about">Sully</a></p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="calc-wrap">
+
+  <!-- CARTRIDGE TYPE -->
+  <div class="section-label">Your cartridge</div>
+  <div class="type-card">
+    <label class="input-card-label">Cartridge type</label>
+    <div class="type-grid">
+      <button class="type-btn" id="btn-mm" onclick="setType('mm')" aria-pressed="false">
+        <div class="type-btn-name">MM</div>
+        <div class="type-btn-range">2 – 6 mV output</div>
+      </button>
+      <button class="type-btn active" id="btn-homc" onclick="setType('homc')" aria-pressed="true">
+        <div class="type-btn-name">High-output MC</div>
+        <div class="type-btn-range">1 – 2.5 mV output</div>
+      </button>
+      <button class="type-btn" id="btn-lomc" onclick="setType('lomc')" aria-pressed="false">
+        <div class="type-btn-name">Low-output MC</div>
+        <div class="type-btn-range">0.1 – 0.6 mV output</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- SLIDERS -->
+  <div class="inputs-grid">
+    <div class="input-card">
+      <label class="input-card-label" for="cart">Cartridge output voltage</label>
+      <div class="slider-readout">
+        <span class="slider-val" id="cartVal">1.8</span>
+        <span class="slider-unit">mV</span>
+      </div>
+      <input type="range" id="cart" min="0.5" max="2.5" value="1.8" step="0.1" aria-label="Cartridge output voltage in millivolts" />
+      <div class="range-labels"><span id="rangeMin">0.5 mV</span><span id="rangeMax">2.5 mV</span></div>
+    </div>
+    <div class="input-card">
+      <label class="input-card-label" for="target">Target output (line level)</label>
+      <div class="slider-readout">
+        <span class="slider-val" id="targetVal">200</span>
+        <span class="slider-unit">mV</span>
+      </div>
+      <input type="range" id="target" min="100" max="400" value="200" step="10" aria-label="Target line level output in millivolts" />
+      <div class="range-labels"><span>100 mV</span><span>400 mV</span></div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="section-label">Results</div>
+  <div class="results-card" role="region" aria-label="Calculator results" aria-live="polite">
+    <div class="results-grid">
+      <div class="result-block">
+        <div class="result-label">Gain required</div>
+        <div class="result-value" id="gainDb">—</div>
+        <div class="result-unit">dB</div>
+        <div class="result-note" id="gainNote"></div>
+      </div>
+      <div class="results-divider" aria-hidden="true"></div>
+      <div class="result-block">
+        <div class="result-label">Voltage multiplier</div>
+        <div class="result-value" id="gainMult">—</div>
+        <div class="result-unit">× ratio</div>
+        <div class="result-note" id="multNote"></div>
+      </div>
+      <div class="results-divider" aria-hidden="true"></div>
+      <div class="result-block">
+        <div class="result-label">Stage required</div>
+        <div class="result-value" id="stageType" style="font-size:26px;padding-top:8px;">—</div>
+        <div class="result-unit" id="stageNote"></div>
+      </div>
+    </div>
+    <div class="meter-section">
+      <div class="meter-label">Gain range indicator</div>
+      <div class="meter-track"><div class="meter-fill" id="gainMeter" style="width:0%"></div></div>
+      <div class="meter-ticks">
+        <span>30 dB</span>
+        <span>40 dB (MM)</span>
+        <span>55 dB</span>
+        <span>65 dB (LOMC)</span>
+        <span>75 dB+</span>
+      </div>
+      <div class="verdict-box" id="verdict">Select your cartridge type and adjust the output voltage above.</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-label">Understanding the numbers</div>
+    <div class="faq-item">
+      <div class="faq-q">What is phono stage gain and why does it matter?</div>
+      <div class="faq-a">A phono stage amplifies the tiny signal from your cartridge — typically between 0.1 mV and 6 mV — up to line level so your integrated amplifier or preamplifier can work with it. Too little gain and your music sounds thin, quiet, and distant. Too much and you introduce noise and distortion. Matching gain to your cartridge's output voltage is one of the most important and most overlooked setup decisions in a vinyl system.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's the difference between MM and MC gain requirements?</div>
+      <div class="faq-a">Moving Magnet cartridges typically output 2–6 mV and need around 36–42 dB of gain — a requirement easily met by almost any phono stage on the market. Moving Coil cartridges output far less, sometimes under 0.2 mV, and require 60–75 dB of gain. Using an MM-only phono stage with a low-output MC cartridge results in a very weak, noise-prone signal that no amount of downstream volume adjustment can properly fix.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">When do I need a step-up transformer?</div>
+      <div class="faq-a">When your cartridge outputs less than 0.2 mV, even the best high-gain MC phono stages struggle to amplify cleanly without introducing noise. A step-up transformer (SUT) passively boosts the signal — typically by 20–26 dB — before it reaches the phono stage, allowing a lower-gain MM or moderate-gain MC stage to handle very low-output cartridges with exceptional noise performance. Many audiophiles consider a quality SUT paired with a good MM stage to sound superior to any active MC stage at the same price point.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What does the voltage multiplier figure mean?</div>
+      <div class="faq-a">The voltage multiplier (or gain ratio) shows the same result as the dB figure in a different form. A multiplier of 100× means your phono stage takes the cartridge's output voltage and amplifies it one hundred times to reach line level. Some audiophiles find this figure more intuitive than decibels when comparing phono stage specifications — many manufacturers list both.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Does cartridge loading affect gain requirements?</div>
+      <div class="faq-a">Loading — the input impedance your phono stage presents to the cartridge — affects tonal character and high-frequency response, particularly with MC cartridges, but it does not change the gain requirement. Set your loading according to your cartridge manufacturer's recommendations, then use this calculator to confirm you have adequate gain. The two adjustments are independent of each other.</div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="section-label">Related tools &amp; guides</div>
+  <div class="related-grid">
+    <a href="/guides/phono-stages" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Phono stages: gain, loading &amp; matching</div>
+    </a>
+    <a href="/guides/cartridges" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Cartridges: MM vs MC and how to choose</div>
+    </a>
+    <a href="/calculators/" class="related-card">
+      <div class="related-tag">Tools</div>
+      <div class="related-title">All HiFi calculators &amp; system tools</div>
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
+        <p>Free hi-fi compatibility tools, calculators, and guides. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/calculators/">Calculators</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/phono-stages">Phono Stages</a></li><li><a href="/guides/cartridges">Cartridges</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const CART_RANGES = {
+    mm:   { min: 0.5,  max: 6.0,  step: 0.1,  def: 3.0,  dec: 1 },
+    homc: { min: 0.5,  max: 2.5,  step: 0.1,  def: 1.8,  dec: 1 },
+    lomc: { min: 0.05, max: 0.6,  step: 0.05, def: 0.3,  dec: 2 },
+  };
+
+  let cartType = 'homc';
+  let cartMv   = 1.8;
+  let targetMv = 200;
+
+  function setType(t) {
+    cartType = t;
+    ['mm','homc','lomc'].forEach(id => {
+      const b = document.getElementById('btn-' + id);
+      b.classList.toggle('active', id === t);
+      b.setAttribute('aria-pressed', id === t);
+    });
+    const r = CART_RANGES[t];
+    const slider = document.getElementById('cart');
+    slider.min   = r.min;
+    slider.max   = r.max;
+    slider.step  = r.step;
+    slider.value = r.def;
+    cartMv = r.def;
+    document.getElementById('cartVal').textContent  = r.def.toFixed(r.dec);
+    document.getElementById('rangeMin').textContent = r.min + ' mV';
+    document.getElementById('rangeMax').textContent = r.max + ' mV';
+    compute();
+  }
+
+  function compute() {
+    const gainDb = 20 * Math.log10(targetMv / cartMv);
+    const mult   = targetMv / cartMv;
+
+    document.getElementById('gainDb').textContent   = gainDb.toFixed(1);
+    document.getElementById('gainMult').textContent = Math.round(mult) + '×';
+
+    let stageText, stageNote, gainNote, verdictText;
+
+    if (gainDb <= 42) {
+      stageText   = 'MM Stage';
+      stageNote   = 'Standard MM gain — compatible with the vast majority of phono stages.';
+      gainNote    = gainDb < 36 ? 'Low for MM — output may be quiet on some amplifiers.' : 'Standard MM gain range.';
+      verdictText = '<strong>Standard MM gain.</strong> Any phono stage with an MM input will handle this comfortably. Look for a stage rated 36–42 dB.';
+    } else if (gainDb <= 55) {
+      stageText   = 'High-Output MC Stage';
+      stageNote   = 'Above typical MM range — a phono stage with switchable or dedicated MC gain is required.';
+      gainNote    = 'High-output MC range — you need a phono stage with dedicated MC support.';
+      verdictText = '<strong>High-output MC range.</strong> You need a phono stage with a dedicated MC input or switchable gain above 42 dB. Many integrated phono stages cover this range.';
+    } else if (gainDb <= 70) {
+      stageText   = 'Low-Output MC Stage';
+      stageNote   = 'High gain territory — a dedicated high-gain MC phono stage is required.';
+      gainNote    = 'Low-output MC range. Dedicated high-gain MC stage essential.';
+      verdictText = '<strong>Low-output MC range.</strong> A dedicated high-gain MC phono stage is required. A step-up transformer (SUT) is optional but often improves noise performance at this level.';
+    } else {
+      stageText   = 'SUT + MM Stage';
+      stageNote   = 'Extreme gain — a step-up transformer before a standard MM stage is the recommended approach.';
+      gainNote    = 'Extreme gain required. A SUT paired with a MM stage is typically the cleanest solution.';
+      verdictText = '<strong>Extreme gain required.</strong> A step-up transformer (SUT) paired with a standard MM phono stage is the preferred approach. Active MC stages at this gain level struggle to avoid noise.';
+    }
+
+    document.getElementById('stageType').textContent = stageText;
+    document.getElementById('stageNote').textContent = stageNote;
+    document.getElementById('gainNote').textContent  = gainNote;
+    document.getElementById('multNote').textContent  = 'The phono stage must amplify the cartridge signal ' + Math.round(mult) + '× to reach line level.';
+
+    // Meter: 30 dB = 0%, 75 dB = 100%
+    const meterPct = Math.min(100, Math.max(0, (gainDb - 30) / 45 * 100));
+    document.getElementById('gainMeter').style.width = meterPct + '%';
+
+    const meterFill = document.getElementById('gainMeter');
+    meterFill.style.background = gainDb <= 42 ? 'var(--gold)' : gainDb <= 55 ? '#f59e0b' : '#ef4444';
+
+    document.getElementById('verdict').innerHTML = verdictText;
+  }
+
+  document.getElementById('cart').addEventListener('input', function () {
+    cartMv = parseFloat(this.value);
+    document.getElementById('cartVal').textContent = cartMv.toFixed(CART_RANGES[cartType].dec);
+    compute();
+  });
+
+  document.getElementById('target').addEventListener('input', function () {
+    targetMv = parseInt(this.value, 10);
+    document.getElementById('targetVal').textContent = targetMv;
+    compute();
+  });
+
+  compute();
+</script>
+
+</body>
+</html>

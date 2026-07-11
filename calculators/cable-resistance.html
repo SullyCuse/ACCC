@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cable Resistance &amp; Gauge Calculator — AudioChainHiFi.com</title>
+<meta name="description" content="Calculate speaker cable resistance by gauge and run length — and find out whether it actually matters for your speaker impedance and damping factor. Free interactive calculator from AudioChainHiFi.">
+<meta property="og:title" content="Cable Resistance &amp; Gauge Calculator">
+<meta property="og:description" content="Enter your cable gauge, run length, and speaker impedance to find total cable resistance — and whether it has any audible impact on your system.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audiochainhifi.com/calculators/cable-resistance">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://audiochainhifi.com/calculators/cable-resistance">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="8f5DDg+G0zc1jrT50lQWJw" async></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  /* AudioChainHiFi design tokens */
+  --blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#eff6ff;--indigo:#4f46e5;
+  --dark:#0f172a;--dark-2:#1e293b;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;
+  --border:#e2e8f0;--cream:#f8fafc;--white:#ffffff;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:12px;
+  /* Calculator component tokens (mapped onto the ACCC palette) */
+  --bg-page:#ffffff;--bg-card:#f8fafc;--bg-input:#eef2f7;
+  --gold:#2563eb;--gold-hover:#1d4ed8;--gold-dim:rgba(37,99,235,.10);--gold-border:rgba(37,99,235,.40);
+  --text-white:#0f172a;--text-body:#334155;--text-muted:#64748b;--text-dim:#94a3b8;
+  --border-light:#eef2f6;--serif:'Plus Jakarta Sans',system-ui,sans-serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif;--radius-lg:20px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:var(--blue-dk);}
+
+/* ── NAV (ACCC) ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+@media(max-width:760px){.nav-links{gap:16px;}.nav-links a:not(.nav-cta){display:none;}.nav-links .nav-dropdown{display:none;}}
+
+/* ── HERO (ACCC) ── */
+.page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:60px 0 52px;text-align:center;}
+.page-hero .container{max-width:780px;margin:0 auto;padding:0 24px;}
+.guide-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:14px;}
+.page-hero h1{font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;}
+.page-hero .lede{font-size:17px;color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;line-height:1.7;}
+.guide-date{font-size:12px;color:rgba(255,255,255,.4);margin-top:14px;}
+.guide-date a{color:#60a5fa;}
+
+/* ── CALC LAYOUT ── */
+.calc-wrap{max-width:820px;margin:0 auto;padding:44px 24px 72px;}
+.section-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+
+/* ── INPUTS ── */
+.inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+@media (max-width:560px){.inputs-grid{grid-template-columns:1fr;}}
+.input-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;}
+.input-card-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;display:block;}
+.slider-readout{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;}
+.slider-val{font-family:var(--serif);font-size:30px;font-weight:800;color:var(--text-white);line-height:1;}
+.slider-unit{font-size:13px;color:var(--text-dim);}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none;cursor:pointer;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;}
+.range-labels{display:flex;justify-content:space-between;margin-top:5px;}
+.range-labels span{font-size:10px;color:var(--text-dim);}
+
+/* ── RESULTS ── */
+.results-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:1.5rem;}
+.results-grid{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0;margin-bottom:24px;}
+@media (max-width:480px){.results-grid{grid-template-columns:1fr;}.results-divider{display:none;}}
+.results-divider{background:var(--border);}
+.result-block{padding:0 20px;}
+.result-block:first-child{padding-left:0;}
+.result-block:last-child{padding-right:0;}
+.result-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.result-value{font-family:var(--serif);font-size:44px;font-weight:800;color:var(--gold);line-height:1;margin-bottom:4px;letter-spacing:-.02em;}
+.result-unit{font-size:13px;color:var(--text-dim);margin-bottom:10px;}
+.result-note{font-size:13px;color:var(--text-muted);line-height:1.55;}
+
+/* ── METER ── */
+.meter-section{border-top:1px solid var(--border);padding-top:20px;}
+.meter-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+.meter-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:5px;}
+.meter-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .35s ease,background .35s ease;}
+.meter-ticks{display:flex;justify-content:space-between;margin-bottom:16px;}
+.meter-ticks span{font-size:10px;color:var(--text-dim);}
+.verdict-box{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;font-size:14px;color:var(--text-muted);line-height:1.6;transition:border-color .35s ease;}
+.verdict-box strong{color:var(--text-body);font-weight:700;}
+
+/* ── FAQ ── */
+.faq-section{margin-bottom:2.5rem;}
+.faq-item{border-top:1px solid var(--border);padding:18px 0;}
+.faq-item:last-child{border-bottom:1px solid var(--border);}
+.faq-q{font-size:16px;font-weight:700;color:var(--text-white);margin-bottom:8px;line-height:1.35;}
+.faq-a{font-size:14px;color:var(--text-muted);line-height:1.7;}
+
+/* ── RELATED ── */
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.related-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;text-decoration:none;display:block;transition:border-color .2s,transform .2s;}
+.related-card:hover{border-color:var(--gold-border);transform:translateY(-2px);}
+.related-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.related-title{font-size:15px;font-weight:700;color:var(--text-white);line-height:1.35;}
+
+/* ── FOOTER (ACCC) ── */
+.footer{background:var(--dark);padding:48px 0 28px;}
+.container-wide{max-width:1100px;margin:0 auto;padding:0 24px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+
+/* ── CALCULATOR-SPECIFIC ── */
+.btn-group{display:flex;gap:6px;flex-wrap:wrap;}
+.btn-opt{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-muted);font-family:var(--sans);font-size:13px;font-weight:500;padding:7px 14px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.btn-opt:hover{border-color:var(--gold-border);color:var(--text-white);}
+.btn-opt.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+.result-value.large{font-size:48px;}
+.verdict-box.ok{border-left-color:#16a34a;}
+.verdict-box.warn{border-left-color:#f59e0b;}
+.verdict-box.bad{border-left-color:#ef4444;}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Cable Resistance & Gauge Calculator",
+  "url":"https://audiochainhifi.com/calculators/cable-resistance",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "description":"Calculate total speaker cable resistance from wire gauge and run length, and find out whether it matters relative to speaker impedance, damping factor, and power delivery.",
+  "publisher":{"@type":"Organization","name":"AudioChainHiFi.com","url":"https://audiochainhifi.com"}
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/><circle cx="9" cy="13" r="2" fill="#fbbf24"/><circle cx="27" cy="13" r="2" fill="#34d399"/></svg>
+      <span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Analyzer</a>
+      <a href="/calculators/" class="active">Calculators</a>
+      <a href="/compare">Compare</a>
+      <a href="/glossary">Glossary</a>
+      <div class="nav-dropdown">
+        <a href="/guides/">Guides &#9662;</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides#getting-started">Getting Started</a>
+          <a href="/guides#amplifiers">Amplifiers</a>
+          <a href="/guides#speakers-room">Speakers &amp; Room</a>
+          <a href="/guides#vinyl">Turntables &amp; Vinyl</a>
+          <a href="/guides#digital">Digital Audio</a>
+          <a href="/guides#headphones-power">Headphones &amp; Power</a>
+          <a href="/guides/" style="border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:10px;color:#60a5fa;font-weight:700;">View all guides &#8594;</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/#analyzer" class="nav-cta">Start Analysis &#8594;</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="guide-label">Cables &middot; Calculator</div>
+    <h1>Cable Resistance &amp; Gauge Calculator</h1>
+    <p class="lede">Check whether your speaker cable gauge and run length keep resistance low enough relative to your speaker's impedance and damping factor.</p>
+    <p class="guide-date">Free tool &middot; No sign-up &middot; By <a href="/about">Sully</a></p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="calc-wrap">
+
+  <!-- INPUTS -->
+  <div class="section-label">Your cable</div>
+  <div class="inputs-grid">
+
+    <div class="input-card">
+      <label class="input-card-label">Cable gauge (AWG)</label>
+      <div class="btn-group" role="group" aria-label="Cable gauge in AWG">
+        <button class="btn-opt" data-awg="12">12 AWG</button>
+        <button class="btn-opt" data-awg="14">14 AWG</button>
+        <button class="btn-opt active" data-awg="16">16 AWG</button>
+        <button class="btn-opt" data-awg="18">18 AWG</button>
+        <button class="btn-opt" data-awg="20">20 AWG</button>
+        <button class="btn-opt" data-awg="22">22 AWG</button>
+        <button class="btn-opt" data-awg="24">24 AWG</button>
+      </div>
+    </div>
+
+    <div class="input-card">
+      <label class="input-card-label">Speaker impedance</label>
+      <div class="btn-group" role="group" aria-label="Speaker impedance in ohms">
+        <button class="btn-opt" data-imp="4">4 Ω</button>
+        <button class="btn-opt active" data-imp="8">8 Ω</button>
+        <button class="btn-opt" data-imp="6">6 Ω</button>
+        <button class="btn-opt" data-imp="16">16 Ω</button>
+      </div>
+    </div>
+
+    <div class="input-card" style="grid-column: 1 / -1;">
+      <label class="input-card-label" for="length">Cable length (one run)</label>
+      <div class="slider-readout">
+        <span class="slider-val" id="lengthVal">10</span>
+        <span class="slider-unit">feet</span>
+      </div>
+      <input type="range" id="length" min="1" max="100" value="10" step="1" aria-label="Cable length in feet" />
+      <div class="range-labels"><span>1 ft</span><span>100 ft</span></div>
+    </div>
+
+  </div>
+
+  <!-- RESULTS -->
+  <div class="section-label">Results</div>
+  <div class="results-card" role="region" aria-label="Cable resistance results" aria-live="polite">
+    <div class="results-grid">
+
+      <div class="result-block">
+        <div class="result-label">Cable resistance</div>
+        <div class="result-value large" id="resistance">—</div>
+        <div class="result-unit" id="resistanceUnit">Ω (total, both conductors)</div>
+        <div class="result-note" id="resistanceNote"></div>
+      </div>
+
+      <div class="results-divider" aria-hidden="true"></div>
+
+      <div class="result-block">
+        <div class="result-label">% of speaker impedance</div>
+        <div class="result-value" id="pctVal">—</div>
+        <div class="result-unit">percent</div>
+        <div class="result-note" id="pctNote"></div>
+      </div>
+
+      <div class="results-divider" aria-hidden="true"></div>
+
+      <div class="result-block">
+        <div class="result-label">Power loss at speaker</div>
+        <div class="result-value" id="lossVal">—</div>
+        <div class="result-unit">percent</div>
+        <div class="result-note" id="lossNote"></div>
+      </div>
+
+    </div>
+
+    <div class="meter-section">
+      <div class="meter-label">Cable resistance as % of speaker impedance</div>
+      <div class="meter-track"><div class="meter-fill" id="meterFill" style="width:0%"></div></div>
+      <div class="meter-ticks">
+        <span>0%</span>
+        <span>1% — threshold</span>
+        <span>5% — noticeable</span>
+        <span>10%+</span>
+      </div>
+      <div class="verdict-box ok" id="verdict">Adjust the inputs above to see a full assessment of your cable run.</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-label">Understanding the numbers</div>
+    <div class="faq-item">
+      <div class="faq-q">What is the 5% rule for speaker cable resistance?</div>
+      <div class="faq-a">The widely used audiophile rule of thumb is that total cable resistance should be less than 5% of the speaker's nominal impedance. For an 8 Ω speaker, that means keeping cable resistance below 0.4 Ω. At or below this threshold, the cable's impact on frequency response, damping factor, and power delivery is generally considered negligible in a real listening environment. The more conservative target — used by engineers and measurement-focused audiophiles — is under 1%.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Does higher AWG mean thicker or thinner cable?</div>
+      <div class="faq-a">Higher AWG numbers mean thinner wire. The American Wire Gauge scale runs inversely — 12 AWG is substantially thicker than 24 AWG. A thicker (lower AWG) cable has lower resistance per foot and therefore lower total resistance for a given run length. For typical speaker cable runs under 20 feet, 16 AWG is adequate for most systems. Longer runs or low-impedance speakers (4 Ω) benefit from 14 or 12 AWG.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why does speaker impedance affect how much the cable matters?</div>
+      <div class="faq-a">Cable resistance is only meaningful relative to the load it's driving. A 0.3 Ω cable run into a 16 Ω speaker represents under 2% of impedance — genuinely inconsequential. The same cable into a 4 Ω speaker represents 7.5% — measurably affecting damping factor and potentially audible as a slight softening of bass control. This is why 4 Ω speakers are more demanding of cable quality than 8 or 16 Ω designs.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is damping factor, and how does cable resistance affect it?</div>
+      <div class="faq-a">Damping factor describes how well an amplifier controls the motion of a speaker cone after a transient. It is calculated as speaker impedance divided by the total source impedance seen by the speaker — which includes both the amplifier's output impedance and the cable resistance. A typical solid-state amplifier might have an output impedance of 0.05–0.1 Ω. Adding even 0.3 Ω of cable resistance can cut damping factor by 50–75%, with the most audible effect in bass reproduction. This matters more with amplifiers that already have moderate output impedance, and less with very low output-impedance designs.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do expensive cables actually sound better?</div>
+      <div class="faq-a">Beyond the point where resistance is non-trivial, the honest answer supported by controlled listening tests is: no, not reliably. Cables that measure identically under controlled conditions are indistinguishable in double-blind tests. The cable industry is filled with expensive products whose performance claims are not supported by measurement. Spend what you need to keep resistance in check for your gauge and run length — then apply the rest of your budget to components where the difference is real and measurable.</div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="section-label">Related tools &amp; guides</div>
+  <div class="related-grid">
+    <a href="/guides/cables" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Speaker cables &amp; interconnects: what matters</div>
+    </a>
+    <a href="/guides/speakers" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Speakers: sensitivity, impedance &amp; placement</div>
+    </a>
+    <a href="/calculators/" class="related-card">
+      <div class="related-tag">Tools</div>
+      <div class="related-title">All HiFi calculators &amp; system tools</div>
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
+        <p>Free hi-fi compatibility tools, calculators, and guides. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/calculators/">Calculators</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/cables">Cables</a></li><li><a href="/guides/speakers">Speakers</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Resistance table: mΩ per foot, single conductor, 20°C copper ──────────
+  const AWG_RES = { 12: 1.588, 14: 2.525, 16: 4.016, 18: 6.385, 20: 10.15, 22: 16.14, 24: 25.67 };
+
+  let state = { awg: 16, imp: 8, length: 10 };
+
+  function render() {
+    const { awg, imp, length } = state;
+
+    // Total resistance = 2 conductors × resistance per foot × length (in Ω)
+    const R = 2 * AWG_RES[awg] * length / 1000;
+    const pct = (R / imp) * 100;
+    // Resistive voltage divider power loss
+    const powerLoss = (R / (R + imp)) * 100;
+
+    // Format resistance
+    let resDisplay, resUnit;
+    if (R < 0.01) {
+      resDisplay = (R * 1000).toFixed(1);
+      resUnit = 'mΩ (total, both conductors)';
+    } else if (R < 1) {
+      resDisplay = R.toFixed(3);
+      resUnit = 'Ω (total, both conductors)';
+    } else {
+      resDisplay = R.toFixed(2);
+      resUnit = 'Ω (total, both conductors)';
+    }
+
+    document.getElementById('resistance').textContent    = resDisplay;
+    document.getElementById('resistanceUnit').textContent = resUnit;
+    document.getElementById('resistanceNote').textContent =
+      'Based on standard copper at 20°C. OFC (oxygen-free copper) is virtually identical in resistance.';
+
+    document.getElementById('pctVal').textContent = pct.toFixed(2) + '%';
+    document.getElementById('pctNote').textContent =
+      pct < 1   ? 'Well below the 1% threshold — this cable is a non-issue for your system.' :
+      pct < 5   ? 'Below the common 5% guideline, but worth keeping in mind for 4 Ω speakers or very long future runs.' :
+                  'Exceeds the 5% guideline. Consider a thicker gauge or shorter run.';
+
+    document.getElementById('lossVal').textContent = powerLoss.toFixed(2) + '%';
+    document.getElementById('lossNote').textContent =
+      powerLoss < 0.25 ? 'Power loss is negligible — less than 0.1 dB reduction in SPL.' :
+      powerLoss < 1    ? 'Loss is small — under 0.1 dB, below the threshold of audibility.' :
+      powerLoss < 3    ? 'Modest loss — likely inaudible in practice but measurable.' :
+                         'Meaningful power loss. Upgrading cable gauge will make a real difference here.';
+
+    // Meter: clamp to 0–10%, map to 0–100% width
+    const meterPct = Math.min(pct / 10 * 100, 100);
+    const meterFill = document.getElementById('meterFill');
+    meterFill.style.width = meterPct + '%';
+
+    // Colour thresholds
+    const verdict = document.getElementById('verdict');
+    verdict.className = 'verdict-box';
+    if (pct < 1) {
+      verdict.classList.add('ok');
+      verdict.innerHTML = '<strong>Negligible.</strong> Your cable resistance is well within the 1% threshold. This cable run will have no measurable impact on frequency response, damping, or power delivery. No action needed.';
+    } else if (pct < 5) {
+      verdict.classList.add('warn');
+      verdict.innerHTML = '<strong>Minor — worth noting.</strong> Resistance is above 1% but below the 5% guideline. For most systems this is inaudible, but if you have 4 Ω speakers or a high-damping-factor amplifier, consider moving to ' + (awg > 14 ? (awg - 2) + ' AWG' : 'a shorter run') + '.';
+    } else {
+      verdict.classList.add('bad');
+      const rec = awg >= 16 ? (awg - 4) + ' or ' + (awg - 2) + ' AWG' : 'a shorter run';
+      verdict.innerHTML = '<strong>Significant.</strong> Cable resistance exceeds 5% of speaker impedance — this is likely to affect damping factor and potentially audible as reduced bass control. Consider upgrading to ' + rec + ' or shortening the run.';
+      meterFill.style.background = '#ef4444';
+    }
+
+    if (pct >= 1 && pct < 5) meterFill.style.background = '#f59e0b';
+    if (pct < 1)              meterFill.style.background = 'var(--gold)';
+  }
+
+  // ── Events ─────────────────────────────────────────────────────────────────
+  document.querySelectorAll('[data-awg]').forEach(btn => {
+    btn.addEventListener('click', function () {
+      state.awg = parseInt(this.dataset.awg, 10);
+      document.querySelectorAll('[data-awg]').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      render();
+    });
+  });
+
+  document.querySelectorAll('[data-imp]').forEach(btn => {
+    btn.addEventListener('click', function () {
+      state.imp = parseInt(this.dataset.imp, 10);
+      document.querySelectorAll('[data-imp]').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      render();
+    });
+  });
+
+  document.getElementById('length').addEventListener('input', function () {
+    state.length = parseInt(this.value, 10);
+    document.getElementById('lengthVal').textContent = this.value;
+    render();
+  });
+
+  render();
+</script>
+
+</body>
+</html>

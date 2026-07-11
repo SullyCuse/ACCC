@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening Room Size Calculator — AudioChainHiFi.com</title>
+<meta name="description" content="Enter your room's dimensions to find ideal speaker placement, listening distance, and the stereo triangle — based on the 38% rule and Cardas guidelines. Free calculator from AudioChainHiFi.">
+<meta property="og:title" content="Listening Room Size Calculator">
+<meta property="og:description" content="Enter your room dimensions to get precise speaker placement, listening position, and first reflection points for a better stereo image.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audiochainhifi.com/calculators/listening-room-size">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://audiochainhifi.com/calculators/listening-room-size">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="8f5DDg+G0zc1jrT50lQWJw" async></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  /* AudioChainHiFi design tokens */
+  --blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#eff6ff;--indigo:#4f46e5;
+  --dark:#0f172a;--dark-2:#1e293b;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;
+  --border:#e2e8f0;--cream:#f8fafc;--white:#ffffff;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:12px;
+  /* Calculator component tokens (mapped onto the ACCC palette) */
+  --bg-page:#ffffff;--bg-card:#f8fafc;--bg-input:#eef2f7;
+  --gold:#2563eb;--gold-hover:#1d4ed8;--gold-dim:rgba(37,99,235,.10);--gold-border:rgba(37,99,235,.40);
+  --text-white:#0f172a;--text-body:#334155;--text-muted:#64748b;--text-dim:#94a3b8;
+  --border-light:#eef2f6;--serif:'Plus Jakarta Sans',system-ui,sans-serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif;--radius-lg:20px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:var(--blue-dk);}
+
+/* ── NAV (ACCC) ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+@media(max-width:760px){.nav-links{gap:16px;}.nav-links a:not(.nav-cta){display:none;}.nav-links .nav-dropdown{display:none;}}
+
+/* ── HERO (ACCC) ── */
+.page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:60px 0 52px;text-align:center;}
+.page-hero .container{max-width:780px;margin:0 auto;padding:0 24px;}
+.guide-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:14px;}
+.page-hero h1{font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;}
+.page-hero .lede{font-size:17px;color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;line-height:1.7;}
+.guide-date{font-size:12px;color:rgba(255,255,255,.4);margin-top:14px;}
+.guide-date a{color:#60a5fa;}
+
+/* ── CALC LAYOUT ── */
+.calc-wrap{max-width:820px;margin:0 auto;padding:44px 24px 72px;}
+.section-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+
+/* ── INPUTS ── */
+.inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+@media (max-width:560px){.inputs-grid{grid-template-columns:1fr;}}
+.input-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;}
+.input-card-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;display:block;}
+.slider-readout{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;}
+.slider-val{font-family:var(--serif);font-size:30px;font-weight:800;color:var(--text-white);line-height:1;}
+.slider-unit{font-size:13px;color:var(--text-dim);}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none;cursor:pointer;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;}
+.range-labels{display:flex;justify-content:space-between;margin-top:5px;}
+.range-labels span{font-size:10px;color:var(--text-dim);}
+
+/* ── RESULTS ── */
+.results-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:1.5rem;}
+.results-grid{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0;margin-bottom:24px;}
+@media (max-width:480px){.results-grid{grid-template-columns:1fr;}.results-divider{display:none;}}
+.results-divider{background:var(--border);}
+.result-block{padding:0 20px;}
+.result-block:first-child{padding-left:0;}
+.result-block:last-child{padding-right:0;}
+.result-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.result-value{font-family:var(--serif);font-size:44px;font-weight:800;color:var(--gold);line-height:1;margin-bottom:4px;letter-spacing:-.02em;}
+.result-unit{font-size:13px;color:var(--text-dim);margin-bottom:10px;}
+.result-note{font-size:13px;color:var(--text-muted);line-height:1.55;}
+
+/* ── METER ── */
+.meter-section{border-top:1px solid var(--border);padding-top:20px;}
+.meter-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+.meter-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:5px;}
+.meter-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .35s ease,background .35s ease;}
+.meter-ticks{display:flex;justify-content:space-between;margin-bottom:16px;}
+.meter-ticks span{font-size:10px;color:var(--text-dim);}
+.verdict-box{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;font-size:14px;color:var(--text-muted);line-height:1.6;transition:border-color .35s ease;}
+.verdict-box strong{color:var(--text-body);font-weight:700;}
+
+/* ── FAQ ── */
+.faq-section{margin-bottom:2.5rem;}
+.faq-item{border-top:1px solid var(--border);padding:18px 0;}
+.faq-item:last-child{border-bottom:1px solid var(--border);}
+.faq-q{font-size:16px;font-weight:700;color:var(--text-white);margin-bottom:8px;line-height:1.35;}
+.faq-a{font-size:14px;color:var(--text-muted);line-height:1.7;}
+
+/* ── RELATED ── */
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.related-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;text-decoration:none;display:block;transition:border-color .2s,transform .2s;}
+.related-card:hover{border-color:var(--gold-border);transform:translateY(-2px);}
+.related-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.related-title{font-size:15px;font-weight:700;color:var(--text-white);line-height:1.35;}
+
+/* ── FOOTER (ACCC) ── */
+.footer{background:var(--dark);padding:48px 0 28px;}
+.container-wide{max-width:1100px;margin:0 auto;padding:0 24px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+
+/* ── CALCULATOR-SPECIFIC ── */
+/* placement category accents (DGH earthy hexes remapped to ACCC cool accents) */
+:root{--sp-color:#2563eb;--listen-color:#7c3aed;--reflect-color:#0891b2;}
+
+/* UNIT TOGGLE */
+.unit-toggle{display:flex;gap:6px;margin-bottom:1.25rem;}
+.unit-btn{padding:6px 14px;border-radius:var(--radius);border:1px solid var(--border);background:var(--white);font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .15s;}
+.unit-btn:hover{border-color:var(--gold-border);}
+.unit-btn.active{background:var(--gold);border-color:var(--gold);color:#fff;}
+
+/* DIMENSION INPUTS */
+.dim-input-wrap{display:flex;align-items:center;gap:8px;}
+.dim-input-wrap input[type="number"]{flex:1;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-white);font-family:var(--serif);font-size:26px;font-weight:800;padding:8px 10px;outline:none;width:100%;min-width:0;}
+.dim-input-wrap input[type="number"]:focus{border-color:var(--gold-border);}
+.dim-input-wrap input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;}
+.dim-unit{font-size:14px;color:var(--text-dim);white-space:nowrap;}
+
+/* SUITABILITY */
+.suit-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;margin-bottom:1.5rem;}
+.suit-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.suit-badge{font-size:13px;font-weight:800;padding:4px 12px;border-radius:20px;}
+.suit-badge.excellent{background:rgba(22,163,74,.10);color:#16a34a;border:1px solid #16a34a;}
+.suit-badge.good{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);}
+.suit-badge.marginal{background:rgba(245,158,11,.10);color:#f59e0b;border:1px solid #f59e0b;}
+.suit-title{font-family:var(--serif);font-size:17px;font-weight:800;color:var(--text-white);}
+.suit-body{font-size:14px;color:var(--text-muted);line-height:1.6;}
+
+/* PLACEMENT RESULTS */
+.placement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+@media (max-width:600px){.placement-grid{grid-template-columns:1fr 1fr;}}
+@media (max-width:380px){.placement-grid{grid-template-columns:1fr;}}
+.placement-block{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;}
+.placement-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;}
+.placement-value{font-family:var(--serif);font-size:28px;font-weight:700;line-height:1;margin-bottom:3px;}
+.placement-value.spk{color:var(--sp-color);}
+.placement-value.listen{color:var(--listen-color);}
+.placement-value.reflect{color:var(--reflect-color);}
+.placement-unit{font-size:12px;color:var(--text-dim);margin-bottom:6px;}
+.placement-note{font-size:12px;color:var(--text-muted);line-height:1.45;}
+
+/* DIAGRAM */
+.diagram-section{border-top:1px solid var(--border);padding-top:20px;}
+.diagram-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;}
+#roomDiagram{width:100%;max-width:580px;display:block;margin:0 auto;border-radius:var(--radius);}
+
+/* LEGEND */
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;justify-content:center;}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Listening Room Size Calculator",
+  "url":"https://audiochainhifi.com/calculators/listening-room-size",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "description":"Calculate ideal speaker placement, listening distance, and stereo triangle from your room dimensions, using the 38% rule and Cardas Golden Ratio guidelines.",
+  "publisher":{"@type":"Organization","name":"AudioChainHiFi.com","url":"https://audiochainhifi.com"}
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/><circle cx="9" cy="13" r="2" fill="#fbbf24"/><circle cx="27" cy="13" r="2" fill="#34d399"/></svg>
+      <span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Analyzer</a>
+      <a href="/calculators/" class="active">Calculators</a>
+      <a href="/compare">Compare</a>
+      <a href="/glossary">Glossary</a>
+      <div class="nav-dropdown">
+        <a href="/guides/">Guides &#9662;</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides#getting-started">Getting Started</a>
+          <a href="/guides#amplifiers">Amplifiers</a>
+          <a href="/guides#speakers-room">Speakers &amp; Room</a>
+          <a href="/guides#vinyl">Turntables &amp; Vinyl</a>
+          <a href="/guides#digital">Digital Audio</a>
+          <a href="/guides#headphones-power">Headphones &amp; Power</a>
+          <a href="/guides/" style="border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:10px;color:#60a5fa;font-weight:700;">View all guides &#8594;</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/#analyzer" class="nav-cta">Start Analysis &#8594;</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="guide-label">Speakers &amp; Room &middot; Calculator</div>
+    <h1>Listening Room Size Calculator</h1>
+    <p class="lede">Enter your room's dimensions to get the ideal listening distance, speaker spacing, and stereo triangle — based on the 38% rule and Cardas placement guidelines.</p>
+    <p class="guide-date">Free tool &middot; No sign-up &middot; By <a href="/about">Sully</a></p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="calc-wrap">
+
+  <!-- INPUTS -->
+  <div class="section-label">Your room dimensions</div>
+
+  <div class="unit-toggle" role="group" aria-label="Unit selection">
+    <button class="unit-btn active" id="btnFt" onclick="setUnit('ft')">Feet</button>
+    <button class="unit-btn" id="btnM" onclick="setUnit('m')">Meters</button>
+  </div>
+
+  <div class="inputs-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="input-card">
+      <label class="input-card-label" for="inpL">Room length</label>
+      <div class="dim-input-wrap">
+        <input type="number" id="inpL" value="16" min="6" max="100" step="0.5" />
+        <span class="dim-unit" id="unitL">ft</span>
+      </div>
+    </div>
+    <div class="input-card">
+      <label class="input-card-label" for="inpW">Room width</label>
+      <div class="dim-input-wrap">
+        <input type="number" id="inpW" value="12" min="6" max="100" step="0.5" />
+        <span class="dim-unit" id="unitW">ft</span>
+      </div>
+    </div>
+    <div class="input-card">
+      <label class="input-card-label" for="inpH">Ceiling height</label>
+      <div class="dim-input-wrap">
+        <input type="number" id="inpH" value="8" min="2" max="30" step="0.5" />
+        <span class="dim-unit" id="unitH">ft</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUITABILITY -->
+  <div id="suitZone"></div>
+
+  <!-- RESULTS -->
+  <div class="section-label">Placement recommendations</div>
+
+  <div class="results-card" role="region" aria-label="Placement recommendations" aria-live="polite">
+
+    <!-- Speaker placement -->
+    <div class="section-label" style="border:none;margin-bottom:.75rem;">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--sp-color);margin-right:6px;vertical-align:middle;"></span>
+      Speaker placement
+    </div>
+    <div class="placement-grid" id="speakerGrid"></div>
+
+    <!-- Listening position -->
+    <div class="section-label" style="border:none;margin-bottom:.75rem;margin-top:4px;">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--listen-color);margin-right:6px;vertical-align:middle;"></span>
+      Listening position (38% rule)
+    </div>
+    <div class="placement-grid" id="listenGrid"></div>
+
+    <!-- First reflections -->
+    <div class="section-label" style="border:none;margin-bottom:.75rem;margin-top:4px;">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--reflect-color);margin-right:6px;vertical-align:middle;"></span>
+      First reflection points
+    </div>
+    <div class="placement-grid" id="reflectGrid"></div>
+
+    <!-- Room diagram -->
+    <div class="diagram-section">
+      <div class="diagram-label">Top-down room layout</div>
+      <svg id="roomDiagram" viewBox="0 0 580 360" xmlns="http://www.w3.org/2000/svg" aria-label="Top-down room layout diagram"></svg>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--sp-color)"></div>Speakers</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--listen-color)"></div>Listening position</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--reflect-color)"></div>First reflections</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-label">Frequently asked questions</div>
+    <div class="faq-item">
+      <div class="faq-q">What is the 38% rule for listening position?</div>
+      <div class="faq-a">The 38% rule, developed by acoustics engineer Russ Berger and popularized by Cardas Audio, places the listening position at 38% of the room's total length from the front wall. At this position, the bass modes from the length dimension tend to produce a more balanced pressure distribution than other positions, reducing the likelihood of sitting at a severe node or antinode of the room's fundamental length mode. It is a starting point, not an absolute — measure and adjust from there.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is the equilateral triangle method?</div>
+      <div class="faq-a">The equilateral triangle method positions the two speakers and the listening position at the three corners of an equilateral triangle — meaning the speaker-to-speaker distance equals the speaker-to-listener distance on each side. This starting point creates a stereo image that extends naturally beyond the speakers and places the listener in the center of the sweet spot. Many audiophiles find that slightly wider triangles (where the speakers are farther apart than the listening distance) create a more spacious soundstage, while narrower setups improve center-image stability.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why does speaker distance from the front wall matter?</div>
+      <div class="faq-a">Speakers placed near the front wall excite the room's length modes more aggressively, adding bass reinforcement that can sound impressive at first but quickly becomes boomy and indistinct. Moving speakers away from the wall — typically 2 to 4 feet — allows bass to develop more naturally and reduces the "wall of bass" effect. Ported speakers are generally more sensitive to rear wall placement than sealed designs, since the port radiates bass in all directions. The tradeoff is room space: deeper placement means the listening position must also move back, which can be impractical in shorter rooms.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is a first reflection point and why does it matter?</div>
+      <div class="faq-a">A first reflection point is where sound from a speaker bounces off a surface — typically the side walls, ceiling, or floor — and reaches the listening position a few milliseconds after the direct sound. These early reflections are loud enough to smear the stereo image and reduce clarity, because your brain partially interprets them as part of the direct sound rather than separate from it. Treating first reflection points with absorption panels (2-inch or thicker rigid fiberglass, not egg-crate foam) is one of the highest-return acoustic upgrades you can make to an existing room.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How far from the rear wall should my listening chair be?</div>
+      <div class="faq-a">As a minimum, keep at least 2–3 feet between your listening position and the rear wall. Sitting directly against or near the rear wall places you in a region of high bass pressure from the room's length modes, which typically makes bass sound thick and undefined. A gap of at least 2 feet — and ideally more — allows some of the rear-wall reflections to decay before reaching your ears. If your room forces you close to the rear wall, a broadband absorber directly behind the listening chair helps significantly.</div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="section-label">Related tools &amp; guides</div>
+  <div class="related-grid">
+    <a href="/guides/room-acoustics" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Room acoustics: treatment &amp; placement</div>
+    </a>
+    <a href="/guides/speakers" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Speakers: sensitivity, impedance &amp; placement</div>
+    </a>
+    <a href="/calculators/" class="related-card">
+      <div class="related-tag">Tools</div>
+      <div class="related-title">All HiFi calculators &amp; system tools</div>
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
+        <p>Free hi-fi compatibility tools, calculators, and guides. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/calculators/">Calculators</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/room-acoustics">Room Acoustics</a></li><li><a href="/guides/speakers">Speakers</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let unit = 'ft';
+
+  function setUnit(u) {
+    unit = u;
+    document.getElementById('btnFt').classList.toggle('active', u === 'ft');
+    document.getElementById('btnM').classList.toggle('active', u === 'm');
+    ['L','W','H'].forEach(id => document.getElementById('unit' + id).textContent = u);
+    compute();
+  }
+
+  function toM(v)   { return unit === 'ft' ? v * 0.3048 : v; }
+  function fromM(m) { return unit === 'ft' ? m / 0.3048 : m; }
+  function fmtVal(m) { return fromM(m).toFixed(1); }
+  function u()       { return unit; }
+
+  function block(label, val, unitStr, note, colorCls) {
+    return `<div class="placement-block">
+      <div class="placement-label">${label}</div>
+      <div class="placement-value ${colorCls}">${val}</div>
+      <div class="placement-unit">${unitStr}</div>
+      <div class="placement-note">${note}</div>
+    </div>`;
+  }
+
+  function compute() {
+    const Lr = parseFloat(document.getElementById('inpL').value) || 16;
+    const Wr = parseFloat(document.getElementById('inpW').value) || 12;
+    const Hr = parseFloat(document.getElementById('inpH').value) || 8;
+
+    const L = toM(Lr), W = toM(Wr), H = toM(Hr);
+
+    // Cardas Golden Ratio placement
+    const spkSide  = W * 0.276;                        // speaker to each side wall
+    const spkFront = Math.max(L * 0.276, 0.6);         // speaker to front wall (min 0.6 m / 2 ft)
+    const spkSep   = W - 2 * spkSide;                  // centre-to-centre separation
+    const listenFF = L * 0.38;                         // listening position from front wall (38% rule)
+    const listenFB = L - listenFF;                     // from rear wall
+    const spkDist  = listenFF - spkFront;              // speaker-to-listener distance
+
+    // Side wall first reflection (mirror-image method)
+    const reflSide = spkFront + spkSide * (listenFF - spkFront) / (spkSep / 2 + spkSide);
+    // Ceiling first reflection ≈ midpoint between speaker and listener
+    const reflCeil = (spkFront + listenFF) / 2;
+
+    // Suitability
+    const ratio = Lr / Wr;
+    let badge, title, body;
+    if (Lr < (unit === 'ft' ? 10 : 3) || Wr < (unit === 'ft' ? 9 : 2.7)) {
+      badge = 'marginal'; title = 'Room is quite small for a dedicated listening space';
+      body  = 'Rooms under 10×9 ft are challenging for stereo imaging. Near-field placement (speakers 5–6 ft apart, 4–5 ft from listener) is recommended rather than the standard 38% rule.';
+    } else if (ratio > 2.0) {
+      badge = 'marginal'; title = 'Long, narrow room — careful setup required';
+      body  = 'A length-to-width ratio above 2:1 creates strong early lateral reflections and difficult bass modes along the width. Aggressive side-wall treatment and toe-in are especially important.';
+    } else if (Lr >= 14 && Wr >= 11) {
+      badge = 'excellent'; title = 'Well-sized listening room';
+      body  = 'Your room dimensions are well-suited for stereo listening. The Cardas placements below give you a solid, acoustically informed starting point.';
+    } else {
+      badge = 'good'; title = 'Good listening room dimensions';
+      body  = 'Your room is suitable for a quality stereo setup. The placements below follow proven Cardas Golden Ratio guidelines.';
+    }
+    document.getElementById('suitZone').innerHTML = `
+      <div class="suit-card">
+        <div class="suit-header">
+          <span class="suit-badge ${badge}">${badge.charAt(0).toUpperCase() + badge.slice(1)}</span>
+          <div class="suit-title">${title}</div>
+        </div>
+        <div class="suit-body">${body}</div>
+      </div>`;
+
+    const uu = u();
+    document.getElementById('speakerGrid').innerHTML =
+      block('From front wall',    fmtVal(spkFront), uu, 'Minimum recommended speaker-to-front-wall distance',             'spk') +
+      block('From each side wall', fmtVal(spkSide),  uu, 'Equal distance from each speaker to its nearest side wall',      'spk') +
+      block('Speaker separation', fmtVal(spkSep),   uu, 'Centre-to-centre distance between the two speakers',             'spk');
+
+    document.getElementById('listenGrid').innerHTML =
+      block('From front wall', fmtVal(listenFF), uu, '38% of room length — the Cardas/Berger listening position',         'listen') +
+      block('From rear wall',  fmtVal(listenFB), uu, 'Keep at least 2 ft (0.6 m) from the rear wall',                    'listen') +
+      block('From each speaker', fmtVal(spkDist), uu, 'Aim for an equilateral triangle: this should equal speaker separation', 'listen');
+
+    document.getElementById('reflectGrid').innerHTML =
+      block('Side wall reflection', fmtVal(reflSide), uu, 'Distance from front wall where sound first hits the side wall', 'reflect') +
+      block('Ceiling reflection',   fmtVal(reflCeil), uu, 'Approximate midpoint between speaker and listening position',    'reflect') +
+      block('Panel thickness',      '2"–4"',           'inches', 'Minimum for effective mid-frequency absorption at reflection points', 'reflect');
+
+    // SVG diagram
+    drawDiagram(L, W, spkFront, spkSide, spkSep, listenFF, reflSide);
+  }
+
+  function drawDiagram(L, W, spkFront, spkSide, spkSep, listenFF, reflSide) {
+    const vw = 580, vh = 360, pad = 36;
+    const sx = (vw - pad * 2) / W;
+    const sy = (vh - pad * 2) / L;
+
+    function px(w) { return pad + w * sx; }
+    function py(l) { return pad + l * sy; }
+
+    const spkLx = px(spkSide), spkRx = px(W - spkSide), spkY = py(spkFront);
+    const lisX  = px(W / 2),   lisY  = py(listenFF);
+    const rfLy  = py(reflSide), rfRy = py(reflSide);
+
+    const SPK = '#2563eb', LIS = '#7c3aed', REF = '#0891b2';
+
+    document.getElementById('roomDiagram').innerHTML = `
+      <rect x="${pad}" y="${pad}" width="${vw-pad*2}" height="${vh-pad*2}" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2" rx="3"/>
+      <text x="${vw/2}" y="${pad-10}" text-anchor="middle" font-size="10" fill="#94a3b8" font-family="Inter,sans-serif">FRONT WALL</text>
+      <text x="${vw/2}" y="${vh-8}"   text-anchor="middle" font-size="10" fill="#94a3b8" font-family="Inter,sans-serif">REAR WALL</text>
+
+      <!-- reflection paths -->
+      <line x1="${spkLx}" y1="${spkY}" x2="${pad}"      y2="${rfLy}" stroke="${REF}" stroke-width="1.2" stroke-dasharray="5,3" opacity="0.65"/>
+      <line x1="${pad}"   y1="${rfLy}" x2="${lisX}"     y2="${lisY}" stroke="${REF}" stroke-width="1.2" stroke-dasharray="5,3" opacity="0.65"/>
+      <line x1="${spkRx}" y1="${spkY}" x2="${vw-pad}"   y2="${rfRy}" stroke="${REF}" stroke-width="1.2" stroke-dasharray="5,3" opacity="0.65"/>
+      <line x1="${vw-pad}" y1="${rfRy}" x2="${lisX}"    y2="${lisY}" stroke="${REF}" stroke-width="1.2" stroke-dasharray="5,3" opacity="0.65"/>
+
+      <!-- equilateral triangle -->
+      <line x1="${spkLx}" y1="${spkY}" x2="${spkRx}" y2="${spkY}" stroke="${SPK}" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.5"/>
+      <line x1="${spkLx}" y1="${spkY}" x2="${lisX}"  y2="${lisY}" stroke="${SPK}" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.5"/>
+      <line x1="${spkRx}" y1="${spkY}" x2="${lisX}"  y2="${lisY}" stroke="${SPK}" stroke-width="1.5" stroke-dasharray="6,3" opacity="0.5"/>
+
+      <!-- reflection dots -->
+      <circle cx="${pad}"    cy="${rfLy}" r="5" fill="${REF}" opacity="0.85"/>
+      <circle cx="${vw-pad}" cy="${rfRy}" r="5" fill="${REF}" opacity="0.85"/>
+
+      <!-- speakers -->
+      <rect x="${spkLx-9}" y="${spkY-13}" width="18" height="26" fill="${SPK}" rx="3"/>
+      <rect x="${spkRx-9}" y="${spkY-13}" width="18" height="26" fill="${SPK}" rx="3"/>
+
+      <!-- listener -->
+      <circle cx="${lisX}" cy="${lisY}" r="13" fill="${LIS}" opacity="0.9"/>
+      <circle cx="${lisX}" cy="${lisY}" r="6"  fill="white"  opacity="0.6"/>
+    `;
+  }
+
+  ['inpL','inpW','inpH'].forEach(id =>
+    document.getElementById(id).addEventListener('input', compute)
+  );
+
+  compute();
+</script>
+
+</body>
+</html>
