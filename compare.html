@@ -806,6 +806,7 @@ async function addToResults(){
 
   // Re-render table immediately showing the new loading column
   renderTable();
+  renderRatings();
   renderCards();
 
   // Scroll to top of table so user sees the new column loading
@@ -825,6 +826,7 @@ async function addToResults(){
 
   st.running=false;
   renderTable();
+  renderRatings();
   renderCards();
   refreshAddMore();
 }
