@@ -77,6 +77,7 @@ Project-specific rules that override or extend the principles above.
   - `analyze-chain` — Haiku, 700 tokens — analyzes each signal chain connection
   - `analyze-summary` — Sonnet, 600 tokens — scores, phono chain calc, recommendations
 - `analyze-specs` runs first; its output (`specsText`) is passed to `analyze-chain` and `analyze-summary` so all three use the same confirmed spec values
+- **`compare`** — a separate, standalone function (NOT part of the analysis flow) powering the `/compare` page. Haiku, 1100 tokens; reads the same Supabase `component_specs` table as `analyze-specs` (shared `fetchSpecs`/`getCorrections`/`findCorrection`) and sets `verified:true` on a match so the UI can badge it. Uses Haiku (not Sonnet) so a full spec sheet fits the 10s timeout.
 
 ### Hard limits — never change without timeout testing
 | Function | Model | Max tokens | Est. time |
@@ -84,6 +85,7 @@ Project-specific rules that override or extend the principles above.
 | analyze-specs | claude-sonnet-4-6 | 650 | ~9s |
 | analyze-chain | claude-haiku-4-5 | 700 | ~5s |
 | analyze-summary | claude-sonnet-4-6 | 600 | ~9s |
+| compare | claude-haiku-4-5 | 1100 | ~9s |
 
 ### index.html rules
 - **JS syntax verification is mandatory** before delivering any `index.html` edit. Use `node vm.Script` — the Python brace counter is unreliable when string literals contain `{` or `}`:
