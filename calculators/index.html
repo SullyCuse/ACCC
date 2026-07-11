@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HiFi Calculators &amp; System Tools — AudioChainHiFi.com</title>
+<meta name="description" content="Free interactive hi-fi calculators — amplifier power and SPL, speaker impedance, phono stage gain, cable resistance, room acoustics, listening distance, and a budget builder.">
+<meta property="og:title" content="HiFi Calculators &amp; System Tools">
+<meta property="og:description" content="Free interactive calculators for matching amplifiers, speakers, phono stages, cables, and rooms.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audiochainhifi.com/calculators/">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://audiochainhifi.com/calculators/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="8f5DDg+G0zc1jrT50lQWJw" async></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#eff6ff;--indigo:#4f46e5;--dark:#0f172a;--dark-2:#1e293b;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;--border:#e2e8f0;--cream:#f8fafc;--white:#ffffff;--font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:12px;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--blue);text-decoration:none;}
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+@media(max-width:760px){.nav-links{gap:16px;}.nav-links a:not(.nav-cta){display:none;}.nav-links .nav-dropdown{display:none;}}
+.page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:60px 0 52px;text-align:center;}
+.page-hero .container{max-width:780px;margin:0 auto;padding:0 24px;}
+.guide-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:14px;}
+.page-hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;}
+.page-hero .lede{font-size:17px;color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;line-height:1.7;}
+.calc-wrap{max-width:1000px;margin:0 auto;padding:52px 24px 72px;}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;}
+.calc-card{position:relative;background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,transform .2s,box-shadow .2s;}
+.calc-card.live:hover{border-color:rgba(37,99,235,.4);transform:translateY(-3px);box-shadow:0 10px 30px rgba(15,23,42,.08);}
+.calc-card.soon{opacity:.6;cursor:default;}
+.calc-icon{width:42px;height:42px;border-radius:10px;background:var(--blue-lt);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:4px;}
+.calc-name{font-size:17px;font-weight:800;color:var(--text);letter-spacing:-.01em;}
+.calc-desc{font-size:13.5px;color:var(--text-2);line-height:1.6;}
+.calc-tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:6px;}
+.calc-card.live .calc-tag{color:var(--blue);}
+.calc-card.soon .calc-tag{color:var(--text-3);}
+.footer{background:var(--dark);padding:48px 0 28px;}
+.container-wide{max-width:1100px;margin:0 auto;padding:0 24px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/><circle cx="9" cy="13" r="2" fill="#fbbf24"/><circle cx="27" cy="13" r="2" fill="#34d399"/></svg>
+      <span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Analyzer</a>
+      <a href="/calculators/" class="active">Calculators</a>
+      <a href="/glossary">Glossary</a>
+      <div class="nav-dropdown">
+        <a href="/guides/">Guides &#9662;</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides#getting-started">Getting Started</a>
+          <a href="/guides#amplifiers">Amplifiers</a>
+          <a href="/guides#speakers-room">Speakers &amp; Room</a>
+          <a href="/guides#vinyl">Turntables &amp; Vinyl</a>
+          <a href="/guides#digital">Digital Audio</a>
+          <a href="/guides#headphones-power">Headphones &amp; Power</a>
+          <a href="/guides/" style="border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:10px;color:#60a5fa;font-weight:700;">View all guides &#8594;</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/#analyzer" class="nav-cta">Start Analysis &#8594;</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="guide-label">Interactive Tools</div>
+    <h1>HiFi Calculators &amp; System Tools</h1>
+    <p class="lede">Free, instant calculators for matching amplifiers to speakers, dialing in phono gain, sizing cables, and tuning your room — no sign-up, all in your browser.</p>
+  </div>
+</div>
+
+<main class="calc-wrap">
+  <div class="calc-grid">
+
+    <a href="/calculators/phono-stage-gain" class="calc-card live">
+      <div class="calc-icon">&#127911;</div>
+      <div class="calc-name">Phono Stage Gain</div>
+      <div class="calc-desc">Find the gain your phono stage needs for any MM or MC cartridge — and whether you need a step-up transformer.</div>
+      <div class="calc-tag">Open tool &#8594;</div>
+    </a>
+
+    <div class="calc-card soon">
+      <div class="calc-icon">&#128266;</div>
+      <div class="calc-name">Amplifier Power &amp; SPL</div>
+      <div class="calc-desc">How many watts your speakers need — or the max SPL your amp can deliver at your listening seat.</div>
+      <div class="calc-tag">Coming soon</div>
+    </div>
+
+    <div class="calc-card soon">
+      <div class="calc-icon">&#128225;</div>
+      <div class="calc-name">Speaker Impedance</div>
+      <div class="calc-desc">See how series and parallel speaker wiring changes the impedance your amplifier sees.</div>
+      <div class="calc-tag">Coming soon</div>
+    </div>
+
+    <div class="calc-card soon">
+      <div class="calc-icon">&#128268;</div>
+      <div class="calc-name">Cable Resistance &amp; Gauge</div>
+      <div class="calc-desc">Check whether your speaker cable gauge and run length keep resistance safely low.</div>
+      <div class="calc-tag">Coming soon</div>
+    </div>
+
+    <div class="calc-card soon">
+      <div class="calc-icon">&#127968;</div>
+      <div class="calc-name">Listening Room Size</div>
+      <div class="calc-desc">Estimate ideal listening distance and speaker spacing for your room dimensions.</div>
+      <div class="calc-tag">Coming soon</div>
+    </div>
+
+    <div class="calc-card soon">
+      <div class="calc-icon">&#127925;</div>
+      <div class="calc-name">Room Acoustics</div>
+      <div class="calc-desc">Find your room's primary axial modes and where bass problems are likely to build up.</div>
+      <div class="calc-tag">Coming soon</div>
+    </div>
+
+    <div class="calc-card soon">
+      <div class="calc-icon">&#128176;</div>
+      <div class="calc-name">Budget Builder</div>
+      <div class="calc-desc">Split a total system budget across source, amp, speakers, and cables using sensible ratios.</div>
+      <div class="calc-tag">Coming soon</div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
+        <p>Free hi-fi compatibility tools, calculators, and guides. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/calculators/">Calculators</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/phono-stages">Phono Stages</a></li><li><a href="/guides/cartridges">Cartridges</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
