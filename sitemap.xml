@@ -151,6 +151,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://audiochainhifi.com/guides/cd-players</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/amplifier-speaker-matching</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://audiochainhifi.com/guides/speaker-impedance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://audiochainhifi.com/glossary</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
