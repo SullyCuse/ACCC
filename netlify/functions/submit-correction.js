@@ -13,17 +13,28 @@ exports.handler = async (event) => {
   if (event.httpMethod !== "POST") return { statusCode: 405, headers, body: JSON.stringify({ error: "Method not allowed" }) };
 
   try {
-    const { component_name, proposed_specs, submitter_email, notes } = JSON.parse(event.body || "{}");
+    const { component_name, proposed_specs, submitter_email, notes, source_url, submitted_via } = JSON.parse(event.body || "{}");
 
-    if (!component_name || !proposed_specs || typeof proposed_specs !== "object") {
-      return { statusCode: 400, headers, body: JSON.stringify({ error: "component_name and proposed_specs (object) are required" }) };
+    const specs = proposed_specs && typeof proposed_specs === "object" ? proposed_specs : {};
+    const url = source_url ? String(source_url).trim() : null;
+
+    // A submission needs a name plus SOMETHING actionable: typed specs or a spec-page URL.
+    if (!component_name || (Object.keys(specs).length === 0 && !url)) {
+      return { statusCode: 400, headers, body: JSON.stringify({ error: "component_name and either proposed_specs or source_url are required" }) };
     }
+
+    // Fold submission provenance (which page it came from) into notes so the
+    // reviewer can see whether it was reported from the analyzer or compare page.
+    const via = submitted_via ? String(submitted_via).trim() : "";
+    let finalNotes = notes ? String(notes).trim() : "";
+    if (via) finalNotes = finalNotes ? `${finalNotes} · Submitted via ${via}` : `Submitted via ${via}`;
 
     const row = {
       component_name: component_name.trim(),
-      proposed_specs,
+      proposed_specs: specs,
       submitter_email: submitter_email ? submitter_email.trim() : null,
-      notes: notes ? notes.trim() : null
+      notes: finalNotes || null,
+      source_url: url
     };
 
     const body = JSON.stringify(row);

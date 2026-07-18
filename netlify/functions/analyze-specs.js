@@ -158,11 +158,13 @@ exports.handler = async (event) => {
     const { corrections, ok: dbOk } = await getCorrections();
     const correctedBlocks = [];
     const needsAI = [];
+    const verifiedNames = [];   // components whose specs came from the reported DB (not AI)
 
     components.forEach((c, i) => {
       const corrected = findCorrection(c.name, corrections);
       if (corrected) {
         correctedBlocks.push(formatCorrectedSpecs(c.name, typeLabels[c.type] || c.type, corrected));
+        verifiedNames.push(c.name);
       } else {
         needsAI.push({ index: i, component: c });
       }
@@ -232,7 +234,7 @@ All ${needsAI.length} components required. No summary text. No questions.`;
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim() })
+      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames })
     };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };

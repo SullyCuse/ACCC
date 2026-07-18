@@ -202,20 +202,28 @@ button{cursor:pointer;font-family:inherit}
 .feedback-trigger{background:#f8fafc;border:1.5px solid #e2e8f0;font-family:inherit;font-size:13px;font-weight:600;color:#64748b;cursor:pointer;padding:9px 14px;text-align:left;display:flex;align-items:center;gap:7px;transition:all .18s;width:100%;border-radius:8px;margin-top:4px}
 .feedback-trigger:hover{background:#eff6ff;border-color:#2563eb;color:#1d4ed8}
 .feedback-trigger svg{flex-shrink:0;color:#2563eb}
-.feedback-form{display:none;margin-top:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px}
-.feedback-form.open{display:block;animation:fadeUp .2s ease}
-.feedback-form label{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#64748b;margin-bottom:5px}
-.feedback-form select,.feedback-form textarea{width:100%;font-family:inherit;font-size:13px;background:#fff;border:1.5px solid #e2e8f0;border-radius:7px;padding:8px 10px;color:#0f172a;margin-bottom:10px;transition:border-color .18s}
-.feedback-form select:focus,.feedback-form textarea:focus{outline:none;border-color:#2563eb}
-.feedback-form textarea{resize:vertical;min-height:70px;line-height:1.5}
-.feedback-actions{display:flex;gap:8px;align-items:center}
-.btn-feedback-submit{background:#0f172a;color:#fff;border:none;border-radius:7px;padding:8px 18px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .18s}
-.btn-feedback-submit:hover{background:#1e293b}
-.btn-feedback-submit:disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed}
-.btn-feedback-cancel{background:none;border:none;font-family:inherit;font-size:13px;color:#94a3b8;cursor:pointer;padding:8px 4px;transition:color .18s}
-.btn-feedback-cancel:hover{color:#334155}
-.feedback-success{font-size:13px;color:#16a34a;display:flex;align-items:center;gap:6px;padding:4px 0}
-.feedback-error{font-size:13px;color:#ef4444;padding:4px 0}
+/* Suggest a Spec Correction modal (shared with the analyzer) */
+.spec-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10000;align-items:center;justify-content:center;padding:20px}
+.spec-modal-overlay.active{display:flex}
+.spec-modal{background:#fff;border-radius:14px;width:100%;max-width:640px;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.3)}
+.spec-modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #e2e8f0;flex-shrink:0}
+.spec-modal-header h3{font-size:15px;font-weight:700;color:#0f172a;margin:0}
+.spec-modal-close{background:none;border:none;cursor:pointer;font-size:20px;color:#94a3b8;line-height:1;padding:4px 8px;border-radius:6px}
+.spec-modal-close:hover{background:#f1f5f9;color:#0f172a}
+.spec-modal-body{padding:16px 20px;overflow-y:auto;flex:1}
+.spec-modal-footer{padding:14px 20px;border-top:1px solid #e2e8f0;display:flex;gap:10px;justify-content:flex-end;flex-shrink:0;flex-wrap:wrap}
+.sm-stack{display:flex;flex-direction:column;gap:14px}
+.sm-group{display:flex;flex-direction:column;gap:6px}
+.sm-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sm-label{font-size:12px;font-weight:600;color:#334155}
+.sm-help{font-size:11px;color:#94a3b8;margin:0 0 2px}
+.sm-input,.sm-textarea{font-family:inherit;font-size:13px;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;outline:none;width:100%;box-sizing:border-box;background:#fff;color:#0f172a}
+.sm-input:focus,.sm-textarea:focus{border-color:#2563eb}
+.sm-textarea{font-family:ui-monospace,monospace;font-size:12px;line-height:1.7;background:#fafafa;resize:vertical}
+.sm-btn{font-size:13px;padding:9px 18px;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:600}
+.sm-btn-cancel{border:1.5px solid #e2e8f0;background:#fff;color:#64748b}
+.sm-btn-primary{border:none;background:#2563eb;color:#fff}
+.sm-btn-primary:disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed}
 .lnk{display:flex;align-items:center;gap:10px;font-size:13px;color:#94a3b8;text-decoration:none;transition:color .15s,padding-left .15s;padding:2px 0}
 .lnk:hover{color:#1d4ed8;padding-left:4px}
 .lic{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
@@ -480,7 +488,7 @@ button{cursor:pointer;font-family:inherit}
 
     <div class="disclaimer-banner">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <span>Specifications are AI-generated from manufacturer documentation and published reviews. Data may be incomplete for newer or boutique products. <strong>Always verify with the manufacturer before purchase.</strong> Fields showing "N/A" indicate the AI could not confirm a reliable value.</span>
+      <span>Components sourced from our verified database are badged <strong>✓ Reported</strong>; all others are AI-generated from manufacturer documentation and published reviews and may be incomplete for newer or boutique products. <strong>Always verify with the manufacturer before purchase.</strong> Fields showing "N/A" indicate the AI could not confirm a reliable value.</span>
     </div>
     <div id="loading" class="loading">
       <div class="wave"><div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div><div class="wb"></div></div>
@@ -720,7 +728,7 @@ function renderTable(){
   const cols=st.items.map(it=>{
     if(it.status==='loading')return`<th class="th-c"><div class="load-v">Loading ${h(it.name)}…</div></th>`;
     if(it.data){
-      const badge=it.data.verified?`<span class="verified-badge">✓ Verified</span>`:'';
+      const badge=it.data.verified?`<span class="verified-badge">✓ Reported</span>`:'';
       return`<th class="th-c"><div class="th-brand">${h(it.data.brand)}</div><div class="th-model">${h(it.data.model)}</div><div class="th-year">${h(it.data.yearIntroduced)}</div>${badge}<span class="th-remove"><button class="btn-rm-col" onclick="removeFromResults(${it.id})" type="button" ${canRemove?'':'disabled'} aria-label="Remove ${h(it.data.model)}">✕ Remove</button></span></th>`;
     }
     return`<th class="th-c"><div style="color:#64748b">${h(it.name)}</div></th>`;
@@ -784,10 +792,9 @@ function renderCards(){
     const cons=(d.considerations||[]).length?`<div><p class="list-l">Considerations</p><ul class="con-ul">${d.considerations.map(c=>`<li>${h(c)}</li>`).join('')}</ul></div>`:'';
     const strengths=(d.strengths||[]).filter(s=>s&&s!=='N/A').length?`<div><p class="list-l">Strengths</p><ul class="pro-ul">${d.strengths.map(s=>`<li>${h(s)}</li>`).join('')}</ul></div>`:'';
 
-    const feedbackId=`fb-${it.id||Math.random().toString(36).slice(2)}`;
     const canRemove=st.items.filter(i=>i.data).length>1;
-    const verifiedBadge=d.verified?`<span class="verified-badge">✓ Verified</span>`:'';
-    return`<article class="ccard"><div class="ccard-top"><div class="ccard-brand">${h(d.brand)}</div><div class="ccard-model">${h(d.model)}</div>${verifiedBadge}<button class="btn-remove-comp" onclick="removeFromResults(${it.id})" type="button" ${canRemove?'':'disabled'} aria-label="Remove ${h(d.model)} from comparison">✕</button></div><div class="ccard-body">${limitedWarning}<p class="ccard-sum">${h(d.summary)}</p>${strengths}${cons}<div class="ccard-links"><p class="list-l">Resources</p>${mfg}${yt}</div><div class="feedback-section"><button class="feedback-trigger" onclick="toggleFeedback('${feedbackId}')" type="button"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Report Inaccuracy</button><div class="feedback-form" id="${feedbackId}"><label for="${feedbackId}-email">Your Email <span style="color:#ef4444">*</span></label><input type="email" id="${feedbackId}-email" placeholder="your@email.com" style="width:100%;font-family:inherit;font-size:13px;background:#fff;border:1.5px solid #e2e8f0;border-radius:7px;padding:8px 10px;color:#0f172a;margin-bottom:10px;transition:border-color .18s" required><label for="${feedbackId}-type">What's wrong?</label><select id="${feedbackId}-type"><option value="Wrong spec value">Wrong spec value</option><option value="Wrong enclosure type">Wrong enclosure type (speaker)</option><option value="Wrong manufacturer website">Wrong manufacturer website</option><option value="Component not found / wrong product">Component not found / wrong product</option><option value="Wrong dimensions or weight">Wrong dimensions or weight</option><option value="Other">Other</option></select><label for="${feedbackId}-note">What's the correct information? <span style="color:#ef4444">*</span></label><textarea id="${feedbackId}-note" placeholder="e.g. This is a bookshelf speaker, not a floorstander"></textarea><div class="feedback-actions"><button class="btn-feedback-submit" onclick="submitFeedback('${feedbackId}','${h(d.brand+' '+d.model)}','${h(st.catLbl)}')" type="button">Submit Report</button><button class="btn-feedback-cancel" onclick="toggleFeedback('${feedbackId}')" type="button">Cancel</button></div><div class="feedback-success hidden" id="${feedbackId}-ok">✓ Thank you — we'll review this and apply a correction.</div><div class="feedback-error hidden" id="${feedbackId}-err">Submission failed. Please try again.</div></div></div></div></article>`;
+    const verifiedBadge=d.verified?`<span class="verified-badge">✓ Reported</span>`:'';
+    return`<article class="ccard"><div class="ccard-top"><div class="ccard-brand">${h(d.brand)}</div><div class="ccard-model">${h(d.model)}</div>${verifiedBadge}<button class="btn-remove-comp" onclick="removeFromResults(${it.id})" type="button" ${canRemove?'':'disabled'} aria-label="Remove ${h(d.model)} from comparison">✕</button></div><div class="ccard-body">${limitedWarning}<p class="ccard-sum">${h(d.summary)}</p>${strengths}${cons}<div class="ccard-links"><p class="list-l">Resources</p>${mfg}${yt}</div><div class="feedback-section"><button class="feedback-trigger" onclick="openSuggestModal('${h(d.brand+' '+d.model)}','Compare — ${h(st.catLbl)}')" type="button"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Report Inaccuracy</button></div></div></article>`;
   }).join('');
 }
 
@@ -1004,61 +1011,67 @@ function renderRatings(){
   zone.classList.remove('hidden');
 }
 
-// ── Feedback ──
-function toggleFeedback(id){
-  const form=document.getElementById(id);
-  if(!form)return;
-  form.classList.toggle('open');
-  // Reset state when closing
-  if(!form.classList.contains('open')){
-    const ok=document.getElementById(id+'-ok');
-    const err=document.getElementById(id+'-err');
-    if(ok)ok.classList.add('hidden');
-    if(err)err.classList.add('hidden');
-  }
+// ── Suggest a Spec Correction (shared modal — identical to the analyzer) ──
+let _suggestVia='';
+function openSuggestModal(prefillName, via){
+  _suggestVia=(typeof via==='string'&&via)?via:'';
+  document.getElementById('suggest-feedback').style.display='none';
+  document.getElementById('suggest-submit-btn').disabled=false;
+  document.getElementById('suggest-submit-btn').textContent='Submit Correction';
+  if(typeof prefillName==='string'&&prefillName) document.getElementById('suggest-name').value=prefillName;
+  document.getElementById('suggest-modal-overlay').classList.add('active');
 }
+function closeSuggestModal(){
+  document.getElementById('suggest-modal-overlay').classList.remove('active');
+}
+async function submitSuggestion(){
+  const name=document.getElementById('suggest-name').value.trim();
+  const specsRaw=document.getElementById('suggest-specs').value.trim();
+  const url=document.getElementById('suggest-url').value.trim();
+  const email=document.getElementById('suggest-email').value.trim();
+  const notes=document.getElementById('suggest-notes').value.trim();
+  const fb=document.getElementById('suggest-feedback');
+  const showErr=m=>{fb.style.display='block';fb.style.background='#fef2f2';fb.style.color='#dc2626';fb.style.border='1px solid #fecaca';fb.textContent=m;};
 
-async function submitFeedback(id,component,category){
-  const emailEl=document.getElementById(id+'-email');
-  const typeEl =document.getElementById(id+'-type');
-  const noteEl =document.getElementById(id+'-note');
-  const okEl   =document.getElementById(id+'-ok');
-  const errEl  =document.getElementById(id+'-err');
-  const btn    =document.querySelector(`#${id} .btn-feedback-submit`);
-  if(!emailEl||!typeEl||!noteEl)return;
+  if(!name){showErr('Component name is required.');return;}
+  if(!specsRaw&&!url){showErr('Add specs (one Key: Value per line) or paste a spec-page URL.');return;}
+  if(url&&!/^https?:\/\//i.test(url)){showErr('The spec-page URL must start with http:// or https://');return;}
 
-  const email=emailEl.value.trim();
-  const correction=noteEl.value.trim();
+  let proposed_specs={};
+  if(specsRaw){
+    specsRaw.split('\n').forEach(line=>{
+      const idx=line.indexOf(':');
+      if(idx>0){
+        const k=line.slice(0,idx).trim();
+        const v=line.slice(idx+1).trim();
+        if(k&&v) proposed_specs[k]=v;
+      }
+    });
+    if(!Object.keys(proposed_specs).length&&!url){showErr('Could not parse specs. Use one "Key: Value" per line, or paste a spec-page URL.');return;}
+  }
 
-  // Validate required fields
-  if(!email||!email.includes('@')){emailEl.focus();emailEl.style.borderColor='#ef4444';return;}
-  if(!correction){noteEl.focus();noteEl.style.borderColor='#ef4444';return;}
+  const btn=document.getElementById('suggest-submit-btn');
+  btn.disabled=true;btn.textContent='Submitting…';
 
-  // Reset border colors
-  emailEl.style.borderColor='';noteEl.style.borderColor='';
-
-  if(btn){btn.disabled=true;btn.textContent='Sending…';}
-  okEl.classList.add('hidden');errEl.classList.add('hidden');
   try{
     const res=await fetch('/.netlify/functions/submit-correction',{
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        component_name: component,
-        proposed_specs: { [typeEl.value]: correction },
-        submitter_email: email,
-        notes: 'Category: ' + category + ' — reported via /compare'
-      })
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({component_name:name,proposed_specs,submitter_email:email||null,notes:notes||null,source_url:url||null,submitted_via:_suggestVia||null})
     });
-    if(res.ok){
-      okEl.classList.remove('hidden');
-      emailEl.value='';noteEl.value='';
+    const data=await res.json();
+    if(data.success){
+      fb.style.display='block';
+      fb.style.background='#f0fdf4';fb.style.color='#16a34a';fb.style.border='1px solid #bbf7d0';
+      fb.textContent='Thanks! Your correction has been submitted for review.';
+      btn.textContent='Submitted';
+      ['suggest-name','suggest-specs','suggest-url','suggest-email','suggest-notes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
     }else{
-      errEl.classList.remove('hidden');
+      throw new Error(data.error||'Unknown error');
     }
-  }catch(_){
-    errEl.classList.remove('hidden');
-  }finally{
-    if(btn){btn.disabled=false;btn.textContent='Submit Report';}
+  }catch(err){
+    showErr('Submission failed: '+err.message);
+    btn.disabled=false;btn.textContent='Submit Correction';
   }
 }
 
@@ -1066,6 +1079,50 @@ async function submitFeedback(id,component,category){
 function h(s){if(s==null)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 function su(s){if(!s)return'#';const t=String(s).trim();return(t.startsWith('http://')||t.startsWith('https://'))?t:'#';}
 </script>
+
+<!-- SUGGEST CORRECTION MODAL (shared with the analyzer) -->
+<div class="spec-modal-overlay" id="suggest-modal-overlay" onclick="if(event.target===this)closeSuggestModal()">
+  <div class="spec-modal">
+    <div class="spec-modal-header">
+      <h3>💡 Suggest a Spec Correction</h3>
+      <button class="spec-modal-close" onclick="closeSuggestModal()" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="spec-modal-body">
+      <p style="font-size:12px;color:#64748b;margin:0 0 14px;">Found an incorrect or missing spec? Submit it below and we'll review it for the database.</p>
+      <div class="sm-stack">
+        <div class="sm-group">
+          <label class="sm-label" for="suggest-name">Component Name <span style="color:#dc2626;">*</span></label>
+          <input id="suggest-name" class="sm-input" type="text" placeholder="e.g. Monitor Audio Silver 300 7G" />
+        </div>
+        <div class="sm-group">
+          <label class="sm-label" for="suggest-url">Spec Page URL <span style="font-weight:400;color:#94a3b8;">(optional)</span></label>
+          <p class="sm-help">Paste a link to the manufacturer's spec page and you can skip typing specs below — we'll pull them from there.</p>
+          <input id="suggest-url" class="sm-input" type="url" placeholder="https://www.manufacturer.com/products/model" />
+        </div>
+        <div class="sm-group">
+          <label class="sm-label" for="suggest-specs">Corrected Specs <span style="font-weight:400;color:#94a3b8;">(optional if a URL is provided)</span></label>
+          <p class="sm-help">One spec per line as <code style="background:#f1f5f9;padding:1px 4px;border-radius:3px;">Key: Value</code> — use the manufacturer's exact wording.</p>
+          <textarea id="suggest-specs" class="sm-textarea" rows="7" placeholder="Enclosure type: Bass reflex&#10;Sensitivity: 88 dB&#10;Nominal impedance: 8 Ω"></textarea>
+        </div>
+        <div class="sm-row-2">
+          <div class="sm-group">
+            <label class="sm-label" for="suggest-email">Your Email <span style="font-weight:400;color:#94a3b8;">(optional)</span></label>
+            <input id="suggest-email" class="sm-input" type="email" placeholder="you@example.com" />
+          </div>
+          <div class="sm-group">
+            <label class="sm-label" for="suggest-notes">Source <span style="font-weight:400;color:#94a3b8;">(optional)</span></label>
+            <input id="suggest-notes" class="sm-input" type="text" placeholder="e.g. manufacturer spec sheet" />
+          </div>
+        </div>
+        <div id="suggest-feedback" style="display:none;font-size:13px;padding:10px 14px;border-radius:8px;"></div>
+      </div>
+    </div>
+    <div class="spec-modal-footer">
+      <button class="sm-btn sm-btn-cancel" onclick="closeSuggestModal()" type="button">Cancel</button>
+      <button class="sm-btn sm-btn-primary" id="suggest-submit-btn" onclick="submitSuggestion()" type="button">Submit Correction</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
