@@ -1323,7 +1323,7 @@ select {
     <div class="score-row" id="score-row-inner"></div>
   </div>
   <div class="results-3col">
-    <div class="card"><div class="card-head" style="justify-content:space-between;"><span class="card-title" style="margin-left:0;">Component Specifications</span><button class="btn btn-sm" id="edit-specs-btn" style="display:none;font-size:11px;padding:4px 10px;" onclick="toggleSpecEdit()">✏️ Edit Specs</button><button class="btn btn-sm" id="suggest-correction-btn" style="display:none;font-size:11px;padding:4px 10px;margin-left:6px;" onclick="openSuggestModal()">💡 Suggest Correction</button></div><div class="card-body" id="panel-specs-body"></div></div>
+    <div class="card"><div class="card-head" style="justify-content:space-between;"><span class="card-title" style="margin-left:0;">Component Specifications</span><button class="btn btn-sm" id="edit-specs-btn" style="display:none;font-size:11px;padding:4px 10px;" onclick="toggleSpecEdit()">✏️ Edit Specs</button><button class="btn btn-sm" id="suggest-correction-btn" style="display:none;font-size:11px;padding:4px 10px;margin-left:6px;" onclick="openSuggestModal('', 'Analyzer')">💡 Suggest Correction</button></div><div class="card-body" id="panel-specs-body"></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Analysis</span></div><div class="card-body" id="panel-chain-body"></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Summary &amp; Recommendations</span></div><div class="card-body" id="panel-summary-body"></div></div>
   </div>
@@ -1402,7 +1402,8 @@ select {
     </div>
     <div class="spec-modal-footer">
       <button class="btn" style="font-size:13px;padding:9px 18px;border:1.5px solid var(--border-2);border-radius:8px;cursor:pointer;background:#fff;color:var(--text-2);" onclick="closeSpecModal()">Cancel</button>
-      <button class="btn btn-blue" style="font-size:13px;padding:9px 18px;" onclick="applySpecCorrections()">Apply Corrections &amp; Re-run Analysis</button>
+      <button class="btn" style="font-size:13px;padding:9px 18px;border:1.5px solid var(--border-2);border-radius:8px;cursor:pointer;background:#fff;color:var(--text-2);" onclick="applySpecCorrections(false)">Re-analyze Only</button>
+      <button class="btn btn-blue" style="font-size:13px;padding:9px 18px;" onclick="applySpecCorrections(true)">Re-analyze &amp; Submit Correction</button>
     </div>
   </div>
 </div>
@@ -1422,7 +1423,12 @@ select {
           <input id="suggest-name" type="text" placeholder="e.g. VPI Scout 21" style="font-family:var(--font);font-size:13px;padding:9px 12px;border:1.5px solid var(--border-2);border-radius:8px;outline:none;width:100%;box-sizing:border-box;" />
         </div>
         <div class="form-group">
-          <label style="font-size:12px;font-weight:600;color:var(--text-2);">Corrected Specs <span style="color:#dc2626;">*</span></label>
+          <label style="font-size:12px;font-weight:600;color:var(--text-2);">Spec Page URL <span style="font-weight:400;color:var(--text-3);">(optional)</span></label>
+          <p style="font-size:11px;color:var(--text-3);margin:0 0 6px;">Paste a link to the manufacturer's spec page and you can skip typing specs below — we'll pull them from there.</p>
+          <input id="suggest-url" type="url" placeholder="https://www.manufacturer.com/products/model" style="font-family:var(--font);font-size:13px;padding:9px 12px;border:1.5px solid var(--border-2);border-radius:8px;outline:none;width:100%;box-sizing:border-box;" />
+        </div>
+        <div class="form-group">
+          <label style="font-size:12px;font-weight:600;color:var(--text-2);">Corrected Specs <span style="font-weight:400;color:var(--text-3);">(optional if a URL is provided)</span></label>
           <p style="font-size:11px;color:var(--text-3);margin:0 0 6px;">One spec per line as <code style="background:var(--cream);padding:1px 4px;border-radius:3px;">Key: Value</code> — use the manufacturer's exact wording and include every spec you can confirm. Submissions feed straight into the spec database.</p>
           <textarea id="suggest-specs" rows="8" placeholder="Drive type: Belt drive&#10;Platter: 11.5&quot; aluminum, 10.5 lbs&#10;Wow &amp; Flutter: 0.08%&#10;Rumble: 78 dB down" style="font-family:ui-monospace,monospace;font-size:12px;line-height:1.7;padding:10px;border:1.5px solid var(--border-2);border-radius:8px;background:#fafafa;outline:none;resize:vertical;width:100%;box-sizing:border-box;"></textarea>
         </div>
@@ -1560,6 +1566,7 @@ async function analyze(){
     try{specsData=JSON.parse(specsRaw);}catch(e){throw new Error(`Specs: ${specsRaw.slice(0,120)}`);}
     if(specsData.error)throw new Error(specsData.error);
     const specsText=specsData.text;
+    window._verifiedNames=specsData.verified||[];   // components sourced from the reported DB
 
     // Step 2: fire chain + summary in parallel, both using confirmed specs
     const payload=JSON.stringify({components,connections,specsText});
@@ -1619,8 +1626,14 @@ function renderCompSpecs(text){
   function flushBlock(){
     if(currentName===null)return;
     const items=currentItems.filter(l=>l).map(l=>`<li>${fmtInline(l)}</li>`).join('');
+    // Provenance badge: only components sourced from the verified DB are badged
+    // "✓ Reported"; unbadged components are AI-generated (see the legend above).
+    const isVerified=currentType&&(window._verifiedNames||[]).includes(currentName);
+    const badge=isVerified
+      ? '<span style="display:inline-flex;align-items:center;background:rgba(22,163,74,.12);color:#16a34a;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:20px;line-height:1;">✓ Reported</span>'
+      : '';
     html+=`<div class="comp-spec-block fadein">
-      <div class="comp-name-hdr">${esc(currentName)}</div>
+      <div class="comp-name-hdr" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">${esc(currentName)}${badge}</div>
       ${currentWarning?`<div style="font-size:11px;color:#d97706;background:#fffbeb;padding:5px 12px;border-bottom:1px solid #fde68a;">⚠ ${esc(currentWarning)}</div>`:''}
       ${items?`<ul class="spec-list">${items}</ul>`:''}
     </div>`;
@@ -1647,7 +1660,9 @@ function renderCompSpecs(text){
     }
   });
   flushBlock();
-  return html||'<p style="font-size:13px;color:var(--text-3);">No specifications found.</p>';
+  if(!html)return'<p style="font-size:13px;color:var(--text-3);">No specifications found.</p>';
+  const legend='<p style="font-size:11px;color:var(--text-3);margin:0 0 12px;line-height:1.5;"><strong style="color:#16a34a;">✓ Reported</strong> = specs from our verified database · all others are AI-generated estimates — always verify before purchase.</p>';
+  return legend+html;
 }
 
 function fmtInline(s){
@@ -1964,10 +1979,13 @@ function handleModalOverlayClick(e){
   if(e.target===document.getElementById('spec-modal-overlay')) closeSpecModal();
 }
 
-function openSuggestModal(){
+let _suggestVia='';
+function openSuggestModal(prefillName, via){
+  _suggestVia=(typeof via==='string'&&via)?via:'';
   document.getElementById('suggest-feedback').style.display='none';
   document.getElementById('suggest-submit-btn').disabled=false;
   document.getElementById('suggest-submit-btn').textContent='Submit Correction';
+  if(typeof prefillName==='string'&&prefillName) document.getElementById('suggest-name').value=prefillName;
   document.getElementById('suggest-modal-overlay').classList.add('active');
 }
 function closeSuggestModal(){
@@ -1976,31 +1994,27 @@ function closeSuggestModal(){
 async function submitSuggestion(){
   const name=document.getElementById('suggest-name').value.trim();
   const specsRaw=document.getElementById('suggest-specs').value.trim();
+  const url=document.getElementById('suggest-url').value.trim();
   const email=document.getElementById('suggest-email').value.trim();
   const notes=document.getElementById('suggest-notes').value.trim();
   const fb=document.getElementById('suggest-feedback');
+  const showErr=m=>{fb.style.display='block';fb.style.background='#fef2f2';fb.style.color='#dc2626';fb.style.border='1px solid #fecaca';fb.textContent=m;};
 
-  if(!name||!specsRaw){
-    fb.style.display='block';
-    fb.style.background='#fef2f2';fb.style.color='#dc2626';fb.style.border='1px solid #fecaca';
-    fb.textContent='Component name and specs are required.';
-    return;
-  }
+  if(!name){showErr('Component name is required.');return;}
+  if(!specsRaw&&!url){showErr('Add specs (one Key: Value per line) or paste a spec-page URL.');return;}
+  if(url&&!/^https?:\/\//i.test(url)){showErr('The spec-page URL must start with http:// or https://');return;}
 
   let proposed_specs={};
-  specsRaw.split('\n').forEach(line=>{
-    const idx=line.indexOf(':');
-    if(idx>0){
-      const k=line.slice(0,idx).trim();
-      const v=line.slice(idx+1).trim();
-      if(k&&v) proposed_specs[k]=v;
-    }
-  });
-  if(!Object.keys(proposed_specs).length){
-    fb.style.display='block';
-    fb.style.background='#fef2f2';fb.style.color='#dc2626';fb.style.border='1px solid #fecaca';
-    fb.textContent='Could not parse specs. Use one "Key: Value" per line.';
-    return;
+  if(specsRaw){
+    specsRaw.split('\n').forEach(line=>{
+      const idx=line.indexOf(':');
+      if(idx>0){
+        const k=line.slice(0,idx).trim();
+        const v=line.slice(idx+1).trim();
+        if(k&&v) proposed_specs[k]=v;
+      }
+    });
+    if(!Object.keys(proposed_specs).length&&!url){showErr('Could not parse specs. Use one "Key: Value" per line, or paste a spec-page URL.');return;}
   }
 
   const btn=document.getElementById('suggest-submit-btn');
@@ -2010,7 +2024,7 @@ async function submitSuggestion(){
     const res=await fetch('/.netlify/functions/submit-correction',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({component_name:name,proposed_specs,submitter_email:email||null,notes:notes||null})
+      body:JSON.stringify({component_name:name,proposed_specs,submitter_email:email||null,notes:notes||null,source_url:url||null,submitted_via:_suggestVia||null})
     });
     const data=await res.json();
     if(data.success){
@@ -2018,17 +2032,12 @@ async function submitSuggestion(){
       fb.style.background='#f0fdf4';fb.style.color='#16a34a';fb.style.border='1px solid #bbf7d0';
       fb.textContent='Thanks! Your correction has been submitted for review.';
       btn.textContent='Submitted';
-      document.getElementById('suggest-name').value='';
-      document.getElementById('suggest-specs').value='';
-      document.getElementById('suggest-email').value='';
-      document.getElementById('suggest-notes').value='';
+      ['suggest-name','suggest-specs','suggest-url','suggest-email','suggest-notes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
     }else{
       throw new Error(data.error||'Unknown error');
     }
   }catch(err){
-    fb.style.display='block';
-    fb.style.background='#fef2f2';fb.style.color='#dc2626';fb.style.border='1px solid #fecaca';
-    fb.textContent='Submission failed: '+err.message;
+    showErr('Submission failed: '+err.message);
     btn.disabled=false;btn.textContent='Submit Correction';
   }
 }
@@ -2116,14 +2125,15 @@ function submitCorrectionToNetlify(correctedSpecsText){
   }catch(e){/* silent */}
 }
 
-function applySpecCorrections(){
+function applySpecCorrections(submit){
   closeSpecModal();
 
   const specsText=document.getElementById('spec-corrections').value.trim();
   if(!specsText)return;
 
-  // Update stored specs and re-render the specs panel immediately
-  submitCorrectionToNetlify(specsText);
+  // Update stored specs and re-render the specs panel immediately.
+  // Only email a correction when the user explicitly chose to submit one.
+  if(submit) submitCorrectionToNetlify(specsText);
   window._lastSpecsText=specsText;
   document.getElementById('panel-specs-body').innerHTML=renderCompSpecs(specsText);
 
