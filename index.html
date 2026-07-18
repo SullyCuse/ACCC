@@ -537,6 +537,9 @@ select {
 .btn-print:hover { border-color:var(--blue); color:var(--blue); background:var(--blue-lt); }
 .results-3col { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:0 max(24px,3vw); max-width:1400px; margin:0 auto; }
 @media(max-width:960px){ .results-3col{ grid-template-columns:1fr; } }
+.disclaimer-banner{display:flex;align-items:flex-start;gap:10px;background:#eff6ff;border:1px solid #bfdbfe;border-left:4px solid #2563eb;border-radius:8px;padding:13px 16px;font-size:13px;color:#1e40af;line-height:1.6}
+.disclaimer-banner svg{flex-shrink:0;margin-top:1px;color:#2563eb}
+.disclaimer-banner strong{color:#1e3a8a;font-weight:600}
 .score-wrap { padding:0 max(24px,3vw); max-width:1400px; margin:0 auto 20px; }
 
 /* Component spec styling */
@@ -1322,6 +1325,12 @@ select {
   <div id="results-scores" class="score-wrap" style="display:none;">
     <div class="score-row" id="score-row-inner"></div>
   </div>
+  <div style="max-width:1400px;margin:0 auto 18px;padding:0 max(24px,3vw);">
+    <div class="disclaimer-banner">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>Components sourced from our verified database are badged <strong>✓ Reported</strong>; all others are AI-generated from manufacturer documentation and published reviews and may be incomplete for newer or boutique products. <strong>Always verify with the manufacturer before purchase.</strong></span>
+    </div>
+  </div>
   <div class="results-3col">
     <div class="card"><div class="card-head" style="justify-content:space-between;"><span class="card-title" style="margin-left:0;">Component Specifications</span><button class="btn btn-sm" id="edit-specs-btn" style="display:none;font-size:11px;padding:4px 10px;" onclick="toggleSpecEdit()">✏️ Edit Specs</button><button class="btn btn-sm" id="suggest-correction-btn" style="display:none;font-size:11px;padding:4px 10px;margin-left:6px;" onclick="openSuggestModal('', 'Analyzer')">💡 Suggest Correction</button></div><div class="card-body" id="panel-specs-body"></div></div>
     <div class="card"><div class="card-head"><span class="card-title" style="margin-left:0;">Signal Chain Analysis</span></div><div class="card-body" id="panel-chain-body"></div></div>
@@ -1660,9 +1669,7 @@ function renderCompSpecs(text){
     }
   });
   flushBlock();
-  if(!html)return'<p style="font-size:13px;color:var(--text-3);">No specifications found.</p>';
-  const legend='<p style="font-size:11px;color:var(--text-3);margin:0 0 12px;line-height:1.5;"><strong style="color:#16a34a;">✓ Reported</strong> = specs from our verified database · all others are AI-generated estimates — always verify before purchase.</p>';
-  return legend+html;
+  return html||'<p style="font-size:13px;color:var(--text-3);">No specifications found.</p>';
 }
 
 function fmtInline(s){
