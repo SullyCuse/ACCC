@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amplifier Specs That Actually Matter — AudioChainHiFi.com</title>
-<meta name="description" content="Which amplifier specs matter for hi-fi compatibility? Power output, input sensitivity, damping factor, peak current, and impedance stability explained.">
-<meta property="og:title" content="Amplifier Specs That Actually Matter — AudioChainHiFi.com">
+<title>Digital Audio Connections Explained — AudioChainHiFi.com</title>
+<meta name="description" content="Coaxial, optical, USB, AES/EBU and HDMI compared: what each digital connection carries, its resolution limits, clocking behaviour, and when the choice matters.">
+<meta property="og:title" content="Digital Audio Connections Explained — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/amplifiers">
+<meta property="og:url" content="https://audiochainhifi.com/guides/digital-connections">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/amplifiers">
+<meta property="article:published_time" content="2026-08-07T00:00:00Z">
+<meta property="article:modified_time" content="2026-08-07T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/digital-connections">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -93,8 +93,8 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Amplifiers: The Specs That Actually Matter",
-  "description": "Power output is the headline, but it is rarely the most important amplifier specification for real-world system compatibility. Here is what to actually look at — and why.",
+  "headline": "Digital Connections: USB, S/PDIF, AES and I2S",
+  "description": "A comparison of the digital audio connections used between sources and DACs - coaxial and optical S/PDIF, USB audio, AES/EBU, HDMI and I2S - covering format limits, galvanic isolation, clock ownership and how to choose between them.",
   "author": {
     "@type": "Person",
     "name": "Sully",
@@ -105,9 +105,9 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "name": "AudioChainHiFi.com",
     "url": "https://audiochainhifi.com"
   },
-  "datePublished": "2026-04-01",
-  "dateModified": "2026-05-01",
-  "mainEntityOfPage": "https://audiochainhifi.com/guides/amplifiers"
+  "datePublished": "2026-08-07",
+  "dateModified": "2026-08-07",
+  "mainEntityOfPage": "https://audiochainhifi.com/guides/digital-connections"
 }
 </script>
 </head>
@@ -146,11 +146,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Power amplifier">
-    <div class="guide-label">Component Guide</div>
-    <h1>Amplifiers: The Specs That Actually Matter</h1>
-    <p class="lede">Power output is the headline, but it is rarely the most important amplifier specification for real-world system compatibility. Here is what to actually look at — and why.</p>
-    <p class="guide-date">By <a href="/about" style="color:#60a5fa;text-decoration:none;">Sully</a> &middot; Published April 2026 &middot; Updated May 2026</p>
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?auto=format&fit=crop&w=1600&q=80" alt="Digital audio connections and waveform display">
+    <div class="guide-label">Digital Guide</div>
+    <h1>Digital Connections: USB, S/PDIF, AES and I&sup2;S</h1>
+    <p class="lede">Most DACs offer four or five ways in, and the choice affects resolution limits, ground isolation and, most importantly, which device owns the clock. Here is what each connection actually does.</p>
+    <p class="guide-date">By <a href="/about" style="color:#60a5fa;text-decoration:none;">Sully</a> &middot; Published August 2026</p>
   </div>
 </div>
 
@@ -162,128 +162,101 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/guides/speakers">Speaker Matching →</a>
-        <a href="/guides/cartridges">Cartridge Guide →</a>
-        <a href="/guides/dacs">DAC Guide →</a>
-        <a href="/glossary">Glossary →</a>
+        <a href="/guides/dacs">DAC Guide &rarr;</a>
+        <a href="/guides/streamers">Network Streamers &rarr;</a>
+        <a href="/guides/digital-formats">Digital Formats &rarr;</a>
+        <a href="/guides/cd-players">CD Players &amp; Transports &rarr;</a>
+        <a href="/guides/balanced-vs-unbalanced">Balanced vs Unbalanced &rarr;</a>
       </div>
     </div>
 
-    <p>Amplifier specifications are sometimes presented in ways designed to impress rather than inform. A headline wattage figure tells you relatively little about whether an amplifier will work well with your speakers or your preamplifier. The specifications below are the ones that determine real-world compatibility and performance.</p>
+    <p>The back of a modern DAC offers a row of sockets that all carry the same thing &mdash; a stream of digital audio samples &mdash; and yet they are not interchangeable. They differ in the maximum resolution they will pass, in whether they electrically isolate the two devices, and in the single most consequential difference of all: which end of the link owns the clock that determines when each sample is converted. This guide takes them one at a time and ends with a practical order of preference.</p>
 
-    <h2>Power Output — Read It Carefully</h2>
+    <h2>S/PDIF Coaxial</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Continuous RMS Power (Watts) Into a Stated Impedance</h3>
-      <p>Power is always qualified by load impedance. "150 watts" without a stated impedance is meaningless. Always read it as "150 watts RMS per channel into 8&nbsp;&Omega;, both channels driven simultaneously." That last phrase — both channels driven — is important. Some manufacturers rate power with only one channel driven, which can give figures 20–40% higher than real-world stereo operation.</p>
-    </div>
+    <p>Coaxial S/PDIF sends a self-clocking serial stream down a single 75&nbsp;&Omega; cable terminated in an RCA connector. Because the clock is embedded in the data, the receiving DAC has to extract it &mdash; usually with a phase-locked loop &mdash; and any timing irregularity in the transmitted stream or the cable can appear as <strong>jitter</strong> at the point of conversion.</p>
 
-    <p>The relationship between power and perceived loudness follows a logarithmic curve. Doubling the power adds only 3 dB of additional SPL — a modest and barely perceptible increase in most rooms. Going from 50 watts to 100 watts is not twice as loud. To produce twice the perceived loudness, you need ten times the power (a 10 dB increase). This is why speaker sensitivity matters so much more than raw amplifier wattage in most real-world situations.</p>
+    <p>In practice, coaxial is a robust and capable connection. It comfortably handles <strong>24-bit/192&nbsp;kHz</strong> and often more, it is electrically simple, and its bandwidth is generous. Two details matter: the cable should be genuine 75&nbsp;&Omega; video-grade coax rather than a repurposed analogue interconnect, because impedance mismatches cause reflections; and because the connection is electrically continuous, it carries ground between the two devices and can therefore participate in a ground loop.</p>
 
-    <p>Also note that many amplifiers deliver significantly more power into 4&nbsp;&Omega; loads than into 8&nbsp;&Omega;. A well-designed amplifier into 4&nbsp;&Omega; should deliver approximately double its 8&nbsp;&Omega; power, because the lower impedance allows more current to flow. An amplifier that delivers the same power into both 8&nbsp;&Omega; and 4&nbsp;&Omega; is likely current-limited and will struggle with demanding speakers.</p>
+    <h2>S/PDIF Optical (TOSLINK)</h2>
 
-    <h2>Input Sensitivity — The Gain Matching Spec</h2>
+    <p>Optical S/PDIF carries the same data format over light, through a plastic or glass fibre. Its defining advantage follows immediately: because nothing conductive crosses the link, it provides <strong>complete galvanic isolation</strong>. No ground connection, no ground loop, no electrical noise conducted from a computer or television into the DAC. When you have a hum problem between two mains-powered devices, optical often solves it outright.</p>
+
+    <p>The trade-offs are bandwidth and timing. The optical transmitter and receiver add conversion steps, and cheap plastic fibre limits bandwidth &mdash; most TOSLINK implementations top out at <strong>24-bit/96&nbsp;kHz</strong>, with some reaching 192&nbsp;kHz over short, good-quality runs. Optical also has a reputation for higher jitter, largely from the rise and fall times of the optical receiver, though a DAC with good reclocking makes this a non-issue.</p>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Input Sensitivity (mV or V for Full Rated Output)</h3>
-      <p>This is the voltage the amplifier needs at its input terminals to produce full rated power output. A sensitivity of 1 V means you need 1 V RMS from your preamplifier to drive the amplifier to its maximum power. If your preamp can only produce 0.5 V maximum, you can never reach full power. If your preamp produces 4 V and the amp needs only 0.5 V, your volume control will be useful only at very low settings.</p>
+      <div class="spec-name">Isolation vs Bandwidth</div>
+      <h3>When to Reach for Optical</h3>
+      <p>Choose optical when the source is a computer, television or games console, when the two devices are on different mains circuits, or when you have an audible hum you have traced to a ground loop. Choose coaxial when you need reliable 192&nbsp;kHz support or beyond and ground noise is not a problem. If a DAC has good galvanic isolation on its USB input, that combination gives you both.</p>
     </div>
 
-    <p>Input sensitivity is the primary specification that determines whether a preamp-amplifier pairing will be practical. Mismatched sensitivity is one of the most common causes of systems that are either too loud at the lowest usable volume setting, or that never reach satisfying output levels.</p>
+    <h2>AES/EBU</h2>
 
-    <h2>Input Impedance — The Preamp Compatibility Spec</h2>
+    <p>AES/EBU (formally AES3) is the professional cousin of S/PDIF: the same fundamental data format, but sent balanced over a <strong>110&nbsp;&Omega;</strong> twisted pair with XLR connectors, at a higher signal level. The balanced transmission gives it excellent common-mode noise rejection and allows much longer cable runs &mdash; tens of metres rather than a few &mdash; which is why it dominates in studios.</p>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Input Impedance (k&Omega;)</h3>
-      <p>The input impedance of the power amplifier determines the minimum output impedance the preamplifier can drive without frequency response degradation. Apply the 10:1 rule: preamplifier output impedance should be no more than 1/10th of the amplifier's input impedance. A power amplifier with a 10 k&Omega; input impedance requires a preamplifier with an output impedance of 1 k&Omega; or less. Higher input impedance is generally better — it places fewer demands on the preamplifier's output stage.</p>
-    </div>
+    <p>For domestic use, AES/EBU is a solid choice where both devices offer it. It handles high sample rates comfortably, the locking XLR connector is mechanically superior to RCA, and the balanced line is more robust in electrically noisy environments. It does not, however, solve the ground-loop problem: like coaxial, it is an electrical connection with a ground path. And like coaxial, the DAC still has to recover the clock from the stream.</p>
 
-    <h2>Damping Factor — Speaker Control</h2>
+    <h2>USB Audio, and Why Asynchronous Changed Everything</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Damping Factor (dimensionless ratio)</h3>
-      <p>Damping factor is the ratio of the speaker's nominal impedance to the amplifier's output impedance. A damping factor of 150 means the amp's output impedance is 1/150th of the speaker's impedance, giving the amplifier strong electrical control over the speaker cone's motion. Low damping factor results in bass that is loose and slow; very high damping factor (above 100) offers diminishing returns in most practical systems.</p>
-    </div>
+    <p>USB is the most capable of the common connections and the one that most repays understanding. Early USB audio used <em>adaptive</em> mode, in which the DAC slaved itself to the computer's timing &mdash; an arrangement that deserved its poor reputation, because a general-purpose computer is a poor master clock. Modern implementations use <strong>asynchronous</strong> mode, and the relationship is reversed: the DAC's own clock governs conversion, and it tells the computer when to send more data.</p>
 
-    <h2>Peak Current Delivery</h2>
+    <p>That inversion is the key point. In asynchronous USB, the timing of the source stops mattering, because the DAC is no longer trying to follow it &mdash; buffering absorbs the arrival jitter and the DAC's local clock determines when samples are converted. This is why asynchronous USB is generally the best-performing input on a DAC that has one, and why it supports the highest formats: <strong>32-bit/768&nbsp;kHz PCM and DSD512</strong> are within reach, far beyond what S/PDIF carries.</p>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Peak Current (Amps per Channel)</h3>
-      <p>The maximum instantaneous current the amplifier can deliver to the speaker load. This determines how well the amplifier controls difficult, low-impedance speakers and reproduces transient musical peaks. A 100 W amplifier with 30 A peak current delivery will sound more dynamic and composed on complex program material than a 100 W amplifier limited to 15 A, particularly with demanding 4&nbsp;&Omega; or lower-impedance loads.</p>
-    </div>
+    <p>USB's weakness is electrical. It is a computer bus carrying power and ground alongside data, and a computer is a noisy environment. Good DACs address this with galvanic isolation on the USB input; where they do not, the noise can find its way into the analogue stages. If you are choosing a DAC for USB use, isolation on that input is worth looking for specifically.</p>
 
-    <!-- Gain/Sensitivity illustration -->
-<div style="background:var(--dark);border-radius:var(--radius);padding:28px;margin:28px 0;overflow-x:auto;">
-  <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;">Amplifier Signal Path</p>
-  <svg viewBox="0 0 560 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:0 auto;" fill="none">
-    <!-- Preamp box -->
-    <rect x="4" y="30" width="110" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-    <text x="59" y="56" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700" font-family="system-ui">PREAMP</text>
-    <text x="59" y="72" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Output: 2 V RMS</text>
-    <text x="59" y="84" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Z-out: 200 Ω</text>
-    <!-- Arrow 1 -->
-    <line x1="114" y1="60" x2="148" y2="60" stroke="#60a5fa" stroke-width="2"/>
-    <polyline points="144,55 150,60 144,65" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="131" y="50" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="8" font-family="system-ui">RCA/XLR</text>
-    <!-- Power amp box -->
-    <rect x="150" y="20" width="130" height="80" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
-    <text x="215" y="50" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="700" font-family="system-ui">POWER AMP</text>
-    <text x="215" y="65" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Sensitivity: 1 V → full output</text>
-    <text x="215" y="78" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Z-in: 33 kΩ</text>
-    <text x="215" y="91" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700" font-family="system-ui">Gain: 28 dB</text>
-    <!-- Arrow 2 -->
-    <line x1="280" y1="60" x2="316" y2="60" stroke="#60a5fa" stroke-width="2"/>
-    <polyline points="312,55 318,60 312,65" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="298" y="50" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="8" font-family="system-ui">Speaker wire</text>
-    <!-- Speaker box -->
-    <rect x="318" y="30" width="110" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-    <text x="373" y="56" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700" font-family="system-ui">SPEAKERS</text>
-    <text x="373" y="70" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">8 Ω / 88 dB</text>
-    <text x="373" y="82" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">150 W/ch</text>
-    <!-- Ratio indicator -->
-    <rect x="440" y="24" width="116" height="72" rx="8" fill="rgba(37,99,235,.12)" stroke="#2563eb" stroke-width="1" stroke-dasharray="4,3"/>
-    <text x="498" y="44" text-anchor="middle" fill="#60a5fa" font-size="10" font-weight="700" font-family="system-ui">10:1 Rule</text>
-    <text x="498" y="58" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="9" font-family="system-ui">Z-in ÷ Z-out</text>
-    <text x="498" y="71" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700" font-family="system-ui">33k ÷ 200</text>
-    <text x="498" y="84" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700" font-family="system-ui">= 165 ✓</text>
-  </svg>
-</div>
-<h2>Quick Reference: Amplifier Specs at a Glance</h2>
+    <h2>HDMI and I&sup2;S</h2>
+
+    <p>HDMI carries audio alongside video and is essential for multichannel formats and for anything routed through a television or AV receiver. For two-channel hi-fi, it is usually a convenience rather than a preference: the audio clock is derived from a link designed principally for video, and the results depend heavily on implementation. Where a source only offers HDMI, it works perfectly well; where alternatives exist, they are usually simpler.</p>
+
+    <p><strong>I&sup2;S</strong> is a different proposition. Inside almost every digital source and DAC, audio moves between chips on an I&sup2;S bus, which carries data, bit clock and word clock on <em>separate</em> lines. Because the clock never has to be embedded in and recovered from the data, the jitter problem that S/PDIF creates simply does not arise. Some manufacturers expose this bus externally, usually on an HDMI-style connector, so a matching transport and DAC can be linked I&sup2;S to I&sup2;S.</p>
+
+    <p>The catch is that there is no standard for the pinout. Different manufacturers assign the signals differently, so an I&sup2;S connection between two brands may not work &mdash; and in some cases can be electrically unhappy. Treat external I&sup2;S as an excellent option <em>within</em> a manufacturer's own ecosystem and check compatibility carefully otherwise.</p>
+
+    <div class="callout"><p><strong>The clock question in one line:</strong> with S/PDIF, AES/EBU and HDMI, the DAC recovers timing from the incoming stream; with asynchronous USB and I&sup2;S, timing comes from a dedicated clock. That is the main reason those two tend to perform best &mdash; though a DAC with strong reclocking narrows the gap considerably on every input.</p></div>
+
+    <h2>Choosing an Input in Practice</h2>
+
+    <p>Once the properties are clear, a sensible default order emerges &mdash; with the caveat that a well-implemented lesser input beats a poorly-implemented better one every time.</p>
+
+    <ul>
+      <li><strong>Computer or phone as source:</strong> asynchronous USB, preferably into a DAC with galvanic isolation. Optical if you have ground noise you cannot otherwise fix.</li>
+      <li><strong>Network streamer as source:</strong> whichever of USB, coaxial or AES/EBU the pair supports best; the streamer has already removed the computer from the equation.</li>
+      <li><strong>CD transport:</strong> coaxial or AES/EBU; I&sup2;S if the transport and DAC are from the same manufacturer and designed for it.</li>
+      <li><strong>Television or console:</strong> optical, which isolates as well as connects. HDMI if you need multichannel or lip-sync handling.</li>
+      <li><strong>Long cable run:</strong> AES/EBU for its balanced transmission, or optical if isolation matters more than bandwidth.</li>
+    </ul>
+
+    <p>A last practical note on cables: for coaxial use true 75&nbsp;&Omega; cable; for AES/EBU use 110&nbsp;&Omega; cable rather than a microphone lead, which is a different impedance; for USB, a decent standard cable of a sensible length is all that is required. Digital cable choice is a matter of meeting the specification, not of exceeding it.</p>
+
+    <h2>Quick Reference: Digital Connections Compared</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <thead><tr><th>Connection</th><th>Typical Maximum</th><th>Clock Owner</th><th>Ground Isolated?</th></tr></thead>
       <tbody>
-        <tr><td>Power Output (RMS)</td><td>Continuous power into a stated load</td><td>Both channels driven, at your speaker's impedance</td></tr>
-        <tr><td>Input Sensitivity</td><td>Voltage needed for full output</td><td>Must match your preamp's output voltage</td></tr>
-        <tr><td>Input Impedance</td><td>Load presented to the preamp</td><td>&ge;10&times; preamp output impedance; higher is better</td></tr>
-        <tr><td>Damping Factor</td><td>Amplifier's speaker control</td><td>&gt;50 is adequate; &gt;100 is good</td></tr>
-        <tr><td>Peak Current</td><td>Instantaneous current capability</td><td>Higher = better control of demanding loads</td></tr>
-        <tr><td>THD (full output)</td><td>Distortion at maximum power</td><td>&lt;0.1% is excellent; specification must be at full output</td></tr>
-        <tr><td>SNR</td><td>Noise floor relative to rated output</td><td>&gt;95 dB A-weighted is very good</td></tr>
+        <tr><td>S/PDIF coaxial (RCA, 75&nbsp;&Omega;)</td><td>24-bit/192&nbsp;kHz and above</td><td>DAC recovers from stream</td><td>No</td></tr>
+        <tr><td>S/PDIF optical (TOSLINK)</td><td>24-bit/96&nbsp;kHz, sometimes 192&nbsp;kHz</td><td>DAC recovers from stream</td><td>Yes &mdash; fully</td></tr>
+        <tr><td>AES/EBU (XLR, 110&nbsp;&Omega;)</td><td>24-bit/192&nbsp;kHz and above</td><td>DAC recovers from stream</td><td>No (but balanced)</td></tr>
+        <tr><td>USB (asynchronous)</td><td>32-bit/768&nbsp;kHz, DSD512</td><td>DAC's own clock</td><td>Only if the DAC isolates it</td></tr>
+        <tr><td>HDMI</td><td>High, including multichannel</td><td>Recovered from the link</td><td>No</td></tr>
+        <tr><td>I&sup2;S (external)</td><td>Very high</td><td>Separate clock lines</td><td>No; pinout is not standardised</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your amplifier's compatibility</h3>
-      <p>Enter your amplifier, speakers, and preamplifier to get a full compatibility analysis including impedance ratios, gain staging, and power headroom.</p>
-      <a href="/#analyzer">Run a Free Analysis →</a>
+      <h3>Check your digital chain end to end</h3>
+      <p>Enter your source, DAC and the rest of your system for a free analysis of format support, connection limits, and where the chain might be constraining you.</p>
+      <a href="/#analyzer">Run a Free Analysis &rarr;</a>
     </div>
 
     <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
 
     <h2>More Guides</h2>
     <div class="guide-nav">
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
-      <a href="/guides/speakers">Speaker Matching →</a>
-      <a href="/guides/cartridges">Cartridge Guide →</a>
-      <a href="/guides/dacs">DAC Guide →</a>
-      <a href="/glossary">Glossary →</a>
+        <a href="/guides/dacs">DAC Guide &rarr;</a>
+        <a href="/guides/streamers">Network Streamers &rarr;</a>
+        <a href="/guides/digital-formats">Digital Formats &rarr;</a>
+        <a href="/guides/cd-players">CD Players &amp; Transports &rarr;</a>
+        <a href="/guides/balanced-vs-unbalanced">Balanced vs Unbalanced &rarr;</a>
     </div>
 
   </div>

@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amplifier Specs That Actually Matter — AudioChainHiFi.com</title>
-<meta name="description" content="Which amplifier specs matter for hi-fi compatibility? Power output, input sensitivity, damping factor, peak current, and impedance stability explained.">
-<meta property="og:title" content="Amplifier Specs That Actually Matter — AudioChainHiFi.com">
+<title>Ground Loops and Hum: How to Fix Them — AudioChainHiFi.com</title>
+<meta name="description" content="Why hi-fi systems hum, how to tell a ground loop from RF or a bad cable, and a step-by-step method for finding and fixing the cause without unsafe workarounds.">
+<meta property="og:title" content="Ground Loops and Hum: How to Fix Them — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/amplifiers">
+<meta property="og:url" content="https://audiochainhifi.com/guides/ground-loops-hum">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/amplifiers">
+<meta property="article:published_time" content="2026-08-22T00:00:00Z">
+<meta property="article:modified_time" content="2026-08-22T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/ground-loops-hum">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -93,8 +93,8 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Amplifiers: The Specs That Actually Matter",
-  "description": "Power output is the headline, but it is rarely the most important amplifier specification for real-world system compatibility. Here is what to actually look at — and why.",
+  "headline": "Ground Loops and Hum: How to Fix Them",
+  "description": "A troubleshooting guide to hum and buzz in hi-fi systems - what a ground loop is, how mains frequency and harmonics identify the cause, isolating the culprit component step by step, and the safe fixes including isolation transformers and optical links.",
   "author": {
     "@type": "Person",
     "name": "Sully",
@@ -105,9 +105,9 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "name": "AudioChainHiFi.com",
     "url": "https://audiochainhifi.com"
   },
-  "datePublished": "2026-04-01",
-  "dateModified": "2026-05-01",
-  "mainEntityOfPage": "https://audiochainhifi.com/guides/amplifiers"
+  "datePublished": "2026-08-22",
+  "dateModified": "2026-08-22",
+  "mainEntityOfPage": "https://audiochainhifi.com/guides/ground-loops-hum"
 }
 </script>
 </head>
@@ -146,11 +146,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=80" alt="Power amplifier">
-    <div class="guide-label">Component Guide</div>
-    <h1>Amplifiers: The Specs That Actually Matter</h1>
-    <p class="lede">Power output is the headline, but it is rarely the most important amplifier specification for real-world system compatibility. Here is what to actually look at — and why.</p>
-    <p class="guide-date">By <a href="/about" style="color:#60a5fa;text-decoration:none;">Sully</a> &middot; Published April 2026 &middot; Updated May 2026</p>
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80" alt="Audio equipment power and wiring connections">
+    <div class="guide-label">Setup Guide</div>
+    <h1>Ground Loops and Hum: How to Fix Them</h1>
+    <p class="lede">A steady hum from the speakers is one of the most common faults in a hi-fi system and one of the most methodically fixable. The trick is identifying which of four causes you actually have before changing anything.</p>
+    <p class="guide-date">By <a href="/about" style="color:#60a5fa;text-decoration:none;">Sully</a> &middot; Published August 2026</p>
   </div>
 </div>
 
@@ -162,128 +162,106 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/guides/speakers">Speaker Matching →</a>
-        <a href="/guides/cartridges">Cartridge Guide →</a>
-        <a href="/guides/dacs">DAC Guide →</a>
-        <a href="/glossary">Glossary →</a>
+        <a href="/guides/power-conditioning">Power &amp; AC Conditioning &rarr;</a>
+        <a href="/guides/balanced-vs-unbalanced">Balanced vs Unbalanced &rarr;</a>
+        <a href="/guides/cables">Cables Guide &rarr;</a>
+        <a href="/guides/phono-stages">Phono Stage Guide &rarr;</a>
+        <a href="/guides/turntables">Turntable Guide &rarr;</a>
       </div>
     </div>
 
-    <p>Amplifier specifications are sometimes presented in ways designed to impress rather than inform. A headline wattage figure tells you relatively little about whether an amplifier will work well with your speakers or your preamplifier. The specifications below are the ones that determine real-world compatibility and performance.</p>
+    <p>Hum is the most democratic fault in audio: it turns up in cheap systems and expensive ones, and it almost never indicates that anything is broken. It usually means that two devices which are already connected by a signal cable are <em>also</em> connected by a second path through the mains earth, and a small current is circulating between them. The good news is that hum yields to a systematic method. The bad news is that the most commonly suggested fix &mdash; lifting the mains earth &mdash; is genuinely dangerous. This guide covers the diagnosis and the safe repairs.</p>
 
-    <h2>Power Output — Read It Carefully</h2>
+    <h2>What a Ground Loop Actually Is</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Continuous RMS Power (Watts) Into a Stated Impedance</h3>
-      <p>Power is always qualified by load impedance. "150 watts" without a stated impedance is meaningless. Always read it as "150 watts RMS per channel into 8&nbsp;&Omega;, both channels driven simultaneously." That last phrase — both channels driven — is important. Some manufacturers rate power with only one channel driven, which can give figures 20–40% higher than real-world stereo operation.</p>
-    </div>
+    <p>Two components sitting on a rack are each connected to mains earth through their power cables. Connect them with an interconnect and the cable's shield joins their chassis grounds together as well. There are now two conductive paths between the same two points, forming a loop.</p>
 
-    <p>The relationship between power and perceived loudness follows a logarithmic curve. Doubling the power adds only 3 dB of additional SPL — a modest and barely perceptible increase in most rooms. Going from 50 watts to 100 watts is not twice as loud. To produce twice the perceived loudness, you need ten times the power (a 10 dB increase). This is why speaker sensitivity matters so much more than raw amplifier wattage in most real-world situations.</p>
+    <p>A loop matters because the earth connections are not at exactly the same potential. Different mains outlets, different circuits and different cable lengths all produce tiny voltage differences, and that small difference drives a current around the loop. Since part of the loop is your interconnect's shield &mdash; which is also the signal return &mdash; the current appears as a voltage in series with the audio. That is your hum. The loop also acts as an antenna, picking up whatever magnetic fields are nearby, which is why hum often changes when you move a power cable.</p>
 
-    <p>Also note that many amplifiers deliver significantly more power into 4&nbsp;&Omega; loads than into 8&nbsp;&Omega;. A well-designed amplifier into 4&nbsp;&Omega; should deliver approximately double its 8&nbsp;&Omega; power, because the lower impedance allows more current to flow. An amplifier that delivers the same power into both 8&nbsp;&Omega; and 4&nbsp;&Omega; is likely current-limited and will struggle with demanding speakers.</p>
+    <h2>Read the Sound Before Touching Anything</h2>
 
-    <h2>Input Sensitivity — The Gain Matching Spec</h2>
+    <p>The character of the noise narrows the cause down considerably, and the distinction is worth a moment's careful listening.</p>
+
+    <p>A <strong>low, smooth hum</strong> at the mains frequency &mdash; 50&nbsp;Hz in most of the world, 60&nbsp;Hz in North America &mdash; is characteristic of a ground loop or of magnetic induction into a cable or transformer. A <strong>harsher buzz</strong>, rich in harmonics, usually points elsewhere: dimmer switches, switch-mode supplies, chargers, or a failing appliance putting rubbish onto the mains. A <strong>hum that changes with the volume control</strong> is entering before the volume control, so the source or the interconnect feeding it is the suspect; a <strong>hum that stays constant regardless of volume</strong> is entering after it, in the power amplifier or its supply.</p>
 
     <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Input Sensitivity (mV or V for Full Rated Output)</h3>
-      <p>This is the voltage the amplifier needs at its input terminals to produce full rated power output. A sensitivity of 1 V means you need 1 V RMS from your preamplifier to drive the amplifier to its maximum power. If your preamp can only produce 0.5 V maximum, you can never reach full power. If your preamp produces 4 V and the amp needs only 0.5 V, your volume control will be useful only at very low settings.</p>
+      <div class="spec-name">Two Quick Tests</div>
+      <h3>Volume-Dependence and Input-Swapping</h3>
+      <p>These two tests take a minute and eliminate most of the possibilities. First, turn the volume up and down: noise that tracks the control comes from upstream of it, noise that does not is downstream. Second, disconnect every input from the amplifier and listen: if the hum vanishes, it is arriving through a source connection, and you can reconnect them one at a time to find which. If it remains with no inputs connected at all, the fault is in the amplifier, its power supply, or its own earthing.</p>
     </div>
 
-    <p>Input sensitivity is the primary specification that determines whether a preamp-amplifier pairing will be practical. Mismatched sensitivity is one of the most common causes of systems that are either too loud at the lowest usable volume setting, or that never reach satisfying output levels.</p>
+    <h2>Finding the Culprit, One Component at a Time</h2>
 
-    <h2>Input Impedance — The Preamp Compatibility Spec</h2>
+    <p>With the broad category established, isolate the specific component by subtraction. Work with the volume low &mdash; some of these steps can produce loud transients.</p>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Input Impedance (k&Omega;)</h3>
-      <p>The input impedance of the power amplifier determines the minimum output impedance the preamplifier can drive without frequency response degradation. Apply the 10:1 rule: preamplifier output impedance should be no more than 1/10th of the amplifier's input impedance. A power amplifier with a 10 k&Omega; input impedance requires a preamplifier with an output impedance of 1 k&Omega; or less. Higher input impedance is generally better — it places fewer demands on the preamplifier's output stage.</p>
-    </div>
+    <ul>
+      <li><strong>1. Strip the system.</strong> Leave only the amplifier and speakers connected, with nothing plugged into the inputs. Confirm whether the hum is present.</li>
+      <li><strong>2. Add sources back one at a time,</strong> both signal cable and mains lead, listening after each. The first one that reintroduces the hum is your loop partner.</li>
+      <li><strong>3. Test the mains path separately.</strong> With the offending source connected by interconnect only and its mains lead unplugged, the loop is broken; if the hum stops, you have confirmed a ground loop rather than a faulty cable.</li>
+      <li><strong>4. Swap the interconnect</strong> for a known-good one. A broken shield connection at one end produces hum that looks exactly like a ground loop.</li>
+      <li><strong>5. Move the cables.</strong> Separate mains leads from signal cables, and cross them at right angles rather than running them in parallel. Induction into a signal cable from a nearby power cable or transformer is common and free to fix.</li>
+      <li><strong>6. Try one outlet.</strong> Plugging everything into the same mains outlet or distribution block puts all the earths at nearly the same potential and eliminates a large class of loops.</li>
+    </ul>
 
-    <h2>Damping Factor — Speaker Control</h2>
+    <p>Turntables deserve a special mention, because they are the most frequent source of hum and usually for a benign reason: the separate thin earth wire from the deck to the phono stage's ground terminal is missing, loose, or connected to the wrong place. Before suspecting anything else, check that wire. If a turntable hums <em>only</em> with the earth wire connected, try instead removing it &mdash; some decks with a fully earthed arm create a loop when the extra wire is also fitted.</p>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Damping Factor (dimensionless ratio)</h3>
-      <p>Damping factor is the ratio of the speaker's nominal impedance to the amplifier's output impedance. A damping factor of 150 means the amp's output impedance is 1/150th of the speaker's impedance, giving the amplifier strong electrical control over the speaker cone's motion. Low damping factor results in bass that is loose and slow; very high damping factor (above 100) offers diminishing returns in most practical systems.</p>
-    </div>
+    <h2>The Fix That You Must Not Use</h2>
 
-    <h2>Peak Current Delivery</h2>
+    <p>Almost every forum thread about hum eventually recommends a "ground lift" adapter or cutting the earth pin. This works, and it is dangerous. The mains earth exists so that a fault inside a component &mdash; a live wire touching the chassis &mdash; blows a fuse or trips a breaker instead of leaving the metalwork live. Remove that path and the chassis can sit at mains potential with nothing to indicate it, and the next thing to touch it may be you.</p>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Peak Current (Amps per Channel)</h3>
-      <p>The maximum instantaneous current the amplifier can deliver to the speaker load. This determines how well the amplifier controls difficult, low-impedance speakers and reproduces transient musical peaks. A 100 W amplifier with 30 A peak current delivery will sound more dynamic and composed on complex program material than a 100 W amplifier limited to 15 A, particularly with demanding 4&nbsp;&Omega; or lower-impedance loads.</p>
-    </div>
+    <div class="callout"><p><strong>Never disconnect a mains earth to cure hum.</strong> There is always a safe alternative that addresses the same loop, and every one of them is described below. If none of them works, the fault is in a component and wants a technician, not a lifted earth.</p></div>
 
-    <!-- Gain/Sensitivity illustration -->
-<div style="background:var(--dark);border-radius:var(--radius);padding:28px;margin:28px 0;overflow-x:auto;">
-  <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;">Amplifier Signal Path</p>
-  <svg viewBox="0 0 560 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;display:block;margin:0 auto;" fill="none">
-    <!-- Preamp box -->
-    <rect x="4" y="30" width="110" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-    <text x="59" y="56" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700" font-family="system-ui">PREAMP</text>
-    <text x="59" y="72" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Output: 2 V RMS</text>
-    <text x="59" y="84" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Z-out: 200 Ω</text>
-    <!-- Arrow 1 -->
-    <line x1="114" y1="60" x2="148" y2="60" stroke="#60a5fa" stroke-width="2"/>
-    <polyline points="144,55 150,60 144,65" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="131" y="50" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="8" font-family="system-ui">RCA/XLR</text>
-    <!-- Power amp box -->
-    <rect x="150" y="20" width="130" height="80" rx="8" fill="#1e293b" stroke="#60a5fa" stroke-width="2"/>
-    <text x="215" y="50" text-anchor="middle" fill="#60a5fa" font-size="11" font-weight="700" font-family="system-ui">POWER AMP</text>
-    <text x="215" y="65" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Sensitivity: 1 V → full output</text>
-    <text x="215" y="78" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">Z-in: 33 kΩ</text>
-    <text x="215" y="91" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700" font-family="system-ui">Gain: 28 dB</text>
-    <!-- Arrow 2 -->
-    <line x1="280" y1="60" x2="316" y2="60" stroke="#60a5fa" stroke-width="2"/>
-    <polyline points="312,55 318,60 312,65" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="298" y="50" text-anchor="middle" fill="rgba(255,255,255,.35)" font-size="8" font-family="system-ui">Speaker wire</text>
-    <!-- Speaker box -->
-    <rect x="318" y="30" width="110" height="60" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
-    <text x="373" y="56" text-anchor="middle" fill="#93c5fd" font-size="10" font-weight="700" font-family="system-ui">SPEAKERS</text>
-    <text x="373" y="70" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">8 Ω / 88 dB</text>
-    <text x="373" y="82" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9" font-family="system-ui">150 W/ch</text>
-    <!-- Ratio indicator -->
-    <rect x="440" y="24" width="116" height="72" rx="8" fill="rgba(37,99,235,.12)" stroke="#2563eb" stroke-width="1" stroke-dasharray="4,3"/>
-    <text x="498" y="44" text-anchor="middle" fill="#60a5fa" font-size="10" font-weight="700" font-family="system-ui">10:1 Rule</text>
-    <text x="498" y="58" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="9" font-family="system-ui">Z-in ÷ Z-out</text>
-    <text x="498" y="71" text-anchor="middle" fill="#34d399" font-size="11" font-weight="700" font-family="system-ui">33k ÷ 200</text>
-    <text x="498" y="84" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700" font-family="system-ui">= 165 ✓</text>
-  </svg>
-</div>
-<h2>Quick Reference: Amplifier Specs at a Glance</h2>
+    <h2>The Fixes That Are Safe</h2>
+
+    <p>Ordered from simplest and cheapest upwards, these address the loop without touching protective earthing.</p>
+
+    <p><strong>Single point of connection.</strong> Run everything from one outlet via a good-quality distribution block. This is free, safe and resolves a large proportion of cases outright.</p>
+
+    <p><strong>Cable dressing.</strong> Physically separate signal and mains cables, avoid coiling excess mains lead beside interconnects, and keep signal cables away from transformers &mdash; including the one in your own power amplifier.</p>
+
+    <p><strong>Break the loop optically.</strong> Where the offending device is a computer, television or console, an optical S/PDIF connection carries the audio on light and creates no electrical path at all. This is the cleanest fix available and costs the price of a TOSLINK cable.</p>
+
+    <p><strong>Use balanced connections.</strong> XLR interconnects carry the signal on two conductors and reject anything common to both, including circulating ground currents. Where both components offer balanced connections, using them frequently solves the problem by design.</p>
+
+    <p><strong>Fit an audio isolation transformer.</strong> An inline transformer on the signal line passes audio magnetically while breaking the electrical continuity of the shield. This is the standard fix for a stubborn loop &mdash; particularly on cable television feeds, which are a notorious cause &mdash; and it keeps every mains earth intact. Choose one rated for line level and expect a small insertion loss.</p>
+
+    <p><strong>Use a DI box or galvanic USB isolator</strong> where the loop involves a computer's USB connection; the isolator breaks the ground path in the data link itself.</p>
+
+    <h2>When It Is Not a Loop at All</h2>
+
+    <p>Three other causes look like hum and are fixed differently. <strong>Radio-frequency interference</strong> arriving on a long unshielded run tends to produce a buzz rather than a hum and sometimes audible broadcast content; ferrite clamps and shorter, better-shielded cables help. <strong>Mechanical transformer hum</strong> comes from the component itself rather than the speakers &mdash; if you can hear it with the speakers disconnected, it is the transformer's laminations vibrating, often provoked by DC on the mains from a nearby appliance. <strong>Dirty mains</strong> from dimmers and switch-mode devices produces a buzz that comes and goes with the offending appliance; the test is to switch things off around the house one at a time.</p>
+
+    <p>The distinguishing question in all three cases is simple: does the noise come out of the speakers, or out of the box? Noise from the box is mechanical and does not respond to any signal-path fix.</p>
+
+    <h2>Quick Reference: Symptom to Cause</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <thead><tr><th>Symptom</th><th>Likely Cause</th><th>First Thing to Try</th></tr></thead>
       <tbody>
-        <tr><td>Power Output (RMS)</td><td>Continuous power into a stated load</td><td>Both channels driven, at your speaker's impedance</td></tr>
-        <tr><td>Input Sensitivity</td><td>Voltage needed for full output</td><td>Must match your preamp's output voltage</td></tr>
-        <tr><td>Input Impedance</td><td>Load presented to the preamp</td><td>&ge;10&times; preamp output impedance; higher is better</td></tr>
-        <tr><td>Damping Factor</td><td>Amplifier's speaker control</td><td>&gt;50 is adequate; &gt;100 is good</td></tr>
-        <tr><td>Peak Current</td><td>Instantaneous current capability</td><td>Higher = better control of demanding loads</td></tr>
-        <tr><td>THD (full output)</td><td>Distortion at maximum power</td><td>&lt;0.1% is excellent; specification must be at full output</td></tr>
-        <tr><td>SNR</td><td>Noise floor relative to rated output</td><td>&gt;95 dB A-weighted is very good</td></tr>
+        <tr><td>Smooth hum at mains frequency, tracks volume</td><td>Ground loop via a source component</td><td>All devices on one outlet; disconnect sources one at a time</td></tr>
+        <tr><td>Hum constant regardless of volume</td><td>Entering after the volume control</td><td>Check power amplifier earthing and its own mains feed</td></tr>
+        <tr><td>Hum only with the turntable connected</td><td>Missing, loose or duplicated deck earth wire</td><td>Check the ground wire; try with and without it</td></tr>
+        <tr><td>Harsh buzz with harmonics</td><td>Dimmers, chargers, switch-mode supplies on the mains</td><td>Switch off suspect appliances one at a time</td></tr>
+        <tr><td>Hum appears when a TV or computer is connected</td><td>Loop through a noisy digital device</td><td>Use an optical connection or a USB isolator</td></tr>
+        <tr><td>Noise audible from the component, not the speakers</td><td>Mechanical transformer hum, often DC on the mains</td><td>Identify the appliance causing it; consider a DC blocker</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your amplifier's compatibility</h3>
-      <p>Enter your amplifier, speakers, and preamplifier to get a full compatibility analysis including impedance ratios, gain staging, and power headroom.</p>
-      <a href="/#analyzer">Run a Free Analysis →</a>
+      <h3>Diagnose your chain</h3>
+      <p>Enter your components for a free analysis of grounding, connection types, and where in the signal path noise is most likely to be entering.</p>
+      <a href="/#analyzer">Run a Free Analysis &rarr;</a>
     </div>
 
     <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
 
     <h2>More Guides</h2>
     <div class="guide-nav">
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
-      <a href="/guides/speakers">Speaker Matching →</a>
-      <a href="/guides/cartridges">Cartridge Guide →</a>
-      <a href="/guides/dacs">DAC Guide →</a>
-      <a href="/glossary">Glossary →</a>
+        <a href="/guides/power-conditioning">Power &amp; AC Conditioning &rarr;</a>
+        <a href="/guides/balanced-vs-unbalanced">Balanced vs Unbalanced &rarr;</a>
+        <a href="/guides/cables">Cables Guide &rarr;</a>
+        <a href="/guides/phono-stages">Phono Stage Guide &rarr;</a>
+        <a href="/guides/turntables">Turntable Guide &rarr;</a>
     </div>
 
   </div>
