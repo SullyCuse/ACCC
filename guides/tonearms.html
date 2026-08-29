@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tonearm Guide: Mass and Geometry — AudioChainHiFi.com</title>
+<meta name="description" content="How tonearm effective mass, bearing type and geometry decide which cartridges will work, why the mass-compliance resonance matters, and what to look for.">
+<meta property="og:title" content="Tonearm Guide: Mass and Geometry — AudioChainHiFi.com">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://audiochainhifi.com/guides/tonearms">
+<meta name="robots" content="index, follow">
+<meta property="article:published_time" content="2026-08-11T00:00:00Z">
+<meta property="article:modified_time" content="2026-08-11T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/tonearms">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="8f5DDg+G0zc1jrT50lQWJw" async></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#eff6ff;--indigo:#4f46e5;--dark:#0f172a;--dark-2:#1e293b;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;--border:#e2e8f0;--cream:#f8fafc;--white:#ffffff;--font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:12px;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;}
+.container{max-width:780px;margin:0 auto;padding:0 24px;}
+.container-wide{max-width:1100px;margin:0 auto;padding:0 24px;}
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:15px;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
+.page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:64px 0 52px;text-align:center;}
+.guide-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:14px;}
+.page-hero h1{font-size:clamp(26px,4vw,42px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;}
+.page-hero { position:relative; overflow:hidden; }
+.hero-bg-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.18; z-index:0; }
+.page-hero .container { position:relative; z-index:1; }
+.page-hero .lede{font-size:17px;color:rgba(255,255,255,.65);max-width:620px;margin:0 auto;line-height:1.75;}
+.guide-date{font-size:12px;color:rgba(255,255,255,.4);margin-top:12px;}
+.article-body{padding:60px 0 80px;}
+.article-body h2{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.02em;margin:40px 0 12px;}
+.article-body h3{font-size:17px;font-weight:700;color:var(--text);margin:28px 0 10px;}
+.article-body p{font-size:15px;color:var(--text-2);line-height:1.85;margin-bottom:16px;}
+.article-body ul{padding-left:22px;margin-bottom:16px;}
+.article-body li{font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:6px;}
+.article-body strong{color:var(--text);font-weight:700;}
+.spec-card{background:var(--cream);border-radius:var(--radius);padding:24px 28px;margin:24px 0;border-left:4px solid var(--blue);}
+.spec-card .spec-name{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.spec-card h3{font-size:17px;font-weight:800;color:var(--text);margin-bottom:10px;}
+.spec-card p{font-size:14px;color:var(--text-2);line-height:1.8;margin:0;}
+.callout{background:var(--blue-lt);border-radius:var(--radius);padding:20px 24px;margin:24px 0;}
+.callout p{font-size:14px;color:var(--text-2);margin:0;}
+.callout strong{color:var(--blue);}
+.spec-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+.spec-table th{background:var(--dark);color:#fff;padding:10px 14px;text-align:left;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.spec-table td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;}
+.spec-table tr:nth-child(even) td{background:var(--cream);}
+.spec-table td:first-child{font-weight:600;color:var(--text);}
+.cta-block{background:linear-gradient(135deg,var(--blue),var(--indigo));border-radius:16px;padding:36px;text-align:center;margin:48px 0;}
+.cta-block h3{font-size:20px;font-weight:800;color:#fff;margin-bottom:10px;}
+.cta-block p{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:20px;}
+.cta-block a{display:inline-block;background:#fff;color:var(--blue);font-weight:700;font-size:14px;padding:12px 28px;border-radius:8px;text-decoration:none;}
+.guide-nav{display:flex;flex-wrap:wrap;gap:12px;margin:40px 0;}
+.guide-nav a{font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;background:var(--blue-lt);padding:8px 16px;border-radius:8px;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+.more-guides-top{margin:0 0 36px;padding-bottom:28px;border-bottom:1px solid #e2e8f0;}
+.more-guides-heading{font-size:20px;font-weight:800;color:var(--text);margin:0 0 16px;letter-spacing:-.02em;}
+.ad-unit{display:none;/*ADS-HIDDEN-PENDING-APPROVAL*/padding:24px 0;}
+.ad-unit-inner{background:var(--cream);border-radius:var(--radius);padding:16px;text-align:center;}
+.ad-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);display:block;margin-bottom:4px;}
+.footer{background:var(--dark);padding:48px 0 28px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Tonearm Guide: Effective Mass and Geometry",
+  "description": "A guide to tonearms - effective mass and the mass-compliance resonance, bearing types, pivoted versus linear tracking, effective length and offset angle, and how to match an arm to a cartridge and a deck.",
+  "author": {
+    "@type": "Person",
+    "name": "Sully",
+    "url": "https://audiochainhifi.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AudioChainHiFi.com",
+    "url": "https://audiochainhifi.com"
+  },
+  "datePublished": "2026-08-11",
+  "dateModified": "2026-08-11",
+  "mainEntityOfPage": "https://audiochainhifi.com/guides/tonearms"
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="15.5" fill="none" stroke="#3b82f6" stroke-width="1"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/><circle cx="9" cy="13" r="2" fill="#fbbf24"/><circle cx="27" cy="13" r="2" fill="#34d399"/></svg>
+      <span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Analyzer</a>
+      <a href="/calculators/">Calculators</a>
+      <a href="/compare">Compare</a>
+      <a href="/glossary">Glossary</a>
+      <div class="nav-dropdown">
+        <a href="/guides/" class="active">Guides ▾</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides/#getting-started">Getting Started</a>
+          <a href="/guides/#amplifiers">Amplifiers</a>
+          <a href="/guides/#speakers-room">Speakers &amp; Room</a>
+          <a href="/guides/#vinyl">Turntables &amp; Vinyl</a>
+          <a href="/guides/#digital">Digital Audio</a>
+          <a href="/guides/#headphones-power">Headphones &amp; Power</a>
+          <a href="/guides/" style="border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:10px;color:#60a5fa;font-weight:700;">View all 43 guides →</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/contact">Contact</a>
+      <a href="/#analyzer" class="nav-cta">Start Analysis →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=1600&q=80" alt="Turntable tonearm and headshell over a record">
+    <div class="guide-label">Vinyl Guide</div>
+    <h1>Tonearm Guide: Effective Mass and Geometry</h1>
+    <p class="lede">The tonearm has one job that sounds simple and is not: hold a cartridge steady while letting it trace a groove that moves. Effective mass, bearings and geometry decide how well it manages.</p>
+    <p class="guide-date">By <a href="/about" style="color:#60a5fa;text-decoration:none;">Sully</a> &middot; Published August 2026</p>
+  </div>
+</div>
+
+<main class="article-body">
+  <div class="container">
+
+    <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
+
+    <div class="more-guides-top">
+      <p class="more-guides-heading">More Guides</p>
+      <div class="guide-nav">
+        <a href="/guides/turntables">Turntable Guide &rarr;</a>
+        <a href="/guides/cartridges">Cartridge Guide &rarr;</a>
+        <a href="/guides/cartridge-setup">Cartridge Setup &rarr;</a>
+        <a href="/guides/phono-stages">Phono Stage Guide &rarr;</a>
+        <a href="/compare">Compare Components &rarr;</a>
+      </div>
+    </div>
+
+    <p>Of the three parts of a record player &mdash; deck, arm and cartridge &mdash; the tonearm attracts the least attention and constrains the most. A cartridge can be swapped in an afternoon; the arm decides which cartridges are worth swapping to. Its job is a contradiction: hold the cartridge rigidly enough that only the stylus moves, while offering so little resistance that the stylus can follow groove modulations weighing fractions of a gram. Everything in tonearm design is an attempt to resolve that contradiction, and the specifications follow from it.</p>
+
+    <h2>Effective Mass: The Number That Decides Compatibility</h2>
+
+    <p><strong>Effective mass</strong> is the inertia the stylus sees when it tries to move the arm, expressed in grams and measured at the stylus tip. It is not the arm's weight &mdash; a heavy counterweight close to the pivot contributes very little, while a modest increase in headshell mass at the far end contributes a great deal, because inertia scales with the square of the distance from the pivot.</p>
+
+    <p>Arms are usually grouped into three ranges. <strong>Low mass</strong> is roughly under 10&nbsp;g, <strong>medium mass</strong> around 10&ndash;18&nbsp;g, and <strong>high mass</strong> above about 18&nbsp;g. Most modern arms sit in the medium band, which is the most broadly compatible place to be.</p>
+
+    <p>The reason the number matters is that the arm and cartridge together form a spring-mass system. The cartridge's suspension is the spring; the arm's effective mass plus the cartridge's own mass is the mass. Like any such system it has a resonant frequency, and where that frequency falls determines whether the combination works.</p>
+
+    <div class="spec-card">
+      <div class="spec-name">The Critical Calculation</div>
+      <h3>Landing the Resonance Between 8 and 12&nbsp;Hz</h3>
+      <p>The mass-compliance resonance should sit in a window between roughly <strong>8 and 12&nbsp;Hz</strong>. Above about 15&nbsp;Hz it starts to intrude on the lowest musical content, colouring the bass. Below about 7&nbsp;Hz it falls into the region of warped records, footfalls and turntable rumble, where it will be excited constantly &mdash; producing visible cone flapping and audible instability. The resonant frequency falls as either effective mass or compliance rises, which gives the pairing rule: <strong>high-compliance cartridges need low-mass arms, and low-compliance cartridges need high-mass arms</strong>.</p>
+    </div>
+
+    <p>The calculation itself is straightforward. Add the cartridge mass and any headshell screws to the arm's effective mass to get the total moving mass, then combine that with the cartridge's dynamic compliance at 10&nbsp;Hz. A cartridge of 8&nbsp;g and compliance around 10&nbsp;&micro;m/mN wants a heavy arm; a 5&nbsp;g cartridge with compliance of 25 wants a light one. Note the frequency at which compliance is quoted &mdash; some manufacturers publish figures at 100&nbsp;Hz, which run lower than the 10&nbsp;Hz figure the calculation needs, and mixing the two produces nonsense.</p>
+
+    <h2>Bearings: Where Rigidity and Freedom Compete</h2>
+
+    <p>The bearing is the arm's pivot, and its quality sets the floor for everything else. It must permit motion in two axes with essentially no friction while allowing no play in any other direction. Those goals conflict, and different designs weigh them differently.</p>
+
+    <p><strong>Gimballed</strong> bearings use two sets of pivots at right angles, usually with precision ball races, giving independent and well-controlled motion in both planes. They are the most common design, they are rigid in the directions that matter, and their quality is set by the tolerance of the races: play in a gimbal bearing is audible as smeared images and vague bass.</p>
+
+    <p><strong>Unipivot</strong> arms balance the whole armtube on a single point, usually a hardened tip in a cup. Friction is extremely low and the design is elegant, but the arm is free to rotate about its long axis, which makes azimuth adjustment both possible and necessary. Unipivots often feel wobbly in the hand and behave perfectly in the groove; the trade is more setup sensitivity for less bearing friction.</p>
+
+    <p><strong>Knife-edge</strong> bearings support the vertical axis on a hardened edge resting in a trough, giving very low friction with more lateral stability than a unipivot. Less common now but used on some highly regarded arms.</p>
+
+    <h2>Geometry: Effective Length, Overhang and Offset</h2>
+
+    <p>A pivoted arm swings through an arc while the cutting lathe that made the record moved in a straight line. That mismatch cannot be eliminated, only minimised, and tonearm geometry is the art of minimising it.</p>
+
+    <p>Three quantities describe the arrangement. <strong>Effective length</strong> is the distance from the pivot to the stylus. <strong>Overhang</strong> is how far the stylus extends past the spindle when swung across it. <strong>Offset angle</strong> is the angle by which the cartridge is turned in the headshell. Together they determine the two points across the record where the stylus is exactly tangential to the groove &mdash; the <strong>null points</strong> &mdash; and how much tracking error remains everywhere else.</p>
+
+    <p>Longer arms reduce the residual error because they trace a flatter arc: a 12-inch arm has meaningfully lower maximum tracking error than a 9-inch one. The offsetting cost is higher effective mass, since the extra length adds inertia, and greater sensitivity to bearing quality because errors are amplified over the longer tube. Nine to ten inches remains the practical mainstream; twelve-inch arms suit heavier, low-compliance cartridges where the extra mass is welcome anyway.</p>
+
+    <div class="callout"><p><strong>Alignment geometry is a choice, not a constant.</strong> Baerwald, L&ouml;fgren B and Stevenson are three standard alignments, and they place the null points differently &mdash; Baerwald minimises average distortion across the side, Stevenson pushes a null point right to the inner groove where tracking is hardest. Use the alignment your arm's manufacturer specifies, since overhang and offset are designed together, and use a protractor built for that geometry.</p></div>
+
+    <h2>Linear Tracking and Other Approaches</h2>
+
+    <p><strong>Linear tracking</strong> arms sidestep the geometry problem entirely by moving the cartridge in a straight line across the record, exactly as the lathe did. Tracking error falls to essentially zero and there is no skating force to compensate for. The engineering cost is significant: the carriage must move with very low friction and be driven or allowed to advance smoothly, and air-bearing designs need a pump. They are superb when properly implemented and demanding to keep that way.</p>
+
+    <p>Two other variables are worth knowing. <strong>Armtube material</strong> &mdash; aluminium, carbon fibre, wood, magnesium &mdash; is a balance between stiffness, mass and internal damping; there is no single best answer, and a well-damped moderate material often beats a stiffer but more resonant one. <strong>Adjustability</strong> matters more than any material claim: an arm that lets you set VTA, azimuth and overhang precisely will outperform a theoretically superior arm you cannot set up correctly.</p>
+
+    <h2>Anti-Skate and the Sideways Force</h2>
+
+    <p>Because a pivoted arm holds the cartridge at an offset angle, friction between stylus and groove produces a net force pulling the arm towards the record's centre. Left uncorrected, this <strong>skating force</strong> presses the stylus harder against the inner groove wall than the outer, producing channel imbalance, uneven wear and mistracking that usually shows up on the right channel first.</p>
+
+    <p>Anti-skate applies a counterforce, by spring, magnet or hanging weight and thread. Thread-and-weight mechanisms are the most transparent to set and the least prone to drift; spring mechanisms are convenient and can lose calibration over years. The correct amount is roughly proportional to tracking force but varies with stylus profile and groove modulation, so the dial marking is a starting point rather than a setting &mdash; a test record, or careful listening for the balance point between channels on heavily modulated inner grooves, gets you closer.</p>
+
+    <h2>Choosing an Arm, or Choosing Around One</h2>
+
+    <p>Most people do not buy a tonearm in isolation; they buy a turntable with an arm fitted, and then choose cartridges to suit. That order is fine, provided the arm's effective mass is known and used as a filter.</p>
+
+    <ul>
+      <li><strong>Find the effective mass first.</strong> It is published for almost every arm; without it you cannot predict compatibility.</li>
+      <li><strong>Filter cartridges by the resonance calculation</strong> before considering anything else about them. A cartridge that lands the pair outside 8&ndash;12&nbsp;Hz is the wrong cartridge, however good it is.</li>
+      <li><strong>Check the bearings by feel.</strong> With the counterweight off, the arm should move freely in both planes with no perceptible play or grittiness.</li>
+      <li><strong>Prefer adjustability.</strong> VTA on the fly, azimuth adjustment and a proper anti-skate mechanism are worth more in practice than exotic materials.</li>
+      <li><strong>Spend on the arm before the cartridge.</strong> A good arm will support progressively better cartridges for years; a poor one caps every cartridge you fit to it.</li>
+    </ul>
+
+    <h2>Quick Reference: Tonearm Specifications</h2>
+
+    <table class="spec-table">
+      <thead><tr><th>Specification</th><th>Typical Range</th><th>What It Governs</th></tr></thead>
+      <tbody>
+        <tr><td>Effective mass</td><td>5&ndash;25&nbsp;g</td><td>Which cartridge compliances will work; the resonant frequency</td></tr>
+        <tr><td>Mass-compliance resonance</td><td>Target 8&ndash;12&nbsp;Hz</td><td>Stability against warps and rumble without colouring the bass</td></tr>
+        <tr><td>Effective length</td><td>9&ndash;12&nbsp;in</td><td>Residual tracking error; longer arms track flatter but weigh more</td></tr>
+        <tr><td>Overhang</td><td>~15&ndash;19&nbsp;mm</td><td>Where the null points fall; set with the correct protractor</td></tr>
+        <tr><td>Offset angle</td><td>~20&ndash;24&deg;</td><td>Tangency across the arc; also the cause of skating force</td></tr>
+        <tr><td>Bearing type</td><td>Gimbal, unipivot, knife-edge</td><td>Friction versus rigidity; unipivots need azimuth setting</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cta-block">
+      <h3>Check your tonearm and cartridge match</h3>
+      <p>Enter your turntable, tonearm and cartridge for a free analysis of the mass-compliance resonance, loading, and gain through the rest of the chain.</p>
+      <a href="/#analyzer">Run a Free Analysis &rarr;</a>
+    </div>
+
+    <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
+
+    <h2>More Guides</h2>
+    <div class="guide-nav">
+        <a href="/guides/turntables">Turntable Guide &rarr;</a>
+        <a href="/guides/cartridges">Cartridge Guide &rarr;</a>
+        <a href="/guides/cartridge-setup">Cartridge Setup &rarr;</a>
+        <a href="/guides/phono-stages">Phono Stage Guide &rarr;</a>
+        <a href="/compare">Compare Components &rarr;</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
+        <p>Free AI-powered hi-fi compatibility analysis. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/glossary">Glossary</a></li><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/amplifiers">Amplifier Guide</a></li><li><a href="/guides/cartridges">Cartridge Guide</a></li></ul></div>
+      <div class="footer-col"><h4>Tool</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul><li><a href="https://www.stereophile.com" target="_blank" rel="noopener">Stereophile</a></li><li><a href="https://www.psaudio.com" target="_blank" rel="noopener">PS Audio</a></li><li><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

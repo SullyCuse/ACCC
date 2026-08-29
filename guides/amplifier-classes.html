@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Turntable Specs That Actually Matter — AudioChainHiFi.com</title>
-<meta name="description" content="Platter mass, wow and flutter, tonearm effective mass, and cartridge compliance — the turntable specs that determine real-world vinyl playback performance.">
-<meta property="og:title" content="Turntable Specs That Actually Matter — AudioChainHiFi.com">
+<title>Amplifier Classes: A, AB and D — AudioChainHiFi.com</title>
+<meta name="description" content="What Class A, AB, D, G and H actually mean, how each handles heat and efficiency, and what an amplifier class does and does not predict about how it sounds.">
+<meta property="og:title" content="Amplifier Classes: A, AB and D — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/turntables">
+<meta property="og:url" content="https://audiochainhifi.com/guides/amplifier-classes">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/turntables">
+<meta property="article:published_time" content="2026-07-25T00:00:00Z">
+<meta property="article:modified_time" content="2026-07-25T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/amplifier-classes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -93,8 +93,8 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Turntables: The Specs That Actually Matter",
-  "description": "Wow and flutter gets the headlines, but tonearm effective mass and cartridge compliance matching determine whether your vinyl playback will sound composed or congested.",
+  "headline": "Amplifier Classes: A, AB and D Explained",
+  "description": "A clear explanation of amplifier output classes - A, AB, D, G and H - covering conduction angle, crossover distortion, switching operation, efficiency and heat, and an honest assessment of what class predicts about the sound you will hear.",
   "author": {
     "@type": "Person",
     "name": "Sully",
@@ -105,9 +105,9 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "name": "AudioChainHiFi.com",
     "url": "https://audiochainhifi.com"
   },
-  "datePublished": "2026-04-01",
-  "dateModified": "2026-05-01",
-  "mainEntityOfPage": "https://audiochainhifi.com/guides/turntables"
+  "datePublished": "2026-07-25",
+  "dateModified": "2026-07-25",
+  "mainEntityOfPage": "https://audiochainhifi.com/guides/amplifier-classes"
 }
 </script>
 </head>
@@ -146,11 +146,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=1600&q=80" alt="Vinyl record and turntable">
-    <div class="guide-label">Component Guide</div>
-    <h1>Turntables: The Specs That Actually Matter</h1>
-    <p class="lede">Wow and flutter gets the headlines, but tonearm effective mass and cartridge compliance matching determine whether your vinyl playback will sound composed or congested.</p>
-    <p class="guide-date">By <a href="/about" style="color:#60a5fa;text-decoration:none;">Sully</a> &middot; Published April 2026 &middot; Updated May 2026</p>
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1610003498510-6e2e1f6d0d6f?auto=format&fit=crop&w=1600&q=80" alt="Hi-fi amplifier components on a rack">
+    <div class="guide-label">Amplifier Guide</div>
+    <h1>Amplifier Classes: A, AB and D Explained</h1>
+    <p class="lede">Class A, Class AB, Class D: three letters that describe how an output stage handles the waveform, and that get used as shorthand for sound quality far more confidently than the engineering justifies.</p>
+    <p class="guide-date">By <a href="/about" style="color:#60a5fa;text-decoration:none;">Sully</a> &middot; Published July 2026</p>
   </div>
 </div>
 
@@ -162,112 +162,101 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/cartridges">Cartridge Guide →</a>
-        <a href="/guides/phono-stages">Phono Stage Guide →</a>
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/glossary">Glossary →</a>
+        <a href="/guides/amplifiers">Amplifier Guide &rarr;</a>
+        <a href="/guides/tubes">Tubes vs Solid-State &rarr;</a>
+        <a href="/guides/amplifier-speaker-matching">Amp &amp; Speaker Matching &rarr;</a>
+        <a href="/calculators/amplifier-power">Power Calculator &rarr;</a>
+        <a href="/compare">Compare Components &rarr;</a>
       </div>
     </div>
 
-    <p>A turntable's job is to rotate a record at a precise, constant speed while a cartridge traces the groove. Every specification flows from that deceptively simple requirement. The specs that affect real-world performance — tonearm mass, platter inertia, and bearing quality — are rarely the ones emphasised in marketing.</p>
+    <p>Read any amplifier review and you will meet a letter: Class A, Class AB, Class D. The letter describes one specific thing &mdash; how the output devices behave across the audio waveform &mdash; and it has real consequences for efficiency, heat, size and cost. What it does not do is settle how an amplifier sounds. Excellent and mediocre amplifiers exist in every class, and the gap between two implementations of the same class is routinely larger than the gap between classes. This guide explains what each letter actually means, then draws the line between what the class predicts and what it does not.</p>
 
-    <h2>Platter: Mass, Material, and Speed Stability</h2>
+    <h2>What "Class" Is Describing</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Platter Mass (kg)</h3>
-      <p>A heavier platter stores more rotational kinetic energy, which acts as a mechanical flywheel against speed variations. A 1 kg platter and a 5 kg platter driven by identical motors will behave very differently when the stylus encounters groove modulations — the lighter platter is more susceptible to instantaneous drag pulling at the speed. Meaningful platter mass for a performance turntable starts around 1.5&ndash;2 kg; high-end tables commonly use 5&ndash;10 kg. The material matters too: acrylic and glass damp resonances differently than aluminium or alloy.</p>
-    </div>
+    <p>An amplifier's output stage has to reproduce a signal that swings above and below zero. The classification describes how much of that waveform each output device conducts for &mdash; the <strong>conduction angle</strong> &mdash; and, in the case of Class D, whether the devices are behaving as linear amplifiers at all.</p>
 
-    <p>Platter material interacts with record coupling. Acrylic platters sit close to the acoustic impedance of vinyl, which can reduce resonance at the record&ndash;platter interface. Some tables use a felt or rubber mat to achieve similar effects with a metal platter. The interaction between record, mat, and platter is subtle but measurable.</p>
-
-    <h2>Motor Type: Belt, Direct, and Idler Drive</h2>
+    <p>Think of it as a spectrum with a trade-off at each end. Keeping output devices conducting all the time is linear and free of a particular kind of distortion, but wastes enormous energy as heat. Switching them off when they are not needed is far more efficient, but introduces the problem of handing over cleanly between devices. Every class is a different answer to that trade.</p>
 
     <div class="spec-card">
-      <div class="spec-name">Drive Architecture</div>
-      <h3>Belt Drive</h3>
-      <p>The motor is isolated from the platter by a rubber or elastic belt. Motor vibration is mechanically decoupled, which typically gives low-frequency noise (rumble) figures. Belt compliance also acts as a filter for motor cogging — the small torque variations inherent in AC or DC motors. The tradeoff is lower rotational inertia in the belt itself and some speed elasticity. High-quality belt-drive tables compensate with a massive platter.</p>
+      <div class="spec-name">Class A</div>
+      <h3>Always Conducting, Always Hot</h3>
+      <p>The output devices conduct for the entire waveform &mdash; a full 360 degrees &mdash; and never switch off. Because no device is ever handing over to another, there is no crossover distortion at all, and the operating point stays in the most linear part of the device's range. The price is efficiency: typically <strong>20&ndash;30%</strong> at full output and far worse at normal listening levels, since the amplifier draws close to full current whether it is playing loudly or sitting idle. A 25&nbsp;W Class A amplifier can dissipate well over 100&nbsp;W of heat continuously. That means large heatsinks, heavy power supplies, high cost per watt, and a real electricity bill.</p>
     </div>
 
     <div class="spec-card">
-      <div class="spec-name">Drive Architecture</div>
-      <h3>Direct Drive</h3>
-      <p>The motor drives the platter directly, typically via a servo-controlled brushless DC motor. Servo feedback maintains precise speed against drag variations, which matters for DJ use and for tables used with heavy tracking-force cartridges. Modern high-quality direct-drive tables (such as the Technics SP-10 lineage) achieve rumble figures competitive with the best belt-drives. The older reputation for cogging noise applied to 1970s motor technology and is largely obsolete.</p>
+      <div class="spec-name">Class AB</div>
+      <h3>The Practical Compromise</h3>
+      <p>Each output device conducts for slightly more than half the waveform &mdash; the two halves overlap around the zero-crossing point. That small overlap, set by the amplifier's bias current, is what avoids the abrupt handover that would otherwise create <strong>crossover distortion</strong>. In effect a Class AB amplifier runs in Class A for the first fraction of a watt and transitions to Class B behaviour above that. Efficiency lands around <strong>50&ndash;65%</strong> at full output, heat is manageable, and the design has been refined for over half a century. It remains the mainstream choice for good reason.</p>
     </div>
 
     <div class="spec-card">
-      <div class="spec-name">Drive Architecture</div>
-      <h3>Idler Drive</h3>
-      <p>A rubber wheel contacts both the motor spindle and the inner edge of the platter, transmitting drive via friction. Idler-drive tables (Garrard, Lenco) produce very high rotational torque and platter inertia, and have a devoted following for their speed stability under load. Bearing wear in the idler wheel is the primary maintenance concern. Many vintage idler tables benefit significantly from a rebuild of the idler wheel and main bearing.</p>
+      <div class="spec-name">Class D</div>
+      <h3>Switching, Not "Digital"</h3>
+      <p>Class D output devices are not used as linear amplifiers at all. They switch fully on or fully off at a high frequency, with the ratio of on-time to off-time tracking the audio signal, and an output filter reconstructs the waveform. Because a switch that is fully on or fully off dissipates very little power, efficiency reaches <strong>85&ndash;95%</strong>. That yields small, cool, light, powerful amplifiers &mdash; which is why Class D dominates subwoofer plate amplifiers, active speakers and compact integrateds. The "D" stands for nothing; it is simply the next letter after C, and Class D is not a digital amplifier.</p>
     </div>
 
-    <h2>Wow and Flutter — Reading the Spec Honestly</h2>
+    <h2>Class G and Class H: Rail Switching</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Wow and Flutter (% weighted RMS)</h3>
-      <p>Wow is slow speed variation (below approximately 6 Hz); flutter is faster variation (6&ndash;200 Hz). Both are measured as a percentage of nominal speed and expressed as a weighted RMS figure. A figure of 0.05% or below is excellent and inaudible on most programme material. Figures above 0.1% can be audible as pitch instability on sustained piano or vocals. The weighting function used matters: WRMS (weighted RMS) is the most rigorous standard; peak figures can be 2&ndash;3&times; higher.</p>
-    </div>
+    <p>Two further classes turn up mainly in high-power amplifiers, and both are variations on the same idea: instead of running the output stage from one fixed high-voltage supply all the time, vary the supply to suit the signal.</p>
 
-    <p>Wow and flutter specs are frequently abused. A claim of "&lt;0.05%" may be a peak figure, not WRMS, or measured under laboratory conditions that differ from real-world operation. For a meaningful comparison, the measurement method should be stated. Tables with good bearing quality and adequate platter mass typically achieve low wow and flutter as a consequence — it is a symptom of mechanical quality, not a primary design target.</p>
+    <p><strong>Class G</strong> uses two or more fixed supply rails and switches to the higher one only when a loud passage demands it. <strong>Class H</strong> modulates the rail voltage continuously so it tracks just above the signal. Both keep a conventional linear (usually Class AB) output stage, so their behaviour resembles Class AB, but they waste far less power as heat during quiet passages. The result is high peak power without a huge heatsink &mdash; useful in professional amplifiers and some high-output home designs.</p>
 
-    <h2>Signal-to-Noise Ratio (Rumble)</h2>
+    <h2>What the Class Actually Predicts</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>SNR / Rumble (dB, DIN 45539 or IEC 98)</h3>
-      <p>Rumble is low-frequency noise generated by the main bearing and motor, transmitted through the platter to the stylus. It is expressed as a signal-to-noise figure in dB, typically DIN-weighted to match the frequencies of concern. A figure of &minus;70 dB or better is excellent. Below &minus;60 dB, rumble becomes difficult to hear on most programme material. The measurement standard matters: unweighted figures are typically 10&ndash;15 dB worse than the DIN-weighted figure, so always check which is being quoted.</p>
-    </div>
+    <p>The class reliably tells you about the physical and practical characteristics of an amplifier: how hot it runs, how much it weighs, how much power it can package into a given size, and roughly how much it costs per watt. Those are genuinely useful things to know when you are choosing a component for a real room and a real shelf.</p>
 
-    <h2>Tonearm Effective Mass and Cartridge Compliance</h2>
+    <p>What the class does <em>not</em> reliably predict is sound quality. A well-executed Class D amplifier can measure superbly and drive difficult loads with authority. A poorly-executed Class A amplifier with an inadequate power supply can sound worse than a competent Class AB at a third of the price. Modern Class D in particular has moved on enormously from its early reputation &mdash; output filter design, feedback around the filter, and switching-frequency choices have improved to the point where the best implementations are among the most transparent amplifiers available at any price.</p>
 
-    <div class="spec-card">
-      <div class="spec-name">Critical Compatibility Spec</div>
-      <h3>Resonant Frequency: Tonearm Effective Mass + Cartridge Compliance</h3>
-      <p>The tonearm and cartridge form a resonant system. The resonant frequency is determined by the tonearm's effective mass and the cartridge's dynamic compliance. The target resonant frequency is between 8 and 12 Hz — above the audio band (20 Hz) but below record warps (below 4 Hz). The formula is: F = 1000 &divide; (2&pi; &times; &radic;(M &times; C)), where M is effective mass in grams and C is dynamic compliance in 10&minus;&sup3; cm/dyne. A high-compliance cartridge (30 &times; 10&minus;&sup3; cm/dyne) requires a low-mass arm (8&ndash;12 g). A low-compliance MC cartridge (6 &times; 10&minus;&sup3; cm/dyne) needs a heavier arm (15&ndash;25 g).</p>
-    </div>
+    <div class="callout"><p><strong>The useful rule:</strong> treat the class as information about heat, size, efficiency and cost, not as a quality ranking. Then judge the specific amplifier on what actually matters for your system &mdash; power into <em>your</em> speakers' impedance, current delivery, noise floor, and how it behaves at the volumes you really use.</p></div>
 
-    <p>Compliance mismatch is the single most common cause of poor turntable system performance. A high-compliance cartridge on a heavy arm will have a resonant frequency below 8 Hz — warp energy excites the suspension, causing the cartridge to pump and lose bass control. A low-compliance MC on a lightweight arm resonates above 12 Hz, potentially overlapping the audio band and causing brightness or sibilance problems.</p>
+    <h2>Where Each Class Makes Practical Sense</h2>
 
-    <div class="callout">
-      <p><strong>Quick compliance check:</strong> Multiply effective arm mass (in grams) by cartridge compliance (in 10&minus;&sup3; cm/dyne). The product should be between 70 and 200 for a resonant frequency between 8 and 12 Hz. A product below 70 means the resonance is too high; above 200 means it is too low.</p>
-    </div>
+    <p>Because the classes differ mostly in physical consequences, matching them to circumstances is straightforward.</p>
 
-    <h2>Bearing Quality</h2>
+    <ul>
+      <li><strong>Class A</strong> suits low-power systems with sensitive speakers, in rooms where the heat is tolerable and running costs are not a concern. It is the least practical and the most romantic option.</li>
+      <li><strong>Class AB</strong> suits almost everything. It scales from modest integrateds to serious power amplifiers, delivers plenty of current for difficult loads, and manages heat without extreme measures.</li>
+      <li><strong>Class D</strong> suits high power in a small space, active speakers, subwoofers, multi-channel systems, and anywhere efficiency or heat is a constraint. It is also the sensible choice if the amplifier will be left switched on continuously.</li>
+      <li><strong>Class G and H</strong> suit high-output applications where peak capability matters more than average power &mdash; large rooms, insensitive speakers, and professional use.</li>
+    </ul>
 
-    <p>The main bearing supports the platter and must spin with minimal friction and zero vertical play. Bearing noise is the primary source of rumble. A well-made bearing uses a hardened steel spindle in a precision-bored brass or bronze housing, lubricated with a specific oil viscosity. Ball-bearing designs and inverted bearing designs (spindle points up, bearing sits in an oil cup) each have adherents. What matters practically is bearing play — there should be none detectable by hand, even after years of use.</p>
+    <p>One consequence worth planning for: a Class A amplifier needs genuine ventilation. Placing one in a closed cabinet is not a cosmetic decision but a reliability one, and the same caution applies at a lower level to high-bias Class AB designs.</p>
 
-    <h2>Quick Reference: Turntable Specs at a Glance</h2>
+    <h2>Bias, Idle Current and "First Watt" Class A</h2>
+
+    <p>A detail that causes confusion: many Class AB amplifiers are described as operating "in Class A for the first few watts". This is literally true and follows from how bias works. Below the current level set by the bias, both output devices are still conducting, so the amplifier is genuinely in Class A operation; above it, one device hands over to the other and it becomes Class AB.</p>
+
+    <p>Whether that matters depends on your listening level. With sensitive speakers at moderate volume, average power demand can genuinely sit within the first watt for much of the time &mdash; which is the argument behind high-bias designs. With insensitive speakers in a large room, the amplifier spends most of its time well outside that region and the distinction is academic. As so often, the answer depends on the speakers and the room rather than on the amplifier alone.</p>
+
+    <h2>Quick Reference: Classes Compared</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <thead><tr><th>Class</th><th>Operation</th><th>Efficiency</th><th>Typical Use</th></tr></thead>
       <tbody>
-        <tr><td>Platter Mass</td><td>Rotational flywheel inertia</td><td>&ge;1.5 kg for a performance table; heavier is better</td></tr>
-        <tr><td>Wow and Flutter</td><td>Speed variation, slow and fast</td><td>&le;0.05% WRMS; check the measurement method</td></tr>
-        <tr><td>Rumble (SNR)</td><td>Bearing and motor noise</td><td>&minus;70 dB or better, DIN-weighted</td></tr>
-        <tr><td>Effective Arm Mass</td><td>Tonearm inertia at headshell pivot</td><td>Must be matched to cartridge compliance</td></tr>
-        <tr><td>Cartridge Compliance</td><td>Stylus cantilever stiffness</td><td>High-compliance MM: low-mass arm; low-compliance MC: higher-mass arm</td></tr>
-        <tr><td>Resonant Frequency</td><td>Arm + cartridge system resonance</td><td>8&ndash;12 Hz target range</td></tr>
-        <tr><td>Drive Type</td><td>How the motor reaches the platter</td><td>Belt, direct, and idler are all viable; quality of execution matters more</td></tr>
+        <tr><td>Class A</td><td>Devices conduct for the full waveform; no crossover region</td><td>20&ndash;30%</td><td>Low-power designs with sensitive speakers; runs very hot</td></tr>
+        <tr><td>Class AB</td><td>Slight overlap around zero crossing, set by bias current</td><td>50&ndash;65%</td><td>Mainstream integrateds and power amplifiers</td></tr>
+        <tr><td>Class D</td><td>Devices switch fully on/off at high frequency; output filtered</td><td>85&ndash;95%</td><td>Subwoofers, active speakers, compact and high-power designs</td></tr>
+        <tr><td>Class G</td><td>Linear output stage with stepped supply rails</td><td>Better than AB</td><td>High-power amplifiers needing peak headroom</td></tr>
+        <tr><td>Class H</td><td>Linear output stage with continuously tracked rail voltage</td><td>Better than AB</td><td>Professional and high-output home amplifiers</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your turntable chain compatibility</h3>
-      <p>Enter your turntable, cartridge, phono stage, and amplifier to get a full signal-chain compatibility analysis including gain staging, loading, and impedance ratios.</p>
-      <a href="/#analyzer">Run a Free Analysis →</a>
+      <h3>Match an amplifier to your speakers</h3>
+      <p>Enter your amplifier and speakers and get a free analysis of power delivery, impedance loading, and whether the pairing has the headroom your room needs.</p>
+      <a href="/#analyzer">Run a Free Analysis &rarr;</a>
     </div>
 
     <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
 
     <h2>More Guides</h2>
     <div class="guide-nav">
-      <a href="/guides/cartridges">Cartridge Guide →</a>
-      <a href="/guides/phono-stages">Phono Stage Guide →</a>
-      <a href="/guides/amplifiers">Amplifier Guide →</a>
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
-      <a href="/glossary">Glossary →</a>
+        <a href="/guides/amplifiers">Amplifier Guide &rarr;</a>
+        <a href="/guides/tubes">Tubes vs Solid-State &rarr;</a>
+        <a href="/guides/amplifier-speaker-matching">Amp &amp; Speaker Matching &rarr;</a>
+        <a href="/calculators/amplifier-power">Power Calculator &rarr;</a>
+        <a href="/compare">Compare Components &rarr;</a>
     </div>
 
   </div>
@@ -280,7 +269,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
         <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
         <p>Free AI-powered hi-fi compatibility analysis. Powered by Claude AI from Anthropic.</p>
       </div>
-      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/glossary">Glossary</a></li><li><a href="/guides/first-hifi-system">Beginner&rsquo;s Guide</a></li><li><a href="/guides/amplifiers">Amplifier Guide</a></li><li><a href="/guides/cartridges">Cartridge Guide</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/glossary">Glossary</a></li><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/amplifiers">Amplifier Guide</a></li><li><a href="/guides/cartridges">Cartridge Guide</a></li></ul></div>
       <div class="footer-col"><h4>Tool</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li></ul></div>
       <div class="footer-col"><h4>Resources</h4><ul><li><a href="https://www.stereophile.com" target="_blank" rel="noopener">Stereophile</a></li><li><a href="https://www.psaudio.com" target="_blank" rel="noopener">PS Audio</a></li><li><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></li></ul></div>
     </div>

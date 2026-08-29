@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Turntable Specs That Actually Matter — AudioChainHiFi.com</title>
-<meta name="description" content="Platter mass, wow and flutter, tonearm effective mass, and cartridge compliance — the turntable specs that determine real-world vinyl playback performance.">
-<meta property="og:title" content="Turntable Specs That Actually Matter — AudioChainHiFi.com">
+<title>Jitter and Clocking Explained — AudioChainHiFi.com</title>
+<meta name="description" content="What jitter is, how it differs from data errors, why asynchronous USB and reclocking solve most of it, and when an external clock is worth considering.">
+<meta property="og:title" content="Jitter and Clocking Explained — AudioChainHiFi.com">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://audiochainhifi.com/guides/turntables">
+<meta property="og:url" content="https://audiochainhifi.com/guides/jitter-and-clocking">
 <meta name="robots" content="index, follow">
-<meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-05-27T00:00:00Z">
-<link rel="canonical" href="https://audiochainhifi.com/guides/turntables">
+<meta property="article:published_time" content="2026-08-27T00:00:00Z">
+<meta property="article:modified_time" content="2026-08-27T00:00:00Z">
+<link rel="canonical" href="https://audiochainhifi.com/guides/jitter-and-clocking">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -93,8 +93,8 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Turntables: The Specs That Actually Matter",
-  "description": "Wow and flutter gets the headlines, but tonearm effective mass and cartridge compliance matching determine whether your vinyl playback will sound composed or congested.",
+  "headline": "Jitter and Clocking Explained",
+  "description": "An explanation of jitter in digital audio - the difference between data integrity and timing accuracy, random versus correlated jitter, how S/PDIF clock recovery creates it, and how asynchronous USB, buffering and reclocking address it.",
   "author": {
     "@type": "Person",
     "name": "Sully",
@@ -105,9 +105,9 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "name": "AudioChainHiFi.com",
     "url": "https://audiochainhifi.com"
   },
-  "datePublished": "2026-04-01",
-  "dateModified": "2026-05-01",
-  "mainEntityOfPage": "https://audiochainhifi.com/guides/turntables"
+  "datePublished": "2026-08-27",
+  "dateModified": "2026-08-27",
+  "mainEntityOfPage": "https://audiochainhifi.com/guides/jitter-and-clocking"
 }
 </script>
 </head>
@@ -146,11 +146,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 <div class="page-hero">
   <div class="container">
-    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1461360228754-6e81c478b882?auto=format&fit=crop&w=1600&q=80" alt="Vinyl record and turntable">
-    <div class="guide-label">Component Guide</div>
-    <h1>Turntables: The Specs That Actually Matter</h1>
-    <p class="lede">Wow and flutter gets the headlines, but tonearm effective mass and cartridge compliance matching determine whether your vinyl playback will sound composed or congested.</p>
-    <p class="guide-date">By <a href="/about" style="color:#60a5fa;text-decoration:none;">Sully</a> &middot; Published April 2026 &middot; Updated May 2026</p>
+    <img class="hero-bg-img" src="https://images.unsplash.com/photo-1614149162883-504ce4d13909?auto=format&fit=crop&w=1600&q=80" alt="Digital audio waveform on a display">
+    <div class="guide-label">Digital Guide</div>
+    <h1>Jitter and Clocking Explained</h1>
+    <p class="lede">Jitter is timing error in the moment of conversion, and it is the one digital problem that a bit-perfect data stream cannot protect you from. It is also, in modern equipment, largely solved.</p>
+    <p class="guide-date">By <a href="/about" style="color:#60a5fa;text-decoration:none;">Sully</a> &middot; Published August 2026</p>
   </div>
 </div>
 
@@ -162,112 +162,107 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="more-guides-top">
       <p class="more-guides-heading">More Guides</p>
       <div class="guide-nav">
-        <a href="/guides/cartridges">Cartridge Guide →</a>
-        <a href="/guides/phono-stages">Phono Stage Guide →</a>
-        <a href="/guides/amplifiers">Amplifier Guide →</a>
-        <a href="/guides/first-hifi-system">Build Your First System →</a>
-        <a href="/glossary">Glossary →</a>
+        <a href="/guides/dacs">DAC Guide &rarr;</a>
+        <a href="/guides/digital-connections">Digital Connections &rarr;</a>
+        <a href="/guides/streamers">Network Streamers &rarr;</a>
+        <a href="/guides/digital-formats">Digital Formats &rarr;</a>
+        <a href="/guides/cd-players">CD Players &amp; Transports &rarr;</a>
       </div>
     </div>
 
-    <p>A turntable's job is to rotate a record at a precise, constant speed while a cartridge traces the groove. Every specification flows from that deceptively simple requirement. The specs that affect real-world performance — tonearm mass, platter inertia, and bearing quality — are rarely the ones emphasised in marketing.</p>
+    <p>Jitter occupies an odd place in audio discussion: it is invoked constantly, defined rarely, and used to justify a great deal of expenditure. The concept itself is simple and worth understanding properly, because it is the one respect in which a digital connection is not merely a data pipe. It is also, in well-designed modern equipment, largely a solved problem &mdash; which makes knowing what actually addresses it more valuable than knowing what claims to.</p>
 
-    <h2>Platter: Mass, Material, and Speed Stability</h2>
+    <h2>Timing, Not Data</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Platter Mass (kg)</h3>
-      <p>A heavier platter stores more rotational kinetic energy, which acts as a mechanical flywheel against speed variations. A 1 kg platter and a 5 kg platter driven by identical motors will behave very differently when the stylus encounters groove modulations — the lighter platter is more susceptible to instantaneous drag pulling at the speed. Meaningful platter mass for a performance turntable starts around 1.5&ndash;2 kg; high-end tables commonly use 5&ndash;10 kg. The material matters too: acrylic and glass damp resonances differently than aluminium or alloy.</p>
-    </div>
+    <p>Start with the distinction that clears up most confusion. Digital audio involves two separate things: <strong>which numbers arrive</strong>, and <strong>when each number is converted</strong> back to a voltage.</p>
 
-    <p>Platter material interacts with record coupling. Acrylic platters sit close to the acoustic impedance of vinyl, which can reduce resonance at the record&ndash;platter interface. Some tables use a felt or rubber mat to achieve similar effects with a metal platter. The interaction between record, mat, and platter is subtle but measurable.</p>
+    <p>The numbers are robust. Digital transmission has enormous noise margins, and in practice the data arrives bit-perfect or fails audibly &mdash; a dropout, a click, silence. There is no gradual degradation of the values themselves.</p>
 
-    <h2>Motor Type: Belt, Direct, and Idler Drive</h2>
+    <p>The timing is a different matter. A digital-to-analogue converter reconstructs a waveform by producing each sample's value at a precisely spaced moment, at exactly the sample rate. If those moments are not evenly spaced &mdash; if the clock that triggers them wobbles &mdash; the reconstructed waveform is distorted, even though every number was correct. That timing uncertainty is <strong>jitter</strong>, and it is measured in picoseconds.</p>
 
     <div class="spec-card">
-      <div class="spec-name">Drive Architecture</div>
-      <h3>Belt Drive</h3>
-      <p>The motor is isolated from the platter by a rubber or elastic belt. Motor vibration is mechanically decoupled, which typically gives low-frequency noise (rumble) figures. Belt compliance also acts as a filter for motor cogging — the small torque variations inherent in AC or DC motors. The tradeoff is lower rotational inertia in the belt itself and some speed elasticity. High-quality belt-drive tables compensate with a massive platter.</p>
+      <div class="spec-name">What It Sounds Like</div>
+      <h3>Sidebands, Not Noise</h3>
+      <p>Jitter does not add hiss. It <strong>modulates</strong> the signal, producing sidebands either side of every tone at frequencies determined by the jitter's own spectrum. Random jitter raises a low-level noise floor around the signal; <strong>correlated</strong> jitter &mdash; timing error that varies with the audio itself, which is what happens when a clock is recovered from an audio data stream &mdash; produces discrete, inharmonic sidebands that are far more audible for a given magnitude. This is why the <em>character</em> of jitter matters more than the raw picosecond figure.</p>
     </div>
 
-    <div class="spec-card">
-      <div class="spec-name">Drive Architecture</div>
-      <h3>Direct Drive</h3>
-      <p>The motor drives the platter directly, typically via a servo-controlled brushless DC motor. Servo feedback maintains precise speed against drag variations, which matters for DJ use and for tables used with heavy tracking-force cartridges. Modern high-quality direct-drive tables (such as the Technics SP-10 lineage) achieve rumble figures competitive with the best belt-drives. The older reputation for cogging noise applied to 1970s motor technology and is largely obsolete.</p>
-    </div>
+    <h2>Where Jitter Comes From</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Drive Architecture</div>
-      <h3>Idler Drive</h3>
-      <p>A rubber wheel contacts both the motor spindle and the inner edge of the platter, transmitting drive via friction. Idler-drive tables (Garrard, Lenco) produce very high rotational torque and platter inertia, and have a devoted following for their speed stability under load. Bearing wear in the idler wheel is the primary maintenance concern. Many vintage idler tables benefit significantly from a rebuild of the idler wheel and main bearing.</p>
-    </div>
+    <p>Three sources account for nearly all of it.</p>
 
-    <h2>Wow and Flutter — Reading the Spec Honestly</h2>
+    <p><strong>Clock recovery.</strong> S/PDIF, AES/EBU and HDMI embed timing in the data stream, so the DAC has to extract it &mdash; usually with a phase-locked loop that follows the incoming transitions. Anything that shifts those transitions in time shifts the recovered clock: cable reflections from an impedance mismatch, slow rise times, the transmitting device's own timing. Because the transitions depend on the data being sent, the resulting jitter is correlated with the audio, which is the worst kind.</p>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>Wow and Flutter (% weighted RMS)</h3>
-      <p>Wow is slow speed variation (below approximately 6 Hz); flutter is faster variation (6&ndash;200 Hz). Both are measured as a percentage of nominal speed and expressed as a weighted RMS figure. A figure of 0.05% or below is excellent and inaudible on most programme material. Figures above 0.1% can be audible as pitch instability on sustained piano or vocals. The weighting function used matters: WRMS (weighted RMS) is the most rigorous standard; peak figures can be 2&ndash;3&times; higher.</p>
-    </div>
+    <p><strong>The oscillator itself.</strong> Every clock has phase noise. A basic crystal oscillator is adequate; a temperature-compensated or oven-controlled one is better. This contribution is random rather than correlated, and in a competent DAC it is already far below audibility.</p>
 
-    <p>Wow and flutter specs are frequently abused. A claim of "&lt;0.05%" may be a peak figure, not WRMS, or measured under laboratory conditions that differ from real-world operation. For a meaningful comparison, the measurement method should be stated. Tables with good bearing quality and adequate platter mass typically achieve low wow and flutter as a consequence — it is a symptom of mechanical quality, not a primary design target.</p>
+    <p><strong>The power supply and the board.</strong> Noise on the clock's supply rail modulates its output, and high-frequency digital activity elsewhere on the board couples in. This is why layout, supply regulation and isolation often matter more to real-world jitter than the specification of the oscillator itself.</p>
 
-    <h2>Signal-to-Noise Ratio (Rumble)</h2>
+    <h2>How Modern Designs Solve It</h2>
 
-    <div class="spec-card">
-      <div class="spec-name">Key Spec</div>
-      <h3>SNR / Rumble (dB, DIN 45539 or IEC 98)</h3>
-      <p>Rumble is low-frequency noise generated by the main bearing and motor, transmitted through the platter to the stylus. It is expressed as a signal-to-noise figure in dB, typically DIN-weighted to match the frequencies of concern. A figure of &minus;70 dB or better is excellent. Below &minus;60 dB, rumble becomes difficult to hear on most programme material. The measurement standard matters: unweighted figures are typically 10&ndash;15 dB worse than the DIN-weighted figure, so always check which is being quoted.</p>
-    </div>
+    <p>The engineering answer, arrived at over the last two decades, is to stop trying to follow the source's timing at all.</p>
 
-    <h2>Tonearm Effective Mass and Cartridge Compliance</h2>
+    <p><strong>Asynchronous USB</strong> inverts the relationship: the DAC's own local clock governs conversion, and the DAC signals the computer to send more data when its buffer needs filling. The source's timing quality becomes irrelevant, because nothing downstream is trying to track it. This is the single most effective structural fix available, and it is why asynchronous USB is usually a DAC's best-performing input.</p>
 
-    <div class="spec-card">
-      <div class="spec-name">Critical Compatibility Spec</div>
-      <h3>Resonant Frequency: Tonearm Effective Mass + Cartridge Compliance</h3>
-      <p>The tonearm and cartridge form a resonant system. The resonant frequency is determined by the tonearm's effective mass and the cartridge's dynamic compliance. The target resonant frequency is between 8 and 12 Hz — above the audio band (20 Hz) but below record warps (below 4 Hz). The formula is: F = 1000 &divide; (2&pi; &times; &radic;(M &times; C)), where M is effective mass in grams and C is dynamic compliance in 10&minus;&sup3; cm/dyne. A high-compliance cartridge (30 &times; 10&minus;&sup3; cm/dyne) requires a low-mass arm (8&ndash;12 g). A low-compliance MC cartridge (6 &times; 10&minus;&sup3; cm/dyne) needs a heavier arm (15&ndash;25 g).</p>
-    </div>
+    <p><strong>Buffering and reclocking</strong> achieve much the same for stream-clocked inputs. Incoming data is written into a memory buffer using the recovered clock and read out using the DAC's own clock, decoupling the two. Provided the buffer is deep enough to absorb the difference, arrival jitter is discarded rather than passed on.</p>
 
-    <p>Compliance mismatch is the single most common cause of poor turntable system performance. A high-compliance cartridge on a heavy arm will have a resonant frequency below 8 Hz — warp energy excites the suspension, causing the cartridge to pump and lose bass control. A low-compliance MC on a lightweight arm resonates above 12 Hz, potentially overlapping the audio band and causing brightness or sibilance problems.</p>
+    <p><strong>Asynchronous sample rate conversion</strong> takes a more aggressive approach, resampling the incoming stream onto the DAC's own clock domain. It is extremely effective against jitter, at the cost of a mathematical resampling step that purists dislike &mdash; though in practice modern implementations are transparent.</p>
 
-    <div class="callout">
-      <p><strong>Quick compliance check:</strong> Multiply effective arm mass (in grams) by cartridge compliance (in 10&minus;&sup3; cm/dyne). The product should be between 70 and 200 for a resonant frequency between 8 and 12 Hz. A product below 70 means the resonance is too high; above 200 means it is too low.</p>
-    </div>
+    <p><strong>Galvanic isolation</strong> on the input prevents electrical noise from the source reaching the clock circuitry in the first place, which addresses the supply-noise contribution rather than the timing one.</p>
 
-    <h2>Bearing Quality</h2>
+    <div class="callout"><p><strong>The threshold in perspective:</strong> published audibility research puts thresholds for random jitter in the range of hundreds of picoseconds to nanoseconds for music, with correlated jitter audible at lower levels. Competent modern DACs measure in the low tens of picoseconds or better. That gap is the reason jitter has quietly stopped being a practical problem in most systems &mdash; and the reason claims of large audible improvements from jitter-reduction accessories deserve scepticism.</p></div>
 
-    <p>The main bearing supports the platter and must spin with minimal friction and zero vertical play. Bearing noise is the primary source of rumble. A well-made bearing uses a hardened steel spindle in a precision-bored brass or bronze housing, lubricated with a specific oil viscosity. Ball-bearing designs and inverted bearing designs (spindle points up, bearing sits in an oil cup) each have adherents. What matters practically is bearing play — there should be none detectable by hand, even after years of use.</p>
+    <h2>External Clocks: When They Help and When They Do Not</h2>
 
-    <h2>Quick Reference: Turntable Specs at a Glance</h2>
+    <p>Some DACs accept an external word clock, and dedicated master clocks are sold at serious prices. The logic sounds compelling &mdash; a better clock ought to be better &mdash; but the reality depends entirely on the architecture.</p>
+
+    <p>In a <em>studio</em>, an external master clock exists to keep multiple devices in sync so that digital audio can pass between them without sample slips. That is a synchronisation requirement, not a quality one, and it is entirely valid.</p>
+
+    <p>In a <em>domestic playback system</em>, feeding a DAC an external clock usually means the DAC must now slave to an incoming clock signal &mdash; travelling down a cable, through a receiver circuit &mdash; instead of using the oscillator sitting millimetres from its conversion stage. Unless the DAC was specifically architected to be clocked externally, this can easily make matters worse rather than better. The general rule: the best place for a clock is as close to the converter as possible, and a well-designed DAC with a good internal clock has little to gain.</p>
+
+    <h2>What Actually Deserves Your Attention</h2>
+
+    <p>If jitter is a concern in your system, these are the interventions that have real effect, in order.</p>
+
+    <ul>
+      <li><strong>Use asynchronous USB</strong> where the DAC supports it, preferably with galvanic isolation on that input.</li>
+      <li><strong>Choose a DAC with buffering or reclocking</strong> if you will be using S/PDIF, coaxial or optical inputs.</li>
+      <li><strong>Use correctly specified cables</strong> &mdash; true 75&nbsp;&Omega; coax, 110&nbsp;&Omega; for AES/EBU. Impedance mismatches cause reflections, which is a genuine jitter mechanism.</li>
+      <li><strong>Remove the computer from the chain</strong> with a dedicated streamer, which eliminates a large source of electrical noise as well as timing variability.</li>
+      <li><strong>Ignore the picosecond figure in isolation.</strong> A number without a spectrum tells you nothing about audibility, and a modern DAC's jitter is already well below the threshold.</li>
+    </ul>
+
+    <p>The broader point is worth stating: jitter was a real and audible problem in the 1990s, when clock recovery was primitive and buffering was rare. The architecture that fixed it &mdash; local clock authority, deep buffers, isolated inputs &mdash; is now standard in even modestly priced equipment. Understanding it is useful mainly so you can recognise which claims about it still hold.</p>
+
+    <h2>Quick Reference: Jitter at a Glance</h2>
 
     <table class="spec-table">
-      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <thead><tr><th>Aspect</th><th>Detail</th></tr></thead>
       <tbody>
-        <tr><td>Platter Mass</td><td>Rotational flywheel inertia</td><td>&ge;1.5 kg for a performance table; heavier is better</td></tr>
-        <tr><td>Wow and Flutter</td><td>Speed variation, slow and fast</td><td>&le;0.05% WRMS; check the measurement method</td></tr>
-        <tr><td>Rumble (SNR)</td><td>Bearing and motor noise</td><td>&minus;70 dB or better, DIN-weighted</td></tr>
-        <tr><td>Effective Arm Mass</td><td>Tonearm inertia at headshell pivot</td><td>Must be matched to cartridge compliance</td></tr>
-        <tr><td>Cartridge Compliance</td><td>Stylus cantilever stiffness</td><td>High-compliance MM: low-mass arm; low-compliance MC: higher-mass arm</td></tr>
-        <tr><td>Resonant Frequency</td><td>Arm + cartridge system resonance</td><td>8&ndash;12 Hz target range</td></tr>
-        <tr><td>Drive Type</td><td>How the motor reaches the platter</td><td>Belt, direct, and idler are all viable; quality of execution matters more</td></tr>
+        <tr><td>What it is</td><td>Timing uncertainty at the moment of conversion, measured in picoseconds</td></tr>
+        <tr><td>What it is not</td><td>Data corruption &mdash; the numbers themselves arrive intact</td></tr>
+        <tr><td>Audible effect</td><td>Modulation sidebands around signal content, not added hiss</td></tr>
+        <tr><td>Worst kind</td><td>Correlated jitter, produced by recovering a clock from the audio stream</td></tr>
+        <tr><td>Main sources</td><td>Clock recovery, oscillator phase noise, power-supply and board noise</td></tr>
+        <tr><td>Best structural fix</td><td>Asynchronous USB, or buffering and reclocking on stream-clocked inputs</td></tr>
+        <tr><td>External master clock</td><td>Essential in studios for sync; rarely an improvement for home playback</td></tr>
+        <tr><td>Current status</td><td>Well below audibility in competent modern DACs</td></tr>
       </tbody>
     </table>
 
     <div class="cta-block">
-      <h3>Check your turntable chain compatibility</h3>
-      <p>Enter your turntable, cartridge, phono stage, and amplifier to get a full signal-chain compatibility analysis including gain staging, loading, and impedance ratios.</p>
-      <a href="/#analyzer">Run a Free Analysis →</a>
+      <h3>Check your digital chain</h3>
+      <p>Enter your source, DAC and connections for a free analysis of format support, clocking arrangement, and where the chain could be improved.</p>
+      <a href="/#analyzer">Run a Free Analysis &rarr;</a>
     </div>
 
     <div class="ad-unit"><div class="ad-unit-inner"><span class="ad-label">Advertisement</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8677522350792212" data-ad-slot="AUTO" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div>
 
     <h2>More Guides</h2>
     <div class="guide-nav">
-      <a href="/guides/cartridges">Cartridge Guide →</a>
-      <a href="/guides/phono-stages">Phono Stage Guide →</a>
-      <a href="/guides/amplifiers">Amplifier Guide →</a>
-      <a href="/guides/first-hifi-system">Build Your First System →</a>
-      <a href="/glossary">Glossary →</a>
+        <a href="/guides/dacs">DAC Guide &rarr;</a>
+        <a href="/guides/digital-connections">Digital Connections &rarr;</a>
+        <a href="/guides/streamers">Network Streamers &rarr;</a>
+        <a href="/guides/digital-formats">Digital Formats &rarr;</a>
+        <a href="/guides/cd-players">CD Players &amp; Transports &rarr;</a>
     </div>
 
   </div>
@@ -280,7 +275,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
         <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
         <p>Free AI-powered hi-fi compatibility analysis. Powered by Claude AI from Anthropic.</p>
       </div>
-      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/glossary">Glossary</a></li><li><a href="/guides/first-hifi-system">Beginner&rsquo;s Guide</a></li><li><a href="/guides/amplifiers">Amplifier Guide</a></li><li><a href="/guides/cartridges">Cartridge Guide</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/glossary">Glossary</a></li><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/amplifiers">Amplifier Guide</a></li><li><a href="/guides/cartridges">Cartridge Guide</a></li></ul></div>
       <div class="footer-col"><h4>Tool</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li></ul></div>
       <div class="footer-col"><h4>Resources</h4><ul><li><a href="https://www.stereophile.com" target="_blank" rel="noopener">Stereophile</a></li><li><a href="https://www.psaudio.com" target="_blank" rel="noopener">PS Audio</a></li><li><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></li></ul></div>
     </div>
