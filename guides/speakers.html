@@ -89,6 +89,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -181,6 +186,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>Sensitivity is measured by placing a calibrated microphone 1 meter from the speaker and measuring the sound pressure level produced when 1 watt of power (or 2.83 V, which equals 1 watt into 8&nbsp;&Omega;) is applied. A speaker rated at 90 dB/W/m produces 90 dB SPL at 1 meter with 1 watt input. Every 3 dB increase in sensitivity is equivalent to doubling the amplifier power.</p>
     </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/speakers-1.jpg" alt="Altus 110 three-way hi-fi loudspeaker with woofer, midrange and tweeter" width="852" height="1200" loading="lazy" decoding="async">
+      <figcaption>Sensitivity is quoted in dB at 1 W/1 m. Every 3 dB more sensitivity halves the amplifier power needed for the same volume.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:2016_Kolumna_g%C5%82o%C5%9Bnikowa_Altus_110.jpg" rel="noopener" target="_blank">Jacek Halicki</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <!-- Sensitivity bar chart illustration -->
 <div style="background:var(--dark);border-radius:var(--radius);padding:28px 28px 20px;margin:28px 0;overflow-x:auto;">
   <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;">Equivalent SPL at 1W — Amplifier Power Required to Match</p>
@@ -252,6 +262,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Frequency Response and Bass Extension</h2>
 
     <p>A speaker's frequency response specification — typically given as "40 Hz–20 kHz, ±3 dB" — tells you the usable range of the speaker under standard measurement conditions. Pay attention to both the <strong>lower frequency limit</strong> and the <strong>tolerance</strong>. A &pm;3 dB window is standard. A &pm;6 dB figure conceals far more unevenness than it reveals and should be treated with skepticism.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/speakers-2.jpg" alt="Large woofer driver with a pale surround" width="1200" height="677" loading="lazy" decoding="async">
+      <figcaption>Deep bass needs cone area and a cabinet volume to match. A speaker&#x27;s −6 dB point shows how low it really reaches before rolling off.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Woofer_extend_sublow_8.jpg" rel="noopener" target="_blank">Mega Voice San Isidro</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>The bass extension figure (often specified at &minus;6 dB below the rated response) tells you how low the speaker genuinely reaches before significant rolloff. A speaker rated "40 Hz ±3 dB" with a &minus;6 dB point at 35 Hz will produce useful bass in most rooms. The same speaker placed near a rear wall gains 3–6 dB of bass reinforcement from boundary loading — a free upgrade that must be balanced against midrange coloration from early reflections.</p>
 

@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -176,11 +181,21 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>Coaxial S/PDIF sends a self-clocking serial stream down a single 75&nbsp;&Omega; cable terminated in an RCA connector. Because the clock is embedded in the data, the receiving DAC has to extract it &mdash; usually with a phase-locked loop &mdash; and any timing irregularity in the transmitted stream or the cable can appear as <strong>jitter</strong> at the point of conversion.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/digital-connections-1.jpg" alt="Rear panel of a DVD player with an orange coaxial digital output and a square optical output" width="1103" height="522" loading="lazy" decoding="async">
+      <figcaption>Most players offer both digital outputs side by side: the orange RCA jack is coaxial S/PDIF (use 75 Ω cable), and the square port with the shutter is optical TOSLINK.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:DVD_player_rear_connectors,_subwoofer,_center,_digital_audio_(coaxial,_RCA)_and_optical_digital_audio.jpg" rel="noopener" target="_blank">Handige Harrie</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>In practice, coaxial is a robust and capable connection. It comfortably handles <strong>24-bit/192&nbsp;kHz</strong> and often more, it is electrically simple, and its bandwidth is generous. Two details matter: the cable should be genuine 75&nbsp;&Omega; video-grade coax rather than a repurposed analogue interconnect, because impedance mismatches cause reflections; and because the connection is electrically continuous, it carries ground between the two devices and can therefore participate in a ground loop.</p>
 
     <h2>S/PDIF Optical (TOSLINK)</h2>
 
     <p>Optical S/PDIF carries the same data format over light, through a plastic or glass fibre. Its defining advantage follows immediately: because nothing conductive crosses the link, it provides <strong>complete galvanic isolation</strong>. No ground connection, no ground loop, no electrical noise conducted from a computer or television into the DAC. When you have a hum problem between two mains-powered devices, optical often solves it outright.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/digital-connections-2.jpg" alt="Clear TOSLINK optical cable glowing red at both connectors" width="1200" height="752" loading="lazy" decoding="async">
+      <figcaption>A TOSLINK cable carries the signal as light, shown here glowing through a clear jacket. Because nothing conductive crosses the link, it cannot carry a ground loop between components.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Fiber_optic_illuminated.jpg" rel="noopener" target="_blank">Hustvedt</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank">CC BY-SA 3.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>The trade-offs are bandwidth and timing. The optical transmitter and receiver add conversion steps, and cheap plastic fibre limits bandwidth &mdash; most TOSLINK implementations top out at <strong>24-bit/96&nbsp;kHz</strong>, with some reaching 192&nbsp;kHz over short, good-quality runs. Optical also has a reputation for higher jitter, largely from the rise and fall times of the optical receiver, though a DAC with good reclocking makes this a non-issue.</p>
 

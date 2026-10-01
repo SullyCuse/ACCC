@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -176,6 +181,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>An <strong>unbalanced</strong> connection — also called single-ended — is the familiar RCA interconnect on the back of nearly every consumer component. It carries the audio on two conductors: one <strong>signal</strong> wire and one <strong>ground</strong>, which usually doubles as the cable's shield. The signal voltage is measured as the difference between that single signal wire and ground. It is simple, cheap, and for the short runs typical of a domestic rack it works extremely well.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/balanced-vs-unbalanced-1.jpg" alt="Red and white RCA (phono) plugs on a stereo interconnect cable" width="1200" height="789" loading="lazy" decoding="async">
+      <figcaption>The RCA plug is the standard unbalanced connector: a centre pin carries the signal and the outer sleeve carries ground, which is also the cable&#x27;s shield. Red marks the right channel and white the left.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Cinch-Stecker.jpg" rel="noopener" target="_blank">Wollschaf</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license noopener" target="_blank">CC BY-SA 3.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>The limitation is structural. Because the signal is referenced to ground, any electrical noise the cable picks up — from mains wiring, transformers, dimmers, or nearby digital gear — rides along on top of the signal, and the receiving component has no way to tell the wanted signal apart from the interference. Over a short interconnect this rarely amounts to anything audible. Over long runs, or in an electrically busy room, the noise can accumulate into a faint hiss or hum.</p>
 
     <div class="spec-card">
@@ -187,6 +197,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>What "Balanced" Actually Means</h2>
 
     <p>A <strong>balanced</strong> connection carries the audio on three conductors: <strong>hot</strong> (the in-phase signal, often labelled "+"), <strong>cold</strong> (an inverted copy of the same signal, labelled "-"), and <strong>ground</strong>. The key idea is that the music is transmitted <em>differentially</em> — as the difference between hot and cold, which carry the identical signal in opposite polarity. On the hot leg the waveform swings one way; on the cold leg it swings the mirror-image way at exactly the same instant.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/balanced-vs-unbalanced-2.jpg" alt="Male and female XLR connectors side by side, showing three pins and three sockets" width="1200" height="764" loading="lazy" decoding="async">
+      <figcaption>An XLR connection has three conductors: pin 1 ground, pin 2 hot and pin 3 cold. Noise picked up equally on the hot and cold legs is cancelled at the balanced input.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:XLR_connectors,_male_and_female.jpg" rel="noopener" target="_blank">Jud McCranie</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>In home and professional audio this is delivered over an <strong>XLR</strong> connector (three pins) or, inside gear and on some equipment, a <strong>TRS</strong> jack — the tip-ring-sleeve plug that looks like a headphone connector but wires tip to hot, ring to cold, and sleeve to ground. Both carry the same three-conductor differential scheme; XLR is simply the rugged, locking connector that the professional world standardised on.</p>
 

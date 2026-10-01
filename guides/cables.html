@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -202,6 +207,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>Speaker cables carry significant current and connect to low-impedance loads (typically 4&ndash;8 &Omega;). The cable's resistance is in series with the amplifier's output impedance and the speaker load. Excessive resistance reduces damping factor — the amplifier's ability to control the speaker cone — and causes a frequency-response deviation because a speaker's impedance varies with frequency. The guideline is to keep total speaker cable resistance below 5% of the minimum speaker impedance. For an 8 &Omega; speaker, keep cable resistance below 0.4 &Omega; total (both conductors). 16 AWG copper achieves approximately 0.26 &Omega;/metre per conductor; 14 AWG approximately 0.16 &Omega;/metre per conductor. For most runs under 5 metres, 16 AWG is adequate. For runs over 10 metres or 4 &Omega; speakers, 14 AWG or heavier is warranted.</p>
     </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/cables-1.jpg" alt="Spool of clear-jacketed copper speaker wire" width="1200" height="900" loading="lazy" decoding="async">
+      <figcaption>Ordinary copper speaker wire like this, in an adequate gauge, keeps cable resistance well below 5% of the speaker&#x27;s impedance on typical domestic runs, which is the threshold that matters.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Speaker_wire.JPG" rel="noopener" target="_blank">Matthieu149</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license noopener" target="_blank">CC BY-SA 3.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <table class="spec-table">
       <thead><tr><th>AWG</th><th>Resistance per metre (each conductor)</th><th>Max run for 8 &Omega; speaker (&lt;5% rule)</th></tr></thead>
       <tbody>
@@ -221,6 +231,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <h3>Shield Coverage and Type</h3>
       <p>Interconnect cables carrying low-level signals (phono, microphone, unbalanced line) require shielding to reject electromagnetic interference (EMI) and radio-frequency interference (RFI). A braided shield provides good coverage (typically 90&ndash;98%) and is mechanically robust. A spiral (serve) shield offers flexibility with slightly lower coverage. Foil shields provide 100% coverage but are less flexible and can develop microphonic noise in moving applications. For a fixed hi-fi installation, any shielded cable with &gt;85% coverage is adequate. The shield must be connected at one end only in a single-ended (RCA) installation to avoid ground loops — though most modern hi-fi components handle this internally.</p>
     </div>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/cables-2.jpg" alt="Cut-away coaxial cable showing the centre conductor, white dielectric, foil and braided shield layers" width="1200" height="1004" loading="lazy" decoding="async">
+      <figcaption>Cutting a coaxial cable open shows the layers: centre conductor, insulating dielectric, foil, then a woven braid shield, all under the outer jacket. The shield is what keeps interference off low-level signals.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Coaxial_cable_cut.jpg" rel="noopener" target="_blank">FDominec</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license noopener" target="_blank">CC BY-SA 3.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>Balanced (XLR) interconnects are inherently less susceptible to interference because they reject common-mode noise through differential signalling. If EMI or hum is a problem in a system, converting to balanced connections where the components support it is more effective than upgrading cable shielding.</p>
 

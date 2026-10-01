@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -184,6 +189,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>A bass reflex enclosure adds a tuned opening. The mass of air in the port and the compliance of the air in the box together form a resonator, tuned to a specific frequency &mdash; the <strong>port tuning frequency</strong>. Around that frequency, the port radiates in phase with the driver, adding output that would otherwise have been wasted inside the box.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/sealed-vs-ported-1.jpg" alt="Flared bass reflex port tube installed in the top of a speaker cabinet" width="453" height="1200" loading="lazy" decoding="async">
+      <figcaption>A flared port in the top of a speaker cabinet. The flare smooths airflow at the opening, reducing the chuffing noise a straight-edged port can make at high bass levels.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Flared_Port_Tube_2_inch.jpg" rel="noopener" target="_blank">John P Salvatore</a>, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license noopener" target="_blank">CC0</a>, via Wikimedia Commons</span></figcaption>
+    </figure>
+
     <p>The gain is substantial: typically <strong>3&nbsp;dB or more of extra output</strong> around tuning, and useful extension perhaps half an octave lower than the same driver and box sealed. Below tuning, however, the behaviour changes sharply. The port output falls out of phase with the driver, the two begin to cancel, and the roll-off steepens to about <strong>24&nbsp;dB per octave</strong>. Below tuning the box also stops loading the driver, so cone excursion rises rapidly &mdash; which is why a ported speaker fed with heavy subsonic content can flap alarmingly.</p>
 
     <div class="spec-card">
@@ -217,6 +227,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Passive Radiators: A Third Option</h2>
 
     <p>Some speakers use a <strong>passive radiator</strong> instead of a port &mdash; an undriven cone, with its own mass and suspension but no motor, mounted in the cabinet. Acoustically it does the same job as a port, forming a resonant system with the box air, and produces a broadly similar fourth-order alignment.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/sealed-vs-ported-2.jpg" alt="Passive radiator on top of a compact speaker cabinet" width="1200" height="900" loading="lazy" decoding="async">
+      <figcaption>A passive radiator looks like a woofer but has no motor. The air pressure inside the box moves it, giving bass reinforcement like a port without port noise.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Passive_radiator_with_wOOx_Technology.jpg" rel="noopener" target="_blank">LordOider</a>, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license noopener" target="_blank">CC0</a>, via Wikimedia Commons</span></figcaption>
+    </figure>
 
     <p>Its advantages are practical: it eliminates port noise entirely, and because tuning is set by the radiator's moving mass rather than by a tube's length, a designer can achieve a low tuning frequency in a cabinet far too small to accommodate the port it would otherwise need. That makes passive radiators common in compact and wireless speakers. The trade-offs are cost, a resonance of the radiator's own that must be kept out of the way, and a slightly less clean roll-off in some implementations.</p>
 

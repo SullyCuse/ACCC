@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -176,6 +181,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>Start with the distinction that clears up most confusion. Digital audio involves two separate things: <strong>which numbers arrive</strong>, and <strong>when each number is converted</strong> back to a voltage.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/jitter-and-clocking-1.jpg" alt="Oscilloscope eye diagram of a high-speed digital signal, with overlapping traces forming open eyes" width="1158" height="565" loading="lazy" decoding="async">
+      <figcaption>An eye diagram overlays thousands of bit transitions. The horizontal smear at each crossing is jitter: the data is still read correctly, but the timing edges wander.<span class="credit">Image: <a href="https://commons.wikimedia.org/wiki/File:Eye_pattern_mismatch.png" rel="noopener" target="_blank">Andrew D. Zonenberg</a>, <a href="https://creativecommons.org/licenses/by/4.0" rel="license noopener" target="_blank">CC BY 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>The numbers are robust. Digital transmission has enormous noise margins, and in practice the data arrives bit-perfect or fails audibly &mdash; a dropout, a click, silence. There is no gradual degradation of the values themselves.</p>
 
     <p>The timing is a different matter. A digital-to-analogue converter reconstructs a waveform by producing each sample's value at a precisely spaced moment, at exactly the sample rate. If those moments are not evenly spaced &mdash; if the clock that triggers them wobbles &mdash; the reconstructed waveform is distorted, even though every number was correct. That timing uncertainty is <strong>jitter</strong>, and it is measured in picoseconds.</p>
@@ -193,6 +203,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <p><strong>Clock recovery.</strong> S/PDIF, AES/EBU and HDMI embed timing in the data stream, so the DAC has to extract it &mdash; usually with a phase-locked loop that follows the incoming transitions. Anything that shifts those transitions in time shifts the recovered clock: cable reflections from an impedance mismatch, slow rise times, the transmitting device's own timing. Because the transitions depend on the data being sent, the resulting jitter is correlated with the audio, which is the worst kind.</p>
 
     <p><strong>The oscillator itself.</strong> Every clock has phase noise. A basic crystal oscillator is adequate; a temperature-compensated or oven-controlled one is better. This contribution is random rather than correlated, and in a competent DAC it is already far below audibility.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/jitter-and-clocking-2.jpg" alt="Rakon oven-controlled crystal oscillator (OCXO) module" width="1186" height="1200" loading="lazy" decoding="async">
+      <figcaption>An oven-controlled crystal oscillator holds its crystal at a constant temperature to keep its frequency stable. Precision parts like this are used in measurement gear and premium audio clocks.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:RAKON_STP2734B_LF_OCXO_10MHZ.jpg" rel="noopener" target="_blank">Mister rf</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p><strong>The power supply and the board.</strong> Noise on the clock's supply rail modulates its output, and high-frequency digital activity elsewhere on the board couples in. This is why layout, supply regulation and isolation often matter more to real-world jitter than the specification of the oscillator itself.</p>
 

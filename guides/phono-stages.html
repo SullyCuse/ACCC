@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -180,6 +185,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>Moving-magnet (MM) cartridges produce an output of approximately 3&ndash;6 mV. A phono stage for MM use must deliver around 35&ndash;45 dB of gain to bring this signal to line level (typically 150&ndash;200 mV for driving a preamplifier). Moving-coil (MC) cartridges produce much lower output — typically 0.2&ndash;0.5 mV for low-output MC designs, and 1.5&ndash;2.5 mV for high-output MC. Low-output MC cartridges require 60&ndash;70 dB of gain. Using an MM stage with a low-output MC cartridge will give severely reduced output levels and a poor signal-to-noise ratio.</p>
     </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/phono-stages-2.jpg" alt="Two Denon moving-coil phono cartridges, the DL-110 and DL-160, side by side" width="1200" height="655" loading="lazy" decoding="async">
+      <figcaption>Moving-coil cartridges such as these Denons produce far less output than moving-magnet types. Low-output MC designs need around 60–70 dB of phono gain, compared with 35–45 dB for MM.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Denon_DL-110_and_DL-160_phono_cartridges_(19060163236)_(strong_crop).jpg" rel="noopener" target="_blank">Joost Dikker Hupkes from Netherlands</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0" rel="license noopener" target="_blank">CC BY-SA 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>Gain requirements can be calculated precisely. If your cartridge outputs 0.3 mV and your preamplifier input sensitivity is 150 mV, you need at least 54 dB of gain (20 &times; log(150/0.3)). A phono stage providing exactly 54 dB will drive the preamp to full output with that cartridge — leaving no headroom for dynamic peaks. In practice, choose a stage with 6&ndash;10 dB more gain than the theoretical minimum, then attenuate at the preamplifier volume control as needed.</p>
 
     <div class="callout">
@@ -219,6 +229,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <h3>Equivalent Input Noise (EIN) and Overload Margin</h3>
       <p>A phono stage's noise is usually expressed as equivalent input noise (EIN) in nanovolts per square root hertz (nV/&radic;Hz), or as a signal-to-noise ratio referenced to a specific input level. For MM use, an EIN of 10 nV/&radic;Hz or better is good; for low-output MC, target 3&ndash;5 nV/&radic;Hz. Overload margin refers to how much signal the input stage can handle before clipping. A budget MM stage may clip with a 10 mV input; a well-designed stage should handle 30&ndash;100 mV without distortion. High dynamic range recordings and loud passages can momentarily drive MM cartridges to 10&ndash;15 mV, so adequate overload margin matters more than the datasheet figure suggests.</p>
     </div>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/phono-stages-1.jpg" alt="Interior of a DIY battery-powered phono preamplifier built in an aluminium case" width="1200" height="676" loading="lazy" decoding="async">
+      <figcaption>This DIY phono stage runs from batteries, which removes mains hum from the supply entirely. A low noise floor matters because the stage amplifies a cartridge signal measured in millivolts.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Phono_preamp_(Elektor_5.2012)_complete_01.jpg" rel="noopener" target="_blank">Retired electrician</a>, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license noopener" target="_blank">CC0</a>, via Wikimedia Commons</span></figcaption>
+    </figure>
 
     <h2>Quick Reference: Phono Stage Specs at a Glance</h2>
 

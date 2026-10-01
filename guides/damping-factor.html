@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -186,6 +191,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>The reason any of this matters is that a loudspeaker driver is also a generator. Once the cone is moving, its voice coil is a coil of wire moving in a magnetic field, and it produces a voltage of its own &mdash; <strong>back-EMF</strong>. That is most pronounced around the driver's resonant frequency, in the bass, where the cone has the most mass and the most inclination to keep moving after the signal has stopped.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/damping-factor-1.jpg" alt="Several Scan-Speak woofer drivers displayed on a table" width="900" height="600" loading="lazy" decoding="async">
+      <figcaption>A woofer is also a generator: once its cone moves, the voice coil produces back-EMF. An amplifier with low output impedance absorbs that energy and stops the cone from overshooting.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Scanspeak_speaker_drivers_at_HighEnd-2009_(3557100426).jpg" rel="noopener" target="_blank">Christian Herzog</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>An amplifier with low output impedance presents an almost short circuit to that back-EMF. The current it generates flows, is opposed by the driver's own motor, and the cone's excess motion is converted to heat and damped away. An amplifier with high output impedance cannot absorb it as effectively, and the cone rings on for longer. In audible terms this is the difference between a bass note that stops when the music stops and one that overhangs into the next.</p>
 
     <div class="spec-card">
@@ -197,6 +207,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Cable Resistance Joins the Amplifier's Side</h2>
 
     <p>Everything between the amplifier's output devices and the speaker terminals adds to the source impedance, and speaker cable is the biggest contributor. The relevant figure is the resistance of the full loop &mdash; out and back &mdash; over the length you actually use.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/damping-factor-2.jpg" alt="Coiled loudspeaker cable with terminated ends" width="1024" height="768" loading="lazy" decoding="async">
+      <figcaption>The cable&#x27;s round-trip resistance adds to the amplifier&#x27;s output impedance. On a long, thin run it can cut the effective damping factor far below the amplifier&#x27;s published figure.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Bi-Wire_Speaker_Cable_(8842382383).jpg" rel="noopener" target="_blank">Jacques from Cape Town, South Africa</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>The numbers are easy to underestimate. A 3&nbsp;m run of 16&nbsp;AWG cable contributes roughly 0.08&nbsp;&Omega; for the round trip. Against an amplifier output impedance of 0.02&nbsp;&Omega;, the cable has just quadrupled the total source impedance and cut the effective damping factor by about four-fifths. Move to 5&nbsp;m of thinner cable and the effect grows further. The published figure of 400 quietly becomes something under 80 by the time the signal reaches the driver.</p>
 

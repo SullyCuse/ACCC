@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -176,6 +181,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>A dynamic headphone driver is a small moving-coil transducer. A cylindrical voice coil sits in a magnetic gap, attached to a lightweight dome or cone diaphragm. Current through the coil produces a force, the coil moves, and the diaphragm moves with it. The technology is over a century old, thoroughly understood and cheap to manufacture well.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/planar-vs-dynamic-1.jpg" alt="Dynamic headphone driver removed from its housing, showing the diaphragm and voice coil" width="1084" height="852" loading="lazy" decoding="async">
+      <figcaption>A dynamic headphone driver removed from its housing. The voice coil drives the diaphragm at its centre, and the motion has to spread outward across the surface, so the diaphragm can flex at high frequencies.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Headphone-transducer.jpg" rel="noopener" target="_blank">Iain Fergusson</a>, <a href="https://creativecommons.org/licenses/by/2.5" rel="license noopener" target="_blank">CC BY 2.5</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>Its defining characteristic is that force is applied at one place &mdash; where the coil joins the diaphragm &mdash; and must propagate outwards across the diaphragm's surface. At low frequencies the diaphragm moves as a piston and this is fine. Higher up, the diaphragm can flex rather than move as a unit, a behaviour called <strong>break-up</strong>, and controlling it is much of the art of dynamic driver design.</p>
 
     <p>Dynamic drivers are typically <strong>efficient</strong>, which is why they work from a phone, and <strong>light</strong>, which is why the headphones can be comfortable for hours. Their bass extends well but tends to roll off gradually at the lowest frequencies, and distortion generally rises as excursion increases at high levels.</p>
@@ -207,6 +217,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Electrostatic: The Third Option</h2>
 
     <p>A third technology sits alongside these two. <strong>Electrostatic</strong> headphones use an extremely thin diaphragm carrying a fixed electrical charge, suspended between two perforated plates called stators. Audio applied to the stators as a very high voltage creates a field that pulls and pushes the diaphragm.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/planar-vs-dynamic-2.jpg" alt="Stax SR-007A electrostatic earspeakers" width="902" height="1200" loading="lazy" decoding="async">
+      <figcaption>Stax electrostatic headphones drive an ultra-thin diaphragm across its whole area using a high-voltage field. They need a dedicated energiser and cannot be driven by an ordinary headphone amp.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Stax_SR-007A_headphones.jpg" rel="noopener" target="_blank">Jud McCranie</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>Because the diaphragm is even lighter than a planar's and driven across its whole area, electrostatics achieve the lowest distortion and finest resolution of the three. The catch is that they cannot be driven by a normal amplifier at all: they require a dedicated <strong>energiser</strong> supplying hundreds of volts and the bias charge, which effectively locks you into a system purchase. They are also usually less capable in the deep bass than the best planars, since the diaphragm cannot move far. Worth knowing about, rarely a first serious headphone.</p>
 

@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -180,6 +185,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>A passive crossover uses inductors, capacitors, and resistors to filter the amplifier&rsquo;s full-power output before it reaches each driver. It is simple, requires only one external amplifier, and gives you free choice of that amplifier. The downsides are real: the crossover components dissipate power (insertion loss), interact with the driver&rsquo;s changing impedance, and are expensive to make to tight tolerances at high power. The crossover also sits between amplifier and driver, reducing the amp&rsquo;s direct control over driver motion.</p>
     </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/active-vs-passive-1.jpg" alt="Passive crossover boards with inductor coils and capacitors visible through a window in the back of a Quadral Aurum Titan loudspeaker" width="900" height="600" loading="lazy" decoding="async">
+      <figcaption>A passive crossover on show: the copper inductor coils and capacitors on these boards sit between the amplifier and the drivers, so they carry full amplifier power — which is why they are physically large.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Quadral_Aurum_Titan_VIII_loudspeaker_-_crossovers_(3556400945).jpg" rel="noopener" target="_blank">Christian Herzog</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <h2>Active Crossovers</h2>
 
     <div class="spec-card">
@@ -207,6 +217,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Powered vs Truly Active, and DSP</h2>
 
     <p>Beware the terminology: a "powered" speaker has a built-in amplifier but may still use a passive crossover after that amp — it is not the same as a true active design with an amp per driver. Many modern active speakers add DSP (digital signal processing) to implement the crossover and to correct driver and even room response with precision impossible in the analog domain. DSP enables linear-phase crossovers and room correction, but adds an A/D–D/A stage and ties the speaker to its firmware. Confirm whether a speaker is truly active (amp per driver) and whether its crossover is analog or DSP-based.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/active-vs-passive-2.jpg" alt="PreSonus Eris E4.5 active studio monitor on a desk" width="1024" height="683" loading="lazy" decoding="async">
+      <figcaption>Studio monitors like this PreSonus Eris have the amplification built in. Check the spec sheet to see whether a design has one amp per driver (truly active) or a single amp feeding a passive crossover (merely powered).<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:PreSonus_Eris_E4.5_HD_Active_Studio_Monitor_-_2014_NAMM_Show_(by_Matt_Vanacoro).jpg" rel="noopener" target="_blank">Matt Vanacoro</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <div class="callout">
       <p><strong>Quick distinction:</strong> Active = electronic crossover before amplification, one amp per driver. Powered = has a built-in amp, but possibly with a passive crossover after it. Passive = one external amp, passive crossover filters the high-power signal. "Powered" does not guarantee "active."</p>

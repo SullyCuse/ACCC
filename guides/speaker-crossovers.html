@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -176,6 +181,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>At its simplest, a crossover is a set of filters. A <strong>low-pass</strong> filter sends only low frequencies to the woofer; a <strong>high-pass</strong> filter sends only high frequencies to the tweeter; in a three-way design a <strong>band-pass</strong> section feeds the midrange. The frequency where responsibility passes from one driver to the next is the <strong>crossover frequency</strong>, and near it both drivers are producing sound together.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/speaker-crossovers-1.jpg" alt="Pair of Quadral Shogun three-way loudspeakers, one with its grille removed showing woofer, midrange and tweeter" width="1200" height="873" loading="lazy" decoding="async">
+      <figcaption>A three-way speaker uses three filters: low-pass to the woofer, band-pass to the midrange and high-pass to the tweeter. Each crossover frequency is a handover point where two drivers play together.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Quadral_Shogun_Mk_II_pair.jpg" rel="noopener" target="_blank">Bullenwächter</a>, <a href="https://creativecommons.org/licenses/by/4.0" rel="license noopener" target="_blank">CC BY 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>That overlap region is where all the difficulty lives. The two drivers are physically separated on the baffle, so their outputs arrive at your ears at slightly different times and from slightly different directions. Each driver's response is already rolling off naturally at the extremes of its range, so the electrical filter combines with the driver's own acoustic behaviour rather than acting on a flat starting point. Getting a summed response that is flat, and that stays flat as you move around the room, is genuinely hard.</p>
 
     <h2>Filter Order and Slope</h2>
@@ -200,6 +210,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Passive Crossovers: After the Amplifier</h2>
 
     <p>A passive crossover sits between the amplifier and the drivers, filtering a full-power signal with inductors, capacitors and resistors. It requires no additional amplification, no power supply and no setup, which is why the overwhelming majority of speakers use one.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/speaker-crossovers-2.jpg" alt="Passive crossover circuit board from a B&amp;W Matrix loudspeaker, with inductors, capacitors and resistors" width="1200" height="906" loading="lazy" decoding="async">
+      <figcaption>The inside of a passive crossover: air-core inductors, film capacitors and resistors on one board. Every part handles full amplifier power, and its tolerance directly shifts where the filter acts.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:B-W_Matrix3MkII_FotoWeiche.jpg" rel="noopener" target="_blank">Frank Klemm</a>, public domain, via Wikimedia Commons</span></figcaption>
+    </figure>
 
     <p>The costs are real, though. The components handle full amplifier power, so they must be large and rated accordingly &mdash; and they dissipate some of that power as heat, which is a direct efficiency loss. Inductors have resistance that adds to the driver's impedance and reduces the amplifier's control over the cone. Component tolerances directly shift the filter's behaviour, so a good passive crossover uses tightly matched parts, which is expensive. And because the filter interacts with the driver's own impedance, which varies with frequency, designers often add impedance-correcting networks that add still more components in the signal path.</p>
 

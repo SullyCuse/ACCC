@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -180,6 +185,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>The output interface sets the ceiling on what resolution can pass and how susceptible the link is to jitter. USB and I²S carry the highest rates (PCM to 32-bit/768&nbsp;kHz and native DSD); coaxial S/PDIF typically tops out around 24-bit/192&nbsp;kHz and carries DSD only as DoP; optical (TOSLINK) is galvanically isolated but usually limited to 24/96&ndash;192. Match the streamer&rsquo;s output to an input your DAC actually supports at the resolution you need.</p>
     </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/streamers-1.jpg" alt="Cambridge Audio NP30 network player stacked on a receiver between bookshelf speakers" width="1200" height="900" loading="lazy" decoding="async">
+      <figcaption>A network player like the Cambridge Audio NP30 can use its internal DAC or send the digital signal out to an external DAC. Its digital outputs limit the highest resolution it can pass on.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Cambridge_Audio_mini-system.jpg" rel="noopener" target="_blank">Ohconfucius</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank">CC BY-SA 3.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <div class="spec-card">
       <div class="spec-name">Key Spec</div>
       <h3>Galvanic Isolation</h3>
@@ -197,6 +207,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Network Connection: Ethernet vs Wi-Fi</h2>
 
     <p>Wired Ethernet is preferable for high-resolution and gapless playback: it is immune to the dropouts and buffering stalls that Wi-Fi can introduce, and it keeps the noisy Wi-Fi radio out of the chassis. Wi-Fi is convenient and perfectly adequate for compressed streaming, but for 24/192 and DSD, a wired connection removes a whole class of reliability problems. The audio data is buffered either way, so network speed beyond a few Mbps does not affect sound — only reliability.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/streamers-2.jpg" alt="RJ45 Ethernet cable plugged into a network port" width="1024" height="768" loading="lazy" decoding="async">
+      <figcaption>A wired Ethernet connection removes Wi-Fi dropouts and keeps a radio out of the streamer&#x27;s chassis. Network speed beyond a few Mbps makes no difference to sound.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:RJ45_Ethernet_Cable.jpg" rel="noopener" target="_blank">Khairil Yusof from Malaysia</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <h2>Streaming Protocols and Services</h2>
 

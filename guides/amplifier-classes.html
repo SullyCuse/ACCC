@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -176,6 +181,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>An amplifier's output stage has to reproduce a signal that swings above and below zero. The classification describes how much of that waveform each output device conducts for &mdash; the <strong>conduction angle</strong> &mdash; and, in the case of Class D, whether the devices are behaving as linear amplifiers at all.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/amplifier-classes-1.jpg" alt="Inside a Nakamichi 620 power amplifier, showing the large transformer and circuit boards through a clear cover" width="1024" height="768" loading="lazy" decoding="async">
+      <figcaption>Inside a classic solid-state power amplifier: a large transformer and power supply feed output devices mounted on heatsinks. The amplifier&#x27;s class describes how those output devices share the work, and that largely decides how much heat this box has to shed.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Nakamichi_620_Stereo_Power_Amplifier_-_insides_(12075062116).jpg" rel="noopener" target="_blank">Jacques from Cape Town, South Africa</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>Think of it as a spectrum with a trade-off at each end. Keeping output devices conducting all the time is linear and free of a particular kind of distortion, but wastes enormous energy as heat. Switching them off when they are not needed is far more efficient, but introduces the problem of handing over cleanly between devices. Every class is a different answer to that trade.</p>
 
     <div class="spec-card">
@@ -213,6 +223,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Where Each Class Makes Practical Sense</h2>
 
     <p>Because the classes differ mostly in physical consequences, matching them to circumstances is straightforward.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/amplifier-classes-2.jpg" alt="Small Class D amplifier module built around a TPA3116 chip, with a compact heatsink" width="1200" height="1200" loading="lazy" decoding="async">
+      <figcaption>A complete Class D amplifier module about the size of a playing card. Because the output devices switch rather than operate linearly, a small heatsink is enough for tens of watts, which is why Class D dominates active speakers and subwoofers.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:TPA3116-based_subwoofer_amplifier_module_04.jpg" rel="noopener" target="_blank">Retired electrician</a>, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license noopener" target="_blank">CC0</a>, via Wikimedia Commons</span></figcaption>
+    </figure>
 
     <ul>
       <li><strong>Class A</strong> suits low-power systems with sensitive speakers, in rooms where the heat is tolerable and running costs are not a concern. It is the least practical and the most romantic option.</li>

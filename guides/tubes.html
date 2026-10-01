@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -180,6 +185,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>Damping factor is the ratio of the speaker impedance to the amplifier&rsquo;s output impedance — it describes how tightly the amp controls the driver&rsquo;s motion. Solid-state amps typically have very low output impedance (high damping factor, 100&ndash;500+), gripping the woofer firmly for tight bass. Tube amps, through their output transformers, have higher output impedance (damping factor often 2&ndash;20). The consequence: a tube amp&rsquo;s frequency response varies with the speaker&rsquo;s impedance curve, subtly shaping tonal balance — sometimes flattering, sometimes loose in the bass.</p>
     </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/tubes-1.jpg" alt="Tube power amplifier with exposed output valves and transformers on a black chassis" width="1200" height="800" loading="lazy" decoding="async">
+      <figcaption>A push-pull tube amplifier. The output transformers behind the valves are why tube amps have high output impedance, and that is why their frequency response follows the speaker&#x27;s impedance curve.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Reussenzehn-tube-amp-1_hg.jpg" rel="noopener" target="_blank">Hannes Grobe</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>Because a tube amp&rsquo;s output interacts with the speaker&rsquo;s impedance curve, the same amp can sound different on different speakers. A speaker with a wildly varying impedance curve will have its frequency response altered by a high-output-impedance tube amp; a speaker with a flat impedance curve is far less affected. This is why tube amps and speakers are often recommended as matched pairs.</p>
 
     <h2>Distortion Profile</h2>
@@ -197,6 +207,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <h3>Class A</h3>
       <p>The output devices conduct over the full signal cycle. Class A is the most linear and lowest-distortion mode, used in many single-ended tube amps and premium solid-state designs. The cost is efficiency — Class A runs hot and wastes most of its power as heat, so output powers are modest (often a few watts to ~30&nbsp;W). It demands efficient speakers.</p>
     </div>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/tubes-2.jpg" alt="Pair of KT88 power tubes" width="1200" height="1178" loading="lazy" decoding="async">
+      <figcaption>KT88 beam tetrodes are a classic output tube for push-pull Class AB amplifiers, typically giving around 50–100 W from a pair depending on the circuit.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:KT88-01_hg.jpg" rel="noopener" target="_blank">Hannes Grobe</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <div class="spec-card">
       <div class="spec-name">Architecture</div>

@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -194,6 +199,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>An <strong>active preamplifier</strong> contains gain stages: the signal passes through amplification, and the volume control sets how much of the amplified signal reaches the output. It can supply gain when needed, and it presents a low output impedance regardless of where the volume control sits, so it drives cables and amplifier inputs reliably.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/preamplifiers-1.jpg" alt="Music First Audio Classic passive preamplifier with two large illuminated control knobs" width="1200" height="913" loading="lazy" decoding="async">
+      <figcaption>The Music First Audio Classic is a passive preamp: it uses transformers for volume control and adds no gain. Passive designs suit high-output sources and short cable runs to a sensitive power amp.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Musicfirstaudioclassicpreamplifier.jpg" rel="noopener" target="_blank">Music First Audio</a>, public domain, via Wikimedia Commons</span></figcaption>
+    </figure>
+
     <p>A <strong>passive preamplifier</strong> is essentially a switch and an attenuator, with no active devices at all. It cannot add gain &mdash; it can only reduce &mdash; and its supporters value the absence of any amplification stage in the path. Given modern 2&nbsp;V sources and sensitive power amplifiers, the lack of gain is often not a problem at all.</p>
 
     <p>The problem is impedance, and it is subtle because it changes with the volume setting. A passive volume control's output impedance is highest around the middle of its range &mdash; typically a quarter of the potentiometer's total value &mdash; so a 50&nbsp;k&Omega; passive can present around 12.5&nbsp;k&Omega; at moderate volume. Into a power amplifier with a 10&nbsp;k&Omega; input, that is a serious mismatch that varies as you turn the knob. Passive preamplifiers work beautifully in the right system &mdash; short cables, high-impedance amplifier input, healthy source output &mdash; and disappointingly in the wrong one.</p>
@@ -203,6 +213,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Volume Controls Are Not All Alike</h2>
 
     <p>The volume control is the component you touch most and the one where implementation varies most widely.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/preamplifiers-2.jpg" alt="Volume control, input selector and tape monitor switches on a Pioneer SA-608 amplifier" width="1055" height="890" loading="lazy" decoding="async">
+      <figcaption>A conventional volume knob like this one turns a potentiometer. Its two channels can drift out of balance at low settings, which is the problem stepped attenuators and resistor-ladder controls are designed to fix.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Volume_control,_input_selector,_tape_monitor,_and_part_of_tone_control_switches_on_audio_amplifier_Pioneer_SA-608.jpg" rel="noopener" target="_blank">Vogler</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>A <strong>potentiometer</strong> is a continuously variable resistive track, and it is the standard for good reason: simple, cheap and smooth. Its weakness is channel matching &mdash; the two tracks are never identical, and the mismatch is worst at low settings, which is exactly where many people listen. A good potentiometer holds tracking to within a fraction of a decibel; a poor one can be a decibel or more out at low volume, pulling the image sideways.</p>
 
