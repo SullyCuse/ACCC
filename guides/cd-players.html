@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -176,6 +181,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>Every CD player performs two separate tasks, and keeping them distinct is the key to understanding the whole category. First, a mechanism spins the disc and recovers the digital data stored on it. Second, that stream of ones and zeros is converted into an analog voltage your amplifier can use. In a one-box integrated player, both jobs live in the same chassis. Split them apart and you get a <strong>transport</strong> (the reading half) feeding an external <strong>DAC</strong> (the converting half) over a digital cable.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/cd-players-1.jpg" alt="Philips CDM1 CD transport mechanism inside a Marantz CD player" width="1200" height="900" loading="lazy" decoding="async">
+      <figcaption>The transport half of a CD player: this cast-chassis Philips CDM1 mechanism spins the disc and positions the laser. A separate section, sometimes in another box entirely, converts the recovered data to analog.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Philips_CDM1_mechanism.jpg" rel="noopener" target="_blank">Cjp24</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>Neither arrangement is inherently superior — they suit different priorities. The integrated player is simpler, needs one interconnect, and is usually the better value at modest prices. The split approach exists because digital-to-analog conversion has kept improving, and a separate DAC lets you upgrade that half of the equation, or share one good converter across a CD transport and a network streamer, without replacing the disc mechanism you already like.</p>
 
     <div class="spec-card">
@@ -187,6 +197,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>How a Transport Reads the Disc</h2>
 
     <p>A CD stores audio as a spiral of microscopic pits pressed into a reflective layer. A laser tracks that spiral, and a photodiode watches how the reflected light changes as pits and flat "land" areas pass beneath it. Those transitions are decoded into the underlying data. The disc does not simply hold raw audio samples, though — the data is wrapped in an error-correction scheme (Cross-Interleaved Reed-Solomon Coding) that spreads each sample's information across a wide physical area and adds redundancy.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/cd-players-2.jpg" alt="Electron microscope image of the pits pressed into a compact disc" width="1200" height="900" loading="lazy" decoding="async">
+      <figcaption>A scanning electron microscope view of the pits pressed into a CD, each only about half a micron wide. The laser reads the transitions between pit and land, and error correction rebuilds anything it misses.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:CD-ROM_pressed_pits.jpg" rel="noopener" target="_blank">Tycho</a>, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license noopener" target="_blank">CC0</a>, via Wikimedia Commons</span></figcaption>
+    </figure>
 
     <p>That redundancy is why a small scratch or speck of dust rarely produces an audible glitch. The correction system can reconstruct data that the laser could not read cleanly, and for most discs in good condition the result is a bit-for-bit recovery of exactly what was pressed. Only when damage overwhelms the correction does the player resort to interpolation — guessing at missing samples — or, in the worst case, an audible skip. For the vast majority of playback, what leaves the transport is the same data that went onto the master.</p>
 

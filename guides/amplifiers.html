@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -180,6 +185,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>Power is always qualified by load impedance. "150 watts" without a stated impedance is meaningless. Always read it as "150 watts RMS per channel into 8&nbsp;&Omega;, both channels driven simultaneously." That last phrase — both channels driven — is important. Some manufacturers rate power with only one channel driven, which can give figures 20–40% higher than real-world stereo operation.</p>
     </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/amplifiers-1.jpg" alt="McIntosh MC2300 stereo power amplifier with its two blue output meters" width="942" height="697" loading="lazy" decoding="async">
+      <figcaption>A high-power stereo amplifier like this McIntosh MC2300 is rated in watts per channel into a specific load. Check whether the published figure is into 8 Ω or 4 Ω, and whether both channels are driven together.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Mcintosh_MC-2300_Front.jpg" rel="noopener" target="_blank">Awgrasso</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>The relationship between power and perceived loudness follows a logarithmic curve. Doubling the power adds only 3 dB of additional SPL — a modest and barely perceptible increase in most rooms. Going from 50 watts to 100 watts is not twice as loud. To produce twice the perceived loudness, you need ten times the power (a 10 dB increase). This is why speaker sensitivity matters so much more than raw amplifier wattage in most real-world situations.</p>
 
     <p>Also note that many amplifiers deliver significantly more power into 4&nbsp;&Omega; loads than into 8&nbsp;&Omega;. A well-designed amplifier into 4&nbsp;&Omega; should deliver approximately double its 8&nbsp;&Omega; power, because the lower impedance allows more current to flow. An amplifier that delivers the same power into both 8&nbsp;&Omega; and 4&nbsp;&Omega; is likely current-limited and will struggle with demanding speakers.</p>
@@ -217,6 +227,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <h3>Peak Current (Amps per Channel)</h3>
       <p>The maximum instantaneous current the amplifier can deliver to the speaker load. This determines how well the amplifier controls difficult, low-impedance speakers and reproduces transient musical peaks. A 100 W amplifier with 30 A peak current delivery will sound more dynamic and composed on complex program material than a 100 W amplifier limited to 15 A, particularly with demanding 4&nbsp;&Omega; or lower-impedance loads.</p>
     </div>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/amplifiers-2.jpg" alt="Top view inside a YBA multi-channel power amplifier with a large toroidal transformer and rows of output devices" width="1200" height="1033" loading="lazy" decoding="async">
+      <figcaption>Peak current comes from the power supply: a large toroidal transformer and substantial reservoir capacitance let an amplifier deliver brief high-current bursts into difficult, low-impedance speaker loads.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:YBA_6_channel_power_amp_Ltd_edition_(8814374157).jpg" rel="noopener" target="_blank">Jacques from Cape Town, South Africa</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <!-- Gain/Sensitivity illustration -->
 <div style="background:var(--dark);border-radius:var(--radius);padding:28px;margin:28px 0;overflow-x:auto;">

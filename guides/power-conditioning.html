@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -180,6 +185,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>Surge protection clamps voltage spikes — from lightning, grid switching, or large appliances — before they reach your gear. This is the one function every system benefits from: a single surge can destroy an amplifier or DAC. Look at the joule rating (energy it can absorb) and clamping voltage (the level at which it acts). Surge protection is cheap insurance and the least controversial part of power conditioning.</p>
     </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/power-conditioning-1.jpg" alt="APC SurgeArrest power strip with several plugs connected" width="1200" height="801" loading="lazy" decoding="async">
+      <figcaption>A surge-protecting power strip clamps voltage spikes before they reach your equipment. Its joule rating and clamping voltage are the specs to compare.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:APC_SurgeArrest_Surge_Protector_Power_Strip_(48968398472).jpg" rel="noopener" target="_blank">Tony Webster from Minneapolis, Minnesota, United States</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <h2>Noise Filtering</h2>
 
     <div class="spec-card">
@@ -203,6 +213,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <h3>Isolation Transformers</h3>
       <p>A hum or buzz that rises and falls with volume on some sources is usually a ground loop — a small voltage difference between components&rsquo; grounds creating a current through the signal cables. Isolation transformers (and balanced power) can break these loops by galvanically separating the supply. This addresses an actual, audible fault rather than a subtle one. Before buying isolation hardware, rule out simpler causes: a single shared outlet, a cheater plug as a diagnostic only, or a ground-loop isolator on the offending source.</p>
     </div>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/power-conditioning-2.jpg" alt="Wall-mounted 500 VA isolation transformer unit" width="1200" height="971" loading="lazy" decoding="async">
+      <figcaption>An isolation transformer galvanically separates the equipment from the mains supply, which can break a stubborn ground loop. Rule out the simpler causes before buying one.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Isolation_Transformer_500VA.png" rel="noopener" target="_blank">Hpcs284</a>, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license noopener" target="_blank">CC0</a>, via Wikimedia Commons</span></figcaption>
+    </figure>
 
     <h2>AC Regeneration</h2>
 

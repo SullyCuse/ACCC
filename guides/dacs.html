@@ -93,6 +93,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -234,6 +239,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
   </svg>
 </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/dacs-1.jpg" alt="Close-up of a Wolfson WM8759 stereo DAC chip soldered to a circuit board" width="1200" height="900" loading="lazy" decoding="async">
+      <figcaption>The conversion itself happens in a chip like this Wolfson stereo DAC. A converter costing a few dollars can measure very well; the surrounding power supply, clocking and output stage are usually where designs differ.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:TCM_237387_alarm_clock_with_MP3_player_-_board_1_-_Wolfson_WM8759GED-7471.jpg" rel="noopener" target="_blank">Raimond Spekking</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <div class="chain-diagram" style="display:none;">
       <div class="chain-node"><div class="cn-label">Source</div><div class="cn-name">Streamer / Computer</div></div>
       <div class="chain-arrow">→</div>
@@ -294,6 +304,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Jitter: Why the Clock Matters</h2>
 
     <p>Jitter is the variation in timing of the digital signal's clock — small, irregular deviations from perfectly spaced sample delivery. In the analog domain, jitter manifests as a smearing of fine detail, a slight haziness in imaging, and a subtle brightness or hardness in the high frequencies. Jitter cannot be heard as a discrete artifact; it degrades the listening experience by degrees.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/dacs-2.jpg" alt="Citizen 16 MHz crystal oscillator in a metal can on a circuit board" width="1200" height="800" loading="lazy" decoding="async">
+      <figcaption>A crystal oscillator is the DAC&#x27;s timekeeper. Every sample is converted on its tick, so the stability of this one component sets the floor for jitter.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Crystal_oscillator_16MHz.jpg" rel="noopener" target="_blank">Mister rf</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>Modern DAC chips with internal reclocking and asyncronous USB implementations have made jitter a largely solved problem in quality DACs. The area where jitter still matters is in the quality of the external clock recovered from S/PDIF and optical inputs — inputs where the DAC is slaved to the source's clock rather than running its own. High-quality asynchronous USB and I&sup2;S connections sidestep this entirely by using the DAC's own low-jitter clock as the reference.</p>
 

@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -188,6 +193,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>Bit depth sets the dynamic range — the span between the quietest and loudest representable signal — at roughly 6.02&nbsp;dB per bit. 16-bit yields about 96&nbsp;dB of dynamic range (CD quality); 24-bit yields about 144&nbsp;dB, far exceeding any listening room&rsquo;s noise floor or any DAC&rsquo;s actual performance. The practical value of 24-bit is production headroom — room to set levels and dither without audible noise — not a wider range you can actually hear at playback.</p>
     </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/digital-formats-1.jpg" alt="Graph of an analog waveform, the stepped quantized version, and the quantization error between them" width="1200" height="407" loading="lazy" decoding="async">
+      <figcaption>Quantization error is the gap between the original signal (green) and the nearest available digital step. Each extra bit halves the step size and lowers that error by about 6 dB, which is why bit depth sets dynamic range.<span class="credit">Image: <a href="https://commons.wikimedia.org/wiki/File:Quantization_error.png" rel="noopener" target="_blank">Gregory Maxwell</a>, <a href="https://creativecommons.org/licenses/by/3.0" rel="license noopener" target="_blank">CC BY 3.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <div class="callout">
       <p><strong>The math, simply:</strong> Dynamic range ≈ 6.02 × bit depth. Captured bandwidth = sample rate ÷ 2. 16-bit/44.1&nbsp;kHz already exceeds the limits of human hearing in both dimensions. Higher numbers help during recording and mastering; their playback benefit is mostly theoretical.</p>
     </div>
@@ -213,6 +223,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <h3>PCM vs DSD</h3>
       <p>PCM (pulse-code modulation) measures amplitude at each sample — the dominant format for production and playback. DSD (Direct Stream Digital), used on SACD, encodes audio as a 1-bit stream at very high rates (2.8&nbsp;MHz for DSD64 and up). DSD can sound excellent but is harder to edit and process, so most DSD is converted to PCM somewhere in the chain anyway. Neither is inherently superior at playback; mastering quality matters far more than the encoding.</p>
     </div>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/digital-formats-2.jpg" alt="Data side of a hybrid Super Audio CD" width="1192" height="1200" loading="lazy" decoding="async">
+      <figcaption>A hybrid SACD has two layers: a standard CD layer any player can read, and a high-density layer holding DSD audio that needs an SACD-capable player.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Back_of_SACD.png" rel="noopener" target="_blank">R2D2Poland</a>, <a href="https://creativecommons.org/licenses/by/4.0" rel="license noopener" target="_blank">CC BY 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <h2>"High-Resolution" and MQA</h2>
 

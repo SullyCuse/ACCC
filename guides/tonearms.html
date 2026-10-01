@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -176,6 +181,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p><strong>Effective mass</strong> is the inertia the stylus sees when it tries to move the arm, expressed in grams and measured at the stylus tip. It is not the arm's weight &mdash; a heavy counterweight close to the pivot contributes very little, while a modest increase in headshell mass at the far end contributes a great deal, because inertia scales with the square of the distance from the pivot.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/tonearms-1.jpg" alt="Close-up of a tonearm&#x27;s rear counterweight and bearing housing" width="1024" height="782" loading="lazy" decoding="async">
+      <figcaption>The counterweight balances the arm but adds little effective mass because it sits close to the pivot. Mass out at the headshell matters far more, since inertia rises with the square of the distance.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Revolver_Turntable_-_tonearm_(8096483435).jpg" rel="noopener" target="_blank">Jacques from Cape Town, South Africa</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>Arms are usually grouped into three ranges. <strong>Low mass</strong> is roughly under 10&nbsp;g, <strong>medium mass</strong> around 10&ndash;18&nbsp;g, and <strong>high mass</strong> above about 18&nbsp;g. Most modern arms sit in the medium band, which is the most broadly compatible place to be.</p>
 
     <p>The reason the number matters is that the arm and cartridge together form a spring-mass system. The cartridge's suspension is the spring; the arm's effective mass plus the cartridge's own mass is the mass. Like any such system it has a resonant frequency, and where that frequency falls determines whether the combination works.</p>
@@ -211,6 +221,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Linear Tracking and Other Approaches</h2>
 
     <p><strong>Linear tracking</strong> arms sidestep the geometry problem entirely by moving the cartridge in a straight line across the record, exactly as the lathe did. Tracking error falls to essentially zero and there is no skating force to compensate for. The engineering cost is significant: the carriage must move with very low friction and be driven or allowed to advance smoothly, and air-bearing designs need a pump. They are superb when properly implemented and demanding to keep that way.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/tonearms-2.jpg" alt="Clearaudio turntable with a linear-tracking tonearm on a rail above the platter" width="1200" height="795" loading="lazy" decoding="async">
+      <figcaption>A linear-tracking arm moves the cartridge in a straight line, the same path the cutting lathe took, so tracking error and skating force effectively disappear.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Clearaudio_turntable_(370967269).jpg" rel="noopener" target="_blank">Dieter Karner from Roggendorf (Schollach), Austria</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>Two other variables are worth knowing. <strong>Armtube material</strong> &mdash; aluminium, carbon fibre, wood, magnesium &mdash; is a balance between stiffness, mass and internal damping; there is no single best answer, and a well-damped moderate material often beats a stiffer but more resonant one. <strong>Adjustability</strong> matters more than any material claim: an arm that lets you set VTA, azimuth and overhang precisely will outperform a theoretically superior arm you cannot set up correctly.</p>
 

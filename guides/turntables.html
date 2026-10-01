@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -180,6 +185,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>A heavier platter stores more rotational kinetic energy, which acts as a mechanical flywheel against speed variations. A 1 kg platter and a 5 kg platter driven by identical motors will behave very differently when the stylus encounters groove modulations — the lighter platter is more susceptible to instantaneous drag pulling at the speed. Meaningful platter mass for a performance turntable starts around 1.5&ndash;2 kg; high-end tables commonly use 5&ndash;10 kg. The material matters too: acrylic and glass damp resonances differently than aluminium or alloy.</p>
     </div>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/turntables-1.jpg" alt="DIY turntable with a thick acrylic platter installed on a wooden plinth" width="1200" height="900" loading="lazy" decoding="async">
+      <figcaption>A thick platter adds rotational inertia that resists speed changes from stylus drag. Acrylic is popular because its stiffness and damping are close to vinyl&#x27;s.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:DIY_turntable_by_J.C.Mills._Installed_platter_1.jpg" rel="noopener" target="_blank">johnclarkemills</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>Platter material interacts with record coupling. Acrylic platters sit close to the acoustic impedance of vinyl, which can reduce resonance at the record&ndash;platter interface. Some tables use a felt or rubber mat to achieve similar effects with a metal platter. The interaction between record, mat, and platter is subtle but measurable.</p>
 
     <h2>Motor Type: Belt, Direct, and Idler Drive</h2>
@@ -189,6 +199,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <h3>Belt Drive</h3>
       <p>The motor is isolated from the platter by a rubber or elastic belt. Motor vibration is mechanically decoupled, which typically gives low-frequency noise (rumble) figures. Belt compliance also acts as a filter for motor cogging — the small torque variations inherent in AC or DC motors. The tradeoff is lower rotational inertia in the belt itself and some speed elasticity. High-quality belt-drive tables compensate with a massive platter.</p>
     </div>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/turntables-2.jpg" alt="Technics SL-1200MK2 direct-drive turntable" width="1200" height="762" loading="lazy" decoding="async">
+      <figcaption>The Technics SL-1200 is the classic direct-drive turntable: the motor spins the platter itself under quartz-locked servo control, giving very stable speed.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Technics_SL-1200MK2-2.jpg" rel="noopener" target="_blank">32bitmaschine</a>, <a href="https://creativecommons.org/licenses/by-sa/2.5" rel="license noopener" target="_blank">CC BY-SA 2.5</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <div class="spec-card">
       <div class="spec-name">Drive Architecture</div>

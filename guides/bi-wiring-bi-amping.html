@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -176,6 +181,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>Start with the normal case. A speaker with a single pair of terminals gets one run of cable from the amplifier, and inside the cabinet a <strong>passive crossover</strong> splits that full-range signal — sending bass to the woofer and treble to the tweeter. This is how the overwhelming majority of systems are wired, and it works completely.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/bi-wiring-bi-amping-1.jpg" alt="Bi-wire speaker terminals on the back of a JBL loudspeaker, joined by a brass jumper strap" width="1200" height="355" loading="lazy" decoding="async">
+      <figcaption>Two pairs of terminals linked by a brass jumper: the top pair feeds the high-frequency crossover section and the bottom pair the low-frequency section. With the jumpers in place, one cable run drives both.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Cable_terminals_on_back_of_JBL_TI_5000_loudspeaker_box,_with_optional_bi-wiring_not_used_and_bypassed.jpg" rel="noopener" target="_blank">Pittigrilli</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
+
     <p>A speaker with <strong>two</strong> pairs of terminals is really the same speaker with its internal crossover sections brought out separately: one pair feeds the bass section, the other the treble section. To keep it working with a single amplifier and one cable run, the manufacturer bridges the two pairs with small metal straps called <strong>jumper links</strong> (or jumper bars). With the links in place, a two-terminal speaker behaves exactly like a single-wired one — the signal arrives at one pair and the jumpers carry it across to the other. Every upgrade discussed below starts by removing those links.</p>
 
     <div class="spec-card">
@@ -187,6 +197,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Bi-Wiring: Two Cables, One Amplifier</h2>
 
     <p>Bi-wiring is the smallest step. You remove the jumper links and run two separate lengths of speaker cable from the <strong>same</strong> amplifier terminals to the speaker — one cable to the bass posts, one to the treble posts. There is still one amplifier and one pair of amplifier outputs; the only change is that the bass and treble current paths are separated along the cable run instead of sharing a single conductor for most of the journey.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/bi-wiring-bi-amping-2.jpg" alt="Bi-wire speaker cable with four terminated ends at the speaker side" width="1024" height="768" loading="lazy" decoding="async">
+      <figcaption>A bi-wire cable splits at the speaker end into separate leads for the bass and treble terminals. It is still driven by one amplifier channel, so it separates the current paths but adds no power.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Bi-Wire_Speaker_Cable_(8842382149).jpg" rel="noopener" target="_blank">Jacques from Cape Town, South Africa</a>, <a href="https://creativecommons.org/licenses/by/2.0" rel="license noopener" target="_blank">CC BY 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>It is important to be precise about what this does and does not change. Bi-wiring does <strong>not</strong> add power, and it does not give the speaker two amplifiers — the amp still sees the same combined load and delivers the same total current. The crossover inside the speaker is untouched and still does all the filtering. The proposed rationale is subtler: with separate conductors, the large, dynamic current the woofer draws no longer shares a wire with the small, delicate current feeding the tweeter, which in theory reduces any interaction between them along the cable.</p>
 

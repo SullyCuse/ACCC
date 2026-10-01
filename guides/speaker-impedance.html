@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -185,6 +190,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <h3>Nominal Impedance vs. Minimum Impedance</h3>
       <p>Nominal impedance is a representative average of the whole curve — the "8&nbsp;&Omega;" or "4&nbsp;&Omega;" on the box. Minimum impedance is the lowest point that curve reaches. A speaker sold as 8&nbsp;&Omega; nominal can easily drop to 3&nbsp;&Omega; or lower at a particular bass frequency while climbing above 20&nbsp;&Omega; elsewhere. Your amplifier meets the whole curve, so it is the minimum — not the nominal — that decides whether the pairing is safe.</p>
     </div>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/speaker-impedance-1.jpg" alt="Graph of impedance versus frequency for a bass driver and a tweeter, showing a sharp peak at the woofer&#x27;s resonance" width="981" height="772" loading="lazy" decoding="async">
+      <figcaption>Impedance is a curve, not a single number. The woofer (red) peaks sharply at its resonance and rises with frequency, while the tweeter (blue) stays fairly flat. A nominal rating summarises curves like these.<span class="credit">Image: <a href="https://commons.wikimedia.org/wiki/File:Impedance_LS_Driver_Bass_and_Tweeter.png" rel="noopener" target="_blank">Frank Klemm</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>Manufacturers round toward the friendly number. A speaker whose curve spends most of its length near 6–8&nbsp;&Omega; but dips to 3&nbsp;&Omega; in the bass will still be labelled "8&nbsp;&Omega; nominal," because that reflects the average and looks easier to drive. The amplifier, however, does not see an average. When the music hits the frequency where the curve bottoms out, the amp is momentarily driving a 3&nbsp;&Omega; load and must supply the current that load demands — regardless of what the label promised.</p>
 
@@ -295,6 +305,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>How to Check Your Specific Case</h2>
 
     <p>Impedance problems are avoidable because the numbers are knowable in advance. Work through them in order:</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/speaker-impedance-2.jpg" alt="Digital multimeter with red and black test probes" width="1200" height="863" loading="lazy" decoding="async">
+      <figcaption>A multimeter&#x27;s resistance setting reads a speaker&#x27;s DC resistance, typically about 6 Ω for an 8 Ω nominal model. That is a sanity check only; the true minimum impedance comes from the manufacturer&#x27;s measurements.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:2017_Cyfrowy_miernik_uniwersalny.jpg" rel="noopener" target="_blank">Jacek Halicki</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <ul>
       <li><strong>Find each speaker's nominal and minimum impedance.</strong> The nominal is on the box; the minimum is usually in the full specifications or a published measurement. If only the nominal is listed, assume the real dip runs about one rating lower.</li>

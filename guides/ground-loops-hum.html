@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -176,6 +181,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>Two components sitting on a rack are each connected to mains earth through their power cables. Connect them with an interconnect and the cable's shield joins their chassis grounds together as well. There are now two conductive paths between the same two points, forming a loop.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/ground-loops-hum-1.jpg" alt="Four-way mains power board with several plugs connected" width="1200" height="900" loading="lazy" decoding="async">
+      <figcaption>Plugging every component into one power board near the system keeps their earth connections close together, which reduces the voltage differences that drive ground-loop hum.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Four_way_power_board_Australian_plugs.jpg" rel="noopener" target="_blank">Leon Brooks</a>, public domain, via Wikimedia Commons</span></figcaption>
+    </figure>
+
     <p>A loop matters because the earth connections are not at exactly the same potential. Different mains outlets, different circuits and different cable lengths all produce tiny voltage differences, and that small difference drives a current around the loop. Since part of the loop is your interconnect's shield &mdash; which is also the signal return &mdash; the current appears as a voltage in series with the audio. That is your hum. The loop also acts as an antenna, picking up whatever magnetic fields are nearby, which is why hum often changes when you move a power cable.</p>
 
     <h2>Read the Sound Before Touching Anything</h2>
@@ -193,6 +203,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Finding the Culprit, One Component at a Time</h2>
 
     <p>With the broad category established, isolate the specific component by subtraction. Work with the volume low &mdash; some of these steps can produce loud transients.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/ground-loops-hum-2.jpg" alt="Crowded rear panel of a Yamaha AV receiver with many input and output connections" width="1200" height="492" loading="lazy" decoding="async">
+      <figcaption>With this many connections, finding a ground loop by guessing is hopeless. Disconnect everything, then reconnect one source at a time until the hum returns.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Rear_panel_of_Yamaha_RX-A2020_AV_receiver_-_at_IFA_fair_2012.jpg" rel="noopener" target="_blank">Michael Movchin</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" rel="license noopener" target="_blank">CC BY-SA 3.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <ul>
       <li><strong>1. Strip the system.</strong> Leave only the amplifier and speakers connected, with nothing plugged into the inputs. Confirm whether the hum is present.</li>

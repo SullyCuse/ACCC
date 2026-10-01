@@ -88,6 +88,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.guide-figure{margin:28px 0;}
+.guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
+.guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
+.guide-figure .credit{display:block;font-size:11px;color:var(--text-3);margin-top:4px;}
+.guide-figure .credit a{color:inherit;}
 </style>
 <script type="application/ld+json">
 {
@@ -178,6 +183,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>Sensitivity is the single number that sets everything else in motion, so it is where matching begins. It is written as decibels of output for one watt of input, measured one meter away — usually printed as <strong>dB/W/m</strong> or, equivalently, dB at 2.83&nbsp;V/1&nbsp;m. A speaker rated 88&nbsp;dB/W/m produces 88&nbsp;dB SPL at one meter when fed a single watt.</p>
 
+    <figure class="guide-figure">
+      <img src="/images/guides/amplifier-speaker-matching-1.jpg" alt="Rear label of a Yamaha NS-2000 speaker listing model, impedance and power ratings above the terminals" width="973" height="1200" loading="lazy" decoding="async">
+      <figcaption>The spec label on the back of a speaker is where matching starts. Look for the sensitivity figure (dB/W/m or dB at 2.83 V/1 m) and the nominal impedance; if the label omits sensitivity, the manufacturer&#x27;s spec sheet will have it.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Yamaha_NS-2000_Speaker_-rear-.jpg" rel="noopener" target="_blank">Twy2008</a>, public domain, via Wikimedia Commons</span></figcaption>
+    </figure>
+
     <div class="spec-card">
       <div class="spec-name">Step 1 Input</div>
       <h3>Speaker Sensitivity (dB/W/m)</h3>
@@ -233,6 +243,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Step 4 — Add headroom, and understand why</h2>
 
     <p>The number from Step 3 is the bare minimum to reach your peaks. You do not want to run an amplifier at its ceiling, so size up. A practical target is <strong>two to four times</strong> the minimum wattage — that is +3 to +6&nbsp;dB of margin, keeping the amp loafing in its cleanest, lowest-distortion region even on the loudest transient.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/amplifier-speaker-matching-2.jpg" alt="Illuminated analog VU-style level meter on an amplifier front panel" width="1200" height="900" loading="lazy" decoding="async">
+      <figcaption>Meters like this show average level, not the instantaneous peaks that cause clipping. That gap is the reason to buy two to four times the minimum wattage: the headroom lets transients pass cleanly instead of flattening into the tweeter.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Ashdown_ABM-300_Bass_Amplifier_-_input_level_meter_(2007-02-24_by_Andrew_Plumb).jpg" rel="noopener" target="_blank">Andrew Plumb from Ottawa, Ontario, Canada</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0" rel="license noopener" target="_blank">CC BY-SA 2.0</a>, via Wikimedia Commons (resized)</span></figcaption>
+    </figure>
 
     <p>This is where the folklore about "underpowering damages speakers" comes from, and it is worth stating precisely. Raw power is not what kills tweeters — <strong>clipping</strong> is. Drive a too-small amplifier past its limit and the waveform flattens toward a square wave, which dumps a burst of extra high-frequency energy into the tweeter. A small amp pushed hard is more dangerous to your speakers than a larger, clean amp playing the same volume comfortably.</p>
 
