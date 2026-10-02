@@ -231,6 +231,44 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p><strong>Diagnose before you buy:</strong> The biggest real-world gains from "power" products usually come from fixing a specific fault — a surge risk, a ground loop, or a genuinely noisy circuit — not from generic "cleaner power." A dedicated mains circuit to the listening room often does more than any conditioner. Identify the actual problem first.</p>
     </div>
 
+    <h2>What Is Actually on Your Mains</h2>
+
+    <p>Before deciding whether your power needs "fixing," it helps to know what normal looks like. Mains voltage is not a fixed number. In North America the utility standard (ANSI C84.1) allows a 120&nbsp;V service to sit anywhere from roughly 114&nbsp;V to 126&nbsp;V in normal operation; in the UK and Europe a nominal 230&nbsp;V supply may legally run from about 216&nbsp;V to 253&nbsp;V. Well-designed audio equipment is built to work across that whole range without any audible change, because its internal power supply regulates the rails it actually uses.</p>
+
+    <p>The waveform is not a perfect sine wave either. Almost every modern electronic device &mdash; phone chargers, televisions, LED lighting, computers &mdash; draws current only at the very top of each cycle, which gradually flattens the peaks of the voltage across a whole neighbourhood. A few percent of distortion on the mains waveform is completely ordinary. A linear power supply in an amplifier is largely indifferent to it; what it can affect is the peak voltage the reservoir capacitors charge to, which is why amplifiers on a heavily loaded supply sometimes lose a little headroom.</p>
+
+    <p>One genuinely common problem is often misdiagnosed: a <strong>mechanical hum from the amplifier's transformer itself</strong>, audible from the chassis but not through the speakers. This is usually caused by a small DC offset on the mains, which large toroidal transformers are especially sensitive to. No noise filter will cure it, because it is not noise. A purpose-built DC blocker will, and it is far cheaper than a conditioner. If the hum comes from the speakers instead, you are almost certainly dealing with a <a href="/guides/ground-loops-hum">ground loop</a>, not dirty power.</p>
+
+    <h2>Reading a Surge Protector Spec Sheet</h2>
+
+    <p>Surge protectors look identical on a shelf, so the numbers on the box do the real work. Three are worth reading:</p>
+    <ul>
+      <li><strong>Joule rating</strong> &mdash; the total energy the device can absorb before its protective components are used up. Higher is better; for a hi-fi system, look for at least 1,000&nbsp;J, and more for expensive gear.</li>
+      <li><strong>Voltage protection rating (VPR) or clamping voltage</strong> &mdash; the voltage at which the protector starts diverting the surge. Lower is better. On 120&nbsp;V products the UL&nbsp;1449 ratings step through 330, 400 and 500&nbsp;V; 330&nbsp;V is the tightest.</li>
+      <li><strong>Status indicator</strong> &mdash; most protectors use metal-oxide varistors (MOVs), which degrade a little with every surge they absorb. A "protected" light that goes out means the device is now just a power strip.</li>
+    </ul>
+
+    <p>Two practical points are often missed. First, surges do not only arrive on the power line: lightning-induced spikes also travel along aerial, cable-TV and Ethernet lines, so a protector with coaxial or network pass-through closes those paths too. Second, MOV-based protectors wear out silently. Replacing them every few years, or immediately after a known strike nearby, is cheap compared with the equipment they guard. A whole-house surge protector fitted at the consumer unit by an electrician is an excellent first layer, with point-of-use protectors behind it.</p>
+
+    <h2>Dedicated Circuits: The Unglamorous Upgrade</h2>
+
+    <p>A dedicated circuit is a new run of mains cable from your distribution panel to the listening room that feeds nothing but the hi-fi. It addresses two real problems at once. It removes the shared-circuit noise from fridges, dimmers, heating pumps and chargers that sit on the same run as your system, and it reduces the voltage sag that a large power amplifier sees on a demanding bass transient, because the cable resistance back to the panel is no longer shared with other loads.</p>
+
+    <p>If you go this route, a few details matter more than exotic parts. Use a generously rated cable for the run length. Put all of the audio outlets on the same circuit so every component shares the same ground reference &mdash; splitting a system across two circuits is a classic way to <em>create</em> a ground loop. And have the work done by a qualified electrician to local code; in many places this is a legal requirement, and safety-earth arrangements are not an area for improvisation. For the cost of a mid-priced conditioner, a dedicated circuit often delivers a larger and more certain improvement.</p>
+
+    <h2>A Sensible Order of Operations</h2>
+
+    <p>Because power products overlap and the marketing is aggressive, it helps to approach them in a fixed order, spending money only when a step reveals a real problem:</p>
+    <ul>
+      <li><strong>1. Protect.</strong> Put every component, and any aerial or network line that enters the system, behind decent surge protection. This is worth doing even if nothing ever sounds wrong.</li>
+      <li><strong>2. Listen with nothing playing.</strong> Turn the volume up with the input muted or the source paused. Silence means you have no noise problem worth solving.</li>
+      <li><strong>3. Characterise any noise.</strong> A steady low hum that changes when you unplug a source is a ground loop. Buzzing that changes when you switch lights or appliances on and off points to noise on the mains. Hum from the amplifier's case rather than the speakers points to DC offset.</li>
+      <li><strong>4. Fix the specific cause.</strong> Ground loops have their own <a href="/guides/ground-loops-hum">safe fixes</a>; dimmer and appliance noise often disappears with a dedicated circuit or a filter on the source and preamp only; transformer hum calls for a DC blocker.</li>
+      <li><strong>5. Consider a regenerator last,</strong> and mainly if you live with genuinely poor or unstable mains voltage.</li>
+    </ul>
+
+    <p>Keep power amplifiers on the wall outlet or a high-current, unfiltered outlet throughout. If a product claims to improve "clarity" or "blackness of background" on a system that was already silent at step 2, there is no fault for it to fix.</p>
+
     <h2>Quick Reference: Power Products at a Glance</h2>
 
     <table class="spec-table">

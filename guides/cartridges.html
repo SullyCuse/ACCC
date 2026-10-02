@@ -94,6 +94,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.spec-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+.spec-table th{background:var(--dark);color:#fff;padding:10px 14px;text-align:left;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.spec-table td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;}
+.spec-table tr:nth-child(even) td{background:var(--cream);}
+.spec-table td:first-child{font-weight:600;color:var(--text);}
 .guide-figure{margin:28px 0;}
 .guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
 .guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
@@ -290,6 +295,48 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <h3>MC Loading: Resistance is the Variable</h3>
     <p>MC cartridges are loaded by the <strong>input impedance</strong> of the phono stage — typically a switch-selectable value from 50&nbsp;&Omega; to 1,000&nbsp;&Omega; or higher. The general rule is that the load impedance should be at least ten times the cartridge's internal impedance. A cartridge with 10&nbsp;&Omega; internal impedance works well loaded at 100&nbsp;&Omega; or above. Lower loading damps the cartridge and rolls off high frequencies; higher loading allows a natural resonance that some listeners find bright. The "correct" MC loading value often requires listening experimentation within the recommended range.</p>
+
+    <h2>Stylus Profiles</h2>
+
+    <p>The shape of the diamond tip affects how faithfully a cartridge traces the groove, and it is one of the clearest differences between budget and premium cartridges. The main profiles, from simplest to most advanced:</p>
+    <ul>
+      <li><strong>Conical (spherical)</strong> &mdash; a rounded tip, typically about 0.6&ndash;0.7&nbsp;mil in radius. Cheap, robust and forgiving of setup errors, but too large to follow the finest high-frequency modulations, especially near the label where the groove moves slowest. Still a sensible choice for worn or older records.</li>
+      <li><strong>Elliptical</strong> &mdash; narrower from side to side (often around 0.3&nbsp;&times;&nbsp;0.7&nbsp;mil or finer), so it fits small wiggles better and reduces inner-groove distortion. The usual step up.</li>
+      <li><strong>Line-contact, Shibata, microline and similar</strong> &mdash; very fine side radii with a long, narrow contact line. They trace high frequencies most accurately and spread wear over a longer contact area, which often gives a longer life. The price is sensitivity to setup: alignment, rake angle and azimuth all matter more (see the <a href="/guides/cartridge-setup">cartridge setup guide</a>).</li>
+    </ul>
+
+    <h2>Stylus Wear and Replacement</h2>
+
+    <p>A stylus wears gradually, and a worn one damages records as well as sounding worse. Manufacturer guidance varies, but commonly quoted lifespans are a few hundred hours for conical and elliptical tips and around 800&ndash;1,000 hours or more for advanced line-contact profiles, assuming clean records and correct tracking force. Dirty records and incorrect tracking force shorten that considerably.</p>
+
+    <p>The early signs are easy to miss because they arrive slowly: sibilants ("s" and "t" sounds) becoming spitty or smeared, more distortion on loud passages and inner tracks, and the stylus collecting dirt more readily. A jeweller's loupe or an inexpensive USB microscope will show flat facets on a worn tip. With most moving-magnet cartridges, replacement is simple and inexpensive &mdash; the stylus assembly slides out and a new one slides in. Moving-coil cartridges usually need to go back to the maker or a specialist for retipping, or be exchanged under a trade-in programme, which is a real running cost to factor in.</p>
+
+    <h2>High-Output MC, Moving Iron, and Step-Up Transformers</h2>
+
+    <p>The MM/MC split is not as rigid as the comparison above suggests. <strong>High-output moving-coil</strong> cartridges use more coil turns to reach roughly 1.5&ndash;2.5&nbsp;mV, enough to work directly into a standard 47&nbsp;kΩ MM phono input. <strong>Moving-iron</strong> and induced-magnet designs keep the magnet fixed and move a tiny piece of iron instead; electrically they behave like MM cartridges, with similar output and loading, and often have user-replaceable styli.</p>
+
+    <p>If you choose a low-output MC but your phono stage is MM-only, a <strong>step-up transformer (SUT)</strong> can bridge the gap without active electronics. A transformer with a 1:10 turns ratio adds 20&nbsp;dB of gain. It also scales the load the cartridge sees by the square of the ratio, so a 47&nbsp;kΩ MM input appears to the cartridge as 47,000&nbsp;&divide;&nbsp;100&nbsp;=&nbsp;470&nbsp;Ω, a sensible MC load. Choose the ratio to suit the cartridge's output and internal impedance; the manufacturer usually recommends a range.</p>
+
+    <h2>Weight, Mounting and Fit</h2>
+
+    <p>Two physical details catch people out when buying a cartridge. The first is <strong>cartridge weight</strong>. It adds directly to the tonearm's effective mass at the headshell, which changes the resonance calculation above, and it must fall within the range the tonearm's counterweight can balance. Very light or very heavy cartridges sometimes need an auxiliary weight or a different counterweight, so check the arm's specified cartridge-weight range before ordering.</p>
+
+    <p>The second is the <strong>mounting standard</strong>. Most cartridges use the standard half-inch mount: two screws through the cartridge body into the headshell slots, which allow alignment adjustment. Some budget and linear-tracking turntables use the P-mount (T4P) plug-in standard instead, where the cartridge plugs straight into the arm with fixed geometry and no alignment needed. The two are not interchangeable without an adapter, so confirm which your arm accepts.</p>
+
+    <h2>Quick Reference: Cartridge Matching at a Glance</h2>
+
+    <table class="spec-table">
+      <thead><tr><th>Specification</th><th>What It Affects</th><th>What to Check</th></tr></thead>
+      <tbody>
+        <tr><td>Output Voltage</td><td>Phono gain needed</td><td>MM ~35–45 dB; low-output MC ~60–70 dB, or a step-up transformer</td></tr>
+        <tr><td>Dynamic Compliance</td><td>Arm/cartridge resonance</td><td>Resonance between 8 and 12 Hz with your arm's effective mass</td></tr>
+        <tr><td>Load (MM)</td><td>Treble balance</td><td>47 kΩ plus recommended total capacitance, cable included</td></tr>
+        <tr><td>Load (MC)</td><td>Treble balance, damping</td><td>At least 10× the cartridge's internal impedance</td></tr>
+        <tr><td>Stylus Profile</td><td>Tracing accuracy, setup sensitivity</td><td>Advanced profiles reward careful alignment and VTA</td></tr>
+        <tr><td>Cartridge Weight</td><td>Effective mass, balance</td><td>Within the tonearm's counterweight range</td></tr>
+        <tr><td>Mounting</td><td>Physical fit</td><td>Half-inch standard vs P-mount</td></tr>
+      </tbody>
+    </table>
 
     <div class="cta-block">
       <h3>Check your cartridge compatibility</h3>

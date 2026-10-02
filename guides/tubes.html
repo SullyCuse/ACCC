@@ -227,6 +227,35 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p><strong>Maintenance reality:</strong> Tubes wear out. Output tubes last roughly 2,000&ndash;5,000 hours and need periodic bias adjustment (unless auto-biasing); small-signal tubes last longer. Budget for replacement tubes and, on fixed-bias amps, occasional bias checks. Solid-state amps are essentially maintenance-free by comparison.</p>
     </div>
 
+    <h2>Triode, Pentode and Ultralinear</h2>
+
+    <p>Not all tube output stages behave the same way, and the configuration explains a lot about how an individual tube amp will sound and how much power it makes. A <strong>triode</strong> output stage has the lowest output impedance and the most benign distortion of the three, but makes the least power. A <strong>pentode</strong> or beam tetrode (the EL34, KT88 and 6L6 families) makes considerably more power from the same tube, but has a much higher output impedance unless the designer applies plenty of negative feedback.</p>
+
+    <p><strong>Ultralinear</strong> operation, popularised in the early 1950s, is the compromise used in a great many push-pull amplifiers: the tube's screen grid is connected to a tap partway along the output transformer winding, giving most of the pentode's power with a good share of the triode's linearity. Some amplifiers include a switch to choose between ultralinear and triode modes. Expect power to drop by roughly half in triode mode, with slightly lower output impedance and a sound many listeners describe as more relaxed.</p>
+
+    <h2>Negative Feedback and Output Taps</h2>
+
+    <p>Negative feedback &mdash; returning a portion of the output to the input in inverted form &mdash; lowers distortion and output impedance in any amplifier. Tube designs vary enormously in how much they use. A zero-feedback single-ended triode amplifier can have an output impedance of several ohms, a damping factor near 1&ndash;3, and a frequency response that visibly follows the speaker's impedance curve. A push-pull amp with moderate feedback may come in under 1&nbsp;Ω, and behave much more like a solid-state design. When comparing tube amps, the feedback approach and the measured output impedance tell you more than the power rating does.</p>
+
+    <p>Most tube amplifiers also provide separate speaker terminals labelled 4, 8 and sometimes 16&nbsp;Ω. These connect to different taps on the output transformer, so the tube stage sees the load it was designed for. Start with the tap that matches your speaker's nominal impedance. Because many speakers marked 8&nbsp;Ω spend much of their range nearer 4&ndash;6&nbsp;Ω, it is worth trying the next tap down as well: the lower tap usually gives a slightly lower output impedance and tighter bass, sometimes at the cost of a little maximum power. There is no risk in experimenting between taps, as long as the amplifier is switched off while you move the cables.</p>
+
+    <h2>Hybrids and Tube Preamplifiers</h2>
+
+    <p>If you want some of the tube character without the power limitations, there are two common middle paths. A <strong>tube preamplifier</strong> driving a solid-state power amplifier keeps the low-maintenance, high-current output stage while putting tubes in the low-level signal path. Small-signal tubes last far longer than output tubes, so running costs are modest. The one thing to check is the preamp's output impedance, which can be in the region of 1&ndash;2&nbsp;kΩ on some designs; the power amplifier's input impedance should be at least ten times higher, and long interconnect runs are best avoided because cable capacitance combined with a high source impedance can roll off the treble.</p>
+
+    <p>A <strong>hybrid integrated amplifier</strong> does the same thing inside one chassis: tubes in the input or driver stage, transistors (often MOSFETs) at the output. Hybrids generally have solid-state output impedance and power, so they drive ordinary speakers without the careful matching a pure tube amp needs.</p>
+
+    <h2>Living With a Tube Amplifier</h2>
+
+    <p>Tube amplifiers reward a little care and punish a few specific mistakes:</p>
+    <ul>
+      <li><strong>Never run it without a load.</strong> Many tube amplifiers can be damaged if driven with no speakers connected, because the output transformer's voltage can rise high enough to arc. Always connect speakers before switching on, and never disconnect them while it is playing.</li>
+      <li><strong>Give it air.</strong> Output tubes run hot enough to burn skin and to damage cabinets above them. Keep the top clear, and use the tube cage around children and pets.</li>
+      <li><strong>Allow warm-up.</strong> Tubes need a short time to reach operating temperature, and many amps sound best after fifteen to thirty minutes.</li>
+      <li><strong>Watch for warning signs.</strong> A tube whose metal plate begins glowing red ("red-plating") is drawing far too much current: switch off immediately and check the bias or replace the tube. A silvery getter patch at the top of a tube turning milky white means air has got in and the tube is finished. New crackles, rushing noise, or ringing when you tap the chassis usually point to one failing tube.</li>
+      <li><strong>Replace output tubes in matched pairs or quads</strong> in push-pull amps, and re-check bias afterwards unless the amp biases itself.</li>
+    </ul>
+
     <h2>Quick Reference: Tube vs Solid-State</h2>
 
     <table class="spec-table">
