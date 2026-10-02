@@ -77,7 +77,7 @@ Project-specific rules that override or extend the principles above.
   - `analyze-chain` — Haiku, 700 tokens — analyzes each signal chain connection
   - `analyze-summary` — Sonnet, 700 tokens — scores, phono chain calc (total-mass resonance, 100 Hz compliance ×1.7), recommendations
 - `analyze-specs` runs first; its output (`specsText`) is passed to `analyze-chain` and `analyze-summary` so all three use the same confirmed spec values
-- **`compare`** — a separate, standalone function (NOT part of the analysis flow) powering the `/compare` page. Haiku, 1100 tokens; reads the same Supabase `component_specs` table as `analyze-specs` (shared `fetchSpecs`/`getCorrections`/`findCorrection`) and sets `verified:true` on a match so the UI can badge it. Uses Haiku (not Sonnet) to keep a full spec sheet to ~8 s per card.
+- **`compare`** — a separate, standalone function (NOT part of the analysis flow) powering the `/compare` page. Sonnet 5.5 at low effort, 1100 tokens, with server-side fallback (`fallbacks: "default"`); reads the same Supabase `component_specs` table as `analyze-specs` (shared `fetchSpecs`/`getCorrections`/`findCorrection`) and sets `verified:true` on a match so the UI can badge it. Switched from Haiku 4.5 on 2026-10-02 after a 20-component test against verified rows: same number of correct specs, ~40% fewer wrong ones, similar speed.
 
 ### Token limits and measured times — never change limits without re-timing
 Times measured on production, 2026-10-02 (3 runs each). Platform limit is 60 s.
@@ -86,7 +86,7 @@ Times measured on production, 2026-10-02 (3 runs each). Platform limit is 60 s.
 | analyze-specs | claude-sonnet-4-6 | 650 | ~0.2–1.4 s all-DB; ~11–12 s when AI looks up 5 components |
 | analyze-chain | claude-haiku-4-5 | 700 | ~3–4 s |
 | analyze-summary | claude-sonnet-4-6 | 700 | ~12.5–15.5 s |
-| compare | claude-haiku-4-5 | 1100 | ~7.5–9 s per component |
+| compare | claude-sonnet-5-5 (effort low) | 1100 | ~6–8 s per component (test run); re-time on production |
 
 ### index.html rules
 - **JS syntax verification is mandatory** before delivering any `index.html` edit. Use `node vm.Script` — the Python brace counter is unreliable when string literals contain `{` or `}`:
