@@ -24,6 +24,8 @@ ${specsText || componentList}
 
 Connections: ${connectionList}
 
+Work out every number (including the phono resonance) before writing; the summary must use exactly the same values as the sections below it.
+
 Output EXACTLY:
 
 OVERALL SCORE: [X/10]
