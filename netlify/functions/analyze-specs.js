@@ -97,10 +97,20 @@ function findCorrection(name, corrections) {
   // 3. Token subset match (handles "Wharfedale 5.1" vs "Wharfedale Evo 5.1").
   //    Digit runs must match: tokenizing on "." splits "5.1" into ["5","1"], so
   //    without this guard a "5.x" model would bind to "5.1" (both share token "5").
-  if (!key) key = Object.keys(corrections).find(k => {
-    const keyTokens = tokenize(k);
-    return userTokens.length > 0 && digits(normalize(k)) === nd && userTokens.every(t => keyTokens.includes(t));
-  });
+  //    Prefer the candidate with the fewest extra tokens, so "Fosi V3" binds to
+  //    "Fosi Audio V3" rather than "Fosi Audio V3 Mono"; a tie is ambiguous and
+  //    falls through.
+  if (!key && userTokens.length > 0) {
+    let best = null, bestExtra = Infinity, tie = false;
+    for (const k of Object.keys(corrections)) {
+      const keyTokens = tokenize(k);
+      if (digits(normalize(k)) !== nd || !userTokens.every(t => keyTokens.includes(t))) continue;
+      const extra = keyTokens.length - userTokens.length;
+      if (extra < bestExtra) { bestExtra = extra; best = k; tie = false; }
+      else if (extra === bestExtra) tie = true;
+    }
+    if (best && !tie) key = best;
+  }
 
   // 4. Fuzzy fallback for letter typos (handles "Wharefedale" -> "Wharfedale").
   //    Conservative on purpose: the digit run must match exactly, so a typo can
