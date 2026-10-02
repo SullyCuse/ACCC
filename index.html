@@ -514,7 +514,6 @@ select {
 .dv-box-shared  { fill:#f0fdf4; stroke:#86efac; }
 .dv-title { fill:#0f172a; font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:700; }
 .dv-sub   { fill:#94a3b8; font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; }
-.dv-col   { fill:#2563eb; font-family:'Plus Jakarta Sans',sans-serif; font-size:9px; font-weight:700; letter-spacing:.1em; }
 .dv-label { fill:#64748b; font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; }
 .dv-node  { cursor:pointer; }
 .dv-node:hover .dv-box,
@@ -1552,7 +1551,7 @@ function generateDiagram(){
 // Standalone copy of the diagram SVG for export: inlines the dv-* styles (an
 // SVG drawn as an image can't see page CSS or web fonts), adds a white
 // background and sets pixel dimensions.
-const DIAGRAM_EXPORT_CSS='.dv-box{fill:#f8fafc;stroke:#e2e8f0;stroke-width:1.5}.dv-box-digital{fill:#eff6ff;stroke:#93c5fd}.dv-box-phono{fill:#fefce8;stroke:#fcd34d}.dv-box-shared{fill:#f0fdf4;stroke:#86efac}.dv-title{fill:#0f172a;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700}.dv-sub{fill:#94a3b8;font-family:Arial,Helvetica,sans-serif;font-size:10px}.dv-col{fill:#2563eb;font-family:Arial,Helvetica,sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em}.dv-label{fill:#64748b;font-family:Arial,Helvetica,sans-serif;font-size:10px}';
+const DIAGRAM_EXPORT_CSS='.dv-box{fill:#f8fafc;stroke:#e2e8f0;stroke-width:1.5}.dv-box-digital{fill:#eff6ff;stroke:#93c5fd}.dv-box-phono{fill:#fefce8;stroke:#fcd34d}.dv-box-shared{fill:#f0fdf4;stroke:#86efac}.dv-title{fill:#0f172a;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700}.dv-sub{fill:#94a3b8;font-family:Arial,Helvetica,sans-serif;font-size:10px}.dv-label{fill:#64748b;font-family:Arial,Helvetica,sans-serif;font-size:10px}';
 function diagramExportSVG(scale){
   const svg=document.querySelector('#diagram-wrap svg');
   if(!svg)return null;
@@ -1783,95 +1782,80 @@ function renderPanelSections(parts){
 }
 function updateDiagram(){const wrap=document.getElementById('diagram-wrap');if(components.length<2){wrap.innerHTML='';return;}wrap.innerHTML=buildDiagram();}
 function buildDiagram(){
-  const W=600,BW=160,BH=50,G=20;
+  const W=600,BW=160,BH=50,G=20,SBW=Math.floor((Math.round(BW*1.6)-G)/2);
+  // Layout follows the connections, not component types: each component sits
+  // one row below the deepest component feeding it, so an iPad, laptop or NAS
+  // lands next to the other sources of the DAC it plugs into.
+  // Tonearm and cartridge render inside the turntable box, so their connections
+  // count as the turntable's.
+  const tt=components.find(c=>c.type==='turntable');
+  const sub=c=>tt&&(c.type==='cartridge'||c.type==='tonearm');
+  const remap=id=>{const c=components.find(x=>x.id===id);return c&&sub(c)?tt.id:id;};
+  let edges=connections.map(cn=>({from:remap(cn.fromId),to:remap(cn.toId),type:cn.type})).filter(e=>e.from!==e.to);
+  edges=edges.filter((e,i)=>edges.findIndex(x=>x.from===e.from&&x.to===e.to)===i);
   // A signal-chain diagram shows only components that are part of the chain.
   // Once any connection exists, drop orphaned (unconnected) components so
   // removing a sub-chain's connections removes its boxes too. With no
   // connections at all, fall back to showing every component.
-  const connIds=new Set();connections.forEach(cn=>{connIds.add(cn.fromId);connIds.add(cn.toId);});
-  const comps=connections.length>0?components.filter(c=>connIds.has(c.id)):components;
-  const dig=comps.filter(c=>['streamer','dac','cdplayer'].includes(c.type)),pho=comps.filter(c=>['turntable','phonopre'].includes(c.type)),shr=comps.filter(c=>!dig.includes(c)&&!pho.includes(c)&&c.type!=='cartridge'&&c.type!=='tonearm'),hasBoth=dig.length>0&&pho.length>0;
+  const connIds=new Set();edges.forEach(e=>{connIds.add(e.from);connIds.add(e.to);});
+  const nodes=edges.length?components.filter(c=>connIds.has(c.id)&&!sub(c)):components.filter(c=>c.type!=='cartridge'&&c.type!=='tonearm');
+  const byId=new Map(nodes.map(c=>[c.id,c]));
 
-  // Level-based topological sort (BFS): all sources appear before the nodes they feed
-  // This correctly handles multiple sources (M1T + CXA35) both feeding one DAC
-  // Signal flow order by type — used when no connections are defined
-  const typeFlowOrder={
-    turntable:0,tonearm:0,cartridge:0,
-    phonopre:1,
-    cdplayer:0,streamer:0,
-    dac:1,
-    preamp:2,amp:3,speakers:4,headphones:4,cables:99,other:99
+  // No connections yet: show a guessed chain in signal-flow order, unlabeled
+  if(!edges.length){
+    const typeFlowOrder={turntable:0,cdplayer:0,streamer:0,phonopre:1,dac:1,preamp:2,amp:3,speakers:4,headphones:4,cables:99,other:99};
+    const grp=c=>['streamer','dac','cdplayer'].includes(c.type)?0:['turntable','phonopre'].includes(c.type)?1:2;
+    const seq=[...nodes].sort((a,b)=>grp(a)-grp(b)||(typeFlowOrder[a.type]??99)-(typeFlowOrder[b.type]??99));
+    edges=seq.slice(1).map((c,i)=>({from:seq[i].id,to:c.id,type:null}));
+  }
+
+  // Drop any connection that closes a loop so the rows are well defined
+  const st={},dag=[];
+  const dfs=id=>{st[id]=1;edges.filter(e=>e.from===id).forEach(e=>{if(st[e.to]===1)return;dag.push(e);if(!st[e.to])dfs(e.to);});st[id]=2;};
+  nodes.forEach(c=>{if(!st[c.id])dfs(c.id);});
+  edges=dag;
+
+  // Row = longest path from a source; sources then drop to just above what they feed
+  const layer={};
+  const lay=id=>layer[id]!==undefined?layer[id]:(layer[id]=Math.max(-1,...edges.filter(e=>e.to===id).map(e=>lay(e.from)))+1);
+  nodes.forEach(c=>lay(c.id));
+  nodes.forEach(c=>{const ch=edges.filter(e=>e.from===c.id).map(e=>layer[e.to]);if(ch.length&&!edges.some(e=>e.to===c.id))layer[c.id]=Math.min(...ch)-1;});
+  const nL=Math.max(0,...nodes.map(c=>layer[c.id]))+1;
+
+  // Layout vertices: one per component, plus a waypoint in every row a connection skips
+  const rows=Array.from({length:nL},()=>[]),V=new Map();
+  nodes.forEach(c=>{const v={id:c.id,c,L:layer[c.id],par:[],kid:[],outs:[]};rows[v.L].push(v);V.set(c.id,v);});
+  const link=(a,b,e)=>{const q={v:a,b,e};a.kid.push(b);a.outs.push(q);b.par.push(q);};
+  edges.forEach((e,k)=>{
+    let prev=V.get(e.from);
+    for(let L=layer[e.from]+1;L<layer[e.to];L++){const d={id:'w'+k+'_'+L,c:null,L,par:[],kid:[],outs:[]};rows[L].push(d);link(prev,d,e);prev=d;}
+    link(prev,V.get(e.to),e);
+  });
+  rows.forEach(r=>{const n=r.filter(v=>v.c).length;r.forEach(v=>v.w=v.c?(n>=3?SBW:BW):0);});
+
+  // Order each row by the average position of its neighbours to avoid crossings
+  const idx=()=>rows.forEach(r=>r.forEach((v,i)=>v.i=i));
+  const bary=(v,ns)=>ns.length?ns.reduce((s,n)=>s+n.i,0)/ns.length:v.i;
+  const pars=v=>v.par.map(p=>p.v);
+  idx();
+  for(let it=0;it<2;it++){
+    for(let L=1;L<nL;L++){rows[L].sort((a,b)=>bary(a,pars(a))-bary(b,pars(b)));idx();}
+    for(let L=nL-2;L>=0;L--){rows[L].sort((a,b)=>bary(a,a.kid)-bary(b,b.kid));idx();}
+  }
+
+  // Horizontal centres: pull each box toward its neighbours, keeping order and spacing
+  const place=(r,want)=>{
+    const n=r.length,sep=i=>(r[i-1].w+r[i].w)/2+G,Lx=want.slice(),Rx=want.slice();
+    for(let i=1;i<n;i++)Lx[i]=Math.max(Lx[i],Lx[i-1]+sep(i));
+    for(let i=n-2;i>=0;i--)Rx[i]=Math.min(Rx[i],Rx[i+1]-sep(i+1));
+    r.forEach((v,i)=>v.x=(Lx[i]+Rx[i])/2);
   };
+  const mean=(v,ns)=>ns.length?ns.reduce((s,n)=>s+n.x,0)/ns.length:v.x;
+  rows.forEach(r=>{let x=0;r.forEach((v,i)=>{if(i)x+=(r[i-1].w+v.w)/2+G;v.x=x;});r.forEach(v=>v.x-=x/2);});
+  for(let L=1;L<nL;L++)place(rows[L],rows[L].map(v=>mean(v,pars(v))));
+  for(let L=nL-2;L>=0;L--)place(rows[L],rows[L].map(v=>mean(v,v.kid)));
+  for(let L=1;L<nL;L++)place(rows[L],rows[L].map(v=>mean(v,pars(v))));
 
-  function levelSort(chain){
-    if(chain.length<=1)return chain;
-    const ids=new Set(chain.map(c=>c.id));
-    const intConns=connections.filter(cn=>ids.has(cn.fromId)&&ids.has(cn.toId));
-    // No connections within this chain — sort by logical signal flow type order
-    if(intConns.length===0){
-      return [...chain].sort((a,b)=>(typeFlowOrder[a.type]??99)-(typeFlowOrder[b.type]??99));
-    }
-    const inDeg={};
-    chain.forEach(c=>inDeg[c.id]=0);
-    intConns.forEach(cn=>inDeg[cn.toId]++);
-    const result=[],vis=new Set();
-    let level=chain.filter(c=>inDeg[c.id]===0);
-    if(!level.length)level=chain.slice(0,1);
-    while(level.length>0){
-      level.forEach(c=>{result.push(c);vis.add(c.id);});
-      const next=[];
-      level.forEach(c=>{
-        intConns.filter(cn=>cn.fromId===c.id).forEach(cn=>{
-          if(!vis.has(cn.toId)){
-            inDeg[cn.toId]--;
-            if(inDeg[cn.toId]===0){const nx=chain.find(x=>x.id===cn.toId);if(nx)next.push(nx);}
-          }
-        });
-      });
-      level=next;
-    }
-    chain.filter(c=>!vis.has(c.id)).forEach(c=>result.push(c));
-    return result;
-  }
-
-  // For shared chain: also consider connections FROM dig/pho nodes to determine first shr node
-  function levelSortShr(chain){
-    if(chain.length<=1)return chain;
-    const ids=new Set(chain.map(c=>c.id));
-    const intConns=connections.filter(cn=>ids.has(cn.fromId)&&ids.has(cn.toId));
-    const extIn=new Set();
-    connections.forEach(cn=>{if(!ids.has(cn.fromId)&&ids.has(cn.toId))extIn.add(cn.toId);});
-    // No connections — sort by signal flow type order
-    if(intConns.length===0&&extIn.size===0){
-      return [...chain].sort((a,b)=>(typeFlowOrder[a.type]??99)-(typeFlowOrder[b.type]??99));
-    }
-    const inDeg={};
-    chain.forEach(c=>inDeg[c.id]=0);
-    intConns.forEach(cn=>inDeg[cn.toId]++);
-    const result=[],vis=new Set();
-    let level=chain.filter(c=>inDeg[c.id]===0&&extIn.has(c.id));
-    if(!level.length)level=chain.filter(c=>inDeg[c.id]===0);
-    if(!level.length)level=chain.slice(0,1);
-    while(level.length>0){
-      level.forEach(c=>{result.push(c);vis.add(c.id);});
-      const next=[];
-      level.forEach(c=>{
-        intConns.filter(cn=>cn.fromId===c.id).forEach(cn=>{
-          if(!vis.has(cn.toId)){
-            inDeg[cn.toId]--;
-            if(inDeg[cn.toId]===0){const nx=chain.find(x=>x.id===cn.toId);if(nx)next.push(nx);}
-          }
-        });
-      });
-      level=next;
-    }
-    chain.filter(c=>!vis.has(c.id)).forEach(c=>result.push(c));
-    return result;
-  }
-
-  const digS=levelSort(dig),phoS=levelSort(pho),shrS=levelSortShr(shr);
-
-  const ARR=`<defs><marker id="da" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/></marker></defs>`;
 
   // Wrap name into lines based on max chars (derived from box width)
   const wrapNameW=(s,mc=18)=>{
@@ -1924,132 +1908,83 @@ function buildDiagram(){
     return `<g class="dv-node"><rect x="${x}" y="${y}" width="${w}" height="${bh}" rx="8" class="dv-box ${cls}"/>${inner}</g>`;
   };
 
-  const pt=d=>`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="${d}"/>`;
-  const ln=(x1,y1,x2,y2)=>`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#da)"/>`;
-  const lbl=(x,y,t,a)=>t?`<text class="dv-label" x="${x}" y="${y}" text-anchor="${a||'start'}" dominant-baseline="central">${esc(t)}</text>`:'';
-  const ct=(a,b_)=>{if(!a||!b_)return null;const c=connections.find(x=>(x.fromId===a.id&&x.toId===b_.id)||(x.fromId===b_.id&&x.toId===a.id));return c?c.type:null;};
+  // Colour by type; an "Other" device takes the colour of what it feeds
+  const base=c=>['streamer','dac','cdplayer'].includes(c.type)?'dv-box-digital':['turntable','phonopre','tonearm','cartridge'].includes(c.type)?'dv-box-phono':'dv-box-shared';
+  const clsMemo={};
+  const clsOf=c=>{
+    if(clsMemo[c.id])return clsMemo[c.id];
+    let k=base(c);
+    if(c.type==='other'){const ks=[...new Set(edges.filter(e=>e.from===c.id).map(e=>clsOf(byId.get(e.to))))];if(ks.length===1)k=ks[0];}
+    return clsMemo[c.id]=k;
+  };
 
-  // Render a chain column using connection-based arrows
-  // Returns {b, p, lastBot, lastComp, totalY}
-  function renderChain(chain,startX,startY,cls,colBW=BW){
-    const cl=c=>typeof cls==='function'?cls(c):cls;
-    const ids=new Set(chain.map(c=>c.id));
-    const intConns=connections.filter(cn=>ids.has(cn.fromId)&&ids.has(cn.toId));
-    const hasInSet=new Set(intConns.map(cn=>cn.toId));
-    const sources=chain.filter(c=>!hasInSet.has(c.id));
-    const hubs=chain.filter(c=>hasInSet.has(c.id));
-    let b='',p='';
-    let curY=startY,lastBot=null,lastComp=null;
-    let colCx=startX+colBW/2,hubX=startX;
+  // Every connection gets its own line, coloured by cable type, with a key below.
+  // Wireless links are dashed.
+  const CABLE={'RCA single-ended':'#dc2626','XLR balanced':'#2563eb','USB':'#7c3aed','Optical / TOSLINK':'#ea580c','AES/EBU':'#0d9488','I2S':'#db2777','Speaker wire':'#334155','Phono / RCA':'#b45309','Coaxial S/PDIF':'#16a34a','HDMI / I2S':'#0891b2','Bluetooth':'#0284c7','Wi-Fi / Network':'#65a30d'};
+  const colOf=t=>CABLE[t]||'#94a3b8',dash=t=>t==='Bluetooth'||t==='Wi-Fi / Network'?' stroke-dasharray="5 3"':'';
 
-    if(sources.length>=2){
-      // Sub-column layout: use 1.6× colBW so each source box is readable
-      const srcAreaW=Math.round(colBW*1.6);
-      const srcBW=Math.floor((srcAreaW-G)/2);
-      // Center the hub column and merge bus under the source area
-      colCx=startX+srcAreaW/2;
-      hubX=startX+Math.round((srcAreaW-colBW)/2);
-      // Render source boxes
-      const srcHeights=sources.map(s=>boxH(s,srcBW));
-      const maxSrcH=Math.max(...srcHeights);
-      sources.forEach((c,i)=>{
-        const sx=startX+i*(srcBW+G);
-        b+=box(sx,curY,c,cl(c),srcBW);
-      });
-      const srcsBotY=curY+maxSrcH;
-      // Connect to first hub via bus merge
-      if(hubs.length>0){
-        const hub=hubs[0];
-        const hubY=srcsBotY+G;
-        const mergeY=srcsBotY+G/2;
-        const hubConn=connections.filter(cn=>cn.toId===hub.id&&ids.has(cn.fromId));
-        const connTypes=sources.map(c=>{const cn=hubConn.find(x=>x.fromId===c.id);return cn?cn.type:null;});
-        sources.forEach((c,i)=>{
-          const scx=startX+i*(srcBW+G)+srcBW/2;
-          const srcBot=curY+srcHeights[i];
-          p+=`<line stroke="#2563eb" stroke-width="1.2" x1="${scx}" y1="${srcBot}" x2="${scx}" y2="${mergeY}"/>`;
-          p+=`<line stroke="#2563eb" stroke-width="1.2" x1="${scx}" y1="${mergeY}" x2="${colCx}" y2="${mergeY}"/>`;
-        });
-        p+=`<line stroke="#2563eb" stroke-width="1.2" fill="none" x1="${colCx}" y1="${mergeY}" x2="${colCx}" y2="${hubY}" marker-end="url(#da)"/>`;
-        // Label the merge: one centered label when all sources share a
-        // connection type (the common case), otherwise one per drop line
-        // anchored outward so the two labels never overlap in the middle.
-        const defined=connTypes.filter(Boolean);
-        const allSame=defined.length===connTypes.length&&connTypes.every(t=>t===connTypes[0]);
-        if(allSame&&defined.length){
-          b+=lbl(colCx+6,(mergeY+hubY)/2,connTypes[0],'start');
-        }else{
-          connTypes.forEach((t,i)=>{
-            if(!t)return;
-            const scx=startX+i*(srcBW+G)+srcBW/2;
-            const srcBot=curY+srcHeights[i];
-            const left=scx<colCx;
-            b+=lbl(scx+(left?-4:4),(srcBot+mergeY)/2,t,left?'end':'start');
-          });
-        }
-        b+=box(hubX,hubY,hub,cl(hub),colBW);
-        lastBot=hubY+boxH(hub,colBW);lastComp=hub;curY=lastBot+G;
-        for(let i=1;i<hubs.length;i++){
-          const c=hubs[i];
-          p+=ln(colCx,lastBot,colCx,curY);
-          const t=ct(lastComp,c);if(t)b+=lbl(colCx+5,(lastBot+curY)/2,t);
-          b+=box(hubX,curY,c,cl(c),colBW);
-          lastBot=curY+boxH(c,colBW);lastComp=c;curY=lastBot+G;
-        }
-      }else{
-        lastBot=srcsBotY;lastComp=sources[sources.length-1];curY=srcsBotY+G;
-      }
-    }else{
-      // Single source or simple sequential chain
-      chain.forEach(c=>{
-        if(lastBot!==null){
-          p+=ln(colCx,lastBot,colCx,curY);
-          const t=ct(lastComp,c);if(t)b+=lbl(colCx+5,(lastBot+curY)/2,t);
-        }
-        b+=box(startX,curY,c,cl(c),colBW);
-        lastBot=curY+boxH(c,colBW);lastComp=c;curY=lastBot+G;
-      });
-    }
-    return{b,p,lastBot,lastComp,totalY:curY,cx:colCx};
+  // Ports: spread a box's incoming lines across its top edge and its outgoing
+  // lines across its bottom edge, ordered by where the other end sits
+  const spread=(v,list,end,key)=>{
+    list.sort((a,b)=>end(a).x-end(b).x);
+    const n=list.length,s=n>1?Math.min(22,Math.max(0,v.w-24)/(n-1)):0;
+    list.forEach((q,k)=>q[key]=v.x+(k-(n-1)/2)*s);
+  };
+  rows.forEach(r=>r.forEach(v=>{spread(v,v.par,q=>q.v,'x2');spread(v,v.outs,q=>q.b,'x1');}));
+
+  // Vertical geometry: lines that jog sideways each get their own horizontal run
+  rows.forEach(r=>r.forEach(v=>v.h=v.c?boxH(v.c,v.w):0));
+  const rowH=rows.map(r=>Math.max(0,...r.map(v=>v.h)));
+  const jogs=rows.map(r=>{
+    const s=r.flatMap(v=>v.par).filter(q=>Math.abs(q.x1-q.x2)>=1);
+    // Rightward runs starting furthest right go highest (and mirror for leftward) so runs into the same box never cross
+    const rt=s.filter(q=>q.x2>q.x1).sort((a,b)=>b.x1-a.x1),lt=s.filter(q=>q.x2<q.x1).sort((a,b)=>a.x1-b.x1);
+    return[...rt,...lt];
+  });
+  const rowY=[20];
+  for(let L=1;L<nL;L++)rowY[L]=rowY[L-1]+rowH[L-1]+(jogs[L].length?24+(jogs[L].length-1)*6:G);
+  const bot=v=>rowY[v.L]+(v.c?v.h:rowH[v.L]);
+
+  let p='',b='',x0=Infinity,x1=-Infinity;
+  const ext=(a,z)=>{x0=Math.min(x0,a);x1=Math.max(x1,z);};
+  const used=[...new Set(edges.map(e=>e.type))];
+  const mk=t=>'da'+used.indexOf(t);
+  const ARR=`<defs>${used.map(t=>`<marker id="${mk(t)}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="${colOf(t)}" stroke-width="1.5" stroke-linecap="round"/></marker>`).join('')}</defs>`;
+  const wire=(pts,t,arrow)=>`<polyline fill="none" stroke="${colOf(t)}" stroke-width="1.5"${dash(t)} points="${pts.map(q=>q.join(',')).join(' ')}"${arrow?` marker-end="url(#${mk(t)})"`:''}/>`;
+
+  rows.forEach((r,L)=>r.forEach(v=>{
+    if(v.c){b+=box(v.x-v.w/2,rowY[L],v.c,clsOf(v.c),v.w);ext(v.x-v.w/2,v.x+v.w/2);}
+    else p+=wire([[v.x,rowY[L]],[v.x,rowY[L]+rowH[L]]],v.par[0].e.type,false);
+  }));
+  for(let L=1;L<nL;L++){
+    const rb=rowY[L-1]+rowH[L-1],top=rowY[L];
+    rows[L].forEach(v=>v.par.forEach(q=>{
+      const t=q.e.type,y0=bot(q.v),k=jogs[L].indexOf(q);
+      if(k<0)p+=wire([[q.x1,y0],[q.x2,top]],t,!!v.c);
+      else{const y=rb+10+k*6;p+=wire([[q.x1,y0],[q.x1,y],[q.x2,y],[q.x2,top]],t,!!v.c);}
+    }));
   }
 
-  if(hasBoth){
-    const lX=10,rX=W/2+10;
-    let p='',b='';
-    b+=`<text class="dv-col" x="${lX+BW/2}" y="16" text-anchor="middle">DIGITAL</text>`;
-    b+=`<text class="dv-col" x="${rX+BW/2}" y="16" text-anchor="middle">PHONO</text>`;
+  const cw=x1-x0+20,VW=Math.max(W,cw),tx=(VW-cw)/2+10-x0;
+  let H=rowY[nL-1]+rowH[nL-1]+20;
 
-    const digR=renderChain(digS,lX,24,'dv-box-digital',BW);
-    b+=digR.b;p+=digR.p;
-    const phoR=renderChain(phoS,rX,24,'dv-box-phono',BW);    b+=phoR.b;p+=phoR.p;
-
-    const lB=digR.lastBot,lPrev=digR.lastComp;
-    const rB=phoR.lastBot,rPrev=phoR.lastComp;
-    const mergeY=Math.max(digR.totalY,phoR.totalY);
-    const sX=W/2-BW/2,sCx=sX+BW/2;let sY=mergeY+G;
-
-    if(shrS.length>0){
-      const fS=shrS[0];
-      // Only merge a column into the shared chain when it actually connects to it.
-      const lT=ct(lPrev,fS),rT=ct(rPrev,fS);
-      if(lB!==null&&lT){p+=`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="M${digR.cx},${lB} L${digR.cx},${mergeY} L${sCx-14},${mergeY} L${sCx-14},${sY}" marker-end="url(#da)"/>`;b+=lbl(Math.round((digR.cx+sCx-14)/2),mergeY-8,lT,'middle');}
-      if(rB!==null&&rT){p+=`<path fill="none" stroke="#2563eb" stroke-width="1.2" d="M${phoR.cx},${rB} L${phoR.cx},${mergeY} L${sCx+14},${mergeY} L${sCx+14},${sY}" marker-end="url(#da)"/>`;b+=lbl(Math.round((phoR.cx+sCx+14)/2),mergeY-8,rT,'middle');}
-    }
-    let pB=null,shrPrev=null;
-    shrS.forEach(c=>{if(pB!==null){p+=ln(sCx,pB,sCx,sY);const t=ct(shrPrev,c);if(t)b+=lbl(sCx+5,(pB+sY)/2,t);}b+=box(sX,sY,c,'dv-box-shared');pB=sY+boxH(c);shrPrev=c;sY+=boxH(c)+G;});
-    return `<svg width="100%" viewBox="0 0 ${W} ${(pB||sY)+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${p}${b}</svg>`;
+  // Cable key: only the types this system uses (none for the guessed, unconnected chain)
+  let key='';
+  const order=Object.keys(CABLE),rank=t=>order.includes(t)?order.indexOf(t):order.length;
+  const types=used.filter(Boolean).sort((a,b)=>rank(a)-rank(b));
+  if(types.length){
+    const items=types.map(t=>({t,w:30+t.length*6+18}));
+    const lines=[[]];let lw=0;
+    items.forEach(it=>{if(lw+it.w>VW-20&&lines[lines.length-1].length){lines.push([]);lw=0;}lines[lines.length-1].push(it);lw+=it.w;});
+    H+=4;
+    lines.forEach(ln=>{
+      let x=(VW-ln.reduce((s,it)=>s+it.w,0))/2;
+      ln.forEach(it=>{key+=`<line x1="${x}" y1="${H}" x2="${x+24}" y2="${H}" stroke="${colOf(it.t)}" stroke-width="3"${dash(it.t)}/><text class="dv-label" x="${x+30}" y="${H}" dominant-baseline="central">${esc(it.t)}</text>`;x+=it.w;});
+      H+=18;
+    });
+    H+=6;
   }
-
-  const all=[...digS,...phoS,...shrS];
-  const clsFn=c=>dig.includes(c)?'dv-box-digital':pho.includes(c)?'dv-box-phono':'dv-box-shared';
-  // Center the column: multi-source chains use the wider source area, so shift
-  // the start so the merge bus sits at W/2 (single-source chains center on BW).
-  const allIds=new Set(all.map(c=>c.id));
-  const allHubs=new Set(connections.filter(cn=>allIds.has(cn.fromId)&&allIds.has(cn.toId)).map(cn=>cn.toId));
-  const nSrc=all.filter(c=>!allHubs.has(c.id)).length;
-  const startX=nSrc>=2?Math.round(W/2-Math.round(BW*1.6)/2):W/2-BW/2;
-  const r=renderChain(all,startX,20,clsFn,BW);
-  return `<svg width="100%" viewBox="0 0 ${W} ${r.totalY+20}" xmlns="http://www.w3.org/2000/svg">${ARR}${r.p}${r.b}</svg>`;
+  return `<svg width="100%" viewBox="0 0 ${Math.round(VW)} ${H}" xmlns="http://www.w3.org/2000/svg">${ARR}<g transform="translate(${Math.round(tx)},0)">${p}${b}</g>${key}</svg>`;
 }
 renderAll();
 updateHint();
@@ -2301,7 +2236,6 @@ h2{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;c
 .dv-box-shared{fill:#f0fdf4;stroke:#86efac;}
 .dv-title{fill:#0f172a;font-family:Arial,sans-serif;font-size:12px;font-weight:700;}
 .dv-sub{fill:#94a3b8;font-family:Arial,sans-serif;font-size:10px;}
-.dv-col{fill:#2563eb;font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:.1em;}
 .dv-label{fill:#64748b;font-family:Arial,sans-serif;font-size:10px;}
 .comp-name-hdr{font-size:12px;font-weight:700;color:#2563eb;background:#eff6ff;padding:5px 10px;border-radius:6px 6px 0 0;margin-top:10px;}
 .comp-spec-block:first-child .comp-name-hdr{margin-top:0;}
