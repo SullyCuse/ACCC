@@ -1973,7 +1973,11 @@ function buildDiagram(){
   const order=Object.keys(CABLE),rank=t=>order.includes(t)?order.indexOf(t):order.length;
   const types=used.filter(Boolean).sort((a,b)=>rank(a)-rank(b));
   if(types.length){
-    const items=types.map(t=>({t,w:30+t.length*6+18}));
+    // Measure labels in the .dv-label font so every gap is the same; estimate if canvas is unavailable
+    const ctx=document.createElement('canvas').getContext('2d');
+    if(ctx)ctx.font="10px 'Plus Jakarta Sans',sans-serif";
+    const tw=t=>ctx?ctx.measureText(t).width:t.length*6;
+    const items=types.map(t=>({t,w:30+Math.ceil(tw(t))+18}));
     const lines=[[]];let lw=0;
     items.forEach(it=>{if(lw+it.w>VW-20&&lines[lines.length-1].length){lines.push([]);lw=0;}lines[lines.length-1].push(it);lw+=it.w;});
     H+=4;
