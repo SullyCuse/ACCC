@@ -33,11 +33,13 @@ Output EXACTLY — one bullet per connection:
 
 SIGNAL CHAIN ANALYSIS
 - [From] → [To] via [type]: [impedance/voltage figures from confirmed specs above, match assessment]
-- [repeat for every connection]`;
+- [repeat for every connection]
+
+Keep each bullet to 1–2 sentences with the key figures.`;
 
     const body = JSON.stringify({
       model: "claude-sonnet-5-5",
-      max_tokens: 700,
+      max_tokens: 1500,
       output_config: { effort: "low" },
       fallbacks: "default",
       messages: [{ role: "user", content: prompt }],
