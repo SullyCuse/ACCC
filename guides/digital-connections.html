@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://audiochainhifi.com/guides/digital-connections">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-08-07T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-02T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/digital-connections">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-08-07",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-02",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/digital-connections"
 }
 </script>
@@ -242,6 +242,35 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     </ul>
 
     <p>A last practical note on cables: for coaxial use true 75&nbsp;&Omega; cable; for AES/EBU use 110&nbsp;&Omega; cable rather than a microphone lead, which is a different impedance; for USB, a decent standard cable of a sensible length is all that is required. Digital cable choice is a matter of meeting the specification, not of exceeding it.</p>
+
+    <h2>The Bandwidth Arithmetic</h2>
+
+    <p>The resolution limits of each connection make more sense with the underlying data rates in view. Stereo PCM at 16-bit/44.1&nbsp;kHz carries about <strong>1.4&nbsp;Mbit/s</strong> of audio. At 24-bit/192&nbsp;kHz it is about 9.2&nbsp;Mbit/s, and at 32-bit/768&nbsp;kHz about 49&nbsp;Mbit/s. Stereo DSD512 runs at about 45&nbsp;Mbit/s.</p>
+
+    <p>S/PDIF's overhead pushes the line rate well above the audio rate: each sample period carries 64 bits of frame data, and the biphase-mark encoding that embeds the clock doubles the transition rate again. At 192&nbsp;kHz, the link must handle up to about 24.6&nbsp;million transitions per second, which is why inexpensive optical transmitters and plastic fibre struggle to reach it reliably. USB 2.0 High Speed, at 480&nbsp;Mbit/s, carries even the highest audio formats in around a tenth of its capacity, which is why the format ceiling on USB is set by the DAC rather than the cable.</p>
+
+    <h2>DSD Over S/PDIF and USB</h2>
+
+    <p>DSD is not PCM, but it can be carried over PCM connections using <strong>DoP</strong> (DSD over PCM), which packs DSD bits into PCM frames along with marker bits that tell the DAC to treat the stream as DSD. DSD64 travels as 24-bit/176.4&nbsp;kHz PCM, so a coaxial or AES/EBU input that supports 176.4&nbsp;kHz can usually carry it &mdash; if the DAC recognises DoP. DSD128 needs 352.8&nbsp;kHz, which most S/PDIF inputs do not accept.</p>
+
+    <p>Over USB, DoP works the same way, and many DACs also accept <strong>native</strong> DSD through a dedicated driver, which avoids the packing overhead and reaches higher DSD rates. If DSD playback matters to you, check which method and which rates both the source software and the DAC support; a mismatch usually produces silence or loud noise rather than degraded sound, which at least makes it easy to diagnose. Turn the volume down before the first test.</p>
+
+    <h2>Televisions and Optical: A Common Surprise</h2>
+
+    <p>Optical is the natural connection from a television to a DAC or stereo amplifier, but it comes with a limitation that catches many people out. S/PDIF can carry only two channels of uncompressed PCM. Multichannel sound over optical is possible only as a compressed bitstream such as Dolby Digital, which a stereo DAC cannot decode &mdash; the result is silence or noise.</p>
+
+    <p>The fix is in the television's audio settings: set the digital output to <strong>PCM</strong> or stereo so it downmixes to two channels before sending. For lossless multichannel audio, optical is the wrong connection altogether; that requires HDMI, typically via the television's eARC port into an AV receiver.</p>
+
+    <h2>When a Digital Link Misbehaves</h2>
+
+    <p>Digital connections tend to fail obviously, which makes problems easier to trace than their analogue equivalents.</p>
+
+    <ul>
+      <li><strong>No lock, no sound:</strong> the sample rate or format is probably unsupported by that input. Check the source's output settings and the DAC's specification for that particular input.</li>
+      <li><strong>Clicks or dropouts:</strong> suspect the cable first &mdash; a non-75&nbsp;&Omega; coax, an over-long or kinked optical lead &mdash; then any rate switching happening mid-track.</li>
+      <li><strong>Sound present but not bit-perfect:</strong> a computer's operating system may be resampling or applying volume. Use the player's exclusive or bit-perfect mode, set the system volume to maximum, and confirm the DAC's displayed sample rate matches the file.</li>
+      <li><strong>Hum or buzz with a computer source:</strong> a ground loop through the USB or coaxial connection. Optical, or a DAC with galvanic isolation on USB, usually removes it.</li>
+    </ul>
 
     <h2>Quick Reference: Digital Connections Compared</h2>
 

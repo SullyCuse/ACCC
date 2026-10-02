@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://audiochainhifi.com/guides/jitter-and-clocking">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-08-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-02T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/jitter-and-clocking">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-08-27",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-02",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/jitter-and-clocking"
 }
 </script>
@@ -246,6 +246,24 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     </ul>
 
     <p>The broader point is worth stating: jitter was a real and audible problem in the 1990s, when clock recovery was primitive and buffering was rare. The architecture that fixed it &mdash; local clock authority, deep buffers, isolated inputs &mdash; is now standard in even modestly priced equipment. Understanding it is useful mainly so you can recognise which claims about it still hold.</p>
+
+    <h2>Putting Picoseconds in Perspective</h2>
+
+    <p>The relationship between a jitter figure and its audible consequence can be calculated. For sinusoidal jitter of peak amplitude &Delta;t applied to a full-scale tone of frequency f, each of the two resulting sidebands sits at 20&nbsp;&times;&nbsp;log<sub>10</sub>(&pi;&nbsp;&times;&nbsp;f&nbsp;&times;&nbsp;&Delta;t) relative to the tone. Because the effect is proportional to frequency, the worst case is a loud, high-frequency signal.</p>
+
+    <p>For a full-scale 20&nbsp;kHz tone, 1&nbsp;nanosecond of jitter produces sidebands at about <strong>&minus;84&nbsp;dB</strong>; 100&nbsp;picoseconds at about <strong>&minus;104&nbsp;dB</strong>; and 10&nbsp;picoseconds at about <strong>&minus;124&nbsp;dB</strong>. For comparison, the noise floor of 16-bit audio sits around &minus;96&nbsp;dB. So a DAC with jitter in the low tens of picoseconds produces artefacts well below the noise of a CD, even under a test signal far more demanding than music, which carries little energy at full scale near 20&nbsp;kHz. The arithmetic supports the threshold research: jitter becomes a plausible concern only in the hundreds of picoseconds and above.</p>
+
+    <h2>How Jitter Is Measured</h2>
+
+    <p>A single picosecond number hides the spectrum, which is why serious measurements show the jitter's effect directly. The best-known method is the <strong>J-Test</strong>, devised by Julian Dunn. It combines a high-level tone at a quarter of the sample rate &mdash; 11.025&nbsp;kHz at 44.1&nbsp;kHz &mdash; with a very low-level square wave at 1/192 of the sample rate, about 230&nbsp;Hz, that toggles the least significant bit. That combination produces a data pattern that is deliberately difficult for a clock-recovery circuit to follow.</p>
+
+    <p>Fed through an S/PDIF input, the J-Test exposes data-correlated jitter as a series of sidebands spaced at odd harmonics of 230&nbsp;Hz either side of the 11&nbsp;kHz tone. A clean result shows the tone standing alone above a flat noise floor; a poor one shows a picket fence of spikes around it. Reviews that publish this plot, input by input, tell you far more than a headline figure, and they make it easy to see whether a DAC's reclocking works or whether its USB input outperforms its coaxial one.</p>
+
+    <h2>Jitter at the Recording End</h2>
+
+    <p>Everything above concerns playback, where jitter is reversible: a better DAC or a better clocking arrangement removes it. Jitter at the analogue-to-digital converter during recording is different. If the ADC's sampling instants wobble, the samples captured are simply the wrong values, and that error is permanent &mdash; no playback equipment can recover the signal that should have been recorded.</p>
+
+    <p>This is one place where studio clocking genuinely matters for sound quality, and it is part of why professional converters invest so heavily in clock design. For the listener it is a reassuring point rather than an actionable one: the quality of the recording chain is fixed in the file, and modern professional converters have long since pushed recording jitter well below audibility too.</p>
 
     <h2>Quick Reference: Jitter at a Glance</h2>
 

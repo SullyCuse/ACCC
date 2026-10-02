@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://audiochainhifi.com/guides/preamplifiers">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-08-20T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-02T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/preamplifiers">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-08-20",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-02",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/preamplifiers"
 }
 </script>
@@ -246,6 +246,26 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <li><strong>Maximum output voltage</strong> &mdash; must comfortably exceed what your power amplifier needs for full output.</li>
       <li><strong>Noise floor</strong> &mdash; matters most with high-gain preamplifiers into sensitive amplifiers and efficient speakers, which is the combination that produces audible hiss at the listening seat.</li>
     </ul>
+
+    <h2>Gain Structure: A Worked Example</h2>
+
+    <p>Too much gain is the most common preamplifier mismatch, and it is worth working through why. Take a 2&nbsp;V source, a preamplifier with 12&nbsp;dB of gain, and a power amplifier that reaches full output with 1.5&nbsp;V at its input.</p>
+
+    <p>With the volume control fully open, the preamplifier could deliver 8&nbsp;V &mdash; about <strong>14.5&nbsp;dB</strong> more than the power amplifier needs to clip. So full output is reached with the volume control already 14.5&nbsp;dB down. Normal listening typically sits 20&ndash;30&nbsp;dB below full output, which puts the control at roughly 35&ndash;45&nbsp;dB of attenuation: the bottom quarter of a potentiometer's travel, where channel matching is poorest and small movements make large changes in level.</p>
+
+    <p>Replace the preamplifier with a unity-gain design and the same listening level falls about 12&nbsp;dB further up the control's range, where matching is better and adjustment is finer. The preamplifier's own noise is no longer amplified by 12&nbsp;dB either. With modern sources and sensitive power amplifiers, low gain is usually an advantage rather than a limitation; generous gain is for systems with low-output sources or insensitive power amplifiers.</p>
+
+    <h2>Balanced Preamplifiers</h2>
+
+    <p>Many preamplifiers offer XLR outputs, and two points are worth knowing. First, balanced outputs typically deliver <strong>twice the voltage</strong> of the RCA outputs &mdash; 6&nbsp;dB more &mdash; because the signal appears in both polarities, so a source producing 2&nbsp;V on RCA usually produces 4&nbsp;V on XLR. That extra level worsens the gain-structure problem above unless the power amplifier's balanced input is correspondingly less sensitive, which many are.</p>
+
+    <p>Second, not every XLR socket indicates a balanced circuit. A <strong>fully balanced</strong> preamplifier carries two complete signal paths throughout; others are single-ended internally and convert to balanced at the output. Both deliver the main practical benefit of a balanced connection, which is noise rejection over long interconnects. The difference matters mainly in specifications and price, not in whether the connection works.</p>
+
+    <h2>Home Theatre Bypass</h2>
+
+    <p>Systems that share speakers between music and films raise a particular problem: two volume controls in series. If an AV receiver's front-channel outputs pass through a stereo preamplifier, the stereo preamplifier's volume has to be set to the same position every time a film is played, or the front speakers will be mismatched against the centre and surrounds.</p>
+
+    <p>A <strong>home theatre bypass</strong> (or unity-gain) input solves this by fixing the preamplifier's gain at unity for that input, handing volume control entirely to the AV processor. If you plan to integrate a stereo system with a surround setup, it is one of the most useful features to look for, and far more practical than trying to remember a reference volume setting.</p>
 
     <h2>Quick Reference: Preamplifier Types</h2>
 

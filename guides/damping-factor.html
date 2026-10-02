@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://audiochainhifi.com/guides/damping-factor">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-08-01T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-02T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/damping-factor">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-08-01",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-02",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/damping-factor"
 }
 </script>
@@ -238,6 +238,28 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <li><strong>Spend the attention on cable gauge instead.</strong> For runs over about 3&nbsp;m, moving from 16&nbsp;AWG to 14 or 12&nbsp;AWG does more for effective damping than any amplifier upgrade chasing the specification.</li>
       <li><strong>For valve amplifiers, ignore it and match the speaker.</strong> Look for sensitivity and a smooth impedance curve rather than a damping number.</li>
     </ul>
+
+    <h2>A Worked Example: Following the Numbers to the Cone</h2>
+
+    <p>Take a solid-state amplifier specified at a damping factor of 400 into 8&nbsp;&Omega;, which means an output impedance of 0.02&nbsp;&Omega;. Connect it with 4&nbsp;m of 16&nbsp;AWG cable &mdash; 8&nbsp;m of conductor for the round trip, at roughly 0.013&nbsp;&Omega; per metre, so about 0.106&nbsp;&Omega;. The source impedance seen at the speaker terminals is now 0.126&nbsp;&Omega;, and the effective damping factor is 8 &divide; 0.126, or about <strong>63</strong>. The specification sheet said 400; the speaker sees 63.</p>
+
+    <p>Now go one step further, to the driver itself. The quantity that actually governs how well the cone is controlled electrically is the driver's electrical Q, which rises in proportion to the total resistance in the circuit: voice coil plus everything feeding it. Suppose a woofer with a 6&nbsp;&Omega; voice coil and an electrical Q of 0.40 when driven from a perfect zero-impedance source. Add 0.126&nbsp;&Omega; and the Q becomes 0.40 &times; 6.126 &divide; 6, or about <strong>0.408</strong> &mdash; a 2% change. Swap the amplifier for one with a damping factor of 1,000 and the result is 0.408 again, to three decimal places. The spectacular specification difference has all but vanished by the time it reaches the cone.</p>
+
+    <p>Repeat the exercise with a valve amplifier of 1&nbsp;&Omega; output impedance, a damping factor of 8. Total source impedance is now about 1.1&nbsp;&Omega;, and the Q rises to roughly <strong>0.47</strong>, an 18% increase. That is enough to change the bass: slightly fuller, slightly less tightly controlled around the driver's resonance. So the specification does separate amplifier types &mdash; but the meaningful line falls somewhere around single digits to the low tens, not between 200 and 1,000.</p>
+
+    <h2>The Effect You Can Actually Hear: Frequency Response</h2>
+
+    <p>Cone control is the effect damping factor is named for, but the more audible consequence of output impedance is usually a change in frequency response. The amplifier's output impedance and the speaker's impedance form a voltage divider, and a speaker's impedance is anything but constant: a nominal 8&nbsp;&Omega; design might dip to 3.5&nbsp;&Omega; in the upper bass and peak at 30&nbsp;&Omega; at its bass resonance or around the crossover.</p>
+
+    <p>With the 0.126&nbsp;&Omega; source from the example above, the level at the speaker falls by 0.31&nbsp;dB at the 3.5&nbsp;&Omega; dip and 0.04&nbsp;dB at the 30&nbsp;&Omega; peak &mdash; a variation of about a quarter of a decibel, which is inaudible. With the 1.1&nbsp;&Omega; valve source, the same speaker loses 2.4&nbsp;dB at the dip and 0.3&nbsp;dB at the peak: a <strong>2&nbsp;dB</strong> response variation that follows the impedance curve exactly. That is clearly audible, and it is why the same valve amplifier can sound balanced on one speaker and lumpy on another.</p>
+
+    <p>This is also the most practical way to judge whether a low damping factor will matter in your system. Look at the speaker's impedance curve rather than its nominal rating. If it is flat, a high output impedance changes little; if it swings widely, the amplifier will reshape the response wherever the curve moves.</p>
+
+    <h2>Bridging and Class D</h2>
+
+    <p>Two further details affect the number in practice. <strong>Bridged</strong> operation, where two amplifier channels drive one speaker in opposite polarity, places the two output impedances in series, so the damping factor into a given load halves. A bridged amplifier specified at 200 per channel offers about 100 when bridged.</p>
+
+    <p><strong>Class D</strong> amplifiers need an output filter to remove their switching frequency, and in some designs that filter makes output impedance rise noticeably in the top octave, so the damping figure quoted at low frequencies flatters the treble. Modern designs that apply feedback after the filter largely avoid this, and in the bass &mdash; where damping matters &mdash; good Class D amplifiers typically measure as well as any linear design.</p>
 
     <h2>Quick Reference: Damping Factor in Context</h2>
 
