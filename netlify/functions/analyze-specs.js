@@ -88,11 +88,25 @@ function findCorrection(name, corrections) {
   // 1. Exact normalized match
   let key = Object.keys(corrections).find(k => normalize(k) === n);
 
-  // 2. Substring match (handles "Parasound 275" vs "Parasound 275 v1")
-  if (!key) key = Object.keys(corrections).find(k => {
-    const nk = normalize(k);
-    return nk.includes(n) || n.includes(nk);
-  });
+  // 2. Substring match (handles "Parasound 275" vs "Parasound 275 v1").
+  //    Prefer the closest length, so "KEF LS50" binds to "KEF LS50 Meta" rather
+  //    than "KEF LS50 Wireless II". Whole-word matches outrank partial ones, so
+  //    "Schiit Loki" prefers "Schiit Loki Mini+" over "Schiit Lokius". A tie
+  //    falls through to later steps.
+  if (!key) {
+    let best = null, bestDiff = Infinity, tie = false;
+    for (const k of Object.keys(corrections)) {
+      const nk = normalize(k);
+      if (!nk.includes(n) && !n.includes(nk)) continue;
+      const keyTokens = tokenize(k);
+      const whole = nk.includes(n) ? userTokens.every(t => keyTokens.includes(t))
+                                   : keyTokens.every(t => userTokens.includes(t));
+      const diff = Math.abs(nk.length - n.length) + (whole ? 0 : 1000);
+      if (diff < bestDiff) { bestDiff = diff; best = k; tie = false; }
+      else if (diff === bestDiff) tie = true;
+    }
+    if (best && !tie) key = best;
+  }
 
   // 3. Token subset match (handles "Wharfedale 5.1" vs "Wharfedale Evo 5.1").
   //    Digit runs must match: tokenizing on "." splits "5.1" into ["5","1"], so
