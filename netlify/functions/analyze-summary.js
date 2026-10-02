@@ -46,7 +46,7 @@ ISSUES & RECOMMENDATIONS
 
     const body = JSON.stringify({
       model: "claude-sonnet-5-5",
-      max_tokens: 700,
+      max_tokens: 1500,
       output_config: { effort: "low" },
       fallbacks: "default",
       messages: [{ role: "user", content: prompt }],
