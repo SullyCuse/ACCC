@@ -151,6 +151,7 @@ button{cursor:pointer;font-family:inherit}
 .th-brand{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#60a5fa;margin-bottom:4px}
 .th-model{font-size:19px;font-weight:700;color:#f8fafc;line-height:1.12}
 .th-year{font-size:11px;color:rgba(255,255,255,.3);margin-top:3px}
+.verified-note{font-size:11px;color:#94a3b8;margin-top:5px;line-height:1.35}
 .spec-tbl td{padding:12px 22px;border-bottom:1px solid #f1f5f9;font-size:13px;vertical-align:top;color:#334155;background:#fff}
 .spec-tbl tbody tr:nth-child(even) td{background:#f8fafc}
 .spec-tbl tbody tr:hover td{background:#eff6ff}
@@ -729,7 +730,7 @@ function renderTable(){
   const cols=st.items.map(it=>{
     if(it.status==='loading')return`<th class="th-c"><div class="load-v">Loading ${h(it.name)}…</div></th>`;
     if(it.data){
-      const badge=it.data.verified?`<span class="verified-badge">✓ Reported</span>`:'';
+      const badge=it.data.verified?`<span class="verified-badge">✓ Reported</span>${it.data.verifiedName?`<div class="verified-note">Verified specs are for ${h(it.data.verifiedName)}</div>`:''}`:'';
       return`<th class="th-c"><div class="th-brand">${h(it.data.brand)}</div><div class="th-model">${h(it.data.model)}</div><div class="th-year">${h(it.data.yearIntroduced)}</div>${badge}<span class="th-remove"><button class="btn-rm-col" onclick="removeFromResults(${it.id})" type="button" ${canRemove?'':'disabled'} aria-label="Remove ${h(it.data.model)}">✕ Remove</button></span></th>`;
     }
     return`<th class="th-c"><div style="color:#64748b">${h(it.name)}</div></th>`;
@@ -794,7 +795,7 @@ function renderCards(){
     const strengths=(d.strengths||[]).filter(s=>s&&s!=='N/A').length?`<div><p class="list-l">Strengths</p><ul class="pro-ul">${d.strengths.map(s=>`<li>${h(s)}</li>`).join('')}</ul></div>`:'';
 
     const canRemove=st.items.filter(i=>i.data).length>1;
-    const verifiedBadge=d.verified?`<span class="verified-badge">✓ Reported</span>`:'';
+    const verifiedBadge=d.verified?`<span class="verified-badge">✓ Reported</span>${d.verifiedName?`<div class="verified-note">Verified specs are for ${h(d.verifiedName)}</div>`:''}`:'';
     return`<article class="ccard"><div class="ccard-top"><div class="ccard-brand">${h(d.brand)}</div><div class="ccard-model">${h(d.model)}</div>${verifiedBadge}<button class="btn-remove-comp" onclick="removeFromResults(${it.id})" type="button" ${canRemove?'':'disabled'} aria-label="Remove ${h(d.model)} from comparison">✕</button></div><div class="ccard-body">${limitedWarning}<p class="ccard-sum">${h(d.summary)}</p>${strengths}${cons}<div class="ccard-links"><p class="list-l">Resources</p>${mfg}${yt}</div><div class="feedback-section"><button class="feedback-trigger" onclick="openSuggestModal('${h(d.brand+' '+d.model)}','Compare — ${h(st.catLbl)}')" type="button"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Report Inaccuracy</button></div></div></article>`;
   }).join('');
 }
