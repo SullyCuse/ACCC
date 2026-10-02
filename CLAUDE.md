@@ -75,7 +75,7 @@ Project-specific rules that override or extend the principles above.
 - **Three functions** run on every analysis:
   - `analyze-specs` — Sonnet 5.5 at low effort, 1500 tokens, server-side fallback — fetches component specs from Supabase `component_specs` first, AI only for components not found
   - `analyze-chain` — Sonnet 5.5 at low effort, 1500 tokens, server-side fallback — analyzes each signal chain connection
-  - `analyze-summary` — Sonnet 5.5 at low effort, 1500 tokens, server-side fallback — scores, phono chain calc (total-mass resonance, 100 Hz compliance ×1.7), recommendations
+  - `analyze-summary` — Sonnet 5.5 at low effort, 1500 tokens, server-side fallback — scores, phono chain calc. **Resonance is computed in code** (`computeResonance()` in `analyze-summary.js`: parses the specs blocks, total mass = arm + cartridge + 1 g, 100 Hz compliance ×1.7, grades Good 8–12 / Borderline within 1 Hz / Poor) and injected into the prompt for the model to copy — edit the formula there, not in the prompt, recommendations
 - `analyze-specs` runs first; its output (`specsText`) is passed to `analyze-chain` and `analyze-summary` so all three use the same confirmed spec values
 - **`compare`** — a separate, standalone function (NOT part of the analysis flow) powering the `/compare` page. Sonnet 5.5 at low effort, 1100 tokens, with server-side fallback (`fallbacks: "default"`); reads the same Supabase `component_specs` table as `analyze-specs` (shared `fetchSpecs`/`getCorrections`/`findCorrection`) and sets `verified:true` on a match so the UI can badge it. Switched from Haiku 4.5 on 2026-10-02 after a 20-component test against verified rows: same number of correct specs, ~40% fewer wrong ones, similar speed.
 
