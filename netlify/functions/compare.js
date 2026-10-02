@@ -100,10 +100,17 @@ function findCorrection(name, corrections) {
     const nk = normalize(k);
     return nk.includes(n) || n.includes(nk);
   });
-  if (!key) key = Object.keys(corrections).find(k => {
-    const keyTokens = tokenize(k);
-    return userTokens.length > 0 && digits(normalize(k)) === nd && userTokens.every(t => keyTokens.includes(t));
-  });
+  if (!key && userTokens.length > 0) {
+    let best = null, bestExtra = Infinity, tie = false;
+    for (const k of Object.keys(corrections)) {
+      const keyTokens = tokenize(k);
+      if (digits(normalize(k)) !== nd || !userTokens.every(t => keyTokens.includes(t))) continue;
+      const extra = keyTokens.length - userTokens.length;
+      if (extra < bestExtra) { bestExtra = extra; best = k; tie = false; }
+      else if (extra === bestExtra) tie = true;
+    }
+    if (best && !tie) key = best;
+  }
   if (!key && n.length >= 5) {
     let best = null, bestDist = Infinity, tie = false;
     for (const k of Object.keys(corrections)) {
