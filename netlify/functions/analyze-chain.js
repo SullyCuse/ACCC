@@ -33,11 +33,15 @@ Output EXACTLY — one bullet per connection:
 
 SIGNAL CHAIN ANALYSIS
 - [From] → [To] via [type]: [impedance/voltage figures from confirmed specs above, match assessment]
-- [repeat for every connection]`;
+- [repeat for every connection]
+
+Keep each bullet to 1–2 sentences with the key figures.`;
 
     const body = JSON.stringify({
-      model: "claude-haiku-4-5",
-      max_tokens: 700,
+      model: "claude-sonnet-5-5",
+      max_tokens: 1500,
+      output_config: { effort: "low" },
+      fallbacks: "default",
       messages: [{ role: "user", content: prompt }],
     });
 
@@ -50,6 +54,7 @@ SIGNAL CHAIN ANALYSIS
           "Content-Type": "application/json",
           "x-api-key": process.env.ANTHROPIC_API_KEY,
           "anthropic-version": "2023-06-01",
+          "anthropic-beta": "server-side-fallback-2026-07-01",
           "Content-Length": Buffer.byteLength(body),
         },
       }, res => {
@@ -64,7 +69,9 @@ SIGNAL CHAIN ANALYSIS
 
     const parsed = JSON.parse(raw);
     if (parsed.error) throw new Error(parsed.error.message);
-    return { statusCode: 200, headers, body: JSON.stringify({ text: parsed.content[0].text }) };
+    if (parsed.stop_reason === "refusal") throw new Error("The AI declined to analyze this chain. Please try again.");
+    const text = (parsed.content || []).filter(b => b.type === "text").map(b => b.text).join("");
+    return { statusCode: 200, headers, body: JSON.stringify({ text }) };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
   }
