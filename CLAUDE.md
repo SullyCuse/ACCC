@@ -71,7 +71,7 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 Project-specific rules that override or extend the principles above.
 
 ### Architecture
-- **Function timeout:** Netlify's synchronous function limit is **60 seconds and is not configurable** (per Netlify docs, checked 2026-10-02). The `timeout = 10` lines in `netlify.toml` are not a supported key and have no effect. The practical constraint is user wait time, not the platform limit: an analysis runs `analyze-specs`, then `analyze-chain` + `analyze-summary` in parallel, so a full run takes roughly specs + summary ≈ 15–27 s. Never increase token limits without estimating generation time first (Sonnet ~70 tok/s, Haiku ~150 tok/s).
+- **Function timeout:** Netlify's synchronous function limit is **60 seconds and is not configurable** (per Netlify docs, checked 2026-10-02). (`netlify.toml` has no timeout setting; the old per-function `timeout = 10` blocks did nothing and were removed.) The practical constraint is user wait time, not the platform limit: an analysis runs `analyze-specs`, then `analyze-chain` + `analyze-summary` in parallel, so a full run takes roughly specs + summary ≈ 15–27 s. Never increase token limits without estimating generation time first (Sonnet ~70 tok/s, Haiku ~150 tok/s).
 - **Three functions** run on every analysis:
   - `analyze-specs` — Sonnet, 650 tokens — fetches component specs from Supabase `component_specs` first, AI only for components not found
   - `analyze-chain` — Haiku, 700 tokens — analyzes each signal chain connection

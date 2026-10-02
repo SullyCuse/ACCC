@@ -2,21 +2,6 @@
   publish = "."
   functions = "netlify/functions"
 
-[functions."analyze-specs"]
-  timeout = 10
-
-[functions."analyze-chain"]
-  timeout = 10
-
-[functions."analyze-summary"]
-  timeout = 10
-
-[functions."submit-correction"]
-  timeout = 10
-
-[functions."compare"]
-  timeout = 10
-
 [[headers]]
   for = "/*"
   [headers.values]
