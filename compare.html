@@ -497,10 +497,14 @@ button{cursor:pointer;font-family:inherit}
       <p class="load-sub" id="load-names"></p>
     </div>
     <div id="errs"></div>
-    <div id="print-btn-zone" style="display:none;justify-content:flex-end;margin-bottom:14px">
+    <div id="print-btn-zone" style="display:none;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:14px">
       <button class="btn-print" onclick="window.print()" type="button" aria-label="Print or save as PDF">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         Print / Save PDF
+      </button>
+      <button class="btn-print" id="png-btn" onclick="downloadTablePNG()" type="button" aria-label="Download comparison table as PNG">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PNG
       </button>
     </div>
     <div id="tbl-zone"></div>
@@ -1079,6 +1083,52 @@ async function submitSuggestion(){
 
 // ── Utils ──
 function h(s){if(s==null)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+// Download the side-by-side spec table as a PNG. html2canvas is loaded on
+// first use only, so pages that never export pay nothing for it.
+let _h2cLoad=null;
+function loadHtml2Canvas(){
+  if(window.html2canvas)return Promise.resolve();
+  if(!_h2cLoad)_h2cLoad=new Promise((res,rej)=>{
+    const sc=document.createElement('script');
+    sc.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    sc.integrity='sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H';
+    sc.crossOrigin='anonymous';
+    sc.onload=res;sc.onerror=()=>{_h2cLoad=null;rej(new Error('load failed'));};
+    document.head.appendChild(sc);
+  });
+  return _h2cLoad;
+}
+async function downloadTablePNG(){
+  const tbl=document.querySelector('#tbl-zone .spec-tbl');
+  if(!tbl)return;
+  const btn=document.getElementById('png-btn');
+  btn.disabled=true;
+  try{
+    await loadHtml2Canvas();
+    const date=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+    const canvas=await html2canvas(tbl,{
+      scale:2,backgroundColor:'#ffffff',
+      width:tbl.scrollWidth,windowWidth:tbl.scrollWidth+40,
+      ignoreElements:el=>el.classList&&el.classList.contains('th-remove'),
+      onclone:doc=>{
+        const t=doc.querySelector('#tbl-zone .spec-tbl');
+        const cap=doc.createElement('caption');
+        cap.textContent=`AudioChainHiFi.com · ${st.catLbl} comparison · ${date}`;
+        cap.style.cssText='caption-side:top;text-align:left;padding:10px 14px;font-size:13px;font-weight:700;color:#2563eb;background:#fff';
+        t.insertBefore(cap,t.firstChild);
+      }
+    });
+    canvas.toBlob(blob=>{
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(blob);
+      a.download=`audiochainhifi-${(st.catLbl||'comparison').toLowerCase().replace(/[^a-z0-9]+/g,'-')}-comparison.png`;
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    },'image/png');
+  }catch(e){
+    alert('Sorry, the PNG could not be created. Try Print / Save PDF instead.');
+  }finally{btn.disabled=false;}
+}
 function su(s){if(!s)return'#';const t=String(s).trim();return(t.startsWith('http://')||t.startsWith('https://'))?t:'#';}
 </script>
 
