@@ -35,7 +35,7 @@ COMPATIBILITY SUMMARY
 
 PHONO CHAIN
 - Cartridge: [type, output voltage from specs]
-- Resonance: 159/√(([tonearm effective mass]+[cartridge weight]+1g screws)×[dynamic compliance]) = [X] Hz — [Good 8-12Hz/Borderline 7-8 or 12-13Hz/Poor] (if cartridge weight unknown, assume 6g and say so; if compliance is quoted at 100Hz, multiply by 1.7 for the 10Hz value and say so)
+- Resonance: 159/√(([tonearm effective mass]+[cartridge weight]+1g screws)×[10Hz dynamic compliance as a plain number in µm/mN]) = [X] Hz — [Good 8-12Hz/Borderline 7-8 or 12-13Hz/Poor] (if compliance is quoted at 100Hz, convert it first (×1.7) and use only the converted value; if cartridge weight unknown, assume 6g; say what you assumed)
 - Recommended gain: [dB]
 - Recommended loading: [Ω]` : ""}
 
