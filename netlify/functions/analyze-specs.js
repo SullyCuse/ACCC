@@ -193,8 +193,10 @@ Output one block per component:
 All ${needsAI.length} components required. No summary text. No questions.`;
 
       const body = JSON.stringify({
-        model: "claude-sonnet-4-6",
+        model: "claude-sonnet-5-5",
         max_tokens: 650,
+        output_config: { effort: "low" },
+        fallbacks: "default",
         messages: [{ role: "user", content: prompt }],
       });
 
@@ -207,6 +209,7 @@ All ${needsAI.length} components required. No summary text. No questions.`;
             "Content-Type": "application/json",
             "x-api-key": process.env.ANTHROPIC_API_KEY,
             "anthropic-version": "2023-06-01",
+            "anthropic-beta": "server-side-fallback-2026-07-01",
             "Content-Length": Buffer.byteLength(body),
           },
         }, res => { let d = ""; res.on("data", c => d += c); res.on("end", () => resolve(d)); });
@@ -217,7 +220,8 @@ All ${needsAI.length} components required. No summary text. No questions.`;
 
       const parsed = JSON.parse(raw);
       if (parsed.error) throw new Error(parsed.error.message);
-      aiText = parsed.content[0].text;
+      if (parsed.stop_reason === "refusal") throw new Error("The AI declined to look up these components. Please try again.");
+      aiText = (parsed.content || []).filter(b => b.type === "text").map(b => b.text).join("");
     }
 
     const correctedSection = correctedBlocks.length > 0

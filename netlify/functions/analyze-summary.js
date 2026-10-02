@@ -45,8 +45,10 @@ ISSUES & RECOMMENDATIONS
 3. [recommendation]`;
 
     const body = JSON.stringify({
-      model: "claude-sonnet-4-6",
+      model: "claude-sonnet-5-5",
       max_tokens: 700,
+      output_config: { effort: "low" },
+      fallbacks: "default",
       messages: [{ role: "user", content: prompt }],
     });
 
@@ -59,6 +61,7 @@ ISSUES & RECOMMENDATIONS
           "Content-Type": "application/json",
           "x-api-key": process.env.ANTHROPIC_API_KEY,
           "anthropic-version": "2023-06-01",
+          "anthropic-beta": "server-side-fallback-2026-07-01",
           "Content-Length": Buffer.byteLength(body),
         },
       }, res => { let d=""; res.on("data",c=>d+=c); res.on("end",()=>resolve(d)); });
@@ -69,7 +72,9 @@ ISSUES & RECOMMENDATIONS
 
     const parsed = JSON.parse(raw);
     if (parsed.error) throw new Error(parsed.error.message);
-    return { statusCode: 200, headers, body: JSON.stringify({ text: parsed.content[0].text }) };
+    if (parsed.stop_reason === "refusal") throw new Error("The AI declined to summarize this system. Please try again.");
+    const text = (parsed.content || []).filter(b => b.type === "text").map(b => b.text).join("");
+    return { statusCode: 200, headers, body: JSON.stringify({ text }) };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
   }
