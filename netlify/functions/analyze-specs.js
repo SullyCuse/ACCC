@@ -146,7 +146,7 @@ exports.handler = async (event) => {
       dac:       "output voltage (Vrms), output impedance (Ω), THD+N",
       turntable: "drive type, speeds (RPM), tonearm effective mass (g)",
       tonearm:   "effective mass (g), effective length (mm), mounting type",
-      cartridge: "type (MM/MC), output voltage (mV), dynamic compliance (µm/mN), internal impedance (Ω), tracking force (g), recommended loading (Ω), channel separation (dB)",
+      cartridge: "type (MM/MC), output voltage (mV), dynamic compliance (µm/mN), weight (g), internal impedance (Ω), tracking force (g), recommended loading (Ω), channel separation (dB)",
       phonopre:  "MM gain (dB), MC gain (dB), MM input impedance (kΩ), MC input impedance (Ω), output voltage",
       streamer:  "digital outputs, supported formats",
       cdplayer:  "output voltage (Vrms), digital outputs, THD",
