@@ -86,7 +86,7 @@ Times measured on production, 2026-10-02 (3 runs each). Platform limit is 60 s.
 | analyze-specs | claude-sonnet-5-5 (effort low) | 1500 | ~0.2–1.4 s all-DB; ~8–9 s when AI looks up 5 components |
 | analyze-chain | claude-sonnet-5-5 (effort low) | 1500 | ~9–15 s with 4–5 connections (runs in parallel with analyze-summary); 700 truncated Sonnet output |
 | analyze-summary | claude-sonnet-5-5 (effort low) | 1500 | ~9–12 s |
-| compare | claude-sonnet-5-5 (effort low) | 1100 | ~6–8 s per component (test run); re-time on production |
+| compare | claude-sonnet-5-5 (effort low) | 1100 | ~8–9 s per component (measured live 2026-10-02) |
 
 All four functions use Sonnet 5.5 (switched 2026-10-02). Sonnet 5.5 thinks by default and is wordier than Haiku/Sonnet 4.6: always set `output_config.effort`, read only `type: "text"` content blocks (never `content[0].text`), and re-check for truncation (`stop_reason: "max_tokens"`) after any prompt or limit change. The old 650/700-token caps truncated every test run.
 
