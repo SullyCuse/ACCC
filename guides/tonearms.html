@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://audiochainhifi.com/guides/tonearms">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-08-11T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-02T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/tonearms">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-08-11",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-02",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/tonearms"
 }
 </script>
@@ -246,6 +246,30 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <li><strong>Prefer adjustability.</strong> VTA on the fly, azimuth adjustment and a proper anti-skate mechanism are worth more in practice than exotic materials.</li>
       <li><strong>Spend on the arm before the cartridge.</strong> A good arm will support progressively better cartridges for years; a poor one caps every cartridge you fit to it.</li>
     </ul>
+
+    <h2>A Worked Resonance Example</h2>
+
+    <p>The calculation is short enough to do by hand. With total moving mass M in grams and compliance C at 10&nbsp;Hz in &micro;m/mN (numerically the same as 10<sup>&minus;6</sup>&nbsp;cm/dyne), the resonant frequency is approximately <strong>159&nbsp;&divide;&nbsp;&radic;(M&nbsp;&times;&nbsp;C)</strong>.</p>
+
+    <p>Take a medium-mass arm of 12&nbsp;g, a 6.5&nbsp;g cartridge and 1&nbsp;g of mounting hardware: a total of 19.5&nbsp;g. With a cartridge compliance of 15, the resonance is 159&nbsp;&divide;&nbsp;&radic;292.5, or about <strong>9.3&nbsp;Hz</strong> &mdash; comfortably in the window. Fit a high-compliance cartridge of 25 to the same arm and the result falls to about <strong>7.2&nbsp;Hz</strong>, low enough to be excited by warps. Move that cartridge to an 8&nbsp;g arm and the total falls to 15.5&nbsp;g, bringing the resonance back up to about 8.1&nbsp;Hz. A low-compliance moving-coil cartridge of 10, weighing 9&nbsp;g, on the 12&nbsp;g arm lands at about 10.7&nbsp;Hz.</p>
+
+    <p>Where only a 100&nbsp;Hz compliance figure is published, a conversion factor of about 1.7 is a common approximation for estimating the 10&nbsp;Hz value. It is a rule of thumb rather than a law, so a result near the edges of the window deserves a check by measurement. The AudioChainHiFi analyzer performs this calculation automatically when it has the arm's effective mass and the cartridge's mass and compliance.</p>
+
+    <h2>Checking the Resonance in Practice</h2>
+
+    <p>Several test records include a low-frequency band that sweeps slowly through roughly the 5&ndash;15&nbsp;Hz range, often with separate lateral and vertical tracks. Play it and watch the arm: at resonance, the headshell visibly shakes or wobbles, and the frequency at which that happens can be read from the record's announcements or markings. Lateral and vertical resonances are often slightly different, because the arm's mass is distributed differently in each plane.</p>
+
+    <p>A related warning sign needs no test record at all. If a woofer cone visibly pumps in and out while a slightly warped record plays, with no music at that frequency, the arm and cartridge resonance is being excited, and the combination is probably resonating too low.</p>
+
+    <h2>Adjusting a Combination That Misses</h2>
+
+    <p>A pairing that lands slightly outside the window can often be corrected rather than abandoned. Adding mass at the headshell &mdash; a heavier headshell, or small weights designed for the purpose &mdash; lowers the resonance, which helps when a low-compliance cartridge on a light arm resonates too high. Remember that added mass at the headshell must be rebalanced with the counterweight, and some arms offer a heavier counterweight for heavy cartridges.</p>
+
+    <p>Raising the resonance is harder, since mass can rarely be removed. A lighter headshell or lighter mounting screws help a little. Some arms offer <strong>fluid damping</strong>, in which a paddle sits in a trough of silicone fluid; it does not move the resonance, but it reduces the height of the resonant peak, which makes a marginal pairing better behaved on warped records. Use it sparingly, since too much damping can dull the sound.</p>
+
+    <h2>Removable Headshells</h2>
+
+    <p>Many arms use a detachable headshell on a standard bayonet fitting, which makes it easy to keep several cartridges mounted and aligned and swap them in seconds. The trade-offs are an extra mechanical joint, which must be tight to avoid rattle, and the headshell's own mass, which forms a large part of the arm's effective mass. When a manufacturer's effective-mass figure is quoted with or without the headshell, check which before doing the resonance calculation, since a 10&ndash;15&nbsp;g headshell changes the answer substantially.</p>
 
     <h2>Quick Reference: Tonearm Specifications</h2>
 

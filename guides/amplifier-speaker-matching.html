@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://audiochainhifi.com/guides/amplifier-speaker-matching">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-07-11T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-02T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/amplifier-speaker-matching">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-07-11",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-02",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/amplifier-speaker-matching"
 }
 </script>
@@ -279,6 +279,41 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     </ul>
 
     <p>The same amplifier can be badly overpowered for one speaker and hopelessly underpowered for another. That is the whole point of matching: the amp and the speaker are one system, and the sensitivity number is what connects them.</p>
+
+    <h2>A Worked Example: The Big Room</h2>
+
+    <p>The five steps are most revealing when the room is large and the speakers are hungry. Take a speaker rated at 85&nbsp;dB/W/m, a listening seat 4&nbsp;m away, and a target of 105&nbsp;dB peaks for dynamic material played loud. In free space the level would fall 12&nbsp;dB between 1&nbsp;m and 4&nbsp;m; in a real room, reflections recover some of that, so allow about 6&nbsp;dB. The speaker therefore needs to produce 111&nbsp;dB at 1&nbsp;m &mdash; 26&nbsp;dB above its 1-watt figure, which is about <strong>400&nbsp;W</strong>.</p>
+
+    <p>Two speakers playing together help. With both channels contributing, the level at the seat typically rises by around 3&nbsp;dB, which roughly halves the requirement per channel to about 200&nbsp;W. That is still a serious amplifier, before any headroom is added. Swap in a 92&nbsp;dB/W/m speaker and the same exercise asks for 19&nbsp;dB above 1&nbsp;W: about 80&nbsp;W, or 40&nbsp;W per channel with both playing. Seven decibels of sensitivity has cut the amplifier requirement by a factor of five.</p>
+
+    <p>The example also shows where the arithmetic is soft. The room correction, the stereo gain and the target peak level are all estimates, and each is worth a few decibels either way. That is exactly why Step 4's headroom exists: the calculation tells you which class of amplifier you need, not the precise wattage.</p>
+
+    <h2>Reading Power Specifications Honestly</h2>
+
+    <p>The headline wattage on an amplifier is only comparable with another if both were measured the same way. A few details separate a meaningful rating from a flattering one.</p>
+
+    <ul>
+      <li><strong>Continuous, not peak.</strong> Look for continuous (often labelled RMS) power. "Peak", "maximum" or "music power" figures can be double the continuous rating or more.</li>
+      <li><strong>Both channels driven.</strong> A rating with one channel driven lets the power supply concentrate on a single channel and overstates what the amplifier delivers when both are working.</li>
+      <li><strong>Distortion at the rating.</strong> Power is usually quoted at a stated distortion, typically 0.1% or 1%. A rating at 10% distortion describes an amplifier already deep into clipping.</li>
+      <li><strong>Full bandwidth and the stated load.</strong> A proper rating gives the load (8&nbsp;&Omega;, 4&nbsp;&Omega;) and the frequency range, typically 20&nbsp;Hz&ndash;20&nbsp;kHz. A figure measured only at 1&nbsp;kHz is less demanding.</li>
+    </ul>
+
+    <p>Independent measurements in reviews, where power is measured into 8 and 4&nbsp;&Omega; with both channels driven, are the most reliable check of all, and they often reveal that a modestly specified amplifier from a conservative manufacturer outperforms a more impressive-looking one.</p>
+
+    <h2>Quick Reference: Matching in Five Steps</h2>
+
+    <table class="spec-table">
+      <thead><tr><th>Step</th><th>What to Find</th><th>Rule of Thumb</th></tr></thead>
+      <tbody>
+        <tr><td>1. Sensitivity</td><td>Speaker dB/W/m (or dB at 2.83&nbsp;V)</td><td>Every 3&nbsp;dB of sensitivity halves the power needed</td></tr>
+        <tr><td>2. Target level</td><td>Peak SPL at the seat and listening distance</td><td>Peaks ride ~15&ndash;20&nbsp;dB above the average level</td></tr>
+        <tr><td>3. Power math</td><td>Watts to reach the peak at 1&nbsp;m, plus distance loss</td><td>+3&nbsp;dB = 2&times; power; +10&nbsp;dB = 10&times; power</td></tr>
+        <tr><td>4. Headroom</td><td>Multiply the minimum</td><td>2&ndash;4&times; the minimum clean power</td></tr>
+        <tr><td>5. Impedance</td><td>Speaker minimum impedance; amp's 4&nbsp;&Omega; rating</td><td>A current-capable amp nearly doubles its power from 8 to 4&nbsp;&Omega;</td></tr>
+        <tr><td>Specification check</td><td>How the power was measured</td><td>Continuous, both channels driven, full bandwidth, low distortion</td></tr>
+      </tbody>
+    </table>
 
     <div class="cta-block">
       <h3>Calculate the power you actually need</h3>

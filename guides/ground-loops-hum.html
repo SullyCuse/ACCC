@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://audiochainhifi.com/guides/ground-loops-hum">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-08-22T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-02T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/ground-loops-hum">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-08-22",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-02",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/ground-loops-hum"
 }
 </script>
@@ -247,6 +247,30 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <p>Three other causes look like hum and are fixed differently. <strong>Radio-frequency interference</strong> arriving on a long unshielded run tends to produce a buzz rather than a hum and sometimes audible broadcast content; ferrite clamps and shorter, better-shielded cables help. <strong>Mechanical transformer hum</strong> comes from the component itself rather than the speakers &mdash; if you can hear it with the speakers disconnected, it is the transformer's laminations vibrating, often provoked by DC on the mains from a nearby appliance. <strong>Dirty mains</strong> from dimmers and switch-mode devices produces a buzz that comes and goes with the offending appliance; the test is to switch things off around the house one at a time.</p>
 
     <p>The distinguishing question in all three cases is simple: does the noise come out of the speakers, or out of the box? Noise from the box is mechanical and does not respond to any signal-path fix.</p>
+
+    <h2>How Small the Voltages Are</h2>
+
+    <p>Some illustrative numbers show why hum is so stubborn and why it is worst with turntables. Suppose the ground potential difference between two outlets drives a current of 10&nbsp;mA around a loop, and the interconnect's shield has a resistance of 0.05&nbsp;&Omega;. The voltage dropped along the shield, and therefore added to the signal, is <strong>0.5&nbsp;mV</strong>.</p>
+
+    <p>On a line-level connection carrying signals of up to 2&nbsp;V, that is about <strong>72&nbsp;dB</strong> below full scale &mdash; quiet, but audible in silent passages on sensitive speakers, and it never goes away. Now inject the same 0.5&nbsp;mV into a phono connection where a moving-magnet cartridge produces around 5&nbsp;mV. The hum is only <strong>20&nbsp;dB</strong> below the music, and the phono stage then amplifies both together by 40&nbsp;dB or more. The same loop that is a faint annoyance at line level is a serious problem at phono level, which is why the turntable's earth arrangement deserves attention before anything else.</p>
+
+    <h2>Aerial and Cable Television Feeds</h2>
+
+    <p>A television connected to an aerial or cable service brings an additional earth into the system: the coaxial cable's shield, typically bonded to earth where it enters the building, at a potential that can differ noticeably from the earth at your hi-fi's outlet. Once the television is connected to the hi-fi by an analogue or coaxial digital cable, the loop runs through the aerial feed, and the resulting hum is often loud and difficult to cure by rearranging plugs.</p>
+
+    <p>The standard fix is an <strong>aerial or coaxial isolator</strong>, a small inline device that passes the RF signal through capacitors while breaking the DC and mains-frequency path, fitted at the equipment end of the aerial lead. Never remove or disconnect the bonding where the cable enters the building; it is there for safety and lightning protection. An optical connection from the television to the hi-fi fixes the same loop from the other side.</p>
+
+    <h2>Subwoofers: A Frequent Culprit</h2>
+
+    <p>Powered subwoofers create loops readily, because they combine a mains connection, a long signal cable and a placement that is often across the room on a different outlet or circuit. If hum appears or disappears with the subwoofer's signal cable, try in order: powering the subwoofer from the same distribution block as the amplifier, rerouting its signal cable away from mains leads, and fitting a line-level isolation transformer in the subwoofer's feed.</p>
+
+    <p>Remember to check the subwoofer on its own first. If it hums with its signal cable disconnected entirely, the problem is inside the subwoofer &mdash; its amplifier or power supply &mdash; and no signal-path fix will help.</p>
+
+    <h2>Laptops, Chargers and Two-Pin Supplies</h2>
+
+    <p>Laptops and other devices with external chargers produce a distinctive whine or buzz rather than a clean hum, and it often changes with processor load or screen activity. The quick test is to unplug the charger and run on battery: if the noise disappears, the charger is the path. Many chargers have no earth connection, so their output floats at a small leakage voltage relative to mains earth, which flows into the hi-fi through the audio or USB cable.</p>
+
+    <p>The fixes are the same as for any loop: an optical output, a USB isolator, a DAC with galvanic isolation on its USB input, or simply playing from battery during serious listening. An earthed charger, where one is offered for the device, can also help.</p>
 
     <h2>Quick Reference: Symptom to Cause</h2>
 

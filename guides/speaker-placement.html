@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://audiochainhifi.com/guides/speaker-placement">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-07-29T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-02T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/speaker-placement">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-07-29",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-02",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/speaker-placement"
 }
 </script>
@@ -194,7 +194,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <figcaption>Speakers placed this close to the front wall get extra bass from boundary gain, but the wall reflection can also cause a cancellation dip in the upper bass. Moving them out changes where that dip lands.<span class="credit">Photo: <a href="https://www.flickr.com/photos/82365211@N00/4055885130" rel="noopener" target="_blank">kalleboo</a>, <a href="https://creativecommons.org/licenses/by/2.0/" rel="license noopener" target="_blank">CC BY 2.0</a>, via Flickr (resized)</span></figcaption>
     </figure>
 
-    <p>The frequency at which cancellation happens depends directly on the distance: the further from the wall, the lower the cancellation frequency. Very close to the wall (under about 30&nbsp;cm), the cancellation is pushed high enough to be out of the way and you get reinforcement across the bass, but often at the cost of a thickened, less articulate midbass. At a metre or so out, the cancellation typically lands somewhere in the upper bass and can be very audible. Further still, it moves down towards the region where the room's own modes dominate anyway.</p>
+    <p>The frequency at which cancellation happens depends directly on the distance: the further from the wall, the lower the cancellation frequency. Very close to the wall (under about 30&nbsp;cm), the cancellation is pushed high enough to be out of the way and you get reinforcement across the bass, but often at the cost of a thickened, less articulate midbass. Between roughly half a metre and a metre out, the cancellation typically lands in the upper or mid bass and can be very audible. Further still, it moves down towards the region where the room's own modes dominate anyway.</p>
 
     <div class="spec-card">
       <div class="spec-name">Front-Wall Distance</div>
@@ -254,6 +254,26 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>When the Room Will Not Cooperate</h2>
 
     <p>Not every room permits ideal placement. Shared living spaces, doorways, fireplaces and furniture all impose constraints, and the answer is to prioritise rather than give up. Symmetry is the thing to protect hardest: matching what is to the left and right of the speakers matters more than achieving any particular absolute distance. Where a speaker must sit near a wall, choose sealed or front-ported designs, or use port bungs. Where the seat must go against the rear wall, absorption directly behind the head is unusually effective for its cost. And where floorstanders simply cannot be pulled out far enough, standmounts plus a well-placed subwoofer often produce a better result in the same footprint, because the subwoofer can be positioned for the room while the mains are positioned for imaging.</p>
+
+    <h2>The Front-Wall Cancellation in Numbers</h2>
+
+    <p>The cancellation frequency can be estimated with a simple formula. The reflection from the wall behind a speaker cancels the direct sound most strongly when its extra path is half a wavelength, which happens at a frequency of roughly <strong>343&nbsp;&divide;&nbsp;(4&nbsp;&times;&nbsp;d)</strong>, where d is the distance in metres from the woofer's centre to the wall &mdash; not from the back of the cabinet.</p>
+
+    <p>Worked through for typical distances: 0.3&nbsp;m gives about 290&nbsp;Hz; 0.5&nbsp;m about 170&nbsp;Hz; 0.7&nbsp;m about 120&nbsp;Hz; 1&nbsp;m about 85&nbsp;Hz; and 1.5&nbsp;m about 57&nbsp;Hz. That explains the two-zone advice. Very close to the wall, the cancellation lands high enough that the woofer is already radiating mostly forward, so the dip is shallow. Well out from the wall, it falls low enough to merge with the room's own modes. In between, it lands squarely in the upper bass, where it is easy to hear.</p>
+
+    <p>The same mechanism operates with the side walls and the floor, each with its own distance and its own dip. A useful refinement is to make these distances <em>different</em> from one another. If the woofer is the same distance from the front wall, the side wall and the floor, all three cancellations stack at the same frequency into one deep hole; staggered distances spread them into several shallower dips that are much less audible.</p>
+
+    <h2>Where Your Room's Modes Fall</h2>
+
+    <p>The listening-position advice depends on the room's axial modes, which are just as easy to estimate. Along any dimension of length L metres, modes fall at multiples of <strong>343&nbsp;&divide;&nbsp;(2&nbsp;&times;&nbsp;L)</strong>. In a room 5&nbsp;m long, the length modes sit at about 34, 69 and 103&nbsp;Hz. The first has its null at the midpoint, 2.5&nbsp;m, which is exactly why sitting in the centre of the room sounds thin at that pitch; the 38% position, 1.9&nbsp;m from the front wall, avoids the strongest nulls of all three.</p>
+
+    <p>Width and height modes add their own frequencies &mdash; a 4&nbsp;m width at about 43&nbsp;Hz, a 2.4&nbsp;m ceiling at about 71&nbsp;Hz &mdash; and a room where two dimensions produce similar frequencies will have a particularly strong problem there. The <a href="/calculators/room-acoustics">Room Acoustics &amp; Mode Calculator</a> works these out for your own dimensions and shows where they cluster.</p>
+
+    <h2>Measuring Instead of Guessing</h2>
+
+    <p>The listening routine above works well by ear, but a simple measurement makes the bass decisions much quicker. A calibrated USB measurement microphone and free room-measurement software, such as Room EQ Wizard, will show the frequency response at the listening seat in a few minutes. Peaks and dips in the bass become visible, and the effect of moving a speaker or the seat can be seen directly rather than inferred.</p>
+
+    <p>Smartphone sound-level apps are useful for matching the level of two speakers or setting a subwoofer's level, but their microphones are not accurate enough for detailed frequency-response work. Whatever tool is used, measure at the listening position with the seat at ear height, and change one thing at a time between measurements, as with the listening routine.</p>
 
     <h2>Quick Reference: What Each Move Changes</h2>
 
