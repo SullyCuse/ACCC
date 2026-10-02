@@ -1920,7 +1920,7 @@ function buildDiagram(){
 
   // Every connection gets its own line, coloured by cable type, with a key below.
   // Wireless links are dashed.
-  const CABLE={'RCA single-ended':'#dc2626','XLR balanced':'#2563eb','USB':'#7c3aed','Optical / TOSLINK':'#ea580c','AES/EBU':'#0d9488','I2S':'#db2777','Speaker wire':'#334155','Phono / RCA':'#b45309','Coaxial S/PDIF':'#16a34a','HDMI / I2S':'#0891b2','Bluetooth':'#0284c7','Wi-Fi / Network':'#65a30d'};
+  const CABLE={'RCA single-ended':'#dc2626','XLR balanced':'#ca8a04','USB':'#7c3aed','Optical / TOSLINK':'#ea580c','AES/EBU':'#2563eb','I2S':'#db2777','Speaker wire':'#334155','Phono / RCA':'#b45309','Coaxial S/PDIF':'#16a34a','HDMI / I2S':'#0891b2','Bluetooth':'#0284c7','Wi-Fi / Network':'#65a30d'};
   const colOf=t=>CABLE[t]||'#94a3b8',dash=t=>t==='Bluetooth'||t==='Wi-Fi / Network'?' stroke-dasharray="5 3"':'';
 
   // Ports: spread a box's incoming lines across its top edge and its outgoing
