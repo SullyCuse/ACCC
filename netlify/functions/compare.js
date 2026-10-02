@@ -10,8 +10,10 @@
  * When a component matches a verified row, those specs are injected into the AI
  * prompt as an authoritative override.
  *
- * Model note: uses Haiku (not Sonnet) with a capped token budget so a full sheet
- * fits inside the 10s Netlify function timeout. See CLAUDE.md hard-limits table.
+ * Model note: Sonnet 5.5 at low effort. In a 2026-10 test against verified
+ * component_specs rows it matched Haiku 4.5's correct answers but made ~40% fewer
+ * wrong ones (it answers "N/A" instead of guessing), at about the same speed
+ * (~7 s). Server-side fallback retries declines it covers. See CLAUDE.md table.
  *
  * Env: ANTHROPIC_API_KEY, SUPABASE_URL, SUPABASE_ANON_KEY (already configured).
  */
@@ -19,7 +21,7 @@
 const https = require("https");
 const { URL } = require("url");
 
-const MODEL      = "claude-haiku-4-5";
+const MODEL      = "claude-sonnet-5-5";
 const MAX_TOKENS = 1100;
 
 /* ─── Central verified-spec DB (shared with analyze-specs.js) ─── */
@@ -180,6 +182,8 @@ function callAPI(prompt, maxTokens, apiKey) {
     const body = JSON.stringify({
       model: MODEL,
       max_tokens: maxTokens,
+      output_config: { effort: 'low' },
+      fallbacks: 'default',
       messages: [{ role: 'user', content: prompt }],
     });
     const req = https.request({
@@ -190,6 +194,7 @@ function callAPI(prompt, maxTokens, apiKey) {
         'Content-Type':      'application/json',
         'x-api-key':         apiKey,
         'anthropic-version': '2023-06-01',
+        'anthropic-beta':    'server-side-fallback-2026-07-01',
         'Content-Length':    Buffer.byteLength(body),
       },
     }, res => { let d = ''; res.on('data', c => d += c); res.on('end', () => resolve(d)); });
@@ -203,7 +208,8 @@ async function callClaude(prompt, maxTokens, apiKey) {
   const raw = await callAPI(prompt, maxTokens, apiKey);
   const data = JSON.parse(raw);
   if (data.error) throw new Error(data.error.message);
-  const text = (data.content || []).map(b => b.text || '').join('');
+  if (data.stop_reason === 'refusal') throw new Error('The AI declined to describe this component. Please try a different name.');
+  const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
   return extractJSON(text);
 }
 
