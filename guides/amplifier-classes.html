@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://audiochainhifi.com/guides/amplifier-classes">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-07-25T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-02T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/amplifier-classes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-07-25",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-02",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/amplifier-classes"
 }
 </script>
@@ -243,6 +243,28 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <p>A detail that causes confusion: many Class AB amplifiers are described as operating "in Class A for the first few watts". This is literally true and follows from how bias works. Below the current level set by the bias, both output devices are still conducting, so the amplifier is genuinely in Class A operation; above it, one device hands over to the other and it becomes Class AB.</p>
 
     <p>Whether that matters depends on your listening level. With sensitive speakers at moderate volume, average power demand can genuinely sit within the first watt for much of the time &mdash; which is the argument behind high-bias designs. With insensitive speakers in a large room, the amplifier spends most of its time well outside that region and the distinction is academic. As so often, the answer depends on the speakers and the room rather than on the amplifier alone.</p>
+
+    <h2>Efficiency at the Levels You Actually Use</h2>
+
+    <p>The efficiency figures quoted for each class are measured at or near full output, and very little listening happens there. At normal levels with speakers of average sensitivity, the average power demand is commonly around a watt or less, with brief peaks far higher. At that operating point, what the amplifier wastes is dominated by its idle draw rather than its full-power efficiency.</p>
+
+    <p>The theory makes the point clearly. A pure Class B output stage, the most efficient linear arrangement, has a theoretical maximum efficiency of about 78.5% at full output, but that maximum falls in proportion to output voltage. At one-hundredth of full power &mdash; 1&nbsp;W from a 100&nbsp;W amplifier &mdash; the theoretical ceiling drops below <strong>8%</strong>, before bias current and the rest of the circuit are counted. Class A is worse still, since it draws its full current regardless. Class D is the one class whose efficiency holds up reasonably well at low output, which is a large part of why it suits equipment that is left on.</p>
+
+    <h2>Heat and Running Cost in Practice</h2>
+
+    <p>Idle consumption turns these differences into numbers on an electricity bill. A stereo Class A amplifier rated at 25&nbsp;W per channel might draw around <strong>225&nbsp;W</strong> continuously whether playing or not. Used four hours a day, that comes to about <strong>330&nbsp;kWh a year</strong>, multiplied by your local tariff. A Class AB integrated of 100&nbsp;W per channel might idle at 40&ndash;80&nbsp;W, and many Class D designs idle at 10&ndash;30&nbsp;W, or less in standby. These are illustrative figures rather than specifications, so check the power consumption given in a particular model's manual or measured in reviews.</p>
+
+    <p>The heat side follows directly: almost all of a Class A amplifier's draw ends up warming the room. In a small room in summer, a couple of hundred watts of continuous heat is comparable to having an extra person or two in the room, which is a practical consideration as well as an environmental one.</p>
+
+    <h2>Class D: What Changed</h2>
+
+    <p>Class D's early reputation for a hard or variable treble came largely from one source: the output filter. The filter that removes the switching frequency is tuned assuming a particular load, and in early designs without feedback after the filter, the frequency response in the top octave changed with the speaker's impedance &mdash; rising into some loads, falling into others. Paired with a speaker whose impedance varied at high frequencies, the treble balance became unpredictable.</p>
+
+    <p>Modern designs address this directly, typically by taking feedback from after the output filter or by using self-oscillating topologies that include the filter in the control loop. Switching frequencies of several hundred kilohertz to over a megahertz put the residual far above the audio band. The best current Class D modules measure with distortion and noise comparable to the finest linear amplifiers, and their response is largely independent of the load. One residual quirk is that a small amount of switching-frequency energy remains at the output; it is inaudible, but it is why measuring a Class D amplifier properly requires a specific filter on the test equipment.</p>
+
+    <h2>The Same Letters in Valve Amplifiers</h2>
+
+    <p>The classes are not specific to transistors. A <strong>single-ended</strong> valve amplifier, with one output valve per channel conducting continuously, is always Class A, which is why such designs are typically low-powered and run hot. <strong>Push-pull</strong> valve amplifiers use pairs of output valves and are commonly biased in Class AB, gaining power and efficiency in exactly the same way as their solid-state counterparts. When a valve amplifier is described as Class A, it tells you the same thing it does for a transistor amplifier: low power for its size and heat, and no crossover region.</p>
 
     <h2>Quick Reference: Classes Compared</h2>
 
