@@ -233,6 +233,40 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
     <p>"High-resolution audio" generally means anything exceeding CD&rsquo;s 16-bit/44.1&nbsp;kHz — commonly 24-bit/96&nbsp;kHz or 24-bit/192&nbsp;kHz. The badge guarantees the container, not the source: a hi-res file is only as good as the master it was made from, and an upsampled CD master gains nothing. MQA is a proprietary format that folds high-res information into a smaller file using a licensed decoder; it remains controversial because it is lossy and requires compatible hardware. The single biggest determinant of how a recording sounds is the quality of the master, not its resolution number.</p>
 
+    <h2>Dither and Noise Shaping</h2>
+
+    <p>The 96&nbsp;dB figure for 16-bit audio understates what CD can actually do, because of a technique called <strong>dither</strong>. When a signal is reduced to a fixed number of bits, the rounding error is correlated with the music: on very quiet passages and fade-outs it becomes a gritty, signal-dependent distortion. Adding a tiny amount of random noise before the final rounding breaks that correlation. The distortion turns into a constant, very low-level hiss, and detail below the last bit remains audible through it rather than disappearing.</p>
+
+    <p><strong>Noise shaping</strong> goes one step further. Instead of spreading the dither noise evenly across the spectrum, it pushes most of it up toward frequencies where the ear is least sensitive. The total noise is the same, but the perceived noise floor drops considerably &mdash; enough that a well-mastered 16-bit release can achieve a subjective dynamic range in the region of 110&nbsp;dB or more in the frequencies that matter most. That is beyond the quiet-room-to-pain range most domestic listening ever uses.</p>
+
+    <h2>Why Recordings Are Still Made at 24 Bits</h2>
+
+    <p>If 16 bits is enough for playback, the case for 24 bits lies in the studio. Recording engineers leave generous headroom &mdash; often keeping peaks 12 to 18&nbsp;dB below full scale &mdash; so that an unexpected transient does not clip. At 16 bits that headroom would come straight out of the usable dynamic range; at 24 bits it costs nothing audible. Mixing and processing then happen at 32-bit floating point or higher, where gain changes, EQ and effects introduce no meaningful rounding error.</p>
+
+    <p>Only at the end is the finished master reduced to the release format, with dither applied once. This is why a 24-bit download of a well-made master and a properly dithered 16-bit version of the same master are, in controlled listening, very hard to tell apart: the extra bits mostly carry the studio's unused headroom and a noise floor that sits below the recording's own room and microphone noise.</p>
+
+    <h2>What Blind Tests Have Found</h2>
+
+    <p>The question of whether high-resolution audio is audible has been studied repeatedly, and the results are more nuanced than either side of the argument tends to admit. A widely cited 2007 study by Meyer and Moran in the <em>Journal of the Audio Engineering Society</em> inserted a 16-bit/44.1&nbsp;kHz conversion into the playback of high-resolution discs; across hundreds of trials, listeners could not reliably identify when it was in the chain. A 2016 meta-analysis by Joshua Reiss, pooling many published experiments, found a small but statistically significant ability to discriminate high-resolution audio, which was stronger when listeners had been trained for the task.</p>
+
+    <p>Read together, the sensible conclusion is that any audible difference is subtle, depends on the listener and the material, and is far smaller than the differences between masters, speakers or rooms. It is a reasonable thing to enjoy; it is not a reason to replace a library of well-mastered CD-quality files.</p>
+
+    <h2>Getting Bit-Perfect Playback from a Computer</h2>
+
+    <p>The format of a file only matters if it reaches the DAC unchanged. Computers and phones often resample everything to a single system rate and mix in system sounds on the way. To get the file's own resolution to your DAC:</p>
+    <ul>
+      <li><strong>Windows</strong> &mdash; use a player that supports WASAPI exclusive mode or ASIO, which bypasses the system mixer. In shared mode, Windows converts everything to the rate set in the sound control panel.</li>
+      <li><strong>macOS</strong> &mdash; the system plays at whatever rate is selected in Audio MIDI Setup unless your player switches it automatically to match each file; many dedicated music players offer this.</li>
+      <li><strong>Streaming apps</strong> &mdash; check that the lossless or high-resolution setting is switched on, and that volume normalisation, crossfade and EQ are off if you want unaltered output.</li>
+      <li><strong>Confirm at the DAC</strong> &mdash; most DACs display or indicate the incoming sample rate. If it never changes from 48&nbsp;kHz whatever you play, something upstream is resampling.</li>
+    </ul>
+
+    <h2>File Sizes and Storage</h2>
+
+    <p>The arithmetic is straightforward and useful when planning a library. Uncompressed stereo audio at 16-bit/44.1&nbsp;kHz runs at 1,411&nbsp;kbps, about 10&nbsp;MB per minute. At 24-bit/96&nbsp;kHz it is 4,608&nbsp;kbps, about 33&nbsp;MB per minute, and at 24-bit/192&nbsp;kHz about 66&nbsp;MB per minute. FLAC typically reduces those figures by 40&ndash;60% depending on the music.</p>
+
+    <p>In practice, a CD-quality FLAC album of around 50 minutes takes roughly 250&ndash;350&nbsp;MB, so a thousand albums fit in about 300&nbsp;GB. The same library in 24/96 FLAC would need around a terabyte. Storage is cheap enough that either is manageable &mdash; but it is worth keeping at least one backup on a separate drive, because a music library assembled over years is much harder to replace than the disk it sits on.</p>
+
     <h2>Quick Reference: Bit Depth and Sample Rate</h2>
 
     <table class="spec-table">

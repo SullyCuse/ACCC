@@ -229,6 +229,46 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p><strong>Quick takeaway:</strong> For the cleanest result, use a streamer that outputs over asynchronous USB (or I²S) to a DAC that reclocks, wired over Ethernet. That combination makes streamer "sound" largely a non-issue and lets you choose the streamer on features and reliability, with the DAC doing the sonic work.</p>
     </div>
 
+    <h2>Transport, Streaming DAC, or Streaming Amplifier?</h2>
+
+    <p>"Streamer" covers three quite different products, and choosing between them matters more than most individual specifications:</p>
+    <ul>
+      <li><strong>Network transport</strong> &mdash; digital output only. It needs an external DAC, but because the DAC is separate you can replace either one without the other.</li>
+      <li><strong>Streaming DAC</strong> &mdash; streamer and DAC in one box with analog outputs, often with a volume control so it can drive a power amp or active speakers directly. Tidy and cost-effective.</li>
+      <li><strong>Streaming amplifier</strong> &mdash; streamer, DAC and amplifier in one: just add passive speakers. The simplest system there is.</li>
+    </ul>
+
+    <p>The key consideration is that the streaming part ages fastest. Apps, service integrations and network standards change every few years, while a good DAC or amplifier stays good for much longer. If you buy an all-in-one, look for a digital or analog input that lets you add a separate streamer later if its software support ends. If long-term flexibility matters most, a transport into a separate DAC keeps the parts that age at different rates in different boxes.</p>
+
+    <h2>Software Support Matters as Much as Hardware</h2>
+
+    <p>Day to day, you interact with a streamer through its app, not its circuit board, so the software deserves as much scrutiny as the specification sheet. Before buying, it is worth checking:</p>
+    <ul>
+      <li>whether the manufacturer has a track record of firmware updates for models several years old;</li>
+      <li>whether the services you actually use are built in, rather than relayed from a phone over Bluetooth or AirPlay;</li>
+      <li>whether it supports a platform-independent route such as UPnP/DLNA or Roon Ready, so you are not tied to one company's app forever;</li>
+      <li>how the app handles a large local library, if you have one, including search and album artwork.</li>
+    </ul>
+
+    <p>This is not a theoretical concern: several well-known brands have moved older products onto legacy apps that no longer receive new features. Hardware with open protocol support tends to stay useful long after its own app has gone stale.</p>
+
+    <h2>Using a Computer or Single-Board Streamer</h2>
+
+    <p>A dedicated streamer is a convenience, not a requirement. A laptop or desktop connected by USB to an asynchronous DAC can deliver bit-perfect playback, provided the playback software bypasses the operating system's mixer (see <a href="/guides/digital-formats">the digital formats guide</a> for the settings). The practical drawbacks are noise and convenience: a computer's USB port can carry electrical noise into a DAC without good isolation, and a computer that sleeps, updates or runs other programs is a less reliable source than a box that does one job.</p>
+
+    <p>Between the two sits the single-board computer. A Raspberry Pi running a dedicated audio distribution such as Volumio, moOde or piCorePlayer, with a DAC board or a USB DAC, makes a capable, low-cost network streamer. It requires some setup, but the results can rival commercial transports for a fraction of the price.</p>
+
+    <h2>Setting Up for Reliable, Bit-Perfect Playback</h2>
+
+    <p>A few settings make the difference between a streamer that just works and one that occasionally frustrates:</p>
+    <ul>
+      <li><strong>Use Ethernet where possible.</strong> If you cannot, place the streamer within good range of a 5&nbsp;GHz access point or mesh node rather than at the edge of coverage.</li>
+      <li><strong>Choose one volume control.</strong> If the streamer feeds a preamp or integrated amp, set the streamer's digital volume to fixed or 100% and adjust volume at the amplifier. Use the streamer's volume only when it drives a power amp or active speakers directly.</li>
+      <li><strong>Turn off processing you do not want</strong> &mdash; volume normalisation, crossfade, EQ and upsampling options all alter the data on its way to the DAC.</li>
+      <li><strong>Check the DAC's sample-rate indicator.</strong> If a 44.1&nbsp;kHz track arrives as 48&nbsp;kHz, something in the chain is resampling.</li>
+      <li><strong>Keep firmware current,</strong> both on the streamer and on the network equipment it depends on.</li>
+    </ul>
+
     <h2>Quick Reference: Streamer Specs at a Glance</h2>
 
     <table class="spec-table">
