@@ -73,9 +73,9 @@ Project-specific rules that override or extend the principles above.
 ### Architecture
 - **Function timeout:** Netlify's synchronous function limit is **60 seconds and is not configurable** (per Netlify docs, checked 2026-10-02). (`netlify.toml` has no timeout setting; the old per-function `timeout = 10` blocks did nothing and were removed.) The practical constraint is user wait time, not the platform limit: an analysis runs `analyze-specs`, then `analyze-chain` + `analyze-summary` in parallel, so a full run takes roughly specs + summary ≈ 15–27 s. Never increase token limits without estimating generation time first (Sonnet ~70 tok/s, Haiku ~150 tok/s).
 - **Three functions** run on every analysis:
-  - `analyze-specs` — Sonnet, 650 tokens — fetches component specs from Supabase `component_specs` first, AI only for components not found
+  - `analyze-specs` — Sonnet 5.5 at low effort, 1500 tokens, server-side fallback — fetches component specs from Supabase `component_specs` first, AI only for components not found
   - `analyze-chain` — Sonnet 5.5 at low effort, 1500 tokens, server-side fallback — analyzes each signal chain connection
-  - `analyze-summary` — Sonnet, 700 tokens — scores, phono chain calc (total-mass resonance, 100 Hz compliance ×1.7), recommendations
+  - `analyze-summary` — Sonnet 5.5 at low effort, 1500 tokens, server-side fallback — scores, phono chain calc (total-mass resonance, 100 Hz compliance ×1.7), recommendations
 - `analyze-specs` runs first; its output (`specsText`) is passed to `analyze-chain` and `analyze-summary` so all three use the same confirmed spec values
 - **`compare`** — a separate, standalone function (NOT part of the analysis flow) powering the `/compare` page. Sonnet 5.5 at low effort, 1100 tokens, with server-side fallback (`fallbacks: "default"`); reads the same Supabase `component_specs` table as `analyze-specs` (shared `fetchSpecs`/`getCorrections`/`findCorrection`) and sets `verified:true` on a match so the UI can badge it. Switched from Haiku 4.5 on 2026-10-02 after a 20-component test against verified rows: same number of correct specs, ~40% fewer wrong ones, similar speed.
 
@@ -83,10 +83,12 @@ Project-specific rules that override or extend the principles above.
 Times measured on production, 2026-10-02 (3 runs each). Platform limit is 60 s.
 | Function | Model | Max tokens | Measured time |
 |---|---|---|---|
-| analyze-specs | claude-sonnet-4-6 | 650 | ~0.2–1.4 s all-DB; ~11–12 s when AI looks up 5 components |
+| analyze-specs | claude-sonnet-5-5 (effort low) | 1500 | ~0.2–1.4 s all-DB; ~8–9 s when AI looks up 5 components |
 | analyze-chain | claude-sonnet-5-5 (effort low) | 1500 | ~9–15 s with 4–5 connections (runs in parallel with analyze-summary); 700 truncated Sonnet output |
-| analyze-summary | claude-sonnet-4-6 | 700 | ~12.5–15.5 s |
+| analyze-summary | claude-sonnet-5-5 (effort low) | 1500 | ~9–12 s |
 | compare | claude-sonnet-5-5 (effort low) | 1100 | ~6–8 s per component (test run); re-time on production |
+
+All four functions use Sonnet 5.5 (switched 2026-10-02). Sonnet 5.5 thinks by default and is wordier than Haiku/Sonnet 4.6: always set `output_config.effort`, read only `type: "text"` content blocks (never `content[0].text`), and re-check for truncation (`stop_reason: "max_tokens"`) after any prompt or limit change. The old 650/700-token caps truncated every test run.
 
 ### index.html rules
 - **JS syntax verification is mandatory** before delivering any `index.html` edit. Use `node vm.Script` — the Python brace counter is unreliable when string literals contain `{` or `}`:
