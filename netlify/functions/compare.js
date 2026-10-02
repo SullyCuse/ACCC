@@ -96,10 +96,20 @@ function findCorrection(name, corrections) {
   const userTokens = tokenize(name);
 
   let key = Object.keys(corrections).find(k => normalize(k) === n);
-  if (!key) key = Object.keys(corrections).find(k => {
-    const nk = normalize(k);
-    return nk.includes(n) || n.includes(nk);
-  });
+  if (!key) {
+    let best = null, bestDiff = Infinity, tie = false;
+    for (const k of Object.keys(corrections)) {
+      const nk = normalize(k);
+      if (!nk.includes(n) && !n.includes(nk)) continue;
+      const keyTokens = tokenize(k);
+      const whole = nk.includes(n) ? userTokens.every(t => keyTokens.includes(t))
+                                   : keyTokens.every(t => userTokens.includes(t));
+      const diff = Math.abs(nk.length - n.length) + (whole ? 0 : 1000);
+      if (diff < bestDiff) { bestDiff = diff; best = k; tie = false; }
+      else if (diff === bestDiff) tie = true;
+    }
+    if (best && !tie) key = best;
+  }
   if (!key && userTokens.length > 0) {
     let best = null, bestExtra = Infinity, tie = false;
     for (const k of Object.keys(corrections)) {
