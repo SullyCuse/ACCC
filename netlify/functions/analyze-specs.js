@@ -6,16 +6,23 @@ let _cache = null;
 let _cacheAt = 0;
 const CACHE_TTL = 5 * 60 * 1000;
 
-function fetchSpecs(timeoutMs) {
+// Page through component_specs: the Data API caps every response at the
+// project's "Max rows" setting (1000), and past that rows would silently
+// drop out of matching. count=exact puts the table total in Content-Range,
+// so paging stops on the real row count whatever the cap is set to.
+const SPEC_PAGE = 1000;
+
+function fetchSpecsPage(offset, timeoutMs) {
   return new Promise((resolve) => {
     const { hostname, pathname, search } = new URL(
-      `${process.env.SUPABASE_URL}/rest/v1/component_specs?select=name,specs`
+      `${process.env.SUPABASE_URL}/rest/v1/component_specs?select=name,specs&order=name&limit=${SPEC_PAGE}&offset=${offset}`
     );
     const req = https.request({
       hostname, path: pathname + search, method: "GET",
       headers: {
         "apikey": process.env.SUPABASE_ANON_KEY,
-        "Authorization": `Bearer ${process.env.SUPABASE_ANON_KEY}`
+        "Authorization": `Bearer ${process.env.SUPABASE_ANON_KEY}`,
+        "Prefer": "count=exact"
       }
     }, res => {
       let d = "";
@@ -23,17 +30,32 @@ function fetchSpecs(timeoutMs) {
       res.on("end", () => {
         try {
           const rows = JSON.parse(d);
-          if (Array.isArray(rows)) {
-            return resolve({ map: Object.fromEntries(rows.map(r => [r.name, r.specs])), ok: true });
-          }
+          const total = parseInt(String(res.headers["content-range"] || "").split("/")[1], 10);
+          if (Array.isArray(rows) && Number.isFinite(total)) return resolve({ rows, total });
         } catch {}
-        resolve({ map: null, ok: false }); // HTTP error body, non-array payload, or parse failure
+        resolve(null); // HTTP error body, non-array payload, missing count, or parse failure
       });
     });
-    req.on("error", () => resolve({ map: null, ok: false }));
-    req.setTimeout(timeoutMs, () => { req.destroy(); resolve({ map: null, ok: false }); });
+    req.on("error", () => resolve(null));
+    req.setTimeout(timeoutMs, () => { req.destroy(); resolve(null); });
     req.end();
   });
+}
+
+// One timeout budget covers all pages, so the retry logic in getCorrections()
+// keeps its worst case.
+async function fetchSpecs(timeoutMs) {
+  const deadline = Date.now() + timeoutMs;
+  const rows = [];
+  for (;;) {
+    const left = deadline - Date.now();
+    if (left <= 0) return { map: null, ok: false };
+    const page = await fetchSpecsPage(rows.length, left);
+    if (!page) return { map: null, ok: false };
+    rows.push(...page.rows);
+    if (rows.length >= page.total || page.rows.length === 0) break;
+  }
+  return { map: Object.fromEntries(rows.map(r => [r.name, r.specs])), ok: true };
 }
 
 // Returns { corrections, ok }. ok=false means the verified-spec DB could not be
