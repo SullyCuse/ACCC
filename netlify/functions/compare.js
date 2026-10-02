@@ -186,6 +186,10 @@ exports.handler = async (event) => {
     const match = findCorrection(name, corrections);
     const parsed = await callClaude(buildSpecPrompt(name, category, match), MAX_TOKENS, apiKey);
     parsed.verified = !!match;   // flag so the UI can badge verified components
+    // Name the DB row when it differs from what was typed, so a variant match
+    // ("Fosi V3" -> "Fosi Audio V3") is visible to the user.
+    const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (match && norm(match.name) !== norm(name)) parsed.verifiedName = match.name;
     return { statusCode: 200, headers: CORS, body: JSON.stringify(parsed) };
   } catch (err) {
     console.error('AudioChainHiFi compare error:', err.message);

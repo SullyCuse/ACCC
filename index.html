@@ -1576,6 +1576,7 @@ async function analyze(){
     if(specsData.error)throw new Error(specsData.error);
     const specsText=specsData.text;
     window._verifiedNames=specsData.verified||[];   // components sourced from the reported DB
+    window._verifiedAs=specsData.verifiedAs||{};    // typed name -> DB row name when they differ
 
     // Step 2: fire chain + summary in parallel, both using confirmed specs
     const payload=JSON.stringify({components,connections,specsText});
@@ -1641,8 +1642,13 @@ function renderCompSpecs(text){
     const badge=isVerified
       ? '<span style="display:inline-flex;align-items:center;background:rgba(22,163,74,.12);color:#16a34a;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:20px;line-height:1;">✓ Reported</span>'
       : '';
+    const verifiedAs=isVerified&&(window._verifiedAs||{})[currentName];
+    const asNote=verifiedAs
+      ? `<div style="font-size:11px;color:var(--text-3);padding:4px 12px 0;">Verified specs are for ${esc(verifiedAs)}</div>`
+      : '';
     html+=`<div class="comp-spec-block fadein">
       <div class="comp-name-hdr" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">${esc(currentName)}${badge}</div>
+      ${asNote}
       ${currentWarning?`<div style="font-size:11px;color:#d97706;background:#fffbeb;padding:5px 12px;border-bottom:1px solid #fde68a;">⚠ ${esc(currentWarning)}</div>`:''}
       ${items?`<ul class="spec-list">${items}</ul>`:''}
     </div>`;

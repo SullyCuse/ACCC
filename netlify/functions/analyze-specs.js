@@ -143,7 +143,7 @@ function findCorrection(name, corrections) {
     if (best && !tie && bestDist <= maxDist) key = best;
   }
 
-  return key ? corrections[key] : null;
+  return key ? { name: key, specs: corrections[key] } : null;
 }
 
 function formatCorrectedSpecs(name, type, specs) {
@@ -183,12 +183,15 @@ exports.handler = async (event) => {
     const correctedBlocks = [];
     const needsAI = [];
     const verifiedNames = [];   // components whose specs came from the reported DB (not AI)
+    const verifiedAs = {};      // typed name -> DB row name, only when they differ
+    const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
     components.forEach((c, i) => {
       const corrected = findCorrection(c.name, corrections);
       if (corrected) {
-        correctedBlocks.push(formatCorrectedSpecs(c.name, typeLabels[c.type] || c.type, corrected));
+        correctedBlocks.push(formatCorrectedSpecs(c.name, typeLabels[c.type] || c.type, corrected.specs));
         verifiedNames.push(c.name);
+        if (norm(corrected.name) !== norm(c.name)) verifiedAs[c.name] = corrected.name;
       } else {
         needsAI.push({ index: i, component: c });
       }
@@ -262,7 +265,7 @@ All ${needsAI.length} components required. No summary text. No questions.`;
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames })
+      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames, verifiedAs })
     };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
