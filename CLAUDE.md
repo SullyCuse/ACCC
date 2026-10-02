@@ -114,5 +114,7 @@ All four functions use Sonnet 5.5 (switched 2026-10-02). Sonnet 5.5 thinks by de
 
 ### Signal chain diagram rules
 - All `<` / `>` in SVG/HTML strings built in JS must use the `esc()` function or template literals — never raw angle brackets
-- `boxH()` must account for variable-height turntable boxes (tonearm + cartridge sub-items) when calculating merge Y positions
-- Topological sort uses level-based BFS — do not revert to DFS which breaks multi-source-to-hub layouts
+- **Layout comes from the connections, not component types** (PR #69). Do not reintroduce type-based Digital/Phono/shared columns: an "Other" source (e.g. an iPad into a DAC) fell into the shared chain and rendered below the speakers. `buildDiagram()` puts each component one row below the deepest component feeding it (sources drop to just above what they feed). Connections that skip a row route through waypoint slots, and rows are ordered to reduce crossings.
+- Tonearm/cartridge connections are remapped to the turntable (they render inside its box). Row heights use `boxH()`, which includes the turntable's tonearm + cartridge sub-items.
+- **One line per connection**, each with its own arrowhead and its own port on the box edge. Never merge several inputs into a shared line: each cable is a distinct type.
+- **Line colour = cable type** via the `CABLE` map; Bluetooth and Wi-Fi are dashed. A key of the types in use is drawn inside the SVG so Print/PNG export includes it. When adding an option to the `#conn-type` select, add it to `CABLE` too (unknown types render grey).
