@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://audiochainhifi.com/guides/speaker-crossovers">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-08-14T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-02T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/speaker-crossovers">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-08-14",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-02",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/speaker-crossovers"
 }
 </script>
@@ -241,6 +241,30 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <p>You cannot audition a crossover, but you can look for the consequences of a good one.</p>
 
     <p>Listen off-axis, both horizontally and vertically. A speaker whose tonal balance holds up as you move your head has a well-managed crossover region; one that changes character sharply when you stand does not. Check the published impedance minimum and phase angle if available, since a benign load usually indicates a crossover designed with care rather than one fighting the drivers. And be sceptical of the marketing arithmetic that counts components &mdash; more parts in a passive crossover is not a virtue, and the goal is the flattest, most consistent summed response with the fewest elements in the path.</p>
+
+    <h2>A Worked Example: What the Components Look Like</h2>
+
+    <p>The simplest crossover makes the principles concrete. A first-order filter uses a single component per driver: a capacitor in series with the tweeter to block bass, and an inductor in series with the woofer to block treble. For a crossover frequency f into a resistance R, the values are C&nbsp;=&nbsp;1&nbsp;&divide;&nbsp;(2&pi;fR) and L&nbsp;=&nbsp;R&nbsp;&divide;&nbsp;(2&pi;f).</p>
+
+    <p>At 2.5&nbsp;kHz into 8&nbsp;&Omega;, that gives a capacitor of about <strong>8&nbsp;&micro;F</strong> and an inductor of about <strong>0.51&nbsp;mH</strong>. The catch is that a driver is not an 8&nbsp;&Omega; resistor. A woofer's impedance rises steadily with frequency because of its voice-coil inductance, so the filter that looked correct on paper crosses over somewhere else in practice. That is why real crossovers so often include a <strong>Zobel network</strong> &mdash; a resistor and capacitor across the woofer that flatten its rising impedance &mdash; and why the values in a finished design are tuned against measurements of the actual drivers in the actual cabinet rather than taken from a formula.</p>
+
+    <h2>The Hidden Cost of Inductors</h2>
+
+    <p>The woofer's inductor sits directly in series with the voice coil, and its resistance matters. An air-core inductor of a few millihenries, wound from moderately thick wire, commonly measures somewhere around <strong>0.3&ndash;0.8&nbsp;&Omega;</strong>. Against a woofer voice coil of 6&nbsp;&Omega;, an extra 0.5&nbsp;&Omega; costs about 0.7&nbsp;dB of bass output and raises the driver's electrical Q.</p>
+
+    <p>Put that alongside the amplifier side of the equation. A solid-state amplifier's output impedance is typically a few hundredths of an ohm, so the crossover inductor can be ten or twenty times larger than the source impedance the damping-factor specification describes. Designers can reduce it with thicker wire or a ferrite or laminated iron core, which lowers resistance at the cost of possible saturation at high current. It is one of the more honest reasons a well-built passive crossover costs more: much of the expense is in low-loss inductors.</p>
+
+    <h2>Matching Driver Levels</h2>
+
+    <p>Drivers rarely share the same sensitivity. Tweeters in particular are often several decibels more sensitive than the woofers they are paired with, so the crossover must also pad the tweeter down. The usual tool is an <strong>L-pad</strong>: one resistor in series with the tweeter and one in parallel with it, chosen so the amplifier still sees the right impedance while the tweeter receives less voltage.</p>
+
+    <p>For a 6&nbsp;&Omega; tweeter that needs 4&nbsp;dB of attenuation, the values come to roughly 2.2&nbsp;&Omega; in series and 10.3&nbsp;&Omega; in parallel; the combined network still measures about 6&nbsp;&Omega;. Those resistors dissipate power that never becomes sound, which is part of why passive speakers are less efficient than their drivers' raw sensitivity figures suggest. Some speakers expose a tweeter-level switch or link on the back panel; it is usually selecting between L-pad values, and it is a legitimate way to adjust treble balance for a bright or dull room.</p>
+
+    <h2>Two-Way or Three-Way?</h2>
+
+    <p>A three-way design adds a dedicated midrange driver, which lets each driver work over a narrower band and moves the woofer-to-midrange crossover down, often to somewhere in the 300&ndash;600&nbsp;Hz range, well below the region where hearing is most sensitive. The midrange can be small enough to disperse widely through the voice band, and the woofer no longer has to reproduce vocals while handling deep bass excursion.</p>
+
+    <p>The cost is a second crossover region, more components, more drivers to integrate and a more complex vertical lobing pattern. A well-executed two-way frequently sounds more coherent than a mediocre three-way, so driver count is not a ranking. It is a design choice that tends to pay off in larger, louder, full-range speakers and matter less in compact standmounts.</p>
 
     <h2>Quick Reference: Crossover Characteristics</h2>
 
