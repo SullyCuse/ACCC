@@ -200,7 +200,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <p>Headphone sensitivity is specified in one of two ways: dB SPL per milliwatt (dB/mW) or dB SPL per volt (dB/V). These are not interchangeable. For a 32 &Omega; headphone, 100 dB/mW equals 115 dB/V. For a 300 &Omega; headphone, 100 dB/mW equals only 107 dB/V. Always check which convention the manufacturer uses before comparing sensitivity figures across products with different impedances. The dB/V convention is more useful for matching to a source amplifier, since amplifiers are voltage sources. The dB/mW convention tells you about efficiency relative to power.</p>
     </div>
 
-    <p>A useful rule of thumb: to achieve 110 dB SPL (a reasonable maximum listening level), divide 110 by the sensitivity figure in dB/V. The result tells you how many volts RMS the amplifier must deliver. A headphone rated 105 dB/V needs 10&sup0;&middot;⁵ &asymp; 3.2 V RMS for 110 dB SPL. A headphone rated 95 dB/V needs 10 V RMS — which is beyond most portable and desktop sources. High-impedance, low-sensitivity headphones (Sennheiser HD 800: 102 dB/V at 300 &Omega;) require a dedicated desktop amplifier with meaningful output voltage capability.</p>
+    <p>A useful rule of thumb: to achieve 110 dB SPL (a reasonable maximum listening level), subtract the sensitivity figure in dB/V from 110, divide the result by 20, and raise 10 to that power. The answer is how many volts RMS the amplifier must deliver. A headphone rated 105 dB/V needs 10<sup>5/20</sup> &asymp; 1.8 V RMS for 110 dB SPL. A headphone rated 95 dB/V needs 10<sup>15/20</sup> &asymp; 5.6 V RMS — well beyond any phone and more than many compact desktop sources can supply. High-impedance, low-sensitivity headphones (Sennheiser HD 800: 102 dB/V at 300 &Omega;) require a dedicated desktop amplifier with meaningful output voltage capability.</p>
 
     <h2>Output Impedance: The Critical Amplifier Spec</h2>
 
@@ -228,6 +228,32 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <img src="/images/guides/headphones-2.jpg" alt="HIFIMAN Edition XS open-back planar magnetic headphones" width="1122" height="1200" loading="lazy" decoding="async">
       <figcaption>Planar magnetic headphones such as the HIFIMAN Edition XS combine low impedance with low sensitivity, so they need an amplifier that can deliver both current and voltage.<span class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:HIFIMAN_Edition_XS.jpg" rel="noopener" target="_blank">Soyseak97</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license noopener" target="_blank">CC BY-SA 4.0</a>, via Wikimedia Commons (resized)</span></figcaption>
     </figure>
+
+    <h2>Frequency Response and Target Curves</h2>
+
+    <p>A headphone's frequency response is not meant to be flat in the way a loudspeaker's is. Sound from speakers reaches your eardrum after being shaped by your head, shoulders and outer ear; a headphone bypasses much of that path, so its response has to recreate the effect. Researchers have proposed several "target curves" for doing so. The diffuse-field target models sound arriving from all directions, while the Harman target, developed through listener-preference research, adds a modest bass shelf and adjusts the upper midrange; it has become a common reference in measurements.</p>
+
+    <p>Two cautions apply when reading headphone graphs. First, measurements are made on artificial ears and head simulators, and results differ between rigs, so compare graphs from the same source. Second, your own ear shape changes what reaches your eardrum, especially above a few kilohertz. A measured treble peak may or may not be audible to you in the same way. Graphs are best used to spot large departures, such as a big bass boost or a strong peak around 3&ndash;8&nbsp;kHz that often reads as harshness or sibilance.</p>
+
+    <h2>Fit, Seal and Comfort</h2>
+
+    <p>How a headphone sits on your head changes how it sounds. Closed-back and many over-ear designs rely on a good seal around the ear for their bass: glasses arms, hair, or a loose clamp can break the seal and drain bass noticeably. Ear pads matter acoustically as well as for comfort, since their depth, material and shape affect the distance and angle of the driver to your ear. Replacement pads from a different manufacturer can therefore change the sound as well as the feel.</p>
+
+    <p>Comfort decides whether a headphone gets used. Weight, clamping force, headband padding and pad material (velour breathes, leather and protein leather seal better but run warmer) all matter over a long listening session. If possible, wear a pair for at least half an hour before buying. The <a href="/guides/open-back-vs-closed-back">open-back vs closed-back guide</a> covers how cup design shapes both sound and isolation.</p>
+
+    <h2>Balanced Headphone Connections</h2>
+
+    <p>Many headphone amplifiers and portable players now offer a balanced output, usually as a 4.4&nbsp;mm Pentaconn jack, a 4-pin XLR, or the older 2.5&nbsp;mm TRRS. In a balanced headphone connection, each earcup's driver is driven by its own pair of amplifier outputs, with no ground wire shared between left and right.</p>
+
+    <p>The practical benefits are specific. A balanced output typically delivers twice the voltage of the same device's single-ended output, which helps with high-impedance or low-sensitivity headphones. Removing the shared ground also eliminates a source of crosstalk between channels. It is not a different sound in itself; a single-ended output that already has enough voltage and low output impedance will not be improved simply by switching connectors. Using a balanced output does require a headphone cable wired for it, and many headphones with detachable cables can be fitted with one.</p>
+
+    <h2>Wireless and USB Headphones</h2>
+
+    <p>Bluetooth and USB headphones change the compatibility picture completely. They contain their own DAC and amplifier, designed for those specific drivers, so impedance, sensitivity and source output impedance no longer need matching. Sound quality then depends on the headphone's internal electronics and, for Bluetooth, the codec in use. SBC is universal; AAC works well with Apple devices; aptX variants and LDAC offer higher bit rates where both ends support them. Active noise cancellation adds processing that most listeners accept for travel and commuting, at some cost to absolute fidelity.</p>
+
+    <h2>Listening Safely</h2>
+
+    <p>Headphones make it easy to listen loudly for long periods without noticing, because there is no room or neighbour to signal how loud it is. The occupational guideline from NIOSH (the US National Institute for Occupational Safety and Health) is 85&nbsp;dBA for eight hours, with the safe time halving for every 3&nbsp;dB increase: 88&nbsp;dBA for four hours, 94&nbsp;dBA for one hour, and so on. Ringing in the ears or a muffled feeling after listening are signs of temporary over-exposure. Choosing headphones with good isolation helps here, because you are less tempted to raise the volume to cover background noise.</p>
 
     <h2>Quick Reference: Headphone Specs at a Glance</h2>
 

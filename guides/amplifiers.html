@@ -269,6 +269,35 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <text x="498" y="84" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700" font-family="system-ui">= 165 ✓</text>
   </svg>
 </div>
+    <h2>Reading Distortion and Noise Figures</h2>
+
+    <p>Distortion and noise specifications are easy to make look good, so the conditions attached to them matter as much as the numbers. For <strong>total harmonic distortion (THD)</strong> or THD+N, check the power level and frequency range: "0.01% at 1&nbsp;kHz, 1&nbsp;W" says far less than "0.05% from 20&nbsp;Hz to 20&nbsp;kHz at rated power," because distortion usually rises at high frequencies and near full output.</p>
+
+    <p><strong>Signal-to-noise ratio</strong> has a similar trap. It is normally quoted relative to the amplifier's full rated output. A 200&nbsp;W amplifier with an SNR of 110&nbsp;dB referenced to full power has a noise floor 23&nbsp;dB closer to a 1&nbsp;W listening level than that headline suggests. Figures referenced to 1&nbsp;W are more directly comparable, and they are what matters if you use sensitive speakers, where amplifier hiss can become audible from the listening seat. "A-weighted" figures discount low- and high-frequency noise the ear is less sensitive to, and typically read a few decibels better than unweighted ones.</p>
+
+    <h2>Bridging, Monoblocks and Multi-Channel Amps</h2>
+
+    <p>Some stereo power amplifiers can be <strong>bridged</strong> into a single, more powerful mono channel: one channel drives the speaker's positive terminal and the other an inverted copy to the negative. This doubles the voltage across the speaker and can roughly quadruple the power into the same load &mdash; but each channel now effectively sees half the speaker's impedance. Bridging an amplifier into a 4&nbsp;Ω speaker makes each half work as if driving 2&nbsp;Ω, which many amplifiers cannot sustain. Most manufacturers recommend bridging into 8&nbsp;Ω loads only; check the manual before trying it.</p>
+
+    <p>Purpose-built <strong>monoblocks</strong> achieve the same goal differently, with one complete amplifier and power supply per channel. They eliminate shared-supply interaction between channels and can sit close to each speaker, allowing short speaker cables and longer interconnects instead. Multi-channel amplifiers built for home theatre often share one power supply across five or more channels; their rated power per channel is frequently specified with only two channels driven, so all-channels-driven figures are worth looking for.</p>
+
+    <h2>Heat, Ventilation and Placement</h2>
+
+    <p>Every amplifier turns part of the power it draws into heat, and heat is what shortens the life of electronic components &mdash; especially electrolytic capacitors. Class A designs dissipate most of their consumption as heat even when idle; Class AB designs get warm under load; Class D designs run cool. Whichever you own, leave clear space above and around the heatsinks or ventilation slots, avoid stacking other components directly on top, and do not enclose a hot amplifier in a cabinet without airflow. If the chassis is too hot to keep a hand on comfortably, it needs more ventilation. See the <a href="/guides/amplifier-classes">amplifier classes guide</a> for how design affects heat.</p>
+
+    <h2>Checking a Used Amplifier</h2>
+
+    <p>Amplifiers are among the best-value used purchases, because a well-made unit can work for decades. A few checks reduce the risk:</p>
+    <ul>
+      <li><strong>Listen to every input and both channels</strong> at low and moderate volume, turning the volume control slowly. Crackles or a channel dropping out usually mean dirty controls or switches, which are often fixable but are a bargaining point.</li>
+      <li><strong>Check DC offset.</strong> With no input signal and no speakers connected, a multimeter set to DC millivolts across each pair of speaker terminals should read close to zero &mdash; typically under 20&ndash;30&nbsp;mV. A large offset can damage woofers and points to a fault.</li>
+      <li><strong>Listen for hum and hiss</strong> with nothing playing and the volume raised.</li>
+      <li><strong>Ask about service history.</strong> Amplifiers more than 25&ndash;30 years old often benefit from replacement of ageing electrolytic capacitors, which is worth budgeting for.</li>
+      <li><strong>Watch the protection relay.</strong> Most amplifiers click a relay a few seconds after switch-on to connect the speakers. If it never engages, or drops out during play, the protection circuit has detected a problem.</li>
+    </ul>
+
+    <p>Before buying, confirm that the amplifier suits your speakers using the <a href="/guides/amplifier-speaker-matching">amplifier and speaker matching guide</a>.</p>
+
 <h2>Quick Reference: Amplifier Specs at a Glance</h2>
 
     <table class="spec-table">

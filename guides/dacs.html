@@ -93,6 +93,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.spec-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+.spec-table th{background:var(--dark);color:#fff;padding:10px 14px;text-align:left;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.spec-table td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;}
+.spec-table tr:nth-child(even) td{background:var(--cream);}
+.spec-table td:first-child{font-weight:600;color:var(--text);}
 .guide-figure{margin:28px 0;}
 .guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
 .guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
@@ -283,7 +288,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="format-grid">
       <div class="format-card">
         <h4>USB Audio</h4>
-        <p>Typically supports the highest sample rates (up to 768 kHz PCM, DSD512). Requires driver installation on Windows; class-compliant (driverless) on macOS and Linux. Best for computer audio.</p>
+        <p>Typically supports the highest sample rates (up to 768 kHz PCM, DSD512). Class-compliant (driverless) on macOS, Linux and current Windows; a vendor driver adds ASIO and native DSD on Windows. Best for computer audio.</p>
       </div>
       <div class="format-card">
         <h4>Coaxial S/PDIF</h4>
@@ -315,6 +320,45 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <h2>Balanced vs. Unbalanced Outputs</h2>
 
     <p>Many DACs offer both unbalanced RCA outputs and balanced XLR outputs. Balanced outputs carry the audio signal on two conductors with opposite polarity, with a ground return — allowing common-mode noise to be cancelled at the balanced input of the preamplifier. In a typical home environment with short cable runs, the practical noise-rejection advantage of balanced connections is modest. The more significant benefit is often the extra 6 dB of output voltage that a balanced output provides relative to the unbalanced output on the same DAC, which can help with gain staging.</p>
+
+    <h2>Digital Filters: What the Switch Does</h2>
+
+    <p>Many DACs let you choose between several <strong>reconstruction filters</strong>, with names like "fast roll-off," "slow roll-off," "minimum phase" and "apodizing." Every DAC needs such a filter to remove the ultrasonic images that sampling creates. The options trade between a few properties: how steeply the filter cuts off above 20&nbsp;kHz, how much the treble droops just below that, and whether the filter "rings" before a transient (linear phase) or only after it (minimum phase).</p>
+
+    <p>Nearly all of these differences sit at or above the upper limit of hearing. A slow roll-off filter may soften the top octave by a fraction of a decibel and let a little more ultrasonic content through; a minimum-phase filter changes the timing of ringing that occurs mostly above 20&nbsp;kHz. If your DAC offers the choice, try them, but expect small or no audible differences. Leaving the default fast linear-phase filter is a perfectly sound choice.</p>
+
+    <h2>Using the DAC's Volume Control</h2>
+
+    <p>Many modern DACs include a volume control, which lets them drive a power amplifier or active speakers directly, with no preamplifier. Digital volume controls on good DACs work at high internal resolution (commonly 32 bits), so reducing the level costs no audible detail at any sensible listening setting. Some DACs use an analog volume control instead, which preserves full digital resolution at the converter itself.</p>
+
+    <p>The rule is to use one volume control, not two. If the DAC feeds a preamp or integrated amplifier, set the DAC to its fixed or maximum output and adjust volume at the amplifier. If the DAC drives a power amp directly, use the DAC's volume and confirm that its maximum output matches the amplifier's <a href="/guides/amplifiers">input sensitivity</a>. Either way, check that the DAC starts at a safe level after switch-on: a DAC that defaults to full output connected directly to a power amp can produce a dangerously loud first track.</p>
+
+    <h2>USB Drivers and Computer Playback</h2>
+
+    <p>USB DACs that follow the USB Audio Class 2.0 standard work without extra drivers on macOS and Linux, and have done so on Windows since Windows&nbsp;10 version 1703, which added a native class-compliant driver. Manufacturers often still provide a Windows driver, and it remains worth installing if you want ASIO support or native DSD playback, which the built-in driver does not handle. For bit-perfect playback settings on each operating system, see the <a href="/guides/digital-formats">digital formats guide</a>.</p>
+
+    <p>Older or very inexpensive USB DACs may use USB Audio Class 1, which is driverless everywhere but limited to 24-bit/96&nbsp;kHz. That is still above CD quality, so it is not a practical limitation for most listening.</p>
+
+    <h2>How Much Do DAC Measurements Matter?</h2>
+
+    <p>Independent measurements of DACs commonly report <strong>SINAD</strong> (signal to noise and distortion), dynamic range, and channel balance. Even many inexpensive modern DACs achieve SINAD figures above 100&nbsp;dB, which places their combined noise and distortion below the threshold of audibility at normal listening levels. Above that point, further measured improvements are real but very unlikely to be heard through speakers in a room.</p>
+
+    <p>That shifts the practical buying decision toward features and integration: the right inputs for your sources, a suitable output voltage and impedance for the next component, balanced outputs if you need them, a usable volume control, a headphone output if you want one, and reliable software support. Money beyond a competent DAC is usually better spent on speakers or room treatment, as the <a href="/guides/budget-allocation">budget allocation guide</a> explains.</p>
+
+    <h2>Quick Reference: DAC Specs at a Glance</h2>
+
+    <table class="spec-table">
+      <thead><tr><th>Specification</th><th>What It Means</th><th>What to Look For</th></tr></thead>
+      <tbody>
+        <tr><td>Output Voltage</td><td>Level at full scale</td><td>2 V unbalanced / 4 V balanced is standard; match the next component</td></tr>
+        <tr><td>Output Impedance</td><td>Drive into the next input</td><td>≤1/10 of the next component's input impedance; under 100 Ω is ideal</td></tr>
+        <tr><td>Digital Inputs</td><td>Supported connections and rates</td><td>Matches your sources at the resolution you use</td></tr>
+        <tr><td>USB Class</td><td>Driver requirements</td><td>UAC2 for driverless hi-res; vendor driver for ASIO/native DSD</td></tr>
+        <tr><td>Digital Filter</td><td>Reconstruction filter options</td><td>Small, mostly ultrasonic differences; default is fine</td></tr>
+        <tr><td>Volume Control</td><td>Whether it can drive an amp directly</td><td>Use one volume control in the chain, not two</td></tr>
+        <tr><td>SINAD</td><td>Noise plus distortion</td><td>Above ~100 dB is transparent in practice</td></tr>
+      </tbody>
+    </table>
 
     <div class="cta-block">
       <h3>Is your DAC well-matched in your system?</h3>

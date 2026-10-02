@@ -204,7 +204,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <div class="spec-card">
       <div class="spec-name">Key Spec (Speaker Cables)</div>
       <h3>Loop Resistance (&Omega;) and Wire Gauge (AWG)</h3>
-      <p>Speaker cables carry significant current and connect to low-impedance loads (typically 4&ndash;8 &Omega;). The cable's resistance is in series with the amplifier's output impedance and the speaker load. Excessive resistance reduces damping factor — the amplifier's ability to control the speaker cone — and causes a frequency-response deviation because a speaker's impedance varies with frequency. The guideline is to keep total speaker cable resistance below 5% of the minimum speaker impedance. For an 8 &Omega; speaker, keep cable resistance below 0.4 &Omega; total (both conductors). 16 AWG copper achieves approximately 0.26 &Omega;/metre per conductor; 14 AWG approximately 0.16 &Omega;/metre per conductor. For most runs under 5 metres, 16 AWG is adequate. For runs over 10 metres or 4 &Omega; speakers, 14 AWG or heavier is warranted.</p>
+      <p>Speaker cables carry significant current and connect to low-impedance loads (typically 4&ndash;8 &Omega;). The cable's resistance is in series with the amplifier's output impedance and the speaker load. Excessive resistance reduces damping factor — the amplifier's ability to control the speaker cone — and causes a frequency-response deviation because a speaker's impedance varies with frequency. The guideline is to keep total speaker cable resistance below 5% of the minimum speaker impedance. For an 8 &Omega; speaker, keep cable resistance below 0.4 &Omega; total (both conductors). 16 AWG copper measures approximately 0.013 &Omega; per metre per conductor; 14 AWG approximately 0.008 &Omega;/metre. For most runs under 5 metres, 16 AWG is adequate. For runs over 10 metres or 4 &Omega; speakers, 14 AWG or heavier is warranted.</p>
     </div>
 
     <figure class="guide-figure">
@@ -215,12 +215,12 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     <table class="spec-table">
       <thead><tr><th>AWG</th><th>Resistance per metre (each conductor)</th><th>Max run for 8 &Omega; speaker (&lt;5% rule)</th></tr></thead>
       <tbody>
-        <tr><td>24 AWG</td><td>0.84 &Omega;/m</td><td>0.5 m</td></tr>
-        <tr><td>20 AWG</td><td>0.34 &Omega;/m</td><td>1.2 m</td></tr>
-        <tr><td>18 AWG</td><td>0.21 &Omega;/m</td><td>1.9 m</td></tr>
-        <tr><td>16 AWG</td><td>0.13 &Omega;/m</td><td>3.1 m</td></tr>
-        <tr><td>14 AWG</td><td>0.083 &Omega;/m</td><td>4.8 m</td></tr>
-        <tr><td>12 AWG</td><td>0.053 &Omega;/m</td><td>7.5 m</td></tr>
+        <tr><td>24 AWG</td><td>0.084 &Omega;/m</td><td>2.4 m</td></tr>
+        <tr><td>20 AWG</td><td>0.033 &Omega;/m</td><td>6 m</td></tr>
+        <tr><td>18 AWG</td><td>0.021 &Omega;/m</td><td>9.5 m</td></tr>
+        <tr><td>16 AWG</td><td>0.013 &Omega;/m</td><td>15 m</td></tr>
+        <tr><td>14 AWG</td><td>0.008 &Omega;/m</td><td>24 m</td></tr>
+        <tr><td>12 AWG</td><td>0.005 &Omega;/m</td><td>38 m</td></tr>
       </tbody>
     </table>
 
@@ -249,6 +249,39 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <li><strong>Directionality</strong> — there is no physical mechanism by which a passive conductor has an audio-frequency direction</li>
       <li><strong>Inductance</strong> — speaker cable inductance causes a treble rolloff only at far higher frequencies than the audio band, and only with unusually long runs of very high-inductance cables</li>
     </ul>
+
+    <h2>Connectors and Termination</h2>
+
+    <p>A cable is only as good as its connections, and a poor termination causes far more real problems than any difference in wire. Speaker cable can be fitted with banana plugs, spade connectors, or used as bare wire clamped directly in the binding post:</p>
+    <ul>
+      <li><strong>Bare wire</strong> makes an excellent connection if the strands are twisted tight, inserted fully and clamped firmly. Check for stray strands, which can short positive to negative and trigger an amplifier's protection circuit, or damage an amplifier that lacks one.</li>
+      <li><strong>Banana plugs</strong> are convenient for frequent reconnection and avoid stray strands entirely. Make sure they fit the binding posts snugly.</li>
+      <li><strong>Spades</strong> give a large contact area when clamped under a tight binding post, and suit terminals that do not accept bananas.</li>
+    </ul>
+
+    <p>Exposed copper oxidises over months and years, darkening and raising contact resistance slightly. Re-cutting and re-terminating bare wire occasionally, or using plated connectors, keeps the connection clean. Tighten binding posts by hand, firmly but not with tools, which can crack the plastic.</p>
+
+    <h2>Balanced Cables and Adapters</h2>
+
+    <p>Balanced XLR cables are standardised (pin 1 ground, pin 2 hot, pin 3 cold), and any correctly wired cable of reasonable quality performs the same. Adapting between balanced and unbalanced equipment needs more care. Connecting a balanced output to an unbalanced input means deciding what happens to the cold leg: depending on the output stage design, it should either be connected to ground or left floating, and the wrong choice can lose 6&nbsp;dB, add noise, or in rare cases stress the output stage. Follow the equipment manufacturer's guidance, or use an adapter cable they recommend. The <a href="/guides/balanced-vs-unbalanced">balanced vs unbalanced guide</a> explains the underlying mechanism.</p>
+
+    <h2>Digital and USB Cables</h2>
+
+    <p>Digital cables have different requirements from analog ones. A coaxial S/PDIF cable should be a true 75&nbsp;Ω design, such as video-grade coax, rather than an ordinary analog interconnect, because an impedance mismatch causes reflections that can add timing jitter at the receiver. A USB audio cable needs to meet the USB specification and stay within its length limit &mdash; 5&nbsp;m for USB&nbsp;2.0 without an active extender. Beyond those requirements, a digital cable either delivers the data intact or fails obviously with dropouts; there is no gradual sonic degradation from an otherwise working cable. The <a href="/guides/digital-connections">digital connections guide</a> covers each interface in detail.</p>
+
+    <h2>Running Cables Safely and Neatly</h2>
+
+    <ul>
+      <li><strong>Keep signal cables away from mains leads</strong> where possible, and cross them at right angles where they must meet; running them side by side over a long distance invites hum.</li>
+      <li><strong>Use in-wall-rated cable</strong> for runs inside walls or ceilings. In North America, look for CL2 or CL3 ratings; other countries have their own fire-safety standards.</li>
+      <li><strong>Protect cables under rugs</strong> with flat cable or a cable protector, since repeated footfall damages insulation.</li>
+      <li><strong>Cut speaker cables to the length you need</strong> and keep left and right lengths roughly equal for tidiness. Coiling a little excess is harmless at audio frequencies; keeping left and right runs equal simply keeps the two channels electrically matched.</li>
+      <li><strong>Label both ends</strong> of every cable. It costs seconds and saves a great deal of time when you next change something.</li>
+    </ul>
+
+    <h2>Where Cable Money Is Well Spent</h2>
+
+    <p>The engineering in this guide leads to a straightforward budget: buy speaker cable of adequate gauge for the run, well-made interconnects with solid connectors, and correct-spec digital cables, then stop. A reasonable allowance for a whole system's cabling is a small fraction of the cost of the electronics. The money saved does more as part of a better speaker, stands, or room treatment, which the <a href="/guides/budget-allocation">budget allocation guide</a> covers. The one place to spend a little more is mechanical quality: cables that are plugged and unplugged often benefit from robust connectors and strain relief.</p>
 
     <h2>Quick Reference: Cable Specs at a Glance</h2>
 

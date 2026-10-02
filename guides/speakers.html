@@ -89,6 +89,11 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 .footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
 .footer-links{display:flex;gap:20px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+.spec-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+.spec-table th{background:var(--dark);color:#fff;padding:10px 14px;text-align:left;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.spec-table td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;}
+.spec-table tr:nth-child(even) td{background:var(--cream);}
+.spec-table td:first-child{font-weight:600;color:var(--text);}
 .guide-figure{margin:28px 0;}
 .guide-figure img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;background:var(--cream);border-radius:var(--radius);}
 .guide-figure figcaption{font-size:13px;color:var(--text-2);line-height:1.6;margin-top:10px;}
@@ -269,6 +274,51 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     </figure>
 
     <p>The bass extension figure (often specified at &minus;6 dB below the rated response) tells you how low the speaker genuinely reaches before significant rolloff. A speaker rated "40 Hz ±3 dB" with a &minus;6 dB point at 35 Hz will produce useful bass in most rooms. The same speaker placed near a rear wall gains 3–6 dB of bass reinforcement from boundary loading — a free upgrade that must be balanced against midrange coloration from early reflections.</p>
+
+    <h2>Reading a Speaker Spec Sheet Critically</h2>
+
+    <p>Speaker specifications are measured under conditions that vary from one manufacturer to the next, so two identical-looking numbers may not mean the same thing. A few details to check before comparing:</p>
+    <ul>
+      <li><strong>1&nbsp;W or 2.83&nbsp;V?</strong> For an 8&nbsp;Ω speaker these are the same. For a 4&nbsp;Ω speaker they are not: 2.83&nbsp;V into 4&nbsp;Ω is 2&nbsp;W, so a sensitivity quoted "at 2.83&nbsp;V" reads 3&nbsp;dB higher than the true per-watt figure. Low-impedance speakers rated this way are less efficient than they first appear.</li>
+      <li><strong>Anechoic or in-room?</strong> Some manufacturers quote sensitivity measured in a room, where reflections add a few decibels. Anechoic figures are the honest basis for comparison.</li>
+      <li><strong>Frequency response without a tolerance</strong> &mdash; "35&nbsp;Hz&ndash;25&nbsp;kHz" with no &plusmn;dB figure tells you almost nothing, because any speaker produces <em>some</em> output at almost any frequency.</li>
+      <li><strong>Nominal impedance without a minimum</strong> &mdash; the minimum value, and the frequency where it occurs, is what your amplifier has to handle. The <a href="/guides/speaker-impedance">speaker impedance guide</a> explains why.</li>
+    </ul>
+
+    <h2>Drivers, Ways and Enclosures</h2>
+
+    <p>A "two-way" speaker splits the frequency range between a woofer and a tweeter; a "three-way" adds a dedicated midrange driver. More ways is not automatically better. Each additional driver brings another crossover point where two drivers must blend, and a well-executed two-way can be more coherent than an indifferent three-way. What a three-way does offer is that each driver works over a narrower range, which can lower distortion and allow a larger woofer to concentrate on bass. The <a href="/guides/speaker-crossovers">crossover guide</a> covers how drivers are combined.</p>
+
+    <p>Driver materials &mdash; paper, polypropylene, aluminium, ceramic and composite cones, and soft-dome or metal-dome tweeters &mdash; each have characteristic strengths, but none is decisive on its own. A metal tweeter usually has a sharp breakup resonance above the audible band that the designer must keep out of the way; a soft dome breaks up more gently but earlier. How the designer handles these behaviours matters far more than the material listed in the brochure. The enclosure matters too: whether the cabinet is sealed or ported shapes how the bass rolls off, and the <a href="/guides/sealed-vs-ported">sealed vs ported guide</a> covers that trade-off in detail.</p>
+
+    <h2>Measurements Worth Seeking Out</h2>
+
+    <p>Published specifications summarise a speaker in a handful of numbers. Independent measurements, available for many popular models from reviewers and measurement-focused publications, show far more. The most useful are:</p>
+    <ul>
+      <li><strong>Frequency response on- and off-axis.</strong> A smooth on-axis response matters, but so does how the response changes as you move off-axis, because most of the sound you hear in a room arrives by reflection. The industry-standard "spinorama" set of curves (from the CTA-2034 standard) is designed to show exactly this.</li>
+      <li><strong>Impedance and phase curve.</strong> Shows how hard the speaker is to drive, including any deep dips that stress an amplifier.</li>
+      <li><strong>Distortion at a stated level.</strong> Most informative in the bass, where small speakers run out of excursion first.</li>
+    </ul>
+
+    <p>None of these replaces listening, but they are excellent for shortlisting, and they explain differences that a spec sheet hides.</p>
+
+    <h2>Matching the Speaker to Your Room</h2>
+
+    <p>A speaker that sounds superb in a large showroom may overload a small room with bass, and a compact speaker that is ideal on a desk may sound strained filling a large open-plan space. As a rough guide, small two-way stand-mounts suit rooms up to around 20&nbsp;m², larger stand-mounts and modest floorstanders suit medium rooms, and large floorstanders need both the space and the distance from walls to give their best. Consider where the speakers will actually sit: if they must go close to a wall, a sealed design or one with a front-facing port usually copes better than a rear-ported one. The <a href="/guides/bookshelf-vs-floorstanding">bookshelf vs floorstanding</a> and <a href="/guides/speaker-placement">speaker placement</a> guides go further.</p>
+
+    <h2>Quick Reference: Speaker Specs at a Glance</h2>
+
+    <table class="spec-table">
+      <thead><tr><th>Specification</th><th>What It Tells You</th><th>What to Check</th></tr></thead>
+      <tbody>
+        <tr><td>Sensitivity</td><td>Loudness per watt</td><td>1 W or 2.83 V basis; anechoic, not in-room</td></tr>
+        <tr><td>Nominal Impedance</td><td>Average electrical load</td><td>Pair with the minimum impedance, not alone</td></tr>
+        <tr><td>Minimum Impedance</td><td>Hardest load the amp sees</td><td>Below 3 Ω needs a current-capable amplifier</td></tr>
+        <tr><td>Frequency Response</td><td>Usable range</td><td>Must include a tolerance, ideally ±3 dB</td></tr>
+        <tr><td>Bass Extension (−6 dB)</td><td>How low it really goes</td><td>Compare against room size and placement</td></tr>
+        <tr><td>Power Handling</td><td>Thermal survival limit</td><td>Not a loudness or quality indicator</td></tr>
+      </tbody>
+    </table>
 
     <div class="cta-block">
       <h3>Is your amplifier right for your speakers?</h3>
