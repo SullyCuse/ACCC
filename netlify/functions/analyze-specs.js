@@ -227,7 +227,6 @@ exports.handler = async (event) => {
     });
 
     let aiText = "";
-    let _diag = null;
     if (needsAI.length > 0) {
       const numberedList = needsAI.map(({ index, component: c }) => {
         return `${index + 1}. [${typeLabels[c.type] || c.type}] ${c.name}\n   Required: ${specFields[c.type] || "key specs"}`;
@@ -286,7 +285,6 @@ All ${needsAI.length} components required. No summary text. No questions.`;
         aiText += "\n\n**Spec Lookup Incomplete**\n" +
           "⚠ The AI spec lookup was cut off, so the last component above may be missing specs. Re-run the analysis for complete specs.";
       }
-      _diag = { stop_reason: parsed.stop_reason, usage: parsed.usage, chars: aiText.length };
     }
 
     const correctedSection = correctedBlocks.length > 0
@@ -303,7 +301,7 @@ All ${needsAI.length} components required. No summary text. No questions.`;
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames, verifiedAs, _diag })
+      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames, verifiedAs })
     };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
