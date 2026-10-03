@@ -227,6 +227,7 @@ exports.handler = async (event) => {
     });
 
     let aiText = "";
+    let _diag = null;
     if (needsAI.length > 0) {
       const numberedList = needsAI.map(({ index, component: c }) => {
         return `${index + 1}. [${typeLabels[c.type] || c.type}] ${c.name}\n   Required: ${specFields[c.type] || "key specs"}`;
@@ -278,6 +279,7 @@ All ${needsAI.length} components required. No summary text. No questions.`;
       if (parsed.error) throw new Error(parsed.error.message);
       if (parsed.stop_reason === "refusal") throw new Error("The AI declined to look up these components. Please try again.");
       aiText = (parsed.content || []).filter(b => b.type === "text").map(b => b.text).join("");
+      _diag = { stop_reason: parsed.stop_reason, usage: parsed.usage, chars: aiText.length };
     }
 
     const correctedSection = correctedBlocks.length > 0
@@ -294,7 +296,7 @@ All ${needsAI.length} components required. No summary text. No questions.`;
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames, verifiedAs })
+      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames, verifiedAs, _diag })
     };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
