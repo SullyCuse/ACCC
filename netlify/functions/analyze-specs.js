@@ -250,7 +250,7 @@ All ${needsAI.length} components required. No summary text. No questions.`;
 
       const body = JSON.stringify({
         model: "claude-sonnet-5-5",
-        max_tokens: 1500,
+        max_tokens: 2500,
         output_config: { effort: "low" },
         fallbacks: "default",
         messages: [{ role: "user", content: prompt }],
@@ -278,6 +278,13 @@ All ${needsAI.length} components required. No summary text. No questions.`;
       if (parsed.error) throw new Error(parsed.error.message);
       if (parsed.stop_reason === "refusal") throw new Error("The AI declined to look up these components. Please try again.");
       aiText = (parsed.content || []).filter(b => b.type === "text").map(b => b.text).join("");
+      // Markdown output does not fail when cut off, so flag it instead of
+      // passing silently truncated specs on to analyze-chain/analyze-summary.
+      if (parsed.stop_reason === "max_tokens") {
+        console.error("analyze-specs truncated at max_tokens", JSON.stringify(parsed.usage));
+        aiText += "\n\n**Spec Lookup Incomplete**\n" +
+          "⚠ The AI spec lookup was cut off, so the last component above may be missing specs. Re-run the analysis for complete specs.";
+      }
     }
 
     const correctedSection = correctedBlocks.length > 0
