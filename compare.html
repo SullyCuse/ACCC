@@ -785,7 +785,9 @@ function renderCards(){
     const totalSpecs=specVals.length;
     const summaryLower=(d.summary||'').toLowerCase();
     const limitedDataSignals=['insufficient','limited data','not available','no reliable','obscure','could not','unable to','limited information','not enough'];
-    const summaryFlagged=limitedDataSignals.some(s=>summaryLower.includes(s));
+    // A DB match (✓ Reported) proves reliable specs exist, so a summary that merely
+    // notes a few unconfirmed figures ("could not confirm…") must not flag it.
+    const summaryFlagged=!d.verified&&limitedDataSignals.some(s=>summaryLower.includes(s));
     const specsEmpty=totalSpecs===0||(totalSpecs>0&&naCount/totalSpecs>=0.7);
     const hasLimitedData=summaryFlagged||specsEmpty;
 
