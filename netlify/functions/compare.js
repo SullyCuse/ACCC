@@ -28,6 +28,7 @@ const MAX_TOKENS = 2000;
 // Module-level cache — persists across warm Lambda invocations (~5 min TTL)
 let _cache = null;
 let _cacheAt = 0;
+let _sources = {};   // DB row name -> source_url, refreshed with _cache
 const CACHE_TTL = 5 * 60 * 1000;
 
 // Page through component_specs: the Data API caps every response at the
@@ -39,7 +40,7 @@ const SPEC_PAGE = 1000;
 function fetchSpecsPage(offset, timeoutMs) {
   return new Promise((resolve) => {
     const { hostname, pathname, search } = new URL(
-      `${process.env.SUPABASE_URL}/rest/v1/component_specs?select=name,specs&order=name&limit=${SPEC_PAGE}&offset=${offset}`
+      `${process.env.SUPABASE_URL}/rest/v1/component_specs?select=name,specs,source_url&order=name&limit=${SPEC_PAGE}&offset=${offset}`
     );
     const req = https.request({
       hostname, path: pathname + search, method: "GET",
@@ -79,6 +80,9 @@ async function fetchSpecs(timeoutMs) {
     rows.push(...page.rows);
     if (rows.length >= page.total || page.rows.length === 0) break;
   }
+  // Product-page URLs ride alongside; the client turns affiliate retailers'
+  // pages into "Buy at" links.
+  _sources = Object.fromEntries(rows.filter(r => r.source_url).map(r => [r.name, r.source_url]));
   return { map: Object.fromEntries(rows.map(r => [r.name, r.specs])), ok: true };
 }
 
@@ -215,6 +219,7 @@ exports.handler = async (event) => {
     // ("Fosi V3" -> "Fosi Audio V3") is visible to the user.
     const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
     if (match && norm(match.name) !== norm(name)) parsed.verifiedName = match.name;
+    if (match && _sources[match.name]) parsed.sourceUrl = _sources[match.name];
     return { statusCode: 200, headers: CORS, body: JSON.stringify(parsed) };
   } catch (err) {
     console.error('AudioChainHiFi compare error:', err.message);

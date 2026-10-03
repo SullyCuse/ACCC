@@ -390,7 +390,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
       <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">&copy; 2026 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <p class="footer-copy">&copy; 2026 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer &middot; Some links are affiliate links, and we may earn a commission from purchases made through them</p>
       <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
     </div>
   </div>
@@ -420,7 +420,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
   }
 
   function ampNote(amt) {
-    if (amt < 150)  return 'Budget integrated options from Fosi Audio or SMSL are surprisingly capable — adequate for efficient speakers in smaller rooms.';
+    if (amt < 150)  return 'Budget integrated options from <a href="https://www.awin1.com/cread.php?awinmid=119395&awinaffid=2894963&clickref=calculator&ued=https%3A%2F%2Ffosiaudio.com%2F" target="_blank" rel="sponsored noopener">Fosi Audio<\/a> (affiliate link) or SMSL are surprisingly capable — adequate for efficient speakers in smaller rooms.';
     if (amt < 350)  return 'Solid entry-level integrateds from Yamaha, Denon, and Cambridge Audio. Clean power, reliable build, useful features.';
     if (amt < 700)  return 'Strong mid-fi integrateds — Rega, NAD, and Rotel all shine here. Expect lower noise, better dynamics, and a more refined presentation.';
     if (amt < 1500) return 'Excellent integrated amplifiers from Naim, Hegel, and Exposure. This is where amplifier character becomes a real differentiator.';
@@ -471,7 +471,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
     document.getElementById('ampAmt').textContent      = fmt(ampAmt);
     document.getElementById('ampPct').textContent      = '(' + Math.round(split.amp * 100) + '%)';
     document.getElementById('ampBar').style.width      = (split.amp * 100) + '%';
-    document.getElementById('ampNote').textContent     = ampNote(ampAmt);
+    document.getElementById('ampNote').innerHTML       = ampNote(ampAmt);   // may hold an affiliate link
 
     document.getElementById('sourceAmt').textContent   = fmt(sourceAmt);
     document.getElementById('sourcePct').textContent   = '(' + Math.round(split.source * 100) + '%)';

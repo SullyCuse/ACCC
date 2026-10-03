@@ -231,6 +231,9 @@ button{cursor:pointer;font-family:inherit}
 .lm{background:rgba(37,99,235,.12);color:#1d4ed8}
 .lr{background:#f1f5f9;color:#334155}
 .lyt{background:rgba(239,68,68,.1);color:#ef4444}
+.lnk-buy{color:#16a34a;font-weight:600}
+.lbuy{background:rgba(22,163,74,.12);color:#16a34a}
+.aff-note{font-size:11px;color:#94a3b8;margin-top:4px}
 
 .res-cta{text-align:center;margin-top:48px;padding-top:40px;border-top:1px solid #e2e8f0}
 .res-cta p{color:#94a3b8;font-size:14px;margin-bottom:20px}
@@ -563,7 +566,7 @@ button{cursor:pointer;font-family:inherit}
       <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">&copy; 2026 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer</p>
+      <p class="footer-copy">&copy; 2026 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer &middot; Some links are affiliate links, and we may earn a commission from purchases made through them</p>
       <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
     </div>
   </div>
@@ -793,6 +796,8 @@ function renderCards(){
 
     const mfgBase=d.manufacturerUrl?su(d.manufacturerUrl).replace(/^(https?:\/\/[^\/]+).*/,'$1'):'';
     const mfg=mfgBase?`<a href="${mfgBase}" target="_blank" rel="noopener" class="lnk"><span class="lic lm">M</span>Manufacturer Website ↗</a>`:'';
+    const aff=d.sourceUrl&&affLink(d.sourceUrl,'compare');
+    const buy=aff?`<a href="${h(aff.href)}" target="_blank" rel="sponsored noopener" class="lnk lnk-buy"><span class="lic lbuy">$</span>Buy at ${h(aff.name)} ↗</a>`:'';
     const ytQuery=encodeURIComponent(`${d.brand} ${d.model}`);
     const yt=`<a href="https://www.youtube.com/results?search_query=${ytQuery}" target="_blank" rel="noopener" class="lnk"><span class="lic lyt">▶</span>YouTube Videos ↗</a>`;
     const cons=(d.considerations||[]).length?`<div><p class="list-l">Considerations</p><ul class="con-ul">${d.considerations.map(c=>`<li>${h(c)}</li>`).join('')}</ul></div>`:'';
@@ -800,7 +805,7 @@ function renderCards(){
 
     const canRemove=st.items.filter(i=>i.data).length>1;
     const verifiedBadge=d.verified?`<span class="verified-badge">✓ Reported</span>${d.verifiedName?`<div class="verified-note">Verified specs are for ${h(d.verifiedName)}</div>`:''}`:'';
-    return`<article class="ccard"><div class="ccard-top"><div class="ccard-brand">${h(d.brand)}</div><div class="ccard-model">${h(d.model)}</div>${verifiedBadge}<button class="btn-remove-comp" onclick="removeFromResults(${it.id})" type="button" ${canRemove?'':'disabled'} aria-label="Remove ${h(d.model)} from comparison">✕</button></div><div class="ccard-body">${limitedWarning}<p class="ccard-sum">${h(d.summary)}</p>${strengths}${cons}<div class="ccard-links"><p class="list-l">Resources</p>${mfg}${yt}</div><div class="feedback-section"><button class="feedback-trigger" onclick="openSuggestModal('${h(d.brand+' '+d.model)}','Compare — ${h(st.catLbl)}')" type="button"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Report Inaccuracy</button></div></div></article>`;
+    return`<article class="ccard"><div class="ccard-top"><div class="ccard-brand">${h(d.brand)}</div><div class="ccard-model">${h(d.model)}</div>${verifiedBadge}<button class="btn-remove-comp" onclick="removeFromResults(${it.id})" type="button" ${canRemove?'':'disabled'} aria-label="Remove ${h(d.model)} from comparison">✕</button></div><div class="ccard-body">${limitedWarning}<p class="ccard-sum">${h(d.summary)}</p>${strengths}${cons}<div class="ccard-links"><p class="list-l">Resources</p>${buy}${mfg}${yt}${aff?'<p class="aff-note">We may earn a commission from purchases made through this link.</p>':''}</div><div class="feedback-section"><button class="feedback-trigger" onclick="openSuggestModal('${h(d.brand+' '+d.model)}','Compare — ${h(st.catLbl)}')" type="button"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Report Inaccuracy</button></div></div></article>`;
   }).join('');
 }
 
@@ -1082,6 +1087,17 @@ async function submitSuggestion(){
 }
 
 // ── Utils ──
+// Affiliate retailers: product-page host -> Awin advertiser. A verified component
+// whose DB source_url is on one of these hosts gets a tracked "Buy at" link.
+const AWIN_AFFID=2894963;
+const AFFILIATES={'fosiaudio.com':{mid:119395,name:'Fosi Audio'}};
+function affLink(url,ref){
+  let host;
+  try{host=new URL(url).hostname.replace(/^www\./,'');}catch(e){return null;}
+  const a=AFFILIATES[host];
+  if(!a)return null;
+  return{name:a.name,href:'https://www.awin1.com/cread.php?awinmid='+a.mid+'&awinaffid='+AWIN_AFFID+'&clickref='+ref+'&ued='+encodeURIComponent(url)};
+}
 function h(s){if(s==null)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 // Download the side-by-side spec table as a PNG. html2canvas is loaded on
 // first use only, so pages that never export pay nothing for it.

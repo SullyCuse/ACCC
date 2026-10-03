@@ -4,6 +4,7 @@ const { URL } = require("url");
 // Module-level cache — persists across warm Lambda invocations (~5 min TTL)
 let _cache = null;
 let _cacheAt = 0;
+let _sources = {};   // DB row name -> source_url, refreshed with _cache
 const CACHE_TTL = 5 * 60 * 1000;
 
 // Page through component_specs: the Data API caps every response at the
@@ -15,7 +16,7 @@ const SPEC_PAGE = 1000;
 function fetchSpecsPage(offset, timeoutMs) {
   return new Promise((resolve) => {
     const { hostname, pathname, search } = new URL(
-      `${process.env.SUPABASE_URL}/rest/v1/component_specs?select=name,specs&order=name&limit=${SPEC_PAGE}&offset=${offset}`
+      `${process.env.SUPABASE_URL}/rest/v1/component_specs?select=name,specs,source_url&order=name&limit=${SPEC_PAGE}&offset=${offset}`
     );
     const req = https.request({
       hostname, path: pathname + search, method: "GET",
@@ -55,6 +56,9 @@ async function fetchSpecs(timeoutMs) {
     rows.push(...page.rows);
     if (rows.length >= page.total || page.rows.length === 0) break;
   }
+  // Product-page URLs ride alongside; the client turns affiliate retailers'
+  // pages into "Buy at" links.
+  _sources = Object.fromEntries(rows.filter(r => r.source_url).map(r => [r.name, r.source_url]));
   return { map: Object.fromEntries(rows.map(r => [r.name, r.specs])), ok: true };
 }
 
@@ -213,6 +217,7 @@ exports.handler = async (event) => {
     const needsAI = [];
     const verifiedNames = [];   // components whose specs came from the reported DB (not AI)
     const verifiedAs = {};      // typed name -> DB row name, only when they differ
+    const sourceUrls = {};      // typed name -> DB row's product page, when it has one
     const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
     components.forEach((c, i) => {
@@ -221,6 +226,7 @@ exports.handler = async (event) => {
         correctedBlocks.push(formatCorrectedSpecs(c.name, typeLabels[c.type] || c.type, corrected.specs));
         verifiedNames.push(c.name);
         if (norm(corrected.name) !== norm(c.name)) verifiedAs[c.name] = corrected.name;
+        if (_sources[corrected.name]) sourceUrls[c.name] = _sources[corrected.name];
       } else {
         needsAI.push({ index: i, component: c });
       }
@@ -301,7 +307,7 @@ All ${needsAI.length} components required. No summary text. No questions.`;
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames, verifiedAs })
+      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames, verifiedAs, sourceUrls })
     };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
