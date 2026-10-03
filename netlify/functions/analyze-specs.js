@@ -106,6 +106,9 @@ function findCorrection(name, corrections) {
   const n = normalize(name);
   const nd = digits(n);
   const userTokens = tokenize(name);
+  // Model code: the tokens containing digits, each joined to a preceding
+  // single-letter token ("NAD C 538" -> "c538", "NAD 3020A" -> "3020a").
+  const modelCode = s => tokenize(s).map((t, i, a) => /[0-9]/.test(t) ? ((i > 0 && /^[a-z]$/.test(a[i - 1])) ? a[i - 1] : '') + t : '').join('');
 
   // 1. Exact normalized match
   let key = Object.keys(corrections).find(k => normalize(k) === n);
@@ -149,14 +152,16 @@ function findCorrection(name, corrections) {
   }
 
   // 4. Fuzzy fallback for letter typos (handles "Wharefedale" -> "Wharfedale").
-  //    Conservative on purpose: the digit run must match exactly, so a typo can
-  //    never bind "5.1" to "5.2". Requires a single unambiguous nearest candidate
-  //    within a small edit distance — ties or anything farther fall back to AI.
+  //    Conservative on purpose: the model code must match exactly, so a typo can
+  //    never bind "5.1" to "5.2", nor "3020A" to "D 3020" (same digits, different
+  //    product). Requires a single unambiguous nearest candidate within a small
+  //    edit distance — ties or anything farther fall back to AI.
   if (!key && n.length >= 5) {
+    const um = modelCode(name);
     let best = null, bestDist = Infinity, tie = false;
     for (const k of Object.keys(corrections)) {
       const nk = normalize(k);
-      if (digits(nk) !== nd) continue; // different model number -> different product
+      if (digits(nk) !== nd || modelCode(k) !== um) continue; // different model -> different product
       const dist = levenshtein(n, nk);
       if (dist < bestDist) { bestDist = dist; best = k; tie = false; }
       else if (dist === bestDist) tie = true;
