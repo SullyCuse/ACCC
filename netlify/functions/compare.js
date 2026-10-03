@@ -22,7 +22,7 @@ const https = require("https");
 const { URL } = require("url");
 
 const MODEL      = "claude-sonnet-5-5";
-const MAX_TOKENS = 1100;
+const MAX_TOKENS = 2000;
 
 /* ─── Central verified-spec DB (shared with analyze-specs.js) ─── */
 // Module-level cache — persists across warm Lambda invocations (~5 min TTL)
