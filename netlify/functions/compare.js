@@ -22,7 +22,7 @@ const https = require("https");
 const { URL } = require("url");
 
 const MODEL      = "claude-sonnet-5-5";
-const MAX_TOKENS = 1100;
+const MAX_TOKENS = 2000;
 
 /* ─── Central verified-spec DB (shared with analyze-specs.js) ─── */
 // Module-level cache — persists across warm Lambda invocations (~5 min TTL)
@@ -256,6 +256,10 @@ async function callClaude(prompt, maxTokens, apiKey) {
   if (data.error) throw new Error(data.error.message);
   if (data.stop_reason === 'refusal') throw new Error('The AI declined to describe this component. Please try a different name.');
   const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
+  if (data.stop_reason === 'max_tokens') {
+    console.error('compare truncated at max_tokens', JSON.stringify(data.usage));
+    throw new Error('The AI response was cut off. Please try again.');
+  }
   return extractJSON(text);
 }
 
