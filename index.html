@@ -508,18 +508,12 @@ select {
 /* ── DIAGRAM ── */
 .diagram-wrap { overflow-x:auto; }
 .diagram-wrap svg { display:block; }
-.dv-box         { fill:#f8fafc; stroke:#e2e8f0; stroke-width:1.5; }
-.dv-box-digital { fill:#eff6ff; stroke:#93c5fd; }
-.dv-box-phono   { fill:#fefce8; stroke:#fcd34d; }
-.dv-box-shared  { fill:#f0fdf4; stroke:#86efac; }
+.dv-box   { fill:#fff; stroke:#e2e8f0; stroke-width:1.25; }
 .dv-title { fill:#0f172a; font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:700; }
 .dv-sub   { fill:#94a3b8; font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; }
 .dv-label { fill:#64748b; font-family:'Plus Jakarta Sans',sans-serif; font-size:10px; }
 .dv-node  { cursor:pointer; }
-.dv-node:hover .dv-box,
-.dv-node:hover .dv-box-digital,
-.dv-node:hover .dv-box-phono,
-.dv-node:hover .dv-box-shared { stroke:var(--blue); stroke-width:2; }
+.dv-node:hover .dv-box { stroke:var(--blue); stroke-width:2; }
 
 /* ── 3-PANEL RESULTS ── */
 .results-full { padding: 0 0 60px; }
@@ -1551,7 +1545,7 @@ function generateDiagram(){
 // Standalone copy of the diagram SVG for export: inlines the dv-* styles (an
 // SVG drawn as an image can't see page CSS or web fonts), adds a white
 // background and sets pixel dimensions.
-const DIAGRAM_EXPORT_CSS='.dv-box{fill:#f8fafc;stroke:#e2e8f0;stroke-width:1.5}.dv-box-digital{fill:#eff6ff;stroke:#93c5fd}.dv-box-phono{fill:#fefce8;stroke:#fcd34d}.dv-box-shared{fill:#f0fdf4;stroke:#86efac}.dv-title{fill:#0f172a;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700}.dv-sub{fill:#94a3b8;font-family:Arial,Helvetica,sans-serif;font-size:10px}.dv-label{fill:#64748b;font-family:Arial,Helvetica,sans-serif;font-size:10px}';
+const DIAGRAM_EXPORT_CSS='.dv-box{fill:#fff;stroke:#e2e8f0;stroke-width:1.25}.dv-title{fill:#0f172a;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700}.dv-sub{fill:#94a3b8;font-family:Arial,Helvetica,sans-serif;font-size:10px}.dv-label{fill:#64748b;font-family:Arial,Helvetica,sans-serif;font-size:10px}';
 function diagramExportSVG(scale){
   const svg=document.querySelector('#diagram-wrap svg');
   if(!svg)return null;
@@ -1782,7 +1776,7 @@ function renderPanelSections(parts){
 }
 function updateDiagram(){const wrap=document.getElementById('diagram-wrap');if(components.length<2){wrap.innerHTML='';return;}wrap.innerHTML=buildDiagram();}
 function buildDiagram(){
-  const W=600,BW=160,BH=50,G=20,SBW=Math.floor((Math.round(BW*1.6)-G)/2);
+  const W=600,BW=176,BH=50,G=20,SBW=Math.floor((Math.round(BW*1.6)-G)/2);
   // Layout follows the connections, not component types: each component sits
   // one row below the deepest component feeding it, so an iPad, laptop or NAS
   // lands next to the other sources of the DAC it plugs into.
@@ -1799,7 +1793,6 @@ function buildDiagram(){
   // connections at all, fall back to showing every component.
   const connIds=new Set();edges.forEach(e=>{connIds.add(e.from);connIds.add(e.to);});
   const nodes=edges.length?components.filter(c=>connIds.has(c.id)&&!sub(c)):components.filter(c=>c.type!=='cartridge'&&c.type!=='tonearm');
-  const byId=new Map(nodes.map(c=>[c.id,c]));
 
   // No connections yet: show a guessed chain in signal-flow order, unlabeled
   if(!edges.length){
@@ -1871,7 +1864,7 @@ function buildDiagram(){
 
   // Box height — accepts optional width (defaults to BW), affects line-wrapping estimate
   const boxH=(c,w=BW)=>{
-    const mc=Math.max(10,Math.floor(w/8));
+    const mc=Math.max(10,Math.floor((w-36)/7));
     const lines=wrapNameW(c.name,mc).length;
     if(c.type==='turntable'){
       const subs=(tonearm?1:0)+(cartridge?1:0);
@@ -1880,10 +1873,24 @@ function buildDiagram(){
     return BH+(lines>1?18:0);
   };
 
-  // Box renderer — accepts optional width
-  const box=(x,y,c,cls,w=BW)=>{
-    const cx=x+w/2;
-    const mc=Math.max(10,Math.floor(w/8));
+  // Type icons: 24x24 line glyphs drawn at 75% beside the name
+  const ICON={
+    turntable:'<circle cx="10" cy="13" r="8"/><circle cx="10" cy="13" r="1.5"/><path d="M20 3v9l-5 4"/>',
+    cdplayer:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/>',
+    streamer:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/>',
+    dac:'<path d="M2 17h3v-4h3V9h3"/><path d="M11 9c2.5 0 2.5 8 5 8s2.5-8 5-8"/>',
+    phonopre:'<path d="M3 6c4 0 6 12 9 12s5-12 9-12"/><path d="M3 20h18"/>',
+    preamp:'<circle cx="12" cy="12" r="8"/><path d="M12 12V6"/><path d="M4 21l2-2M20 21l-2-2"/>',
+    amp:'<path d="M5 4l15 8-15 8z"/><path d="M1 9h4M1 15h4M20 12h3"/>',
+    speakers:'<rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="7" r="2"/><circle cx="12" cy="15" r="4"/>',
+    headphones:'<path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="2" y="14" width="5" height="7" rx="1.5"/><rect x="17" y="14" width="5" height="7" rx="1.5"/>',
+    other:'<rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="M10 18h4"/>'
+  };
+
+  // Box renderer — accepts optional width; the stripe and icon take the role colour
+  const box=(x,y,c,rc,w=BW)=>{
+    const cx=x+w/2+10;
+    const mc=Math.max(10,Math.floor((w-36)/7));
     const lines=wrapNameW(c.name,mc);
     const bh=boxH(c,w);
     let inner='';
@@ -1897,25 +1904,34 @@ function buildDiagram(){
     }
     if(c.type==='turntable'){
       const subs=[];
-      if(tonearm)subs.push('⟳ '+wrapNameW(tonearm.name,mc)[0]);
-      if(cartridge)subs.push('◆ '+wrapNameW(cartridge.name,mc)[0]);
+      // The 9px sub-items span the full box width, so they get more characters than the name
+      const smc=Math.floor((w-16)/5.5);
+      if(tonearm)subs.push('⟳ '+wrapNameW(tonearm.name,smc)[0]);
+      if(cartridge)subs.push('◆ '+wrapNameW(cartridge.name,smc)[0]);
       if(subs.length>0){
         const divY=y+Math.round(bh*0.78);
-        inner+=`<line x1="${x+6}" x2="${x+w-6}" y1="${divY}" y2="${divY}" stroke="#e2e8f0" stroke-width="1"/>`;
-        subs.forEach((s,i)=>{inner+=`<text class="dv-sub" x="${cx}" y="${divY+11+i*17}" text-anchor="middle" dominant-baseline="central" style="font-size:9px;">${esc(s)}</text>`;});
+        inner+=`<line x1="${x+10}" x2="${x+w-6}" y1="${divY}" y2="${divY}" stroke="#e2e8f0" stroke-width="1"/>`;
+        subs.forEach((s,i)=>{inner+=`<text class="dv-sub" x="${x+w/2+2}" y="${divY+11+i*17}" text-anchor="middle" dominant-baseline="central" style="font-size:9px;">${esc(s)}</text>`;});
       }
     }
-    return `<g class="dv-node"><rect x="${x}" y="${y}" width="${w}" height="${bh}" rx="8" class="dv-box ${cls}"/>${inner}</g>`;
+    // Icon sits level with the name and type label, above any tonearm/cartridge lines
+    const iy=y+Math.round(bh*(lines.length===1?0.52:0.48))-(c.type==='turntable'&&(tonearm||cartridge)?Math.round(bh*0.1):0);
+    const ic=`<g transform="translate(${x+9},${iy-9}) scale(0.75)" fill="none" stroke="${rc}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[c.type]||ICON.other}</g>`;
+    const cid='dvclip'+c.id;
+    return `<g class="dv-node"><clipPath id="${cid}"><rect x="${x}" y="${y}" width="${w}" height="${bh}" rx="8"/></clipPath><rect x="${x}" y="${y}" width="${w}" height="${bh}" rx="8" class="dv-box"/><rect x="${x}" y="${y}" width="4" height="${bh}" fill="${rc}" clip-path="url(#${cid})"/>${ic}${inner}</g>`;
   };
 
-  // Colour by type; an "Other" device takes the colour of what it feeds
-  const base=c=>['streamer','dac','cdplayer'].includes(c.type)?'dv-box-digital':['turntable','phonopre','tonearm','cartridge'].includes(c.type)?'dv-box-phono':'dv-box-shared';
-  const clsMemo={};
-  const clsOf=c=>{
-    if(clsMemo[c.id])return clsMemo[c.id];
-    let k=base(c);
-    if(c.type==='other'){const ks=[...new Set(edges.filter(e=>e.from===c.id).map(e=>clsOf(byId.get(e.to))))];if(ks.length===1)k=ks[0];}
-    return clsMemo[c.id]=k;
+  // Colour by role in the chain; an "Other" device is a source if nothing feeds it, otherwise pre/control
+  const ROLE={source:'#6366f1',convert:'#0d9488',control:'#d97706',power:'#e11d48',output:'#475569'};
+  const ROLE_LABEL={source:'Source',convert:'Converter',control:'Pre / control',power:'Amplifier',output:'Output'};
+  const roleOf=c=>{
+    const t=c.type;
+    if(['turntable','cdplayer','streamer'].includes(t))return'source';
+    if(['dac','phonopre'].includes(t))return'convert';
+    if(t==='amp')return'power';
+    if(['speakers','headphones'].includes(t))return'output';
+    if(t==='other'&&!edges.some(e=>e.to===c.id))return'source';
+    return'control';
   };
 
   // Every connection gets its own line, coloured by cable type, with a key below.
@@ -1949,11 +1965,11 @@ function buildDiagram(){
   const ext=(a,z)=>{x0=Math.min(x0,a);x1=Math.max(x1,z);};
   const used=[...new Set(edges.map(e=>e.type))];
   const mk=t=>'da'+used.indexOf(t);
-  const ARR=`<defs>${used.map(t=>`<marker id="${mk(t)}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="${colOf(t)}" stroke-width="1.5" stroke-linecap="round"/></marker>`).join('')}</defs>`;
-  const wire=(pts,t,arrow)=>`<polyline fill="none" stroke="${colOf(t)}" stroke-width="1.5"${dash(t)} points="${pts.map(q=>q.join(',')).join(' ')}"${arrow?` marker-end="url(#${mk(t)})"`:''}/>`;
+  const ARR=`<defs>${used.map(t=>`<marker id="${mk(t)}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="${colOf(t)}" stroke-width="1.5" stroke-linecap="round"/></marker>`).join('')}</defs>`;
+  const wire=(pts,t,arrow)=>`<polyline fill="none" stroke="${colOf(t)}" stroke-width="2"${dash(t)} points="${pts.map(q=>q.join(',')).join(' ')}"${arrow?` marker-end="url(#${mk(t)})"`:''}/>`;
 
   rows.forEach((r,L)=>r.forEach(v=>{
-    if(v.c){b+=box(v.x-v.w/2,rowY[L],v.c,clsOf(v.c),v.w);ext(v.x-v.w/2,v.x+v.w/2);}
+    if(v.c){b+=box(v.x-v.w/2,rowY[L],v.c,ROLE[roleOf(v.c)],v.w);ext(v.x-v.w/2,v.x+v.w/2);}
     else p+=wire([[v.x,rowY[L]],[v.x,rowY[L]+rowH[L]]],v.par[0].e.type,false);
   }));
   for(let L=1;L<nL;L++){
@@ -1988,6 +2004,9 @@ function buildDiagram(){
     });
     H+=6;
   }
+  // Role key: what the box stripes mean
+  const roles=Object.keys(ROLE).filter(r=>nodes.some(c=>roleOf(c)===r));
+  {let x=(VW-roles.length*96)/2;roles.forEach(r=>{key+=`<rect x="${x}" y="${H-5}" width="4" height="10" rx="1" fill="${ROLE[r]}"/><text class="dv-label" x="${x+10}" y="${H}" dominant-baseline="central">${ROLE_LABEL[r]}</text>`;x+=96;});H+=24;}
   return `<svg width="100%" viewBox="0 0 ${Math.round(VW)} ${H}" xmlns="http://www.w3.org/2000/svg">${ARR}<g transform="translate(${Math.round(tx)},0)">${p}${b}</g>${key}</svg>`;
 }
 renderAll();
@@ -2234,10 +2253,7 @@ h2{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;c
 .comp-list li{font-size:12px;color:#475569;padding:2px 0;}
 .comp-list li strong{color:#1e293b;font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-right:4px;}
 .diagram-wrap svg{max-width:500px;height:auto;display:block;margin:0 auto;}
-.dv-box{fill:#f8fafc;stroke:#e2e8f0;stroke-width:1.5;}
-.dv-box-digital{fill:#eff6ff;stroke:#93c5fd;}
-.dv-box-phono{fill:#fefce8;stroke:#fcd34d;}
-.dv-box-shared{fill:#f0fdf4;stroke:#86efac;}
+.dv-box{fill:#fff;stroke:#e2e8f0;stroke-width:1.25;}
 .dv-title{fill:#0f172a;font-family:Arial,sans-serif;font-size:12px;font-weight:700;}
 .dv-sub{fill:#94a3b8;font-family:Arial,sans-serif;font-size:10px;}
 .dv-label{fill:#64748b;font-family:Arial,sans-serif;font-size:10px;}
