@@ -39,7 +39,7 @@ Keep each bullet to 1–2 sentences with the key figures.`;
 
     const body = JSON.stringify({
       model: "claude-sonnet-5-5",
-      max_tokens: 1500,
+      max_tokens: 4000,
       output_config: { effort: "low" },
       fallbacks: "default",
       messages: [{ role: "user", content: prompt }],
@@ -71,7 +71,8 @@ Keep each bullet to 1–2 sentences with the key figures.`;
     if (parsed.error) throw new Error(parsed.error.message);
     if (parsed.stop_reason === "refusal") throw new Error("The AI declined to analyze this chain. Please try again.");
     const text = (parsed.content || []).filter(b => b.type === "text").map(b => b.text).join("");
-    return { statusCode: 200, headers, body: JSON.stringify({ text }) };
+    // truncated: thinking + text hit max_tokens, so the page can say the section was cut off
+    return { statusCode: 200, headers, body: JSON.stringify({ text, truncated: parsed.stop_reason === "max_tokens" }) };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
   }

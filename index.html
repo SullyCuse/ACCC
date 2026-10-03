@@ -1661,7 +1661,7 @@ async function analyze(){
     if(chainData.error)throw new Error(chainData.error);
     if(summaryData.error)throw new Error(summaryData.error);
 
-    const combined=`${summaryData.text}\n\nCOMPONENT SPECS\n${specsText}\n\n${chainData.text}`;
+    const combined=`${aiText(summaryData,'COMPATIBILITY SUMMARY')}\n\nCOMPONENT SPECS\n${specsText}\n\n${aiText(chainData,'SIGNAL CHAIN ANALYSIS')}`;
     window._lastSpecsText=specsText;
     renderResults(combined);
   }catch(e){
@@ -2110,6 +2110,13 @@ function renderScoreCards(text){
   scoresEl.style.display='block';
 }
 
+// AI section text, with a notice when the function ran out of tokens; the header keeps an empty cut-off reply in its panel
+function aiText(d,hdr){
+  let t=d.text||'';
+  if(!d.truncated)return t;
+  if(!t.toUpperCase().includes(hdr))t=hdr+'\n'+t;
+  return t+'\n\n⚠️ This section was cut off before it finished. Please run the analysis again.';
+}
 function extractSectionsFromText(text){
   const hdrs=['COMPONENT SPECS','COMPATIBILITY SUMMARY','SIGNAL CHAIN ANALYSIS','PHONO CHAIN','ISSUES & RECOMMENDATIONS'];
   const upper=text.toUpperCase();const found=[];
@@ -2202,7 +2209,7 @@ function applySpecCorrections(submit){
     if(chainData.error)throw new Error(chainData.error);
     if(summaryData.error)throw new Error(summaryData.error);
 
-    const combined=`${summaryData.text}\n\nCOMPONENT SPECS\n${specsText}\n\n${chainData.text}`;
+    const combined=`${aiText(summaryData,'COMPATIBILITY SUMMARY')}\n\nCOMPONENT SPECS\n${specsText}\n\n${aiText(chainData,'SIGNAL CHAIN ANALYSIS')}`;
     const secs=extractSectionsFromText(combined);
 
     renderScoreCards(combined);
