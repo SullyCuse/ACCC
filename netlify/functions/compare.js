@@ -110,8 +110,9 @@ function levenshtein(a, b) {
 }
 
 function findCorrection(name, corrections) {
-  const normalize = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const tokenize = s => s.toLowerCase().split(/[\s\-_.]+/).map(t => t.replace(/[^a-z0-9]/g,'')).filter(Boolean);
+  const mk = s => s.replace(/(?<![a-z])(mk)[\s.\-]*(iv|iii|ii|i|[ⅰ-ⅳⅠ-Ⅳ])(?![a-z])/gi, (m, p, r) => p + ({ i: 1, ii: 2, iii: 3, iv: 4, 'ⅰ': 1, 'ⅱ': 2, 'ⅲ': 3, 'ⅳ': 4, 'Ⅰ': 1, 'Ⅱ': 2, 'Ⅲ': 3, 'Ⅳ': 4 })[/[a-z]/i.test(r) ? r.toLowerCase() : r]);
+  const normalize = s => mk(s).toLowerCase().replace(/[^a-z0-9]/g, '');
+  const tokenize = s => mk(s).toLowerCase().split(/[\s\-_.]+/).map(t => t.replace(/[^a-z0-9]/g,'')).filter(Boolean);
   const digits = s => (s.match(/[0-9]/g) || []).join('');
   const n = normalize(name);
   const nd = digits(n);
