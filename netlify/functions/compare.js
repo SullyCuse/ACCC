@@ -116,6 +116,7 @@ function findCorrection(name, corrections) {
   const n = normalize(name);
   const nd = digits(n);
   const userTokens = tokenize(name);
+  const modelCode = s => tokenize(s).map((t, i, a) => /[0-9]/.test(t) ? ((i > 0 && /^[a-z]$/.test(a[i - 1])) ? a[i - 1] : '') + t : '').join('');
 
   let key = Object.keys(corrections).find(k => normalize(k) === n);
   if (!key) {
@@ -144,10 +145,11 @@ function findCorrection(name, corrections) {
     if (best && !tie) key = best;
   }
   if (!key && n.length >= 5) {
+    const um = modelCode(name);
     let best = null, bestDist = Infinity, tie = false;
     for (const k of Object.keys(corrections)) {
       const nk = normalize(k);
-      if (digits(nk) !== nd) continue;
+      if (digits(nk) !== nd || modelCode(k) !== um) continue;
       const dist = levenshtein(n, nk);
       if (dist < bestDist) { bestDist = dist; best = k; tie = false; }
       else if (dist === bestDist) tie = true;
