@@ -106,7 +106,7 @@ ${specsText || componentList}
 
 Connections: ${connectionList}
 
-Work out every number before writing; the summary must use exactly the same values as the sections below it.${hasPhono ? ` The phono resonance has already been calculated: copy the Resonance line below exactly and use only that figure and grade wherever resonance is mentioned.` : ""}
+Work out every number before writing; the summary must use exactly the same values as the sections below it. When comparing figures, lower THD, IMD and noise are better and higher SNR is better. Check which way each figure points before calling a setting better, and if a setting you recommend is worse on a figure, say so as a trade-off.${hasPhono ? ` The phono resonance has already been calculated: copy the Resonance line below exactly and use only that figure and grade wherever resonance is mentioned.` : ""}
 
 Output EXACTLY:
 
