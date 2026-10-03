@@ -40,7 +40,7 @@ Keep each bullet to 1–2 sentences with the key figures. When comparing figures
     const body = JSON.stringify({
       model: "claude-sonnet-5-5",
       max_tokens: 4000,
-      output_config: { effort: "low" },
+      output_config: { effort: "medium" },
       fallbacks: "default",
       messages: [{ role: "user", content: prompt }],
     });
