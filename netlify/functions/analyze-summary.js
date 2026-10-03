@@ -126,7 +126,9 @@ PHONO CHAIN
 ISSUES & RECOMMENDATIONS
 1. [recommendation with exact setting]
 2. [recommendation]
-3. [recommendation]`;
+3. [recommendation]
+
+Keep each recommendation to 1–2 sentences with the exact setting and key figure.`;
 
     const body = JSON.stringify({
       model: "claude-sonnet-5-5",
