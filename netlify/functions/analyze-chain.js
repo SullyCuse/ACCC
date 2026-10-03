@@ -35,7 +35,7 @@ SIGNAL CHAIN ANALYSIS
 - [From] → [To] via [type]: [impedance/voltage figures from confirmed specs above, match assessment]
 - [repeat for every connection]
 
-Keep each bullet to 1–2 sentences with the key figures.`;
+Keep each bullet to 1–2 sentences with the key figures. When comparing figures, lower THD, IMD and noise are better and higher SNR is better. Check which way each figure points before calling a setting better, and if a setting you recommend is worse on a figure, say so as a trade-off.`;
 
     const body = JSON.stringify({
       model: "claude-sonnet-5-5",
