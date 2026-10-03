@@ -1387,7 +1387,7 @@ select {
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2026 AudioChainHiFi.com · All rights reserved · Written by an enthusiast, not a professional audio engineer</p>
+      <p class="footer-copy">© 2026 AudioChainHiFi.com · All rights reserved · Written by an enthusiast, not a professional audio engineer &middot; Some links are affiliate links, and we may earn a commission from purchases made through them</p>
       <div class="footer-links">
         <a href="/privacy">Privacy Policy</a>
         <a href="/contact">Contact</a>
@@ -1656,6 +1656,7 @@ async function analyze(){
     const specsText=specsData.text;
     window._verifiedNames=specsData.verified||[];   // components sourced from the reported DB
     window._verifiedAs=specsData.verifiedAs||{};    // typed name -> DB row name when they differ
+    window._sourceUrls=specsData.sourceUrls||{};    // typed name -> DB row's product page
 
     // Step 2: fire chain + summary in parallel, both using confirmed specs
     const payload=JSON.stringify({components,connections,specsText});
@@ -1705,6 +1706,17 @@ function renderResults(text){
   document.getElementById('suggest-correction-btn').style.display='inline-flex';
   setTimeout(()=>fullEl.scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
+// Affiliate retailers: product-page host -> Awin advertiser. A verified component
+// whose DB source_url is on one of these hosts gets a tracked "Buy at" link.
+const AWIN_AFFID=2894963;
+const AFFILIATES={'fosiaudio.com':{mid:119395,name:'Fosi Audio'}};
+function affLink(url,ref){
+  let host;
+  try{host=new URL(url).hostname.replace(/^www\./,'');}catch(e){return null;}
+  const a=AFFILIATES[host];
+  if(!a)return null;
+  return{name:a.name,href:'https://www.awin1.com/cread.php?awinmid='+a.mid+'&awinaffid='+AWIN_AFFID+'&clickref='+ref+'&ued='+encodeURIComponent(url)};
+}
 function renderCompSpecs(text){
   if(!text)return'<p style="font-size:13px;color:var(--text-3);">No specifications found.</p>';
 
@@ -1725,11 +1737,16 @@ function renderCompSpecs(text){
     const asNote=verifiedAs
       ? `<div style="font-size:11px;color:var(--text-3);padding:4px 12px 0;">Verified specs are for ${esc(verifiedAs)}</div>`
       : '';
+    const aff=isVerified&&affLink((window._sourceUrls||{})[currentName],'analyzer');
+    const buy=aff
+      ? `<div style="padding:6px 12px 10px;font-size:12px;"><a href="${esc(aff.href)}" target="_blank" rel="sponsored noopener" style="color:#16a34a;font-weight:600;text-decoration:none;">Buy at ${esc(aff.name)} ↗</a> <span style="color:var(--text-3);font-size:11px;">· affiliate link</span></div>`
+      : '';
     html+=`<div class="comp-spec-block fadein">
       <div class="comp-name-hdr" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">${esc(currentName)}${badge}</div>
       ${asNote}
       ${currentWarning?`<div style="font-size:11px;color:#d97706;background:#fffbeb;padding:5px 12px;border-bottom:1px solid #fde68a;">⚠ ${esc(currentWarning)}</div>`:''}
       ${items?`<ul class="spec-list">${items}</ul>`:''}
+      ${buy}
     </div>`;
     currentName=null;currentType=null;currentItems=[];currentWarning=null;
   }
