@@ -256,11 +256,11 @@ async function callClaude(prompt, maxTokens, apiKey) {
   if (data.error) throw new Error(data.error.message);
   if (data.stop_reason === 'refusal') throw new Error('The AI declined to describe this component. Please try a different name.');
   const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
-  const diag = { stop_reason: data.stop_reason, usage: data.usage, text_chars: text.length };
-  let out;
-  try { out = extractJSON(text); } catch (e) { e.message += ' DIAG ' + JSON.stringify(diag); throw e; }
-  out._diag = diag;
-  return out;
+  if (data.stop_reason === 'max_tokens') {
+    console.error('compare truncated at max_tokens', JSON.stringify(data.usage));
+    throw new Error('The AI response was cut off. Please try again.');
+  }
+  return extractJSON(text);
 }
 
 /* ─── Extract JSON robustly from AI response ─────────────────── */
