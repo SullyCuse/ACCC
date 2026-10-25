@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Phono Stages: Gain, Loading, and RIAA — AudioChainHiFi.com</title>
-<meta name="description" content="How to match a phono stage to your cartridge: gain requirements for MM and MC, resistive and capacitive loading, RIAA accuracy, and overload margin explained.">
+<meta name="description" content="Phono stage guide from real use: my move from a built-in phono input to a zPhono XRM, plus MM and MC gain, loading and RIAA accuracy.">
 <meta property="og:title" content="Phono Stages: Gain, Loading, and RIAA — AudioChainHiFi.com">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://audiochainhifi.com/guides/phono-stages">
 <meta name="robots" content="index, follow">
 <meta property="article:published_time" content="2026-04-27T00:00:00Z">
-<meta property="article:modified_time" content="2026-10-01T00:00:00Z">
+<meta property="article:modified_time" content="2026-10-25T00:00:00Z">
 <link rel="canonical" href="https://audiochainhifi.com/guides/phono-stages">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,7 +111,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     "url": "https://audiochainhifi.com"
   },
   "datePublished": "2026-04-01",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-25",
   "mainEntityOfPage": "https://audiochainhifi.com/guides/phono-stages"
 }
 </script>
@@ -176,6 +176,36 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
     </div>
 
     <p>A phono stage performs two distinct functions: it amplifies the cartridge's signal (which is far smaller than a line-level source) and it applies RIAA equalization to correct for the frequency-response curve used in vinyl mastering. Both functions must be executed accurately. Errors in gain, loading, or RIAA correction are audible as tonal imbalance and reduced dynamic range.</p>
+
+    <h2>My Phono Stage Path: Parasound NC 200Pre to zPhono XRM</h2>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/phono-stages-mine-rt85.jpg" alt="Fluance RT85 turntable with acrylic platter and a Denon DL-301 II cartridge on its tonearm" width="1400" height="1050" loading="lazy" decoding="async">
+      <figcaption>My Fluance RT85, the turntable feeding the phono stages described here.</figcaption>
+    </figure>
+
+    <p>For a while I used the phono input built into my Parasound NC&nbsp;200Pre preamp, and I was happy with it. It sounded very satisfying. Its specs show why it suited a moving-magnet cartridge: the MM input is 40&nbsp;dB of gain into the standard 47&nbsp;k&Omega;, and the MC input is 50&nbsp;dB into a fixed 100&nbsp;&Omega;.</p>
+
+    <p>What changed my mind was talking to other vinyl listeners. The recurring advice was that a moving-coil cartridge like the Denon DL-301 II (0.4&nbsp;mV output, 33&nbsp;&Omega; internal impedance, 100&nbsp;&Omega; or more recommended) wants a phono stage with adjustable loading, and the NC&nbsp;200Pre has none. A fixed 100&nbsp;&Omega; sits right at the bottom of the cartridge's recommended range, so there was nothing to adjust. I bought a used Parasound zPhono XRM, which offers MC loading from 50 to 1,050&nbsp;&Omega; plus switchable gain of 40, 50 or 60&nbsp;dB.</p>
+
+    <figure class="guide-figure">
+      <img src="/images/guides/phono-stages-mine-xrm.jpg" alt="Parasound zPhono XRM phono preamplifier front panel with mode, rumble filter and MC/MM input switches" width="1400" height="1050" loading="lazy" decoding="async">
+      <figcaption>My Parasound zPhono XRM. The front-panel switches select stereo/mono, the rumble filter and MC or MM input.</figcaption>
+    </figure>
+
+    <h3>My XRM settings</h3>
+    <p>With the DL-301 II I run the XRM on the MC input at 60&nbsp;dB of gain, with the rumble filter switched on. At 60&nbsp;dB the cartridge's 0.4&nbsp;mV nominal output comes out at roughly 400&nbsp;mV, a healthy level for a line input. The XRM's rumble filter is a 40&nbsp;Hz high-pass, which trims the low-frequency noise that warps and turntable motors add without touching most music.</p>
+
+    <h3>What I heard</h3>
+    <p>The change was dramatic, though I installed the DL-301 II at about the same time, so I can't separate the two. The biggest difference was the background. It became considerably more silent, and that quiet made the whole setup sound more detailed and more accurate. It is the main reason I stayed with vinyl.</p>
+
+    <h3>Setting the load</h3>
+    <p>I started near the manufacturer's recommendation and then adjusted by ear, which is exactly what an adjustable load is for. I have settled on about 400&nbsp;&Omega;, and to my ears it sounds great. That is well above the cartridge's 100&nbsp;&Omega; minimum. The right value depends on your arm, cables and room, so treat my number as a starting point and not a rule. The <a href="#loading-by-ear">section on setting MC loading by ear</a> below describes how I approach it.</p>
+
+    <h3>Hum and cables</h3>
+    <p>I have had no hum or ground-loop problems. I connect the RT85 to the XRM with cables from Pine Tree Audio. If you do get hum, the <a href="/guides/ground-loops-hum">ground loops guide</a> covers it.</p>
+
+    <div class="callout"><p><strong>Was it worth it?</strong> For me, completely. The cartridge and the phono stage together are what made me want to keep playing records, and until I decide to make the next jump I am very happy with this setup. If you are planning a moving-coil cartridge, I would budget for a phono stage with adjustable loading at the same time.</p></div>
 
     <h2>Gain — MM vs MC</h2>
 
@@ -260,7 +290,7 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
       <li><strong>Adjustable gain</strong> &mdash; essential if you may change between MM and MC cartridges, and helpful for matching a cartridge's output to the rest of the system.</li>
     </ul>
 
-    <h2>Setting MC Loading by Ear</h2>
+    <h2 id="loading-by-ear">Setting MC Loading by Ear</h2>
 
     <p>When a phono stage offers several MC load settings and the cartridge manufacturer gives a range rather than one value, a short, structured listening session finds the right setting:</p>
     <ul>
