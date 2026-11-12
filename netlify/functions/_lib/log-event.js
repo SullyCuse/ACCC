@@ -13,11 +13,12 @@ function countryOf(event) {
   } catch { return null; }
 }
 
-function logEvent(event, source, components) {
+function logEvent(event, source, components, action) {
   return new Promise((resolve) => {
     try {
       const body = JSON.stringify({
         source,
+        action: action || null,
         components: components.slice(0, 30).map(c => ({
           name: String(c.name || "").trim().slice(0, 120),
           category: String(c.category || "").slice(0, 40),

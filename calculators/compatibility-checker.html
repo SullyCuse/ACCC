@@ -400,7 +400,21 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 <script>
 (function () {
   var mode = 'amp';
+  var picked = { amp: null, speaker: null, cartridge: null, phono: null };
+  var resultLogged = { amp: false, phono: false };
+  var PARTS = { amp: ['amp', 'speaker'], phono: ['cartridge', 'phono'] };
   function $(id) { return document.getElementById(id); }
+
+  // Anonymous usage counts (see the privacy policy). Fire and forget; only
+  // names picked from our database are sent, never anything typed by hand.
+  function track(action, components) {
+    try {
+      fetch('/.netlify/functions/checker-event', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: action, components: components }), keepalive: true
+      }).catch(function () {});
+    } catch (e) {}
+  }
   function num(id) { var v = $(id).value.trim(); if (v === '') return null; var n = parseFloat(v); return isFinite(n) ? n : null; }
   function nums(id) { return $(id).value.split(/[,;\/\s]+/).map(parseFloat).filter(function (n) { return isFinite(n); }); }
   function put(id, v) { $(id).value = (v == null || (Array.isArray(v) && !v.length)) ? '' : (Array.isArray(v) ? v.join(', ') : v); }
@@ -432,6 +446,10 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
           mmLoad: num('ph-mmload'), mcLoadMin: num('ph-mcmin'), mcLoadMax: num('ph-mcmax')
         }
       });
+    }
+    if (res.overall !== 'unknown' && !resultLogged[mode]) {
+      resultLogged[mode] = true;
+      track('result', PARTS[mode].map(function (k) { return { kind: k, name: picked[k] || '(typed)' }; }));
     }
     var s = SUMMARY[res.overall];
     var anyUnknown = res.checks.some(function (c) { return c.status === 'unknown'; });
@@ -465,11 +483,16 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
       if (!results.length) { message('No match in our database. Type the numbers in instead.'); return; }
       results.forEach(function (r) {
         var b = document.createElement('button'); b.type = 'button'; b.textContent = r.name;
-        b.addEventListener('click', function () { input.value = r.name; hide(); onPick(r); recalc(); });
+        b.addEventListener('click', function () {
+          input.value = r.name; hide();
+          picked[kind] = r.name; track('pick', [{ kind: kind, name: r.name }]);
+          onPick(r); recalc();
+        });
         list.appendChild(b);
       });
     }
     input.addEventListener('input', function () {
+      picked[kind] = null;
       clearTimeout(timer);
       var q = input.value.trim();
       if (q.length < 2) { hide(); return; }
