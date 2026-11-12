@@ -16,3 +16,6 @@
 /cartridges.html          /guides/cartridges          301!
 /first-hifi-system        /guides/first-hifi-system   301!
 /first-hifi-system.html   /guides/first-hifi-system   301!
+
+# Shared systems: /s/<id> opens the analyzer, which loads the saved system client-side.
+/s/*  /  200
