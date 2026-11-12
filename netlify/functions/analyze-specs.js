@@ -1,5 +1,6 @@
 const https = require("https");
 const { URL } = require("url");
+const { logEvent } = require("./_lib/log-event");
 
 // Module-level cache — persists across warm Lambda invocations (~5 min TTL)
 let _cache = null;
@@ -303,6 +304,10 @@ All ${needsAI.length} components required. No summary text. No questions.`;
     const dbBanner = dbOk ? "" :
       "**Specs Database Temporarily Unavailable**\n" +
       "⚠ The component specs below are AI estimates and were not verified against the corrections database. Try again in a moment for verified values.\n\n";
+
+    await logEvent(event, "analyzer", components.map(c => ({
+      name: c.name, category: c.type, verified: verifiedNames.includes(c.name)
+    })));
 
     return {
       statusCode: 200,
