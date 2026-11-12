@@ -20,6 +20,7 @@
 
 const https = require("https");
 const { URL } = require("url");
+const { logEvent } = require("./_lib/log-event");
 
 const MODEL      = "claude-sonnet-5-5";
 const MAX_TOKENS = 2000;
@@ -220,6 +221,7 @@ exports.handler = async (event) => {
     const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
     if (match && norm(match.name) !== norm(name)) parsed.verifiedName = match.name;
     if (match && _sources[match.name]) parsed.sourceUrl = _sources[match.name];
+    await logEvent(event, 'compare', [{ name, category, verified: !!match }]);
     return { statusCode: 200, headers: CORS, body: JSON.stringify(parsed) };
   } catch (err) {
     console.error('AudioChainHiFi compare error:', err.message);
