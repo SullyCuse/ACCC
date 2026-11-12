@@ -319,7 +319,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
           <div class="field wide"><label for="ph-mcgain">MC gain (dB; list several if switchable)</label><input class="num-input" id="ph-mcgain" type="text" placeholder="e.g. 60" /></div>
           <div class="field"><label for="ph-mmload">MM input (&Omega;)</label><input class="num-input" id="ph-mmload" type="number" min="0" step="any" inputmode="decimal" placeholder="47000" /></div>
           <div class="field"><label for="ph-hasmc">Has an MC input?</label>
-            <select class="sel-input" id="ph-hasmc"><option value="yes">Yes</option><option value="no">No</option></select></div>
+            <select class="sel-input" id="ph-hasmc"><option value="unknown">Not sure</option><option value="yes">Yes</option><option value="no">No</option></select></div>
           <div class="field"><label for="ph-mcmin">MC input, lowest (&Omega;)</label><input class="num-input" id="ph-mcmin" type="number" min="0" step="any" inputmode="decimal" /></div>
           <div class="field"><label for="ph-mcmax">MC input, highest (&Omega;)</label><input class="num-input" id="ph-mcmax" type="number" min="0" step="any" inputmode="decimal" /></div>
         </div>
@@ -441,7 +441,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
         cartType: $('cart-type').value, outputMv: num('cart-mv'),
         internalOhms: num('cart-int'), loadOhms: num('cart-load'), targetMv: 200,
         stage: {
-          hasMC: $('ph-hasmc').value === 'yes',
+          hasMC: $('ph-hasmc').value === 'yes' ? true : $('ph-hasmc').value === 'no' ? false : null,
           mmGain: nums('ph-mmgain'), mcGain: nums('ph-mcgain'),
           mmLoad: num('ph-mmload'), mcLoadMin: num('ph-mcmin'), mcLoadMax: num('ph-mcmax')
         }
@@ -538,7 +538,7 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
     var v = r.values || {};
     put('ph-mmgain', v.mmGain); put('ph-mcgain', v.mcGain); put('ph-mmload', v.mmLoad);
     put('ph-mcmin', v.mcLoadMin); put('ph-mcmax', v.mcLoadMax);
-    $('ph-hasmc').value = v.hasMC ? 'yes' : 'no';
+    $('ph-hasmc').value = v.hasMC === true ? 'yes' : v.hasMC === false ? 'no' : 'unknown';
     report('ph-note', r, ['ph-mmgain', 'ph-mcgain', 'ph-mmload', 'ph-mcmax']);
   });
 

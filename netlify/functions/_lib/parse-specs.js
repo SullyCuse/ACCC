@@ -32,7 +32,9 @@ function entries(specs) {
 }
 
 /* ─── Amplifier: watts per channel into 8 Ω and 4 Ω ──────────────── */
-const AMP_KEY_OK = /power|watt|output/i;
+// "power" only counts when it is not the "Power Amplifier" section name, so a
+// row like "Power Amplifier — 8 Ohm" (IHF dynamic figures) is not read as rated power.
+const AMP_KEY_OK = /output|watt|rated|continuous|rms|nominal|power(?!\s*amp)/i;
 const AMP_KEY_NO = /consumption|standby|supply|impedance|dynamic|ihf|\bpeak|headphone|mono|bridg|btl|pbtl|distortion|thd|imd|noise|channel sep|input|mode|type|voltage|current|level|sub|mw\b/i;
 
 function ampPriority(k) {
@@ -41,22 +43,36 @@ function ampPriority(k) {
   return 2;
 }
 
+// Every load in "8 Ω", "4/8Ω", "8 and 4 ohms": [8], [4, 8], [8, 4].
+function loadNumbers(str, firstOnly) {
+  const re = new RegExp("(\\d+(?:\\.\\d+)?(?:\\s*(?:/|,|and|&)\\s*\\d+(?:\\.\\d+)?)*)\\s*" + OHM, "gi");
+  const out = [];
+  let m;
+  while ((m = re.exec(str))) {
+    out.push(...m[1].split(/[^\d.]+/).filter(Boolean).map(Number));
+    if (firstOnly) break;
+  }
+  return out;
+}
+
 function parseAmp(specs) {
   const out = { power8: null, power4: null };
+  // Values that quote IHF dynamic / peak figures are not rated power,
+  // whatever their key says (e.g. NAD C 375BEE "150W x 2 Continuous ..." = "250W, 410W ... IHF Dynamic").
   const rows = entries(specs)
-    .filter(([k, v]) => AMP_KEY_OK.test(k) && !AMP_KEY_NO.test(k) && !/mW/.test(v))
+    .filter(([k, v]) => AMP_KEY_OK.test(k) && !AMP_KEY_NO.test(k) && !/mW|ihf|\bpeak/i.test(v))
     .sort((a, b) => ampPriority(a[0]) - ampPriority(b[0]));
 
   for (const [k, v] of rows) {
-    const keyLoads = (k.match(new RegExp(NUM + "\\s*" + OHM, "gi")) || []).map(s => toNum(s));
+    const keyLoads = loadNumbers(k);
     const hits = [];
     const re = new RegExp(NUM + "\\s*(?:W|watts?)\\b", "gi");
     let m;
     while ((m = re.exec(v))) hits.push({ watts: toNum(m[1]), end: re.lastIndex, start: m.index });
     hits.forEach((h, i) => {
       const tail = v.slice(h.end, i + 1 < hits.length ? hits[i + 1].start : h.end + 40);
-      const lm = new RegExp(NUM + "\\s*" + OHM, "i").exec(tail);
-      const loads = lm ? [toNum(lm[1])] : keyLoads;
+      const tailLoads = loadNumbers(tail, true);
+      const loads = tailLoads.length ? tailLoads : keyLoads;
       loads.forEach(load => {
         if (load === 8 && out.power8 == null) out.power8 = h.watts;
         if (load === 4 && out.power4 == null) out.power4 = h.watts;
@@ -146,12 +162,12 @@ function dbList(str) {
 function parsePhono(specs) {
   const rows = entries(specs);
   const text = rows.map(([k, v]) => k + " " + v).join(" ");
-  const hasMC = /\bMC\b|moving coil/i.test(text);
+  let hasMC = /\bMC\b|moving coil/i.test(text) ? true : null; // null = the data doesn't say
   const out = { hasMC, mmGain: [], mcGain: [], mmLoad: null, mcLoadMin: null, mcLoadMax: null };
   let generic = [];
 
   for (const [k, v] of rows) {
-    if (/gain/i.test(k) && !/setting|rca|line|aux/i.test(k)) {
+    if (/gain/i.test(k) && !/setting|rca|line|aux|snr|noise|thd|distortion|overload|sensitiv|headroom/i.test(k)) {
       const nums = dbList(v);
       if (!nums.length) continue;
       if (/\bMC\b/i.test(k)) out.mcGain.push(...nums);
@@ -171,6 +187,12 @@ function parsePhono(specs) {
     }
   }
   const uniq = a => [...new Set(a)].sort((x, y) => x - y);
+  const maxGain = Math.max(0, ...out.mmGain, ...out.mcGain, ...generic);
+  // 55 dB or more only makes sense for a moving-coil input; a stage that lists
+  // only MM-range gain and says "MM" is MM-only.
+  if (hasMC == null && maxGain >= 55) hasMC = true;
+  else if (hasMC == null && maxGain > 0 && /\bMM\b/i.test(text)) hasMC = false;
+  out.hasMC = hasMC;
   if (!out.mmGain.length && generic.length) out.mmGain = generic;
   if (!out.mcGain.length && hasMC && generic.length) out.mcGain = generic;
   out.mmGain = uniq(out.mmGain);
