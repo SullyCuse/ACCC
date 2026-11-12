@@ -1283,9 +1283,14 @@ select {
           <span class="card-title">Run Analysis</span>
         </div>
         <div class="card-body">
+          <div id="shared-note" style="display:none;font-size:13px;color:var(--text-2);background:var(--blue-lt);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:14px;line-height:1.6;">You're viewing a shared system. Run the analysis to see how it measures up, or change anything to make it your own.</div>
           <p style="font-size:13px;color:var(--text-3);margin-bottom:16px;line-height:1.65;">The analyzer will look up published specs and analyze your full signal chain.</p>
           <button class="btn-analyze" id="analyze-btn" onclick="analyze()">Run Compatibility Analysis →</button>
           <div id="analyze-err" style="font-size:12px;color:#dc2626;margin-top:10px;min-height:16px;"></div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+            <button class="btn btn-outline-blue btn-sm" id="share-btn" onclick="shareSystem()">Share this system</button>
+            <div id="share-out" style="font-size:12px;color:var(--text-3);margin-top:8px;line-height:1.6;"></div>
+          </div>
           <div id="results-content" style="margin-top:16px;">
             <div class="placeholder-box" style="padding:20px;">
               <div class="placeholder-icon" style="font-size:32px;">🎛️</div>
@@ -1538,6 +1543,47 @@ function renderAll(){
     }
   }
 }
+async function shareSystem(){
+  const btn=document.getElementById('share-btn'),out=document.getElementById('share-out');
+  out.textContent='';btn.disabled=true;
+  try{
+    const idx=new Map(components.map((c,i)=>[c.id,i]));
+    const body={components:components.map(c=>({type:c.type,name:c.name})),connections:connections.map(c=>({from:idx.get(c.fromId),to:idx.get(c.toId),type:c.type}))};
+    const r=await fetch('/.netlify/functions/share-system',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok||!d.id)throw new Error(d.error||'Could not create a link.');
+    const url=location.origin+'/s/'+d.id;
+    out.innerHTML=`<div style="display:flex;gap:8px;"><input id="share-url" type="text" readonly value="${esc(url)}" style="flex:1;min-width:0;font:inherit;font-size:13px;padding:7px 9px;border:1px solid var(--border);border-radius:6px;" onclick="this.select()"><button class="btn btn-blue btn-sm" onclick="copyShare()">Copy</button></div><div id="share-msg" style="margin-top:6px;">Anyone with this link can view this system. It contains only the components and connections above.</div>`;
+    copyShare();
+  }catch(e){
+    out.textContent=e.message;
+  }finally{btn.disabled=false;}
+}
+async function copyShare(){
+  const inp=document.getElementById('share-url'),msg=document.getElementById('share-msg');if(!inp)return;
+  try{await navigator.clipboard.writeText(inp.value);if(msg)msg.textContent='Link copied to your clipboard.';}
+  catch(e){inp.select();if(msg)msg.textContent='Select the link and copy it.';}
+}
+async function loadSharedSystem(){
+  const m=location.pathname.match(/^\/s\/([A-Za-z0-9]{8})\/?$/);if(!m)return;
+  try{
+    const r=await fetch('/.netlify/functions/get-system?id='+m[1]);
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(d.error||'Could not load that system.');
+    const base=Date.now();
+    d.components.forEach((c,i)=>components.push({id:base+i,type:c.type,name:c.name}));
+    d.connections.forEach((c,i)=>{
+      const f=components[c.from],t=components[c.to];
+      if(f&&t)connections.push({id:base+1000+i,fromId:f.id,toId:t.id,fromName:f.name,toName:t.name,type:c.type});
+    });
+    renderAll();
+    document.getElementById('shared-note').style.display='block';
+    generateDiagram();
+  }catch(e){
+    document.getElementById('comp-list').innerHTML='<div class="empty">'+esc(e.message)+'</div>';
+  }
+}
+loadSharedSystem();
 function generateDiagram(){
   updateDiagram();
   document.getElementById('diagram-panel').style.display='block';
