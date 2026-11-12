@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hi-Fi Compatibility Checker — AudioChainHiFi.com</title>
+<meta name="description" content="Check whether your amplifier suits your speakers and your cartridge suits your phono stage: power, loudness, impedance and gain. Free, no sign-up.">
+<meta property="og:title" content="Hi-Fi Compatibility Checker">
+<meta property="og:description" content="Search our database of 1,100+ components to check amp and speaker, or cartridge and phono stage, compatibility.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://audiochainhifi.com/calculators/compatibility-checker">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://audiochainhifi.com/calculators/compatibility-checker">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8677522350792212" crossorigin="anonymous"></script>
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="8f5DDg+G0zc1jrT50lQWJw" async></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  /* AudioChainHiFi design tokens */
+  --blue:#2563eb;--blue-dk:#1d4ed8;--blue-lt:#eff6ff;--indigo:#4f46e5;
+  --dark:#0f172a;--dark-2:#1e293b;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;
+  --border:#e2e8f0;--cream:#f8fafc;--white:#ffffff;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;--radius:12px;
+  /* Calculator component tokens (mapped onto the ACCC palette) */
+  --bg-page:#ffffff;--bg-card:#f8fafc;--bg-input:#eef2f7;
+  --gold:#2563eb;--gold-hover:#1d4ed8;--gold-dim:rgba(37,99,235,.10);--gold-border:rgba(37,99,235,.40);
+  --text-white:#0f172a;--text-body:#334155;--text-muted:#64748b;--text-dim:#94a3b8;
+  --border-light:#eef2f6;--serif:'Plus Jakarta Sans',system-ui,sans-serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif;--radius-lg:20px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{color:var(--blue-dk);}
+
+/* ── NAV (ACCC) ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-cta{background:var(--blue);color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important;}
+.nav-dropdown{position:relative;display:flex;align-items:center;}
+.nav-dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:rgba(15,23,42,0.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 6px 6px;min-width:210px;opacity:0;pointer-events:none;transition:opacity .15s;backdrop-filter:blur(16px);z-index:300;}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;pointer-events:auto;}
+.nav-dropdown-menu a{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);padding:8px 12px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:all .12s;background:none!important;}
+.nav-dropdown-menu a:hover{color:#fff!important;background:rgba(255,255,255,.08)!important;}
+@media(max-width:760px){.nav-inner{height:auto!important;flex-wrap:wrap;padding-top:10px;padding-bottom:6px;row-gap:4px}.nav-links{flex:1 1 100%;min-width:0;justify-content:flex-start;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}.nav-links::-webkit-scrollbar{display:none}.nav-links a,.nav-links .nav-dropdown{flex:0 0 auto;white-space:nowrap}.nav-dropdown-menu{display:none}}
+
+/* ── HERO (ACCC) ── */
+.page-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);padding:60px 0 52px;text-align:center;}
+.page-hero .container{max-width:780px;margin:0 auto;padding:0 24px;}
+.guide-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:14px;}
+.page-hero h1{font-size:clamp(26px,4vw,40px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:16px;}
+.page-hero .lede{font-size:17px;color:rgba(255,255,255,.65);max-width:600px;margin:0 auto;line-height:1.7;}
+.guide-date{font-size:12px;color:rgba(255,255,255,.4);margin-top:14px;}
+.guide-date a{color:#60a5fa;}
+
+/* ── CALC LAYOUT ── */
+.calc-wrap{max-width:820px;margin:0 auto;padding:44px 24px 72px;}
+.section-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+
+/* ── CARTRIDGE TYPE SELECTOR ── */
+.type-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;margin-bottom:12px;}
+.type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+@media (max-width:480px){.type-grid{grid-template-columns:1fr;}}
+.type-btn{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);padding:12px 10px;text-align:center;cursor:pointer;transition:all .15s;}
+.type-btn:hover{border-color:var(--gold-border);}
+.type-btn.active{background:var(--gold);border-color:var(--gold);}
+.type-btn-name{font-size:14px;font-weight:600;color:var(--text-white);}
+.type-btn.active .type-btn-name{color:#fff;}
+.type-btn-range{font-size:12px;color:var(--text-dim);margin-top:3px;}
+.type-btn.active .type-btn-range{color:rgba(255,255,255,0.85);}
+
+/* ── INPUTS ── */
+.inputs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+@media (max-width:560px){.inputs-grid{grid-template-columns:1fr;}}
+.input-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;}
+.input-card-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;display:block;}
+.slider-readout{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;}
+.slider-val{font-family:var(--serif);font-size:30px;font-weight:800;color:var(--text-white);line-height:1;}
+.slider-unit{font-size:13px;color:var(--text-dim);}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--border);border-radius:2px;outline:none;cursor:pointer;}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--gold);border:2px solid var(--bg-page);cursor:pointer;}
+.range-labels{display:flex;justify-content:space-between;margin-top:5px;}
+.range-labels span{font-size:10px;color:var(--text-dim);}
+
+/* ── RESULTS ── */
+.results-card{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:1.5rem;}
+.results-grid{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0;margin-bottom:24px;}
+@media (max-width:480px){.results-grid{grid-template-columns:1fr;}.results-divider{display:none;}}
+.results-divider{background:var(--border);}
+.result-block{padding:0 20px;}
+.result-block:first-child{padding-left:0;}
+.result-block:last-child{padding-right:0;}
+.result-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+.result-value{font-family:var(--serif);font-size:44px;font-weight:800;color:var(--gold);line-height:1;margin-bottom:4px;letter-spacing:-.02em;}
+.result-unit{font-size:13px;color:var(--text-dim);margin-bottom:10px;}
+.result-note{font-size:13px;color:var(--text-muted);line-height:1.55;}
+
+/* ── METER ── */
+.meter-section{border-top:1px solid var(--border);padding-top:20px;}
+.meter-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;}
+.meter-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:5px;}
+.meter-fill{height:100%;border-radius:3px;background:var(--gold);transition:width .35s ease,background .35s ease;}
+.meter-ticks{display:flex;justify-content:space-between;margin-bottom:16px;}
+.meter-ticks span{font-size:10px;color:var(--text-dim);}
+.verdict-box{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;font-size:14px;color:var(--text-muted);line-height:1.6;transition:border-color .35s ease;}
+.verdict-box strong{color:var(--text-body);font-weight:700;}
+
+/* ── FAQ ── */
+.faq-section{margin-bottom:2.5rem;}
+.faq-item{border-top:1px solid var(--border);padding:18px 0;}
+.faq-item:last-child{border-bottom:1px solid var(--border);}
+.faq-q{font-size:16px;font-weight:700;color:var(--text-white);margin-bottom:8px;line-height:1.35;}
+.faq-a{font-size:14px;color:var(--text-muted);line-height:1.7;}
+
+/* ── RELATED ── */
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.related-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;text-decoration:none;display:block;transition:border-color .2s,transform .2s;}
+.related-card:hover{border-color:var(--gold-border);transform:translateY(-2px);}
+.related-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.related-title{font-size:15px;font-weight:700;color:var(--text-white);line-height:1.35;}
+
+/* ── FOOTER (ACCC) ── */
+.footer{background:var(--dark);padding:48px 0 28px;}
+.container-wide{max-width:1100px;margin:0 auto;padding:0 24px;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;}}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;}
+.footer-col h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li a{font-size:14px;color:rgba(255,255,255,.65);text-decoration:none;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.35);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;}
+
+/* ── COMPATIBILITY CHECKER ── */
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+@media (max-width:480px){.tabs{grid-template-columns:1fr;}}
+.pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+@media (max-width:680px){.pair-grid{grid-template-columns:1fr;}}
+.pick-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;min-width:0;}
+.search-wrap{position:relative;margin-bottom:12px;}
+.text-input,.num-input,.sel-input{width:100%;font-family:var(--font);font-size:15px;color:var(--text);background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 12px;}
+.text-input:focus,.num-input:focus,.sel-input:focus{outline:2px solid var(--gold-border);border-color:var(--gold);}
+.results-list{position:absolute;left:0;right:0;top:100%;z-index:20;background:var(--white);border:1px solid var(--border);border-radius:8px;margin-top:4px;box-shadow:0 8px 24px rgba(15,23,42,.12);max-height:260px;overflow-y:auto;}
+.results-list[hidden]{display:none;}
+.results-list button{display:block;width:100%;text-align:left;font-family:var(--font);font-size:14px;color:var(--text);background:none;border:none;padding:10px 12px;cursor:pointer;border-bottom:1px solid var(--border-light);}
+.results-list button:last-child{border-bottom:none;}
+.results-list button:hover,.results-list button:focus{background:var(--blue-lt);outline:none;}
+.results-list .empty{padding:10px 12px;font-size:13px;color:var(--text-muted);}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.field label{display:block;font-size:12px;color:var(--text-muted);margin-bottom:4px;}
+.field.wide{grid-column:1/-1;}
+.pick-note{font-size:12px;color:var(--text-muted);line-height:1.5;margin-top:10px;min-height:18px;}
+.pick-note.found{color:#15803d;}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--border);}
+.check-row:first-child{border-top:none;padding-top:0;}
+.chip{flex:0 0 auto;min-width:84px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:999px;margin-top:2px;}
+.chip.good{background:#dcfce7;color:#166534;}
+.chip.caution{background:#fef3c7;color:#92400e;}
+.chip.poor{background:#fee2e2;color:#991b1b;}
+.chip.unknown{background:#e2e8f0;color:#475569;}
+.check-label{font-size:14px;font-weight:700;color:var(--text-white);margin-bottom:2px;}
+.check-detail{font-size:14px;color:var(--text-muted);line-height:1.6;}
+.overall{font-family:var(--serif);font-size:24px;font-weight:800;margin-bottom:6px;}
+.overall.good{color:#166534;}.overall.caution{color:#92400e;}.overall.poor{color:#991b1b;}.overall.unknown{color:var(--text-muted);}
+.overall-sub{font-size:14px;color:var(--text-muted);margin-bottom:18px;line-height:1.6;}
+.how-note{font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:2.5rem;}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Hi-Fi Compatibility Checker",
+  "url":"https://audiochainhifi.com/calculators/compatibility-checker",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+  "description":"Check whether an amplifier suits a pair of speakers, or a cartridge suits a phono stage, using power, loudness, impedance, gain and loading.",
+  "publisher":{"@type":"Organization","name":"AudioChainHiFi.com","url":"https://audiochainhifi.com"}
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/><circle cx="9" cy="13" r="2" fill="#fbbf24"/><circle cx="27" cy="13" r="2" fill="#34d399"/></svg>
+      <span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Analyzer</a>
+      <a href="/calculators/" class="active">Calculators</a>
+      <a href="/compare">Compare</a>
+      <a href="/glossary">Glossary</a>
+      <div class="nav-dropdown">
+        <a href="/guides/">Guides &#9662;</a>
+        <div class="nav-dropdown-menu">
+          <a href="/guides/#getting-started">Getting Started</a>
+          <a href="/guides/#amplifiers">Amplifiers</a>
+          <a href="/guides/#speakers-room">Speakers &amp; Room</a>
+          <a href="/guides/#vinyl">Turntables &amp; Vinyl</a>
+          <a href="/guides/#digital">Digital Audio</a>
+          <a href="/guides/#headphones-power">Headphones &amp; Power</a>
+          <a href="/guides/" style="border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:10px;color:#60a5fa;font-weight:700;">View all guides &#8594;</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/contact">Contact</a>
+      <a href="/#analyzer" class="nav-cta">Start Analysis &#8594;</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="guide-label">System Matching &middot; Tool</div>
+    <h1>Hi-Fi Compatibility Checker</h1>
+    <p class="lede">Check whether an amplifier suits a pair of speakers, or a cartridge suits a phono stage. Search our database or type in the numbers yourself.</p>
+    <p class="guide-date">Free tool &middot; No sign-up &middot; By <a href="/about">Sully</a></p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="calc-wrap">
+
+  <div class="tabs" role="group" aria-label="Pairing to check">
+    <button class="type-btn active" id="tab-amp" onclick="setMode('amp')" aria-pressed="true">
+      <div class="type-btn-name">Amplifier + speakers</div>
+      <div class="type-btn-range">Power, loudness, impedance</div>
+    </button>
+    <button class="type-btn" id="tab-phono" onclick="setMode('phono')" aria-pressed="false">
+      <div class="type-btn-name">Cartridge + phono stage</div>
+      <div class="type-btn-range">Gain and loading</div>
+    </button>
+  </div>
+
+  <!-- AMP + SPEAKERS -->
+  <section id="panel-amp">
+    <div class="section-label">Your components</div>
+    <div class="pair-grid">
+      <div class="pick-card">
+        <span class="input-card-label">Amplifier</span>
+        <div class="search-wrap">
+          <input class="text-input" id="amp-search" type="text" placeholder="Search, e.g. NAD C 316BEE" autocomplete="off" aria-label="Search amplifiers" />
+          <div class="results-list" id="amp-list" hidden></div>
+        </div>
+        <div class="field-grid">
+          <div class="field"><label for="amp-p8">Power into 8 &Omega; (W per channel)</label><input class="num-input" id="amp-p8" type="number" min="0" step="any" inputmode="decimal" /></div>
+          <div class="field"><label for="amp-p4">Power into 4 &Omega; (W per channel)</label><input class="num-input" id="amp-p4" type="number" min="0" step="any" inputmode="decimal" /></div>
+        </div>
+        <div class="pick-note" id="amp-note">Pick an amplifier to fill these in, or type the numbers from its spec sheet.</div>
+      </div>
+      <div class="pick-card">
+        <span class="input-card-label">Speakers</span>
+        <div class="search-wrap">
+          <input class="text-input" id="spk-search" type="text" placeholder="Search, e.g. KEF LS50" autocomplete="off" aria-label="Search speakers" />
+          <div class="results-list" id="spk-list" hidden></div>
+        </div>
+        <div class="field-grid">
+          <div class="field"><label for="spk-nom">Nominal impedance (&Omega;)</label><input class="num-input" id="spk-nom" type="number" min="0" step="any" inputmode="decimal" /></div>
+          <div class="field"><label for="spk-min">Minimum impedance (&Omega;)</label><input class="num-input" id="spk-min" type="number" min="0" step="any" inputmode="decimal" /></div>
+          <div class="field wide"><label for="spk-sens">Sensitivity (dB at 2.83 V / 1 m)</label><input class="num-input" id="spk-sens" type="number" min="0" step="any" inputmode="decimal" /></div>
+          <div class="field"><label for="spk-recmin">Recommended amp power, from (W)</label><input class="num-input" id="spk-recmin" type="number" min="0" step="any" inputmode="decimal" /></div>
+          <div class="field"><label for="spk-recmax">to (W)</label><input class="num-input" id="spk-recmax" type="number" min="0" step="any" inputmode="decimal" /></div>
+        </div>
+        <div class="pick-note" id="spk-note">Pick a speaker to fill these in, or type the numbers from its spec sheet.</div>
+      </div>
+    </div>
+    <div class="input-card" style="margin-bottom:1.5rem;">
+      <label class="input-card-label" for="dist">Listening distance</label>
+      <div class="slider-readout"><span class="slider-val" id="distVal">3.0</span><span class="slider-unit">metres from the speakers</span></div>
+      <input type="range" id="dist" min="1" max="6" step="0.5" value="3" aria-label="Listening distance in metres" />
+      <div class="range-labels"><span>1 m</span><span>6 m</span></div>
+    </div>
+  </section>
+
+  <!-- CARTRIDGE + PHONO STAGE -->
+  <section id="panel-phono" hidden>
+    <div class="section-label">Your components</div>
+    <div class="pair-grid">
+      <div class="pick-card">
+        <span class="input-card-label">Cartridge</span>
+        <div class="search-wrap">
+          <input class="text-input" id="cart-search" type="text" placeholder="Search, e.g. Sumiko Oyster" autocomplete="off" aria-label="Search cartridges" />
+          <div class="results-list" id="cart-list" hidden></div>
+        </div>
+        <div class="field-grid">
+          <div class="field wide"><label for="cart-type">Type</label>
+            <select class="sel-input" id="cart-type"><option value="MM">Moving magnet (MM / MI)</option><option value="MC">Moving coil (MC)</option></select></div>
+          <div class="field"><label for="cart-mv">Output (mV)</label><input class="num-input" id="cart-mv" type="number" min="0" step="any" inputmode="decimal" /></div>
+          <div class="field"><label for="cart-int">Internal impedance (&Omega;)</label><input class="num-input" id="cart-int" type="number" min="0" step="any" inputmode="decimal" /></div>
+          <div class="field wide"><label for="cart-load">Recommended load (&Omega;)</label><input class="num-input" id="cart-load" type="number" min="0" step="any" inputmode="decimal" /></div>
+        </div>
+        <div class="pick-note" id="cart-note">Pick a cartridge to fill these in, or type the numbers from its spec sheet.</div>
+      </div>
+      <div class="pick-card">
+        <span class="input-card-label">Phono stage</span>
+        <div class="search-wrap">
+          <input class="text-input" id="ph-search" type="text" placeholder="Search, e.g. NAD PP 4" autocomplete="off" aria-label="Search phono stages" />
+          <div class="results-list" id="ph-list" hidden></div>
+        </div>
+        <div class="field-grid">
+          <div class="field wide"><label for="ph-mmgain">MM gain (dB; list several if switchable)</label><input class="num-input" id="ph-mmgain" type="text" placeholder="e.g. 40" /></div>
+          <div class="field wide"><label for="ph-mcgain">MC gain (dB; list several if switchable)</label><input class="num-input" id="ph-mcgain" type="text" placeholder="e.g. 60" /></div>
+          <div class="field"><label for="ph-mmload">MM input (&Omega;)</label><input class="num-input" id="ph-mmload" type="number" min="0" step="any" inputmode="decimal" placeholder="47000" /></div>
+          <div class="field"><label for="ph-hasmc">Has an MC input?</label>
+            <select class="sel-input" id="ph-hasmc"><option value="yes">Yes</option><option value="no">No</option></select></div>
+          <div class="field"><label for="ph-mcmin">MC input, lowest (&Omega;)</label><input class="num-input" id="ph-mcmin" type="number" min="0" step="any" inputmode="decimal" /></div>
+          <div class="field"><label for="ph-mcmax">MC input, highest (&Omega;)</label><input class="num-input" id="ph-mcmax" type="number" min="0" step="any" inputmode="decimal" /></div>
+        </div>
+        <div class="pick-note" id="ph-note">Pick a phono stage to fill these in, or type the numbers from its spec sheet.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <div class="section-label">Result</div>
+  <div class="results-card" role="region" aria-label="Compatibility result" aria-live="polite">
+    <div class="overall unknown" id="overall">Enter your components</div>
+    <div class="overall-sub" id="overallSub">Search for each component above, or type the numbers in. Fields we cannot find in our database are left blank for you to fill in.</div>
+    <div id="checks"></div>
+  </div>
+  <p class="how-note">Specs marked as filled in come from our database of manufacturer data and are read automatically from free-text spec sheets, so check them against the maker's own figures before buying anything. This tool gives a rule-of-thumb answer, not a guarantee: room acoustics, cables and your own taste all matter too.</p>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-label">How the checks work</div>
+    <div class="faq-item">
+      <div class="faq-q">How is loudness worked out?</div>
+      <div class="faq-a">We take the amplifier's power into the speaker's nominal impedance, convert it to the voltage the speaker sees, and add that to the speaker's sensitivity (measured at 2.83 V from 1 m). We then subtract the loss over your listening distance (6 dB per doubling) and add 3 dB for a stereo pair. A result of 100 dB or more at the listening position means loud, dynamic music has headroom. Between 92 and 100 dB is fine for moderate listening, and under 92 dB is likely to run out of steam. Room reflections add a little extra, so these figures are slightly conservative.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why does the power check use the speaker maker's recommended range?</div>
+      <div class="faq-a">Speaker makers publish a range of amplifier power they have tested their speakers with. We flag an amplifier that falls well under it as a poor match, one just under as a caution, and one far above as a caution because a very powerful amplifier can damage the speakers if driven hard. Anything inside the range, or moderately above it, is fine.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What does the impedance check look for?</div>
+      <div class="faq-a">Speakers rated at 4 &Omega; or lower, or that dip below 3 &Omega; at some frequencies, ask an amplifier for a lot of current. If an amplifier's output rises well between 8 &Omega; and 4 &Omega; (by about 40% or more), that is a good sign it can supply that current. If the 4 &Omega; figure barely rises, or isn't published, we flag it so you can check with the manufacturer. Our <a href="/guides/speaker-impedance">speaker impedance guide</a> explains why.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How does the cartridge check decide the gain?</div>
+      <div class="faq-a">It works out the gain needed to lift the cartridge's output to a 200 mV line level, the same assumption as our <a href="/calculators/phono-stage-gain">phono stage gain calculator</a>, and compares it with the nearest gain setting on the phono stage. Within a few dB either way is a good match. Much lower means a quiet, noisy result; much higher risks overload. For loading, moving-magnet cartridges expect about 47 k&Omega;, and moving-coil cartridges want a load at or above the maker's recommendation.</div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="section-label">Related tools &amp; guides</div>
+  <div class="related-grid">
+    <a href="/guides/amplifier-speaker-matching" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Amplifier and speaker matching</div>
+    </a>
+    <a href="/guides/phono-stages" class="related-card">
+      <div class="related-tag">Guide</div>
+      <div class="related-title">Phono stages: gain, loading &amp; matching</div>
+    </a>
+    <a href="/calculators/" class="related-card">
+      <div class="related-tag">Tools</div>
+      <div class="related-title">All HiFi calculators &amp; system tools</div>
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container-wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg width="28" height="28" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="17" fill="#1e3a8a"/><circle cx="18" cy="18" r="3" fill="#fff"/><circle cx="18" cy="18" r="1.8" fill="#2563eb"/></svg><span style="font-weight:900;color:#fff;">Audio</span><span style="font-weight:900;color:#60a5fa;">Chain</span><span style="font-weight:900;color:#fff;">HiFi</span></div>
+        <p>Free hi-fi compatibility tools, calculators, and guides. Powered by Claude AI from Anthropic.</p>
+      </div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="/#analyzer">Analyzer</a></li><li><a href="/calculators/">Calculators</a></li><li><a href="/glossary">Glossary</a></li></ul></div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="/guides/first-hifi-system">Beginner's Guide</a></li><li><a href="/guides/phono-stages">Phono Stages</a></li><li><a href="/guides/cartridges">Cartridges</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 AudioChainHiFi.com &middot; All rights reserved &middot; Written by an enthusiast, not a professional audio engineer &middot; Some links are affiliate links, and we may earn a commission from purchases made through them</p>
+      <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/contact">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/calculators/compat-rules.js"></script>
+<script>
+(function () {
+  var mode = 'amp';
+  function $(id) { return document.getElementById(id); }
+  function num(id) { var v = $(id).value.trim(); if (v === '') return null; var n = parseFloat(v); return isFinite(n) ? n : null; }
+  function nums(id) { return $(id).value.split(/[,;\/\s]+/).map(parseFloat).filter(function (n) { return isFinite(n); }); }
+  function put(id, v) { $(id).value = (v == null || (Array.isArray(v) && !v.length)) ? '' : (Array.isArray(v) ? v.join(', ') : v); }
+
+  var SUMMARY = {
+    good:    ['Looks compatible', 'No problems found with the numbers you entered.'],
+    caution: ['Compatible, with caveats', 'It should work, but see the points marked caution below.'],
+    poor:    ['Likely a poor match', 'At least one check found a real problem. Details below.'],
+    unknown: ['Enter your components', 'Search for each component above, or type the numbers in. Fields we cannot find in our database are left blank for you to fill in.']
+  };
+  var CHIP = { good: 'Good', caution: 'Caution', poor: 'Problem', unknown: 'Needs info' };
+
+  function recalc() {
+    var res;
+    if (mode === 'amp') {
+      res = CompatRules.ampSpeaker({
+        power8: num('amp-p8'), power4: num('amp-p4'),
+        nominal: num('spk-nom'), minimum: num('spk-min'), sensitivity: num('spk-sens'),
+        recMin: num('spk-recmin'), recMax: num('spk-recmax'),
+        distance: parseFloat($('dist').value)
+      });
+    } else {
+      res = CompatRules.cartridgePhono({
+        cartType: $('cart-type').value, outputMv: num('cart-mv'),
+        internalOhms: num('cart-int'), loadOhms: num('cart-load'), targetMv: 200,
+        stage: {
+          hasMC: $('ph-hasmc').value === 'yes',
+          mmGain: nums('ph-mmgain'), mcGain: nums('ph-mcgain'),
+          mmLoad: num('ph-mmload'), mcLoadMin: num('ph-mcmin'), mcLoadMax: num('ph-mcmax')
+        }
+      });
+    }
+    var s = SUMMARY[res.overall];
+    var anyUnknown = res.checks.some(function (c) { return c.status === 'unknown'; });
+    $('overall').className = 'overall ' + res.overall;
+    $('overall').textContent = s[0];
+    $('overallSub').textContent = s[1] + (anyUnknown && res.overall !== 'unknown' ? ' Some checks need more information.' : '');
+    var box = $('checks');
+    box.textContent = '';
+    if (res.overall === 'unknown' && res.checks.every(function (c) { return c.status === 'unknown'; })) { return; }
+    res.checks.forEach(function (c) {
+      var row = document.createElement('div'); row.className = 'check-row';
+      var chip = document.createElement('span'); chip.className = 'chip ' + c.status; chip.textContent = CHIP[c.status];
+      var body = document.createElement('div');
+      var l = document.createElement('div'); l.className = 'check-label'; l.textContent = c.label;
+      var d = document.createElement('div'); d.className = 'check-detail'; d.textContent = c.detail;
+      body.appendChild(l); body.appendChild(d);
+      row.appendChild(chip); row.appendChild(body);
+      box.appendChild(row);
+    });
+  }
+
+  function note(id, text, found) { var n = $(id); n.textContent = text; n.className = 'pick-note' + (found ? ' found' : ''); }
+
+  function wireSearch(kind, inputId, listId, onPick) {
+    var input = $(inputId), list = $(listId), timer = null, seq = 0;
+    function hide() { list.hidden = true; list.textContent = ''; }
+    function message(t) { var m = document.createElement('div'); m.className = 'empty'; m.textContent = t; list.appendChild(m); }
+    function render(results, failed) {
+      list.textContent = ''; list.hidden = false;
+      if (failed) { message('Search is unavailable right now. You can still type the numbers in.'); return; }
+      if (!results.length) { message('No match in our database. Type the numbers in instead.'); return; }
+      results.forEach(function (r) {
+        var b = document.createElement('button'); b.type = 'button'; b.textContent = r.name;
+        b.addEventListener('click', function () { input.value = r.name; hide(); onPick(r); recalc(); });
+        list.appendChild(b);
+      });
+    }
+    input.addEventListener('input', function () {
+      clearTimeout(timer);
+      var q = input.value.trim();
+      if (q.length < 2) { hide(); return; }
+      timer = setTimeout(function () {
+        var mine = ++seq;
+        fetch('/.netlify/functions/component-lookup?kind=' + kind + '&q=' + encodeURIComponent(q))
+          .then(function (r) { return r.json(); })
+          .then(function (d) { if (mine === seq) render(d.results || [], !!d.error); })
+          .catch(function () { if (mine === seq) render([], true); });
+      }, 250);
+    });
+    input.addEventListener('keydown', function (e) { if (e.key === 'Escape') hide(); });
+    document.addEventListener('click', function (e) { if (e.target !== input && !list.contains(e.target)) hide(); });
+  }
+
+  function filled(r, ids) {
+    return ids.filter(function (id) { return $(id).value !== ''; }).length;
+  }
+  function report(noteId, r, ids) {
+    var n = filled(r, ids);
+    if (!r.values || !n) { note(noteId, 'No usable numbers found for ' + r.name + '. Type them in from its spec sheet.', false); return; }
+    note(noteId, 'Filled from our database entry for ' + r.name + (n < ids.length ? '. Blank fields were not found in its specs.' : '.') + ' Check against the maker\'s figures.', true);
+  }
+
+  wireSearch('amp', 'amp-search', 'amp-list', function (r) {
+    var v = r.values || {};
+    put('amp-p8', v.power8); put('amp-p4', v.power4);
+    report('amp-note', r, ['amp-p8', 'amp-p4']);
+  });
+  wireSearch('speaker', 'spk-search', 'spk-list', function (r) {
+    var v = r.values || {};
+    put('spk-nom', v.nominal); put('spk-min', v.minimum); put('spk-sens', v.sensitivity);
+    put('spk-recmin', v.recMin); put('spk-recmax', v.recMax);
+    report('spk-note', r, ['spk-nom', 'spk-min', 'spk-sens', 'spk-recmin', 'spk-recmax']);
+  });
+  wireSearch('cartridge', 'cart-search', 'cart-list', function (r) {
+    var v = r.values || {};
+    if (v.type) $('cart-type').value = v.type;
+    put('cart-mv', v.outputMv); put('cart-int', v.internalOhms); put('cart-load', v.loadOhms);
+    report('cart-note', r, ['cart-mv', 'cart-int', 'cart-load']);
+  });
+  wireSearch('phono', 'ph-search', 'ph-list', function (r) {
+    var v = r.values || {};
+    put('ph-mmgain', v.mmGain); put('ph-mcgain', v.mcGain); put('ph-mmload', v.mmLoad);
+    put('ph-mcmin', v.mcLoadMin); put('ph-mcmax', v.mcLoadMax);
+    $('ph-hasmc').value = v.hasMC ? 'yes' : 'no';
+    report('ph-note', r, ['ph-mmgain', 'ph-mcgain', 'ph-mmload', 'ph-mcmax']);
+  });
+
+  window.setMode = function (m) {
+    mode = m;
+    $('panel-amp').hidden = m !== 'amp';
+    $('panel-phono').hidden = m !== 'phono';
+    ['amp', 'phono'].forEach(function (id) {
+      var b = $('tab-' + id);
+      b.classList.toggle('active', id === m);
+      b.setAttribute('aria-pressed', id === m);
+    });
+    recalc();
+  };
+
+  Array.prototype.forEach.call(document.querySelectorAll('.num-input, .sel-input'), function (el) {
+    el.addEventListener('input', recalc);
+    el.addEventListener('change', recalc);
+  });
+  $('dist').addEventListener('input', function () {
+    $('distVal').textContent = parseFloat(this.value).toFixed(1);
+    recalc();
+  });
+
+  recalc();
+})();
+</script>
+
+</body>
+</html>
