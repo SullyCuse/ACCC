@@ -50,11 +50,16 @@ exports.handler = async (event) => {
   if (!words.length || words.join("").length < 2) return { statusCode: 200, headers, body: JSON.stringify({ results: [] }) };
 
   const filter = `and=(${words.map(w => `name.ilike.*${encodeURIComponent(w)}*`).join(",")})`;
-  const cats = `category=in.(${CATEGORIES[kind].join(",")})`;
+  // 51 rows (e.g. all KEF) have no category; include them, but below keep only
+  // those whose specs actually parse for this kind.
+  const cats = `or=(category.in.(${CATEGORIES[kind].join(",")}),category.is.null)`;
 
   try {
-    const rows = await fetchRows(`/rest/v1/component_specs?select=name,specs&${cats}&${filter}&order=name&limit=8`, 4000);
-    const results = rows.map(r => ({ name: r.name, values: parse(r.specs) }));
+    const rows = await fetchRows(`/rest/v1/component_specs?select=name,category,specs&${cats}&${filter}&order=name&limit=8`, 4000);
+    const results = rows
+      .map(r => ({ name: r.name, category: r.category, values: parse(r.specs) }))
+      .filter(r => r.category || r.values)
+      .map(({ name, values }) => ({ name, values }));
     return { statusCode: 200, headers, body: JSON.stringify({ results }) };
   } catch (e) {
     return { statusCode: 500, headers: { ...headers, "Cache-Control": "no-store" }, body: JSON.stringify({ error: e.message }) };
