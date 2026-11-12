@@ -1577,7 +1577,9 @@ async function loadSharedSystem(){
       if(f&&t)connections.push({id:base+1000+i,fromId:f.id,toId:t.id,fromName:f.name,toName:t.name,type:c.type});
     });
     renderAll();
-    document.getElementById('shared-note').style.display='block';
+    const note=document.getElementById('shared-note');
+    if(Number.isInteger(d.views))note.textContent+=' This link has been viewed '+d.views+(d.views===1?' time.':' times.');
+    note.style.display='block';
     generateDiagram();
   }catch(e){
     document.getElementById('comp-list').innerHTML='<div class="empty">'+esc(e.message)+'</div>';
