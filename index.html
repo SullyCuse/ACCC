@@ -1931,13 +1931,14 @@ function buildDiagram(){
 
   // Box height — accepts optional width (defaults to BW), affects line-wrapping estimate
   const boxH=(c,w=BW)=>{
-    const mc=Math.max(10,Math.floor((w-36)/7));
+    const mc=Math.max(10,Math.floor((w-16)/7));
     const lines=wrapNameW(c.name,mc).length;
+    const h=76+(lines>1?16:0);
     if(c.type==='turntable'){
       const subs=(tonearm?1:0)+(cartridge?1:0);
-      return BH+(lines>1?18:0)+(subs>0?18+subs*17:0);
+      return h+(subs>0?6+subs*17:0);
     }
-    return BH+(lines>1?18:0);
+    return h;
   };
 
   // Type icons: 24x24 line glyphs drawn at 75% beside the name
@@ -1956,36 +1957,26 @@ function buildDiagram(){
 
   // Box renderer — accepts optional width; the stripe and icon take the role colour
   const box=(x,y,c,rc,w=BW)=>{
-    const cx=x+w/2+10;
-    const mc=Math.max(10,Math.floor((w-36)/7));
+    const cx=x+w/2;
+    const mc=Math.max(10,Math.floor((w-16)/7));
     const lines=wrapNameW(c.name,mc);
     const bh=boxH(c,w);
-    let inner='';
-    if(lines.length===1){
-      inner+=`<text class="dv-title" x="${cx}" y="${y+Math.round(bh*0.38)}" text-anchor="middle" dominant-baseline="central">${lines[0]}</text>`;
-      inner+=`<text class="dv-sub" x="${cx}" y="${y+Math.round(bh*0.67)}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text>`;
-    }else{
-      inner+=`<text class="dv-title" x="${cx}" y="${y+Math.round(bh*0.24)}" text-anchor="middle" dominant-baseline="central">${lines[0]}</text>`;
-      inner+=`<text class="dv-title" x="${cx}" y="${y+Math.round(bh*0.46)}" text-anchor="middle" dominant-baseline="central">${lines[1]}</text>`;
-      inner+=`<text class="dv-sub" x="${cx}" y="${y+Math.round(bh*0.72)}" text-anchor="middle" dominant-baseline="central">${esc(typeLabels[c.type])}</text>`;
-    }
+    let inner=`<g transform="translate(${cx-11},${y+12}) scale(0.92)" fill="none" stroke="${rc}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[c.type]||ICON.other}</g>`;
+    inner+=`<text class="dv-sub" x="${cx}" y="${y+46}" text-anchor="middle" dominant-baseline="central" style="font-size:8.5px;font-weight:700;letter-spacing:1px;fill:#64748b">${esc(typeLabels[c.type].toUpperCase())}</text>`;
+    lines.forEach((ln,i)=>{inner+=`<text class="dv-title" x="${cx}" y="${y+62+i*16}" text-anchor="middle" dominant-baseline="central">${ln}</text>`;});
     if(c.type==='turntable'){
       const subs=[];
-      // The 9px sub-items span the full box width, so they get more characters than the name
       const smc=Math.floor((w-16)/5.5);
       if(tonearm)subs.push('⟳ '+wrapNameW(tonearm.name,smc)[0]);
       if(cartridge)subs.push('◆ '+wrapNameW(cartridge.name,smc)[0]);
       if(subs.length>0){
-        const divY=y+Math.round(bh*0.78);
-        inner+=`<line x1="${x+10}" x2="${x+w-6}" y1="${divY}" y2="${divY}" stroke="#e2e8f0" stroke-width="1"/>`;
-        subs.forEach((s,i)=>{inner+=`<text class="dv-sub" x="${x+w/2+2}" y="${divY+11+i*17}" text-anchor="middle" dominant-baseline="central" style="font-size:9px;">${esc(s)}</text>`;});
+        const divY=y+76+(lines.length>1?16:0)-4;
+        inner+=`<line x1="${x+10}" x2="${x+w-10}" y1="${divY}" y2="${divY}" stroke="#e2e8f0" stroke-width="1"/>`;
+        subs.forEach((t,i)=>{inner+=`<text class="dv-sub" x="${cx}" y="${divY+11+i*17}" text-anchor="middle" dominant-baseline="central" style="font-size:9px;">${esc(t)}</text>`;});
       }
     }
-    // Icon sits level with the name and type label, above any tonearm/cartridge lines
-    const iy=y+Math.round(bh*(lines.length===1?0.52:0.48))-(c.type==='turntable'&&(tonearm||cartridge)?Math.round(bh*0.1):0);
-    const ic=`<g transform="translate(${x+9},${iy-9}) scale(0.75)" fill="none" stroke="${rc}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[c.type]||ICON.other}</g>`;
     const cid='dvclip'+c.id;
-    return `<g class="dv-node"><clipPath id="${cid}"><rect x="${x}" y="${y}" width="${w}" height="${bh}" rx="8"/></clipPath><rect x="${x}" y="${y}" width="${w}" height="${bh}" rx="8" class="dv-box"/><rect x="${x}" y="${y}" width="4" height="${bh}" fill="${rc}" clip-path="url(#${cid})"/>${ic}${inner}</g>`;
+    return `<g class="dv-node"><clipPath id="${cid}"><rect x="${x}" y="${y}" width="${w}" height="${bh}" rx="8"/></clipPath><rect x="${x}" y="${y}" width="${w}" height="${bh}" rx="8" class="dv-box"/><rect x="${x}" y="${y}" width="${w}" height="4" fill="${rc}" clip-path="url(#${cid})"/>${inner}</g>`;
   };
 
   // Colour by role in the chain; an "Other" device is a source if nothing feeds it, otherwise pre/control
@@ -2005,6 +1996,7 @@ function buildDiagram(){
   // Wireless links are dashed.
   const CABLE={'RCA single-ended':'#dc2626','XLR balanced':'#ca8a04','USB':'#7c3aed','Optical / TOSLINK':'#ea580c','AES/EBU':'#2563eb','I2S':'#db2777','Speaker wire':'#334155','Phono / RCA':'#b45309','Coaxial S/PDIF':'#16a34a','HDMI / I2S':'#0891b2','Bluetooth':'#0284c7','Wi-Fi / Network':'#65a30d'};
   const colOf=t=>CABLE[t]||'#94a3b8',dash=t=>t==='Bluetooth'||t==='Wi-Fi / Network'?' stroke-dasharray="5 3"':'';
+  const PAIR=t=>t==='Speaker wire'||t==='XLR balanced';
 
   // Ports: spread a box's incoming lines across its top edge and its outgoing
   // lines across its bottom edge, ordered by where the other end sits
@@ -2025,15 +2017,22 @@ function buildDiagram(){
     return[...rt,...lt];
   });
   const rowY=[20];
-  for(let L=1;L<nL;L++)rowY[L]=rowY[L-1]+rowH[L-1]+(jogs[L].length?24+(jogs[L].length-1)*6:G);
+  const multi=L=>rows[L-1].some(v=>v.c&&v.outs.length>1);
+  for(let L=1;L<nL;L++)rowY[L]=rowY[L-1]+rowH[L-1]+40+(multi(L)?16:0)+(jogs[L].length?10+(jogs[L].length-1)*6:0);
   const bot=v=>rowY[v.L]+(v.c?v.h:rowH[v.L]);
 
   let p='',b='',x0=Infinity,x1=-Infinity;
   const ext=(a,z)=>{x0=Math.min(x0,a);x1=Math.max(x1,z);};
   const used=[...new Set(edges.map(e=>e.type))];
   const mk=t=>'da'+used.indexOf(t);
-  const ARR=`<defs>${used.map(t=>`<marker id="${mk(t)}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="${colOf(t)}" stroke-width="1.5" stroke-linecap="round"/></marker>`).join('')}</defs>`;
-  const wire=(pts,t,arrow)=>`<polyline fill="none" stroke="${colOf(t)}" stroke-width="2"${dash(t)} points="${pts.map(q=>q.join(',')).join(' ')}"${arrow?` marker-end="url(#${mk(t)})"`:''}/>`;
+  const ARR=`<defs>${used.map(t=>`<marker id="${mk(t)}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="${PAIR(t)?2.2:4}" markerHeight="${PAIR(t)?2.2:4}" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="${colOf(t)}" stroke-width="1.5" stroke-linecap="round"/></marker>`).join('')}</defs>`;
+  const SHORT={'RCA single-ended':'RCA','XLR balanced':'XLR','USB':'USB','Optical / TOSLINK':'OPT','AES/EBU':'AES/EBU','I2S':'I2S','Speaker wire':'SPK WIRE','Phono / RCA':'PHONO','Coaxial S/PDIF':'COAX','HDMI / I2S':'HDMI','Bluetooth':'BT','Wi-Fi / Network':'NET'};
+  const wire=(pts,t,arrow)=>{const P=pts.map(q=>q.join(',')).join(' '),m=arrow?` marker-end="url(#${mk(t)})"`:'';
+    return PAIR(t)?`<polyline fill="none" stroke="${colOf(t)}" stroke-width="5" points="${P}"${m}/><polyline fill="none" stroke="#fff" stroke-width="1.6" points="${arrow?pts.map((q,i)=>i===pts.length-1?[q[0],q[1]-7]:q).map(q=>q.join(',')).join(' '):P}"/>`
+      :`<polyline fill="none" stroke="${colOf(t)}" stroke-width="2"${dash(t)} points="${P}"${m}/>`;};
+  let pills='';
+  const pill=(x,y,t)=>{if(!t)return;const s=SHORT[t]||t.split(' ')[0].toUpperCase(),w=s.length*6+12;
+    pills+=`<rect x="${x-w/2}" y="${y-7}" width="${w}" height="14" rx="7" fill="#fff" stroke="${colOf(t)}" stroke-width="1.25"/><text x="${x}" y="${y+0.5}" text-anchor="middle" dominant-baseline="central" style="font-family:ui-monospace,Menlo,monospace;font-size:8.5px;font-weight:700;fill:${colOf(t)}">${esc(s)}</text>`;};
 
   rows.forEach((r,L)=>r.forEach(v=>{
     if(v.c){b+=box(v.x-v.w/2,rowY[L],v.c,ROLE[roleOf(v.c)],v.w);ext(v.x-v.w/2,v.x+v.w/2);}
@@ -2044,7 +2043,8 @@ function buildDiagram(){
     rows[L].forEach(v=>v.par.forEach(q=>{
       const t=q.e.type,y0=bot(q.v),k=jogs[L].indexOf(q);
       if(k<0)p+=wire([[q.x1,y0],[q.x2,top]],t,!!v.c);
-      else{const y=rb+10+k*6;p+=wire([[q.x1,y0],[q.x1,y],[q.x2,y],[q.x2,top]],t,!!v.c);}
+      else{const y=rb+40+(multi(L)?16:0)+k*6;p+=wire([[q.x1,y0],[q.x1,y],[q.x2,y],[q.x2,top]],t,!!v.c);}
+      if(q.v.c)pill(q.x1,rb+20+(q.v.outs.length>1?(q.v.outs.indexOf(q)%2)*16:0),t);
     }));
   }
 
@@ -2074,7 +2074,7 @@ function buildDiagram(){
   // Role key: what the box stripes mean
   const roles=Object.keys(ROLE).filter(r=>nodes.some(c=>roleOf(c)===r));
   {let x=(VW-roles.length*96)/2;roles.forEach(r=>{key+=`<rect x="${x}" y="${H-5}" width="4" height="10" rx="1" fill="${ROLE[r]}"/><text class="dv-label" x="${x+10}" y="${H}" dominant-baseline="central">${ROLE_LABEL[r]}</text>`;x+=96;});H+=24;}
-  return `<svg width="100%" viewBox="0 0 ${Math.round(VW)} ${H}" xmlns="http://www.w3.org/2000/svg">${ARR}<g transform="translate(${Math.round(tx)},0)">${p}${b}</g>${key}</svg>`;
+  return `<svg width="100%" viewBox="0 0 ${Math.round(VW)} ${H}" xmlns="http://www.w3.org/2000/svg">${ARR}<g transform="translate(${Math.round(tx)},0)">${p}${b}${pills}</g>${key}</svg>`;
 }
 renderAll();
 updateHint();
