@@ -2026,7 +2026,7 @@ function buildDiagram(){
   const used=[...new Set(edges.map(e=>e.type))];
   const mk=t=>'da'+used.indexOf(t);
   const ARR=`<defs>${used.map(t=>`<marker id="${mk(t)}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="${PAIR(t)?2.2:4}" markerHeight="${PAIR(t)?2.2:4}" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="${colOf(t)}" stroke-width="1.5" stroke-linecap="round"/></marker>`).join('')}</defs>`;
-  const SHORT={'RCA single-ended':'RCA','XLR balanced':'XLR','USB':'USB','Optical / TOSLINK':'OPT','AES/EBU':'AES/EBU','I2S':'I2S','Speaker wire':'SPK WIRE','Phono / RCA':'PHONO','Coaxial S/PDIF':'COAX','HDMI / I2S':'HDMI','Bluetooth':'BT','Wi-Fi / Network':'NET'};
+  const SHORT={'RCA single-ended':'RCA','XLR balanced':'XLR','USB':'USB','Optical / TOSLINK':'OPT','AES/EBU':'AES/EBU','I2S':'I2S','Speaker wire':'SPK WIRE','Phono / RCA':'PHONO RCA','Coaxial S/PDIF':'COAX','HDMI / I2S':'HDMI','Bluetooth':'BT','Wi-Fi / Network':'NET'};
   const wire=(pts,t,arrow)=>{const P=pts.map(q=>q.join(',')).join(' '),m=arrow?` marker-end="url(#${mk(t)})"`:'';
     return PAIR(t)?`<polyline fill="none" stroke="${colOf(t)}" stroke-width="5" points="${P}"${m}/><polyline fill="none" stroke="#fff" stroke-width="1.6" points="${arrow?pts.map((q,i)=>i===pts.length-1?[q[0],q[1]-7]:q).map(q=>q.join(',')).join(' '):P}"/>`
       :`<polyline fill="none" stroke="${colOf(t)}" stroke-width="2"${dash(t)} points="${P}"${m}/>`;};
