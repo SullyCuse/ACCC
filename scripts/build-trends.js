@@ -11,7 +11,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Keep false until the page has a full month of clean data; while false the
-// page carries noindex. Turning it on also means adding /trends to the sitemap
+// page carries noindex. Turning it on also means adding /trends/ to the sitemap
 // and linking it from the site.
 const PUBLISHED = false;
 
