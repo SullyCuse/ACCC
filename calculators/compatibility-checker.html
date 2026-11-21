@@ -358,6 +358,8 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
     </div>
   </div>
 
+  <div id="recent-additions"></div>
+
   <!-- RELATED -->
   <div class="section-label">Related tools &amp; guides</div>
   <div class="related-grid">
@@ -397,6 +399,10 @@ input[type="range"]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;b
 </footer>
 
 <script src="/calculators/compat-rules.js"></script>
+<script src="/recent-additions.js"></script>
+<script>
+  if (window.RecentAdditions) RecentAdditions.render(document.getElementById('recent-additions'));
+</script>
 <script>
 (function () {
   var mode = 'amp';

@@ -457,6 +457,7 @@ button{cursor:pointer;font-family:inherit}
         <p>Choose a component type below, then add 2–6 models by brand and model name.</p>
       </div>
       <div class="cat-grid" id="cat-grid" role="list"></div>
+      <div id="recent-additions"></div>
     </div>
   </div>
 </section>
@@ -572,6 +573,7 @@ button{cursor:pointer;font-family:inherit}
   </div>
 </footer>
 
+<script src="/recent-additions.js"></script>
 <script>
 // ── Constants ──
 const CATS=[
@@ -593,6 +595,22 @@ let st={cat:null,catLbl:'',items:[],running:false,uid:1};
 // ── Init ──
 buildGrid();
 bindEvents();
+// Recently added specs: database categories that map to a Compare category
+// are clickable and open that category with the model already added.
+const RA_CAT={amplifier:'amplifier',dac:'dac',speaker:'speakers',subwoofer:'speakers',headphone:'headphones','phono-stage':'phono_preamp',turntable:'turntable',tonearm:'tonearm',cartridge:'cartridge',streamer:'streamer'};
+if(window.RecentAdditions)RecentAdditions.render(document.getElementById('recent-additions'),{
+  hint:'Click a model to start a comparison with it.',
+  canPick:m=>!!RA_CAT[m.category],
+  onPick:m=>{
+    const cat=RA_CAT[m.category];if(!cat||st.running)return;
+    if(st.cat!==cat)st.items=[];
+    selectCat(cat);
+    if(st.items.length<6&&!st.items.some(i=>i.name.toLowerCase()===m.name.toLowerCase())){
+      st.items.push({id:st.uid++,name:m.name,status:'idle',data:null,err:null});
+      refreshAdd();
+    }
+  }
+});
 
 function buildGrid(){
   const g=document.getElementById('cat-grid');
