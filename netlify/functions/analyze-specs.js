@@ -117,8 +117,9 @@ function findCorrection(name, corrections) {
   const nd = digits(n);
   const userTokens = tokenize(name);
   // Model code: the tokens containing digits, each joined to a preceding
-  // single-letter token ("NAD C 538" -> "c538", "NAD 3020A" -> "3020a").
-  const modelCode = s => tokenize(s).map((t, i, a) => /[0-9]/.test(t) ? ((i > 0 && /^[a-z]$/.test(a[i - 1])) ? a[i - 1] : '') + t : '').join('');
+  // 1–3 letter token that isn't the brand ("NAD C 538" -> "c538", "NAD 3020A" ->
+  // "3020a", "Pioneer SX-1250" -> "sx1250", so it never fuzzes to "PL-1250").
+  const modelCode = s => tokenize(s).map((t, i, a) => /[0-9]/.test(t) ? ((i > 1 && /^[a-z]{1,3}$/.test(a[i - 1])) ? a[i - 1] : '') + t : '').join('');
 
   // 1. Exact normalized match. Here alone "+" reads as "plus", so "Halo A23+"
   //    and "Halo A23" stay different products; later steps drop "+" as before.
@@ -130,7 +131,8 @@ function findCorrection(name, corrections) {
   //    Prefer the closest length, so "KEF LS50" binds to "KEF LS50 Meta" rather
   //    than "KEF LS50 Wireless II". Whole-word matches outrank partial ones, so
   //    "Schiit Loki" prefers "Schiit Loki Mini+" over "Schiit Lokius". A tie
-  //    falls through to later steps.
+  //    falls through to later steps. A partial match must keep the same digits,
+  //    so "Pioneer PL-518" never binds to "Pioneer PL-5".
   if (!key) {
     let best = null, bestDiff = Infinity, tie = false;
     for (const k of Object.keys(corrections)) {
@@ -139,6 +141,7 @@ function findCorrection(name, corrections) {
       const keyTokens = tokenize(k);
       const whole = nk.includes(n) ? userTokens.every(t => keyTokens.includes(t))
                                    : keyTokens.every(t => userTokens.includes(t));
+      if (!whole && digits(nk) !== nd) continue;
       const diff = Math.abs(nk.length - n.length) + (whole ? 0 : 1000);
       if (diff < bestDiff) { bestDiff = diff; best = k; tie = false; }
       else if (diff === bestDiff) tie = true;
