@@ -705,10 +705,13 @@ async function runComparison(){
   if(ampInp) ampInp.onkeydown=e=>{if(e.key==='Enter')addToResults()};
 }
 
+// Random id for this page load only (memory, never stored) so the usage log
+// counts repeat comparisons in one visit once. See the privacy policy.
+const VISIT_ID=(function(){try{var a=new Uint8Array(8);crypto.getRandomValues(a);return Array.from(a,function(b){return(b<16?'0':'')+b.toString(16)}).join('')}catch(e){return null}})();
 async function fetchComp(name,category){
   const r=await fetch('/.netlify/functions/compare',{
     method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({name,category})
+    body:JSON.stringify({name,category,visit:VISIT_ID})
   });
   if(!r.ok){let j={};try{j=await r.json()}catch(_){}; throw new Error(j.error||`Server error ${r.status}`);}
   return r.json();

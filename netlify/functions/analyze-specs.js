@@ -190,7 +190,7 @@ exports.handler = async (event) => {
   const headers = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
 
   try {
-    const { components } = JSON.parse(event.body);
+    const { components, visit } = JSON.parse(event.body);
     const typeLabels = {
       amp:"Amplifier", preamp:"Preamplifier", speakers:"Speakers", dac:"DAC",
       turntable:"Turntable", tonearm:"Tonearm", cartridge:"Cartridge",
@@ -218,6 +218,7 @@ exports.handler = async (event) => {
     const needsAI = [];
     const verifiedNames = [];   // components whose specs came from the reported DB (not AI)
     const verifiedAs = {};      // typed name -> DB row name, only when they differ
+    const dbNames = {};         // typed name -> DB row name, for every match (usage log)
     const sourceUrls = {};      // typed name -> DB row's product page, when it has one
     const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
@@ -226,6 +227,7 @@ exports.handler = async (event) => {
       if (corrected) {
         correctedBlocks.push(formatCorrectedSpecs(c.name, typeLabels[c.type] || c.type, corrected.specs));
         verifiedNames.push(c.name);
+        dbNames[c.name] = corrected.name;
         if (norm(corrected.name) !== norm(c.name)) verifiedAs[c.name] = corrected.name;
         if (_sources[corrected.name]) sourceUrls[c.name] = _sources[corrected.name];
       } else {
@@ -306,8 +308,8 @@ All ${needsAI.length} components required. No summary text. No questions.`;
       "⚠ The component specs below are AI estimates and were not verified against the corrections database. Try again in a moment for verified values.\n\n";
 
     await logEvent(event, "analyzer", components.map(c => ({
-      name: c.name, category: c.type, verified: verifiedNames.includes(c.name)
-    })));
+      name: c.name, category: c.type, verified: verifiedNames.includes(c.name), db_name: dbNames[c.name] || null
+    })), null, visit);
 
     return {
       statusCode: 200,

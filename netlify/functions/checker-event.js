@@ -21,10 +21,10 @@ exports.handler = async (event) => {
   const components = data.components
     .filter(c => c && KINDS.includes(c.kind) && typeof c.name === "string" && c.name.trim())
     .slice(0, 4)
-    .map(c => ({ name: c.name, category: c.kind, verified: true }));
+    .map(c => ({ name: c.name, category: c.kind, verified: true, db_name: c.name }));
   // A pick needs exactly one named component; a result may have none (all typed by hand).
   if (data.action === "pick" && components.length !== 1) return { statusCode: 400, headers, body: JSON.stringify({ error: "Bad event" }) };
 
-  await logEvent(event, "checker", components, data.action);
+  await logEvent(event, "checker", components, data.action, data.visit);
   return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
 };
