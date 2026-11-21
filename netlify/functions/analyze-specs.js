@@ -118,8 +118,11 @@ function findCorrection(name, corrections) {
   // single-letter token ("NAD C 538" -> "c538", "NAD 3020A" -> "3020a").
   const modelCode = s => tokenize(s).map((t, i, a) => /[0-9]/.test(t) ? ((i > 0 && /^[a-z]$/.test(a[i - 1])) ? a[i - 1] : '') + t : '').join('');
 
-  // 1. Exact normalized match
-  let key = Object.keys(corrections).find(k => normalize(k) === n);
+  // 1. Exact normalized match. Here alone "+" reads as "plus", so "Halo A23+"
+  //    and "Halo A23" stay different products; later steps drop "+" as before.
+  const plusNorm = s => normalize(s.replace(/\+/g, 'plus'));
+  const np = plusNorm(name);
+  let key = Object.keys(corrections).find(k => plusNorm(k) === np);
 
   // 2. Substring match (handles "Parasound 275" vs "Parasound 275 v1").
   //    Prefer the closest length, so "KEF LS50" binds to "KEF LS50 Meta" rather
