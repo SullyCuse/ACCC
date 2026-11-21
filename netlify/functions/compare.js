@@ -123,7 +123,7 @@ function findCorrection(name, corrections) {
   const n = normalize(name);
   const nd = digits(n);
   const userTokens = tokenize(name);
-  const modelCode = s => tokenize(s).map((t, i, a) => /[0-9]/.test(t) ? ((i > 0 && /^[a-z]$/.test(a[i - 1])) ? a[i - 1] : '') + t : '').join('');
+  const modelCode = s => tokenize(s).map((t, i, a) => /[0-9]/.test(t) ? ((i > 1 && /^[a-z]{1,3}$/.test(a[i - 1])) ? a[i - 1] : '') + t : '').join('');
 
   const plusNorm = s => normalize(s.replace(/\+/g, 'plus'));
   const np = plusNorm(name);
@@ -136,6 +136,7 @@ function findCorrection(name, corrections) {
       const keyTokens = tokenize(k);
       const whole = nk.includes(n) ? userTokens.every(t => keyTokens.includes(t))
                                    : keyTokens.every(t => userTokens.includes(t));
+      if (!whole && digits(nk) !== nd) continue;
       const diff = Math.abs(nk.length - n.length) + (whole ? 0 : 1000);
       if (diff < bestDiff) { bestDiff = diff; best = k; tie = false; }
       else if (diff === bestDiff) tie = true;
