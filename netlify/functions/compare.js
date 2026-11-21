@@ -124,7 +124,9 @@ function findCorrection(name, corrections) {
   const userTokens = tokenize(name);
   const modelCode = s => tokenize(s).map((t, i, a) => /[0-9]/.test(t) ? ((i > 0 && /^[a-z]$/.test(a[i - 1])) ? a[i - 1] : '') + t : '').join('');
 
-  let key = Object.keys(corrections).find(k => normalize(k) === n);
+  const plusNorm = s => normalize(s.replace(/\+/g, 'plus'));
+  const np = plusNorm(name);
+  let key = Object.keys(corrections).find(k => plusNorm(k) === np);
   if (!key) {
     let best = null, bestDiff = Infinity, tie = false;
     for (const k of Object.keys(corrections)) {
