@@ -2,7 +2,9 @@ const https = require("https");
 const { URL } = require("url");
 
 // Anonymous usage log: component names, categories and country only. No IP,
-// user agent or free text. Never throws and never waits longer than WAIT_MS,
+// user agent or free text. `visit` is a random id the page makes on each load
+// (kept in memory, never stored on the device) so repeat runs from one visit
+// count once in the Trends page. Never throws and never waits longer than WAIT_MS,
 // so a logging problem can't fail or noticeably slow an analysis.
 const WAIT_MS = 1000;
 
@@ -13,7 +15,11 @@ function countryOf(event) {
   } catch { return null; }
 }
 
-function logEvent(event, source, components, action) {
+function cleanVisit(v) {
+  return typeof v === "string" && /^[a-f0-9]{16}$/.test(v) ? v : null;
+}
+
+function logEvent(event, source, components, action, visit) {
   return new Promise((resolve) => {
     try {
       const body = JSON.stringify({
@@ -22,9 +28,11 @@ function logEvent(event, source, components, action) {
         components: components.slice(0, 30).map(c => ({
           name: String(c.name || "").trim().slice(0, 120),
           category: String(c.category || "").slice(0, 40),
-          verified: !!c.verified
+          verified: !!c.verified,
+          db_name: c.db_name ? String(c.db_name).slice(0, 120) : null
         })),
-        country: countryOf(event)
+        country: countryOf(event),
+        visit_id: cleanVisit(visit)
       });
       const { hostname } = new URL(process.env.SUPABASE_URL);
       const req = https.request({

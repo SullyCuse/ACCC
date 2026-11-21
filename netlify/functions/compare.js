@@ -196,9 +196,9 @@ exports.handler = async (event) => {
     return { statusCode: 500, headers: CORS, body: JSON.stringify({ error: 'Server configuration error: API key not set.' }) };
   }
 
-  let name, category;
+  let name, category, visit;
   try {
-    ({ name, category } = JSON.parse(event.body || '{}'));
+    ({ name, category, visit } = JSON.parse(event.body || '{}'));
   } catch (_) {
     return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: 'Invalid JSON in request body' }) };
   }
@@ -221,7 +221,7 @@ exports.handler = async (event) => {
     const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
     if (match && norm(match.name) !== norm(name)) parsed.verifiedName = match.name;
     if (match && _sources[match.name]) parsed.sourceUrl = _sources[match.name];
-    await logEvent(event, 'compare', [{ name, category, verified: !!match }]);
+    await logEvent(event, 'compare', [{ name, category, verified: !!match, db_name: match ? match.name : null }], null, visit);
     return { statusCode: 200, headers: CORS, body: JSON.stringify(parsed) };
   } catch (err) {
     console.error('AudioChainHiFi compare error:', err.message);
