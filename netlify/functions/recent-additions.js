@@ -11,14 +11,15 @@ const headers = {
   "Access-Control-Allow-Origin": "*",
   "Cache-Control": "public, max-age=600"
 };
-const LIMIT = 1000;      // newest rows to read; enough for several batches
+const PAGE = 1000;       // rows per read (the Data API's max rows)
+const MAX_PAGES = 5;     // stop reading after this many pages
 const BATCHES = 6;
 const MODELS_SHOWN = 8;
 
-function fetchRecent(timeoutMs) {
+function fetchPage(offset, timeoutMs) {
   return new Promise((resolve, reject) => {
     const { hostname, pathname, search } = new URL(
-      `${process.env.SUPABASE_URL}/rest/v1/component_specs?select=name,category,created_at&order=created_at.desc,name.asc&limit=${LIMIT}`
+      `${process.env.SUPABASE_URL}/rest/v1/component_specs?select=name,category,created_at&order=created_at.desc,name.asc&limit=${PAGE}&offset=${offset}`
     );
     const req = https.request({
       hostname, path: pathname + search, method: "GET",
@@ -45,6 +46,29 @@ function fetchRecent(timeoutMs) {
   });
 }
 
+const dayOf = r => String(r.created_at).slice(0, 10);
+const keyOf = r => dayOf(r) + "|" + r.name.trim().split(/\s+/)[0].toLowerCase();
+
+// Reads newest rows a page at a time until the table runs out or the rows on
+// days newer than the oldest day read already make BATCHES groups. The oldest
+// day may be cut off, so batchesFrom() drops it when the read is incomplete;
+// reading on keeps one big load day (over PAGE rows) from emptying the list.
+async function fetchRecent(timeoutMs) {
+  const deadline = Date.now() + timeoutMs;
+  const rows = [];
+  let total;
+  for (let p = 0; p < MAX_PAGES; p++) {
+    const page = await fetchPage(p * PAGE, Math.max(deadline - Date.now(), 1));
+    total = page.total;
+    rows.push(...page.rows);
+    if (page.rows.length < PAGE) return { rows, total, complete: true };
+    const oldest = dayOf(rows[rows.length - 1]);
+    const newer = new Set(rows.filter(r => dayOf(r) !== oldest).map(keyOf));
+    if (newer.size >= BATCHES) break;
+  }
+  return { rows, total, complete: false };
+}
+
 // Brand = the words every name in the batch starts with ("Monitor Audio",
 // "Q Acoustics"), always leaving at least one word for the model. A lone row
 // uses its first word, or two when the first is very short ("Q Acoustics").
@@ -63,14 +87,12 @@ function brandOf(names) {
 function batchesFrom(rows, complete) {
   const groups = new Map();
   for (const r of rows) {
-    const day = String(r.created_at).slice(0, 10);
-    const first = r.name.trim().split(/\s+/)[0].toLowerCase();
-    const key = day + "|" + first;
-    if (!groups.has(key)) groups.set(key, { day, rows: [] });
+    const key = keyOf(r);
+    if (!groups.has(key)) groups.set(key, { day: dayOf(r), rows: [] });
     groups.get(key).rows.push(r);
   }
   let list = [...groups.values()];
-  // When the read hit LIMIT, the oldest day may be cut off; drop it so no
+  // When the read stopped early, the oldest day may be cut off; drop it so no
   // batch reports a partial count.
   if (!complete && list.length) {
     const oldest = list[list.length - 1].day;
@@ -93,8 +115,8 @@ function batchesFrom(rows, complete) {
 exports.handler = async (event) => {
   if (event.httpMethod !== "GET") return { statusCode: 405, headers, body: JSON.stringify({ error: "Method not allowed" }) };
   try {
-    const { rows, total } = await fetchRecent(4000);
-    const body = { total, batches: batchesFrom(rows, rows.length < LIMIT) };
+    const { rows, total, complete } = await fetchRecent(6000);
+    const body = { total, batches: batchesFrom(rows, complete) };
     return { statusCode: 200, headers, body: JSON.stringify(body) };
   } catch (e) {
     return { statusCode: 502, headers: { ...headers, "Cache-Control": "no-store" }, body: JSON.stringify({ error: e.message }) };
