@@ -46,7 +46,8 @@ exports.handler = async (event) => {
   if (!parse) return { statusCode: 400, headers, body: JSON.stringify({ error: "Unknown kind" }) };
 
   // Every word must appear in the name; strip characters PostgREST treats as syntax.
-  const words = String(q || "").replace(/[*,()%\\"]/g, " ").trim().split(/\s+/).filter(Boolean).slice(0, 4);
+  const words = String(q || "").replace(/[*,()%\\"]/g, " ").trim().split(/\s+/).filter(Boolean).slice(0, 4)
+    .map(w => /^trio$/i.test(w) ? "Kenwood" : w); // Trio = Kenwood's home-market brand
   if (!words.length || words.join("").length < 2) return { statusCode: 200, headers, body: JSON.stringify({ results: [] }) };
 
   const filter = `and=(${words.map(w => `name.ilike.*${encodeURIComponent(w)}*`).join(",")})`;
