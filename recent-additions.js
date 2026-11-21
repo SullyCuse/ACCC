@@ -6,7 +6,7 @@
 //
 // When canPick/onPick are given, matching model names become buttons.
 (function () {
-  var CSS = '.ra{margin:40px 0 8px;padding:24px 26px;background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg,14px);}' +
+  var CSS = '.ra{margin:40px 0 32px;padding:24px 26px;background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-lg,14px);}' +
     '.ra h2{font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.01em;margin:0 0 6px;}' +
     '.ra-sub{font-size:14px;color:var(--text-2);margin:0 0 18px;line-height:1.6;}' +
     '.ra-batch{padding:14px 0;border-top:1px solid var(--border);}' +
