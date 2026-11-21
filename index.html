@@ -1196,6 +1196,9 @@ select {
       <p class="section-desc" style="margin:0 auto;">Enter your components below. No signup required — results in under a minute.</p>
     </div>
 
+    <!-- Saved-system bar: shown to returning visitors who chose "Remember this system" -->
+    <div id="saved-bar" style="display:none;max-width:1400px;margin:0 auto 16px;padding:0 max(24px,3vw);"></div>
+
     <!-- Steps: 3 columns side by side -->
     <div class="tool-steps-row">
 
@@ -1290,6 +1293,7 @@ select {
           <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
             <button class="btn btn-outline-blue btn-sm" id="share-btn" onclick="shareSystem()">Share this system</button>
             <div id="share-out" style="font-size:12px;color:var(--text-3);margin-top:8px;line-height:1.6;"></div>
+            <div id="remember-out" style="display:none;font-size:12px;color:var(--text-3);margin-top:10px;line-height:1.6;"></div>
           </div>
           <div id="results-content" style="margin-top:16px;">
             <div class="placeholder-box" style="padding:20px;">
@@ -1542,8 +1546,7 @@ async function shareSystem(){
   const btn=document.getElementById('share-btn'),out=document.getElementById('share-out');
   out.textContent='';btn.disabled=true;
   try{
-    const idx=new Map(components.map((c,i)=>[c.id,i]));
-    const body={components:components.map(c=>({type:c.type,name:c.name})),connections:connections.map(c=>({from:idx.get(c.fromId),to:idx.get(c.toId),type:c.type}))};
+    const body=serializeSystem();
     const r=await fetch('/.netlify/functions/share-system',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
     const d=await r.json().catch(()=>({}));
     if(!r.ok||!d.id)throw new Error(d.error||'Could not create a link.');
@@ -1565,13 +1568,7 @@ async function loadSharedSystem(){
     const r=await fetch('/.netlify/functions/get-system?id='+m[1]);
     const d=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(d.error||'Could not load that system.');
-    const base=Date.now();
-    d.components.forEach((c,i)=>components.push({id:base+i,type:c.type,name:c.name}));
-    d.connections.forEach((c,i)=>{
-      const f=components[c.from],t=components[c.to];
-      if(f&&t)connections.push({id:base+1000+i,fromId:f.id,toId:t.id,fromName:f.name,toName:t.name,type:c.type});
-    });
-    renderAll();
+    restoreSystem(d);
     const note=document.getElementById('shared-note');
     if(Number.isInteger(d.views))note.textContent+=' This link has been viewed '+d.views+(d.views===1?' time.':' times.');
     note.style.display='block';
@@ -1581,6 +1578,123 @@ async function loadSharedSystem(){
   }
 }
 loadSharedSystem();
+// {components:[{type,name}], connections:[{from,to,type}]} with connection ends as
+// component indices: the shape share-system stores and the saved system uses.
+function serializeSystem(){
+  const idx=new Map(components.map((c,i)=>[c.id,i]));
+  return {components:components.map(c=>({type:c.type,name:c.name})),connections:connections.map(c=>({from:idx.get(c.fromId),to:idx.get(c.toId),type:c.type}))};
+}
+function restoreSystem(d){
+  components.length=0;connections.length=0;
+  const base=Date.now();
+  d.components.forEach((c,i)=>components.push({id:base+i,type:c.type,name:c.name}));
+  d.connections.forEach((c,i)=>{
+    const f=components[c.from],t=components[c.to];
+    if(f&&t)connections.push({id:base+1000+i,fromId:f.id,toId:t.id,fromName:f.name,toName:t.name,type:c.type});
+  });
+  renderAll();
+}
+
+// ── Saved system (opt-in) ──────────────────────────────────────────────────
+// Only after the visitor clicks "Remember this system" do we keep a copy in
+// this browser's localStorage, with a fingerprint of each matched component's
+// database specs. On the next visit a check-only call to analyze-specs (no AI,
+// not logged) says which components have since gained or changed verified
+// specs. Nothing is sent anywhere until that check, and "Forget" deletes it.
+const SAVED_KEY='achf_saved_system';
+let _lastSnapshot=null;    // {dbNames, specHashes, dbOk} from the latest analysis
+function readSaved(){try{const d=JSON.parse(localStorage.getItem(SAVED_KEY)||'null');return d&&Array.isArray(d.components)&&d.components.length?d:null;}catch(e){return null;}}
+function writeSaved(d){try{localStorage.setItem(SAVED_KEY,JSON.stringify(d));return true;}catch(e){return false;}}
+function savedDate(d){try{return new Date(d.savedAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}catch(e){return '';}}
+function snapshotSystem(){
+  const sys=serializeSystem();
+  return {v:1,savedAt:new Date().toISOString(),components:sys.components,connections:sys.connections,dbNames:_lastSnapshot.dbNames||{},specHashes:_lastSnapshot.specHashes||{}};
+}
+function rememberSystem(){
+  if(!_lastSnapshot||!_lastSnapshot.dbOk)return;
+  if(!writeSaved(snapshotSystem())){document.getElementById('remember-out').textContent='This browser would not let us save the system.';return;}
+  updateRememberUI('saved');
+}
+function forgetSystem(){
+  try{localStorage.removeItem(SAVED_KEY);}catch(e){}
+  document.getElementById('saved-bar').style.display='none';
+  updateRememberUI();
+}
+function loadSavedSystem(){
+  const d=readSaved();if(!d)return;
+  if(components.length&&!confirm('Replace the components you have entered with your saved system?'))return;
+  restoreSystem(d);
+  const bar=document.getElementById('saved-bar');
+  bar.innerHTML=savedBarBox(`Your saved system is loaded. Run the analysis to see results with the latest specs. <a href="#" onclick="forgetSystem();return false;">Forget it<\/a>`);
+  if(components.length>=2)generateDiagram();
+}
+function savedBarBox(inner){
+  return `<div style="font-size:13px;color:var(--text-2);background:var(--blue-lt);border:1px solid var(--border);border-radius:8px;padding:10px 14px;line-height:1.6;">${inner}<\/div>`;
+}
+function nameList(a){return a.map(n=>`<strong>${esc(n)}<\/strong>`).join(', ');}
+// changes: {added:[names], updated:[names]} or null while the check is pending/failed
+function renderSavedBar(d,changes){
+  const bar=document.getElementById('saved-bar');
+  if(!d){bar.style.display='none';return;}
+  const n=d.components.length,when=savedDate(d);
+  const actions=`<a href="#" onclick="loadSavedSystem();return false;">Load it<\/a> &middot; <a href="#" onclick="forgetSystem();return false;">Forget<\/a>`;
+  let msg=`Welcome back. Your saved system (${n} component${n===1?'':'s'}${when?', saved '+esc(when):''}): ${actions}`;
+  if(changes&&(changes.added.length||changes.updated.length)){
+    const parts=[];
+    if(changes.added.length)parts.push(`${nameList(changes.added)} now ${changes.added.length===1?'has':'have'} verified specs from our database`);
+    if(changes.updated.length)parts.push(`the verified specs for ${nameList(changes.updated)} were updated`);
+    msg=`<strong>New data for your saved system.<\/strong> Since ${when?esc(when):'you saved it'}, ${parts.join(', and ')}. Load it and re-run the analysis to see what changed. ${actions}`;
+  }
+  bar.innerHTML=savedBarBox(msg);
+  bar.style.display='block';
+}
+async function checkSavedSystem(){
+  if(/^\/s\//.test(location.pathname))return;   // a shared link takes priority
+  const d=readSaved();if(!d)return;
+  renderSavedBar(d,null);
+  try{
+    const r=await fetch('/.netlify/functions/analyze-specs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components:d.components,checkOnly:true})});
+    const now=await r.json();
+    if(!r.ok||!now.dbOk)return;
+    const added=[],updated=[];
+    d.components.forEach(c=>{
+      const was=d.dbNames&&d.dbNames[c.name],is=now.dbNames&&now.dbNames[c.name];
+      if(!is)return;
+      if(!was)added.push(c.name);
+      else if(was!==is||(d.specHashes&&d.specHashes[c.name])!==(now.specHashes&&now.specHashes[c.name]))updated.push(c.name);
+    });
+    if(readSaved())renderSavedBar(d,{added,updated});
+  }catch(e){}
+}
+checkSavedSystem();
+// After each analysis: offer to remember the system, or refresh the saved copy
+// when the visitor is working on the system they saved.
+function updateRememberUI(state){
+  const el=document.getElementById('remember-out');
+  if(!_lastSnapshot||!_lastSnapshot.dbOk){el.style.display='none';return;}
+  const saved=readSaved();
+  if(state==='saved'||state==='refreshed'){
+    el.innerHTML=(state==='saved'?'Saved on this device. ':'Your saved system was updated. ')+`We&rsquo;ll tell you here when its components get new or corrected specs. <a href="#" onclick="forgetSystem();return false;">Forget it<\/a>`;
+  }else{
+    el.innerHTML=`<button class="btn btn-outline-blue btn-sm" onclick="rememberSystem()">${saved?'Remember this system instead':'Remember this system on this device'}<\/button><div style="margin-top:6px;">Stored only in this browser. When you come back, we&rsquo;ll tell you if any of its components have new or corrected specs.${saved?' This replaces the system saved on '+esc(savedDate(saved))+'.':''}<\/div>`;
+  }
+  el.style.display='block';
+}
+// The analyzed system counts as the saved one when at least half the components
+// (of the larger list) have the same names, so adding or swapping a part keeps
+// the saved copy current but a different system never silently replaces it.
+function isSavedSystem(saved){
+  if(!saved)return false;
+  const norm=x=>x.toLowerCase().replace(/[^a-z0-9]/g,'');
+  const have=new Set(saved.components.map(c=>norm(c.name)));
+  const shared=components.filter(c=>have.has(norm(c.name))).length;
+  return shared*2>=Math.max(components.length,saved.components.length);
+}
+function afterAnalysis(specsData){
+  _lastSnapshot={dbNames:specsData.dbNames||{},specHashes:specsData.specHashes||{},dbOk:specsData.dbOk!==false};
+  if(_lastSnapshot.dbOk&&isSavedSystem(readSaved())){writeSaved(snapshotSystem());updateRememberUI('refreshed');renderSavedBar(null,null);}
+  else updateRememberUI();
+}
 function generateDiagram(){
   updateDiagram();
   document.getElementById('diagram-panel').style.display='block';
@@ -1718,6 +1832,7 @@ async function analyze(){
     const combined=`${aiText(summaryData,'COMPATIBILITY SUMMARY')}\n\nCOMPONENT SPECS\n${specsText}\n\n${aiText(chainData,'SIGNAL CHAIN ANALYSIS')}`;
     window._lastSpecsText=specsText;
     renderResults(combined);
+    afterAnalysis(specsData);
   }catch(e){
     rEl.innerHTML=`<div class="placeholder-box"><div class="placeholder-icon">⚠️</div><p>${esc(e.message||'Analysis failed. Please try again.')}</p></div>`;
     errEl.textContent=e.message;

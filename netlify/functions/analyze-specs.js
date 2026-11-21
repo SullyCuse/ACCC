@@ -1,5 +1,6 @@
 const https = require("https");
 const { URL } = require("url");
+const crypto = require("crypto");
 const { logEvent } = require("./_lib/log-event");
 
 // Module-level cache — persists across warm Lambda invocations (~5 min TTL)
@@ -190,7 +191,10 @@ exports.handler = async (event) => {
   const headers = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
 
   try {
-    const { components, visit } = JSON.parse(event.body);
+    const { components, visit, checkOnly } = JSON.parse(event.body);
+    if (checkOnly && (!Array.isArray(components) || components.length > 30 || components.some(c => !c || typeof c.name !== "string"))) {
+      return { statusCode: 400, headers, body: JSON.stringify({ error: "Bad system" }) };
+    }
     const typeLabels = {
       amp:"Amplifier", preamp:"Preamplifier", speakers:"Speakers", dac:"DAC",
       turntable:"Turntable", tonearm:"Tonearm", cartridge:"Cartridge",
@@ -220,6 +224,7 @@ exports.handler = async (event) => {
     const verifiedAs = {};      // typed name -> DB row name, only when they differ
     const dbNames = {};         // typed name -> DB row name, for every match (usage log)
     const sourceUrls = {};      // typed name -> DB row's product page, when it has one
+    const specHashes = {};      // typed name -> short fingerprint of the DB specs (saved-system alerts)
     const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
     components.forEach((c, i) => {
@@ -228,12 +233,20 @@ exports.handler = async (event) => {
         correctedBlocks.push(formatCorrectedSpecs(c.name, typeLabels[c.type] || c.type, corrected.specs));
         verifiedNames.push(c.name);
         dbNames[c.name] = corrected.name;
+        specHashes[c.name] = crypto.createHash("sha1").update(JSON.stringify(corrected.specs)).digest("hex").slice(0, 12);
         if (norm(corrected.name) !== norm(c.name)) verifiedAs[c.name] = corrected.name;
         if (_sources[corrected.name]) sourceUrls[c.name] = _sources[corrected.name];
       } else {
         needsAI.push({ index: i, component: c });
       }
     });
+
+    // Saved-system check: report which components match the DB and a fingerprint
+    // of their specs, so the page can tell a returning visitor what changed.
+    // No AI call and no usage-log row, since nothing is being analyzed.
+    if (checkOnly) {
+      return { statusCode: 200, headers, body: JSON.stringify({ dbOk, dbNames, specHashes }) };
+    }
 
     let aiText = "";
     if (needsAI.length > 0) {
@@ -314,7 +327,7 @@ All ${needsAI.length} components required. No summary text. No questions.`;
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames, verifiedAs, sourceUrls })
+      body: JSON.stringify({ text: (dbBanner + correctedSection + aiText).trim(), verified: verifiedNames, verifiedAs, sourceUrls, dbNames, specHashes, dbOk })
     };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
