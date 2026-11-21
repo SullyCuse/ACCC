@@ -1614,7 +1614,6 @@ function rememberSystem(){
   if(!_lastSnapshot||!_lastSnapshot.dbOk)return;
   if(!writeSaved(snapshotSystem())){document.getElementById('remember-out').textContent='This browser would not let us save the system.';return;}
   updateRememberUI('saved');
-  renderSavedBar(readSaved(),null);
 }
 function forgetSystem(){
   try{localStorage.removeItem(SAVED_KEY);}catch(e){}
@@ -1643,7 +1642,7 @@ function renderSavedBar(d,changes){
   if(changes&&(changes.added.length||changes.updated.length)){
     const parts=[];
     if(changes.added.length)parts.push(`${nameList(changes.added)} now ${changes.added.length===1?'has':'have'} verified specs from our database`);
-    if(changes.updated.length)parts.push(`the verified specs for ${nameList(changes.updated)} ${changes.updated.length===1?'was':'were'} updated`);
+    if(changes.updated.length)parts.push(`the verified specs for ${nameList(changes.updated)} were updated`);
     msg=`<strong>New data for your saved system.<\/strong> Since ${when?esc(when):'you saved it'}, ${parts.join(', and ')}. Load it and re-run the analysis to see what changed. ${actions}`;
   }
   bar.innerHTML=savedBarBox(msg);
