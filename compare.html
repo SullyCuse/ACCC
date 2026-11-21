@@ -676,7 +676,7 @@ async function runComparison(){
   if(st.items.length<2||st.running)return;
   st.running=true;
   show('sec-results');
-  document.getElementById('lbl-res').textContent=`${st.catLbl} · Comparison — provided by audiochainhifi.com driven by Claude AI`;
+  document.getElementById('lbl-res').textContent=`${st.catLbl} · Comparison — provided by audiochainhifi.com`;
   document.getElementById('load-names').textContent=st.items.map(i=>i.name).join(' · ');
   document.getElementById('loading').style.display='block';
   document.getElementById('tbl-zone').innerHTML='';
