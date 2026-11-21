@@ -2,7 +2,7 @@
 // compatibility checker. Fetches /.netlify/functions/recent-additions and
 // renders the latest brand batches into a container.
 //
-//   RecentAdditions.render(el, { canPick(model) -> bool, onPick(model) })
+//   RecentAdditions.render(el, { canPick(model) -> bool, onPick(model), pickLabel })
 //
 // When canPick/onPick are given, matching model names become buttons.
 (function () {
@@ -52,7 +52,7 @@
           if (canPick(m)) {
             anyPick = true;
             models.push(m);
-            return '<button type="button" class="ra-model" data-ra="' + (models.length - 1) + '" title="Compare ' + esc(m.name) + '">' + esc(m.model) + '</button>';
+            return '<button type="button" class="ra-model" data-ra="' + (models.length - 1) + '" title="' + esc(opts.pickLabel || 'Compare') + ' ' + esc(m.name) + '">' + esc(m.model) + '</button>';
           }
           return '<span class="ra-model">' + esc(m.model) + '</span>';
         }).join('');
