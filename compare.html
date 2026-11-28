@@ -587,6 +587,10 @@ const CATS=[
   {id:'cartridge',    lbl:'Phono Cartridge',       sub:'MM, MC & moving iron'},
   {id:'dac',          lbl:'DAC',                   sub:'Digital-to-analog converters'},
   {id:'streamer',     lbl:'Streamer',              sub:'Network audio players'},
+  {id:'cd_player',    lbl:'CD Player',             sub:'CD players & transports'},
+  {id:'tuner',        lbl:'Tuner',                 sub:'FM/AM & digital radio'},
+  {id:'cassette_deck',lbl:'Cassette Deck',         sub:'Tape decks & dubbing decks'},
+  {id:'recorder',     lbl:'Recorder',              sub:'Reel-to-reel, DAT, MD & CD-R'},
   {id:'speakers',     lbl:'Loudspeakers',          sub:'Floorstanders & monitors'},
   {id:'headphones',   lbl:'Headphones',            sub:'Over-ear, IEM & planar'},
 ];
@@ -599,7 +603,7 @@ buildGrid();
 bindEvents();
 // Recently added specs: database categories that map to a Compare category
 // are clickable and open that category with the model already added.
-const RA_CAT={amplifier:'amplifier',dac:'dac',speaker:'speakers',subwoofer:'speakers',headphone:'headphones','phono-stage':'phono_preamp',turntable:'turntable',tonearm:'tonearm',cartridge:'cartridge',streamer:'streamer'};
+const RA_CAT={amplifier:'amplifier',dac:'dac',speaker:'speakers',subwoofer:'speakers',headphone:'headphones','phono-stage':'phono_preamp',turntable:'turntable',tonearm:'tonearm',cartridge:'cartridge',streamer:'streamer','cd-player':'cd_player',tuner:'tuner','cassette-deck':'cassette_deck',recorder:'recorder'};
 if(window.RecentAdditions)RecentAdditions.render(document.getElementById('recent-additions'),{
   hint:'Click a model to start a comparison with it.',
   canPick:m=>!!RA_CAT[m.category],
