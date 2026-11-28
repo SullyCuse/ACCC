@@ -1958,9 +1958,10 @@ function buildDiagram(){
     edges=seq.slice(1).map((c,i)=>({from:seq[i].id,to:c.id,type:null}));
   }
 
-  // Drop any connection that closes a loop so the rows are well defined
-  const st={},dag=[];
-  const dfs=id=>{st[id]=1;edges.filter(e=>e.from===id).forEach(e=>{if(st[e.to]===1)return;dag.push(e);if(!st[e.to])dfs(e.to);});st[id]=2;};
+  // Set aside any connection that closes a loop (e.g. amp rec-out -> tape deck -> amp) so the
+  // rows are well defined; those are drawn afterwards as return lines down the right-hand side
+  const st={},dag=[],back=[];
+  const dfs=id=>{st[id]=1;edges.filter(e=>e.from===id).forEach(e=>{if(st[e.to]===1){back.push(e);return;}dag.push(e);if(!st[e.to])dfs(e.to);});st[id]=2;};
   nodes.forEach(c=>{if(!st[c.id])dfs(c.id);});
   edges=dag;
 
@@ -2107,14 +2108,15 @@ function buildDiagram(){
     const rt=s.filter(q=>q.x2>q.x1).sort((a,b)=>b.x1-a.x1),lt=s.filter(q=>q.x2<q.x1).sort((a,b)=>a.x1-b.x1);
     return[...rt,...lt];
   });
-  const rowY=[20];
+  const backIn=L=>back.some(e=>layer[e.to]===L);
+  const rowY=[20+(backIn(0)?8:0)];
   const multi=L=>rows[L-1].some(v=>v.c&&v.outs.length>1);
-  for(let L=1;L<nL;L++)rowY[L]=rowY[L-1]+rowH[L-1]+40+(multi(L)?16:0)+(jogs[L].length?10+(jogs[L].length-1)*6:0);
+  for(let L=1;L<nL;L++)rowY[L]=rowY[L-1]+rowH[L-1]+40+(multi(L)?16:0)+(jogs[L].length?10+(jogs[L].length-1)*6:0)+(backIn(L)?10:0);
   const bot=v=>rowY[v.L]+(v.c?v.h:rowH[v.L]);
 
   let p='',b='',x0=Infinity,x1=-Infinity;
   const ext=(a,z)=>{x0=Math.min(x0,a);x1=Math.max(x1,z);};
-  const used=[...new Set(edges.map(e=>e.type))];
+  const used=[...new Set([...edges,...back].map(e=>e.type))];
   const mk=t=>'da'+used.indexOf(t);
   const ARR=`<defs>${used.map(t=>`<marker id="${mk(t)}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="${PAIR(t)?2.2:4}" markerHeight="${PAIR(t)?2.2:4}" orient="auto-start-reverse"><path d="M2 2L8 5L2 8" fill="none" stroke="${colOf(t)}" stroke-width="1.5" stroke-linecap="round"/></marker>`).join('')}</defs>`;
   const SHORT={'RCA single-ended':'RCA','XLR balanced':'XLR','USB':'USB','Optical / TOSLINK':'OPT','AES/EBU':'AES/EBU','I2S':'I2S','Speaker wire':'SPK WIRE','Phono / RCA':'PHONO RCA','Coaxial S/PDIF':'COAX','HDMI / I2S':'HDMI','Bluetooth':'BT','Wi-Fi / Network':'NET'};
@@ -2138,6 +2140,17 @@ function buildDiagram(){
       if(q.v.c)pill(q.x1,rb+20+(q.v.outs.length>1?(q.v.outs.indexOf(q)%2)*16:0),t);
     }));
   }
+  // Return lines: out of the bottom of the source, along the gap under its row to a lane
+  // beyond the right-most box, up (or down) the lane, along the gap above the target's
+  // row, then down into the target's top edge near its right corner
+  const lane0=Math.max(...rows.flatMap(r=>r.map(v=>v.x+v.w/2)))+28;
+  back.forEach((e,i)=>{
+    const f=V.get(e.from),t=V.get(e.to),lx=lane0+i*14,off=14+i*8;
+    const fx=f.x+f.w/2-off,tx=t.x+t.w/2-off,ys=bot(f)+8+i*4,top=rowY[t.L],yt=top-8-i*4;
+    p+=wire([[fx,bot(f)],[fx,ys],[lx,ys],[lx,yt],[tx,yt],[tx,top]],e.type,true);
+    pill(lx,(ys+yt)/2,e.type);
+    ext(fx,lx+(((SHORT[e.type]||'').length*6+12)/2));
+  });
 
   const cw=x1-x0+20,VW=Math.max(W,cw),tx=(VW-cw)/2+10-x0;
   let H=rowY[nL-1]+rowH[nL-1]+20;
