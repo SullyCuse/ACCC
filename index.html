@@ -1457,7 +1457,8 @@ function renderTypePills(){
     b.setAttribute('aria-checked',o.value===sel.value?'true':'false');
     b.textContent=o.textContent.replace(/\s*\(.*\)$/,'');
     b.disabled=o.disabled;if(o.disabled)b.title=o.textContent;
-    b.onclick=()=>{sel.value=o.value;updateHint();document.getElementById('comp-name').focus();};
+    // Focus the model field on desktop only: on touch screens it would pop up the keyboard over the pills
+    b.onclick=()=>{sel.value=o.value;updateHint();if(!matchMedia('(pointer: coarse)').matches)document.getElementById('comp-name').focus();};
     wrap.appendChild(b);
   });
 }
