@@ -259,9 +259,12 @@ exports.handler = async (event) => {
       return { statusCode: 200, headers, body: JSON.stringify({ dbOk, dbNames, specHashes }) };
     }
 
-    let aiText = "";
-    if (needsAI.length > 0) {
-      const numberedList = needsAI.map(({ index, component: c }) => {
+    // Look up AI specs in parallel batches of at most AI_BATCH components. One call
+    // for a large system (14 non-DB parts) ran into max_tokens at ~21-24 s; batches
+    // keep each call short and its output within the cap.
+    const AI_BATCH = 5;
+    const lookup = async (batch) => {
+      const numberedList = batch.map(({ index, component: c }) => {
         return `${index + 1}. [${typeLabels[c.type] || c.type}] ${c.name}\n   Required: ${specFields[c.type] || "key specs"}`;
       }).join("\n");
 
@@ -279,7 +282,7 @@ Output one block per component:
 **[Name] ([Type])**
 - spec: value
 
-All ${needsAI.length} components required. No summary text. No questions.`;
+All ${batch.length} components required. No summary text. No questions.`;
 
       const body = JSON.stringify({
         model: "claude-sonnet-5-5",
@@ -310,14 +313,24 @@ All ${needsAI.length} components required. No summary text. No questions.`;
       const parsed = JSON.parse(raw);
       if (parsed.error) throw new Error(parsed.error.message);
       if (parsed.stop_reason === "refusal") throw new Error("The AI declined to look up these components. Please try again.");
-      aiText = (parsed.content || []).filter(b => b.type === "text").map(b => b.text).join("");
+      let text = (parsed.content || []).filter(b => b.type === "text").map(b => b.text).join("");
       // Markdown output does not fail when cut off, so flag it instead of
       // passing silently truncated specs on to analyze-chain/analyze-summary.
       if (parsed.stop_reason === "max_tokens") {
         console.error("analyze-specs truncated at max_tokens", JSON.stringify(parsed.usage));
-        aiText += "\n\n**Spec Lookup Incomplete**\n" +
+        text += "\n\n**Spec Lookup Incomplete**\n" +
           "⚠ The AI spec lookup was cut off, so the last component above may be missing specs. Re-run the analysis for complete specs.";
       }
+      return text;
+    };
+
+    let aiText = "";
+    if (needsAI.length > 0) {
+      // Spread evenly (e.g. 14 -> 5/5/4, 6 -> 3/3) so no batch is much slower than the rest.
+      const n = Math.ceil(needsAI.length / AI_BATCH), size = Math.ceil(needsAI.length / n);
+      const batches = [];
+      for (let i = 0; i < needsAI.length; i += size) batches.push(needsAI.slice(i, i + size));
+      aiText = (await Promise.all(batches.map(lookup))).map(t => t.trim()).join("\n\n");
     }
 
     const correctedSection = correctedBlocks.length > 0
