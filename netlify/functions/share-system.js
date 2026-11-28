@@ -7,7 +7,7 @@ const { URL } = require("url");
 
 const headers = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
 
-const TYPES = ["amp", "preamp", "speakers", "dac", "turntable", "tonearm", "cartridge", "phonopre", "streamer", "cdplayer", "cables", "headphones", "other"];
+const TYPES = ["amp", "preamp", "speakers", "dac", "turntable", "tonearm", "cartridge", "phonopre", "streamer", "cdplayer", "cassettedeck", "recorder", "cables", "headphones", "other"];
 const CONN_TYPES = ["XLR balanced", "RCA single-ended", "USB", "Optical / TOSLINK", "AES/EBU", "I2S", "Speaker wire", "Phono / RCA", "Coaxial S/PDIF", "HDMI / I2S", "Bluetooth", "Wi-Fi / Network"];
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 

@@ -13,7 +13,7 @@ exports.handler = async (event) => {
     const typeLabels = {
       amp:"Amplifier",preamp:"Preamplifier",speakers:"Speakers",dac:"DAC",
       turntable:"Turntable",tonearm:"Tonearm",cartridge:"Cartridge",
-      phonopre:"Phono Preamp",streamer:"Streamer",cdplayer:"CD Player",
+      phonopre:"Phono Preamp",streamer:"Streamer",cdplayer:"CD Player",cassettedeck:"Cassette Deck",recorder:"Recorder",
       cables:"Cables",headphones:"Headphones",other:"Other"
     };
     const componentList = components.map(c=>`- [${typeLabels[c.type]||c.type}] ${c.name}`).join("\n");
