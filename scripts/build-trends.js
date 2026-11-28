@@ -21,6 +21,7 @@ const CATEGORY_LABELS = {
   amp: "Amplifiers", amplifier: "Amplifiers", preamp: "Preamplifiers", speakers: "Speakers", speaker: "Speakers",
   dac: "DACs", turntable: "Turntables", tonearm: "Tonearms", cartridge: "Cartridges", phonopre: "Phono stages",
   "phono-stage": "Phono stages", streamer: "Streamers", cdplayer: "CD players", "cd-player": "CD players",
+  cassettedeck: "Cassette decks", "cassette-deck": "Cassette decks", recorder: "Recorders",
   cables: "Cables", headphones: "Headphones", headphone: "Headphones", subwoofer: "Subwoofers",
   equalizer: "Equalizers", power: "Power", network: "Network", tuner: "Tuners", clock: "Clocks", other: "Other"
 };

@@ -206,7 +206,7 @@ exports.handler = async (event) => {
     const typeLabels = {
       amp:"Amplifier", preamp:"Preamplifier", speakers:"Speakers", dac:"DAC",
       turntable:"Turntable", tonearm:"Tonearm", cartridge:"Cartridge",
-      phonopre:"Phono Preamp", streamer:"Streamer", cdplayer:"CD Player",
+      phonopre:"Phono Preamp", streamer:"Streamer", cdplayer:"CD Player", cassettedeck:"Cassette Deck", recorder:"Recorder",
       cables:"Cables", headphones:"Headphones", other:"Other"
     };
     const specFields = {
@@ -220,6 +220,8 @@ exports.handler = async (event) => {
       phonopre:  "MM gain (dB), MC gain (dB), MM input impedance (kΩ), MC input impedance (Ω), output voltage",
       streamer:  "digital outputs, supported formats",
       cdplayer:  "output voltage (Vrms), digital outputs, THD",
+      cassettedeck: "heads, noise reduction, frequency response by tape type, wow & flutter (%), S/N ratio (dB), line output level, input sensitivity",
+      recorder:  "format (reel-to-reel/DAT/MiniDisc/8-track), frequency response, wow & flutter (%), S/N ratio (dB), line input/output levels, digital inputs/outputs",
       headphones:"impedance (Ω), sensitivity (dB/mW)",
       cables:    "type, impedance",
       other:     "key electrical specs"

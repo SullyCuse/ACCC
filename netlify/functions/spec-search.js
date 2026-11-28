@@ -12,7 +12,7 @@ const headers = { "Content-Type": "application/json", "Access-Control-Allow-Orig
 const CATEGORIES = ["amplifier", "speaker", "dac", "tuner", "cd-player", "subwoofer", "turntable", "streamer",
   "cassette-deck", "cartridge", "phono-stage", "headphone", "equalizer", "recorder", "tonearm", "power", "network", "clock"];
 // Log categories in the analyzer's names where one exists, so Trends merges them.
-const LOG_CAT = { amplifier: "amp", speaker: "speakers", subwoofer: "speakers", "phono-stage": "phonopre", "cd-player": "cdplayer" };
+const LOG_CAT = { amplifier: "amp", speaker: "speakers", subwoofer: "speakers", "phono-stage": "phonopre", "cd-player": "cdplayer", "cassette-deck": "cassettedeck" };
 
 function fetchRows(path, timeoutMs) {
   return new Promise((resolve, reject) => {
