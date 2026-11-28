@@ -19,3 +19,9 @@ npm-debug.log*
 .idea/
 .DS_Store
 Thumbs.db
+
+# Local-only files (never publish: the site serves the repo root)
+images/Pictures/
+*.photoslibrary/
+*.zip
+.claude/launch.json
