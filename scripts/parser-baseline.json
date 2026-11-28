@@ -8910,9 +8910,30 @@
   }
  },
  "phono": {
-  "Ampapa A1": null,
-  "Douk Audio H5": null,
-  "Douk Audio P7": null,
+  "Ampapa A1": {
+   "hasMC": false,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "Douk Audio H5": {
+   "hasMC": false,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "Douk Audio P7": {
+   "hasMC": false,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
   "Douk Audio T12": {
    "hasMC": true,
    "mmGain": [
@@ -8925,7 +8946,14 @@
    "mcLoadMin": 150,
    "mcLoadMax": 150
   },
-  "Douk Audio T13": null,
+  "Douk Audio T13": {
+   "hasMC": false,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
   "Douk Audio T14-EQ": {
    "hasMC": true,
    "mmGain": [],
@@ -8934,7 +8962,14 @@
    "mcLoadMin": null,
    "mcLoadMax": null
   },
-  "Douk Audio T3 PRO": null,
+  "Douk Audio T3 PRO": {
+   "hasMC": false,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
   "Douk Audio T4 PLUS": {
    "hasMC": true,
    "mmGain": [],
@@ -8943,19 +8978,40 @@
    "mcLoadMin": null,
    "mcLoadMax": null
   },
-  "Douk Audio T4 PRO": null,
+  "Douk Audio T4 PRO": {
+   "hasMC": false,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
   "Douk Audio T9": {
    "hasMC": true,
    "mmGain": [],
    "mcGain": [],
    "mmLoad": 47000,
+   "mcLoadMin": 330,
+   "mcLoadMax": 330
+  },
+  "Fosi Audio Box X1": {
+   "hasMC": false,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
    "mcLoadMin": null,
    "mcLoadMax": null
   },
-  "Fosi Audio Box X1": null,
   "Fosi Audio Box X2": null,
   "Fosi Audio Box X3": null,
-  "Fosi Audio Box X4": null,
+  "Fosi Audio Box X4": {
+   "hasMC": false,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
   "Fosi Audio Box X5": {
    "hasMC": true,
    "mmGain": [],
@@ -8981,9 +9037,9 @@
     58,
     64
    ],
-   "mmLoad": null,
-   "mcLoadMin": 47000,
-   "mcLoadMax": 47000
+   "mmLoad": 47000,
+   "mcLoadMin": 25,
+   "mcLoadMax": 1000
   },
   "NAD PP 2e": {
    "hasMC": true,
@@ -9009,7 +9065,14 @@
    "mcLoadMin": 100,
    "mcLoadMax": 100
   },
-  "Nobsound T3": null,
+  "Nobsound T3": {
+   "hasMC": false,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
   "Parasound JC3": {
    "hasMC": true,
    "mmGain": [
@@ -9095,8 +9158,8 @@
    "mmGain": [],
    "mcGain": [],
    "mmLoad": null,
-   "mcLoadMin": null,
-   "mcLoadMax": null
+   "mcLoadMin": 10,
+   "mcLoadMax": 470
   },
   "Pioneer PP-402": {
    "hasMC": true,
@@ -9122,8 +9185,8 @@
     60
    ],
    "mmLoad": 47000,
-   "mcLoadMin": null,
-   "mcLoadMax": null
+   "mcLoadMin": 38,
+   "mcLoadMax": 200
   },
   "Schiit Skoll F": {
    "hasMC": true,
@@ -9140,8 +9203,8 @@
     70
    ],
    "mmLoad": 47000,
-   "mcLoadMin": null,
-   "mcLoadMax": null
+   "mcLoadMin": 10,
+   "mcLoadMax": 150
   },
   "SMSL PH-1": {
    "hasMC": false,
