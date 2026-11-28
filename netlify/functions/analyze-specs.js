@@ -2,6 +2,7 @@ const https = require("https");
 const { URL } = require("url");
 const crypto = require("crypto");
 const { logEvent } = require("./_lib/log-event");
+const CONN_TYPES = require("./_lib/conn-types");
 
 // Module-level cache — persists across warm Lambda invocations (~5 min TTL)
 let _cache = null;
@@ -199,7 +200,7 @@ exports.handler = async (event) => {
   const headers = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
 
   try {
-    const { components, visit, checkOnly } = JSON.parse(event.body);
+    const { components, connections, visit, checkOnly } = JSON.parse(event.body);
     if (checkOnly && (!Array.isArray(components) || components.length > 30 || components.some(c => !c || typeof c.name !== "string"))) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Bad system" }) };
     }
@@ -330,9 +331,16 @@ All ${needsAI.length} components required. No summary text. No questions.`;
       "**Specs Database Temporarily Unavailable**\n" +
       "⚠ The component specs below are AI estimates and were not verified against the corrections database. Try again in a moment for verified values.\n\n";
 
+    // Cable types as {from, to, type}, ends as positions in the logged components
+    // (logEvent keeps the first 30). Only the select's fixed types; never free text.
+    const pos = new Map(components.map((c, i) => [c.id, i]));
+    const connLog = (Array.isArray(connections) ? connections : [])
+      .map(c => ({ from: pos.get(c && c.fromId), to: pos.get(c && c.toId), type: c && c.type }))
+      .filter(c => c.from < 30 && c.to < 30 && CONN_TYPES.includes(c.type))
+      .slice(0, 60);
     await logEvent(event, "analyzer", components.map(c => ({
       name: c.name, category: c.type, verified: verifiedNames.includes(c.name), db_name: dbNames[c.name] || null
-    })), null, visit);
+    })), null, visit, connLog);
 
     return {
       statusCode: 200,

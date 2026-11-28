@@ -19,7 +19,7 @@ function cleanVisit(v) {
   return typeof v === "string" && /^[a-f0-9]{16}$/.test(v) ? v : null;
 }
 
-function logEvent(event, source, components, action, visit) {
+function logEvent(event, source, components, action, visit, connections) {
   return new Promise((resolve) => {
     try {
       const body = JSON.stringify({
@@ -32,7 +32,9 @@ function logEvent(event, source, components, action, visit) {
           db_name: c.db_name ? String(c.db_name).slice(0, 120) : null
         })),
         country: countryOf(event),
-        visit_id: cleanVisit(visit)
+        visit_id: cleanVisit(visit),
+        // Analyzer only: [{from, to, type}], from/to = positions in `components`.
+        connections: Array.isArray(connections) ? connections : null
       });
       const { hostname } = new URL(process.env.SUPABASE_URL);
       const req = https.request({
