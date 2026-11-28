@@ -1,6 +1,10 @@
 [build]
   publish = "."
   functions = "netlify/functions"
+  # The site publishes the repo root, so delete repo-only files from the deploy
+  # (Netlify serves files in any letter case, which redirect rules can't fully block).
+  # netlify/ must stay for the function build; _redirects 404s /netlify/* instead.
+  command = "rm -rf scripts _rescued CLAUDE.md README.md package.json"
 
 [[headers]]
   for = "/*"
