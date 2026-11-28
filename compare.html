@@ -622,7 +622,7 @@ function buildGrid(){
   const g=document.getElementById('cat-grid');
   g.innerHTML=CATS.map((c,i)=>`
     <button class="cat-card" data-cat="${c.id}" aria-label="Compare ${c.lbl}">
-      <span class="cat-n">0${i+1}</span>
+      <span class="cat-n">${String(i+1).padStart(2,"0")}</span>
       <div class="cat-lbl">${h(c.lbl)}</div>
       <div class="cat-sub">${h(c.sub)}</div>
       <div class="cat-go">Compare →</div>
