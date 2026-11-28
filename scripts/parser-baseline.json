@@ -1,0 +1,9190 @@
+{
+ "amp": {
+  "Advance Paris A-i130 Nova": {
+   "power8": 125,
+   "power4": 186
+  },
+  "Advance Paris A-i190 Nova": {
+   "power8": 185,
+   "power4": 276
+  },
+  "Advance Paris A10": {
+   "power8": 130,
+   "power4": 190
+  },
+  "Advance Paris A10 APEX": {
+   "power8": 120,
+   "power4": 183
+  },
+  "Advance Paris A12": {
+   "power8": 190,
+   "power4": 280
+  },
+  "Advance Paris A12 APEX": {
+   "power8": 180,
+   "power4": 272
+  },
+  "Advance Paris A8 APEX": {
+   "power8": 70,
+   "power4": 100
+  },
+  "Advance Paris MyConnect 250": {
+   "power8": 190,
+   "power4": 280
+  },
+  "Advance Paris PlayStream A7": {
+   "power8": 115,
+   "power4": null
+  },
+  "Advance Paris X-A160 EVO": {
+   "power8": 160,
+   "power4": 240
+  },
+  "Advance Paris X-A220 EVO": {
+   "power8": 220,
+   "power4": 350
+  },
+  "Advance Paris X-i75": {
+   "power8": 75,
+   "power4": 110
+  },
+  "Advance Paris X-P700": null,
+  "Ampapa D1": {
+   "power8": null,
+   "power4": 300
+  },
+  "Ampapa H1": null,
+  "Burson Funk": {
+   "power8": 35,
+   "power4": 45
+  },
+  "Burson Soloist GT4": null,
+  "Burson Soloist Prime": null,
+  "Burson Soloist Stellar": null,
+  "Burson Soloist Voyager": null,
+  "Burson Timekeeper GT4": {
+   "power8": 100,
+   "power4": 200
+  },
+  "Burson Timekeeper Voyager": {
+   "power8": 100,
+   "power4": 200
+  },
+  "Denon AVC-A110": {
+   "power8": 150,
+   "power4": null
+  },
+  "Denon AVR-A10H": {
+   "power8": 150,
+   "power4": null
+  },
+  "Denon AVR-A1H": {
+   "power8": 150,
+   "power4": null
+  },
+  "Denon AVR-S270BT": {
+   "power8": 70,
+   "power4": null
+  },
+  "Denon AVR-S540BT": {
+   "power8": 70,
+   "power4": null
+  },
+  "Denon AVR-S570BT": {
+   "power8": 70,
+   "power4": null
+  },
+  "Denon AVR-S670H": {
+   "power8": 75,
+   "power4": null
+  },
+  "Denon AVR-S750H": {
+   "power8": 75,
+   "power4": null
+  },
+  "Denon AVR-S770H": {
+   "power8": 75,
+   "power4": null
+  },
+  "Denon AVR-S960H": {
+   "power8": 90,
+   "power4": null
+  },
+  "Denon AVR-S970H": {
+   "power8": 90,
+   "power4": null
+  },
+  "Denon AVR-S980H": {
+   "power8": 90,
+   "power4": null
+  },
+  "Denon AVR-X1800H": {
+   "power8": 80,
+   "power4": null
+  },
+  "Denon AVR-X2700H": {
+   "power8": 95,
+   "power4": null
+  },
+  "Denon AVR-X2800H": {
+   "power8": 95,
+   "power4": null
+  },
+  "Denon AVR-X2900H": {
+   "power8": 95,
+   "power4": null
+  },
+  "Denon AVR-X3700H": {
+   "power8": 105,
+   "power4": null
+  },
+  "Denon AVR-X3800H": {
+   "power8": 105,
+   "power4": null
+  },
+  "Denon AVR-X4700H": {
+   "power8": 125,
+   "power4": null
+  },
+  "Denon AVR-X4800H": {
+   "power8": 125,
+   "power4": null
+  },
+  "Denon AVR-X6800H": {
+   "power8": 140,
+   "power4": null
+  },
+  "Denon AVR-X8500H": {
+   "power8": 150,
+   "power4": null
+  },
+  "Denon AVR-X8500HA": {
+   "power8": 150,
+   "power4": null
+  },
+  "Denon DRA-800H": {
+   "power8": 100,
+   "power4": null
+  },
+  "Denon DRA-900H": {
+   "power8": 100,
+   "power4": null
+  },
+  "Denon HEOS Amplifier HS2": {
+   "power8": 70,
+   "power4": null
+  },
+  "Denon HEOS Drive HS2": null,
+  "Denon Home Amp": null,
+  "Denon PMA-1700NE": {
+   "power8": 70,
+   "power4": 140
+  },
+  "Denon PMA-3000NE": {
+   "power8": 80,
+   "power4": 160
+  },
+  "Denon PMA-50": {
+   "power8": 30,
+   "power4": 50
+  },
+  "Denon PMA-60": {
+   "power8": 25,
+   "power4": 50
+  },
+  "Denon PMA-600NE": {
+   "power8": 45,
+   "power4": 70
+  },
+  "Denon PMA-800NE": {
+   "power8": 50,
+   "power4": 85
+  },
+  "Denon PMA-900HNE": {
+   "power8": 50,
+   "power4": 85
+  },
+  "Douk Audio A100": null,
+  "Douk Audio A5": {
+   "power8": null,
+   "power4": 300
+  },
+  "Douk Audio A5 PRO": {
+   "power8": null,
+   "power4": 300
+  },
+  "Douk Audio BSA-600": {
+   "power8": null,
+   "power4": 115
+  },
+  "Douk Audio E2": null,
+  "Douk Audio F3": null,
+  "Douk Audio F5": null,
+  "Douk Audio G100": {
+   "power8": null,
+   "power4": 50
+  },
+  "Douk Audio G4": null,
+  "Douk Audio G7": {
+   "power8": null,
+   "power4": 300
+  },
+  "Douk Audio L1": null,
+  "Douk Audio L1MINI": null,
+  "Douk Audio M08E": null,
+  "Douk Audio M1 MAX": null,
+  "Douk Audio M1 PRO": {
+   "power8": null,
+   "power4": 160
+  },
+  "Douk Audio M1FM": {
+   "power8": null,
+   "power4": 50
+  },
+  "Douk Audio M4": {
+   "power8": null,
+   "power4": 50
+  },
+  "Douk Audio M5.1PRO": {
+   "power8": null,
+   "power4": 60
+  },
+  "Douk Audio NS-13G MAX": {
+   "power8": null,
+   "power4": 300
+  },
+  "Douk Audio NS-14G PRO": null,
+  "Douk Audio P2": null,
+  "Douk Audio P2-FM": null,
+  "Douk Audio P5": null,
+  "Douk Audio P6 MINI": null,
+  "Douk Audio ST-01 PLUS": {
+   "power8": null,
+   "power4": 300
+  },
+  "Douk Audio ST-01 PRO": {
+   "power8": null,
+   "power4": 100
+  },
+  "Douk Audio T6PRO": null,
+  "Douk Audio TUBE-T5C": null,
+  "Douk Audio U10": null,
+  "Douk Audio U3": null,
+  "Douk Audio U3 PRO": null,
+  "Douk Audio U5": null,
+  "Douk Audio U5PRO": null,
+  "Douk Audio VOL-4": null,
+  "Douk Audio X1": {
+   "power8": null,
+   "power4": 160
+  },
+  "Emotiva A2mini": {
+   "power8": 50,
+   "power4": 90
+  },
+  "Emotiva basX A2": {
+   "power8": 160,
+   "power4": 250
+  },
+  "Emotiva basX A2m": {
+   "power8": 50,
+   "power4": 90
+  },
+  "Emotiva basX A3": {
+   "power8": 150,
+   "power4": 250
+  },
+  "Emotiva basX A4": {
+   "power8": 100,
+   "power4": 175
+  },
+  "Emotiva basX A5": {
+   "power8": 120,
+   "power4": 175
+  },
+  "Emotiva basX A7": {
+   "power8": 120,
+   "power4": 175
+  },
+  "Focal Astral 16": null,
+  "Fosi Audio BT10A": null,
+  "Fosi Audio BT20A": null,
+  "Fosi Audio BT20A MAX": {
+   "power8": null,
+   "power4": 180
+  },
+  "Fosi Audio BT20A Pro": null,
+  "Fosi Audio BT30D": null,
+  "Fosi Audio BT30D Pro": null,
+  "Fosi Audio GR70": null,
+  "Fosi Audio HT4S": null,
+  "Fosi Audio M01-BT": {
+   "power8": 110,
+   "power4": 220
+  },
+  "Fosi Audio M03": {
+   "power8": 100,
+   "power4": 200
+  },
+  "Fosi Audio M04": null,
+  "Fosi Audio MC101": {
+   "power8": null,
+   "power4": 100
+  },
+  "Fosi Audio MC331": {
+   "power8": null,
+   "power4": 105
+  },
+  "Fosi Audio MC351": {
+   "power8": null,
+   "power4": 350
+  },
+  "Fosi Audio P2": null,
+  "Fosi Audio P3": null,
+  "Fosi Audio P4": null,
+  "Fosi Audio PH04": null,
+  "Fosi Audio PH05": null,
+  "Fosi Audio SK01": null,
+  "Fosi Audio T10": null,
+  "Fosi Audio T20": null,
+  "Fosi Audio T20X": {
+   "power8": null,
+   "power4": 100
+  },
+  "Fosi Audio T20X MKII": {
+   "power8": null,
+   "power4": 150
+  },
+  "Fosi Audio TB10A": {
+   "power8": null,
+   "power4": 100
+  },
+  "Fosi Audio TB10D": null,
+  "Fosi Audio TDA7498E": null,
+  "Fosi Audio TP-02": null,
+  "Fosi Audio V1.0B": {
+   "power8": null,
+   "power4": 50
+  },
+  "Fosi Audio V1.0G": {
+   "power8": null,
+   "power4": 50
+  },
+  "Fosi Audio V3": null,
+  "Fosi Audio V3 Mono": {
+   "power8": null,
+   "power4": 240
+  },
+  "Fosi Audio ZA3": {
+   "power8": null,
+   "power4": 180
+  },
+  "Fosi Audio ZP3": null,
+  "Geshelli Archel 3S Pro": null,
+  "Geshelli Erish 3 Pro": null,
+  "Geshelli G-BLOK": {
+   "power8": 200,
+   "power4": 300
+  },
+  "Kenwood 700C": null,
+  "Kenwood 700M": {
+   "power8": 170,
+   "power4": null
+  },
+  "Kenwood AF-10": null,
+  "Kenwood AF-20": null,
+  "Kenwood AF-22": null,
+  "Kenwood D-3300A": {
+   "power8": 150,
+   "power4": 220
+  },
+  "Kenwood DA-1100EX": {
+   "power8": 125,
+   "power4": null
+  },
+  "Kenwood DA-9010": {
+   "power8": 105,
+   "power4": null
+  },
+  "Kenwood HF-11": null,
+  "Kenwood K270": {
+   "power8": null,
+   "power4": 40
+  },
+  "Kenwood KA-1000": {
+   "power8": 100,
+   "power4": null
+  },
+  "Kenwood KA-1001G": {
+   "power8": 40,
+   "power4": 75
+  },
+  "Kenwood KA-1080": {
+   "power8": 50,
+   "power4": 105
+  },
+  "Kenwood KA-1100": {
+   "power8": 130,
+   "power4": 180
+  },
+  "Kenwood KA-1100D": {
+   "power8": 150,
+   "power4": 220
+  },
+  "Kenwood KA-1100SD": {
+   "power8": 150,
+   "power4": 210
+  },
+  "Kenwood KA-1200": {
+   "power8": 12,
+   "power4": 14
+  },
+  "Kenwood KA-1400": {
+   "power8": 14,
+   "power4": 20
+  },
+  "Kenwood KA-2002": {
+   "power8": 13,
+   "power4": 15
+  },
+  "Kenwood KA-2002A": {
+   "power8": 17,
+   "power4": 19
+  },
+  "Kenwood KA-2200": {
+   "power8": 150,
+   "power4": null
+  },
+  "Kenwood KA-2600": {
+   "power8": 24,
+   "power4": 33
+  },
+  "Kenwood KA-3004": {
+   "power8": 14,
+   "power4": 26
+  },
+  "Kenwood KA-3006": {
+   "power8": 21,
+   "power4": 37
+  },
+  "Kenwood KA-3020": {
+   "power8": 45,
+   "power4": null
+  },
+  "Kenwood KA-3042": {
+   "power8": 14,
+   "power4": 26
+  },
+  "Kenwood KA-3060R": {
+   "power8": 50,
+   "power4": null
+  },
+  "Kenwood KA-3080R": {
+   "power8": 60,
+   "power4": 130
+  },
+  "Kenwood KA-3300": {
+   "power8": 35,
+   "power4": 40
+  },
+  "Kenwood KA-4000": {
+   "power8": 40,
+   "power4": null
+  },
+  "Kenwood KA-4004": {
+   "power8": 18,
+   "power4": 36
+  },
+  "Kenwood KA-4040R": {
+   "power8": 60,
+   "power4": null
+  },
+  "Kenwood KA-4050R": {
+   "power8": 60,
+   "power4": null
+  },
+  "Kenwood KA-4060R": {
+   "power8": 60,
+   "power4": 70
+  },
+  "Kenwood KA-5002": {
+   "power8": 50,
+   "power4": 60
+  },
+  "Kenwood KA-5006": {
+   "power8": 34,
+   "power4": 56
+  },
+  "Kenwood KA-5010": {
+   "power8": 80,
+   "power4": null
+  },
+  "Kenwood KA-5040R": {
+   "power8": 80,
+   "power4": null
+  },
+  "Kenwood KA-5500": {
+   "power8": 55,
+   "power4": null
+  },
+  "Kenwood KA-6000": {
+   "power8": 70,
+   "power4": null
+  },
+  "Kenwood KA-6004": {
+   "power8": 40,
+   "power4": 70
+  },
+  "Kenwood KA-7002": {
+   "power8": 70,
+   "power4": 80
+  },
+  "Kenwood KA-7006": {
+   "power8": 50,
+   "power4": 90
+  },
+  "Kenwood KA-7010": {
+   "power8": 100,
+   "power4": null
+  },
+  "Kenwood KA-7050R": {
+   "power8": 100,
+   "power4": null
+  },
+  "Kenwood KA-7090R": {
+   "power8": 85,
+   "power4": 110
+  },
+  "Kenwood KA-7100D": {
+   "power8": 60,
+   "power4": null
+  },
+  "Kenwood KA-7300": {
+   "power8": 65,
+   "power4": null
+  },
+  "Kenwood KA-7500": {
+   "power8": 80,
+   "power4": 110
+  },
+  "Kenwood KA-770": {
+   "power8": 100,
+   "power4": null
+  },
+  "Kenwood KA-800": {
+   "power8": 55,
+   "power4": null
+  },
+  "Kenwood KA-8004": {
+   "power8": 55,
+   "power4": 100
+  },
+  "Kenwood KA-8100": {
+   "power8": 60,
+   "power4": null
+  },
+  "Kenwood KA-8300": {
+   "power8": 80,
+   "power4": 110
+  },
+  "Kenwood KA-8700": {
+   "power8": 110,
+   "power4": 150
+  },
+  "Kenwood KA-880D": {
+   "power8": 100,
+   "power4": null
+  },
+  "Kenwood KA-880SD": {
+   "power8": 100,
+   "power4": null
+  },
+  "Kenwood KA-900": {
+   "power8": 80,
+   "power4": null
+  },
+  "Kenwood KA-9006": {
+   "power8": 70,
+   "power4": 110
+  },
+  "Kenwood KA-990": {
+   "power8": 105,
+   "power4": null
+  },
+  "Kenwood KA-9900": {
+   "power8": 150,
+   "power4": 180
+  },
+  "Kenwood KA-990D": {
+   "power8": 110,
+   "power4": 150
+  },
+  "Kenwood KA-990EX": {
+   "power8": 110,
+   "power4": null
+  },
+  "Kenwood KA-990SD": {
+   "power8": 105,
+   "power4": 150
+  },
+  "Kenwood KA-990V": {
+   "power8": 110,
+   "power4": 155
+  },
+  "Kenwood KA-S10": {
+   "power8": 12,
+   "power4": null
+  },
+  "Kenwood KA-V1000R": {
+   "power8": 80,
+   "power4": null
+  },
+  "Kenwood KA-V4000": null,
+  "Kenwood KA-V5000": null,
+  "Kenwood KA-V6000": null,
+  "Kenwood KA-V7000": null,
+  "Kenwood KA-V7700": null,
+  "Kenwood KAF-3010R": {
+   "power8": 65,
+   "power4": 85
+  },
+  "Kenwood KAF-5002": null,
+  "Kenwood KAF-7002": null,
+  "Kenwood KC-206": null,
+  "Kenwood KM-206": {
+   "power8": 150,
+   "power4": 130
+  },
+  "Kenwood KM-4002": {
+   "power8": 24,
+   "power4": 33
+  },
+  "Kenwood KR-100": {
+   "power8": 40,
+   "power4": 50
+  },
+  "Kenwood KR-170": {
+   "power8": 60,
+   "power4": 80
+  },
+  "Kenwood KR-2120": {
+   "power8": 12,
+   "power4": 13
+  },
+  "Kenwood KR-2120X": {
+   "power8": 12,
+   "power4": 13
+  },
+  "Kenwood KR-2170": null,
+  "Kenwood KR-2300": {
+   "power8": 17,
+   "power4": 22
+  },
+  "Kenwood KR-3130": {
+   "power8": 19,
+   "power4": 22
+  },
+  "Kenwood KR-3130X": {
+   "power8": 19,
+   "power4": 22
+  },
+  "Kenwood KR-3200": {
+   "power8": 18.5,
+   "power4": 24
+  },
+  "Kenwood KR-33": {
+   "power8": 12,
+   "power4": 13
+  },
+  "Kenwood KR-4140": {
+   "power8": 24,
+   "power4": 33
+  },
+  "Kenwood KR-4200": {
+   "power8": 26,
+   "power4": 32
+  },
+  "Kenwood KR-44": {
+   "power8": 19,
+   "power4": 20
+  },
+  "Kenwood KR-5080": null,
+  "Kenwood KR-5170": {
+   "power8": 30,
+   "power4": 40
+  },
+  "Kenwood KR-5340": {
+   "power8": 25,
+   "power4": null
+  },
+  "Kenwood KR-6170": {
+   "power8": 40,
+   "power4": 50
+  },
+  "Kenwood KR-6340": {
+   "power8": 40,
+   "power4": null
+  },
+  "Kenwood KR-7070": {
+   "power8": 90,
+   "power4": 110
+  },
+  "Kenwood KR-77": {
+   "power8": 24,
+   "power4": 33
+  },
+  "Kenwood KR-80": {
+   "power8": 27,
+   "power4": null
+  },
+  "Kenwood KR-V770": {
+   "power8": 100,
+   "power4": null
+  },
+  "Kenwood KR-V888D": {
+   "power8": null,
+   "power4": 120
+  },
+  "Kenwood KR-V990D": {
+   "power8": 120,
+   "power4": null
+  },
+  "Kenwood KR-V999D": {
+   "power8": null,
+   "power4": 150
+  },
+  "Kenwood KRF-V5551D": {
+   "power8": null,
+   "power4": 100
+  },
+  "Kenwood KRF-V7771D": {
+   "power8": null,
+   "power4": 120
+  },
+  "Kenwood L-01A": {
+   "power8": 100,
+   "power4": 160
+  },
+  "Kenwood L-02A": {
+   "power8": 170,
+   "power4": 250
+  },
+  "Kenwood L-03A": {
+   "power8": 150,
+   "power4": 200
+  },
+  "Kenwood L-05M": {
+   "power8": 100,
+   "power4": null
+  },
+  "Kenwood L-06M": {
+   "power8": 120,
+   "power4": 150
+  },
+  "Kenwood L-07C": null,
+  "Kenwood L-07CII": null,
+  "Kenwood L-07M": {
+   "power8": 150,
+   "power4": null
+  },
+  "Kenwood L-07MII": {
+   "power8": 150,
+   "power4": null
+  },
+  "Kenwood L-08C": null,
+  "Kenwood L-08M": {
+   "power8": 170,
+   "power4": 250
+  },
+  "Kenwood L-A1": {
+   "power8": 100,
+   "power4": null
+  },
+  "Kenwood M-6000": {
+   "power8": 70,
+   "power4": null
+  },
+  "Kenwood MA-5100": {
+   "power8": 18,
+   "power4": 20
+  },
+  "Kenwood MX-1000": {
+   "power8": 10,
+   "power4": null
+  },
+  "Kenwood PA-30": null,
+  "Kenwood Supreme1": null,
+  "Kenwood TPA-15": null,
+  "Kenwood TW-200": null,
+  "Kenwood TW-30": null,
+  "Kenwood TW-31": {
+   "power8": 13,
+   "power4": null
+  },
+  "Kenwood TW-360": {
+   "power8": 14,
+   "power4": null
+  },
+  "Kenwood TW-510": {
+   "power8": 20,
+   "power4": null
+  },
+  "Kenwood TW-61": {
+   "power8": 20,
+   "power4": null
+  },
+  "Kenwood TW-80A": null,
+  "Kenwood TW-80D": {
+   "power8": 35,
+   "power4": null
+  },
+  "Kenwood TW-880": null,
+  "Kenwood W-10": null,
+  "Kenwood W-25": null,
+  "Kenwood W-35": null,
+  "Kenwood W-36": null,
+  "Kenwood W-38": null,
+  "Kenwood W-41": null,
+  "Kenwood W-45A": null,
+  "Kenwood W-46": null,
+  "Kenwood W-50": null,
+  "Kenwood WX-110": null,
+  "Kenwood WX-111": null,
+  "Kenwood WX-320": null,
+  "Kenwood WX-330": null,
+  "Kenwood WX-400": null,
+  "Kenwood WX-700": null,
+  "Kenwood WX-800": null,
+  "Loxjie A30": {
+   "power8": 40,
+   "power4": 80
+  },
+  "Loxjie A40": {
+   "power8": 85,
+   "power4": 165
+  },
+  "Loxjie P20": null,
+  "McIntosh 20W 2": null,
+  "McIntosh 50W 2": null,
+  "McIntosh A116": null,
+  "McIntosh C100": null,
+  "McIntosh C1000": null,
+  "McIntosh C11": null,
+  "McIntosh C1100": null,
+  "McIntosh C12000": null,
+  "McIntosh C15": null,
+  "McIntosh C20": null,
+  "McIntosh C200": null,
+  "McIntosh C22 Mk I": null,
+  "McIntosh C22 Mk II": null,
+  "McIntosh C22 Mk III": null,
+  "McIntosh C22 Mk IV": null,
+  "McIntosh C22 Mk V": null,
+  "McIntosh C220": null,
+  "McIntosh C2200": null,
+  "McIntosh C2300": null,
+  "McIntosh C24": null,
+  "McIntosh C2500": null,
+  "McIntosh C26": null,
+  "McIntosh C2600": null,
+  "McIntosh C2700": null,
+  "McIntosh C28": null,
+  "McIntosh C2800": null,
+  "McIntosh C30": null,
+  "McIntosh C31V": null,
+  "McIntosh C32": null,
+  "McIntosh C33": null,
+  "McIntosh C34V": null,
+  "McIntosh C35": null,
+  "McIntosh C37": null,
+  "McIntosh C39": null,
+  "McIntosh C4": null,
+  "McIntosh C45": null,
+  "McIntosh C46": null,
+  "McIntosh C47": null,
+  "McIntosh C48": null,
+  "McIntosh C50": null,
+  "McIntosh C500": null,
+  "McIntosh C504": null,
+  "McIntosh C52": null,
+  "McIntosh C53": null,
+  "McIntosh C55": null,
+  "McIntosh C70AN": null,
+  "McIntosh C712": null,
+  "McIntosh CR106": null,
+  "McIntosh CS7500": null,
+  "McIntosh D100": null,
+  "McIntosh D1100": null,
+  "McIntosh D150": null,
+  "McIntosh MA12000": {
+   "power8": 350,
+   "power4": null
+  },
+  "McIntosh MA2275": {
+   "power8": 75,
+   "power4": null
+  },
+  "McIntosh MA230": null,
+  "McIntosh MA2375": null,
+  "McIntosh MA252": {
+   "power8": 100,
+   "power4": 160
+  },
+  "McIntosh MA352": {
+   "power8": 200,
+   "power4": 320
+  },
+  "McIntosh MA5100": null,
+  "McIntosh MA6100": null,
+  "McIntosh MA6300": {
+   "power8": 100,
+   "power4": 160
+  },
+  "McIntosh MA6400": null,
+  "McIntosh MA6450": {
+   "power8": null,
+   "power4": 100
+  },
+  "McIntosh MA6500": {
+   "power8": 120,
+   "power4": 200
+  },
+  "McIntosh MA6600": null,
+  "McIntosh MA6800": null,
+  "McIntosh MA6850": {
+   "power8": 150,
+   "power4": 150
+  },
+  "McIntosh MA7000": null,
+  "McIntosh MA7200": {
+   "power8": 200,
+   "power4": null
+  },
+  "McIntosh MA8950": {
+   "power8": 200,
+   "power4": null
+  },
+  "McIntosh MA9500": {
+   "power8": 300,
+   "power4": null
+  },
+  "McIntosh MAC1700": {
+   "power8": null,
+   "power4": 40
+  },
+  "McIntosh MAC1900": null,
+  "McIntosh MAC4100": null,
+  "McIntosh MC1.25KW": {
+   "power8": 1200,
+   "power4": 1200
+  },
+  "McIntosh MC100": null,
+  "McIntosh MC1000": null,
+  "McIntosh MC122": {
+   "power8": 80,
+   "power4": 120
+  },
+  "McIntosh MC12KW": {
+   "power8": 1200,
+   "power4": 1200
+  },
+  "McIntosh MC150": null,
+  "McIntosh MC152": {
+   "power8": 150,
+   "power4": 150
+  },
+  "McIntosh MC162": {
+   "power8": 160,
+   "power4": 500
+  },
+  "McIntosh MC2.1KW": {
+   "power8": 2000,
+   "power4": 2000
+  },
+  "McIntosh MC206": {
+   "power8": 120,
+   "power4": 200
+  },
+  "McIntosh MC207": {
+   "power8": null,
+   "power4": 200
+  },
+  "McIntosh MC2100": {
+   "power8": null,
+   "power4": 105
+  },
+  "McIntosh MC2105": null,
+  "McIntosh MC2120": null,
+  "McIntosh MC2125": null,
+  "McIntosh MC2150": null,
+  "McIntosh MC2152AN": {
+   "power8": 150,
+   "power4": 150
+  },
+  "McIntosh MC2155": null,
+  "McIntosh MC2200": null,
+  "McIntosh MC2205": null,
+  "McIntosh MC225": null,
+  "McIntosh MC2250": null,
+  "McIntosh MC2255": null,
+  "McIntosh MC2300": null,
+  "McIntosh MC240": null,
+  "McIntosh MC250": null,
+  "McIntosh MC2505": null,
+  "McIntosh MC252": {
+   "power8": 250,
+   "power4": 250
+  },
+  "McIntosh MC257": {
+   "power8": 250,
+   "power4": 250
+  },
+  "McIntosh MC2600": {
+   "power8": 1200,
+   "power4": 1200
+  },
+  "McIntosh MC275": {
+   "power8": 75,
+   "power4": 75
+  },
+  "McIntosh MC275 (original)": null,
+  "McIntosh MC275 Limited Edition": {
+   "power8": 75,
+   "power4": 75
+  },
+  "McIntosh MC275 Version 3": null,
+  "McIntosh MC275 Version 4": {
+   "power8": 75,
+   "power4": 75
+  },
+  "McIntosh MC275 Version 5": {
+   "power8": 75,
+   "power4": 75
+  },
+  "McIntosh MC30": null,
+  "McIntosh MC301": {
+   "power8": 300,
+   "power4": 300
+  },
+  "McIntosh MC302": {
+   "power8": 300,
+   "power4": 300
+  },
+  "McIntosh MC303": {
+   "power8": 300,
+   "power4": 300
+  },
+  "McIntosh MC312": {
+   "power8": 300,
+   "power4": 300
+  },
+  "McIntosh MC3500": null,
+  "McIntosh MC352": {
+   "power8": 350,
+   "power4": 350
+  },
+  "McIntosh MC40": null,
+  "McIntosh MC402": {
+   "power8": 400,
+   "power4": 400
+  },
+  "McIntosh MC4300V": null,
+  "McIntosh MC452": {
+   "power8": 450,
+   "power4": 450
+  },
+  "McIntosh MC462": {
+   "power8": 450,
+   "power4": 450
+  },
+  "McIntosh MC50": null,
+  "McIntosh MC500": {
+   "power8": null,
+   "power4": 1000
+  },
+  "McIntosh MC501": {
+   "power8": 500,
+   "power4": 500
+  },
+  "McIntosh MC502": null,
+  "McIntosh MC58": {
+   "power8": 30,
+   "power4": 50
+  },
+  "McIntosh MC60": null,
+  "McIntosh MC601": {
+   "power8": 600,
+   "power4": 600
+  },
+  "McIntosh MC602": {
+   "power8": 600,
+   "power4": 600
+  },
+  "McIntosh MC611": {
+   "power8": 600,
+   "power4": 600
+  },
+  "McIntosh MC7108": null,
+  "McIntosh MC7200": {
+   "power8": 200,
+   "power4": 300
+  },
+  "McIntosh MC75": {
+   "power8": 75,
+   "power4": 75
+  },
+  "McIntosh MC75 (original)": null,
+  "McIntosh MC75 Anniversary": {
+   "power8": 75,
+   "power4": 75
+  },
+  "McIntosh MHT300": {
+   "power8": 120,
+   "power4": 120
+  },
+  "McIntosh MI1250": {
+   "power8": 50,
+   "power4": 90
+  },
+  "McIntosh MI128": {
+   "power8": 120,
+   "power4": 150
+  },
+  "McIntosh MI254": {
+   "power8": 250,
+   "power4": 300
+  },
+  "McIntosh MI347": {
+   "power8": 250,
+   "power4": 300
+  },
+  "McIntosh MI60": null,
+  "McIntosh MSA5500": {
+   "power8": 100,
+   "power4": 160
+  },
+  "McIntosh MX110": null,
+  "McIntosh MX113": null,
+  "McIntosh MX114": null,
+  "McIntosh MX115": null,
+  "McIntosh MX117": null,
+  "McIntosh MX124": null,
+  "McIntosh MX200": null,
+  "McIntosh Stereotech 1200": {
+   "power8": 50,
+   "power4": null
+  },
+  "Monitor Audio IA125-4": {
+   "power8": 125,
+   "power4": 125
+  },
+  "Monitor Audio IA60-12": {
+   "power8": 45,
+   "power4": 60
+  },
+  "Monitor Audio IA60-4": {
+   "power8": 60,
+   "power4": 60
+  },
+  "Monitor Audio IA750-2": {
+   "power8": 400,
+   "power4": 750
+  },
+  "Monitor Audio IA750-4": {
+   "power8": 400,
+   "power4": 750
+  },
+  "Monolith M5100X": {
+   "power8": 90,
+   "power4": 135
+  },
+  "NAD 1000": null,
+  "NAD 1130": null,
+  "NAD 1300": null,
+  "NAD 1600": null,
+  "NAD 902": {
+   "power8": 30,
+   "power4": null
+  },
+  "NAD 910": null,
+  "NAD C 162": null,
+  "NAD C 165BEE": null,
+  "NAD C 245BEE": {
+   "power8": 35,
+   "power4": 35
+  },
+  "NAD C 268": null,
+  "NAD C 272": null,
+  "NAD C 275BEE": {
+   "power8": 150,
+   "power4": 150
+  },
+  "NAD C 298": null,
+  "NAD C 3030": {
+   "power8": 50,
+   "power4": 50
+  },
+  "NAD C 3030S": {
+   "power8": 50,
+   "power4": 50
+  },
+  "NAD C 3050": {
+   "power8": 100,
+   "power4": 100
+  },
+  "NAD C 3050 BluOS": {
+   "power8": 100,
+   "power4": 100
+  },
+  "NAD C 3050 LE": {
+   "power8": 100,
+   "power4": 100
+  },
+  "NAD C 316BEE": null,
+  "NAD C 316BEE V2": null,
+  "NAD C 316BEE With Phono": null,
+  "NAD C 326BEE": {
+   "power8": 50,
+   "power4": 50
+  },
+  "NAD C 328": null,
+  "NAD C 338": {
+   "power8": 50,
+   "power4": 50
+  },
+  "NAD C 356BEE": {
+   "power8": 80,
+   "power4": 80
+  },
+  "NAD C 368": {
+   "power8": 80,
+   "power4": 80
+  },
+  "NAD C 372": {
+   "power8": 150,
+   "power4": 150
+  },
+  "NAD C 375BEE": {
+   "power8": 150,
+   "power4": 150
+  },
+  "NAD C 375BEE DAC": {
+   "power8": 150,
+   "power4": 150
+  },
+  "NAD C 379": {
+   "power8": 80,
+   "power4": null
+  },
+  "NAD C 389": {
+   "power8": 130,
+   "power4": 130
+  },
+  "NAD C 390DD": {
+   "power8": 165,
+   "power4": null
+  },
+  "NAD C 399": {
+   "power8": 180,
+   "power4": 180
+  },
+  "NAD C 700": {
+   "power8": 80,
+   "power4": 80
+  },
+  "NAD C 700 V2": {
+   "power8": 80,
+   "power4": 80
+  },
+  "NAD C 715": {
+   "power8": 20,
+   "power4": 20
+  },
+  "NAD C 717": null,
+  "NAD C 720BEE": {
+   "power8": 50,
+   "power4": 65
+  },
+  "NAD C 725BEE": {
+   "power8": 50,
+   "power4": 61
+  },
+  "NAD CI 16-60 DSP": {
+   "power8": 60,
+   "power4": null
+  },
+  "NAD CI 16-60 DSP V2": {
+   "power8": 60,
+   "power4": null
+  },
+  "NAD CI 580": null,
+  "NAD CI 720": null,
+  "NAD CI 8-120 DSP": {
+   "power8": 120,
+   "power4": 135
+  },
+  "NAD CI 8-120 DSP v2": {
+   "power8": 120,
+   "power4": 135
+  },
+  "NAD CI 8-150 DSP": {
+   "power8": 150,
+   "power4": 180
+  },
+  "NAD CI 8-150 DSP v2": {
+   "power8": 150,
+   "power4": 180
+  },
+  "NAD CI 940": null,
+  "NAD CI 980": {
+   "power8": 155,
+   "power4": null
+  },
+  "NAD CI PA4-60": {
+   "power8": 60,
+   "power4": null
+  },
+  "NAD CI SA2-120": {
+   "power8": 60,
+   "power4": 60
+  },
+  "NAD D 3020": {
+   "power8": 30,
+   "power4": null
+  },
+  "NAD D 3020 V2": {
+   "power8": 30,
+   "power4": null
+  },
+  "NAD D 3045": null,
+  "NAD D 7050": {
+   "power8": null,
+   "power4": 50
+  },
+  "NAD L54": null,
+  "NAD L73": null,
+  "NAD M10": {
+   "power8": 100,
+   "power4": 100
+  },
+  "NAD M10 V2": {
+   "power8": 100,
+   "power4": 100
+  },
+  "NAD M10 V3": {
+   "power8": 100,
+   "power4": 100
+  },
+  "NAD M15": null,
+  "NAD M17": null,
+  "NAD M17 V2": null,
+  "NAD M17 V2i": null,
+  "NAD M2": {
+   "power8": 250,
+   "power4": 250
+  },
+  "NAD M22": {
+   "power8": 250,
+   "power4": 250
+  },
+  "NAD M22 V2": null,
+  "NAD M23": null,
+  "NAD M23 V2": null,
+  "NAD M25": {
+   "power8": 160,
+   "power4": 160
+  },
+  "NAD M27": {
+   "power8": 180,
+   "power4": 180
+  },
+  "NAD M28": {
+   "power8": 200,
+   "power4": 340
+  },
+  "NAD M3": {
+   "power8": 180,
+   "power4": 180
+  },
+  "NAD M32": {
+   "power8": 180,
+   "power4": 180
+  },
+  "NAD M33": {
+   "power8": 210,
+   "power4": null
+  },
+  "NAD M33 V2": {
+   "power8": 210,
+   "power4": null
+  },
+  "NAD T 175 HD": null,
+  "NAD T 187": null,
+  "NAD T 747": null,
+  "NAD T 748": null,
+  "NAD T 748 v2": null,
+  "NAD T 754": null,
+  "NAD T 755": {
+   "power8": 80,
+   "power4": 80
+  },
+  "NAD T 757": null,
+  "NAD T 758": null,
+  "NAD T 758 V3": null,
+  "NAD T 758 V3i": null,
+  "NAD T 763": null,
+  "NAD T 765": {
+   "power8": 80,
+   "power4": 80
+  },
+  "NAD T 773": null,
+  "NAD T 775": {
+   "power8": 100,
+   "power4": 100
+  },
+  "NAD T 777": null,
+  "NAD T 777 V3": null,
+  "NAD T 778": null,
+  "NAD T 785": {
+   "power8": 120,
+   "power4": 120
+  },
+  "NAD T 787": null,
+  "NAD T 973": {
+   "power8": 140,
+   "power4": 140
+  },
+  "NAD T 975": {
+   "power8": 140,
+   "power4": 140
+  },
+  "NAD T 977": {
+   "power8": 140,
+   "power4": 140
+  },
+  "NAD VISO FIVE": null,
+  "NAD VISO TWO": null,
+  "Nobsound AV-525": {
+   "power8": 70,
+   "power4": 100
+  },
+  "Nobsound DA3": {
+   "power8": 25,
+   "power4": 35
+  },
+  "Nobsound DA7": {
+   "power8": 8,
+   "power4": 12
+  },
+  "Nobsound F2": {
+   "power8": 9,
+   "power4": null
+  },
+  "Nobsound G2": null,
+  "Nobsound G2 PRO": null,
+  "Nobsound G3": null,
+  "Nobsound M10": null,
+  "Nobsound M5.1": null,
+  "Nobsound NS-01G MAX": null,
+  "Nobsound NS-01G PRO": null,
+  "Nobsound NS-02G PRO": {
+   "power8": 30,
+   "power4": 42
+  },
+  "Nobsound NS-03G SUB": null,
+  "Nobsound NS-04G PRO": null,
+  "Nobsound NS-06G": null,
+  "Nobsound NS-10G": null,
+  "Nobsound NS-10G PRO": null,
+  "Nobsound NS-10P": null,
+  "Nobsound NS-13G": {
+   "power8": null,
+   "power4": 100
+  },
+  "Nobsound NS-14G": null,
+  "Nobsound NS-15G": {
+   "power8": null,
+   "power4": 100
+  },
+  "Nobsound NS-20G": null,
+  "Nobsound NS-21G": null,
+  "Nobsound P10": null,
+  "Nobsound P10 PRO": null,
+  "Nobsound P32": null,
+  "Nobsound Q10": null,
+  "Nobsound TA-21": null,
+  "Nobsound TONE": {
+   "power8": null,
+   "power4": 50
+  },
+  "Nobsound TUBE-T4C": null,
+  "Nobsound V1-XLR": null,
+  "Nobsound VOL-3": null,
+  "Onkyo A-50": {
+   "power8": 110,
+   "power4": 180
+  },
+  "Onkyo A-5VL": {
+   "power8": 40,
+   "power4": 80
+  },
+  "Onkyo A-9010": {
+   "power8": 44,
+   "power4": 70
+  },
+  "Onkyo A-9050": {
+   "power8": 75,
+   "power4": 65
+  },
+  "Onkyo A-9070": {
+   "power8": 75,
+   "power4": null
+  },
+  "Onkyo A-9110": {
+   "power8": 30,
+   "power4": null
+  },
+  "Onkyo A-9150": {
+   "power8": 30,
+   "power4": 60
+  },
+  "Onkyo HT-R2295": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo HT-R290": null,
+  "Onkyo HT-R380": null,
+  "Onkyo HT-R390": null,
+  "Onkyo HT-R391": null,
+  "Onkyo HT-R393": null,
+  "Onkyo HT-R395": null,
+  "Onkyo HT-R494": {
+   "power8": 65,
+   "power4": null
+  },
+  "Onkyo HT-R590": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo HT-R591": {
+   "power8": null,
+   "power4": 120
+  },
+  "Onkyo HT-R592": {
+   "power8": null,
+   "power4": 120
+  },
+  "Onkyo HT-R593": {
+   "power8": 65,
+   "power4": null
+  },
+  "Onkyo HT-R640": null,
+  "Onkyo HT-R690": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo HT-R693": {
+   "power8": 95,
+   "power4": null
+  },
+  "Onkyo HT-R695": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo HT-R758": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo HT-R791": {
+   "power8": null,
+   "power4": 120
+  },
+  "Onkyo HT-R990": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo HT-R993": null,
+  "Onkyo HT-RC270": {
+   "power8": 110,
+   "power4": null
+  },
+  "Onkyo HT-RC330": {
+   "power8": 60,
+   "power4": null
+  },
+  "Onkyo HT-RC360": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo HT-RC370": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo HT-RC430": {
+   "power8": 60,
+   "power4": null
+  },
+  "Onkyo HT-RC440": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo HT-RC460": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo HT-RC470": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo HT-RC550": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo HT-RC560": {
+   "power8": 95,
+   "power4": null
+  },
+  "Onkyo M-5000R": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo M-5010": {
+   "power8": 75,
+   "power4": 65
+  },
+  "Onkyo M-80": {
+   "power8": 130,
+   "power4": 200
+  },
+  "Onkyo Muse Y-40": {
+   "power8": 75,
+   "power4": 150
+  },
+  "Onkyo Muse Y-50": {
+   "power8": 125,
+   "power4": 250
+  },
+  "Onkyo P-80": null,
+  "Onkyo PA-MC5500": {
+   "power8": 175,
+   "power4": null
+  },
+  "Onkyo PA-MC5501": {
+   "power8": 175,
+   "power4": null
+  },
+  "Onkyo PR-5507": null,
+  "Onkyo PR-SC5530": null,
+  "Onkyo TX-8020": {
+   "power8": 50,
+   "power4": null
+  },
+  "Onkyo TX-8050": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-8140": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-8160": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-8220": null,
+  "Onkyo TX-8255": {
+   "power8": null,
+   "power4": 90
+  },
+  "Onkyo TX-8260": {
+   "power8": 70,
+   "power4": null
+  },
+  "Onkyo TX-8270": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-8470": {
+   "power8": 110,
+   "power4": null
+  },
+  "Onkyo TX-NR1008": {
+   "power8": 145,
+   "power4": null
+  },
+  "Onkyo TX-NR1009": {
+   "power8": 135,
+   "power4": null
+  },
+  "Onkyo TX-NR1010": {
+   "power8": 140,
+   "power4": null
+  },
+  "Onkyo TX-NR1030": {
+   "power8": 135,
+   "power4": null
+  },
+  "Onkyo TX-NR3007": {
+   "power8": 160,
+   "power4": null
+  },
+  "Onkyo TX-NR3008": {
+   "power8": 160,
+   "power4": null
+  },
+  "Onkyo TX-NR3009": {
+   "power8": 160,
+   "power4": null
+  },
+  "Onkyo TX-NR3010": {
+   "power8": 145,
+   "power4": null
+  },
+  "Onkyo TX-NR3030": {
+   "power8": 135,
+   "power4": null
+  },
+  "Onkyo TX-NR414": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-NR5008": {
+   "power8": 175,
+   "power4": null
+  },
+  "Onkyo TX-NR5009": {
+   "power8": 175,
+   "power4": null
+  },
+  "Onkyo TX-NR5010": {
+   "power8": 145,
+   "power4": null
+  },
+  "Onkyo TX-NR509": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-NR5100": null,
+  "Onkyo TX-NR515": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-NR525": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-NR535": {
+   "power8": 65,
+   "power4": null
+  },
+  "Onkyo TX-NR545": {
+   "power8": 65,
+   "power4": null
+  },
+  "Onkyo TX-NR555": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-NR575": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-NR585": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-NR595": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-NR6050": {
+   "power8": 90,
+   "power4": null
+  },
+  "Onkyo TX-NR609": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR6100": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR616": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR626": {
+   "power8": 95,
+   "power4": null
+  },
+  "Onkyo TX-NR636": {
+   "power8": 95,
+   "power4": null
+  },
+  "Onkyo TX-NR646": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR656": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR676": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR686": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR696": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR708": {
+   "power8": 120,
+   "power4": null
+  },
+  "Onkyo TX-NR709": {
+   "power8": 110,
+   "power4": null
+  },
+  "Onkyo TX-NR7100": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR717": {
+   "power8": 110,
+   "power4": null
+  },
+  "Onkyo TX-NR727": {
+   "power8": 110,
+   "power4": null
+  },
+  "Onkyo TX-NR737": {
+   "power8": 110,
+   "power4": null
+  },
+  "Onkyo TX-NR747": {
+   "power8": 110,
+   "power4": null
+  },
+  "Onkyo TX-NR757": {
+   "power8": 110,
+   "power4": null
+  },
+  "Onkyo TX-NR777": {
+   "power8": 110,
+   "power4": null
+  },
+  "Onkyo TX-NR787": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR797": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR807": {
+   "power8": 145,
+   "power4": null
+  },
+  "Onkyo TX-NR808": {
+   "power8": 145,
+   "power4": null
+  },
+  "Onkyo TX-NR809": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-NR818": {
+   "power8": 135,
+   "power4": null
+  },
+  "Onkyo TX-NR828": {
+   "power8": 130,
+   "power4": null
+  },
+  "Onkyo TX-NR838": {
+   "power8": 130,
+   "power4": null
+  },
+  "Onkyo TX-NR905": {
+   "power8": 170,
+   "power4": null
+  },
+  "Onkyo TX-NR906": {
+   "power8": 175,
+   "power4": null
+  },
+  "Onkyo TX-NR929": {
+   "power8": 135,
+   "power4": null
+  },
+  "Onkyo TX-RZ1100": {
+   "power8": 140,
+   "power4": 320
+  },
+  "Onkyo TX-RZ3100": {
+   "power8": 140,
+   "power4": 320
+  },
+  "Onkyo TX-RZ50": {
+   "power8": 120,
+   "power4": null
+  },
+  "Onkyo TX-RZ620": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-RZ630": {
+   "power8": 90,
+   "power4": null
+  },
+  "Onkyo TX-RZ70": {
+   "power8": 140,
+   "power4": null
+  },
+  "Onkyo TX-RZ720": {
+   "power8": 110,
+   "power4": null
+  },
+  "Onkyo TX-RZ730": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-RZ740": {
+   "power8": 100,
+   "power4": null
+  },
+  "Onkyo TX-RZ800": {
+   "power8": 135,
+   "power4": null
+  },
+  "Onkyo TX-RZ820": {
+   "power8": 130,
+   "power4": null
+  },
+  "Onkyo TX-RZ830": {
+   "power8": 120,
+   "power4": null
+  },
+  "Onkyo TX-RZ840": {
+   "power8": 120,
+   "power4": null
+  },
+  "Onkyo TX-RZ900": {
+   "power8": 140,
+   "power4": null
+  },
+  "Onkyo TX-RZ920": {
+   "power8": 135,
+   "power4": null
+  },
+  "Onkyo TX-SR308": {
+   "power8": 65,
+   "power4": null
+  },
+  "Onkyo TX-SR309": {
+   "power8": 65,
+   "power4": null
+  },
+  "Onkyo TX-SR3100": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-SR313": {
+   "power8": 65,
+   "power4": null
+  },
+  "Onkyo TX-SR333": null,
+  "Onkyo TX-SR343": {
+   "power8": 65,
+   "power4": null
+  },
+  "Onkyo TX-SR373": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-SR383": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-SR393": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-SR444": {
+   "power8": 65,
+   "power4": null
+  },
+  "Onkyo TX-SR494": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-SR508": {
+   "power8": 80,
+   "power4": null
+  },
+  "Onkyo TX-SR607": {
+   "power8": 105,
+   "power4": null
+  },
+  "Onkyo TX-SR608": {
+   "power8": 100,
+   "power4": null
+  },
+  "Parasound 2125 v.2": {
+   "power8": 150,
+   "power4": 225
+  },
+  "Parasound 275": {
+   "power8": 75,
+   "power4": 120
+  },
+  "Parasound 275 v.2": {
+   "power8": 90,
+   "power4": 150
+  },
+  "Parasound AVC2500u": null,
+  "Parasound Halo A21": {
+   "power8": 250,
+   "power4": 400
+  },
+  "Parasound Halo A21+": {
+   "power8": 300,
+   "power4": 500
+  },
+  "Parasound Halo A23": {
+   "power8": 125,
+   "power4": 225
+  },
+  "Parasound Halo A23+": {
+   "power8": 160,
+   "power4": 240
+  },
+  "Parasound Halo A31": {
+   "power8": 250,
+   "power4": 400
+  },
+  "Parasound Halo A51": {
+   "power8": 250,
+   "power4": 400
+  },
+  "Parasound Halo A52": {
+   "power8": 125,
+   "power4": 225
+  },
+  "Parasound Halo A52+": {
+   "power8": 225,
+   "power4": 350
+  },
+  "Parasound Halo C1": null,
+  "Parasound Halo C2": null,
+  "Parasound Halo Integrated": {
+   "power8": 160,
+   "power4": 240
+  },
+  "Parasound Halo JC5": {
+   "power8": 400,
+   "power4": 600
+  },
+  "Parasound Halo P3": null,
+  "Parasound Halo P5": null,
+  "Parasound Halo P6": null,
+  "Parasound Halo P7": null,
+  "Parasound HCA1000A": {
+   "power8": 125,
+   "power4": 200
+  },
+  "Parasound HCA1201A": {
+   "power8": 150,
+   "power4": 240
+  },
+  "Parasound HCA1203A": {
+   "power8": 140,
+   "power4": 200
+  },
+  "Parasound HCA1205A": {
+   "power8": 140,
+   "power4": 200
+  },
+  "Parasound HCA1206": {
+   "power8": 135,
+   "power4": 200
+  },
+  "Parasound HCA1500A": {
+   "power8": 205,
+   "power4": 315
+  },
+  "Parasound HCA2003A": {
+   "power8": 220,
+   "power4": 300
+  },
+  "Parasound HCA2200II": {
+   "power8": 250,
+   "power4": 385
+  },
+  "Parasound HCA2205A": {
+   "power8": 220,
+   "power4": 300
+  },
+  "Parasound HCA3500": {
+   "power8": 350,
+   "power4": 500
+  },
+  "Parasound HCA750A": {
+   "power8": 75,
+   "power4": 125
+  },
+  "Parasound HCA806A": {
+   "power8": 80,
+   "power4": 120
+  },
+  "Parasound HCA855A": {
+   "power8": 85,
+   "power4": 125
+  },
+  "Parasound HINT 6": {
+   "power8": 160,
+   "power4": 240
+  },
+  "Parasound JC1": {
+   "power8": 400,
+   "power4": 800
+  },
+  "Parasound JC1+": {
+   "power8": 450,
+   "power4": 850
+  },
+  "Parasound JC2": null,
+  "Parasound JC2 BP": null,
+  "Parasound JCM250": {
+   "power8": 250,
+   "power4": 450
+  },
+  "Parasound NC 200Int": {
+   "power8": 110,
+   "power4": 110
+  },
+  "Parasound NC 200Pre": null,
+  "Parasound NC 2100": null,
+  "Parasound NC 2125": {
+   "power8": 125,
+   "power4": 200
+  },
+  "Parasound NC 2250": {
+   "power8": 250,
+   "power4": 385
+  },
+  "Parasound NC 2250 v.2": {
+   "power8": 275,
+   "power4": 400
+  },
+  "Parasound NC 5125": {
+   "power8": 125,
+   "power4": 185
+  },
+  "Parasound NC 5250": {
+   "power8": 250,
+   "power4": 385
+  },
+  "Parasound NC 7100": null,
+  "Parasound PDD1500": null,
+  "Parasound PDD1550": null,
+  "Parasound PHP850": null,
+  "Parasound PLD1100": null,
+  "Parasound PLD2000": null,
+  "Parasound PSP1500": null,
+  "Parasound Zamp v2": {
+   "power8": 30,
+   "power4": 45
+  },
+  "Parasound Zamp v3": {
+   "power8": 45,
+   "power4": 60
+  },
+  "Parasound ZoneMaster ZM12": {
+   "power8": 120,
+   "power4": 150
+  },
+  "Parasound ZoneMaster ZM2": {
+   "power8": 120,
+   "power4": 150
+  },
+  "Parasound ZoneMaster ZM2350": {
+   "power8": 350,
+   "power4": 600
+  },
+  "Parasound ZoneMaster ZM250": {
+   "power8": 50,
+   "power4": 90
+  },
+  "Parasound ZoneMaster ZM4": {
+   "power8": 120,
+   "power4": 150
+  },
+  "Parasound ZoneMaster ZM450": {
+   "power8": 50,
+   "power4": 90
+  },
+  "Parasound zPre2": null,
+  "Parasound zPre3": null,
+  "Pass 60-int": {
+   "power8": null,
+   "power4": 120
+  },
+  "Pioneer A-0012": {
+   "power8": 120,
+   "power4": null
+  },
+  "Pioneer A-004": {
+   "power8": 60,
+   "power4": null
+  },
+  "Pioneer A-006": {
+   "power8": 70,
+   "power4": null
+  },
+  "Pioneer A-008": {
+   "power8": 80,
+   "power4": null
+  },
+  "Pioneer A-01": {
+   "power8": 35,
+   "power4": 40
+  },
+  "Pioneer A-04": {
+   "power8": 45,
+   "power4": 90
+  },
+  "Pioneer A-05": {
+   "power8": 45,
+   "power4": 90
+  },
+  "Pioneer A-07": {
+   "power8": 50,
+   "power4": 100
+  },
+  "Pioneer A-09": {
+   "power8": 35,
+   "power4": 70
+  },
+  "Pioneer A-100": {
+   "power8": 100,
+   "power4": null
+  },
+  "Pioneer A-120": {
+   "power8": 120,
+   "power4": null
+  },
+  "Pioneer A-120D": {
+   "power8": 100,
+   "power4": 160
+  },
+  "Pioneer A-150": {
+   "power8": 150,
+   "power4": null
+  },
+  "Pioneer A-150D": {
+   "power8": 120,
+   "power4": 200
+  },
+  "Pioneer A-200": {
+   "power8": 200,
+   "power4": null
+  },
+  "Pioneer A-2030": {
+   "power8": 50,
+   "power4": null
+  },
+  "Pioneer A-2050": {
+   "power8": 35,
+   "power4": null
+  },
+  "Pioneer A-380": {
+   "power8": 40,
+   "power4": null
+  },
+  "Pioneer A-3R": {
+   "power8": 40,
+   "power4": 90
+  },
+  "Pioneer A-470": {
+   "power8": 50,
+   "power4": null
+  },
+  "Pioneer A-500": {
+   "power8": 80,
+   "power4": null
+  },
+  "Pioneer A-505": {
+   "power8": 85,
+   "power4": null
+  },
+  "Pioneer A-50DV": {
+   "power8": 70,
+   "power4": 110
+  },
+  "Pioneer A-515V": {
+   "power8": 70,
+   "power4": 110
+  },
+  "Pioneer A-535": {
+   "power8": 60,
+   "power4": 95
+  },
+  "Pioneer A-570": {
+   "power8": 70,
+   "power4": null
+  },
+  "Pioneer A-580": {
+   "power8": 70,
+   "power4": null
+  },
+  "Pioneer A-616": {
+   "power8": 90,
+   "power4": 120
+  },
+  "Pioneer A-636": {
+   "power8": 90,
+   "power4": 120
+  },
+  "Pioneer A-700": {
+   "power8": 90,
+   "power4": null
+  },
+  "Pioneer A-717": {
+   "power8": 100,
+   "power4": 150
+  },
+  "Pioneer A-717V": {
+   "power8": 100,
+   "power4": 150
+  },
+  "Pioneer A-780": {
+   "power8": 70,
+   "power4": null
+  },
+  "Pioneer A-838": {
+   "power8": 120,
+   "power4": 180
+  },
+  "Pioneer A-8600X": {
+   "power8": 65,
+   "power4": null
+  },
+  "Pioneer A-8800X": {
+   "power8": 75,
+   "power4": null
+  },
+  "Pioneer A-900": {
+   "power8": 110,
+   "power4": null
+  },
+  "Pioneer A-90D": {
+   "power8": 120,
+   "power4": 180
+  },
+  "Pioneer A-980": {
+   "power8": 90,
+   "power4": null
+  },
+  "Pioneer A-D1": {
+   "power8": 35,
+   "power4": 45
+  },
+  "Pioneer A-D3": {
+   "power8": 45,
+   "power4": 70
+  },
+  "Pioneer A-D5": {
+   "power8": 60,
+   "power4": 110
+  },
+  "Pioneer A-D5a": {
+   "power8": 60,
+   "power4": 110
+  },
+  "Pioneer A-D5a-PM": {
+   "power8": 60,
+   "power4": 110
+  },
+  "Pioneer A-D5X": {
+   "power8": 60,
+   "power4": 110
+  },
+  "Pioneer A-UK1": {
+   "power8": 35,
+   "power4": 40
+  },
+  "Pioneer A-UK3": {
+   "power8": 30,
+   "power4": 60
+  },
+  "Pioneer A-UK3II": {
+   "power8": 30,
+   "power4": 60
+  },
+  "Pioneer A-V1200": {
+   "power8": 80,
+   "power4": 120
+  },
+  "Pioneer C-1500": null,
+  "Pioneer C-21": null,
+  "Pioneer C-70": null,
+  "Pioneer C-73": null,
+  "Pioneer C-77": null,
+  "Pioneer C-90": null,
+  "Pioneer C-90a": null,
+  "Pioneer C-AX10": null,
+  "Pioneer C-Z1": null,
+  "Pioneer C-Z1a": null,
+  "Pioneer Exclusive C10": null,
+  "Pioneer Exclusive C3": null,
+  "Pioneer Exclusive C3a": null,
+  "Pioneer Exclusive C5": null,
+  "Pioneer Exclusive C7": null,
+  "Pioneer Exclusive M10": {
+   "power8": 100,
+   "power4": 150
+  },
+  "Pioneer Exclusive M3": {
+   "power8": 150,
+   "power4": null
+  },
+  "Pioneer Exclusive M4": {
+   "power8": 50,
+   "power4": null
+  },
+  "Pioneer Exclusive M4a": {
+   "power8": 50,
+   "power4": null
+  },
+  "Pioneer Exclusive M5": {
+   "power8": 300,
+   "power4": null
+  },
+  "Pioneer Exclusive M5a": {
+   "power8": 300,
+   "power4": null
+  },
+  "Pioneer Exclusive M7": {
+   "power8": 120,
+   "power4": 240
+  },
+  "Pioneer FM-B101": null,
+  "Pioneer M-05": {
+   "power8": 100,
+   "power4": 150
+  },
+  "Pioneer M-10X": {
+   "power8": 60,
+   "power4": 110
+  },
+  "Pioneer M-1500": {
+   "power8": 50,
+   "power4": null
+  },
+  "Pioneer M-22": {
+   "power8": 30,
+   "power4": null
+  },
+  "Pioneer M-25": {
+   "power8": 120,
+   "power4": 120
+  },
+  "Pioneer M-70": {
+   "power8": 100,
+   "power4": 150
+  },
+  "Pioneer M-73": {
+   "power8": 85,
+   "power4": null
+  },
+  "Pioneer M-75": {
+   "power8": 150,
+   "power4": 180
+  },
+  "Pioneer M-77": {
+   "power8": 250,
+   "power4": 250
+  },
+  "Pioneer M-90": {
+   "power8": 200,
+   "power4": 200
+  },
+  "Pioneer M-90a": {
+   "power8": 200,
+   "power4": 200
+  },
+  "Pioneer M-AX10": {
+   "power8": 190,
+   "power4": null
+  },
+  "Pioneer M-Z1": {
+   "power8": 60,
+   "power4": null
+  },
+  "Pioneer M-Z1a": {
+   "power8": 60,
+   "power4": null
+  },
+  "Pioneer MA-62": null,
+  "Pioneer QL-60": {
+   "power8": 13,
+   "power4": 16
+  },
+  "Pioneer QL-60A": {
+   "power8": 13,
+   "power4": 16
+  },
+  "Pioneer QM-80": {
+   "power8": 25,
+   "power4": null
+  },
+  "Pioneer QX-401": {
+   "power8": 10,
+   "power4": 15
+  },
+  "Pioneer QX-604": {
+   "power8": 10,
+   "power4": 15
+  },
+  "Pioneer QX-704": {
+   "power8": 33,
+   "power4": 45
+  },
+  "Pioneer QX-801": {
+   "power8": 21,
+   "power4": 36
+  },
+  "Pioneer SA-05": {
+   "power8": 70,
+   "power4": null
+  },
+  "Pioneer SA-100": {
+   "power8": 67,
+   "power4": 94
+  },
+  "Pioneer SA-4400": {
+   "power8": 15,
+   "power4": null
+  },
+  "Pioneer SA-50": {
+   "power8": 13,
+   "power4": null
+  },
+  "Pioneer SA-50A": {
+   "power8": 13,
+   "power4": 16
+  },
+  "Pioneer SA-520": {
+   "power8": 16,
+   "power4": 20
+  },
+  "Pioneer SA-60": {
+   "power8": 25,
+   "power4": 31
+  },
+  "Pioneer SA-620": {
+   "power8": 22,
+   "power4": 27
+  },
+  "Pioneer SA-6300": {
+   "power8": 20,
+   "power4": 20
+  },
+  "Pioneer SA-6600II": {
+   "power8": 25,
+   "power4": 27
+  },
+  "Pioneer SA-6700": {
+   "power8": 35,
+   "power4": 40
+  },
+  "Pioneer SA-6800II": {
+   "power8": 45,
+   "power4": 50
+  },
+  "Pioneer SA-70": {
+   "power8": 32,
+   "power4": null
+  },
+  "Pioneer SA-710": {
+   "power8": 20,
+   "power4": 24
+  },
+  "Pioneer SA-7400II": {
+   "power8": 35,
+   "power4": null
+  },
+  "Pioneer SA-7600II": {
+   "power8": 45,
+   "power4": null
+  },
+  "Pioneer SA-7800II": {
+   "power8": 65,
+   "power4": null
+  },
+  "Pioneer SA-80": {
+   "power8": 41,
+   "power4": 53
+  },
+  "Pioneer SA-810": {
+   "power8": 40,
+   "power4": 45
+  },
+  "Pioneer SA-8800": {
+   "power8": 40,
+   "power4": 45
+  },
+  "Pioneer SA-8800II": {
+   "power8": 60,
+   "power4": 75
+  },
+  "Pioneer SA-8900": {
+   "power8": 60,
+   "power4": 75
+  },
+  "Pioneer SA-8900II": {
+   "power8": 80,
+   "power4": 100
+  },
+  "Pioneer SA-90": {
+   "power8": 60,
+   "power4": null
+  },
+  "Pioneer SA-910": {
+   "power8": 60,
+   "power4": 75
+  },
+  "Pioneer SA-9800": {
+   "power8": 80,
+   "power4": 100
+  },
+  "Pioneer SA-9900": {
+   "power8": 110,
+   "power4": 110
+  },
+  "Pioneer SC-100": null,
+  "Pioneer SC-1500II": null,
+  "Pioneer SC-1800II": null,
+  "Pioneer SC-70": null,
+  "Pioneer SM-100": {
+   "power8": 85,
+   "power4": 90
+  },
+  "Pioneer SM-101": {
+   "power8": 70,
+   "power4": 90
+  },
+  "Pioneer SM-1500II": {
+   "power8": 65,
+   "power4": null
+  },
+  "Pioneer SM-1800II": {
+   "power8": 85,
+   "power4": null
+  },
+  "Pioneer SM-3000": {
+   "power8": 100,
+   "power4": 150
+  },
+  "Pioneer SM-70": {
+   "power8": 32,
+   "power4": 40
+  },
+  "Pioneer SM-803": null,
+  "Pioneer SMT-804": {
+   "power8": 27,
+   "power4": null
+  },
+  "Pioneer SP-X707": {
+   "power8": 40,
+   "power4": null
+  },
+  "Pioneer SR-70": null,
+  "Pioneer SX-100S": {
+   "power8": 58,
+   "power4": 90
+  },
+  "Pioneer SX-100T": null,
+  "Pioneer SX-300": {
+   "power8": 7,
+   "power4": 7
+  },
+  "Pioneer SX-304B": null,
+  "Pioneer SX-414": {
+   "power8": 12,
+   "power4": 13
+  },
+  "Pioneer SX-42": null,
+  "Pioneer SX-434": {
+   "power8": 15,
+   "power4": 15
+  },
+  "Pioneer SX-45": null,
+  "Pioneer SX-515": {
+   "power8": 13,
+   "power4": 21
+  },
+  "Pioneer SX-555": {
+   "power8": 20,
+   "power4": 20
+  },
+  "Pioneer SX-60T": null,
+  "Pioneer SX-616": {
+   "power8": 20,
+   "power4": 30
+  },
+  "Pioneer SX-65": null,
+  "Pioneer SX-717": {
+   "power8": 37,
+   "power4": 50
+  },
+  "Pioneer SX-757": {
+   "power8": 50,
+   "power4": 55
+  },
+  "Pioneer SX-80": null,
+  "Pioneer SX-818": {
+   "power8": 55,
+   "power4": 65
+  },
+  "Pioneer SX-90": {
+   "power8": 38,
+   "power4": null
+  },
+  "Pioneer VSA-01": null,
+  "Pioneer VSA-1000D": null,
+  "Pioneer VSA-30": {
+   "power8": 45,
+   "power4": null
+  },
+  "Pioneer VSA-500": null,
+  "Pioneer VSA-530": null,
+  "Pioneer VSA-55": null,
+  "Pioneer VSA-550": null,
+  "Pioneer VSA-70": null,
+  "Pioneer VSA-700": {
+   "power8": 300,
+   "power4": null
+  },
+  "Pioneer VSA-730": null,
+  "Pioneer VSA-750": null,
+  "Pioneer VSA-800": null,
+  "Pioneer VSA-900": {
+   "power8": 85,
+   "power4": null
+  },
+  "Pioneer VSA-930": {
+   "power8": 95,
+   "power4": null
+  },
+  "Pioneer VSA-950D": null,
+  "Pioneer VSA-C300": null,
+  "Pioneer VSA-D10EX": null,
+  "Pioneer VSA-D5": null,
+  "Pioneer VSA-D6": null,
+  "Pioneer VSA-D6TX": {
+   "power8": 130,
+   "power4": null
+  },
+  "Pioneer VSA-D7": null,
+  "Pioneer VSA-D7EX": {
+   "power8": 130,
+   "power4": null
+  },
+  "Pioneer VSA-D8EX": null,
+  "Pioneer VSA-D9TX": null,
+  "Pioneer VSX-09": null,
+  "Pioneer VSX-D3": null,
+  "Pioneer VSX-D710S": null,
+  "Quad 909": {
+   "power8": 140,
+   "power4": 200
+  },
+  "Schiit Aegir 2F": {
+   "power8": 30,
+   "power4": 50
+  },
+  "Schiit Asgard X": null,
+  "Schiit Buf": null,
+  "Schiit Freya 2": null,
+  "Schiit Gjallarhorn F": {
+   "power8": 10,
+   "power4": 15
+  },
+  "Schiit Imp": null,
+  "Schiit Jotunheim 3": null,
+  "Schiit Kara F": null,
+  "Schiit Lyr 5": null,
+  "Schiit Magni Unity": null,
+  "Schiit Midgard": null,
+  "Schiit Mjolnir 3": null,
+  "Schiit Saga 2": null,
+  "Schiit SYS": null,
+  "Schiit Tyr F": {
+   "power8": 200,
+   "power4": 350
+  },
+  "Schiit Valhalla 3": null,
+  "Schiit Vali 3": null,
+  "Schiit Vidar 2F": {
+   "power8": 100,
+   "power4": 200
+  },
+  "Schiit Wotan": {
+   "power8": 200,
+   "power4": 400
+  },
+  "SMSL A100": {
+   "power8": 40,
+   "power4": 80
+  },
+  "SMSL A12": {
+   "power8": 40,
+   "power4": 80
+  },
+  "SMSL A200": {
+   "power8": 42,
+   "power4": 70
+  },
+  "SMSL A300": {
+   "power8": 85,
+   "power4": 165
+  },
+  "SMSL A50 Pro": {
+   "power8": null,
+   "power4": 70
+  },
+  "SMSL AL200": {
+   "power8": 85,
+   "power4": 165
+  },
+  "SMSL AL400": {
+   "power8": 85,
+   "power4": 165
+  },
+  "SMSL AO10": {
+   "power8": null,
+   "power4": 70
+  },
+  "SMSL AO100": {
+   "power8": null,
+   "power4": 70
+  },
+  "SMSL AO200": {
+   "power8": 50,
+   "power4": 90
+  },
+  "SMSL AO200 MKII": {
+   "power8": 85,
+   "power4": 160
+  },
+  "SMSL AO300 PRO": {
+   "power8": 85,
+   "power4": 165
+  },
+  "SMSL AS400": {
+   "power8": 85,
+   "power4": 165
+  },
+  "SMSL DA-1": {
+   "power8": null,
+   "power4": 65
+  },
+  "SMSL DA-6": {
+   "power8": null,
+   "power4": 70
+  },
+  "SMSL DA-8S": {
+   "power8": 40,
+   "power4": 80
+  },
+  "SMSL DA-9": {
+   "power8": 50,
+   "power4": 90
+  },
+  "SMSL DA100": {
+   "power8": null,
+   "power4": 67
+  },
+  "SMSL H200": null,
+  "SMSL H300": null,
+  "SMSL H400 MK2": null,
+  "SMSL HO100": null,
+  "SMSL HO200": null,
+  "SMSL PA-X": {
+   "power8": 200,
+   "power4": 250
+  },
+  "SMSL PA200": {
+   "power8": 85,
+   "power4": 160
+  },
+  "SMSL PA40": {
+   "power8": 85,
+   "power4": 160
+  },
+  "SMSL PA400": {
+   "power8": 200,
+   "power4": 250
+  },
+  "SMSL RAW-HA1": {
+   "power8": 85,
+   "power4": 165
+  },
+  "SMSL SA100": {
+   "power8": null,
+   "power4": 50
+  },
+  "SMSL SA300": {
+   "power8": 40,
+   "power4": 80
+  },
+  "SMSL SA400": {
+   "power8": 110,
+   "power4": 230
+  },
+  "SMSL SAP-1": null,
+  "SMSL SAP-11": null,
+  "SMSL SAP-12": null,
+  "SMSL SH-6": null,
+  "SMSL SH-8S": null,
+  "SMSL SH-9": null,
+  "SMSL SH-X": null,
+  "SMSL VMV A1 Pro": {
+   "power8": 85,
+   "power4": 160
+  },
+  "SMSL VMV P2": null,
+  "SMSL VMV P2 MK2": null,
+  "Vincent SA-32AE": null,
+  "Vincent SA-32MK": null,
+  "Vincent SA-T7 Diamond": null,
+  "Vincent SA-T7MK": null,
+  "Vincent SP-332": {
+   "power8": 150,
+   "power4": 250
+  },
+  "Vincent SP-T700": {
+   "power8": 150,
+   "power4": 300
+  },
+  "Vincent SV-200": {
+   "power8": 25,
+   "power4": 35
+  },
+  "Vincent SV-228": {
+   "power8": 100,
+   "power4": 180
+  },
+  "Vincent SV-237MK": {
+   "power8": 150,
+   "power4": 250
+  },
+  "Vincent SV-237MKII": {
+   "power8": 150,
+   "power4": 250
+  },
+  "Vincent SV-500": {
+   "power8": 50,
+   "power4": 80
+  },
+  "Vincent SV-500MK": {
+   "power8": 50,
+   "power4": 80
+  },
+  "Vincent SV-600": {
+   "power8": 200,
+   "power4": 306
+  },
+  "Vincent SV-700": {
+   "power8": 100,
+   "power4": 160
+  },
+  "Vincent SV-737": {
+   "power8": 180,
+   "power4": 300
+  },
+  "Vincent SV-737MK": {
+   "power8": 180,
+   "power4": 300
+  },
+  "Yamaha A-S1000": null,
+  "Yamaha A-S1100": null,
+  "Yamaha A-S1200": {
+   "power8": 90,
+   "power4": 150
+  },
+  "Yamaha A-S2000": null,
+  "Yamaha A-S201": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha A-S2100": null,
+  "Yamaha A-S2200": {
+   "power8": 90,
+   "power4": 150
+  },
+  "Yamaha A-S3000": null,
+  "Yamaha A-S301": {
+   "power8": 60,
+   "power4": null
+  },
+  "Yamaha A-S3200": {
+   "power8": 100,
+   "power4": 150
+  },
+  "Yamaha A-S500": {
+   "power8": 85,
+   "power4": null
+  },
+  "Yamaha A-S501": {
+   "power8": 85,
+   "power4": null
+  },
+  "Yamaha A-S701": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha A-S801": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha C-5000": null,
+  "Yamaha CX-A5000": null,
+  "Yamaha M-5000": {
+   "power8": 100,
+   "power4": 200
+  },
+  "Yamaha MX-A5000": {
+   "power8": 190,
+   "power4": null
+  },
+  "Yamaha R-N1000A": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha R-N2000A": {
+   "power8": 90,
+   "power4": 145
+  },
+  "Yamaha R-N301": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha R-N303": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha R-N402": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha R-N500": {
+   "power8": 80,
+   "power4": null
+  },
+  "Yamaha R-N600A": {
+   "power8": 80,
+   "power4": null
+  },
+  "Yamaha R-N602": {
+   "power8": 80,
+   "power4": null
+  },
+  "Yamaha R-N800A": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha R-N803": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha R-S201": null,
+  "Yamaha R-S202": null,
+  "Yamaha R-S300": {
+   "power8": 50,
+   "power4": null
+  },
+  "Yamaha R-S500": {
+   "power8": 75,
+   "power4": null
+  },
+  "Yamaha R-S700": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha R200A": null,
+  "Yamaha RX-A1040": {
+   "power8": 110,
+   "power4": 170
+  },
+  "Yamaha RX-A2030": {
+   "power8": 140,
+   "power4": 220
+  },
+  "Yamaha RX-A2040": {
+   "power8": 140,
+   "power4": 220
+  },
+  "Yamaha RX-A2A": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha RX-A3040": {
+   "power8": 150,
+   "power4": 230
+  },
+  "Yamaha RX-A3050": {
+   "power8": 165,
+   "power4": null
+  },
+  "Yamaha RX-A4A": {
+   "power8": 110,
+   "power4": null
+  },
+  "Yamaha RX-A550": {
+   "power8": 95,
+   "power4": null
+  },
+  "Yamaha RX-A6A": {
+   "power8": 150,
+   "power4": null
+  },
+  "Yamaha RX-A740": {
+   "power8": 90,
+   "power4": 150
+  },
+  "Yamaha RX-A840": {
+   "power8": 100,
+   "power4": 160
+  },
+  "Yamaha RX-A8A": {
+   "power8": 150,
+   "power4": null
+  },
+  "Yamaha RX-V2085": {
+   "power8": 140,
+   "power4": null
+  },
+  "Yamaha RX-V365": null,
+  "Yamaha RX-V371": null,
+  "Yamaha RX-V375": null,
+  "Yamaha RX-V377": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha RX-V385": null,
+  "Yamaha RX-V3900": null,
+  "Yamaha RX-V465": null,
+  "Yamaha RX-V471": null,
+  "Yamaha RX-V475": {
+   "power8": 115,
+   "power4": null
+  },
+  "Yamaha RX-V477": null,
+  "Yamaha RX-V4A": null,
+  "Yamaha RX-V665": null,
+  "Yamaha RX-V667": {
+   "power8": 105,
+   "power4": null
+  },
+  "Yamaha RX-V671": {
+   "power8": 125,
+   "power4": 150
+  },
+  "Yamaha RX-V675": {
+   "power8": 90,
+   "power4": 150
+  },
+  "Yamaha RX-V677": {
+   "power8": 90,
+   "power4": 150
+  },
+  "Yamaha RX-V6A": {
+   "power8": 100,
+   "power4": null
+  },
+  "Yamaha RX-Z11": null,
+  "Yamaha RX-Z7": null,
+  "Yamaha RX300A": {
+   "power8": 70,
+   "power4": null
+  },
+  "Yamaha RX500A": {
+   "power8": 75,
+   "power4": null
+  },
+  "Yamaha WXA-50": null,
+  "Yamaha WXA-70A": {
+   "power8": 55,
+   "power4": 105
+  },
+  "Yamaha XDA-AMP5400RK": {
+   "power8": 65,
+   "power4": null
+  },
+  "Yamaha XDA-QS5400RK": {
+   "power8": 65,
+   "power4": null
+  }
+ },
+ "speaker": {
+  "DALI Alteco C-1": {
+   "sensitivity": 83,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 100
+  },
+  "DALI Callisto 2 C": null,
+  "DALI Callisto 6 C": null,
+  "DALI Epicon 2": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 200
+  },
+  "DALI Epicon 6": {
+   "sensitivity": 88,
+   "nominal": 5,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": 300
+  },
+  "DALI Epicon 8": {
+   "sensitivity": 89,
+   "nominal": 5,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": 500
+  },
+  "DALI Epicon Vokal": {
+   "sensitivity": 89.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": 300
+  },
+  "DALI Epikore 11": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 1000
+  },
+  "DALI Epikore 3": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "DALI Epikore 7": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 400
+  },
+  "DALI Epikore 9": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 500
+  },
+  "DALI Fazon LCR": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 15,
+   "recMax": 120
+  },
+  "DALI Fazon Mikro": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "DALI Fazon Mikro Vokal": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "DALI Fazon SAT": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 120
+  },
+  "DALI Gardian OW 6": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "DALI Kore": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": 1500
+  },
+  "DALI Kupid": {
+   "sensitivity": 83,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 120
+  },
+  "DALI Menuet": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 100
+  },
+  "DALI Menuet SE": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 100
+  },
+  "DALI Oberon 1": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "DALI Oberon 1 C": null,
+  "DALI Oberon 3": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "DALI Oberon 5": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Oberon 7": {
+   "sensitivity": 88.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 180
+  },
+  "DALI Oberon 7 C": null,
+  "DALI Oberon 9": {
+   "sensitivity": 90.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": 400
+  },
+  "DALI Oberon Grand Vokal": {
+   "sensitivity": 91,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 200
+  },
+  "DALI Oberon On-Wall": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "DALI Oberon On-Wall C": null,
+  "DALI Oberon Vokal": {
+   "sensitivity": 89.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "DALI Oberon Vokal C": null,
+  "DALI Opticon 1": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "DALI Opticon 1 MK2": {
+   "sensitivity": 85,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "DALI Opticon 2": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Opticon 2 MK2": {
+   "sensitivity": 86.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Opticon 5": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Opticon 6": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 200
+  },
+  "DALI Opticon 6 MK2": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 200
+  },
+  "DALI Opticon 8": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "DALI Opticon 8 MK2": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "DALI Opticon LCR": {
+   "sensitivity": 90.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Opticon LCR MK2": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Opticon Vokal": {
+   "sensitivity": 89.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Opticon Vokal MK2": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Phantom E-50": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 120
+  },
+  "DALI Phantom E-60": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "DALI Phantom E-60 S": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 80
+  },
+  "DALI Phantom E-60 WR": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "DALI Phantom E-80": {
+   "sensitivity": 89.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Phantom E-80 WR": {
+   "sensitivity": 89.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "DALI Phantom H-120": {
+   "sensitivity": 90,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": 400
+  },
+  "DALI Phantom H-50": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "DALI Phantom H-60": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Phantom H-60 R": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Phantom H-80": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 200
+  },
+  "DALI Phantom H-80 R": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 200
+  },
+  "DALI Phantom K-60": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 150
+  },
+  "DALI Phantom K-60 LP": {
+   "sensitivity": 84,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 150
+  },
+  "DALI Phantom K-80": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": 200
+  },
+  "DALI Phantom M-250": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 180
+  },
+  "DALI Phantom M-375": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 180
+  },
+  "DALI Phantom M-675": {
+   "sensitivity": 90,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "DALI Phantom M-80 A": {
+   "sensitivity": 86.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": 250
+  },
+  "DALI Phantom S-180": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "DALI Phantom S-280": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 350
+  },
+  "DALI Phantom S-80": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "DALI Rubicon 2": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 150
+  },
+  "DALI Rubicon 2 C": null,
+  "DALI Rubicon 5": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 60,
+   "recMax": 150
+  },
+  "DALI Rubicon 6": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "DALI Rubicon 6 BE": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "DALI Rubicon 6 C": null,
+  "DALI Rubicon 8": {
+   "sensitivity": 90.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "DALI Rubicon 8 C": null,
+  "DALI Rubicon LCR": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 150
+  },
+  "DALI Rubicon Vokal": {
+   "sensitivity": 89.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "DALI Rubikore 2": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 150
+  },
+  "DALI Rubikore 6": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "DALI Rubikore 8": {
+   "sensitivity": 90.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "DALI Rubikore Cinema": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "DALI Rubikore On-Wall": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 150
+  },
+  "DALI Sonik 1": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "DALI Sonik 3": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "DALI Sonik 5": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Sonik 7": {
+   "sensitivity": 88.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 180
+  },
+  "DALI Sonik 9": {
+   "sensitivity": 90,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": 300
+  },
+  "DALI Sonik Cinema": {
+   "sensitivity": null,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "DALI Sonik On-Wall": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "DALI Spektor 1": {
+   "sensitivity": 83,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 100
+  },
+  "DALI Spektor 2": {
+   "sensitivity": 84.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "DALI Spektor 6": {
+   "sensitivity": 88.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "DALI Spektor Vokal": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 120
+  },
+  "DALI Vega": null,
+  "Douk Audio S4": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC 4Pi Plus V": {
+   "sensitivity": null,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 400
+  },
+  "ELAC 4Pi Plus.2": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": 3.5,
+   "recMin": 20,
+   "recMax": 400
+  },
+  "ELAC ARB51": {
+   "sensitivity": null,
+   "nominal": null,
+   "minimum": null,
+   "recMin": 300,
+   "recMax": null
+  },
+  "ELAC ARF51": {
+   "sensitivity": null,
+   "nominal": null,
+   "minimum": null,
+   "recMin": 300,
+   "recMax": null
+  },
+  "ELAC BS2434": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": 4.8,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "ELAC BS283": {
+   "sensitivity": 85,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "ELAC BS283.2": {
+   "sensitivity": 85,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "ELAC BS302": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.5,
+   "recMin": 20,
+   "recMax": 120
+  },
+  "ELAC BS305": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": 150
+  },
+  "ELAC BS312": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.4,
+   "recMin": 50,
+   "recMax": 150
+  },
+  "ELAC BS403": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "ELAC CBS503.2": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 4.8,
+   "recMin": 60,
+   "recMax": 500
+  },
+  "ELAC CC2414": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": 4.8,
+   "recMin": 30,
+   "recMax": 200
+  },
+  "ELAC CC281": {
+   "sensitivity": 87.5,
+   "nominal": 4,
+   "minimum": 3.6,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "ELAC CC281.2": {
+   "sensitivity": 87.5,
+   "nominal": 4,
+   "minimum": 3.6,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "ELAC CC401": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": 3.6,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "ELAC CCS501.2": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3,
+   "recMin": 60,
+   "recMax": 500
+  },
+  "ELAC CFS507.2": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3,
+   "recMin": 60,
+   "recMax": 500
+  },
+  "ELAC CFS509.2": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": 60,
+   "recMax": 600
+  },
+  "ELAC Concentro": {
+   "sensitivity": 90,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 80,
+   "recMax": 600
+  },
+  "ELAC Concentro 2.0": {
+   "sensitivity": 90,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 80,
+   "recMax": 600
+  },
+  "ELAC Concentro M": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 2.8,
+   "recMin": 80,
+   "recMax": 600
+  },
+  "ELAC Concentro M.2": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 2.8,
+   "recMin": 80,
+   "recMax": 600
+  },
+  "ELAC DA42": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC DA43": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": 4.4,
+   "recMin": 20,
+   "recMax": 120
+  },
+  "ELAC DB52": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC DB53": {
+   "sensitivity": 86.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 120
+  },
+  "ELAC DB62": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC DB63": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 140
+  },
+  "ELAC DBR62": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC DBR63": {
+   "sensitivity": 86.5,
+   "nominal": 6,
+   "minimum": 4.5,
+   "recMin": 20,
+   "recMax": 140
+  },
+  "ELAC DC52": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC DC53": {
+   "sensitivity": 87.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 120,
+   "recMax": null
+  },
+  "ELAC DC62": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC DC63": {
+   "sensitivity": 87.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 140
+  },
+  "ELAC DCB41": {
+   "sensitivity": null,
+   "nominal": null,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": null
+  },
+  "ELAC DCB41-DS": {
+   "sensitivity": null,
+   "nominal": null,
+   "minimum": null,
+   "recMin": 50,
+   "recMax": null
+  },
+  "ELAC DCB61": null,
+  "ELAC DCR52": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC DCR53": {
+   "sensitivity": 87.5,
+   "nominal": 6,
+   "minimum": 4.5,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC DF52": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC DF53": {
+   "sensitivity": 87.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "ELAC DF62": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC DF63": {
+   "sensitivity": 87.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 180
+  },
+  "ELAC DFR52": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC DFR53": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": 4.6,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "ELAC DOW42": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC Elegant BS312.2": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.4,
+   "recMin": 50,
+   "recMax": 150
+  },
+  "ELAC FS2474": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": 4.8,
+   "recMin": 30,
+   "recMax": 250
+  },
+  "ELAC FS287": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.5,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "ELAC FS287.2": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.5,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "ELAC FS407": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "ELAC IC-D61-W": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IC-DT61-W": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IC-V31": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 100
+  },
+  "ELAC IC-V61": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IC-V62": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IC-V81": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IC-V82": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IC-VJ63": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC IC-VJT63": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC IC-VT61": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IC-VT62": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IW-D61-W": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IW-DC51": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IW-V61": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IW-V62": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IW-VC51": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IW-VC52": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "ELAC IW-VJ63": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC IW-VJ63L": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "ELAC IW-VJ63M": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "ELAC IW-VJ63S": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 120
+  },
+  "ELAC M807": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.1,
+   "recMin": 80,
+   "recMax": 600
+  },
+  "ELAC NAVA100-BK": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC OD-M61-BK": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 100
+  },
+  "ELAC OD-M61T-BK": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 100
+  },
+  "ELAC OD-M81-BK": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 180
+  },
+  "ELAC OD-M81T-BK": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 180
+  },
+  "ELAC OW-V41L": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC OW-V41S": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC OW-VJ63L": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "ELAC OW-VJ63M": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "ELAC OW-VJ63S": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 40,
+   "recMax": 120
+  },
+  "ELAC RD100": null,
+  "ELAC S501": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 4.5,
+   "recMin": 60,
+   "recMax": 500
+  },
+  "ELAC S503": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 60,
+   "recMax": 500
+  },
+  "ELAC S507": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 60,
+   "recMax": 500
+  },
+  "ELAC S509": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": 60,
+   "recMax": 600
+  },
+  "ELAC SB-VJ41L": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC SB-VJ41S": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC SB41L": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC SB41S": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC UB52": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC UBR62": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC UC52": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC UCR52": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC UF52": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC UFR52": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC VBS403.2": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "ELAC VBS404.2": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "ELAC VCC401.2": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": 3.6,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "ELAC VFS407.2": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "ELAC VFS408.2": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": 3.4,
+   "recMin": 40,
+   "recMax": 400
+  },
+  "ELAC VFS409.2": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": 3.4,
+   "recMin": 40,
+   "recMax": 450
+  },
+  "ELAC WS 1445": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": 4,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC WS 1465": {
+   "sensitivity": 89,
+   "nominal": 5,
+   "minimum": 4.3,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC WS 1645": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": 3.9,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC WS 1665": {
+   "sensitivity": 89,
+   "nominal": 5,
+   "minimum": 4.3,
+   "recMin": null,
+   "recMax": null
+  },
+  "ELAC WS1425": {
+   "sensitivity": 87.5,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "Focal Aria Evo X Center": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": 4.3,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "Focal Aria Evo X N°1": {
+   "sensitivity": 89.5,
+   "nominal": 8,
+   "minimum": 4.6,
+   "recMin": 25,
+   "recMax": 120
+  },
+  "Focal Aria Evo X N°2": {
+   "sensitivity": 91.5,
+   "nominal": 8,
+   "minimum": 2.9,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "Focal Aria Evo X N°3": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": 2.8,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "Focal Aria Evo X N°4": {
+   "sensitivity": 92.5,
+   "nominal": 8,
+   "minimum": 2.5,
+   "recMin": 40,
+   "recMax": 350
+  },
+  "Focal Aria SR900": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": 3.6,
+   "recMin": 25,
+   "recMax": 120
+  },
+  "Focal Diablo Utopia Colour Evo": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 25,
+   "recMax": 200
+  },
+  "Focal Diva Alta Utopia": null,
+  "Focal Diva Mezza Utopia": null,
+  "Focal Diva Utopia": null,
+  "Focal Dôme Flax": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "Focal Grande Utopia EM Evo": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": 3,
+   "recMin": 50,
+   "recMax": 1.5
+  },
+  "Focal Kanta Center": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": 3.5,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "Focal Kanta N°1": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": 3.9,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Focal Kanta N°2": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": 3.1,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "Focal Kanta N°3": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": 3,
+   "recMin": 40,
+   "recMax": 400
+  },
+  "Focal Maestro Utopia Evo": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": 3.1,
+   "recMin": 25,
+   "recMax": 600
+  },
+  "Focal Mu-so Hekla": null,
+  "Focal Scala Utopia Evo": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": 3.2,
+   "recMin": 50,
+   "recMax": 500
+  },
+  "Focal Scala Utopia Evo M": {
+   "sensitivity": 92,
+   "nominal": 6,
+   "minimum": 3,
+   "recMin": 50,
+   "recMax": 500
+  },
+  "Focal Sib Evo 2.0": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 200
+  },
+  "Focal Sib Evo Dolby Atmos 2.0": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 200
+  },
+  "Focal Sopra Center": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": 4.1,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "Focal Sopra N°1": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": 3.9,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Focal Sopra N°2": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": 3.1,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "Focal Sopra N°3": {
+   "sensitivity": 91.5,
+   "nominal": 8,
+   "minimum": 3.1,
+   "recMin": 40,
+   "recMax": 400
+  },
+  "Focal Sopra Surround Be": {
+   "sensitivity": 91,
+   "nominal": null,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Focal Stella Utopia EM Evo": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": 2.8,
+   "recMin": 50,
+   "recMax": 1
+  },
+  "Focal Theva Center": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": 3.8,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "Focal Theva N°1": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": 4.6,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "Focal Theva N°2": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": 2.9,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "Focal Theva N°3": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": 2.9,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "Focal Theva N°3-D": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": 2.9,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "Focal Theva Surround": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": 4.5,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "Focal Vestia Center": {
+   "sensitivity": 91.5,
+   "nominal": 8,
+   "minimum": 3.6,
+   "recMin": 40,
+   "recMax": 200
+  },
+  "Focal Vestia N°1": {
+   "sensitivity": 89.5,
+   "nominal": 8,
+   "minimum": 4.5,
+   "recMin": 25,
+   "recMax": 120
+  },
+  "Focal Vestia N°2": {
+   "sensitivity": 91.5,
+   "nominal": 8,
+   "minimum": 3,
+   "recMin": 40,
+   "recMax": 250
+  },
+  "Focal Vestia N°3": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": 2.9,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "Focal Vestia N°4": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": 2.6,
+   "recMin": 40,
+   "recMax": 300
+  },
+  "Focal Viva Utopia Colour Evo": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": 3.2,
+   "recMin": 50,
+   "recMax": 600
+  },
+  "Fosi Audio SP601": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Blade One Meta": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 2.8,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Blade Two Meta": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Coda W": null,
+  "KEF LS LUXE": {
+   "sensitivity": null,
+   "nominal": null,
+   "minimum": null,
+   "recMin": 280,
+   "recMax": null
+  },
+  "KEF LS50 Meta": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": 3.5,
+   "recMin": 40,
+   "recMax": 100
+  },
+  "KEF LS50 Wireless II": null,
+  "KEF LS50C Meta": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": 3,
+   "recMin": 40,
+   "recMax": 100
+  },
+  "KEF LS60 Wireless": null,
+  "KEF LSX II": null,
+  "KEF LSX II LT": null,
+  "KEF Muo": null,
+  "KEF MUON": {
+   "sensitivity": 90,
+   "nominal": null,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Q Concerto Meta": {
+   "sensitivity": 85,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Q1 Meta": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Q11 Meta": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Q3 Meta": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Q4 Meta": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Q6 Meta": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Q7 Meta": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Q8 Meta": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF R11 Meta": {
+   "sensitivity": 90,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF R2 Meta": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF R3 Meta": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF R5 Meta": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF R6 Meta": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF R7 Meta": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF R8 Meta": {
+   "sensitivity": 85,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Reference 1 Meta": {
+   "sensitivity": 85,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Reference 2 Meta": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Reference 3 Meta": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Reference 4 Meta": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF Reference 5 Meta": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": null,
+   "recMax": null
+  },
+  "KEF T101c": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood CM-1": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood CM-11": {
+   "sensitivity": 83,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood CM-5": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood CM-5ES": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood CM-7": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood CM-7ES": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood CM-9": {
+   "sensitivity": 83,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood JL-3700": {
+   "sensitivity": 90,
+   "nominal": null,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood JL-4400": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood JL-5700": {
+   "sensitivity": 92.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood JL-6100": {
+   "sensitivity": 93,
+   "nominal": null,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood JL-6600": {
+   "sensitivity": 92,
+   "nominal": null,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood JL-6700": {
+   "sensitivity": 93,
+   "nominal": null,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood JL-8800": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-20": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-30": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-3030": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-3060": {
+   "sensitivity": 97,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-30Z": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-4050": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-4060": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-40Z": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-5060": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-5060A": {
+   "sensitivity": 99,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-61": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-7050": {
+   "sensitivity": 101,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-7060": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KL-91": {
+   "sensitivity": 102,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KLX-1": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood KLX-5": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-10": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-100": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-1000": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-101": {
+   "sensitivity": 91.5,
+   "nominal": null,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-11": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-110": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-11ES": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-11EX": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-200": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-202": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-300": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-3000": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-300G": {
+   "sensitivity": 82,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-303": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-330": {
+   "sensitivity": 92,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-350": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-400": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-450": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-500": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-5000": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-505": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-550": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-606": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-700": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-707": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-77": {
+   "sensitivity": 93,
+   "nominal": null,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-770A": {
+   "sensitivity": 92,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-800": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-880A": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-880D": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-990A": {
+   "sensitivity": 92,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-990AD": {
+   "sensitivity": 92,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-990D": {
+   "sensitivity": 92,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-990HG": {
+   "sensitivity": 92,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-CX7": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-G5000": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-M5": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-M7": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-S10": {
+   "sensitivity": 79,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-V9": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-X700": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LS-X900": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LSF-1010": {
+   "sensitivity": 80,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LSF-333": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LSF-555": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood LSF-777": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood OMNI-7": {
+   "sensitivity": 83,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood S-101": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood S-102": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood S-110": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood S-120": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood S-3": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood S-5": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood S270": {
+   "sensitivity": 82,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-12": {
+   "sensitivity": null,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-13": {
+   "sensitivity": null,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-14": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-201": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-202": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-203": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-204": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-205": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-400": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-401": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-402": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-403": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SC-6": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SH-3": {
+   "sensitivity": null,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SH-7": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SP-501": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SS-1": {
+   "sensitivity": null,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood SS-3": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Kenwood ST-700L": null,
+  "Kenwood ST-800L": null,
+  "Klipsch AW-400": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch AW-500": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch AW-650": {
+   "sensitivity": 95,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch AWR-650-SM": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 100,
+   "recMax": null
+  },
+  "Klipsch Cornwall IV": {
+   "sensitivity": 102,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch CP-6": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch Forte III": {
+   "sensitivity": 99,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch Forte IV": {
+   "sensitivity": 99,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch Heresy IV": {
+   "sensitivity": 99,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch Jubilee": {
+   "sensitivity": 110,
+   "nominal": 8,
+   "minimum": 3.5,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch KHO-7": {
+   "sensitivity": 92,
+   "nominal": null,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch Klipschorn 80th Anniversary": {
+   "sensitivity": 103,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch Klipschorn AK7": {
+   "sensitivity": 103,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch La Scala AL5": {
+   "sensitivity": 105,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch La Scala AL6": {
+   "sensitivity": 103,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch OJAS kO-R2": {
+   "sensitivity": 97,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch ProMedia 2.1": null,
+  "Klipsch ProMedia Heritage 2.1": null,
+  "Klipsch R-1650-W": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch R-2502-W II": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 110,
+   "recMax": null
+  },
+  "Klipsch R-2650-W II": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 100,
+   "recMax": null
+  },
+  "Klipsch R-30C": {
+   "sensitivity": 96,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch R-3650-W II": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 100,
+   "recMax": null
+  },
+  "Klipsch R-3800-W II": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 100,
+   "recMax": null
+  },
+  "Klipsch R-40M": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch R-40PM": null,
+  "Klipsch R-40SA": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch R-50C": {
+   "sensitivity": 96,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch R-50M": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch R-50PM": null,
+  "Klipsch R-51M": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch R-5502-W II": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 130,
+   "recMax": null
+  },
+  "Klipsch R-5650-S II": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 100,
+   "recMax": null
+  },
+  "Klipsch R-5650-W II": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 100,
+   "recMax": null
+  },
+  "Klipsch R-5800-W II": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 100,
+   "recMax": null
+  },
+  "Klipsch R-600F": {
+   "sensitivity": 96,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch R-605FA": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch R-800F": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RC-64 III": {
+   "sensitivity": 99,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch Rebellion": {
+   "sensitivity": 95,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RF-7 III": {
+   "sensitivity": 100,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-404C II": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-5000F II": {
+   "sensitivity": 95,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-500C II": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-500M II": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-500SA II": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-502S II": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-504C II": {
+   "sensitivity": 96,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-6000F II": {
+   "sensitivity": 96,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-600M II": {
+   "sensitivity": 94.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-8000F II": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch RP-8060FA II": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Klipsch Surround 3": null,
+  "Klipsch The Fives": null,
+  "Klipsch The Nines": null,
+  "Klipsch The Sevens": null,
+  "MartinLogan Foundation B1": {
+   "sensitivity": 89,
+   "nominal": 5,
+   "minimum": null,
+   "recMin": 15,
+   "recMax": 100
+  },
+  "MartinLogan Foundation B2": {
+   "sensitivity": 90,
+   "nominal": 5,
+   "minimum": null,
+   "recMin": 15,
+   "recMax": 100
+  },
+  "MartinLogan Foundation C1": {
+   "sensitivity": 91,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "MartinLogan Foundation F1": {
+   "sensitivity": 92,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 15,
+   "recMax": 200
+  },
+  "MartinLogan Foundation F2": {
+   "sensitivity": 92,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 15,
+   "recMax": 200
+  },
+  "MartinLogan Motion B10": {
+   "sensitivity": 92,
+   "nominal": 5,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 200
+  },
+  "MartinLogan Motion C10": {
+   "sensitivity": 93,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 200
+  },
+  "MartinLogan Motion F10": {
+   "sensitivity": 92,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 250
+  },
+  "MartinLogan Motion F20": {
+   "sensitivity": 92,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 250
+  },
+  "MartinLogan Motion MP10": {
+   "sensitivity": 92,
+   "nominal": 5,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 200
+  },
+  "MartinLogan Motion XT B100": {
+   "sensitivity": 93,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 250
+  },
+  "MartinLogan Motion XT C100": {
+   "sensitivity": 93,
+   "nominal": 5,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 300
+  },
+  "MartinLogan Motion XT F100": {
+   "sensitivity": 92,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 450
+  },
+  "MartinLogan Motion XT F200": {
+   "sensitivity": 92,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 600
+  },
+  "McIntosh LCR80": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "McIntosh ML1 Mk II": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "McIntosh XCS1.5K": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "McIntosh XRT1.1K": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "McIntosh XRT2.1K": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Monitor Audio Bronze 300 7G": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": 4.4,
+   "recMin": 40,
+   "recMax": 150
+  },
+  "Monitor Audio Bronze 50 7G": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 50,
+   "recMax": 200
+  },
+  "Monitor Audio Bronze AMS 7G": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": 3.7,
+   "recMin": 30,
+   "recMax": 120
+  },
+  "Monitor Audio Bronze Centre 7G": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": 4.3,
+   "recMin": 60,
+   "recMax": 140
+  },
+  "Monitor Audio Bronze On-Wall 7G": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": 4.7,
+   "recMin": 50,
+   "recMax": 200
+  },
+  "Monitor Audio Gold 100 6G": {
+   "sensitivity": 86.5,
+   "nominal": 4,
+   "minimum": 3.9,
+   "recMin": 130,
+   "recMax": 500
+  },
+  "Monitor Audio Gold 300 6G": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.9,
+   "recMin": 130,
+   "recMax": 500
+  },
+  "Monitor Audio Gold 50 6G": {
+   "sensitivity": 85,
+   "nominal": 4,
+   "minimum": 4,
+   "recMin": 130,
+   "recMax": 300
+  },
+  "Monitor Audio Gold 500 6G": {
+   "sensitivity": 88.5,
+   "nominal": 4,
+   "minimum": 4,
+   "recMin": 130,
+   "recMax": 600
+  },
+  "Monitor Audio Gold C250 6G": {
+   "sensitivity": 87.5,
+   "nominal": 4,
+   "minimum": 3.9,
+   "recMin": 130,
+   "recMax": 500
+  },
+  "Monitor Audio Gold On-Wall 6G": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 5.3,
+   "recMin": 130,
+   "recMax": 300
+  },
+  "Monitor Audio Hyphn": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.5,
+   "recMin": 200,
+   "recMax": 1600
+  },
+  "Monitor Audio Platinum 100 3G": {
+   "sensitivity": 85,
+   "nominal": 4,
+   "minimum": 4,
+   "recMin": 75,
+   "recMax": 300
+  },
+  "Monitor Audio Platinum 200 3G": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 4,
+   "recMin": 150,
+   "recMax": 600
+  },
+  "Monitor Audio Platinum 300 3G": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 4,
+   "recMin": 200,
+   "recMax": 800
+  },
+  "Monitor Audio Platinum C250 3G": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 4,
+   "recMin": 150,
+   "recMax": 600
+  },
+  "Monitor Audio Radius 1 4G": {
+   "sensitivity": 82,
+   "nominal": 8,
+   "minimum": 3.8,
+   "recMin": 50,
+   "recMax": 100
+  },
+  "Monitor Audio Radius 3 4G": {
+   "sensitivity": 84,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 75,
+   "recMax": 150
+  },
+  "Monitor Audio Radius On-Wall 4G": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": 4.4,
+   "recMin": 100,
+   "recMax": 200
+  },
+  "Monitor Audio Silver 100 7G": {
+   "sensitivity": 87.5,
+   "nominal": 8,
+   "minimum": 4.9,
+   "recMin": 40,
+   "recMax": 120
+  },
+  "Monitor Audio Silver 100 7G Limited Edition": {
+   "sensitivity": 87.5,
+   "nominal": 8,
+   "minimum": 4.9,
+   "recMin": 40,
+   "recMax": 120
+  },
+  "Monitor Audio Silver 200 7G": {
+   "sensitivity": 87.5,
+   "nominal": 8,
+   "minimum": 5,
+   "recMin": 60,
+   "recMax": 150
+  },
+  "Monitor Audio Silver 300 7G": {
+   "sensitivity": 87.5,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 80,
+   "recMax": 200
+  },
+  "Monitor Audio Silver 300 7G Limited Edition": {
+   "sensitivity": 87.5,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 80,
+   "recMax": 200
+  },
+  "Monitor Audio Silver 50 7G": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": 3.9,
+   "recMin": 40,
+   "recMax": 100
+  },
+  "Monitor Audio Silver 500 7G": {
+   "sensitivity": 90.5,
+   "nominal": 8,
+   "minimum": 4.1,
+   "recMin": 80,
+   "recMax": 250
+  },
+  "Monitor Audio Silver AMS 7G": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 30,
+   "recMax": 60
+  },
+  "Monitor Audio Silver C250 7G": {
+   "sensitivity": 88.5,
+   "nominal": 8,
+   "minimum": 3.9,
+   "recMin": 80,
+   "recMax": 200
+  },
+  "Monitor Audio Silver FX 7G": {
+   "sensitivity": 87.5,
+   "nominal": 8,
+   "minimum": 4.1,
+   "recMin": 30,
+   "recMax": 85
+  },
+  "Monitor Audio Studio 89": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": 4.2,
+   "recMin": 50,
+   "recMax": 300
+  },
+  "NAD VISO 1 AP": null,
+  "NAD VISO BT": null,
+  "Neumi BS5": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Onkyo D-77NE": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Onkyo GX-10DB": null,
+  "Onkyo GX-30ARC": null,
+  "Pioneer CS-05": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-10": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-100": {
+   "sensitivity": 97,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-12D": {
+   "sensitivity": 92.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-201S": {
+   "sensitivity": 103,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-23": {
+   "sensitivity": 98,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-24": {
+   "sensitivity": 99,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-27": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-300": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-3000": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-3000A": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-330": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-410": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-5": {
+   "sensitivity": 96,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-500": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-51": {
+   "sensitivity": 93,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-516": {
+   "sensitivity": 92,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-52": {
+   "sensitivity": 93,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-550": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-61": {
+   "sensitivity": 97,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-610": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-616": {
+   "sensitivity": 93,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-62": {
+   "sensitivity": 101,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-655": {
+   "sensitivity": 92,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-7": {
+   "sensitivity": 99,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-700": {
+   "sensitivity": 95,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-71": {
+   "sensitivity": 100,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-72": {
+   "sensitivity": 101,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-73": {
+   "sensitivity": 101,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-755": {
+   "sensitivity": 90,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-770": {
+   "sensitivity": 97,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-770A": {
+   "sensitivity": 97,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-8": {
+   "sensitivity": 98,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-81": {
+   "sensitivity": 103,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-810": {
+   "sensitivity": 90.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-880": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-8E": {
+   "sensitivity": 99,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-90": {
+   "sensitivity": 103,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-900": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-91": {
+   "sensitivity": 98,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-92": {
+   "sensitivity": 101,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-955": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 800,
+   "recMax": 1000
+  },
+  "Pioneer CS-A23": {
+   "sensitivity": 98,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-A25": {
+   "sensitivity": 102,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-A55": {
+   "sensitivity": 96,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-A77": {
+   "sensitivity": 102,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-A88": {
+   "sensitivity": 99,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-E350": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-E400": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-E45": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-E600": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-E700": {
+   "sensitivity": 93.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-E900": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-F25": {
+   "sensitivity": 92.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-F45": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-F75": {
+   "sensitivity": 92.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-H9": {
+   "sensitivity": 100,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-R10": {
+   "sensitivity": 92.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-R30": {
+   "sensitivity": 92,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-R50": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-R70": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-T3": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-T5": {
+   "sensitivity": 92.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-T66": {
+   "sensitivity": 90.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-T7": {
+   "sensitivity": 91.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-T88": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-W5": {
+   "sensitivity": 94.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CS-X1": {
+   "sensitivity": 82.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CSL-1000": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer CSL-2000": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer ELeVEN S-11TX": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive EW-301": {
+   "sensitivity": 91,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive EW-302": {
+   "sensitivity": 97,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive Model 2251": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive Model 2252": {
+   "sensitivity": 93,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive Model 2301": {
+   "sensitivity": 97,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive Model 2401 Twin": {
+   "sensitivity": 98,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive Model 2402": {
+   "sensitivity": 95,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive Model 2404": {
+   "sensitivity": 95,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive Model 3301": {
+   "sensitivity": 91,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive Model 3401": {
+   "sensitivity": 97,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive Model 3401-W": {
+   "sensitivity": 97,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive MT-12": {
+   "sensitivity": 92.5,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer Exclusive S5": {
+   "sensitivity": 93,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer HPM-100": {
+   "sensitivity": 92.5,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer IS-60": null,
+  "Pioneer IS-80": null,
+  "Pioneer IS-W5": null,
+  "Pioneer S-07": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-100": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-1000 Twin": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-1000twinA": {
+   "sensitivity": 91.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-101": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-101custom": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-110": {
+   "sensitivity": 90.5,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-1300DV": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-140": {
+   "sensitivity": 93,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-160": {
+   "sensitivity": 94,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-170": {
+   "sensitivity": 93,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-170II": {
+   "sensitivity": 93,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-180": {
+   "sensitivity": 95,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-1800DV": {
+   "sensitivity": 93,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-180A": {
+   "sensitivity": 95,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-180D": {
+   "sensitivity": 94,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-180III": {
+   "sensitivity": 95,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-2D": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-3000": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-303": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-33 Twin": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-3EX": {
+   "sensitivity": 88.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-402AV": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-5000 Twin": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-502AV": {
+   "sensitivity": 92,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-55 Twin": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-55twinSD": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-55twinX": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-570": {
+   "sensitivity": 93,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-5PC": {
+   "sensitivity": 90,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-5PG": {
+   "sensitivity": 90,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-601": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-700T": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-701": {
+   "sensitivity": 92,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-707": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-77 Twin": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-77twinSD": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-7MS": {
+   "sensitivity": 92,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-922": {
+   "sensitivity": 94,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-922II": {
+   "sensitivity": 94,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-933": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-9500": {
+   "sensitivity": 91,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-9500DV": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-955": {
+   "sensitivity": 91,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-955III": {
+   "sensitivity": 92,
+   "nominal": null,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-99 Twin": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-99twinX": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-A3-LR": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-A4-LR": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-A4spirit": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-A4SPT-PM": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-A4SPT-VP": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-A5": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-A6C": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-A7": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-AX10": {
+   "sensitivity": 92,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-C05": {
+   "sensitivity": 84,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-C11": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-C3": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-C5": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-C6": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-CR22": {
+   "sensitivity": 88,
+   "nominal": 16,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-F1": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-F1custom": {
+   "sensitivity": 94,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-HE10": {
+   "sensitivity": 98,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-HE100": {
+   "sensitivity": 96,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-HE3": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-HE7": {
+   "sensitivity": 93,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-HS01": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-HS11": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-L5": {
+   "sensitivity": 88,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-LH3": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-LH5": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-LH5a": {
+   "sensitivity": 90,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-LM3-LR": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-MT5-C": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-MT5-LR": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-N701-LR": {
+   "sensitivity": 84,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-N901-LR": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-PM1000": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-PM2000": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-PM300": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-ST05": {
+   "sensitivity": 84,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-ST5-LR": {
+   "sensitivity": 84,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-ST7-LR": {
+   "sensitivity": 84,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-ST9": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-T5": {
+   "sensitivity": 89,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-UK3": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-UK4 Grande": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-UK5": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-W05-K": {
+   "sensitivity": null,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-W11": {
+   "sensitivity": null,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-W3": {
+   "sensitivity": null,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-W5": {
+   "sensitivity": null,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-W6": {
+   "sensitivity": null,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-W8": {
+   "sensitivity": null,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X10": {
+   "sensitivity": 91,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X11": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X2": {
+   "sensitivity": 90,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X20": {
+   "sensitivity": 88,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X30": {
+   "sensitivity": 91,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X33C": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X33R": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X3II": {
+   "sensitivity": 83.5,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X4": {
+   "sensitivity": 91,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X4G": {
+   "sensitivity": 91,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X50": {
+   "sensitivity": 90,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X6": {
+   "sensitivity": 93,
+   "nominal": 6.3,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer S-X7": null,
+  "Pioneer S-X9": null,
+  "Pioneer S-XC1": {
+   "sensitivity": 90.5,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Pioneer WS-20": null,
+  "Pioneer WS-23": null,
+  "Q Acoustics 3010c": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": 3.7,
+   "recMin": 15,
+   "recMax": 80
+  },
+  "Q Acoustics 3010i": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": 4,
+   "recMin": 15,
+   "recMax": 75
+  },
+  "Q Acoustics 3020c": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": 3.7,
+   "recMin": 25,
+   "recMax": 90
+  },
+  "Q Acoustics 3020i": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": 4,
+   "recMin": 25,
+   "recMax": 75
+  },
+  "Q Acoustics 3030c": {
+   "sensitivity": 86.5,
+   "nominal": 6,
+   "minimum": 3.9,
+   "recMin": 25,
+   "recMax": 90
+  },
+  "Q Acoustics 3030i": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": 4,
+   "recMin": 25,
+   "recMax": 75
+  },
+  "Q Acoustics 3040C": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": 4,
+   "recMin": 25,
+   "recMax": 120
+  },
+  "Q Acoustics 3050c": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": 3.8,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Q Acoustics 3050i": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": 4,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "Q Acoustics 3090Ci": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": 4,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "Q Acoustics 5010": {
+   "sensitivity": 86.3,
+   "nominal": 6,
+   "minimum": 3.3,
+   "recMin": 15,
+   "recMax": 90
+  },
+  "Q Acoustics 5020": {
+   "sensitivity": 87.9,
+   "nominal": 6,
+   "minimum": 3.3,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "Q Acoustics 5040": {
+   "sensitivity": 91.5,
+   "nominal": 6,
+   "minimum": 3,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Q Acoustics 5050": {
+   "sensitivity": 91.8,
+   "nominal": 6,
+   "minimum": 3,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Q Acoustics 5090": {
+   "sensitivity": 90.5,
+   "nominal": 6,
+   "minimum": 3.2,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Q Acoustics Concept 30": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": 3.9,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "Q Acoustics Concept 300": {
+   "sensitivity": 84,
+   "nominal": 6,
+   "minimum": 4.7,
+   "recMin": 25,
+   "recMax": 200
+  },
+  "Q Acoustics Concept 50": {
+   "sensitivity": 90.5,
+   "nominal": 6,
+   "minimum": 3.6,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Q Acoustics Concept 500": {
+   "sensitivity": null,
+   "nominal": 6,
+   "minimum": 3.7,
+   "recMin": null,
+   "recMax": null
+  },
+  "Q Acoustics Concept 90": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": 3.7,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Q Acoustics M20 HD": null,
+  "Q Acoustics M40": null,
+  "SMSL Tabebuia": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 100,
+   "recMax": null
+  },
+  "SVS Prime Bookshelf": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 150
+  },
+  "SVS Prime Center": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 200
+  },
+  "SVS Prime Elevation": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 150
+  },
+  "SVS Prime Pinnacle": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 300
+  },
+  "SVS Prime Satellite": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 150
+  },
+  "SVS Prime Tower": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 250
+  },
+  "SVS Prime Wireless Pro Powered Speakers": null,
+  "SVS Ultra Evolution Bookshelf": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 150
+  },
+  "SVS Ultra Evolution Center": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 225
+  },
+  "SVS Ultra Evolution Elevation": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 150
+  },
+  "SVS Ultra Evolution Nano": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 150
+  },
+  "SVS Ultra Evolution Pinnacle": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 300
+  },
+  "SVS Ultra Evolution Titan": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 300
+  },
+  "SVS Ultra Evolution Tower": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 300
+  },
+  "TAD M1": {
+   "sensitivity": null,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Wharfedale Aston Limited Edition": {
+   "sensitivity": 86,
+   "nominal": 4,
+   "minimum": 3.9,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "Wharfedale AURA 1": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": 4.1,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "Wharfedale AURA 2": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": 3.5,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Wharfedale AURA 3": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": 3.1,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Wharfedale AURA 4": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": 3.1,
+   "recMin": 30,
+   "recMax": 200
+  },
+  "Wharfedale AURA C": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": 3.6,
+   "recMin": 25,
+   "recMax": 200
+  },
+  "Wharfedale AURA CS": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": 3.8,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Wharfedale Denton 1S": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": 4.5,
+   "recMin": 30,
+   "recMax": 100
+  },
+  "Wharfedale Denton 80th Anniversary": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 20,
+   "recMax": 100
+  },
+  "Wharfedale Denton 85th Anniversary": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.8,
+   "recMin": 20,
+   "recMax": 120
+  },
+  "Wharfedale Diamond 12 3D": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": 3.9,
+   "recMin": 20,
+   "recMax": 100
+  },
+  "Wharfedale Diamond 12.0i": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 20,
+   "recMax": 60
+  },
+  "Wharfedale Diamond 12.1i": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 20,
+   "recMax": 100
+  },
+  "Wharfedale Diamond 12.2i": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 20,
+   "recMax": 120
+  },
+  "Wharfedale Diamond 12.3Di": {
+   "sensitivity": 82,
+   "nominal": 8,
+   "minimum": 4.3,
+   "recMin": 20,
+   "recMax": 100
+  },
+  "Wharfedale Diamond 12.3i": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": 5,
+   "recMin": 30,
+   "recMax": 150
+  },
+  "Wharfedale Diamond 12.4": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": 4.5,
+   "recMin": 30,
+   "recMax": 200
+  },
+  "Wharfedale Diamond 12.4i": {
+   "sensitivity": 89,
+   "nominal": 8,
+   "minimum": 5,
+   "recMin": 30,
+   "recMax": 200
+  },
+  "Wharfedale Diamond 12.C": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": 3.7,
+   "recMin": 20,
+   "recMax": 120
+  },
+  "Wharfedale Diamond 12.Ci": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": 4,
+   "recMin": 20,
+   "recMax": 120
+  },
+  "Wharfedale Diamond 225": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": 4.2,
+   "recMin": 25,
+   "recMax": 120
+  },
+  "Wharfedale Dovedale 90th Anniversary": {
+   "sensitivity": 89,
+   "nominal": 6.5,
+   "minimum": 3.6,
+   "recMin": 25,
+   "recMax": 250
+  },
+  "Wharfedale Elysian 1": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 175
+  },
+  "Wharfedale Elysian 2": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 250
+  },
+  "Wharfedale Elysian 3": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 30,
+   "recMax": 200
+  },
+  "Wharfedale Elysian 4": {
+   "sensitivity": 92,
+   "nominal": 4,
+   "minimum": null,
+   "recMin": 15,
+   "recMax": 250
+  },
+  "Wharfedale Elysian C": {
+   "sensitivity": 91,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Wharfedale Evo 5.1": {
+   "sensitivity": 87,
+   "nominal": 4,
+   "minimum": 3.4,
+   "recMin": 25,
+   "recMax": 100
+  },
+  "Wharfedale Evo 5.2": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.2,
+   "recMin": 25,
+   "recMax": 120
+  },
+  "Wharfedale Evo 5.3": {
+   "sensitivity": 88,
+   "nominal": 4,
+   "minimum": 3.5,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Wharfedale Evo 5.4": {
+   "sensitivity": 90,
+   "nominal": 4,
+   "minimum": 4.3,
+   "recMin": 30,
+   "recMax": 200
+  },
+  "Wharfedale Evo 5.C": {
+   "sensitivity": 89,
+   "nominal": 4,
+   "minimum": 4.1,
+   "recMin": 25,
+   "recMax": 120
+  },
+  "Wharfedale Heritage Centre": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": 4,
+   "recMin": 25,
+   "recMax": 150
+  },
+  "Wharfedale Linton 85th Anniversary": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": 3.5,
+   "recMin": 25,
+   "recMax": 200
+  },
+  "Wharfedale Super Denton": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": 3.4,
+   "recMin": 25,
+   "recMax": 120
+  },
+  "Wharfedale Super Linton": {
+   "sensitivity": 90,
+   "nominal": 6,
+   "minimum": 3.9,
+   "recMin": 25,
+   "recMax": 200
+  },
+  "Yamaha NS-2000A": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": 3.5,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-333": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-5000": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": 3.5,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-555": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-600A": {
+   "sensitivity": 85.5,
+   "nominal": 6,
+   "minimum": 3.6,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-777": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-800A": {
+   "sensitivity": 86.5,
+   "nominal": 6,
+   "minimum": 3.8,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-AW150": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-AW190": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-AW194": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-AW294": {
+   "sensitivity": 87,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-AW350": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-AW390": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-AW392": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-AW592": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-B210": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-B310": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-C210": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-C444": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-F150": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-F210": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-F310": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-F901": {
+   "sensitivity": 89,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IC400": {
+   "sensitivity": 85,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IC600": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IC800": {
+   "sensitivity": 90,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IW280C": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IW360C": {
+   "sensitivity": 85,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IW470": {
+   "sensitivity": 87,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IW480C": {
+   "sensitivity": 86,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IW560C": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IW660": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IW760": {
+   "sensitivity": 88,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-IW960": {
+   "sensitivity": 88,
+   "nominal": 8,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NS-P150": {
+   "sensitivity": 86,
+   "nominal": 6,
+   "minimum": null,
+   "recMin": null,
+   "recMax": null
+  },
+  "Yamaha NX-50": null,
+  "Yamaha NX-N500": null
+ },
+ "cartridge": {
+  "Audio Technica AT-VM740ML": {
+   "type": "MM",
+   "outputMv": 4,
+   "internalOhms": 800,
+   "loadOhms": 47000
+  },
+  "Denon DL-103": {
+   "type": "MC",
+   "outputMv": 0.3,
+   "internalOhms": 40,
+   "loadOhms": null
+  },
+  "Denon DL-103R": {
+   "type": "MC",
+   "outputMv": 0.25,
+   "internalOhms": 14,
+   "loadOhms": null
+  },
+  "Denon DL-110": {
+   "type": "MC",
+   "outputMv": 1.6,
+   "internalOhms": 160,
+   "loadOhms": null
+  },
+  "Denon DL-301 II": {
+   "type": "MC",
+   "outputMv": 0.4,
+   "internalOhms": 33,
+   "loadOhms": 100
+  },
+  "Denon DL-A110": {
+   "type": "MC",
+   "outputMv": 0.25,
+   "internalOhms": 14,
+   "loadOhms": null
+  },
+  "Grado Aeon4": {
+   "type": "MM",
+   "outputMv": 1,
+   "internalOhms": 74,
+   "loadOhms": 47000
+  },
+  "Grado DJ200i": {
+   "type": "MM",
+   "outputMv": 5,
+   "internalOhms": 475,
+   "loadOhms": 47000
+  },
+  "Grado Epoch4": {
+   "type": "MM",
+   "outputMv": 1,
+   "internalOhms": 95,
+   "loadOhms": 47000
+  },
+  "Grado Gold4": {
+   "type": "MM",
+   "outputMv": 4,
+   "internalOhms": 660,
+   "loadOhms": 47000
+  },
+  "Grado Green4": {
+   "type": "MM",
+   "outputMv": 4,
+   "internalOhms": 660,
+   "loadOhms": 47000
+  },
+  "Grado Master4": {
+   "type": "MM",
+   "outputMv": 1,
+   "internalOhms": 70,
+   "loadOhms": 47000
+  },
+  "Grado Mono ME+": {
+   "type": "MM",
+   "outputMv": 4,
+   "internalOhms": 475,
+   "loadOhms": 47000
+  },
+  "Grado Opus4": {
+   "type": "MM",
+   "outputMv": 1,
+   "internalOhms": 70,
+   "loadOhms": 47000
+  },
+  "Grado Platinum4": {
+   "type": "MM",
+   "outputMv": 1,
+   "internalOhms": 70,
+   "loadOhms": 47000
+  },
+  "Grado Red4": {
+   "type": "MM",
+   "outputMv": 4,
+   "internalOhms": 660,
+   "loadOhms": 47000
+  },
+  "Grado Reference4": {
+   "type": "MM",
+   "outputMv": 1,
+   "internalOhms": 70,
+   "loadOhms": 47000
+  },
+  "Grado Sonata4": {
+   "type": "MM",
+   "outputMv": 1,
+   "internalOhms": 70,
+   "loadOhms": 47000
+  },
+  "Grado Statement4": {
+   "type": "MM",
+   "outputMv": 1,
+   "internalOhms": 74,
+   "loadOhms": 47000
+  },
+  "Kenwood KE-9021": {
+   "type": null,
+   "outputMv": 5,
+   "internalOhms": null,
+   "loadOhms": 3300
+  },
+  "Pioneer PC-1000II": {
+   "type": "MM",
+   "outputMv": 2.5,
+   "internalOhms": 2000,
+   "loadOhms": 30000
+  },
+  "Pioneer PC-11": {
+   "type": "MM",
+   "outputMv": 5,
+   "internalOhms": null,
+   "loadOhms": 50000
+  },
+  "Pioneer PC-110": {
+   "type": "MM",
+   "outputMv": 3.5,
+   "internalOhms": 2500,
+   "loadOhms": 30000
+  },
+  "Pioneer PC-110II": {
+   "type": "MM",
+   "outputMv": 3.5,
+   "internalOhms": 3400,
+   "loadOhms": 30000
+  },
+  "Pioneer PC-131": {
+   "type": "MM",
+   "outputMv": 4,
+   "internalOhms": null,
+   "loadOhms": 20000
+  },
+  "Pioneer PC-15": {
+   "type": "MM",
+   "outputMv": 3.5,
+   "internalOhms": null,
+   "loadOhms": 50000
+  },
+  "Pioneer PC-20": {
+   "type": "MM",
+   "outputMv": 3.5,
+   "internalOhms": null,
+   "loadOhms": 50000
+  },
+  "Pioneer PC-20-LS": {
+   "type": "MM",
+   "outputMv": 2,
+   "internalOhms": 500,
+   "loadOhms": 30000
+  },
+  "Pioneer PC-330": {
+   "type": "MM",
+   "outputMv": 3,
+   "internalOhms": 2000,
+   "loadOhms": 30000
+  },
+  "Pioneer PC-330II": {
+   "type": "MM",
+   "outputMv": 3,
+   "internalOhms": 2000,
+   "loadOhms": 30000
+  },
+  "Pioneer PC-50MC": {
+   "type": "MC",
+   "outputMv": 0.2,
+   "internalOhms": 38,
+   "loadOhms": 40
+  },
+  "Pioneer PC-550E": {
+   "type": "MM",
+   "outputMv": 2.5,
+   "internalOhms": 2000,
+   "loadOhms": 30000
+  },
+  "Pioneer PC-550EII": {
+   "type": "MM",
+   "outputMv": 3,
+   "internalOhms": 2000,
+   "loadOhms": 30000
+  },
+  "Pioneer PC-70MC": {
+   "type": "MC",
+   "outputMv": 0.2,
+   "internalOhms": 38,
+   "loadOhms": 40
+  },
+  "Pioneer PC-770EX": {
+   "type": "MM",
+   "outputMv": 2.3,
+   "internalOhms": 2000,
+   "loadOhms": 30000
+  },
+  "Pioneer PS-1000II": {
+   "type": "MM",
+   "outputMv": 2.5,
+   "internalOhms": null,
+   "loadOhms": 30000
+  },
+  "Pioneer PS-110II": {
+   "type": "MM",
+   "outputMv": 3.5,
+   "internalOhms": null,
+   "loadOhms": 30000
+  },
+  "Pioneer PS-600": {
+   "type": "MM",
+   "outputMv": 2.5,
+   "internalOhms": null,
+   "loadOhms": 30000
+  },
+  "Pioneer PS-800": {
+   "type": "MM",
+   "outputMv": 2.5,
+   "internalOhms": null,
+   "loadOhms": 30000
+  },
+  "Sumiko Amethyst": {
+   "type": "MM",
+   "outputMv": 2.5,
+   "internalOhms": 700,
+   "loadOhms": 47000
+  },
+  "Sumiko Black Pearl": {
+   "type": "MM",
+   "outputMv": 4,
+   "internalOhms": 1130,
+   "loadOhms": 47000
+  },
+  "Sumiko Blue Point No. 3 High": {
+   "type": "MC",
+   "outputMv": 2.5,
+   "internalOhms": 135,
+   "loadOhms": 47000
+  },
+  "Sumiko Blue Point No. 3 Low": {
+   "type": "MC",
+   "outputMv": 0.5,
+   "internalOhms": 28,
+   "loadOhms": 100
+  },
+  "Sumiko Moonstone": {
+   "type": "MM",
+   "outputMv": 3,
+   "internalOhms": 1130,
+   "loadOhms": 47000
+  },
+  "Sumiko Olympia": {
+   "type": "MM",
+   "outputMv": 4,
+   "internalOhms": 1130,
+   "loadOhms": 47000
+  },
+  "Sumiko Oriole": {
+   "type": "MC",
+   "outputMv": 0.3,
+   "internalOhms": 5.5,
+   "loadOhms": 55
+  },
+  "Sumiko Oyster": {
+   "type": "MM",
+   "outputMv": 5,
+   "internalOhms": 1130,
+   "loadOhms": 47000
+  },
+  "Sumiko Pearl": {
+   "type": "MM",
+   "outputMv": 4,
+   "internalOhms": 1130,
+   "loadOhms": 47000
+  },
+  "Sumiko Rainier": {
+   "type": "MM",
+   "outputMv": 5,
+   "internalOhms": 1130,
+   "loadOhms": 47000
+  },
+  "Sumiko Songbird High": {
+   "type": "MC",
+   "outputMv": 2.5,
+   "internalOhms": 135,
+   "loadOhms": 47000
+  },
+  "Sumiko Songbird Low": {
+   "type": "MC",
+   "outputMv": 0.5,
+   "internalOhms": 28,
+   "loadOhms": 100
+  },
+  "Sumiko Starling": {
+   "type": "MC",
+   "outputMv": 0.5,
+   "internalOhms": 28,
+   "loadOhms": 100
+  },
+  "Sumiko Wellfleet": {
+   "type": "MM",
+   "outputMv": 3,
+   "internalOhms": 1130,
+   "loadOhms": 47000
+  }
+ },
+ "phono": {
+  "Ampapa A1": null,
+  "Douk Audio H5": null,
+  "Douk Audio P7": null,
+  "Douk Audio T12": {
+   "hasMC": true,
+   "mmGain": [
+    45
+   ],
+   "mcGain": [
+    58
+   ],
+   "mmLoad": 47000,
+   "mcLoadMin": 150,
+   "mcLoadMax": 150
+  },
+  "Douk Audio T13": null,
+  "Douk Audio T14-EQ": {
+   "hasMC": true,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "Douk Audio T3 PRO": null,
+  "Douk Audio T4 PLUS": {
+   "hasMC": true,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "Douk Audio T4 PRO": null,
+  "Douk Audio T9": {
+   "hasMC": true,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": 47000,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "Fosi Audio Box X1": null,
+  "Fosi Audio Box X2": null,
+  "Fosi Audio Box X3": null,
+  "Fosi Audio Box X4": null,
+  "Fosi Audio Box X5": {
+   "hasMC": true,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "Kenwood KA-9021": null,
+  "McIntosh MP1100": {
+   "hasMC": true,
+   "mmGain": [
+    40,
+    46,
+    52,
+    58,
+    64
+   ],
+   "mcGain": [
+    40,
+    46,
+    52,
+    58,
+    64
+   ],
+   "mmLoad": null,
+   "mcLoadMin": 47000,
+   "mcLoadMax": 47000
+  },
+  "NAD PP 2e": {
+   "hasMC": true,
+   "mmGain": [
+    35
+   ],
+   "mcGain": [
+    60
+   ],
+   "mmLoad": 47000,
+   "mcLoadMin": 100,
+   "mcLoadMax": 100
+  },
+  "NAD PP 4": {
+   "hasMC": true,
+   "mmGain": [
+    35
+   ],
+   "mcGain": [
+    58
+   ],
+   "mmLoad": 47000,
+   "mcLoadMin": 100,
+   "mcLoadMax": 100
+  },
+  "Nobsound T3": null,
+  "Parasound JC3": {
+   "hasMC": true,
+   "mmGain": [
+    47
+   ],
+   "mcGain": [
+    68
+   ],
+   "mmLoad": 47000,
+   "mcLoadMin": 100,
+   "mcLoadMax": 100
+  },
+  "Parasound JC3 Jr": {
+   "hasMC": true,
+   "mmGain": [
+    40,
+    46,
+    50,
+    56,
+    60,
+    66
+   ],
+   "mcGain": [
+    40,
+    46,
+    50,
+    56,
+    60,
+    66
+   ],
+   "mmLoad": 47000,
+   "mcLoadMin": 50,
+   "mcLoadMax": 550
+  },
+  "Parasound JC3+": {
+   "hasMC": true,
+   "mmGain": [
+    48
+   ],
+   "mcGain": [
+    64
+   ],
+   "mmLoad": 47000,
+   "mcLoadMin": 50,
+   "mcLoadMax": 550
+  },
+  "Parasound zPhono": {
+   "hasMC": true,
+   "mmGain": [
+    46
+   ],
+   "mcGain": [
+    61
+   ],
+   "mmLoad": 47000,
+   "mcLoadMin": 100,
+   "mcLoadMax": 100
+  },
+  "Parasound zPhono XRM": {
+   "hasMC": true,
+   "mmGain": [
+    40,
+    46,
+    50,
+    56,
+    60,
+    66
+   ],
+   "mcGain": [
+    40,
+    46,
+    50,
+    56,
+    60,
+    66
+   ],
+   "mmLoad": 47000,
+   "mcLoadMin": 50,
+   "mcLoadMax": 1050
+  },
+  "Pioneer H-Z1": {
+   "hasMC": true,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "Pioneer PP-402": {
+   "hasMC": true,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "Pioneer STP-2": null,
+  "Schiit Mani 2": {
+   "hasMC": true,
+   "mmGain": [
+    33,
+    42,
+    48,
+    60
+   ],
+   "mcGain": [
+    33,
+    42,
+    48,
+    60
+   ],
+   "mmLoad": 47000,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "Schiit Skoll F": {
+   "hasMC": true,
+   "mmGain": [
+    40,
+    50,
+    60,
+    70
+   ],
+   "mcGain": [
+    40,
+    50,
+    60,
+    70
+   ],
+   "mmLoad": 47000,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "SMSL PH-1": {
+   "hasMC": false,
+   "mmGain": [
+    46
+   ],
+   "mcGain": [],
+   "mmLoad": null,
+   "mcLoadMin": null,
+   "mcLoadMax": null
+  },
+  "Vincent KHV-200": null,
+  "Vincent PHO-200": {
+   "hasMC": true,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": 47000,
+   "mcLoadMin": 100,
+   "mcLoadMax": 100
+  },
+  "Vincent PHO-300": {
+   "hasMC": true,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": 47000,
+   "mcLoadMin": 100,
+   "mcLoadMax": 100
+  },
+  "Vincent PHO-500": {
+   "hasMC": true,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": 47000,
+   "mcLoadMin": 100,
+   "mcLoadMax": 1000
+  },
+  "Vincent PHO-701": {
+   "hasMC": true,
+   "mmGain": [],
+   "mcGain": [],
+   "mmLoad": 47000,
+   "mcLoadMin": 99,
+   "mcLoadMax": 1000
+  }
+ }
+}
