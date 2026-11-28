@@ -1777,7 +1777,7 @@ async function analyze(){
   rEl.innerHTML=`<div class="loading-box"><div class="vu-meter">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-caption">Analyzing signal chain…</p></div>`;
   try{
     // Step 1: get specs first so chain + summary can use the same confirmed values
-    const specsRes=await fetch('/.netlify/functions/analyze-specs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components,visit:VISIT_ID})});
+    const specsRes=await fetch('/.netlify/functions/analyze-specs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components,connections,visit:VISIT_ID})});
     const specsRaw=await specsRes.text();
     let specsData;
     try{specsData=JSON.parse(specsRaw);}catch(e){throw new Error(`Specs: ${specsRaw.slice(0,120)}`);}
