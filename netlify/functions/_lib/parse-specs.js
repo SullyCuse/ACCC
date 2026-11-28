@@ -148,6 +148,26 @@ function parseCartridge(specs) {
 }
 
 /* ─── Phono stage: gains (dB), MC support, input loads ───────────── */
+// Every resistance in a value, including lists that share one unit:
+// "25, 50, 100, 1k or 47K ohms" -> [25, 50, 100, 1000, 47000];
+// "47KΩ, 200Ω, 47Ω, or 38Ω" -> [47000, 200, 47, 38]; "50 - 550 Ω" -> [50, 550].
+function ohmList(str) {
+  const unit = "(?:Ω|ohms?|kilohms?|kohms?)";
+  const tok = "\\d+(?:\\.\\d+)?\\s*k?\\s*";
+  const seg = new RegExp("((?:" + tok + unit + "?\\s*(?:,\\s*(?:and|or)?|\\bor\\b|\\band\\b|\\bto\\b|/|&|-|–|—)\\s*)*" + tok + ")" + unit, "gi");
+  const out = [];
+  let m;
+  while ((m = seg.exec(str || ""))) {
+    const kiloUnit = /^(?:kilo|kohm)/i.test(str.slice(seg.lastIndex - m[0].length + m[1].length));
+    const parts = m[1].match(/\d+(?:\.\d+)?\s*k?/gi) || [];
+    parts.forEach((t, i) => {
+      const k = /k/i.test(t) || (kiloUnit && i === parts.length - 1);
+      out.push(parseFloat(t) * (k ? 1000 : 1));
+    });
+  }
+  return out;
+}
+
 function dbList(str) {
   const nums = [];
   const re = new RegExp(NUM + "\\s*d[bB]", "g");
@@ -174,16 +194,22 @@ function parsePhono(specs) {
       else if (/\bMM\b/i.test(k)) out.mmGain.push(...nums);
       else generic.push(...nums);
     }
-    if (/impedance|loading/i.test(k) && !/output|headphone|rca|line|aux|capacit|matched/i.test(k)) {
-      const mmPart = new RegExp("MM\\W{0,3}" + NUM + "\\s*(k)?\\s*" + OHM, "i").exec(v);
-      const mcIdx = v.search(/MC/i);
-      const mcPart = mcIdx >= 0 ? ohmRange(v.slice(mcIdx)) : null;
-      if (/\bMC\b/i.test(k)) { const r = ohmRange(v); if (r) { out.mcLoadMin = r.min; out.mcLoadMax = r.max; } }
+    // "Load impedance" / "Nominal" / "Optimum load" describe what a step-up or
+    // ceramic stage needs, not its input load, so they are skipped.
+    if (/impedance|loading|load resistance/i.test(k) && !/output|headphone|rca|line|aux|capacit|matched|nominal|optimum|load impedance/i.test(k)) {
+      // Loads of 10 kΩ and up are MM-style; anything lower is an MC load setting.
+      const vals = ohmList(v);
+      const low = vals.filter(x => x < 10000);
+      const high = vals.find(x => x >= 10000);
+      const setMc = () => { if (low.length) { out.mcLoadMin = Math.min(...low); out.mcLoadMax = Math.max(...low); } };
+      if (/\bMC\b/i.test(k)) setMc();
       else if (/\bMM\b/i.test(k)) out.mmLoad = ohms(v);
-      else if (mmPart || mcPart) {
-        if (mmPart) out.mmLoad = toNum(mmPart[1]) * (mmPart[2] || /kilo|kohm/i.test(mmPart[0]) ? 1000 : 1);
-        if (mcPart) { out.mcLoadMin = mcPart.min; out.mcLoadMax = mcPart.max; }
-      } else if (/47\s*k/i.test(v)) out.mmLoad = 47000;
+      else {
+        // Unlabelled: an MM load only when the value says MM or is the usual 47 kΩ;
+        // MC loads only when it says MC, lists several settings, or names the cartridge load.
+        if (high != null && (/\bMM\b/i.test(v) || /47\s*k/i.test(v))) out.mmLoad = high;
+        if (/\bMC\b/i.test(v) || low.length >= 2 || /cartridge|load resistance/i.test(k)) setMc();
+      }
     }
   }
   const uniq = a => [...new Set(a)].sort((x, y) => x - y);
@@ -192,13 +218,16 @@ function parsePhono(specs) {
   // only MM-range gain and says "MM" is MM-only.
   if (hasMC == null && maxGain >= 55) hasMC = true;
   else if (hasMC == null && maxGain > 0 && /\bMM\b/i.test(text)) hasMC = false;
+  // A stage whose spec sheet names an MM input and never MC is MM-only
+  // (capital "MM" only: "mm" is a dimension).
+  else if (hasMC == null && /\bMM\b/.test(text)) hasMC = false;
   out.hasMC = hasMC;
   if (!out.mmGain.length && generic.length) out.mmGain = generic;
   if (!out.mcGain.length && hasMC && generic.length) out.mcGain = generic;
   out.mmGain = uniq(out.mmGain);
   out.mcGain = uniq(out.mcGain);
   const empty = !out.mmGain.length && !out.mcGain.length && out.mmLoad == null && out.mcLoadMin == null;
-  return empty && !hasMC ? null : out;
+  return empty && hasMC == null ? null : out;
 }
 
 const PARSERS = { amp: parseAmp, speaker: parseSpeaker, cartridge: parseCartridge, phono: parsePhono };
