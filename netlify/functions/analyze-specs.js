@@ -200,7 +200,7 @@ exports.handler = async (event) => {
   const headers = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
 
   try {
-    const { components, connections, visit, checkOnly } = JSON.parse(event.body);
+    const { components, connections, visit, run, checkOnly } = JSON.parse(event.body);
     if (checkOnly && (!Array.isArray(components) || components.length > 30 || components.some(c => !c || typeof c.name !== "string"))) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Bad system" }) };
     }
@@ -340,7 +340,7 @@ All ${needsAI.length} components required. No summary text. No questions.`;
       .slice(0, 60);
     await logEvent(event, "analyzer", components.map(c => ({
       name: c.name, category: c.type, verified: verifiedNames.includes(c.name), db_name: dbNames[c.name] || null
-    })), null, visit, connLog);
+    })), null, visit, connLog, run);
 
     return {
       statusCode: 200,

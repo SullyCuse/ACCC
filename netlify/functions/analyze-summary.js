@@ -1,4 +1,5 @@
 const https = require("https");
+const { logResult } = require("./_lib/log-event");
 
 /* ─── Tonearm/cartridge resonance, computed in code ─────────────
  * Deterministic so every analysis of the same system reports the same
@@ -81,11 +82,37 @@ function computeResonance(specsText) {
   return { ok: true, hz, grade, line };
 }
 
+// Fixed topics for the {tag} at the start of each recommendation. Logged to
+// analysis_results.issues for the Trends "common problems" count, then removed
+// from the text so visitors never see them. Unknown tags count as "other".
+const ISSUE_TAGS = ["gain", "impedance", "power", "loading", "resonance", "noise", "cabling", "placement", "other"];
+
+function takeIssueTags(text) {
+  const issues = [];
+  const clean = text.replace(/^(\s*(?:\**\d+[.)]\**|[-*])\s*)\**\{([a-z /-]{1,20})\}\**\s*/gim, (m, lead, tag) => {
+    const t = tag.trim().toLowerCase();
+    issues.push(ISSUE_TAGS.includes(t) ? t : "other");
+    return lead;
+  });
+  return { text: clean, issues };
+}
+
+// The fixed-format verdict lines at the top of the summary.
+function readVerdicts(text) {
+  const score = text.match(/OVERALL SCORE:\s*\[?\s*(\d+(?:\.\d+)?)\s*\/\s*10/i);
+  const grade = label => {
+    const m = text.match(new RegExp(label + ":\\s*\\[?\\s*(Good|Acceptable|Poor|N\\/A)", "i"));
+    return m ? m[1].replace(/^n\/a$/i, "N/A").replace(/^\w/, c => c.toUpperCase()) : null;
+  };
+  const n = score ? parseFloat(score[1]) : null;
+  return { score: n != null && n >= 0 && n <= 10 ? n : null, impedance: grade("IMPEDANCE MATCH"), sensitivity: grade("SENSITIVITY MATCH") };
+}
+
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") return { statusCode: 405, body: "Method not allowed" };
   const headers = { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" };
   try {
-    const { components, connections, specsText } = JSON.parse(event.body);
+    const { components, connections, specsText, run, visit } = JSON.parse(event.body);
     const typeLabels = {
       amp:"Amplifier",preamp:"Preamplifier",speakers:"Speakers",dac:"DAC",
       turntable:"Turntable",tonearm:"Tonearm",cartridge:"Cartridge",
@@ -124,11 +151,11 @@ PHONO CHAIN
 - Recommended loading: [Ω]` : ""}
 
 ISSUES & RECOMMENDATIONS
-1. [recommendation with exact setting]
-2. [recommendation]
-3. [recommendation]
+1. {tag} [recommendation with exact setting]
+2. {tag} [recommendation]
+3. {tag} [recommendation]
 
-Keep each recommendation to 1–2 sentences with the exact setting and key figure.`;
+Keep each recommendation to 1–2 sentences with the exact setting and key figure. Start each one with exactly one tag in braces naming its main topic, chosen from: ${ISSUE_TAGS.map(t => "{" + t + "}").join(" ")}.`;
 
     const body = JSON.stringify({
       model: "claude-sonnet-5-5",
@@ -159,12 +186,19 @@ Keep each recommendation to 1–2 sentences with the exact setting and key figur
     const parsed = JSON.parse(raw);
     if (parsed.error) throw new Error(parsed.error.message);
     if (parsed.stop_reason === "refusal") throw new Error("The AI declined to summarize this system. Please try again.");
-    const text = (parsed.content || []).filter(b => b.type === "text").map(b => b.text).join("");
+    const rawText = (parsed.content || []).filter(b => b.type === "text").map(b => b.text).join("");
     // truncated: thinking + text hit max_tokens, so the page can say the section was cut off
-    return { statusCode: 200, headers, body: JSON.stringify({ text, truncated: parsed.stop_reason === "max_tokens" }) };
+    const truncated = parsed.stop_reason === "max_tokens";
+    const { text, issues } = takeIssueTags(rawText);
+    // Only the first summary of an analysis carries `run` (re-analyze runs don't), so one row per analysis.
+    if (run) await logResult({ run, visit, truncated, issues, resonance: resonance && resonance.ok ? resonance.grade.split(" ")[0] : null,
+      resonanceHz: resonance && resonance.ok ? Math.round(resonance.hz * 10) / 10 : null, ...readVerdicts(text) });
+    return { statusCode: 200, headers, body: JSON.stringify({ text, truncated }) };
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
   }
 };
 
 exports.computeResonance = computeResonance; // exported for local testing
+exports.takeIssueTags = takeIssueTags;
+exports.readVerdicts = readVerdicts;

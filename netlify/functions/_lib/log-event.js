@@ -19,27 +19,45 @@ function cleanVisit(v) {
   return typeof v === "string" && /^[a-f0-9]{16}$/.test(v) ? v : null;
 }
 
-function logEvent(event, source, components, action, visit, connections) {
+function logEvent(event, source, components, action, visit, connections, run) {
+  return insertRow("analysis_events", () => ({
+    source,
+    action: action || null,
+    components: components.slice(0, 30).map(c => ({
+      name: String(c.name || "").trim().slice(0, 120),
+      category: String(c.category || "").slice(0, 40),
+      verified: !!c.verified,
+      db_name: c.db_name ? String(c.db_name).slice(0, 120) : null
+    })),
+    country: countryOf(event),
+    visit_id: cleanVisit(visit),
+    // Analyzer only: [{from, to, type}], from/to = positions in `components`.
+    connections: Array.isArray(connections) ? connections : null,
+    // Analyzer only: random id per analysis, shared with its analysis_results row.
+    run_id: cleanVisit(run)
+  }));
+}
+
+// One analysis_results row per analysis (from analyze-summary): the parsed
+// verdict lines and the fixed issue tags. No component names or AI text.
+function logResult(r) {
+  return insertRow("analysis_results", () => ({
+    run_id: cleanVisit(r.run),
+    visit_id: cleanVisit(r.visit),
+    score: r.score, impedance: r.impedance, sensitivity: r.sensitivity,
+    resonance: r.resonance, resonance_hz: r.resonanceHz,
+    issues: r.issues, truncated: !!r.truncated
+  }));
+}
+
+function insertRow(table, makeRow) {
   return new Promise((resolve) => {
     try {
-      const body = JSON.stringify({
-        source,
-        action: action || null,
-        components: components.slice(0, 30).map(c => ({
-          name: String(c.name || "").trim().slice(0, 120),
-          category: String(c.category || "").slice(0, 40),
-          verified: !!c.verified,
-          db_name: c.db_name ? String(c.db_name).slice(0, 120) : null
-        })),
-        country: countryOf(event),
-        visit_id: cleanVisit(visit),
-        // Analyzer only: [{from, to, type}], from/to = positions in `components`.
-        connections: Array.isArray(connections) ? connections : null
-      });
+      const body = JSON.stringify(makeRow());
       const { hostname } = new URL(process.env.SUPABASE_URL);
       const req = https.request({
         hostname,
-        path: "/rest/v1/analysis_events",
+        path: "/rest/v1/" + table,
         method: "POST",
         headers: {
           "apikey": process.env.SUPABASE_ANON_KEY,
@@ -56,4 +74,4 @@ function logEvent(event, source, components, action, visit, connections) {
   });
 }
 
-module.exports = { logEvent };
+module.exports = { logEvent, logResult };

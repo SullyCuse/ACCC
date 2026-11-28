@@ -1441,6 +1441,8 @@ const connections=[];
 // Random id for this page load only (memory, never stored) so the usage log
 // counts repeat analyses in one visit once. See the privacy policy.
 const VISIT_ID=(function(){try{var a=new Uint8Array(8);crypto.getRandomValues(a);return Array.from(a,function(b){return(b<16?'0':'')+b.toString(16)}).join('')}catch(e){return null}})();
+// One random id per analysis run, so its logged verdicts (analysis_results) join to its components (analysis_events).
+function newRunId(){try{var a=new Uint8Array(8);crypto.getRandomValues(a);return Array.from(a,function(b){return(b<16?'0':'')+b.toString(16)}).join('')}catch(e){return null}}
 const typeLabels={amp:'Amplifier',preamp:'Preamplifier',speakers:'Speakers',dac:'DAC',turntable:'Turntable',tonearm:'Tonearm',cartridge:'Cartridge',phonopre:'Phono Preamp',streamer:'Streamer',cdplayer:'CD Player',cassettedeck:'Cassette Deck',recorder:'Recorder',cables:'Cables',headphones:'Headphones',other:'Other'};
 const specHints={amp:'Key specs: power output (W/ch), impedance range (Ω), input sensitivity (mV)',preamp:'Key specs: gain (dB), output impedance (Ω), input sensitivity (mV)',speakers:'Key specs: impedance (Ω), sensitivity (dB/W/m), power handling (W)',dac:'Key specs: output voltage (Vrms), output impedance (Ω), supported inputs',turntable:'Key specs: drive type, tonearm effective mass (g), speeds (RPM)',tonearm:'Key specs: effective mass (g), effective length (mm), offset angle, brand and model',cartridge:'Key specs: type (MM/MC), output voltage (mV), compliance (µm/mN), tracking force (g)',phonopre:'Key specs: gain (dB), input impedance (Ω/kΩ), MM/MC support, output voltage',streamer:'Key specs: digital outputs (AES/USB/COAX), supported formats and sample rates',cdplayer:'Key specs: digital outputs (COAX/optical/AES), analog output voltage (Vrms), output impedance (Ω), DAC type',cassettedeck:'Key specs: heads, noise reduction (Dolby/dbx), frequency response by tape type, wow & flutter (%), S/N ratio (dB), line output level',recorder:'Reel-to-reel, DAT, MiniDisc or 8-track. Key specs: format, frequency response, wow & flutter (%), S/N ratio (dB), analog/digital inputs and outputs',cables:'Key specs: type (RCA/XLR/speaker), length, shielding',headphones:'Key specs: impedance (Ω), sensitivity (dB/mW), driver type, connection (3.5mm/4.4mm/XLR)',other:'Describe the component and its relevant electrical or mechanical specs'};
 
@@ -1777,7 +1779,8 @@ async function analyze(){
   rEl.innerHTML=`<div class="loading-box"><div class="vu-meter">${Array(6).fill('<div class="vu-bar"></div>').join('')}</div><p class="loading-caption">Analyzing signal chain…</p></div>`;
   try{
     // Step 1: get specs first so chain + summary can use the same confirmed values
-    const specsRes=await fetch('/.netlify/functions/analyze-specs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components,connections,visit:VISIT_ID})});
+    const run=newRunId();
+    const specsRes=await fetch('/.netlify/functions/analyze-specs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({components,connections,visit:VISIT_ID,run})});
     const specsRaw=await specsRes.text();
     let specsData;
     try{specsData=JSON.parse(specsRaw);}catch(e){throw new Error(`Specs: ${specsRaw.slice(0,120)}`);}
@@ -1788,7 +1791,7 @@ async function analyze(){
     window._sourceUrls=specsData.sourceUrls||{};    // typed name -> DB row's product page
 
     // Step 2: fire chain + summary in parallel, both using confirmed specs
-    const payload=JSON.stringify({components,connections,specsText});
+    const payload=JSON.stringify({components,connections,specsText,run,visit:VISIT_ID});
     const [chainRes,summaryRes]=await Promise.all([
       fetch('/.netlify/functions/analyze-chain',{method:'POST',headers:{'Content-Type':'application/json'},body:payload}),
       fetch('/.netlify/functions/analyze-summary',{method:'POST',headers:{'Content-Type':'application/json'},body:payload})
