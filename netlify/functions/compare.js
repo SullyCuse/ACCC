@@ -361,6 +361,10 @@ function buildSpecPrompt(name, category, match) {
     'CARTRIDGE: Type (MM/MC/MI), Output Voltage, Channel Separation, Channel Balance, Frequency Response, Tracking Force (recommended), Compliance, Stylus Shape, Cantilever Material, Loading Impedance\n' +
     'DAC: DAC Chip(s), Max PCM Resolution, DSD Support, Dynamic Range, THD+N, SNR, Digital Inputs, Analog Outputs, Headphone Output, USB Class\n' +
     'STREAMER: Supported Streaming Services, Max PCM Resolution, DSD Support, Network Connectivity, Analog Outputs, Digital Outputs, Built-in DAC, Control App, Roon Ready\n' +
+    'CD PLAYER: Type (Player/Transport), DAC Chip(s), Transport Mechanism, Frequency Response, THD+N, SNR, Dynamic Range, Formats (CD/SACD/CD-R/MP3), Analog Outputs, Digital Outputs, Digital Inputs\n' +
+    'TUNER: Bands (FM/AM/DAB), FM Usable Sensitivity, FM 50 dB Quieting Sensitivity, FM SNR (stereo), FM Stereo Separation, FM Selectivity, FM Capture Ratio, FM THD (stereo), Frequency Response, Presets, Outputs\n' +
+    'CASSETTE DECK: Heads (number and type), Transport (single/dual capstan), Noise Reduction, Tape Types, Frequency Response (by tape type), Wow & Flutter, SNR, THD, Auto Reverse, Bias Fine-Tune / Calibration\n' +
+    'RECORDER (reel-to-reel, DAT, MiniDisc, CD recorder): Format, Tape Speeds or Sampling Rates, Heads, Frequency Response, Wow & Flutter (tape), SNR, Dynamic Range (digital), THD, Inputs, Outputs, Max Reel Size (reel-to-reel)\n' +
     'SPEAKERS: Frequency Response, Sensitivity (dB/W/m), Nominal Impedance, Minimum Impedance, Woofer Size, Tweeter Type, Enclosure Type, Crossover Frequency, Recommended Amplifier Power\n' +
     'HEADPHONES: Driver Type, Driver Size, Frequency Response, Impedance, Sensitivity (dB/mW), THD, Weight (without cable), Cable Length, Connector Type, Wearing Style';
 }
